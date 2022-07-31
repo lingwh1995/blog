@@ -1,5 +1,4 @@
 node_modules/
-/dist/
 docs/.vupress/.cache/*.*
 docs/.vupress/.temp/*.*
 *.log
