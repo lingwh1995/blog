@@ -29,6 +29,7 @@ pipeline {
         echo '正在推送文件...'
         echo '${GIT_COMMIT_MSG}'
         sh 'git clone -b gh-pages https://gitee.com/lingwh1995/blog.git'
+        sh 'ls'
         sh 'cd blog'
         sh 'mv ../docs/dist/* .'
         sh 'git push -f https://lingwh1995:${GITEE_TOKEN}@gitee.com/lingwh1995/blog.git HEAD:gh-pages'
