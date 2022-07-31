@@ -37,19 +37,19 @@ export default navbar([
         children: [
           {
             text: "springcloud-eureka",
-            link: "/backend/sspringcloud/article/article5",
+            link: "/blogs/backend/springcloud/springcloud-eureka.md",
           },
           {
             text: "springcloud-zookeeper",
-            link: "/backend/sspringcloud/article/article6",
+            link: "/backend/springcloud/article/article6",
           },
           {
             text: "springcloud-consul",
-            link: "/backend/sspringcloud/article/article6",
+            link: "/backend/springcloud/article/article6",
           },
           {
             text: "springcloud-alibaba",
-            link: "/backend/sspringcloud/article/article6",
+            link: "/backend/springcloud/article/article6",
           }
         ],
       }
