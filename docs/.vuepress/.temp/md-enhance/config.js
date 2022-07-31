@@ -1,17 +1,17 @@
 import { defineClientConfig } from "@vuepress/client";
-import ChartJS from "D:/repository/workspace/VSCode/GITHUB/blog-vuepress/node_modules/vuepress-plugin-md-enhance/lib/client/components/ChartJS";
-import ECharts from "D:/repository/workspace/VSCode/GITHUB/blog-vuepress/node_modules/vuepress-plugin-md-enhance/lib/client/components/ECharts";
-import CodeDemo from "D:/repository/workspace/VSCode/GITHUB/blog-vuepress/node_modules/vuepress-plugin-md-enhance/lib/client/components/CodeDemo";
-import CodeTabs from "D:/repository/workspace/VSCode/GITHUB/blog-vuepress/node_modules/vuepress-plugin-md-enhance/lib/client/components/CodeTabs";
-import FlowChart from "D:/repository/workspace/VSCode/GITHUB/blog-vuepress/node_modules/vuepress-plugin-md-enhance/lib/client/components/FlowChart";
-import Mermaid from "D:/repository/workspace/VSCode/GITHUB/blog-vuepress/node_modules/vuepress-plugin-md-enhance/lib/client/components/Mermaid";
-import Presentation from "D:/repository/workspace/VSCode/GITHUB/blog-vuepress/node_modules/vuepress-plugin-md-enhance/lib/client/components/Presentation";
-import "D:/repository/workspace/VSCode/GITHUB/blog-vuepress/node_modules/vuepress-plugin-md-enhance/lib/client/styles/container/index.scss";
-import "D:/repository/workspace/VSCode/GITHUB/blog-vuepress/node_modules/vuepress-plugin-md-enhance/lib/client/styles/footnote.scss";
-import "D:/repository/workspace/VSCode/GITHUB/blog-vuepress/node_modules/vuepress-plugin-md-enhance/lib/client/styles/image-mark.scss";
-import Tabs from "D:/repository/workspace/VSCode/GITHUB/blog-vuepress/node_modules/vuepress-plugin-md-enhance/lib/client/components/Tabs";
-import "D:/repository/workspace/VSCode/GITHUB/blog-vuepress/node_modules/vuepress-plugin-md-enhance/lib/client/styles/tasklist.scss";
-import "D:/repository/workspace/VSCode/GITHUB/blog-vuepress/node_modules/vuepress-plugin-md-enhance/lib/client/styles/tex.scss";
+import ChartJS from "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-md-enhance/lib/client/components/ChartJS";
+import ECharts from "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-md-enhance/lib/client/components/ECharts";
+import CodeDemo from "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-md-enhance/lib/client/components/CodeDemo";
+import CodeTabs from "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-md-enhance/lib/client/components/CodeTabs";
+import FlowChart from "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-md-enhance/lib/client/components/FlowChart";
+import Mermaid from "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-md-enhance/lib/client/components/Mermaid";
+import Presentation from "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-md-enhance/lib/client/components/Presentation";
+import "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-md-enhance/lib/client/styles/container/index.scss";
+import "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-md-enhance/lib/client/styles/footnote.scss";
+import "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-md-enhance/lib/client/styles/image-mark.scss";
+import Tabs from "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-md-enhance/lib/client/components/Tabs";
+import "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-md-enhance/lib/client/styles/tasklist.scss";
+import "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-md-enhance/lib/client/styles/tex.scss";
 
 
 export default defineClientConfig({

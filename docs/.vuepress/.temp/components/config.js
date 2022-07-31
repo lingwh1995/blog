@@ -1,9 +1,9 @@
-import { useStyleTag } from "D:/repository/workspace/VSCode/GITHUB/blog-vuepress/node_modules/vuepress-plugin-components/lib/client/composables";
+import { useStyleTag } from "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-components/lib/client/composables";
 import { h } from "vue";
 import { defineClientConfig } from "@vuepress/client";
-import Badge from "D:/repository/workspace/VSCode/GITHUB/blog-vuepress/node_modules/vuepress-plugin-components/lib/client/components/Badge";
-import FontIcon from "D:/repository/workspace/VSCode/GITHUB/blog-vuepress/node_modules/vuepress-plugin-components/lib/client/components/FontIcon";
-import BackToTop from "D:/repository/workspace/VSCode/GITHUB/blog-vuepress/node_modules/vuepress-plugin-components/lib/client/components/BackToTop";
+import Badge from "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-components/lib/client/components/Badge";
+import FontIcon from "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-components/lib/client/components/FontIcon";
+import BackToTop from "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-components/lib/client/components/BackToTop";
 
 
 export default defineClientConfig({
