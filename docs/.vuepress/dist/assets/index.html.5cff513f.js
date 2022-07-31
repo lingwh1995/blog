@@ -1,0 +1,1 @@
+import{_ as o,o as t,c as r,b as e}from"./app.7d0d4158.js";const c={},_=e("hr",null,null,-1),n=e("div",{style:{color:"var(--theme-color)"}},[e("br"),e("br")],-1),s=[_,n];function l(a,d){return t(),r("div",null,s)}var h=o(c,[["render",l],["__file","index.html.vue"]]);export{h as default};

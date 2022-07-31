@@ -1,0 +1,50 @@
+#app .site-name {
+    font-weight: 800;
+}
+#main-content .hero-info #main-title {
+    margin-left: 0.7rem;
+}
+#main-content .hero-info .description {
+    margin-left: 0.7rem;
+}
+#toc .toc-header {
+    display: none;
+}
+#toc {
+    max-width: 22rem;
+}
+#toc .toc-list .toc-item a {
+    color: #B8860B;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+#toc .toc-list .toc-list .toc-item a {
+    color: #336699;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+#toc .toc-list .toc-list .toc-list .toc-item a {
+    color: #008B8B;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+#toc .toc-list .toc-list .toc-list .toc-list .toc-item a {
+    color: #92893bfd;
+    font-size: 1.0rem;
+    font-weight: 600;
+}
+.theme-hope-content {
+    font-size: 1.3rem;
+}
+.sidebar > .sidebar-links > li:not(:first-child) {
+    margin-top: 0rem;
+}
+.sidebar > .sidebar-links > li {
+    font-size: 1.3rem;
+}
+.sidebar > .sidebar-links > li a {
+    font-weight: 600;
+}
+p, ul, ol {
+    line-height: 1.0rem;
+}
