@@ -12,6 +12,7 @@ pipeline {
         echo '结束检出...'
       }
     }
+    
     stage('推送部署') {
       steps {
         echo '正在推送文件...'
