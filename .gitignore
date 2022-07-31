@@ -1,4 +1,1 @@
 node_modules/
-docs/.vupress/.cache/*.*
-docs/.vupress/.temp/*.*
-*.log
