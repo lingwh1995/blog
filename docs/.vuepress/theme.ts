@@ -109,10 +109,11 @@ export default hopeTheme({
        * Using Giscus
        */
       provider: "Giscus",
-      repo: "lingwh1995/giscus",
-      repoId: "R_kgDOHvk4yA",
+      repo: "lingwh1995/test",
+      repoId: "R_kgDOHwGk_Q",
       category: "Announcements",
-      categoryId: "DIC_kwDOHvk4yM4CQh9r",
+      categoryId: "DIC_kwDOHwGk_c4CQj1K",
+
       /**
        * Using Twikoo
        */

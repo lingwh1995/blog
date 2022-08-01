@@ -1,6 +1,7 @@
 import { defineUserConfig } from "vuepress";
 import theme from "./theme";
 import { path } from "@vuepress/utils";
+import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
 export default defineUserConfig({
   lang: "zh-CN",
   title: "此生挚爱万宝路",
@@ -20,7 +21,7 @@ export default defineUserConfig({
     },
   },
   alias: {
-    "@MyComponent": path.resolve(__dirname, "components/MyComponent.vue"),
+    "@Markmap": path.resolve(__dirname, "components/Markmap.vue"),
   },
   themeColor: {
     blue: "#2196f3",
@@ -33,5 +34,18 @@ export default defineUserConfig({
     dodgerblue: "#1E90FF",
     steelblue: "#4682B4"      
   },
+  plugins: [
+    mdEnhancePlugin({
+      presentation: true,
+      // 添加 `@src` 别名支持
+      include: {
+        getPath: (file) => {
+          if (file.startsWith("@src"))
+            return file.replace("@src", path.resolve(__dirname, "."));
+          return file;
+        },
+      },
+    }),
+  ],
 });
 

@@ -1,70 +1,18 @@
-<template><div><div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code><span class="token keyword">package</span> <span class="token namespace">org<span class="token punctuation">.</span>openatom<span class="token punctuation">.</span>springcloud<span class="token punctuation">.</span>entities</span><span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">AllArgsConstructor</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">Data</span></span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">lombok<span class="token punctuation">.</span></span><span class="token class-name">NoArgsConstructor</span></span><span class="token punctuation">;</span>
-
-<span class="token keyword">import</span> <span class="token import"><span class="token namespace">java<span class="token punctuation">.</span>math<span class="token punctuation">.</span></span><span class="token class-name">BigDecimal</span></span><span class="token punctuation">;</span>
-
-<span class="token annotation punctuation">@Data</span>
-<span class="token annotation punctuation">@AllArgsConstructor</span>
-<span class="token annotation punctuation">@NoArgsConstructor</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Account</span> <span class="token punctuation">{</span>
-
-    <span class="token keyword">private</span> <span class="token class-name">Long</span> id<span class="token punctuation">;</span>
-
-    <span class="token doc-comment comment">/**
-     * 用户id
-     */</span>
-    <span class="token keyword">private</span> <span class="token class-name">Long</span> userId<span class="token punctuation">;</span>
-
-    <span class="token doc-comment comment">/**
-     * 总额度
-     */</span>
-    <span class="token keyword">private</span> <span class="token class-name">BigDecimal</span> total<span class="token punctuation">;</span>
-
-    <span class="token doc-comment comment">/**
-     * 已用额度
-     */</span>
-    <span class="token keyword">private</span> <span class="token class-name">BigDecimal</span> used<span class="token punctuation">;</span>
-
-    <span class="token doc-comment comment">/**
-     * 剩余额度
-     */</span>
-    <span class="token keyword">private</span> <span class="token class-name">BigDecimal</span> residue<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><MyComponent/>
-<h1 id="博客介绍" tabindex="-1"><a class="header-anchor" href="#博客介绍" aria-hidden="true">#</a> 博客介绍</h1>
+<template><div><div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code><span class="token comment">//@include(./Account.java)</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="博客介绍" tabindex="-1"><a class="header-anchor" href="#博客介绍" aria-hidden="true">#</a> 博客介绍</h1>
 <h2 id="博客内容概述" tabindex="-1"><a class="header-anchor" href="#博客内容概述" aria-hidden="true">#</a> 博客内容概述</h2>
 <pre><code>本篇博客的内容主要介绍安装Centos7操作系统、以及在Centos操作系统上搭建常见的开发环境，如Jdk、Maven、Docker、
 Rancher、Minikube、Kubernetes、nginx、等软件的详细搭建过程，博客内容中图片较少，主要以实用为主，所有代码均
 经过严格测试，可直接复制运行即可。
 </code></pre>
 <h2 id="博客大纲" tabindex="-1"><a class="header-anchor" href="#博客大纲" aria-hidden="true">#</a> 博客大纲</h2>
-<h3 id="简单版博客大纲" tabindex="-1"><a class="header-anchor" href="#简单版博客大纲" aria-hidden="true">#</a> 简单版博客大纲</h3>
-<iframe
-  :src="$withBase('/markmap/test.html')"
-  width="100%"
-  height="400"
-  frameborder="0"
-  scrolling="No"
-  leftmargin="0"
-  topmargin="0"
-/>
-<h3 id="详细版博客大纲" tabindex="-1"><a class="header-anchor" href="#详细版博客大纲" aria-hidden="true">#</a> 详细版博客大纲</h3>
-<details class="custom-container details"><summary>点击查看详细版博客大纲</summary>
-<iframe
-  :src="$withBase('/markmap/test.html')"
-  width="100%"
-  height="400"
-  frameborder="0"
-  scrolling="No"
-  leftmargin="0"
-  topmargin="0"
-/>
-</details>
+<h3 id="简单版博客内容大纲" tabindex="-1"><a class="header-anchor" href="#简单版博客内容大纲" aria-hidden="true">#</a> 简单版博客内容大纲</h3>
+<Markmap localtion="/markmap/environment/centos/centos7-outline2.html"/>
+<h3 id="详细版博客内容大纲" tabindex="-1"><a class="header-anchor" href="#详细版博客内容大纲" aria-hidden="true">#</a> 详细版博客内容大纲</h3>
+<Markmap localtion="/markmap/environment/centos/centos7-outline3.html"/>
 <h1 id="_1-安装linux操作系统" tabindex="-1"><a class="header-anchor" href="#_1-安装linux操作系统" aria-hidden="true">#</a> 1.安装Linux操作系统</h1>
+<h2 id="_1-1章节大纲" tabindex="-1"><a class="header-anchor" href="#_1-1章节大纲" aria-hidden="true">#</a> 1.1章节大纲</h2>
+<Markmap localtion="/markmap/environment/centos/chapter/centos7-outline5-chapter1.html"/>
 <h2 id="_1-1-linux重要目录介绍" tabindex="-1"><a class="header-anchor" href="#_1-1-linux重要目录介绍" aria-hidden="true">#</a> 1.1.Linux重要目录介绍</h2>
 <pre><code>/usr → C:/Windows/ /*系统级的目录
 /usr/lib → C:/Windows/System32
@@ -100,6 +48,8 @@ VMware NetworkAdepter VMnet8：Host用于与NAT虚拟网络进行通信的虚拟
 /*主分区，剩下的空间全部分给这个分区
 </code></pre>
 <h1 id="_2-linux操作系统初始设置" tabindex="-1"><a class="header-anchor" href="#_2-linux操作系统初始设置" aria-hidden="true">#</a> 2.Linux操作系统初始设置</h1>
+<h2 id="_2-1章节大纲" tabindex="-1"><a class="header-anchor" href="#_2-1章节大纲" aria-hidden="true">#</a> 2.1章节大纲</h2>
+<Markmap localtion="/markmap/environment/centos/chapter/centos7-outline5-chapter2.html"/>
 <h2 id="_2-1-配置静态ip地址" tabindex="-1"><a class="header-anchor" href="#_2-1-配置静态ip地址" aria-hidden="true">#</a> 2.1.配置静态IP地址</h2>
 <p><strong>修改网络配置</strong></p>
 <div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token function">vi</span> /etc/sysconfig/network-scripts/ifcfg-ens32<span class="token punctuation">(</span>最后一个为网卡名称<span class="token punctuation">)</span>	
@@ -144,7 +94,7 @@ source /etc/profile
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum makecache &amp;&amp; yum update
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_2-6-安装常用基础系统软件" tabindex="-1"><a class="header-anchor" href="#_2-6-安装常用基础系统软件" aria-hidden="true">#</a> 2.6.安装常用基础系统软件</h2>
-<h2 id="_2-6-1-手动安装常用软件" tabindex="-1"><a class="header-anchor" href="#_2-6-1-手动安装常用软件" aria-hidden="true">#</a> 2.6.1.手动安装常用软件</h2>
+<h3 id="_2-6-1-手动安装常用软件" tabindex="-1"><a class="header-anchor" href="#_2-6-1-手动安装常用软件" aria-hidden="true">#</a> 2.6.1.手动安装常用软件</h3>
 <p><strong>vim</strong></p>
 <pre><code>安装vim	
 </code></pre>
@@ -158,11 +108,12 @@ syntax on      #即设置语法检测，当编辑C或者Shell脚本时，关键�
 </code></pre>
 <p><strong>wget</strong></p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y install wget
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>安装telnet</strong></p>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p><strong>telnet</strong></p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y install telnet
 yum -y install telnet-server
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>git</strong>
-卸载旧版本</p>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>git</strong></p>
+<pre><code>卸载旧版本	
+</code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum remove git
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装 yum 源的 Git 版本
 </code></pre>
@@ -170,7 +121,7 @@ yum -y install telnet-server
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看版本
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git version 
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_2-6-2-使用脚本安装常用软件" tabindex="-1"><a class="header-anchor" href="#_2-6-2-使用脚本安装常用软件" aria-hidden="true">#</a> 2.6.2.使用脚本安装常用软件</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_2-6-2-使用脚本安装常用软件" tabindex="-1"><a class="header-anchor" href="#_2-6-2-使用脚本安装常用软件" aria-hidden="true">#</a> 2.6.2.使用脚本安装常用软件</h3>
 <pre><code>脚本介绍
 这个脚本中包含了centos设置yum源并且安装了一些的常用软件，如vim、git、wget、curl、等，会定时更新
 
@@ -185,6 +136,8 @@ yum -y install telnet-server
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>chmod +x centos-init.sh &amp;&amp;
 ./centos-init.sh
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h1 id="_3-搭建基础开发环境" tabindex="-1"><a class="header-anchor" href="#_3-搭建基础开发环境" aria-hidden="true">#</a> 3.搭建基础开发环境</h1>
+<h2 id="_3-1章节大纲" tabindex="-1"><a class="header-anchor" href="#_3-1章节大纲" aria-hidden="true">#</a> 3.1章节大纲</h2>
+<Markmap localtion="/markmap/environment/centos/chapter/centos7-outline5-chapter3.html"/>
 <h2 id="_3-1-安装jdk" tabindex="-1"><a class="header-anchor" href="#_3-1-安装jdk" aria-hidden="true">#</a> 3.1.安装jdk</h2>
 <pre><code>查看当前安装的java版本
 </code></pre>
@@ -337,6 +290,8 @@ FLUSH PRIVILEGES;
 update user set host='%' where user='root';
 flush privileges;
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h1 id="_4-centos搭建docker" tabindex="-1"><a class="header-anchor" href="#_4-centos搭建docker" aria-hidden="true">#</a> 4.Centos搭建docker</h1>
+<h2 id="_4-1章节大纲" tabindex="-1"><a class="header-anchor" href="#_4-1章节大纲" aria-hidden="true">#</a> 4.1章节大纲</h2>
+<Markmap localtion="/markmap/environment/centos/chapter/centos7-outline5-chapter4.html"/>
 <h2 id="_4-1-安装docker" tabindex="-1"><a class="header-anchor" href="#_4-1-安装docker" aria-hidden="true">#</a> 4.1.安装docker</h2>
 <h3 id="_4-1-1-在线安装docker" tabindex="-1"><a class="header-anchor" href="#_4-1-1-在线安装docker" aria-hidden="true">#</a> 4.1.1.在线安装docker</h3>
 <pre><code>以root身份更新yum，将yum包更新到最新
@@ -789,7 +744,7 @@ vim harbor.yml
 -p 9002:8080 <br>
 --name registry-web <br>
 --link registry_default <br>
--e REGISTRY_URL=<a href="http://192.168.0.4:5000/v2" target="_blank" rel="noopener noreferrer">http://192.168.0.4:5000/v2<ExternalLinkIcon/></a> <br>
+-e REGISTRY_URL=http://192.168.0.4:5000/v2 <br>
 -e REGISTRY_NAME=192.168.0.4:5000 <br>
 hyper/docker-registry-web:latest</p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>
@@ -798,7 +753,7 @@ hyper/docker-registry-web:latest</p>
 ### 4.6.1.制作Dokcer镜像		
 	进入/opt/software/package，并在这个目录中下载jdk
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>cd /opt/software/package &amp;&amp;
-wget <a href="https://repo.huaweicloud.com/java/jdk/8u181-b13/jdk-8u181-linux-x64.tar.gz" target="_blank" rel="noopener noreferrer">https://repo.huaweicloud.com/java/jdk/8u181-b13/jdk-8u181-linux-x64.tar.gz<ExternalLinkIcon/></a></p>
+wget https://repo.huaweicloud.com/java/jdk/8u181-b13/jdk-8u181-linux-x64.tar.gz</p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	编写Dockerfile(Dockerfile内容如下)	
 	
 	#基于centos基础镜像构建
@@ -854,13 +809,13 @@ consul:latest</p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	备份旧的源
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>mv /etc/apt/sources.list /etc/apt/sources.list.bak</p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	写入新的源
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>echo &quot;deb <a href="http://mirrors.163.com/debian/" target="_blank" rel="noopener noreferrer">http://mirrors.163.com/debian/<ExternalLinkIcon/></a> jessie main non-free contrib&quot; <br>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>echo &quot;deb http://mirrors.163.com/debian/ jessie main non-free contrib&quot; <br>
 &gt;&gt; 	/etc/apt/sources.list &amp;&amp;
-echo &quot;deb <a href="http://mirrors.163.com/debian/" target="_blank" rel="noopener noreferrer">http://mirrors.163.com/debian/<ExternalLinkIcon/></a> jessie-proposed-updates main non-free contrib&quot; <br>
+echo &quot;deb http://mirrors.163.com/debian/ jessie-proposed-updates main non-free contrib&quot; <br>
 &gt;&gt;/etc/apt/sources.list &amp;&amp;
-echo &quot;deb-src <a href="http://mirrors.163.com/debian/" target="_blank" rel="noopener noreferrer">http://mirrors.163.com/debian/<ExternalLinkIcon/></a> jessie main non-free contrib&quot; <br>
+echo &quot;deb-src http://mirrors.163.com/debian/ jessie main non-free contrib&quot; <br>
 &gt;&gt;/etc/apt/sources.list &amp;&amp;
-echo &quot;deb-src <a href="http://mirrors.163.com/debian/" target="_blank" rel="noopener noreferrer">http://mirrors.163.com/debian/<ExternalLinkIcon/></a> jessie-proposed-updates main non-free contrib&quot; <br>
+echo &quot;deb-src http://mirrors.163.com/debian/ jessie-proposed-updates main non-free contrib&quot; <br>
 &gt;&gt;/etc/apt/sources.list</p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>
 	更新源
@@ -942,6 +897,8 @@ max virtual memory areas vm.max_map_count [65530] is too low, increase to at lea
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sudo sysctl -w vm.max_map_count=262144
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="_5-centos搭建rancher" tabindex="-1"><a class="header-anchor" href="#_5-centos搭建rancher" aria-hidden="true">#</a> 5.Centos搭建Rancher</h1>
+<h2 id="_5-1章节大纲" tabindex="-1"><a class="header-anchor" href="#_5-1章节大纲" aria-hidden="true">#</a> 5.1章节大纲</h2>
+<Markmap localtion="/markmap/environment/centos/chapter/centos7-outline5-chapter5.html"/>
 <pre><code>下载rancher
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker pull rancher/server
@@ -958,6 +915,8 @@ eureka:
 	#ip-address: 192.168.0.4				
 </code></pre>
 <h1 id="_6-centos搭建minikube" tabindex="-1"><a class="header-anchor" href="#_6-centos搭建minikube" aria-hidden="true">#</a> 6.Centos搭建Minikube</h1>
+<h2 id="_6-1章节大纲" tabindex="-1"><a class="header-anchor" href="#_6-1章节大纲" aria-hidden="true">#</a> 6.1章节大纲</h2>
+<Markmap localtion="/markmap/environment/centos/chapter/centos7-outline5-chapter6.html"/>
 <h2 id="_6-1-minikube介绍" tabindex="-1"><a class="header-anchor" href="#_6-1-minikube介绍" aria-hidden="true">#</a> 6.1.minikube介绍</h2>
 <pre><code>Minikube这个工具支持在虚拟机上运行一套单节点的k8s集群
 </code></pre>
@@ -1069,6 +1028,8 @@ rcvboxdrv setup
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>rm -rf ~/.minikube	
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="_7-kubeadm搭建kubernetes" tabindex="-1"><a class="header-anchor" href="#_7-kubeadm搭建kubernetes" aria-hidden="true">#</a> 7.kubeadm搭建Kubernetes</h1>
+<h2 id="_7-1章节大纲" tabindex="-1"><a class="header-anchor" href="#_7-1章节大纲" aria-hidden="true">#</a> 7.1章节大纲</h2>
+<Markmap localtion="/markmap/environment/centos/chapter/centos7-outline5-chapter7.html"/>
 <h2 id="_7-1-特别说明" tabindex="-1"><a class="header-anchor" href="#_7-1-特别说明" aria-hidden="true">#</a> 7.1.特别说明</h2>
 <pre><code>使用kubeadm搭建Kubernetes
 </code></pre>
@@ -1148,7 +1109,7 @@ systemctl start docker
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看swap分区是否关闭	
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>free -m
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_7-10-用kubeadm-初始化集群" tabindex="-1"><a class="header-anchor" href="#_7-10-用kubeadm-初始化集群" aria-hidden="true">#</a> 7.10.	用kubeadm 初始化集群</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_7-10-用kubeadm-初始化集群" tabindex="-1"><a class="header-anchor" href="#_7-10-用kubeadm-初始化集群" aria-hidden="true">#</a> 7.10.用kubeadm 初始化集群</h2>
 <pre><code>特别注意
 只在Master节点操作
 
@@ -1314,6 +1275,8 @@ http://192.168.0.8:31208
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>rm -rf /usr/share/kuboard
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="_8-二进制包搭建kubernetes" tabindex="-1"><a class="header-anchor" href="#_8-二进制包搭建kubernetes" aria-hidden="true">#</a> 8.二进制包搭建Kubernetes</h1>
+<h2 id="_8-1章节大纲" tabindex="-1"><a class="header-anchor" href="#_8-1章节大纲" aria-hidden="true">#</a> 8.1章节大纲</h2>
+<Markmap localtion="/markmap/environment/centos/chapter/centos7-outline5-chapter8.html"/>
 <h2 id="_8-1-环境配置清单" tabindex="-1"><a class="header-anchor" href="#_8-1-环境配置清单" aria-hidden="true">#</a> 8.1.环境配置清单</h2>
 <pre><code>操作系统									centos7
 内核版本									3.10.0-1160.71.1.el7.x86_64

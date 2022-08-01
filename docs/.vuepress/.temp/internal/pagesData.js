@@ -5,6 +5,8 @@ export const pagesData = {
   "v-4e6db822": () => import(/* webpackChunkName: "v-4e6db822" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/cinema.html.js").then(({ data }) => data),
   // path: /
   "v-8daa1a0e": () => import(/* webpackChunkName: "v-8daa1a0e" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/index.html.js").then(({ data }) => data),
+  // path: /blogs/backend/springcloud/springcloud-eureka.html
+  "v-5a1b8662": () => import(/* webpackChunkName: "v-5a1b8662" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka.html.js").then(({ data }) => data),
   // path: /blogs/environment/centos/centos7.html
   "v-185b2644": () => import(/* webpackChunkName: "v-185b2644" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7.html.js").then(({ data }) => data),
   // path: /404.html

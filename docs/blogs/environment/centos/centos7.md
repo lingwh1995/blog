@@ -33,47 +33,13 @@ icon: linux
 
 
 ```java
-@include(./Account.java)
+//@include(./Account.java)
 ```
 
-<MyComponent/>
-
-
-# 博客介绍
-##	博客内容概述
-
-	本篇博客的内容主要介绍安装Centos7操作系统、以及在Centos操作系统上搭建常见的开发环境，如Jdk、Maven、Docker、
-    Rancher、Minikube、Kubernetes、nginx、等软件的详细搭建过程，博客内容中图片较少，主要以实用为主，所有代码均
-	经过严格测试，可直接复制运行即可。
-## 博客大纲
-	
-###	简单版博客大纲
-<iframe
-  :src="$withBase('/markmap/test.html')"
-  width="100%"
-  height="400"
-  frameborder="0"
-  scrolling="No"
-  leftmargin="0"
-  topmargin="0"
-/>
-
-###	详细版博客大纲
-::: details 点击查看详细版博客大纲
-
-<iframe
-  :src="$withBase('/markmap/test.html')"
-  width="100%"
-  height="400"
-  frameborder="0"
-  scrolling="No"
-  leftmargin="0"
-  topmargin="0"
-/>
-
-:::
+@include(@src/public/guidance/environment/centos/centos7-guidance.md)
 
 # 1.安装Linux操作系统
+@include(@src/public/guidance/environment/centos/chapter/centos7-guidance-chapter1.md)
 
 ## 1.1.Linux重要目录介绍
 
@@ -112,6 +78,7 @@ icon: linux
 	/*主分区，剩下的空间全部分给这个分区
 	
 # 2.Linux操作系统初始设置
+@include(@src/public/guidance/environment/centos/chapter/centos7-guidance-chapter2.md)
 
 ## 2.1.配置静态IP地址
 **修改网络配置**	
@@ -175,7 +142,7 @@ yum makecache && yum update
 ```
 
 ## 2.6.安装常用基础系统软件
-## 2.6.1.手动安装常用软件
+### 2.6.1.手动安装常用软件
 **vim**
 
 	安装vim	
@@ -192,12 +159,13 @@ yum -y install vim*
 ```
 yum -y install wget
 ```	
-**安装telnet**
+**telnet**
 ```
 yum -y install telnet
 yum -y install telnet-server
 ```	
 **git**
+
 	卸载旧版本	
 ```
 yum remove git
@@ -210,7 +178,7 @@ yum install -y git
 ```	
 git version 
 ```
-## 2.6.2.使用脚本安装常用软件
+### 2.6.2.使用脚本安装常用软件
 	脚本介绍
 	这个脚本中包含了centos设置yum源并且安装了一些的常用软件，如vim、git、wget、curl、等，会定时更新
 
@@ -230,6 +198,7 @@ chmod +x centos-init.sh &&
 ./centos-init.sh
 ```
 # 3.搭建基础开发环境
+@include(@src/public/guidance/environment/centos/chapter/centos7-guidance-chapter3.md)
 
 ## 3.1.安装jdk
 	查看当前安装的java版本
@@ -423,6 +392,7 @@ flush privileges;
 ```
 
 # 4.Centos搭建docker
+@include(@src/public/guidance/environment/centos/chapter/centos7-guidance-chapter4.md)
 ## 4.1.安装docker
 ### 4.1.1.在线安装docker
 
@@ -1154,6 +1124,7 @@ sudo sysctl -w vm.max_map_count=262144
 ```
 
 # 5.Centos搭建Rancher
+@include(@src/public/guidance/environment/centos/chapter/centos7-guidance-chapter5.md)
 	下载rancher
 ```	
 docker pull rancher/server
@@ -1172,6 +1143,7 @@ docker run -di --name=rancher -p9003:8080 rancher/server:latest
 		#ip-address: 192.168.0.4				
 
 # 6.Centos搭建Minikube
+@include(@src/public/guidance/environment/centos/chapter/centos7-guidance-chapter6.md)
 ## 6.1.minikube介绍
 	Minikube这个工具支持在虚拟机上运行一套单节点的k8s集群
 
@@ -1307,6 +1279,7 @@ rm -rf ~/.minikube
 ```
 
 # 7.kubeadm搭建Kubernetes
+@include(@src/public/guidance/environment/centos/chapter/centos7-guidance-chapter7.md)
 
 ## 7.1.特别说明
 	使用kubeadm搭建Kubernetes
@@ -1406,7 +1379,7 @@ sed -ri 's/.*swap.*/#&/' /etc/fstab && systemctl reboot
 free -m
 ```
 
-## 7.10.	用kubeadm 初始化集群
+## 7.10.用kubeadm 初始化集群
 	特别注意
 	只在Master节点操作
 	
@@ -1600,6 +1573,7 @@ rm -rf /usr/share/kuboard
 ```
 
 # 8.二进制包搭建Kubernetes
+@include(@src/public/guidance/environment/centos/chapter/centos7-guidance-chapter8.md)
 
 ## 8.1.环境配置清单
 	操作系统									centos7
