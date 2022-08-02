@@ -2,8 +2,9 @@ export const pagesRoutes = [
   ["v-35f5db9e","/blog.html",{"title":"博客主页","icon":"home","type":"home","readingTime":{"minutes":0.07,"words":20},"excerpt":""},["/blog","/blog.md"]],
   ["v-4e6db822","/cinema.html",{"title":"放映厅","type":"home","readingTime":{"minutes":0.6,"words":179},"excerpt":"@slidestart moon 终身美丽/Sammi 郑秀文/《瘦身男女》主题曲 <iframe src=\"//player.bilibili.com/player.html?aid=800758670&bvid=BV1Yy4y1i72t&cid=270593254&page=1&danmaku=0&high_quality=1\" width=\"800re"},["/cinema","/cinema.md"]],
   ["v-8daa1a0e","/",{"title":"个人主页","icon":"home","type":"home","readingTime":{"minutes":1.7,"words":510},"excerpt":"--- 唐多令·芦叶满汀洲 南宋 刘过 芦叶满汀洲，寒沙带浅流。二十年重过南楼。柳下系船犹未稳，能几日，又中秋。 黄鹤断矶头，故人今在否？旧江山浑是新愁。欲买桂花同载酒，终不似，少年游。"},["/index.html","/index.md"]],
-  ["v-5a1b8662","/blogs/backend/springcloud/springcloud-eureka.html",{"title":"","type":"article","readingTime":{"minutes":0,"words":0},"excerpt":""},["/blogs/backend/springcloud/springcloud-eureka","/blogs/backend/springcloud/springcloud-eureka.md"]],
+  ["v-5a1b8662","/blogs/backend/springcloud/springcloud-eureka.html",{"title":"","type":"article","readingTime":{"minutes":0.01,"words":4},"excerpt":"我是springcloud-eureka.md"},["/blogs/backend/springcloud/springcloud-eureka","/blogs/backend/springcloud/springcloud-eureka.md"]],
   ["v-185b2644","/blogs/environment/centos/centos7.html",{"title":"在Centos7上搭建开发环境","icon":"linux","shortTitle":"在Centos7服务器上搭建开发环境","type":"article","readingTime":{"minutes":68.12,"words":20437},"excerpt":"本篇博客的内容主要介绍安装Centos7操作系统、以及在Centos操作系统上搭建常见的开发环境，如Jdk、Maven、Docker、Rancher、Minikube、Kubernetes、nginx、等软件的详细搭建过程，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，直接复制运行即可。","date":"2020-01-01T00:00:00.000Z","localizedDate":"2020年1月1日","category":["环境搭建"],"tag":["linux","安装jdk","安装maven"],"sticky":true,"isOriginal":true},["/blogs/environment/centos/centos7","/blogs/environment/centos/centos7.md"]],
+  ["v-54d40435","/blogs/environment/windows/windows.html",{"title":"","type":"article","readingTime":{"minutes":0.01,"words":3},"excerpt":"我是windows.md"},["/blogs/environment/windows/windows","/blogs/environment/windows/windows.md"]],
   ["v-3706649a","/404.html",{"title":"","type":"page","readingTime":{"minutes":0,"words":0},"excerpt":""},["/404"]],
   ["v-5bc93818","/category/",{"title":"分类","type":"page","readingTime":{"minutes":0,"words":0},"excerpt":""},["/category/index.html"]],
   ["v-744d024e","/tag/",{"title":"标签","type":"page","readingTime":{"minutes":0,"words":0},"excerpt":""},["/tag/index.html"]],
@@ -16,4 +17,6 @@ export const pagesRoutes = [
   ["v-211f44ee","/tag/linux/",{"title":"linux 标签","type":"page","readingTime":{"minutes":0,"words":0},"excerpt":""},["/tag/linux/index.html"]],
   ["v-0e79ea7d","/tag/%E5%AE%89%E8%A3%85jdk/",{"title":"安装jdk 标签","type":"page","readingTime":{"minutes":0,"words":0},"excerpt":""},["/tag/安装jdk/","/tag/%E5%AE%89%E8%A3%85jdk/index.html"]],
   ["v-5ca35ae3","/tag/%E5%AE%89%E8%A3%85maven/",{"title":"安装maven 标签","type":"page","readingTime":{"minutes":0,"words":0},"excerpt":""},["/tag/安装maven/","/tag/%E5%AE%89%E8%A3%85maven/index.html"]],
+  ["v-8644d974","/blogs/environment/centos/centos7-outline5-chapter8.html",{"title":"","type":"article","readingTime":{"minutes":0,"words":0},"excerpt":""},["/blogs/environment/centos/centos7-outline5-chapter8","/blogs/environment/centos/centos7-outline5-chapter8.md"]],
+  ["v-68665289","/blogs/environment/centos/xx.html",{"title":"","type":"article","readingTime":{"minutes":0,"words":0},"excerpt":""},["/blogs/environment/centos/xx","/blogs/environment/centos/xx.md"]],
 ]

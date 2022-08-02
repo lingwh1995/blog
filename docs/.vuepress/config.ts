@@ -2,6 +2,7 @@ import { defineUserConfig } from "vuepress";
 import theme from "./theme";
 import { path } from "@vuepress/utils";
 import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
+
 export default defineUserConfig({
   lang: "zh-CN",
   title: "此生挚爱万宝路",
@@ -22,6 +23,7 @@ export default defineUserConfig({
   },
   alias: {
     "@Markmap": path.resolve(__dirname, "components/Markmap.vue"),
+    "@ScrollIntoView": path.resolve(__dirname, "components/ScrollIntoView.vue"),
   },
   themeColor: {
     blue: "#2196f3",
@@ -45,6 +47,7 @@ export default defineUserConfig({
           return file;
         },
       },
+      container: true,
     }),
   ],
 });

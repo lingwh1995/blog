@@ -82,11 +82,11 @@ export default navbar([
         children: [
           { 
             text: "mysql", 
-            link: "/database/relational database/article1"
+            link: "/database/relational/article1"
           },
           { 
             text: "oracle", 
-            link: "/database/relational database/article2"
+            link: "/database/relational/article2"
           },
         ],
       },
@@ -116,7 +116,7 @@ export default navbar([
       },
       { 
         text: 'windows', 
-        link: '/blogs/environment/windows/windows'
+        link: '/blogs/environment/windows/windows.md'
       }
     ],
   },

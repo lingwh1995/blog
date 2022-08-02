@@ -11,6 +11,8 @@ export const pagesComponents = {
   "v-5a1b8662": defineAsyncComponent(() => import(/* webpackChunkName: "v-5a1b8662" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka.html.vue")),
   // path: /blogs/environment/centos/centos7.html
   "v-185b2644": defineAsyncComponent(() => import(/* webpackChunkName: "v-185b2644" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7.html.vue")),
+  // path: /blogs/environment/windows/windows.html
+  "v-54d40435": defineAsyncComponent(() => import(/* webpackChunkName: "v-54d40435" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/windows.html.vue")),
   // path: /404.html
   "v-3706649a": defineAsyncComponent(() => import(/* webpackChunkName: "v-3706649a" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/404.html.vue")),
   // path: /category/
@@ -35,4 +37,6 @@ export const pagesComponents = {
   "v-0e79ea7d": defineAsyncComponent(() => import(/* webpackChunkName: "v-0e79ea7d" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/tag/安装jdk/index.html.vue")),
   // path: /tag/%E5%AE%89%E8%A3%85maven/
   "v-5ca35ae3": defineAsyncComponent(() => import(/* webpackChunkName: "v-5ca35ae3" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/tag/安装maven/index.html.vue")),
+  // path: /blogs/environment/centos/xx.html
+  "v-68665289": defineAsyncComponent(() => import(/* webpackChunkName: "v-68665289" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/xx.html.vue")),
 }

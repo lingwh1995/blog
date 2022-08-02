@@ -1,5 +1,6 @@
 import { defineClientConfig } from "@vuepress/client";
 import Presentation from "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-md-enhance/lib/client/components/Presentation";
+import "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-md-enhance/lib/client/styles/container/index.scss";
 
 
 export default defineClientConfig({

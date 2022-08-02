@@ -33,6 +33,9 @@
     font-size: 1.0rem;
     font-weight: 600;
 }
+#toc .toc-item.active > .toc-link {
+    background-color: var(--theme-color-mask);
+}
 .theme-hope-content {
     font-size: 1.3rem;
 }

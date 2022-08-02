@@ -31,9 +31,11 @@ function createOutLineMarkmapHtml(){
     
     #删除上一次操作后的md文件
     rm -rf $1.md
-
+    echo '删除上一次操作后的'$1'.md文件'
+    
     #从副本恢复一份新的md文件
     cp $1.md.bak $1.md
+    echo '从副本恢复一份新的'$1'.md文件'
 
     echo '开始为'$1'.md生成二级和三级目录大纲md文件......'
     #生成二级目录大纲md文件
@@ -45,8 +47,8 @@ function createOutLineMarkmapHtml(){
     echo '开始为'$1'.md生成二级和三级目录大纲markmap文件......'
     #根据二级和三级目录大纲md文件创建对应的目录大纲html文件
     #--no-open：生成大纲后不打开，--no-toolbar：生成的目录大纲html文件不包含工具条
-    markmap --no-open $1-outline2.md
-    markmap --no-open $1-outline3.md
+    markmap --no-open --no-toolbar $1-outline2.md
+    markmap --no-open --no-toolbar $1-outline3.md
     echo '完成为'$1'.md生成二级和三级目录大纲markmap文件............'
     
     #进入上一次操作的目录，就是blog目录中
@@ -157,7 +159,7 @@ function createChapterOutLineGuidanceMd(){
 
 cat > $1-guidance-chapter$i.md  << EOF    
 
-## $i.1章节大纲
+## $i.1.章节大纲
 	
 <Markmap localtion="/markmap/environment/centos/chapter/$1-outline5-chapter$i.html"/>
 EOF
@@ -202,8 +204,17 @@ function title2Increment(){
         fi
         for ((j=$TOTAL_TITLE2_COUNTS; j>=1; j--))
         do
+            echo $i.$j'->'$i.$[$j+1]
             #替换二级标题，在原来的基础上+1
-            sed -i 's/(^\#\{2,4\} )'"$i"'.'"$j"'/^\#\{2,4\} '"$i"'.'"$[$j+1]"'/g' $1.md
+            #sed -i 's/(^\#\{2,4\} )'"$i"'\.'"$j"'\./^\#\{2,4\} '"$i"'\.'"$[$j+1]"'\./g' $1.md
+            #处理二级标题中+1
+            sed -i 's/^## '"$i"'\.'"$j"'\./## '"$i"'\.'"$[$j+1]"'\./g' $1.md
+            #处理三级标题中+1
+            sed -i 's/^### '"$i"'\.'"$j"'\./### '"$i"'\.'"$[$j+1]"'\./g' $1.md
+            #处理四级标题中+1
+            sed -i 's/^#### '"$i"'\.'"$j"'\./##### '"$i"'\.'"$[$j+1]"'\./g' $1.md
+            #处理五级标题中+1
+            sed -i 's/^##### '"$i"'\.'"$j"'\./##### '"$i"'\.'"$[$j+1]"'\./g' $1.md
         done
     done
 
@@ -251,8 +262,11 @@ echo '开始生成guidance文件（guidance文件中引用了上一步骤生成�
 MD_FILE_GUIDANCE_TARGET_PATH="docs/.vuepress/public/guidance/environment/centos"
 createOutLineGuidanceMd $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_GUIDANCE_TARGET_PATH
 createChapterOutLineGuidanceMd $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_GUIDANCE_TARGET_PATH
-title2Increment $MD_FILE_NAME $MD_FILE_SOURCE_PATH
 echo '结束生成guidance文件.............'
+
+echo '开始让md文件中的二级标题增加1......'
+title2Increment $MD_FILE_NAME $MD_FILE_SOURCE_PATH
+echo '完成让md文件中的二级标题增加1............'
 
 echo '开始给md文件中插入Markmap组件（Markmap组件中引用了上一步骤生成的guidance文件）......'
 MD_FILE_GUIDANCE_VUECOMPONMENT_PATH="public/guidance/environment/centos"

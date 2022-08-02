@@ -108,11 +108,14 @@ export default hopeTheme({
       /**
        * Using Giscus
        */
+      /*
+      comment:true,
       provider: "Giscus",
-      repo: "lingwh1995/test",
-      repoId: "R_kgDOHwGk_Q",
+      repo: "lingwh1995/blog-giscus",
+      repoId: "R_kgDOHwPu-A",
       category: "Announcements",
-      categoryId: "DIC_kwDOHwGk_c4CQj1K",
+      categoryId: "DIC_kwDOHwPu-M4CQkWT"
+      */
 
       /**
        * Using Twikoo
@@ -123,8 +126,8 @@ export default hopeTheme({
       /**
        * Using Waline
        */
-      // provider: "Waline",
-      // serverURL: "https://vuepress-theme-hope-comment.vercel.app",
+      provider: "Waline",
+      serverURL: "https://waline-test-90exfa19s-lingwh1995.vercel.app/",
     },
     mdEnhance: {
       enableAll: true,
@@ -151,4 +154,6 @@ export default hopeTheme({
       disableSelection: true
     }
   },
+  // 默认值: true
+  activeHeaderLinks: true,
 });
