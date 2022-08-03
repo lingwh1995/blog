@@ -1,0 +1,14 @@
+export const data = JSON.parse("{\"key\":\"v-e7846bea\",\"path\":\"/blogs/environment/centos/centos7/shardings/centos7-chapter-4.Centos%E6%90%AD%E5%BB%BAdocker.html\",\"title\":\"4.Centos搭建docker\",\"lang\":\"zh-CN\",\"frontmatter\":{\"summary\":\"4.Centos搭建docker @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter4.md) 4.2.安装docker 4.2.1.在线安装docker 以root身份更新yum，将yum包更新到最新 查看当前安装\",\"head\":[[\"meta\",{\"property\":\"og:url\",\"content\":\"https://vuepress-theme-hope-v2-demo.mrhope.site/blogs/environment/centos/centos7/shardings/centos7-chapter-4.Centos%E6%90%AD%E5%BB%BAdocker.html\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"此生挚爱万宝路\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"4.Centos搭建docker\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}]]},\"excerpt\":\"\",\"headers\":[{\"level\":1,\"title\":\"4.Centos搭建docker\",\"slug\":\"_4-centos搭建docker\",\"children\":[{\"level\":2,\"title\":\"4.1.章节大纲\",\"slug\":\"_4-1-章节大纲\",\"children\":[]},{\"level\":2,\"title\":\"4.2.安装docker\",\"slug\":\"_4-2-安装docker\",\"children\":[{\"level\":3,\"title\":\"4.2.1.在线安装docker\",\"slug\":\"_4-2-1-在线安装docker\",\"children\":[]},{\"level\":3,\"title\":\"4.2.2.二进制包安装docker\",\"slug\":\"_4-2-2-二进制包安装docker\",\"children\":[]}]},{\"level\":2,\"title\":\"4.3.docker启动故障解决\",\"slug\":\"_4-3-docker启动故障解决\",\"children\":[]},{\"level\":2,\"title\":\"4.4.docker容器可视化\",\"slug\":\"_4-4-docker容器可视化\",\"children\":[]},{\"level\":2,\"title\":\"4.5.搭建docke私服\",\"slug\":\"_4-5-搭建docke私服\",\"children\":[]},{\"level\":2,\"title\":\"4.5.1搭建docke官方私服（不带有用户名和密码校验）\",\"slug\":\"_4-5-1搭建docke官方私服-不带有用户名和密码校验\",\"children\":[]},{\"level\":2,\"title\":\"4.5.2搭建docke官方私服（带有用户名和密码校验）\",\"slug\":\"_4-5-2搭建docke官方私服-带有用户名和密码校验\",\"children\":[]},{\"level\":2,\"title\":\"4.5.3.搭建harbor私服\",\"slug\":\"_4-5-3-搭建harbor私服\",\"children\":[{\"level\":3,\"title\":\"4.5.3.1.harbor简介\",\"slug\":\"_4-5-3-1-harbor简介\",\"children\":[]},{\"level\":3,\"title\":\"4.5.3.2.搭建docker-compose\",\"slug\":\"_4-5-3-2-搭建docker-compose\",\"children\":[]},{\"level\":3,\"title\":\"4.5.3.3.安装harbor\",\"slug\":\"_4-5-3-3-安装harbor\",\"children\":[]}]}]}],\"readingTime\":{\"minutes\":11.08,\"words\":3325},\"copyright\":\"著作权归lingwh所有\\n基于Copyright 2021 © open linux lingwh协议\\n原文链接：https://github.com/lingwh1995/blogs/environment/centos/centos7/shardings/centos7-chapter-4.Centos%E6%90%AD%E5%BB%BAdocker.html\",\"filePathRelative\":\"blogs/environment/centos/centos7/shardings/centos7-chapter-4.Centos搭建docker.md\"}")
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}

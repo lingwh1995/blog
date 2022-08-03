@@ -1,3 +1,19 @@
+<div>
+
+>
+# 阅读每个章节博客
+>
+- [x] 在Centos上搭建开发环境-<a href="./1.安装Linux操作系统.html" target="_blank">1.安装Linux操作系统</a>
+
+- [x] 在Centos上搭建开发环境-<a href="./1.安装Linux操作系统.html" target="_blank">1.安装Linux操作系统</a>  
+- [x] 在Centos上搭建开发环境-<a href="./2.安装Windows操作系统.html" target="_blank">1.安装Windows操作系统</a>  
+- [x] 在Centos上搭建开发环境-<a href="./1.安装Linux操作系统.html" target="_blank">1.安装Linux操作系统</a> 
+- [x] 在Centos上搭建开发环境-<a href="./1.安装Linux操作系统.html" target="_blank">1.安装Linux操作系统</a> 
+- [x] 在Centos上搭建开发环境-<a href="./1.安装Linux操作系统.html" target="_blank">1.安装Linux操作系统</a> 
+- [x] 在Centos上搭建开发环境-<a href="./1.安装Linux操作系统.html" target="_blank">1.安装Linux操作系统</a> 
+>
+</div>
+ 
 # 博客介绍
 ## 博客内容概述
 

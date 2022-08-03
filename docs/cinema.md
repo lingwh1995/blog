@@ -22,9 +22,9 @@ layout: Slide
 
 ---
 
-我心永恒/Celine Dion/《泰坦尼克号》主题曲
+西城男孩/Seasons In The Sun/ 不朽名曲
 <iframe
-    src="//player.bilibili.com/player.html?aid=809102894&bvid=BV1s34y1C7yo&cid=510265916&page=1&danmaku=0&high_quality=1"
+    src="//player.bilibili.com/player.html?aid=548110055&bvid=BV1Hq4y1K7vP&cid=410342410&page=1&high_quality=1"
     width="800rem" 
     height="500rem"
     scrolling="no" 
@@ -38,9 +38,9 @@ layout: Slide
 
 ---
 
-漫步人生路/中岛美雪/《日文原版》
+我心永恒/Celine Dion/《泰坦尼克号》主题曲
 <iframe
-    src="//player.bilibili.com/player.html?aid=841414544&bvid=BV1C54y1q7QU&cid=215222372&page=1&danmaku=0&high_quality=1"
+    src="//player.bilibili.com/player.html?aid=809102894&bvid=BV1s34y1C7yo&cid=510265916&page=1&danmaku=0&high_quality=1"
     width="800rem" 
     height="500rem"
     scrolling="no" 

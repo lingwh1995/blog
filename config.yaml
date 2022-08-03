@@ -1,0 +1,4 @@
+file-1:
+  name: centos7
+  import-code: no
+  relative-path: environment/centos/centos7

@@ -3,7 +3,7 @@ import { navbar } from "vuepress-theme-hope";
 export default navbar([
   {
     text: "个人主页",
-    icon: "people",
+    icon: "hacker",
     link: '/'
   },
   {
@@ -75,7 +75,7 @@ export default navbar([
   },
   {
     text: "数据库",
-    icon: "mysql",
+    icon: "database",
     children: [
       {
         text: "关系型数据库",
@@ -111,8 +111,12 @@ export default navbar([
     icon: "software",
     children: [
       { 
-        text: 'centos', 
-        link: '/blogs/environment/centos/centos7.md'
+        text: 'centos',
+        children: [
+          { text: "centos7",
+          link: '/blogs/environment/centos/centos7/centos7.md'
+          },
+        ],
       },
       { 
         text: 'windows', 

@@ -4,6 +4,7 @@ import { path } from "@vuepress/utils";
 import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
 
 export default defineUserConfig({
+  //博客语言环境
   lang: "zh-CN",
   title: "此生挚爱万宝路",
   head: [
@@ -17,38 +18,16 @@ export default defineUserConfig({
   base: "/",
   theme,
   markdown: {
+    //vuepress解析md标题的深度
     headers: {
       level : [1,2,3,4,5]
     },
   },
+  //自定义的vue组件的别名
   alias: {
     "@Markmap": path.resolve(__dirname, "components/Markmap.vue"),
     "@ScrollIntoView": path.resolve(__dirname, "components/ScrollIntoView.vue"),
+    "@Popup": path.resolve(__dirname, "components/Popup.vue"),
   },
-  themeColor: {
-    blue: "#2196f3",
-    red: "#f26d6d",
-    orange: "#fb9b5f",
-    grey11: "#1c1c1c",
-    darkblue: "#00008B",
-    darkcyan: "#008B8B",
-    red2: "#EE0000",
-    dodgerblue: "#1E90FF",
-    steelblue: "#4682B4"      
-  },
-  plugins: [
-    mdEnhancePlugin({
-      presentation: true,
-      // 添加 `@src` 别名支持
-      include: {
-        getPath: (file) => {
-          if (file.startsWith("@src"))
-            return file.replace("@src", path.resolve(__dirname, "."));
-          return file;
-        },
-      },
-      container: true,
-    }),
-  ],
 });
 

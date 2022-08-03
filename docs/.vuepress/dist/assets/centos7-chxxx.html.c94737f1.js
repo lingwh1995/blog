@@ -1,0 +1,1 @@
+import{_ as e,o as t,c,d as o}from"./app.1d41eb5c.js";const n={},s=o("blockquote",null,null,-1),_=[s];function l(r,a){return t(),c("div",null,_)}var d=e(n,[["render",l],["__file","centos7-chxxx.html.vue"]]);export{d as default};

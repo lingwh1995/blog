@@ -15,183 +15,149 @@ git config --global core.longpaths true
 #安装markmap-cli 
 #npm install -g markmap-cli
 
-#为笔记生成markmap大纲
-
-#用于记录日志的方法
-function log() {
-    echo -e "$(date '+%Y-%m-%d %H:%M:%S') $@"
-}
-
-#为xxx.md文件生成二级和三级目录大纲markmap文件
+#为xxx.md和xxx.md的所有章节生成二级和三级目录大纲，并将这个目录大纲装换为markmap文件
 function createOutLineMarkmapHtml(){
-    echo '开始为'$1'.md生成markmap文件......'
-
-    #进入存放笔记md文件的目录
-    cd $2
-    
+    find . -name $1.md
+    echo '生成markmap文件开始........................................................................'
+    echo '开始为'$1'.md生成markmap文件........................'
+  
     #删除上一次操作后的md文件
-    rm -rf $1.md
+    rm -rf $2/$1.md
     echo '删除上一次操作后的'$1'.md文件'
     
     #从副本恢复一份新的md文件
-    cp $1.md.bak $1.md
+    cp $2/$1.md.bak $2/$1.md
     echo '从副本恢复一份新的'$1'.md文件'
 
     echo '开始为'$1'.md生成二级和三级目录大纲md文件......'
     #生成二级目录大纲md文件
-    grep '^#\{1,2\} [1-9][0-9]\?' $1.md > $1-outline2.md
+    grep '^#\{1,2\} [1-9][0-9]\?' $2/$1.md > $2/$1-outline2.md
     #生成三级目录大纲md文件
-    grep '^#\{1,3\} [1-9][0-9]\?' $1.md > $1-outline3.md
+    grep '^#\{1,3\} [1-9][0-9]\?' $2/$1.md > $2/$1-outline3.md
     echo '完成为'$1'.md生成二级和三级目录大纲md文件............'
     
-    echo '开始为'$1'.md生成二级和三级目录大纲markmap文件......'
+    echo '开始为'$1'.md生成二级和三级目录大纲markmap文件，并输出到指定文件夹中......'
+
+    #创建存放为xxx.md生成的markmap文件的文件夹
+    mkdir -p $3
+    #删除上次生成的xxx.md所有章节的目录大纲markmap文件
+    rm  -rf $3/$1-outline*.html
+
     #根据二级和三级目录大纲md文件创建对应的目录大纲html文件
     #--no-open：生成大纲后不打开，--no-toolbar：生成的目录大纲html文件不包含工具条
-    markmap --no-open --no-toolbar $1-outline2.md
-    markmap --no-open --no-toolbar $1-outline3.md
-    echo '完成为'$1'.md生成二级和三级目录大纲markmap文件............'
-    
-    #进入上一次操作的目录，就是blog目录中
-    cd -
-    
+    markmap --no-open --no-toolbar $2/$1-outline2.md -o $3/$1-outline2.html
+    markmap --no-open --no-toolbar $2/$1-outline3.md -o $3/$1-outline3.html
+    echo '完成为'$1'.md生成二级和三级目录大纲markmap文件，并输出到指定文件夹中............'
+      
     echo '开始删除'$1'.md生成的二级和三级目录大纲md文件......'
     #删除生成三级目录大纲md文件
     rm -rf $2/$1-outline*.md
     echo '完成删除'$1'.md生成的二级和三级目录大纲md文件............'
 
-    echo '开始将'$1'.md生成二级和三级目录大纲markmap文件移动到指定目录......'
-    mkdir -p $3
-    #把二级和三级目录大纲文件移动到指定的目录中
-    mv $2/$1-outline*.html $3
-    echo '完成将'$1'.md生成二级和三级目录大纲markmap文件移动到指定目录............'
+    echo '完成为'$1'.md生成二级和三级目录大纲md文件................................................' 
 
-    echo '完成为'$1'.md生成二级和三级目录大纲md文件......' 
-}
+    echo '开始为'$1'.md的所有章节生成markmap文件........................'
 
-#为xxx.md文件的所有章节生成目录大纲markmap文件
-function createChapterOutLineMarkmapHtml(){
-    echo '开始为'$1'.md的所有章节生成markmap文件......'
-
-    #进入存放笔记md文件的目录
-    cd $2
     #获取一级标题总数
-    MAX_CHAPTER_SEQUENCE=`grep '^#\{1\} [1-9]\+' $1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
+    TOTAL_TITLE1_COUNTS=`grep '^#\{1\} [1-9]\+' $2/$1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
      
-    for ((i=1; i<=$MAX_CHAPTER_SEQUENCE; i++))
+    #创建存放为xxx.md的所有章节生成的markmap文件的文件夹
+    mkdir -p $3/chapter
+
+    #删除上次生成xxx.md的所有章节的目录大纲markmap文件
+    rm  -rf $3/chapter/*
+
+    for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
     do
         echo '开始为'$1'.md第'$i'章生成目录大纲md文件，章节目录大纲标题深度：'$4'......'
         #为具体章节章节生成目录大纲md文件，标题深度由$4这个参数决定
-        grep '^#\{1,'"$4"'\} '"$i"'' $1.md > $1-outline$4-chapter$i.md
+        grep '^#\{1,'"$4"'\} '"$i"'' $2/$1.md > $2/$1-outline$4-chapter$i.md
         echo '完成为'$1'.md第'$i'章生成目录大纲md文件，章节目录大纲标题深度：'$4'............'
 
         echo '开始为'$1'.md第'$i'章节生成目录大纲markmap文件，markmap文件标题深度：'$4'......'
         #根据二级和三级目录大纲md文件创建对应的目录大纲html文件
         #--no-open：生成大纲后不打开，--no-toolbar：生成的目录大纲html文件不包含工具条
-        markmap --no-open --no-toolbar $1-outline$4-chapter$i.md
+        markmap --no-open --no-toolbar $2/$1-outline$4-chapter$i.md  -o $3/chapter/$1-outline$4-chapter$i.html
         echo '完成为'$1'.md第'$i'章节生成目录大纲markmap文件，markmap文件标题深度：'$4'............'
     done
-    
-    #进入上一次操作的目录，就是
-    cd -
      
     echo '开始删除'$1'.md所有章节生成的目录大纲md文件......'
     #删除生成三级目录大纲md文件
     rm -rf $2/$1-outline$4-chapter*.md
     echo '完成删除'$1'.md所有章节生成的目录大纲md文件............'
 
-    echo '开始将'$1'.md所有章节生成的目录大纲markmap文件移动到指定目录......'
-    mkdir -p $3/chapter
-    #删除上次生成的目录大纲markmap文件
-    rm  -rf $3/chapter/*
-    #把二级和三级目录大纲markmap文件移动到指定的目录中
-    mv $2/$1-outline$4-chapter*.html $3/chapter
-    echo '完成将'$1'.md所有章节三级目录大纲markmap文件移动到指定目录............'
-
-    echo '完成为'$1'.md的所有章节生成markmap文件......'
+    echo '完成为'$1'.md的所有章节生成markmap文件................................................'
+    echo '生成markmap文件完成........................................................................'
 }
+
 
 #生成xxx.md文件生成xxx-guidance.md
 function createOutLineGuidanceMd(){
-    echo '开始为'$1'.md生成guidance文件......'
+    echo '生成guidance文件开始........................................................................'
     
-    #进入存放笔记md文件的目录
-    cd $2
+    echo '开始为'$1'.md生成guidance文件................................................'
+    
+    #创建存放xxx.md成的guidance文件的文件夹
+    mkdir -p $3
+
     #创建xxx-guidance.md，并写入博客guidance内容
-cat > $1-guidance.md  << EOF    
-# 博客介绍
+cat > $3/$1-guidance.md  << EOF
+
+# 博客内容介绍
 ## 博客内容概述
 
 	本篇博客的内容主要介绍安装Centos7操作系统、以及在Centos操作系统上搭建常见的开发环境，如Jdk、Maven、Docker、
     Rancher、Minikube、Kubernetes、nginx、等软件的详细搭建过程，博客内容中图片较少，主要以实用为主，所有代码均
 	经过严格测试，可直接复制运行即可。
-## 博客大纲
+## 博客内容大纲
 	
 ###	简单版博客内容大纲
-<Markmap localtion="/markmap/environment/centos/$1-outline2.html"/>
+<Markmap localtion="/enhance/markmap/$4/$1-outline2.html"/>
 
 ###	详细版博客内容大纲
-<Markmap localtion="/markmap/environment/centos/$1-outline3.html"/>
+<Markmap localtion="/enhance/markmap/$4/$1-outline3.html"/>
 EOF
 
-    #进入上一次操作的目录中，就是blog中
-    cd -
+    echo '结束为'$1'.md生成guidance文件......................................................'
 
-    #创建存放guidance文件的文件夹
-    mkdir -p $3
-    echo $3
+    echo '开始为'$1'.md所有章节生成guidance文件......................................................'
 
-    #把生成的guidance文件移动到指定位置
-    mv $2/$1-guidance.md $3
-    echo '结束为'$1'.md生成guidance文件......'
-}
+    #获取一级标题总数
+    TOTAL_TITLE1_COUNTS=`grep '^#\{1\} [1-9][0-9]\?' $2/$1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
 
-#生成xxx.md文件所有章节生成xxx-guidance-chapter*.md
-function createChapterOutLineGuidanceMd(){
-    echo '开始为'$1'.md所有章节生成guidance文件......'
+    #创建存放所有xxx.md所有章节生成guidance文件的文件夹
+    mkdir -p $3/chapter
 
-    #进入存放笔记md文件的目录
-    cd $2
-    #获取总共的章节数目
-    MAX_CHAPTER_SEQUENCE=`grep '^#\{1\} [1-9][0-9]\?' $1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
-
-    for ((i=1; i<=$MAX_CHAPTER_SEQUENCE; i++))
+    for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
     do
 
-cat > $1-guidance-chapter$i.md  << EOF    
+cat > $3/chapter/$1-guidance-chapter$i.md  << EOF    
 
 ## $i.1.章节大纲
 	
-<Markmap localtion="/markmap/environment/centos/chapter/$1-outline5-chapter$i.html"/>
+<Markmap localtion="/enhance/markmap/$4/chapter/$1-outline5-chapter$i.html"/>
 EOF
 
     done
 
-    cd -
+    echo '结束为'$1'.md所有章节生成guidance文件......................................................'
 
-    #创建存放所有章节guidance文件的文件夹
-    mkdir -p $3/chapter
-
-    #把当前目录下所有guidance文件移动到指定文件夹
-    mv $2/$1-guidance-chapter*.md $3/chapter
-
-    echo '结束为'$1'.md所有章节生成guidance文件......'
+    echo '生成duidance文件完成........................................................................'
 }
+
 
 #二级标题序列增加1
 function title2Increment(){
-    echo '开始为'$1'.md中所有二级标题序列增加1......'
-
-    #进入存放笔记md文件的目录
-    cd $2
+    echo '开始为'$1'.md中所有二级标题序列增加1........................................................................'
  
     #获取一级标题总数
-    TOTAL_TITLE1_COUNTS=`grep '^# [1-9][0-9]\?' $1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
+    TOTAL_TITLE1_COUNTS=`grep '^# [1-9][0-9]\?\.' $2/$1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
     echo $1'.md初始文件中一级标题总数'$TOTAL_TITLE1_COUNTS
   
     for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
     do
         #根据一级标题获取二级标题总数
-        TOTAL_TITLE2_COUNTS=`grep '^## '"$i"'' $1.md | tail -1 | cut -d. -f2`
+        TOTAL_TITLE2_COUNTS=`grep '^## '"$i"'' $2/$1.md | tail -1 | cut -d. -f2`
         #遍历二级标题，让所有的二级标题在原来的基础上+1，如1.2.2->1.3.2
         #判断二级标题格式是否合格，如果不合格就跳过本次循环
         if [ -z "$TOTAL_TITLE2_COUNTS" ]
@@ -204,73 +170,285 @@ function title2Increment(){
         fi
         for ((j=$TOTAL_TITLE2_COUNTS; j>=1; j--))
         do
-            echo $i.$j'->'$i.$[$j+1]
+            echo '二级标题由'$i.$j'提升为->'$i.$[$j+1]
             #替换二级标题，在原来的基础上+1
-            #sed -i 's/(^\#\{2,4\} )'"$i"'\.'"$j"'\./^\#\{2,4\} '"$i"'\.'"$[$j+1]"'\./g' $1.md
+            sed -i 's/\(^\#\{2,4\} \)'"$i"'\.'"$j"'\./\1'"$i"'\.'"$[$j+1]"'\./g' $2/$1.md
             #处理二级标题中+1
-            sed -i 's/^## '"$i"'\.'"$j"'\./## '"$i"'\.'"$[$j+1]"'\./g' $1.md
+            #sed -i 's/^## '"$i"'\.'"$j"'\./## '"$i"'\.'"$[$j+1]"'\./g' $2/$1.md
             #处理三级标题中+1
-            sed -i 's/^### '"$i"'\.'"$j"'\./### '"$i"'\.'"$[$j+1]"'\./g' $1.md
+            #sed -i 's/^### '"$i"'\.'"$j"'\./### '"$i"'\.'"$[$j+1]"'\./g' $2/$1.md
             #处理四级标题中+1
-            sed -i 's/^#### '"$i"'\.'"$j"'\./##### '"$i"'\.'"$[$j+1]"'\./g' $1.md
+            #sed -i 's/^#### '"$i"'\.'"$j"'\./##### '"$i"'\.'"$[$j+1]"'\./g' $2/$1.md
             #处理五级标题中+1
-            sed -i 's/^##### '"$i"'\.'"$j"'\./##### '"$i"'\.'"$[$j+1]"'\./g' $1.md
+            #sed -i 's/^##### '"$i"'\.'"$j"'\./##### '"$i"'\.'"$[$j+1]"'\./g' $2/$1.md
         done
     done
 
-    echo '完成为'$1'.md中所有二级标题序列增加1......' 
+    echo '完成为'$1'.md中所有二级标题序列增加1........................................................................' 
 }
 
-#给MD文件中插入MarkmapComponment（vue插件）
+#给xxx.md文件中插入MarkmapComponment（vue插件）
 function insertMarkmapComponmentIntoMd(){
-    echo '开始为'$1'.md中插入MarkmapComponment......'
+    echo '开始为'$1'.md中插入MarkmapComponment........................................................................'
+
+    #给第一个一级标题上面一行的上面一行插入整个博客的MarkmapComponment
+    #获取一级标题所在行号
+    TARGET_LINE_NUMBER=`grep -n '^# 1\.' $2/$1.md | cut -d ':' -f 1`
+    TARGET_LINE_NUMBER=$[$TARGET_LINE_NUMBER-1]
+    echo '标题 # 1.所在行号：'$TARGET_LINE_NUMBER
+    TARGET_STR="@include(@src/$3/$1-guidance.md)"
+    sed -i ''"$TARGET_LINE_NUMBER"'i '"$TARGET_STR"'' $2/$1.md
 
     #获取一级标题总数
-    TOTAL_TITLE1_COUNTS=`grep '^# [1-9][0-9]\?' $1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
+    TOTAL_TITLE1_COUNTS=`grep '^# [1-9][0-9]\?\.' $2/$1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
     echo '一级标题总数'$TOTAL_TITLE1_COUNTS
     
+    #给每个章节下面的插入每个章节对应的MarkmapComponment
     for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
     do
         echo '开始给标题'$i'下面插入MarkmapComponment......'
-        TARGET_LINE_NUMBER=`grep -n '^# '"$i"'' $1.md | cut -d ':' -f 1`
+        TARGET_LINE_NUMBER=`grep -n '^# '"$i"'\.' $2/$1.md | cut -d ':' -f 1`
         echo '标题 # '$i.'所在行号：'$TARGET_LINE_NUMBER
         TARGET_STR="@include(@src/$3/chapter/$1-guidance-chapter$i.md)"
-        sed -i ''"$TARGET_LINE_NUMBER"'a '"$TARGET_STR"'' $1.md
+        sed -i ''"$TARGET_LINE_NUMBER"'a '"$TARGET_STR"'' $2/$1.md
         echo '完成给标题'$i'下面插入MarkmapComponment......'
     done
 
-    echo '完成为'$1'.md中插入MarkmapComponment......'
+    echo '完成为'$1'.md中插入MarkmapComponment........................................................................'
 }
-echo '开始增强MD文件......'
 
+#把上一步骤生成的MD文件根据章节数目切割成多个小md文件，每一个章节拆分为一个md文件
+function createChapterMd(){
+    echo '开始根据章节切割'$1'.md文件........................................................................'
+
+    #删除上一次操作产生的chapters文件夹
+    rm -rf $2/shardings
+
+    #创建存放每一章节md文件的目录
+    mkdir $2/shardings
+
+    #获取一级标题总数
+    TOTAL_TITLE1_COUNTS=`grep '^# [1-9][0-9]\?\.' $2/$1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
+    echo '一级标题总数'$TOTAL_TITLE1_COUNTS
+    
+    
+    for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
+    do
+        #获取章节起始行数
+        CHAPTER_START_LINE_NUMBER=`grep -n '^# '"$i"'\.' $2/$1.md | cut -d ':' -f 1`
+        echo '章节'$i'起始行数：'$CHAPTER_START_LINE_NUMBER
+        
+        #获取章节结束行数
+        CHAPTER_END_LINE_NUMBER=`grep -n '^# '"$[$i+1]"'\.' $2/$1.md | cut -d ':' -f 1`
+        CHAPTER_END_LINE_NUMBER=$[$CHAPTER_END_LINE_NUMBER-1]
+        #如果计算出来的值为-1，说明已经扫描到了最后一行，单独处理一下最后一行的行数
+        if [ $CHAPTER_END_LINE_NUMBER -eq "-1" ]
+        then
+            CHAPTER_END_LINE_NUMBER=`cat $2/$1.md |wc -l`
+        fi
+        echo '章节'$i'结束行数：'$CHAPTER_END_LINE_NUMBER
+        
+        #获取章节名称
+        CHAPTER_NAME=`grep -n '^# '"$i"'\.' $2/$1.md | cut -d ' ' -f 2`
+        echo '章节名称：'$CHAPTER_NAME
+
+        #根据行号将内容输出到文件
+        sed -n ''"$CHAPTER_START_LINE_NUMBER"','"$CHAPTER_END_LINE_NUMBER"'p' $2/$1.md > $2/shardings/$1-chapter-$CHAPTER_NAME.md
+
+    done
+
+    echo '完成根据章节切割'$1'.md文件........................................................................'
+}
+
+#根据上一步骤生成的MD文件的章节数目创建章节导航列表
+function createChapterCatalogMd(){
+    echo '开始为'$1'.md生成章节导航列表md文件........................................................................'
+
+    #获取一级标题总数
+    TOTAL_TITLE1_COUNTS=`grep '^# [1-9][0-9]\?\.' $2/$1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
+    echo '一级标题总数'$TOTAL_TITLE1_COUNTS
+
+    MD_FILE_CATALOG_NAME="$1-catalog.md"
+    MD_FILE_CATALOG_FULL_PATH_NAME="$2/shardings/$1-catalog.md"
+    #每次写入之前先删除旧文件，再写入新的内容
+    rm -rf $MD_FILE_CATALOG_FULL_PATH_NAME
+    echo " " >> $MD_FILE_CATALOG_FULL_PATH_NAME
+    echo ">" >> $MD_FILE_CATALOG_FULL_PATH_NAME
+    echo "# 分章节阅读" >> $MD_FILE_CATALOG_FULL_PATH_NAME
+
+    #拼接博客内容介绍
+    echo "- [x] 在Centos上搭建开发环境-<a href='./chapters/$1-chapter-0.博客内容介绍.html' target='_blank'>博客介绍</a>" >> $MD_FILE_CATALOG_FULL_PATH_NAME
+
+    #拼接章节导航列表
+    for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
+    do
+        if [ $i -eq "2" ]
+        then
+            echo " " >> $MD_FILE_CATALOG_FULL_PATH_NAME
+        fi
+        #获取章节名称
+        CHAPTER_NAME=`grep -n '^# '"$i"'\.' $2/$1.md | cut -d ' ' -f 2`
+        echo '章节名称：'$CHAPTER_NAME
+
+        #拼接真正导航列表内容
+        echo "- [x] 在Centos上搭建开发环境-<a href='./chapters/$1-chapter-$CHAPTER_NAME.html' target='_blank'>$CHAPTER_NAME</a>" >> $MD_FILE_CATALOG_FULL_PATH_NAME
+    done
+    echo ">" >> $MD_FILE_CATALOG_FULL_PATH_NAME
+
+    echo '完成为'$1'.md生成章节导航列表md文件......'
+}
+
+#为xxx.md文件和xxx.md文件拆分的所有章节md文件生成侧边栏配置，存放在json文件中
+function createSidebarConfigForMDAndMdShardings(){
+    echo '开始为'$1'.为md文件和md文件拆分的所有章节md文件生成侧边栏配置......'
+
+    #获取一级标题总数
+    TOTAL_TITLE1_COUNTS=`grep '^# [1-9][0-9]\?\.' $2/$1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
+    echo '一级标题总数'$TOTAL_TITLE1_COUNTS
+
+    #写入之前先删除上一次生成的sidebar配置json文件
+    rm -rf $3/*
+
+    #创建存放sidebar配置json的文件夹
+    mkdir -p $3
+
+    SIDEBAR_CONFIGFILE_NAME=$1"-sidebar-config.json"
+    SIDEBAR_CONFIGFILE_FULL_PATH_NAME=$3/$SIDEBAR_CONFIGFILE_NAME
+    #每次写入之前先删除旧文件，再写入新的内容
+    rm -rf $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "    {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "      // 必要的，分组的标题文字" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "      text: \"在Centos7上搭建开发环境\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "      // 可选的, 分组标题对应的图标" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "      icon: \"a-archivecatalogue-fill\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "      // 可选的, 设置分组是否可以折叠，默认值是 false" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "      collapsable: true," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "      // 必要的，分组的子项目" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "      children: [" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    
+    #左侧导航栏拼接博客内容介绍
+
+    #拼接一次阅读全部内容
+    echo "        {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "          text: \"博客内容介绍\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "          link:\"$2/shardings/$1-chapter-0.$CHAPTER_NAME.md\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "          icon:\"note\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "        }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+
+    #拼接章节每个章节的导航列表
+    for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
+    do
+        #获取章节名称
+        CHAPTER_NAME=`grep -n '^# '"$i"'\.' $2/$1.md | cut -d ' ' -f 2`
+        echo '章节名称：'$CHAPTER_NAME
+
+        echo "        {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+
+        #把章节名称作为侧边栏中显示的导航条目的名称
+        echo "          text:\"$CHAPTER_NAME\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+        echo "          link:\"$2/shardings/$1-chapter-$CHAPTER_NAME.md\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+        echo "          icon:\"note\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+
+        echo "        }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    done
+    
+    #拼接一次阅读全部内容
+    echo "        {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "          text: \"$[$TOTAL_TITLE1_COUNTS+1].一次阅读全部内容\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "          link: \"$2/$1.md\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "          icon:\"folder\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "        }" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+
+    echo "      ]," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "    }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+
+    echo '完成为'$1'.为md文件和md文件拆分的所有章节md文件生成侧边栏配置.................................................................................'
+}
+
+#为md文件和md文件拆分的所有章节md文件生成侧边栏配置，存放在json文件中
+function writeSidebarConfig(){
+    pwd
+    #切换到上一次操作的目录
+   # cd -
+
+   # pwd
+}    
+
+#门面模式，统一封装上面的方法，对外提供一个调用接口即可
+function enhanceMD() {
+    echo '开始增强'$1'文件....................................................................................'
+
+    # 要操作的md文件的名称，不带文件后缀名
+    MD_FILE_NAME=$1
+    # 要操作的md文件的相对路径，前后不带有/，用这个变量的时候再加上/
+    MD_FILE_RELATIVE_PATH=$2
+    # 要操作的md文件的相对与init.sh的路径
+    MD_FILE_SOURCE_PATH="docs/blogs/$MD_FILE_RELATIVE_PATH"
+    # 生成的所有markmap文件存放的目录路径
+    MD_FILE_MARKMAP_TARGET_PATH="docs/.vuepress/public/enhance/markmap/$MD_FILE_RELATIVE_PATH"
+    # 为所有章节生成的markmap文件展示的标题层级深度
+    MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH=5
+
+    #开始生成markmap文件
+    createOutLineMarkmapHtml $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_MARKMAP_TARGET_PATH $MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH
+
+    #开始生成guidance文件（guidance文件中引用了上一步骤生成的markmap文件）......
+    # 生成的所有guidance文件存放的目录路径
+    MD_FILE_GUIDANCE_TARGET_PATH="docs/.vuepress/public/enhance/guidance/$MD_FILE_RELATIVE_PATH"
+    createOutLineGuidanceMd $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_GUIDANCE_TARGET_PATH $MD_FILE_RELATIVE_PATH
+
+    #开始让md文件中的二级标题增加1......'
+    title2Increment $MD_FILE_NAME $MD_FILE_SOURCE_PATH
+
+    echo '开始给md文件中插入Markmap组件（Markmap组件中引用了上一步骤生成的guidance文件）......'
+    MD_FILE_GUIDANCE_MD_FILE_PATH="public/enhance/guidance/$MD_FILE_RELATIVE_PATH"
+    insertMarkmapComponmentIntoMd $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_GUIDANCE_MD_FILE_PATH
+    
+    # 生成的所有shardings文件存放的目录路径
+    MD_FILE_SHARDINGS_TARGET_PATH="docs/.vuepress/public/enhance/shardings/$MD_FILE_RELATIVE_PATH"
+    createChapterMd $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_SHARDINGS_TARGET_PATH
+
+
+    #为md文件创建章节导航目录
+    createChapterCatalogMd $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_SHARDINGS_TARGET_PATH
+
+    #为md文件和md文件拆分的所有章节md文件生成侧边栏配置，存放在json文件中
+    SIDEBAR_LINK_PREFIX="/blogs/environment/centos"
+
+    # 生成的所有chapter文件存放的目录路径
+    MD_FILE_SIDEBAR_CONFIG_TARGET_PATH="docs/.vuepress/public/enhance/config/$MD_FILE_RELATIVE_PATH"
+    createSidebarConfigForMDAndMdShardings $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_SIDEBAR_CONFIG_TARGET_PATH
+
+    echo '完成增强'$1'.md文件....................................................................................'
+}
+
+#解析yaml
+function parse_yaml() {
+   local prefix=$2
+   local s='[[:space:]]*' w='[a-zA-Z0-9_]*' fs=$(echo @|tr @ '\034')
+   sed -ne "s|^\($s\):|\1|" \
+        -e "s|^\($s\)\($w\)$s:$s[\"']\(.*\)[\"']$s\$|\1$fs\2$fs\3|p" \
+        -e "s|^\($s\)\($w\)$s:$s\(.*\)$s\$|\1$fs\2$fs\3|p"  $1 |
+   awk -F$fs '{
+      indent = length($1)/2;
+      vname[indent] = $2;
+      for (i in vname) {if (i > indent) {delete vname[i]}}
+      if (length($3) > 0) {
+         vn=""; for (i=0; i<indent; i++) {vn=(vn)(vname[i])("_")}
+         printf("%s%s%s=\"%s\"\n", "'$prefix'",vn, $2, $3);
+      }
+   }'
+}
 # 要操作的md文件的名称，不带文件后缀名
-MD_FILE_NAME="centos7"
-# 要操作的md文件的相对路径
-MD_FILE_SOURCE_PATH="docs/blogs/environment/centos"
-# 生成的所有markmap文件存放的目录路径
-MD_FILE_MARKMAP_TARGET_PATH="docs/.vuepress/public/markmap/environment/centos"
-# 为所有章节生成的markmap文件展示的标题层级深度
-MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH=5
+MD_FILE_1_NAME="centos7"
+# 要操作的md文件的相对路径，前后不带有/，用这个变量的时候再加上/
+MD_FILE_1_RELATIVE_PATH="environment/centos/"$MD_FILE_1_NAME
 
-echo '开始生成markmap文件......'
-createOutLineMarkmapHtml $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_MARKMAP_TARGET_PATH
-createChapterOutLineMarkmapHtml $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_MARKMAP_TARGET_PATH $MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH
-echo '结束生成markmap文件.............'
+#enhanceMD $MD_FILE_1_NAME $MD_FILE_1_RELATIVE_PATH
 
-echo '开始生成guidance文件（guidance文件中引用了上一步骤生成的markmap文件）......'
-# 生成的所有guidance文件存放的目录路径
-MD_FILE_GUIDANCE_TARGET_PATH="docs/.vuepress/public/guidance/environment/centos"
-createOutLineGuidanceMd $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_GUIDANCE_TARGET_PATH
-createChapterOutLineGuidanceMd $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_GUIDANCE_TARGET_PATH
-echo '结束生成guidance文件.............'
 
-echo '开始让md文件中的二级标题增加1......'
-title2Increment $MD_FILE_NAME $MD_FILE_SOURCE_PATH
-echo '完成让md文件中的二级标题增加1............'
+parse_yaml "./config.yaml" "conf_"
 
-echo '开始给md文件中插入Markmap组件（Markmap组件中引用了上一步骤生成的guidance文件）......'
-MD_FILE_GUIDANCE_VUECOMPONMENT_PATH="public/guidance/environment/centos"
-insertMarkmapComponmentIntoMd $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_GUIDANCE_VUECOMPONMENT_PATH
-echo '结束给md文件中插入Markmap组件............'
-
-echo '结束增强md文件............'
+:<<EOF
+EOF

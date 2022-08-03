@@ -1,6 +1,7 @@
 import { hopeTheme } from "vuepress-theme-hope";
 import navbar from "./navbar";
 import sidebar from "./sidebar";
+import { path } from "@vuepress/utils";
 
 export default hopeTheme({
   hostname: "https://vuepress-theme-hope-v2-demo.mrhope.site",
@@ -15,14 +16,17 @@ export default hopeTheme({
   iconAssets: "iconfont",
   //是否显示全屏按钮
   fullscreen: true,
-  //主题色配置，配置了这个之后，会显出出切换不同主题色的按钮
+  //主题色配置，配置了这个之后，会显出切换不同主题色的按钮
   themeColor: {
-    blue: "#2196f3",
-    red: "#f26d6d",
-    green: "#3eaf7c",
-    orange: "#fb9b5f",
+    steelblue: "#336699",
+    grey: "#1c1c1c",
+    darkblue: "#00008B", 
+    orange: "#f26d6d",
+    darkcyan: "#008B8B",
+    skyblue: "#2196f3",
+    red: "#EE0000"
   },
-  //是否开启纯净模式，纯净模式会禁用一些花哨的动画以及一些色彩，只提供功能
+  //是否开启纯净模式，开启后切换主题色的功能将被禁用
   pure: false,
 
   // 默认为 GitHub. 同时也可以是一个完整的 URL
@@ -31,9 +35,10 @@ export default hopeTheme({
   // "GitHub" / "GitLab" / "Gitee" / "Bitbucket" 其中之一，或是 "Source"。
   repoLabel: "GitHub",
   // 是否在导航栏内显示仓库链接，默认为 `true`
-  repoDisplay: true,
+  repoDisplay: true,  
 
-  docsDir: "demo/src",
+  //暂时不知道是干什么的
+  docsDir: "blog/docs",
 
   // navbar:如果要禁止显示navbar，将值配置为false
   navbar: navbar,
@@ -87,6 +92,9 @@ export default hopeTheme({
     },
   },
 
+  //配置是否启用文章最顶部的路径导航
+  breadcrumb: true,
+
   /**
    * 页面元数据
    */
@@ -94,6 +102,7 @@ export default hopeTheme({
   editLink: false,
   //是否在文章页面底部右侧显示 文章的贡献者
   contributors: true,
+
   //插件配置
   plugins: {    
     blog: {
@@ -130,11 +139,43 @@ export default hopeTheme({
       serverURL: "https://waline-test-90exfa19s-lingwh1995.vercel.app/",
     },
     mdEnhance: {
-      enableAll: true,
+      //启用全部的md增强功能
+      //enableAll: true,
+      
+      //根据需要启动md增强功能
+
+      //启用幻灯片支持
       presentation: {
         plugins: ["highlight", "math", "search", "notes", "zoom"],
       },
+      //启用导入文件功能，并添加 `@src` 别名支持
+      include: {
+        getPath: (file) => {
+          if (file.startsWith("@src"))
+            return file.replace("@src", path.resolve(__dirname, "."));
+          return file;
+        },
+      },
+      //启用标记功能，使用 == == 进行标记。请注意两边需要有空格
+      mark: true,
+      //启用对添加提示、注释、信息、注意、警告和详情自定义容器的支持
+      container: true,
+      /**
+       * 启用自自定义对齐，语法
+       * 
+       *  ::: center/middle/righe
+       *  重大的变动。
+       *  :::
+       */
+       align: true,
+       //启用属性增强，在md文件中添加属性，生成的dom上就有属性
+       attrs: true,
+       //是否启用任务列表
+       tasklist: true,
+       //启用懒加载md中的图片
+       lazyLoad: true
     },
+    
     /**
     * 版权保护
     * triggerWords：触发版权数目的最小复制字数
@@ -154,6 +195,10 @@ export default hopeTheme({
       disableSelection: true
     }
   },
-  // 默认值: true
+  // 默认值: true,没发现有什么用
   activeHeaderLinks: true,
+  //当用户通过滚动查看页面的不同部分时，嵌套的标题链接和 URL 中的 Hash 值会实时更新，默认值: true,没发现有什么用
+  activeHash: true,
+  //侧边栏只会显示由当前活动页面的标题 (headers) 组成的链接
+  displayAllHeaders: true
 });

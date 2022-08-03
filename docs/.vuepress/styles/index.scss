@@ -1,3 +1,16 @@
+/**
+* 引入的图标
+*   JetBrains图标
+*   jenkins图标
+*   docker图标
+*   kuberntes图标
+
+*   database图标
+*   rancher图标
+*   hacker图标
+*/
+@import "//at.alicdn.com/t/c/font_3564358_p9phdcj0g0b.css";
+
 #app .site-name {
     font-weight: 800;
 }
@@ -15,7 +28,7 @@
 }
 #toc .toc-list .toc-item a {
     color: #B8860B;
-    font-size: 1.3rem;
+    font-size: 1.35rem;
     font-weight: 700;
 }
 #toc .toc-list .toc-list .toc-item a {
@@ -43,7 +56,7 @@
     margin-top: 0rem;
 }
 .sidebar > .sidebar-links > li {
-    font-size: 1.3rem;
+ //   font-size: 1.3rem;
 }
 .sidebar > .sidebar-links > li a {
     font-weight: 600;
@@ -51,3 +64,6 @@
 p, ul, ol {
     line-height: 1.0rem;
 }
+
+ 
+  
