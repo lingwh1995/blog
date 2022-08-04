@@ -1,5 +1,10 @@
 #!/usr/bin/env sh
 
+:<<EOF
+    版本：1.0
+    说明：含有生成章节目录列表的代码，生成的侧边栏配置中会多一个菜单：一次阅读全部内容
+EOF
+
 # 确保脚本抛出遇到的错误
 set -e
 
@@ -15,7 +20,7 @@ git config --global core.longpaths true
 #安装markmap-cli 
 #npm install -g markmap-cli
 
-#为xxx.md和xxx.md的所有章节生成二级和三级目录大纲，并将这个目录大纲转换为markmap文件
+#为xxx.md和xxx.md的所有章节生成二级和三级目录大纲，并将这个目录大纲装换为markmap文件
 function createOutLineMarkmapHtml(){
     find . -name $1.md
     echo '生成markmap文件开始........................................................................'
@@ -155,6 +160,7 @@ EOF
     echo '完成为'$1'md生和'$1'.md的所有章节成guidance文件........................................................................'
 }
 
+
 #二级标题序列增加1
 function title2Increment(){
     echo '开始为'$1'.md中所有二级标题序列增加1........................................................................'
@@ -200,6 +206,22 @@ function title2Increment(){
 function insertOutLineGuidanceIntoMd(){
     echo '开始为'$1'.md中插入MarkmapComponment........................................................................'
 
+    #给第一个一级标题上面一行的上面一行插入整个博客的guidance.md
+    #获取一级标题所在行号
+    TARGET_LINE_NUMBER=`grep -n '^# 1\.' $2/$1.md | cut -d ':' -f 1`
+    echo '标题 # 1.所在行号：'$TARGET_LINE_NUMBER
+    TARGET_LINE_NUMBER=$[$TARGET_LINE_NUMBER-1]
+    echo '目标插入行号：'$TARGET_LINE_NUMBER
+
+    #特别注意:将xxx-catalog.md插入到xxx.md的时候过滤掉Frontmatter 配置相关内容
+    FRONTMATTER_END_LINE_NUMBER=`grep -n '^-\{3\}' $4/$1-guidance.md | tail -1 | cut -d ':' -f 1`
+    #获取FRONTMATTER_END_LINE_NUMBER所在行数的下一行
+    FRONTMATTER_END_LINE_NUMBER=$[$FRONTMATTER_END_LINE_NUMBER+1]
+
+    #执行插入整个博客guidance.md的操作
+    TARGET_STR="@include(@src/$3/$1-guidance.md{$FRONTMATTER_END_LINE_NUMBER-})"
+    sed -i ''"$TARGET_LINE_NUMBER"'i '"$TARGET_STR"'' $2/$1.md
+
     #获取一级标题总数
     TOTAL_TITLE1_COUNTS=`grep '^# [1-9][0-9]\?\.' $2/$1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
     echo '一级标题总数'$TOTAL_TITLE1_COUNTS
@@ -228,15 +250,10 @@ function createShardingsMd(){
     #创建存放每一章节md文件的目录
     mkdir $2/shardings
 
-    echo '开始为'$1'.md生成内容介绍文件................................................'
-    #将前面生成的xxx-guidance.md拷贝一份到所有章节目录中，并重名一下
-    echo '开始将'$1'.md生成博客内容介绍拷贝一份到'$2'/shardings目录中........................'
-    cp $4/$1-guidance.md $2/shardings/$1-chapter-0.博客内容介绍.md
-    echo '完成将'$1'.md生成博客内容介绍拷贝一份到'$2'/shardings目录中........................'
-    echo '完成为'$1'.md生成内容介绍文件................................................'
     #获取一级标题总数
     TOTAL_TITLE1_COUNTS=`grep '^# [1-9][0-9]\?\.' $2/$1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
     echo '一级标题总数'$TOTAL_TITLE1_COUNTS
+    
     
     for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
     do
@@ -260,28 +277,8 @@ function createShardingsMd(){
 
         #在写入内容之前先写入Frontmatter选项配置信息
         echo "---" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        #写入 是否被博客列表收藏
         echo "star: $i" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        #写入 博客列表展示的标题，这是地址栏上面的标题，同时也是博客列表中显示的标题
-        echo "title: $CHAPTER_NAME" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        #写入 博客列表展示的标题，这是地址栏上面的标题，同时也是博客列表中显示的标题
-        echo "shortTitle: $CHAPTER_NAME-short" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        #写入 右侧toc面板展示的标题深度
-        echo "headerDepth: 4" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        #写入文章分类
-        echo "category:" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        echo "- 环境搭建" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        #写入文章标签
-        echo "tag:" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        echo "- linux" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        TAG_NAME=`echo $CHAPTER_NAME | cut -d . -f 2`
-        echo "- $TAG_NAME" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        #写入 是否显示页面footer中的版权信息，设置为false,不然会有两个版权信息
-        echo "copyright: false" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        #写入是否原创
-        echo "isOriginal: true" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        #写入 写作日期
-        echo "date: 2020-01-01" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+        echo "title: xxxx" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
         echo "---" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
         echo "" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
 
@@ -291,6 +288,74 @@ function createShardingsMd(){
     done
 
     echo '完成根据章节切割'$1'.md文件........................................................................'
+}
+
+#根据上一步骤生成的xxx.md文件的章节数目创建章节导航列表md，并把章节导航列表md插入到xxx.md文件中
+function createAndInsertChapterCatalogMd(){
+    echo '开始为'$1'.md生成章节导航列表md文件并将章节导航列表md文件插入到xxx.md文件中........................................................................'
+
+    echo '开始为'$1'.md生成章节导航列表md文件........................'
+
+    #获取一级标题总数
+    TOTAL_TITLE1_COUNTS=`grep '^# [1-9][0-9]\?\.' $2/$1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
+    echo '一级标题总数'$TOTAL_TITLE1_COUNTS
+
+    MD_FILE_CATALOG_NAME="$1-catalog.md"
+    MD_FILE_CATALOG_FULL_PATH_NAME="$2/$3/$1-catalog.md"
+    #每次写入之前先删除旧文件，再写入新的内容
+    rm -rf $MD_FILE_CATALOG_FULL_PATH_NAME
+    echo "---" >> $MD_FILE_CATALOG_FULL_PATH_NAME
+    echo "article: false" >> $MD_FILE_CATALOG_FULL_PATH_NAME
+    echo "---" >> $MD_FILE_CATALOG_FULL_PATH_NAME
+    echo ">" >> $MD_FILE_CATALOG_FULL_PATH_NAME
+    echo "# 🌳分章节阅读" >> $MD_FILE_CATALOG_FULL_PATH_NAME
+    echo ">" >> $MD_FILE_CATALOG_FULL_PATH_NAME
+
+    #拼接博客内容介绍，注意：此时shardings中还没有博客内容介绍这个md，要在下面的步骤中把guidance文件复制一份放在shardings目录中
+    echo "- [x] 在Centos上搭建开发环境-<a href='./$3/$1-chapter-0.博客内容介绍.html' target='_blank'>博客内容介绍</a>" >> $MD_FILE_CATALOG_FULL_PATH_NAME
+
+    #拼接章节导航列表
+    for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
+    do
+        if [ $i -eq "2" ]
+        then
+            echo " " >> $MD_FILE_CATALOG_FULL_PATH_NAME
+        fi
+        #获取章节名称
+        CHAPTER_NAME=`grep -n '^# '"$i"'\.' $2/$1.md | cut -d ' ' -f 2`
+        echo '章节名称：'$CHAPTER_NAME
+
+        #拼接真正导航列表内容
+        echo "- [x] 在Centos上搭建开发环境-<a href='./$3/$1-chapter-$CHAPTER_NAME.html' target='_blank'>$CHAPTER_NAME</a>" >> $MD_FILE_CATALOG_FULL_PATH_NAME
+    done
+    echo ">" >> $MD_FILE_CATALOG_FULL_PATH_NAME
+    
+    echo '完成为'$1'.md生成章节导航列表md文件........................'
+
+    echo '开始将为'$1'.md生成的章节导航列表md文件插入到xxx.md中........................'
+
+    #给第一个一级标题上面一行的上面两行的插入guidance.md语句上面一行插入catalog.md
+    #获取一级标题所在行号
+    TARGET_LINE_NUMBER=`grep -n '^# 1\.' $2/$1.md | cut -d ':' -f 1`
+    echo '标题 # 1.所在行号：'$TARGET_LINE_NUMBER
+    TARGET_LINE_NUMBER=$[$TARGET_LINE_NUMBER-2]
+    echo '目标插入行号：'$TARGET_LINE_NUMBER
+
+    echo '开始将'$1'.md生成博客内容介绍拷贝一份到'$2'/shardings目录中........................'
+    cp $4/$1-guidance.md $2/shardings/$1-chapter-0.博客内容介绍.md
+    echo '完成将'$1'.md生成博客内容介绍拷贝一份到'$2'/shardings目录中........................'
+
+    #特别注意:将xxx-catalog.md插入到xxx.md的时候过滤掉Frontmatter 配置相关内容
+    FRONTMATTER_END_LINE_NUMBER=`grep -n '^-\{3\}' $2/$3/$1-catalog.md | tail -1 | cut -d ':' -f 1`
+    #获取FRONTMATTER_END_LINE_NUMBER所在行数的下一行
+    FRONTMATTER_END_LINE_NUMBER=$[$FRONTMATTER_END_LINE_NUMBER+1]
+    TARGET_STR="@include(./$3/$1-catalog.md{$FRONTMATTER_END_LINE_NUMBER-})"
+    sed -i ''"$TARGET_LINE_NUMBER"'i '"$TARGET_STR"'' $2/$1.md
+
+    echo '完成将为'$1'.md生成的章节导航列表md文件插入到xxx.md中........................'
+
+
+    echo '完成为'$1'.md生成章节导航列表md文件并将章节导航列表md文件插入到xxx.md文件中........................................................................'
 }
 
 #为xxx.md文件和xxx.md文件拆分的所有章节md文件生成侧边栏配置，存放在json文件中
@@ -347,6 +412,13 @@ function createSidebarConfigForMDAndMdShardings(){
         echo "        }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     done
     
+    #拼接一次阅读全部内容
+    echo "        {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "          text: \"$[$TOTAL_TITLE1_COUNTS+1].一次阅读全部章节内容\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "          link: \"$4/$1.md\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "          icon:\"folder\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "        }" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+
     echo "      ]," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "    }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
 
@@ -405,7 +477,10 @@ function enhanceMD() {
     #存放生成的shardings文件的文件夹名称
     MD_FILE_SHARDINGS_FOLDER_NAME="shardings"
     #--------------------------------------------------------------------------------------------------------------
-    createShardingsMd $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_SHARDINGS_FOLDER_NAME $MD_FILE_GUIDANCE_TARGET_PATH
+    createShardingsMd $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_SHARDINGS_FOLDER_NAME
+
+    #为xxx.md文件创建章节导航目录
+    createAndInsertChapterCatalogMd $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_SHARDINGS_FOLDER_NAME $MD_FILE_GUIDANCE_TARGET_PATH
     
     #--------------------------------------------------------------------------------------------------------------
     #存放生成的sidebar配置json文件的路径的路径前缀    
@@ -446,7 +521,5 @@ MD_FILE_1_RELATIVE_PATH="environment/centos/"$MD_FILE_1_NAME
 
 enhanceMD $MD_FILE_1_NAME $MD_FILE_1_RELATIVE_PATH
 
-#parse_yaml "./config.yaml" "conf_"
 
-:<<EOF
-EOF
+#parse_yaml "./config.yaml" "conf_"

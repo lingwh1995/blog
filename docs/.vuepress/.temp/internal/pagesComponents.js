@@ -13,8 +13,8 @@ export const pagesComponents = {
   "v-54d40435": defineAsyncComponent(() => import(/* webpackChunkName: "v-54d40435" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/windows.html.vue")),
   // path: /blogs/environment/centos/centos7/centos7.html
   "v-47b2c842": defineAsyncComponent(() => import(/* webpackChunkName: "v-47b2c842" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/centos7.html.vue")),
-  // path: /blogs/environment/centos/centos7/shardings/centos7-catalog.html
-  "v-0ea1ca54": defineAsyncComponent(() => import(/* webpackChunkName: "v-0ea1ca54" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/shardings/centos7-catalog.html.vue")),
+  // path: /blogs/environment/centos/centos7/shardings/centos7-chapter-0.%E5%8D%9A%E5%AE%A2%E5%86%85%E5%AE%B9%E4%BB%8B%E7%BB%8D.html
+  "v-0d8f245b": defineAsyncComponent(() => import(/* webpackChunkName: "v-0d8f245b" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/shardings/centos7-chapter-0.博客内容介绍.html.vue")),
   // path: /blogs/environment/centos/centos7/shardings/centos7-chapter-1.%E5%AE%89%E8%A3%85Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html
   "v-bda10792": defineAsyncComponent(() => import(/* webpackChunkName: "v-bda10792" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/shardings/centos7-chapter-1.安装Linux操作系统.html.vue")),
   // path: /blogs/environment/centos/centos7/shardings/centos7-chapter-2.Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E8%AE%BE%E7%BD%AE.html
@@ -55,4 +55,20 @@ export const pagesComponents = {
   "v-0e79ea7d": defineAsyncComponent(() => import(/* webpackChunkName: "v-0e79ea7d" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/tag/安装jdk/index.html.vue")),
   // path: /tag/%E5%AE%89%E8%A3%85maven/
   "v-5ca35ae3": defineAsyncComponent(() => import(/* webpackChunkName: "v-5ca35ae3" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/tag/安装maven/index.html.vue")),
+  // path: /tag/%E5%AE%89%E8%A3%85linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/
+  "v-77dd92a8": defineAsyncComponent(() => import(/* webpackChunkName: "v-77dd92a8" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/tag/安装linux操作系统/index.html.vue")),
+  // path: /tag/linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E8%AE%BE%E7%BD%AE/
+  "v-6b3bb10c": defineAsyncComponent(() => import(/* webpackChunkName: "v-6b3bb10c" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/tag/linux操作系统初始设置/index.html.vue")),
+  // path: /tag/%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/
+  "v-20a68f74": defineAsyncComponent(() => import(/* webpackChunkName: "v-20a68f74" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/tag/搭建基础开发环境/index.html.vue")),
+  // path: /tag/centos%E6%90%AD%E5%BB%BAdocker/
+  "v-36e19863": defineAsyncComponent(() => import(/* webpackChunkName: "v-36e19863" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/tag/centos搭建docker/index.html.vue")),
+  // path: /tag/centos%E6%90%AD%E5%BB%BArancher/
+  "v-fd3f1bec": defineAsyncComponent(() => import(/* webpackChunkName: "v-fd3f1bec" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/tag/centos搭建rancher/index.html.vue")),
+  // path: /tag/centos%E6%90%AD%E5%BB%BAminikube/
+  "v-0ecf75ff": defineAsyncComponent(() => import(/* webpackChunkName: "v-0ecf75ff" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/tag/centos搭建minikube/index.html.vue")),
+  // path: /tag/kubeadm%E6%90%AD%E5%BB%BAkubernetes/
+  "v-5ab239b0": defineAsyncComponent(() => import(/* webpackChunkName: "v-5ab239b0" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/tag/kubeadm搭建kubernetes/index.html.vue")),
+  // path: /tag/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8C%85%E6%90%AD%E5%BB%BAkubernetes/
+  "v-330fc8a4": defineAsyncComponent(() => import(/* webpackChunkName: "v-330fc8a4" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/tag/二进制包搭建kubernetes/index.html.vue")),
 }

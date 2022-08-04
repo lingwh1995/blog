@@ -1,3 +1,18 @@
+---
+star: 6
+title: 6.Centos搭建Minikube
+shortTitle: 6.Centos搭建Minikube-short
+headerDepth: 4
+category:
+- 环境搭建
+tag:
+- linux
+- Centos搭建Minikube
+copyright: false
+isOriginal: true
+date: 2020-01-01
+---
+
 # 6.Centos搭建Minikube
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter6.md)
 ## 6.2.minikube介绍

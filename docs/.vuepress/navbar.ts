@@ -4,17 +4,17 @@ export default navbar([
   {
     text: "个人主页",
     icon: "hacker",
-    link: '/'
+    link: "/index.md"
   },
   {
     text: "博客主页",
     icon: "blog",
-    link: '/blog.md'
+    link: "/blog.md"
   },
   {
     text: "放映厅",
     icon: "creative",
-    link: '/cinema.md'
+    link: "/cinema.md"
   },
   {
     text: "后端",
@@ -24,11 +24,9 @@ export default navbar([
         text: "springboot",
         children: [
           { 
-            text: "springboot-1", 
-            link: "/posts/article9"
-          },
-          { text: "springboot-2", 
-            link: "/backend/springboot/article2" 
+            icon: "leaf",
+            text: "springboot", 
+            link: "/xxx",
           },
         ],
       },
@@ -37,18 +35,22 @@ export default navbar([
         children: [
           {
             text: "springcloud-eureka",
+            icon: "cache",
             link: "/blogs/backend/springcloud/springcloud-eureka.md",
           },
           {
             text: "springcloud-zookeeper",
+            icon: "cache",            
             link: "/backend/springcloud/article/article6",
           },
           {
             text: "springcloud-consul",
+            icon: "cache",            
             link: "/backend/springcloud/article/article6",
           },
           {
             text: "springcloud-alibaba",
+            icon: "cache",            
             link: "/backend/springcloud/article/article6",
           }
         ],
@@ -60,16 +62,16 @@ export default navbar([
     icon: "html",
     children: [
       { 
-        text: 'ECMAScript 5', 
-        link: '/xxx'
+        text: "ECMAScript 5", 
+        link: "/xxx"
       },
       { 
-        text: 'ECMAScript 6', 
-        link: '/xxx'
+        text: "ECMAScript 6", 
+        link: "/xxx"
       },
       { 
-        text: 'Framework', 
-        link: '/xxx'
+        text: "Framework", 
+        link: "/xxx"
       }
     ],
   },
@@ -81,7 +83,8 @@ export default navbar([
         text: "关系型数据库",
         children: [
           { 
-            text: "mysql", 
+            text: "mysql",
+            icon: "mysql",
             link: "/database/relational/article1"
           },
           { 
@@ -108,19 +111,22 @@ export default navbar([
   },
   {
     text: "环境搭建",
-    icon: "software",
+    icon: "build",
     children: [
       { 
-        text: 'centos',
+        text: "centos",   
         children: [
-          { text: "centos7",
-          link: '/blogs/environment/centos/centos7/centos7.md'
+          { 
+            text: "centos7",
+            icon: "centos",
+            link: "/blogs/environment/centos/centos7/shardings/centos7-chapter-0.博客内容介绍.md",
           },
         ],
       },
       { 
-        text: 'windows', 
-        link: '/blogs/environment/windows/windows.md'
+        text: "windows", 
+        icon: "windows",
+        link: "/blogs/environment/windows/windows.md",
       }
     ],
   },

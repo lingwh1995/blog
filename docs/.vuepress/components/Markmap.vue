@@ -25,3 +25,13 @@ export default {
   }
 };
 </script>
+
+<style>
+/**格子背景 */
+/* css-selector {
+    background-color: #F1F1F5;
+    background-image: linear-gradient(90deg, rgba(200, 0, 0, 0.15) 10%, rgba(0, 0, 0, 0) 10%) 
+    ,linear-gradient(0deg,rgba(200, 0, 0, 0.15) 10%, rgba(0, 0, 0, 0) 10%);
+    background-size: 0.4rem 0.4rem;
+} */
+</style>

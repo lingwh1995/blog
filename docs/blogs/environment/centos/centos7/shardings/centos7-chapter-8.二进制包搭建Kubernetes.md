@@ -1,3 +1,18 @@
+---
+star: 100
+title: 8.二进制包搭建Kubernetes
+shortTitle: 8.二进制包搭建Kubernetes-short
+headerDepth: 4
+category:
+- 环境搭建
+tag:
+- linux
+- 二进制包搭建Kubernetes
+copyright: false
+isOriginal: true
+date: 2020-01-02
+---
+
 # 8.二进制包搭建Kubernetes
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter8.md)
 

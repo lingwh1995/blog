@@ -1,3 +1,18 @@
+---
+star: 3
+title: 3.搭建基础开发环境
+shortTitle: 3.搭建基础开发环境-short
+headerDepth: 4
+category:
+- 环境搭建
+tag:
+- linux
+- 搭建基础开发环境
+copyright: false
+isOriginal: true
+date: 2020-01-01
+---
+
 # 3.搭建基础开发环境
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter3.md)
 

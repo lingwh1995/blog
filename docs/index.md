@@ -1,10 +1,11 @@
 ---
 home: true
 title: 个人主页
-icon: home
+icon: hacker
 heroImage: /images/logo.svg
 heroText: Hello Linux
 tagline:  开源即是自由✨ 博学 明理 立诚 济世
+bgImage: /images/blogbg-08.jpg
 actions:
   - text: GITHUB传送门 🥰
     link: https://github.com/lingwh1995
@@ -56,10 +57,10 @@ features:
     details: Kubernetes也称为 K8s，是一个开源系统，用于自动部署、扩展和管理容器化应用程序。
     link: https://kubernetes.io/
 
-  - title: Rancher
-    icon: rancher
-    details: Rancher是一个开源的企业级容器管理平台，用于Docker和Kubernetes的全栈化容器部署。
-    link: https://rancher.com/
+  - title: Ubuntu
+    icon: ubuntu
+    details: Ubuntu是一个以桌面应用为主的Linux操作系统，用于个人电脑、平板及手机的操作系统。
+    link: https://www.ubuntu.org.cn/global
 #是否显示页面footer中的版权信息，设置为false,不然会有两个版权信息
 copyright: false    
 ---   

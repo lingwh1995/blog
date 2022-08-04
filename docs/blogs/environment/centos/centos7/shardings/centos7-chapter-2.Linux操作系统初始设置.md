@@ -1,3 +1,18 @@
+---
+star: 2
+title: 2.Linux操作系统初始设置
+shortTitle: 2.Linux操作系统初始设置-short
+headerDepth: 4
+category:
+- 环境搭建
+tag:
+- linux
+- Linux操作系统初始设置
+copyright: false
+isOriginal: true
+date: 2020-01-01
+---
+
 # 2.Linux操作系统初始设置
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter2.md)
 

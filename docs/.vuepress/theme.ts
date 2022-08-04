@@ -21,7 +21,7 @@ export default hopeTheme({
     steelblue: "#336699",
     grey: "#1c1c1c",
     darkblue: "#00008B", 
-    orange: "#f26d6d",
+    orange: "#DE4815",
     darkcyan: "#008B8B",
     skyblue: "#2196f3",
     red: "#EE0000"
@@ -94,6 +94,8 @@ export default hopeTheme({
 
   //配置是否启用文章最顶部的路径导航
   breadcrumb: true,
+  //是否在路径导航信息中显示图标
+  breadcrumbIcon: true,
 
   /**
    * 页面元数据

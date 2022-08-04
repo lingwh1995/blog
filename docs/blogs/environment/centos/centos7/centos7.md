@@ -36,8 +36,9 @@ icon: linux
 //@include(./Account.java)
 ```
 
-@include(@src/public/guidance/environment/centos/centos7-guidance.md)
-@include(@src/public/enhance/guidance/environment/centos/centos7/centos7-guidance.md)
+
+
+
 
 # 1.安装Linux操作系统
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter1.md)

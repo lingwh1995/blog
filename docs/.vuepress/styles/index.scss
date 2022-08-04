@@ -9,8 +9,7 @@
 *   rancher图标
 *   hacker图标
 */
-@import "//at.alicdn.com/t/c/font_3564358_p9phdcj0g0b.css";
-
+@import "//at.alicdn.com/t/c/font_3564358_3dg2o8i7td6.css";
 #app .site-name {
     font-weight: 800;
 }
@@ -55,15 +54,14 @@
 .sidebar > .sidebar-links > li:not(:first-child) {
     margin-top: 0rem;
 }
-.sidebar > .sidebar-links > li {
- //   font-size: 1.3rem;
+.sidebar > .sidebar-links .sidebar-group {
+    font-weight: 600;
 }
 .sidebar > .sidebar-links > li a {
-    font-weight: 600;
+    font-weight: 500;
 }
 p, ul, ol {
     line-height: 1.0rem;
 }
-
  
   

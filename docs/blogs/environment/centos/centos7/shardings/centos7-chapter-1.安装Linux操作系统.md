@@ -1,3 +1,18 @@
+---
+star: 1
+title: 1.安装Linux操作系统
+shortTitle: 1.安装Linux操作系统-short
+headerDepth: 4
+category:
+- 环境搭建
+tag:
+- linux
+- 安装Linux操作系统
+copyright: false
+isOriginal: true
+date: 2020-01-01
+---
+
 # 1.安装Linux操作系统
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter1.md)
 

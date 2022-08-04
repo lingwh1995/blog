@@ -16,11 +16,23 @@
   height: 100vh;
 }
 </style>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.14.0/dist/style.min.css">
 </head>
 <body>
 <svg id="mindmap"></svg>
-<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.14.0"></script><script>((getMarkmap, getOptions, root, jsonOptions) => {
+<script src="https://cdn.jsdelivr.net/npm/d3@6.7.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.14.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.14.0/dist/index.umd.min.js"></script><script>(r => {
+          setTimeout(r);
+        })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root, jsonOptions) => {
         const markmap = getMarkmap();
         window.mm = markmap.Markmap.create('svg#mindmap', (getOptions || markmap.deriveOptions)(jsonOptions), root);
       })(() => window.markmap,null,{"type":"heading","depth":0,"payload":{"lines":[0,1]},"content":"1.安装Linux操作系统","children":[{"type":"heading","depth":1,"payload":{"lines":[1,2]},"content":"1.1.Linux重要目录介绍"},{"type":"heading","depth":1,"payload":{"lines":[2,3]},"content":"1.2.Centos镜像下载"},{"type":"heading","depth":1,"payload":{"lines":[3,4]},"content":"1.3.安装前Vmaware相关设置"},{"type":"heading","depth":1,"payload":{"lines":[4,5]},"content":"1.3.安装时分区大小设置"}]},null)</script>

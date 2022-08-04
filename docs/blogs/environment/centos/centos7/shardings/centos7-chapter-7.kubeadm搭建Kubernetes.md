@@ -1,3 +1,18 @@
+---
+star: 7
+title: 7.kubeadm搭建Kubernetes
+shortTitle: 7.kubeadm搭建Kubernetes-short
+headerDepth: 4
+category:
+- 环境搭建
+tag:
+- linux
+- kubeadm搭建Kubernetes
+copyright: false
+isOriginal: true
+date: 2020-01-01
+---
+
 # 7.kubeadm搭建Kubernetes
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter7.md)
 

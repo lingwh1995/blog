@@ -1,3 +1,18 @@
+---
+star: 4
+title: 4.Centos搭建docker
+shortTitle: 4.Centos搭建docker-short
+headerDepth: 4
+category:
+- 环境搭建
+tag:
+- linux
+- Centos搭建docker
+copyright: false
+isOriginal: true
+date: 2020-01-01
+---
+
 # 4.Centos搭建docker
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter4.md)
 ## 4.2.安装docker

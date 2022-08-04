@@ -1,4 +1,0 @@
-
-## 2.1.章节大纲
-	
-<Markmap localtion="/markmap/environment/centos/chapter/centos7-outline5-chapter2.html"/>
