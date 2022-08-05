@@ -1,10 +1,33 @@
 <template><div><h1 id="_7-kubeadm搭建kubernetes" tabindex="-1"><a class="header-anchor" href="#_7-kubeadm搭建kubernetes" aria-hidden="true">#</a> 7.kubeadm搭建Kubernetes</h1>
-<h2 id="_7-1-章节大纲" tabindex="-1"><a class="header-anchor" href="#_7-1-章节大纲" aria-hidden="true">#</a> 7.1.章节大纲</h2>
+<h2 id="_7-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_7-1-章节内容概述" aria-hidden="true">#</a> 7.1.章节内容概述</h2>
+<pre><code>本章节涉及主要内容有：
+ 7.1.特别说明
+ 7.2.所有节点设置对应主机名
+ 7.3.所有节点修改hosts
+ 7.4.所有节点关闭SELinux
+ 7.5.所有节点关闭防火墙
+ 7.6.所有节点安装docker
+ 7.7.所有节点安装k8s所需组件
+ 7.8.所有节点启动kubelet和docker
+ 7.9.所有关闭swap
+ 7.10.用kubeadm 初始化集群
+ 7.11.其他节点连接到Master节点
+ 7.12.在master节点上查看集群
+ 7.13.安装网络插件
+ 7.14.在master上查看集群节点			
+ 7.15.启动故障解决
+ 7.16.基础命令
+ 7.17.部署第一个程序到k8s中
+ 7.18.可视化面板kuboard
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格
+测试，可直接复制运行即可。
+</code></pre>
+<h2 id="_7-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_7-2-章节内容大纲" aria-hidden="true">#</a> 7.2.章节内容大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter7.html"/>
-<h2 id="_7-2-特别说明" tabindex="-1"><a class="header-anchor" href="#_7-2-特别说明" aria-hidden="true">#</a> 7.2.特别说明</h2>
+<h2 id="_7-3-特别说明" tabindex="-1"><a class="header-anchor" href="#_7-3-特别说明" aria-hidden="true">#</a> 7.3.特别说明</h2>
 <pre><code>使用kubeadm搭建Kubernetes
 </code></pre>
-<h2 id="_7-3-所有节点设置对应主机名" tabindex="-1"><a class="header-anchor" href="#_7-3-所有节点设置对应主机名" aria-hidden="true">#</a> 7.3.所有节点设置对应主机名</h2>
+<h2 id="_7-4-所有节点设置对应主机名" tabindex="-1"><a class="header-anchor" href="#_7-4-所有节点设置对应主机名" aria-hidden="true">#</a> 7.4.所有节点设置对应主机名</h2>
 <pre><code>master节点
 hostnamectl set-hostname master
 slave1节点
@@ -12,13 +35,13 @@ hostnamectl set-hostname slave1
 slave2节点	
 hostnamectl set-hostname slave2
 </code></pre>
-<h2 id="_7-4-所有节点修改hosts" tabindex="-1"><a class="header-anchor" href="#_7-4-所有节点修改hosts" aria-hidden="true">#</a> 7.4.所有节点修改hosts</h2>
+<h2 id="_7-5-所有节点修改hosts" tabindex="-1"><a class="header-anchor" href="#_7-5-所有节点修改hosts" aria-hidden="true">#</a> 7.5.所有节点修改hosts</h2>
 <pre><code>vim /etc/hosts
 192.168.0.6 master
 192.168.0.7 slave1
 192.168.0.8 slave2
 </code></pre>
-<h2 id="_7-5-所有节点关闭selinux" tabindex="-1"><a class="header-anchor" href="#_7-5-所有节点关闭selinux" aria-hidden="true">#</a> 7.5.所有节点关闭SELinux</h2>
+<h2 id="_7-6-所有节点关闭selinux" tabindex="-1"><a class="header-anchor" href="#_7-6-所有节点关闭selinux" aria-hidden="true">#</a> 7.6.所有节点关闭SELinux</h2>
 <pre><code>暂时关闭
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>setenforce 0
@@ -26,10 +49,10 @@ hostnamectl set-hostname slave2
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' \
 /etc/sysconfig/selinux
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_7-6-所有节点关闭防火墙" tabindex="-1"><a class="header-anchor" href="#_7-6-所有节点关闭防火墙" aria-hidden="true">#</a> 7.6.所有节点关闭防火墙</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_7-7-所有节点关闭防火墙" tabindex="-1"><a class="header-anchor" href="#_7-7-所有节点关闭防火墙" aria-hidden="true">#</a> 7.7.所有节点关闭防火墙</h2>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl stop firewalld &amp;&amp;
 systemctl disable firewalld
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_7-7-所有节点安装docker" tabindex="-1"><a class="header-anchor" href="#_7-7-所有节点安装docker" aria-hidden="true">#</a> 7.7.所有节点安装docker</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_7-8-所有节点安装docker" tabindex="-1"><a class="header-anchor" href="#_7-8-所有节点安装docker" aria-hidden="true">#</a> 7.8.所有节点安装docker</h2>
 <pre><code>安装docker
 详细参考4.1&gt;.安装docker
 
@@ -41,7 +64,7 @@ vim /etc/docker/daemon.json，并添加如下内容：
 重新载入docker配置并重启docker
 systemctl daemon-reload &amp;&amp; systemctl restart docker
 </code></pre>
-<h2 id="_7-8-所有节点安装k8s所需组件" tabindex="-1"><a class="header-anchor" href="#_7-8-所有节点安装k8s所需组件" aria-hidden="true">#</a> 7.8.所有节点安装k8s所需组件</h2>
+<h2 id="_7-9-所有节点安装k8s所需组件" tabindex="-1"><a class="header-anchor" href="#_7-9-所有节点安装k8s所需组件" aria-hidden="true">#</a> 7.9.所有节点安装k8s所需组件</h2>
 <pre><code>添加k8s安装源
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat &lt;&lt;EOF > kubernetes.repo
@@ -65,12 +88,12 @@ EOF
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubelet --version
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl	--version
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubeadm --version
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_7-9-所有节点启动kubelet和docker" tabindex="-1"><a class="header-anchor" href="#_7-9-所有节点启动kubelet和docker" aria-hidden="true">#</a> 7.9.所有节点启动kubelet和docker</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_7-10-所有节点启动kubelet和docker" tabindex="-1"><a class="header-anchor" href="#_7-10-所有节点启动kubelet和docker" aria-hidden="true">#</a> 7.10.所有节点启动kubelet和docker</h2>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl enable kubelet &amp;&amp; 
 systemctl start kubelet &amp;&amp;
 systemctl enable docker &amp;&amp;
 systemctl start docker
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_7-10-所有关闭swap" tabindex="-1"><a class="header-anchor" href="#_7-10-所有关闭swap" aria-hidden="true">#</a> 7.10.所有关闭swap</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_7-11-所有关闭swap" tabindex="-1"><a class="header-anchor" href="#_7-11-所有关闭swap" aria-hidden="true">#</a> 7.11.所有关闭swap</h2>
 <pre><code>临时关闭swap分区
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>swapoff /mnt/swap
@@ -80,7 +103,7 @@ systemctl start docker
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看swap分区是否关闭	
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>free -m
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_7-11-用kubeadm-初始化集群" tabindex="-1"><a class="header-anchor" href="#_7-11-用kubeadm-初始化集群" aria-hidden="true">#</a> 7.11.用kubeadm 初始化集群</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_7-12-用kubeadm-初始化集群" tabindex="-1"><a class="header-anchor" href="#_7-12-用kubeadm-初始化集群" aria-hidden="true">#</a> 7.12.用kubeadm 初始化集群</h2>
 <pre><code>特别注意
 只在Master节点操作
 
@@ -125,7 +148,7 @@ mkdir -p $HOME/.kube
 cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 chown $(id -u):$(id -g) $HOME/.kube/config
 </code></pre>
-<h2 id="_7-12-其他节点连接到master节点" tabindex="-1"><a class="header-anchor" href="#_7-12-其他节点连接到master节点" aria-hidden="true">#</a> 7.12.其他节点连接到Master节点</h2>
+<h2 id="_7-13-其他节点连接到master节点" tabindex="-1"><a class="header-anchor" href="#_7-13-其他节点连接到master节点" aria-hidden="true">#</a> 7.13.其他节点连接到Master节点</h2>
 <pre><code>在两个上Slave节点输入第9&gt;&gt;.步骤在主节点上获取的秘钥
 如：kubeadm join 192.168.0.6:6443 \
 	--token e60qrb.6321jolakk1aix90 \
@@ -135,7 +158,7 @@ chown $(id -u):$(id -g) $HOME/.kube/config
 加入成功后看到:
 	This node has joined the cluster
 </code></pre>
-<h2 id="_7-13-在master节点上查看集群" tabindex="-1"><a class="header-anchor" href="#_7-13-在master节点上查看集群" aria-hidden="true">#</a> 7.13.在master节点上查看集群</h2>
+<h2 id="_7-14-在master节点上查看集群" tabindex="-1"><a class="header-anchor" href="#_7-14-在master节点上查看集群" aria-hidden="true">#</a> 7.14.在master节点上查看集群</h2>
 <pre><code>mater节点和两个slave节点STATUS是NOTReady
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get nodes
@@ -145,10 +168,10 @@ master   NotReady      control-plane,master   9m32s   v1.22.4
 slave1   NotReady   &lt;none&gt;                 5m51s   v1.22.4
 slave2   NotReady      &lt;none&gt;                 2m31s   v1.22.4
 </code></pre>
-<h2 id="_7-14-安装网络插件" tabindex="-1"><a class="header-anchor" href="#_7-14-安装网络插件" aria-hidden="true">#</a> 7.14.安装网络插件</h2>
+<h2 id="_7-15-安装网络插件" tabindex="-1"><a class="header-anchor" href="#_7-15-安装网络插件" aria-hidden="true">#</a> 7.15.安装网络插件</h2>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl apply -f \
 	https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_7-15-在master上查看集群节点" tabindex="-1"><a class="header-anchor" href="#_7-15-在master上查看集群节点" aria-hidden="true">#</a> 7.15.在master上查看集群节点</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_7-16-在master上查看集群节点" tabindex="-1"><a class="header-anchor" href="#_7-16-在master上查看集群节点" aria-hidden="true">#</a> 7.16.在master上查看集群节点</h2>
 <pre><code>再次执行命令查看集群命令，mater节点STATUS是Ready，两个slave节点STATUS是都是Ready
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get nodes
@@ -161,7 +184,7 @@ slave2   Ready      &lt;none&gt;                 2m31s   v1.22.4
 如果两个从节点中有一个节点状态是NotReady，另一个节点状态是Ready，不要着急，要多等一会儿
 再使用命令kubectl get nodes查看集群节点，就可以看到所有节点都是Ready
 </code></pre>
-<h2 id="_7-16-启动故障解决" tabindex="-1"><a class="header-anchor" href="#_7-16-启动故障解决" aria-hidden="true">#</a> 7.16.启动故障解决</h2>
+<h2 id="_7-17-启动故障解决" tabindex="-1"><a class="header-anchor" href="#_7-17-启动故障解决" aria-hidden="true">#</a> 7.17.启动故障解决</h2>
 <pre><code>查看所有命名空间的所有的pod
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get pods -o wide --all-namespaces
@@ -171,7 +194,7 @@ slave2   Ready      &lt;none&gt;                 2m31s   v1.22.4
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>重置kubeadm
 可使用kubeadm reset命令重启kubeadm，再从第9&gt;&gt;.步骤开始重新执行
 </code></pre>
-<h2 id="_7-17-基础命令" tabindex="-1"><a class="header-anchor" href="#_7-17-基础命令" aria-hidden="true">#</a> 7.17.基础命令</h2>
+<h2 id="_7-18-基础命令" tabindex="-1"><a class="header-anchor" href="#_7-18-基础命令" aria-hidden="true">#</a> 7.18.基础命令</h2>
 <pre><code>查看kubeadm需要的组件的版本
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubeadm config images list
@@ -187,7 +210,7 @@ slave2   Ready      &lt;none&gt;                 2m31s   v1.22.4
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看pod日志
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl describe pod
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_7-18-部署第一个程序到k8s中" tabindex="-1"><a class="header-anchor" href="#_7-18-部署第一个程序到k8s中" aria-hidden="true">#</a> 7.18.部署第一个程序到k8s中</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_7-19-部署第一个程序到k8s中" tabindex="-1"><a class="header-anchor" href="#_7-19-部署第一个程序到k8s中" aria-hidden="true">#</a> 7.19.部署第一个程序到k8s中</h2>
 <pre><code>开始运行 guestbook
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl create deployment guestbook --image=ibmcom/guestbook:v1
@@ -208,7 +231,7 @@ http://192.168.0.6:31208
 http://192.168.0.7:31208
 http://192.168.0.8:31208
 </code></pre>
-<h2 id="_7-19-可视化面板kuboard" tabindex="-1"><a class="header-anchor" href="#_7-19-可视化面板kuboard" aria-hidden="true">#</a> 7.19.可视化面板kuboard</h2>
+<h2 id="_7-20-可视化面板kuboard" tabindex="-1"><a class="header-anchor" href="#_7-20-可视化面板kuboard" aria-hidden="true">#</a> 7.20.可视化面板kuboard</h2>
 <pre><code>安装
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl apply -f https://addons.kuboard.cn/kuboard/kuboard-v3.yaml

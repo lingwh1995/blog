@@ -1,25 +1,35 @@
 ---
-star: 7
-title: 7.kubeadm搭建Kubernetes
-shortTitle: 7.kubeadm搭建Kubernetes-short
+title: 在Centos7上搭建开发环境-7.kubeadm搭建Kubernetes
+description: 本章节涉及主要内容有：$CHAPTER_CONTENT_INTRO具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
-category:
-- 环境搭建
-tag:
-- linux
-- kubeadm搭建Kubernetes
-copyright: false
 isOriginal: true
-date: 2020-01-01
+category:
+  - 环境搭建
+star: false
+copyright: false
+tag:
+  - kubeadm搭建k8s集群
+  - docker
+  - k8s网络插件
+  - k8s可视化
+  - etcd集群
+  - kube-apiserver
+  - kube-controller-manager
+  - kube-scheduler
+  - kubectl
+  - nginx
+  - keepalive
+  - 高可用
+date: 2020-02-15
 ---
 
 # 7.kubeadm搭建Kubernetes
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter7.md)
 
-## 7.2.特别说明
+## 7.3.特别说明
 	使用kubeadm搭建Kubernetes
 
-## 7.3.所有节点设置对应主机名
+## 7.4.所有节点设置对应主机名
 	master节点
 	hostnamectl set-hostname master
 	slave1节点
@@ -27,13 +37,13 @@ date: 2020-01-01
 	slave2节点	
 	hostnamectl set-hostname slave2
 
-## 7.4.所有节点修改hosts
+## 7.5.所有节点修改hosts
 	vim /etc/hosts
 	192.168.0.6 master
 	192.168.0.7 slave1
 	192.168.0.8 slave2
 
-## 7.5.所有节点关闭SELinux
+## 7.6.所有节点关闭SELinux
 	暂时关闭
 ```	
 setenforce 0
@@ -43,12 +53,12 @@ setenforce 0
 sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' \
 /etc/sysconfig/selinux
 ```
-## 7.6.所有节点关闭防火墙
+## 7.7.所有节点关闭防火墙
 ```
 systemctl stop firewalld &&
 systemctl disable firewalld
 ```
-## 7.7.所有节点安装docker
+## 7.8.所有节点安装docker
 	安装docker
 	详细参考4.1>.安装docker
 	
@@ -60,7 +70,7 @@ systemctl disable firewalld
 	重新载入docker配置并重启docker
 	systemctl daemon-reload && systemctl restart docker
 
-## 7.8.所有节点安装k8s所需组件
+## 7.9.所有节点安装k8s所需组件
 	添加k8s安装源
 ```	
 cat <<EOF > kubernetes.repo
@@ -93,14 +103,14 @@ kubectl	--version
 kubeadm --version
 ```
 
-## 7.9.所有节点启动kubelet和docker
+## 7.10.所有节点启动kubelet和docker
 ```
 systemctl enable kubelet && 
 systemctl start kubelet &&
 systemctl enable docker &&
 systemctl start docker
 ```
-## 7.10.所有关闭swap
+## 7.11.所有关闭swap
 	临时关闭swap分区
 ```	
 swapoff /mnt/swap
@@ -114,7 +124,7 @@ sed -ri 's/.*swap.*/#&/' /etc/fstab && systemctl reboot
 free -m
 ```
 
-## 7.11.用kubeadm 初始化集群
+## 7.12.用kubeadm 初始化集群
 	特别注意
 	只在Master节点操作
 	
@@ -160,7 +170,7 @@ kubeadm init \
 	cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 	chown $(id -u):$(id -g) $HOME/.kube/config
 
-## 7.12.其他节点连接到Master节点
+## 7.13.其他节点连接到Master节点
 	在两个上Slave节点输入第9>>.步骤在主节点上获取的秘钥
 	如：kubeadm join 192.168.0.6:6443 \
 		--token e60qrb.6321jolakk1aix90 \
@@ -170,7 +180,7 @@ kubeadm init \
 	加入成功后看到:
 		This node has joined the cluster
 
-## 7.13.在master节点上查看集群
+## 7.14.在master节点上查看集群
 	mater节点和两个slave节点STATUS是NOTReady
 ```	
 kubectl get nodes
@@ -181,12 +191,12 @@ kubectl get nodes
 	slave1   NotReady   <none>                 5m51s   v1.22.4
 	slave2   NotReady      <none>                 2m31s   v1.22.4
 
-## 7.14.安装网络插件
+## 7.15.安装网络插件
 ```
 kubectl apply -f \
 	https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
-## 7.15.在master上查看集群节点			
+## 7.16.在master上查看集群节点			
 	再次执行命令查看集群命令，mater节点STATUS是Ready，两个slave节点STATUS是都是Ready
 ```	
 kubectl get nodes
@@ -200,7 +210,7 @@ kubectl get nodes
 	如果两个从节点中有一个节点状态是NotReady，另一个节点状态是Ready，不要着急，要多等一会儿
 	再使用命令kubectl get nodes查看集群节点，就可以看到所有节点都是Ready
 
-## 7.16.启动故障解决
+## 7.17.启动故障解决
 	查看所有命名空间的所有的pod
 ```	
 kubectl get pods -o wide --all-namespaces
@@ -212,7 +222,7 @@ kubectl -n kube-system logs PODNAME
 	重置kubeadm
 	可使用kubeadm reset命令重启kubeadm，再从第9>>.步骤开始重新执行
 
-## 7.17.基础命令
+## 7.18.基础命令
 	查看kubeadm需要的组件的版本
 ```	
 kubeadm config images list
@@ -234,7 +244,7 @@ kubectl get pods -o wide --all-namespaces
 kubectl describe pod
 ```
 
-## 7.18.部署第一个程序到k8s中
+## 7.19.部署第一个程序到k8s中
 	开始运行 guestbook
 ```
 kubectl create deployment guestbook --image=ibmcom/guestbook:v1
@@ -259,7 +269,7 @@ kubectl get service guestbook
 	http://192.168.0.7:31208
 	http://192.168.0.8:31208
 
-## 7.19.可视化面板kuboard
+## 7.20.可视化面板kuboard
 	安装
 ```	
 kubectl apply -f https://addons.kuboard.cn/kuboard/kuboard-v3.yaml

@@ -2,7 +2,7 @@
   "name": "blog",
   "version": "2.0.0",
   "description": "a blog development by vuepress",
-  "license": "ling",
+  "license": "lingwh",
   "scripts": {
     "docs:build": "vuepress build docs",
     "docs:clean-dev": "vuepress dev docs --clean-cache",

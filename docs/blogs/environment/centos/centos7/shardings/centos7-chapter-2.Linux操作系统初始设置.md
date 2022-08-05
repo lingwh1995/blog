@@ -1,22 +1,22 @@
 ---
-star: 2
-title: 2.Linux操作系统初始设置
-shortTitle: 2.Linux操作系统初始设置-short
+title: 在Centos7上搭建开发环境-2.Linux操作系统初始设置
+description: 本章节涉及主要内容有：$CHAPTER_CONTENT_INTRO具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
-category:
-- 环境搭建
-tag:
-- linux
-- Linux操作系统初始设置
-copyright: false
 isOriginal: true
-date: 2020-01-01
+category:
+  - 环境搭建
+star: false
+copyright: false
+tag:
+  - yaml源
+  - 设置环境变量
+date: 2020-01-08
 ---
 
 # 2.Linux操作系统初始设置
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter2.md)
 
-## 2.2.配置静态IP地址
+## 2.3.配置静态IP地址
 **修改网络配置**	
 ```bash
 vi /etc/sysconfig/network-scripts/ifcfg-ens32(最后一个为网卡名称)	
@@ -36,7 +36,7 @@ vi /etc/sysconfig/network-scripts/ifcfg-ens32(最后一个为网卡名称)
 systemctl restart network
 ```
 
-## 2.3.解决远程连接无法连接的问题
+## 2.4.解决远程连接无法连接的问题
 **修改sshd配置文件**
 ```
 vim /etc/ssh/sshd_config
@@ -47,19 +47,19 @@ vim /etc/ssh/sshd_config
 systemctl restart sshd.service
 ```
 
-## 2.4.设置系统环境变量
+## 2.5.设置系统环境变量
 ```
 echo "export LC_ALL=en_US.UTF-8"  >>  /etc/profile &&
 source /etc/profile
 ```
 
-## 2.5.安装curl
+## 2.6.安装curl
 	后面的操作需要curl，所以首先安装curl
 ```	
 yum -y install curl
 ```
 
-## 2.6.配置yml源
+## 2.7.配置yml源
 	下载阿里源，并上传到/opt/software/package
 ```	
 curl http://mirrors.aliyun.com/repo/Centos-7.repo -o Centos-7.repo
@@ -77,8 +77,8 @@ cp /opt/software/package/Centos-7.repo /CentOS-Base.repo
 yum makecache && yum update
 ```
 
-## 2.7.安装常用基础系统软件
-### 2.7.1.手动安装常用软件
+## 2.8.安装常用基础系统软件
+### 2.8.1.手动安装常用软件
 **vim**
 
 	安装vim	
@@ -114,7 +114,7 @@ yum install -y git
 ```	
 git version 
 ```
-### 2.7.2.使用脚本安装常用软件
+### 2.8.2.使用脚本安装常用软件
 	脚本介绍
 	这个脚本中包含了centos设置yum源并且安装了一些的常用软件，如vim、git、wget、curl、等，会定时更新
 

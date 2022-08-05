@@ -1,22 +1,23 @@
 ---
-star: 3
-title: 3.搭建基础开发环境
-shortTitle: 3.搭建基础开发环境-short
+title: 在Centos7上搭建开发环境-3.搭建基础开发环境
+description: 本章节涉及主要内容有：$CHAPTER_CONTENT_INTRO具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
-category:
-- 环境搭建
-tag:
-- linux
-- 搭建基础开发环境
-copyright: false
 isOriginal: true
-date: 2020-01-01
+category:
+  - 环境搭建
+star: false
+copyright: false
+tag:
+  - jdk
+  - maven
+  - mysql
+date: 2020-01-15
 ---
 
 # 3.搭建基础开发环境
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter3.md)
 
-## 3.2.安装jdk
+## 3.3.安装jdk
 	查看当前安装的java版本
 
 ```
@@ -60,7 +61,7 @@ source /etc/profile
 java -version
 ```
 
-## 3.3.安装maven
+## 3.4.安装maven
 	注意
 	maven linux版和windows版并不通用
 
@@ -114,7 +115,7 @@ vim /usr/local/bin/apache-maven-3.8.6/conf/settings.xml
 </mirror>
 ```
 
-## 3.4.安装mysql
+## 3.5.安装mysql
 <!-- 
 	参考网站
 	安装mysql

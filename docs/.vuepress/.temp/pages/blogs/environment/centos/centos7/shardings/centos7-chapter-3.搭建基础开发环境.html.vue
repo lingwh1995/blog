@@ -1,7 +1,15 @@
 <template><div><h1 id="_3-搭建基础开发环境" tabindex="-1"><a class="header-anchor" href="#_3-搭建基础开发环境" aria-hidden="true">#</a> 3.搭建基础开发环境</h1>
-<h2 id="_3-1-章节大纲" tabindex="-1"><a class="header-anchor" href="#_3-1-章节大纲" aria-hidden="true">#</a> 3.1.章节大纲</h2>
+<h2 id="_3-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_3-1-章节内容概述" aria-hidden="true">#</a> 3.1.章节内容概述</h2>
+<pre><code>本章节涉及主要内容有：
+ 3.1.安装jdk
+ 3.2.安装maven
+ 3.3.安装mysql
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格
+测试，可直接复制运行即可。
+</code></pre>
+<h2 id="_3-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_3-2-章节内容大纲" aria-hidden="true">#</a> 3.2.章节内容大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter3.html"/>
-<h2 id="_3-2-安装jdk" tabindex="-1"><a class="header-anchor" href="#_3-2-安装jdk" aria-hidden="true">#</a> 3.2.安装jdk</h2>
+<h2 id="_3-3-安装jdk" tabindex="-1"><a class="header-anchor" href="#_3-3-安装jdk" aria-hidden="true">#</a> 3.3.安装jdk</h2>
 <pre><code>查看当前安装的java版本
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum list installed | grep java
@@ -35,7 +43,7 @@ export PATH=${JAVA_HOME}/bin:$PATH
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看java版本
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>java -version
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_3-3-安装maven" tabindex="-1"><a class="header-anchor" href="#_3-3-安装maven" aria-hidden="true">#</a> 3.3.安装maven</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_3-4-安装maven" tabindex="-1"><a class="header-anchor" href="#_3-4-安装maven" aria-hidden="true">#</a> 3.4.安装maven</h2>
 <pre><code>注意
 maven linux版和windows版并不通用
 
@@ -79,7 +87,7 @@ export PATH=$PATH:$M2_HOME/bin
 	&lt;url>http://repo2.maven.org/maven2/&lt;/url>
 	&lt;mirrorOf>central&lt;/mirrorOf>
 &lt;/mirror>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_3-4-安装mysql" tabindex="-1"><a class="header-anchor" href="#_3-4-安装mysql" aria-hidden="true">#</a> 3.4.安装mysql</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_3-5-安装mysql" tabindex="-1"><a class="header-anchor" href="#_3-5-安装mysql" aria-hidden="true">#</a> 3.5.安装mysql</h2>
 <!-- 
 	参考网站
 	安装mysql

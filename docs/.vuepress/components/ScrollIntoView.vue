@@ -15,15 +15,13 @@ export default {
     };
   },
   mounted: function(){
-    const sidebar = document.querySelector('.sidebar ul')
+    const sidebar = document.querySelector('.sidebar .sidebar-links')
     sidebar.onclick = function(){
-        const activeSidebar = document.querySelector('li')
-        //shoop.setAttribute("tittle","a lot of goods")
-        console.log(this)
-        // const currentToc = document.querySelector('#toc .active');
-        // console.log(currentToc)
-        //currentToc.scrollIntoView(true)
-        //this.click
+        // const activeSidebar = document.querySelector('.sidebar .active')
+        const currentToc = document.querySelector('#toc .active');
+        console.log(currentToc)
+        currentToc.scrollIntoView(true)
+        this.click
     }
     
 

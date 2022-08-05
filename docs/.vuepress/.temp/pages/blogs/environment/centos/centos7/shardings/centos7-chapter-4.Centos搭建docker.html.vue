@@ -1,8 +1,23 @@
 <template><div><h1 id="_4-centos搭建docker" tabindex="-1"><a class="header-anchor" href="#_4-centos搭建docker" aria-hidden="true">#</a> 4.Centos搭建docker</h1>
-<h2 id="_4-1-章节大纲" tabindex="-1"><a class="header-anchor" href="#_4-1-章节大纲" aria-hidden="true">#</a> 4.1.章节大纲</h2>
+<h2 id="_4-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_4-1-章节内容概述" aria-hidden="true">#</a> 4.1.章节内容概述</h2>
+<pre><code>本章节涉及主要内容有：
+ 4.1.安装docker
+ 4.2.docker启动故障解决		
+ 4.3.docker容器可视化	
+ 4.4.搭建docke私服
+ 4.4.1搭建docke官方私服（不带有用户名和密码校验）
+ 4.4.2搭建docke官方私服（带有用户名和密码校验）	
+ 4.4.3.搭建harbor私服
+ 4.5.docker官方私服可视化
+ 4.6.制作docker镜像并上传到私服
+ 4.7.Docker中安装常用软件
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格
+测试，可直接复制运行即可。
+</code></pre>
+<h2 id="_4-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_4-2-章节内容大纲" aria-hidden="true">#</a> 4.2.章节内容大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter4.html"/>
-<h2 id="_4-2-安装docker" tabindex="-1"><a class="header-anchor" href="#_4-2-安装docker" aria-hidden="true">#</a> 4.2.安装docker</h2>
-<h3 id="_4-2-1-在线安装docker" tabindex="-1"><a class="header-anchor" href="#_4-2-1-在线安装docker" aria-hidden="true">#</a> 4.2.1.在线安装docker</h3>
+<h2 id="_4-3-安装docker" tabindex="-1"><a class="header-anchor" href="#_4-3-安装docker" aria-hidden="true">#</a> 4.3.安装docker</h2>
+<h3 id="_4-3-1-在线安装docker" tabindex="-1"><a class="header-anchor" href="#_4-3-1-在线安装docker" aria-hidden="true">#</a> 4.3.1.在线安装docker</h3>
 <pre><code>以root身份更新yum，将yum包更新到最新
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y update
@@ -98,7 +113,7 @@ https://hub.docker.com/
 For more examples and ideas, visit:
 https://docs.docker.com/get-started/
 </code></pre>
-<h3 id="_4-2-2-二进制包安装docker" tabindex="-1"><a class="header-anchor" href="#_4-2-2-二进制包安装docker" aria-hidden="true">#</a> 4.2.2.二进制包安装docker</h3>
+<h3 id="_4-3-2-二进制包安装docker" tabindex="-1"><a class="header-anchor" href="#_4-3-2-二进制包安装docker" aria-hidden="true">#</a> 4.3.2.二进制包安装docker</h3>
 <pre><code>创建存放docker安装包的目录-&gt;切换目录-&gt;在该目录中下载docker二进制安装包-&gt;解压到/usr/bin/
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mkdir -p  /opt/software/package/ &amp;&amp;
@@ -188,7 +203,7 @@ https://hub.docker.com/
 For more examples and ideas, visit:
 https://docs.docker.com/get-started/
 </code></pre>
-<h2 id="_4-3-docker启动故障解决" tabindex="-1"><a class="header-anchor" href="#_4-3-docker启动故障解决" aria-hidden="true">#</a> 4.3.docker启动故障解决</h2>
+<h2 id="_4-4-docker启动故障解决" tabindex="-1"><a class="header-anchor" href="#_4-4-docker启动故障解决" aria-hidden="true">#</a> 4.4.docker启动故障解决</h2>
 <pre><code>错误信息
 Job for docker.service failed because the control process exited with error code. 
 See &quot;systemctl status docker.service&quot; and &quot;journalctl -xe&quot; for details.
@@ -214,7 +229,7 @@ See &quot;systemctl status docker.service&quot; and &quot;journalctl -xe&quot; f
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	cat /etc/docker/daemon.json
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>看配置的registry-mirrors是否正确，如私服前是否忘记了加http://
 </code></pre>
-<h2 id="_4-4-docker容器可视化" tabindex="-1"><a class="header-anchor" href="#_4-4-docker容器可视化" aria-hidden="true">#</a> 4.4.docker容器可视化</h2>
+<h2 id="_4-5-docker容器可视化" tabindex="-1"><a class="header-anchor" href="#_4-5-docker容器可视化" aria-hidden="true">#</a> 4.5.docker容器可视化</h2>
 <pre><code>查询当前有哪些portainer镜像
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker search portainer
@@ -234,8 +249,8 @@ See &quot;systemctl status docker.service&quot; and &quot;journalctl -xe&quot; f
 用户名/密码：admin/portainer
 单机版选择local即可
 </code></pre>
-<h2 id="_4-5-搭建docke私服" tabindex="-1"><a class="header-anchor" href="#_4-5-搭建docke私服" aria-hidden="true">#</a> 4.5.搭建docke私服</h2>
-<h2 id="_4-5-1搭建docke官方私服-不带有用户名和密码校验" tabindex="-1"><a class="header-anchor" href="#_4-5-1搭建docke官方私服-不带有用户名和密码校验" aria-hidden="true">#</a> 4.5.1搭建docke官方私服（不带有用户名和密码校验）</h2>
+<h2 id="_4-6-搭建docke私服" tabindex="-1"><a class="header-anchor" href="#_4-6-搭建docke私服" aria-hidden="true">#</a> 4.6.搭建docke私服</h2>
+<h2 id="_4-6-1搭建docke官方私服-不带有用户名和密码校验" tabindex="-1"><a class="header-anchor" href="#_4-6-1搭建docke官方私服-不带有用户名和密码校验" aria-hidden="true">#</a> 4.6.1搭建docke官方私服（不带有用户名和密码校验）</h2>
 <pre><code>拉取仓库镜像
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker pull registry
@@ -303,7 +318,7 @@ systemctl restart docker
 彻底删除私服中的镜像:注意这个路径是要看registry具体挂载到linux上什么位置的
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_4-5-2搭建docke官方私服-带有用户名和密码校验" tabindex="-1"><a class="header-anchor" href="#_4-5-2搭建docke官方私服-带有用户名和密码校验" aria-hidden="true">#</a> 4.5.2搭建docke官方私服（带有用户名和密码校验）</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_4-6-2搭建docke官方私服-带有用户名和密码校验" tabindex="-1"><a class="header-anchor" href="#_4-6-2搭建docke官方私服-带有用户名和密码校验" aria-hidden="true">#</a> 4.6.2搭建docke官方私服（带有用户名和密码校验）</h2>
 <pre><code>拉取仓库镜像
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker pull registry
@@ -363,14 +378,14 @@ firewall-cmd --reload
 彻底删除私服中的镜像:注意这个路径是要看registry具体挂载到linux上什么位置的
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_4-5-3-搭建harbor私服" tabindex="-1"><a class="header-anchor" href="#_4-5-3-搭建harbor私服" aria-hidden="true">#</a> 4.5.3.搭建harbor私服</h2>
-<h3 id="_4-5-3-1-harbor简介" tabindex="-1"><a class="header-anchor" href="#_4-5-3-1-harbor简介" aria-hidden="true">#</a> 4.5.3.1.harbor简介</h3>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_4-6-3-搭建harbor私服" tabindex="-1"><a class="header-anchor" href="#_4-6-3-搭建harbor私服" aria-hidden="true">#</a> 4.6.3.搭建harbor私服</h2>
+<h3 id="_4-6-3-1-harbor简介" tabindex="-1"><a class="header-anchor" href="#_4-6-3-1-harbor简介" aria-hidden="true">#</a> 4.6.3.1.harbor简介</h3>
 <pre><code>Harbor是一个用于存储和分发Docker镜像的企业级Registry服务器，虽然Docker官方也提供了公共的镜像仓库，但是
 从安全和效率等方面考虑，部署企业内部的私有环境Registry是非常必要的，harbor和docker中央仓库的关系就类似于
 nexus和Maven中央仓库的关系，harbor除了存储和分发镜像外还具有用户管理，项目管理，配置管理和日志查询，高可
 用部署等主要功能。		
 </code></pre>
-<h3 id="_4-5-3-2-搭建docker-compose" tabindex="-1"><a class="header-anchor" href="#_4-5-3-2-搭建docker-compose" aria-hidden="true">#</a> 4.5.3.2.搭建docker-compose</h3>
+<h3 id="_4-6-3-2-搭建docker-compose" tabindex="-1"><a class="header-anchor" href="#_4-6-3-2-搭建docker-compose" aria-hidden="true">#</a> 4.6.3.2.搭建docker-compose</h3>
 <pre><code>版本说明
 	2.6.1
 	
@@ -388,7 +403,7 @@ cp docker-compose-linux-x86_64 /usr/local/bin/docker-compose
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>查看是否安装成功
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker-compose --version
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_4-5-3-3-安装harbor" tabindex="-1"><a class="header-anchor" href="#_4-5-3-3-安装harbor" aria-hidden="true">#</a> 4.5.3.3.安装harbor</h3>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_4-6-3-3-安装harbor" tabindex="-1"><a class="header-anchor" href="#_4-6-3-3-安装harbor" aria-hidden="true">#</a> 4.6.3.3.安装harbor</h3>
 <pre><code>特别注意
 注意docker的版本,低版本的docker不能运行harbor2.5
 	
@@ -444,8 +459,8 @@ vim harbor.yml
 	在Harbor中创建项目,推送的时候可以用
 	如:springcloud-eureka	
 
-## 4.6.docker官方私服可视化
-### 4.6.1docker-registry-web方案
+## 4.7.docker官方私服可视化
+### 4.7.1docker-registry-web方案
 	下载docker pull hyper/docker-registry-web镜像
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>docker pull hyper/docker-registry-web</p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	启动docker-registry-web
@@ -457,9 +472,9 @@ vim harbor.yml
 -e REGISTRY_NAME=192.168.0.4:5000 <br>
 hyper/docker-registry-web:latest</p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>
-## 4.7.制作docker镜像并上传到私服
+## 4.8.制作docker镜像并上传到私服
 
-### 4.7.1.制作Dokcer镜像		
+### 4.8.1.制作Dokcer镜像		
 	进入/opt/software/package，并在这个目录中下载jdk
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>cd /opt/software/package &amp;&amp;
 wget https://repo.huaweicloud.com/java/jdk/8u181-b13/jdk-8u181-linux-x64.tar.gz</p>
@@ -486,7 +501,7 @@ wget https://repo.huaweicloud.com/java/jdk/8u181-b13/jdk-8u181-linux-x64.tar.gz<
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	创建容器
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>docker run -it --name=myjdk8 镜像id /bin/bash</p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>
-### 4.7.2.上传本地jdk镜像到私服
+### 4.8.2.上传本地jdk镜像到私服
 	给镜像打标签
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>docker tag jdk/jdk1.8.0_181 192.168.0.4:5000/jdk/jdk1.8.0_181:latest #更改镜像的TAG标签</p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	上传标记的镜像
@@ -494,15 +509,15 @@ wget https://repo.huaweicloud.com/java/jdk/8u181-b13/jdk-8u181-linux-x64.tar.gz<
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	查看推送到私服中的镜像
 	访问:http://192.168.0.4:5000/v2/_catalog,看到:{"repositories":["jdk/jdk1.8.0_181"]}
 
-## 4.8.Docker中安装常用软件
-### 4.8.1.Docker安装mysql
+## 4.9.Docker中安装常用软件
+### 4.9.1.Docker安装mysql
 	下载mysql镜像
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>docker pull mysql</p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	启动mysql容器
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>docker run -di --name mysql -p 3306:3306 --restart=always -e MYSQL_ROOT_PASSWORD=123456 mysql</p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	关闭docker中的mysql容器
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>myqldocker exec -it mysql bash</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>### 4.8.2.Docker中安装consul
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>### 4.9.2.Docker中安装consul
 	下载consul镜像
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>docker pull consul</p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	启动consul容器
@@ -512,7 +527,7 @@ wget https://repo.huaweicloud.com/java/jdk/8u181-b13/jdk-8u181-linux-x64.tar.gz<
 agent -server -bootstrap -ui -node=1 -client='0.0.0.0' <br>
 consul:latest</p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>
-### 4.8.3.Docker容器中安装vim	 
+### 4.9.3.Docker容器中安装vim	 
 	进入容器内部
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>docker exec -it 容器id /bin/bash</p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	备份旧的源
@@ -532,7 +547,7 @@ echo &quot;deb-src http://mirrors.163.com/debian/ jessie-proposed-updates main n
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	安装vim
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>apt-get install vim</p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>
-### 4.8.3.docker安装elk
+### 4.9.3.docker安装elk
 	下载elk镜像
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>docker pull sebp/elk:6.8.22</p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	启动ELK容器，指定最小内存和最大内存，并映射相关端口

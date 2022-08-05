@@ -1,37 +1,3 @@
----
-#是否自动生成左侧菜单栏
-sidebar: heading
-#左侧菜单栏或者右侧toc的层级深度
-headerDepth: 4
-sidebarIcon: true
-#写作日期
-date: 2020-01-01
-#是否原创
-isOriginal: true
-#文章分类
-category: 
-  - 环境搭建
-#文章标签
-tag:
-  - linux
-  - 安装jdk
-  - 安装maven
-# 此页面会在文章列表置顶
-sticky: true
-#地址栏上面的标题，同时也是博客列表中显示的标题
-title: 在Centos7上搭建开发环境
-#当前页面的短标题，会在导航栏、侧边栏和路径导航中作为首选
-shortTitle: 在Centos7服务器上搭建开发环境
-#当前页面内容描述
-description: 本篇博客的内容主要介绍安装Centos7操作系统、以及在Centos操作系统上搭建常见的开发环境，如Jdk、Maven、Docker、Rancher、Minikube、Kubernetes、nginx、等软件的详细搭建过程，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，直接复制运行即可。
-#是否显示页面footer中的版权信息，设置为false,不然会有两个版权信息
-copyright: false
-dir:
-  collapsable: true
-icon: linux
----
-
-
 ```java
 //@include(./Account.java)
 ```

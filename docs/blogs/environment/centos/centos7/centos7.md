@@ -1,36 +1,20 @@
 ---
-#是否自动生成左侧菜单栏
-sidebar: heading
-#左侧菜单栏或者右侧toc的层级深度
+title: 在Centos7上搭建开发环境
+description: 本篇博客涉及主要内容有：安装Linux操作系统,Linux操作系统初始设置,搭建基础开发环境,Centos搭建docker,Centos搭建Rancher,Centos搭建Minikube,kubeadm搭建Kubernetes,二进制包搭建Kubernetes,具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
-sidebarIcon: true
-#写作日期
-date: 2020-01-01
-#是否原创
 isOriginal: true
-#文章分类
-category: 
+category:
   - 环境搭建
-#文章标签
+star: 1
+copyright: false
 tag:
   - linux
-  - 安装jdk
-  - 安装maven
-# 此页面会在文章列表置顶
-sticky: true
-#地址栏上面的标题，同时也是博客列表中显示的标题
-title: 在Centos7上搭建开发环境
-#当前页面的短标题，会在导航栏、侧边栏和路径导航中作为首选
-shortTitle: 在Centos7服务器上搭建开发环境
-#当前页面内容描述
-description: 本篇博客的内容主要介绍安装Centos7操作系统、以及在Centos操作系统上搭建常见的开发环境，如Jdk、Maven、Docker、Rancher、Minikube、Kubernetes、nginx、等软件的详细搭建过程，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，直接复制运行即可。
-#是否显示页面footer中的版权信息，设置为false,不然会有两个版权信息
-copyright: false
-dir:
-  collapsable: true
+  - centos
+  - 环境搭建
+date: 2021-03-01
+sticky: 1
 icon: linux
 ---
-
 
 ```java
 //@include(./Account.java)
@@ -39,12 +23,12 @@ icon: linux
 
 
 
-@include(@src/public/enhance/guidance/environment/centos/centos7/centos7-guidance.md{4-})
+@include(@src/public/enhance/guidance/environment/centos/centos7/centos7-guidance.md{13-})
 
 # 1.安装Linux操作系统 {#1.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter1.md)
 
-## 1.2.Linux重要目录介绍
+## 1.3.Linux重要目录介绍
 
 	/usr → C:/Windows/ /*系统级的目录
 	/usr/lib → C:/Windows/System32
@@ -58,11 +42,11 @@ icon: linux
 	/tmp 用于存放各种临时文件，是公用的临时文件存储点。
 	/var 存放临时文件，如各种服务的日志文件。
 
-## 1.3.Centos镜像下载
+## 1.4.Centos镜像下载
 	如何是学习环境，建议安装centos mini版镜像，生产环境可以安装完整版
 	下载地址
 
-## 1.4.安装前Vmaware相关设置
+## 1.5.安装前Vmaware相关设置
 **虚拟机联网设置**
 
 	导航栏->编辑->虚拟网络编辑器->VMnet8NAT模式->更改设置->VMnet8NAT模式
@@ -75,7 +59,7 @@ icon: linux
 	VMware NetworkAdepter VMnet1：Host用于与Host-Only虚拟网络进行通信的虚拟网卡
 	VMware NetworkAdepter VMnet8：Host用于与NAT虚拟网络进行通信的虚拟网卡
 	
-## 1.4.安装时分区大小设置
+## 1.5.安装时分区大小设置
 	/boot	/*存放系统启动引导文件，建议大小：512mb
 	/swap 	/*交换区，建议大小：2g
 	/*主分区，剩下的空间全部分给这个分区
@@ -83,7 +67,7 @@ icon: linux
 # 2.Linux操作系统初始设置 {#2.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter2.md)
 
-## 2.2.配置静态IP地址
+## 2.3.配置静态IP地址
 **修改网络配置**	
 ```bash
 vi /etc/sysconfig/network-scripts/ifcfg-ens32(最后一个为网卡名称)	
@@ -103,7 +87,7 @@ vi /etc/sysconfig/network-scripts/ifcfg-ens32(最后一个为网卡名称)
 systemctl restart network
 ```
 
-## 2.3.解决远程连接无法连接的问题
+## 2.4.解决远程连接无法连接的问题
 **修改sshd配置文件**
 ```
 vim /etc/ssh/sshd_config
@@ -114,19 +98,19 @@ vim /etc/ssh/sshd_config
 systemctl restart sshd.service
 ```
 
-## 2.4.设置系统环境变量
+## 2.5.设置系统环境变量
 ```
 echo "export LC_ALL=en_US.UTF-8"  >>  /etc/profile &&
 source /etc/profile
 ```
 
-## 2.5.安装curl
+## 2.6.安装curl
 	后面的操作需要curl，所以首先安装curl
 ```	
 yum -y install curl
 ```
 
-## 2.6.配置yml源
+## 2.7.配置yml源
 	下载阿里源，并上传到/opt/software/package
 ```	
 curl http://mirrors.aliyun.com/repo/Centos-7.repo -o Centos-7.repo
@@ -144,8 +128,8 @@ cp /opt/software/package/Centos-7.repo /CentOS-Base.repo
 yum makecache && yum update
 ```
 
-## 2.7.安装常用基础系统软件
-### 2.7.1.手动安装常用软件
+## 2.8.安装常用基础系统软件
+### 2.8.1.手动安装常用软件
 **vim**
 
 	安装vim	
@@ -181,7 +165,7 @@ yum install -y git
 ```	
 git version 
 ```
-### 2.7.2.使用脚本安装常用软件
+### 2.8.2.使用脚本安装常用软件
 	脚本介绍
 	这个脚本中包含了centos设置yum源并且安装了一些的常用软件，如vim、git、wget、curl、等，会定时更新
 
@@ -203,7 +187,7 @@ chmod +x centos-init.sh &&
 # 3.搭建基础开发环境 {#3.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter3.md)
 
-## 3.2.安装jdk
+## 3.3.安装jdk
 	查看当前安装的java版本
 
 ```
@@ -247,7 +231,7 @@ source /etc/profile
 java -version
 ```
 
-## 3.3.安装maven
+## 3.4.安装maven
 	注意
 	maven linux版和windows版并不通用
 
@@ -301,7 +285,7 @@ vim /usr/local/bin/apache-maven-3.8.6/conf/settings.xml
 </mirror>
 ```
 
-## 3.4.安装mysql
+## 3.5.安装mysql
 <!-- 
 	参考网站
 	安装mysql
@@ -396,8 +380,8 @@ flush privileges;
 
 # 4.Centos搭建docker {#4.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter4.md)
-## 4.2.安装docker
-### 4.2.1.在线安装docker
+## 4.3.安装docker
+### 4.3.1.在线安装docker
 
 	以root身份更新yum，将yum包更新到最新
 ```
@@ -509,7 +493,7 @@ docker run hello-world
 	For more examples and ideas, visit:
 	https://docs.docker.com/get-started/
 
-### 4.2.2.二进制包安装docker
+### 4.3.2.二进制包安装docker
 	创建存放docker安装包的目录->切换目录->在该目录中下载docker二进制安装包->解压到/usr/bin/
 ```
 mkdir -p  /opt/software/package/ &&
@@ -608,7 +592,7 @@ docker run hello-world
 	https://docs.docker.com/get-started/
 
 
-## 4.3.docker启动故障解决		
+## 4.4.docker启动故障解决		
 	错误信息
 	Job for docker.service failed because the control process exited with error code. 
 	See "systemctl status docker.service" and "journalctl -xe" for details.
@@ -640,7 +624,7 @@ systemctl restart docker
 ```
 	看配置的registry-mirrors是否正确，如私服前是否忘记了加http://
 
-## 4.4.docker容器可视化	
+## 4.5.docker容器可视化	
 	查询当前有哪些portainer镜像
 ```	
 docker search portainer
@@ -663,8 +647,8 @@ docker run -d --name portainer \
 	用户名/密码：admin/portainer
 	单机版选择local即可
 
-## 4.5.搭建docke私服
-## 4.5.1搭建docke官方私服（不带有用户名和密码校验）
+## 4.6.搭建docke私服
+## 4.6.1搭建docke官方私服（不带有用户名和密码校验）
 	
 	拉取仓库镜像
 ```	
@@ -743,7 +727,7 @@ systemctl restart docker
 rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka/
 ```
 
-## 4.5.2搭建docke官方私服（带有用户名和密码校验）	
+## 4.6.2搭建docke官方私服（带有用户名和密码校验）	
 	拉取仓库镜像
 ```	
 docker pull registry
@@ -814,13 +798,13 @@ systemctl daemon-reload && systemctl restart docker
 rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka/
 ```
 
-## 4.5.3.搭建harbor私服
-### 4.5.3.1.harbor简介
+## 4.6.3.搭建harbor私服
+### 4.6.3.1.harbor简介
 	Harbor是一个用于存储和分发Docker镜像的企业级Registry服务器，虽然Docker官方也提供了公共的镜像仓库，但是
 	从安全和效率等方面考虑，部署企业内部的私有环境Registry是非常必要的，harbor和docker中央仓库的关系就类似于
 	nexus和Maven中央仓库的关系，harbor除了存储和分发镜像外还具有用户管理，项目管理，配置管理和日志查询，高可
 	用部署等主要功能。		
-### 4.5.3.2.搭建docker-compose
+### 4.6.3.2.搭建docker-compose
 	版本说明
 		2.6.1
 		
@@ -840,7 +824,7 @@ cp docker-compose-linux-x86_64 /usr/local/bin/docker-compose
 ```	
 docker-compose --version
 ```
-### 4.5.3.3.安装harbor
+### 4.6.3.3.安装harbor
 	特别注意
 	注意docker的版本,低版本的docker不能运行harbor2.5
 		
@@ -909,8 +893,8 @@ systemctl daemon-reload && systemctl restart docker
 	在Harbor中创建项目,推送的时候可以用
 	如:springcloud-eureka	
 
-## 4.6.docker官方私服可视化
-### 4.6.1docker-registry-web方案
+## 4.7.docker官方私服可视化
+### 4.7.1docker-registry-web方案
 	下载docker pull hyper/docker-registry-web镜像
 ```	
 docker pull hyper/docker-registry-web
@@ -926,9 +910,9 @@ docker run -d --restart=always \
 	hyper/docker-registry-web:latest
 ```
 
-## 4.7.制作docker镜像并上传到私服
+## 4.8.制作docker镜像并上传到私服
 
-### 4.7.1.制作Dokcer镜像		
+### 4.8.1.制作Dokcer镜像		
 	进入/opt/software/package，并在这个目录中下载jdk
 ```
 cd /opt/software/package &&
@@ -963,7 +947,7 @@ docker images
 docker run -it --name=myjdk8 镜像id /bin/bash
 ```
 
-### 4.7.2.上传本地jdk镜像到私服
+### 4.8.2.上传本地jdk镜像到私服
 	给镜像打标签
 ```
 docker tag jdk/jdk1.8.0_181 192.168.0.4:5000/jdk/jdk1.8.0_181:latest #更改镜像的TAG标签
@@ -975,8 +959,8 @@ docker push 192.168.0.4:5000/jdk/jdk1.8.0_181:latest
 	查看推送到私服中的镜像
 	访问:http://192.168.0.4:5000/v2/_catalog,看到:{"repositories":["jdk/jdk1.8.0_181"]}
 
-## 4.8.Docker中安装常用软件
-### 4.8.1.Docker安装mysql
+## 4.9.Docker中安装常用软件
+### 4.9.1.Docker安装mysql
 	下载mysql镜像
 ```	
 docker pull mysql
@@ -989,7 +973,7 @@ docker run -di --name mysql -p 3306:3306 --restart=always -e MYSQL_ROOT_PASSWORD
 ```	
 myqldocker exec -it mysql bash	
 ```
-### 4.8.2.Docker中安装consul
+### 4.9.2.Docker中安装consul
 	下载consul镜像
 ```	
 docker pull consul
@@ -1003,7 +987,7 @@ docker run -d --name=consul \
 	consul:latest
 ```
 
-### 4.8.3.Docker容器中安装vim	 
+### 4.9.3.Docker容器中安装vim	 
 	进入容器内部
 ```	
 docker exec -it 容器id /bin/bash
@@ -1033,7 +1017,7 @@ apt update
 apt-get install vim
 ```
 
-### 4.8.3.docker安装elk
+### 4.9.3.docker安装elk
 	下载elk镜像
 ```
 docker pull sebp/elk:6.8.22
@@ -1147,13 +1131,13 @@ docker run -di --name=rancher -p9003:8080 rancher/server:latest
 
 # 6.Centos搭建Minikube {#6.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter6.md)
-## 6.2.minikube介绍
+## 6.3.minikube介绍
 	Minikube这个工具支持在虚拟机上运行一套单节点的k8s集群
 
-## 6.3.版本说明
+## 6.4.版本说明
 	minikube:1.2.6 kubectl client:1.18.0
 
-## 6.4.开启Vmware虚拟化
+## 6.5.开启Vmware虚拟化
 	查看是否支持虚拟化，开始安装前，先查看本地机器是否支持虚拟化，有输出就支持
 ```
 grep -E --color 'vmx|svm' /proc/cpuinfo
@@ -1164,7 +1148,7 @@ grep -E --color 'vmx|svm' /proc/cpuinfo
 	
 	设置处理器数量设置为大于等于2,内存大于等于2G
 
-## 6.5.安装kubectl	
+## 6.6.安装kubectl	
 	简介
 	kubectl 是一个用来跟 K8S 集群进行交互的命令行工具
 		
@@ -1177,7 +1161,7 @@ chmod +x ./kubectl && cp ./kubectl /usr/local/bin/kubectl
 kubectl version --client
 ```
 
-## 6.6.安装minikube
+## 6.7.安装minikube
 	下载minikube
 	到 https://github.com/kubernetes/minikube/releases 找到minikube-linux-amd64并下载
 	
@@ -1188,12 +1172,12 @@ kubectl version --client
 chmod +x ./minikube-linux-amd64 && cp ./minikube-linux-amd64 /usr/local/bin/minikube
 ```
 
-## 6.7.使用阿里云加速docker hub
+## 6.8.使用阿里云加速docker hub
 	登录阿里云docker相关页面
 	访问：https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors
 	登陆->左侧菜单选中镜像加速器->查看加速镜像地址 https://ngviu28h.mirror.aliyuncs.com
 
-## 6.8.启动minikube
+## 6.9.启动minikube
 	注意事项
 	启动minikube之前需要先启动docker，如无法启动加上--kubernetes-version=v具体版本号
 	
@@ -1242,7 +1226,7 @@ minikube start --driver=virtualbox --force \
 	--kubernetes-version=v1.23.8
 ```
 
-## 6.9.minikube常用命令	
+## 6.10.minikube常用命令	
 	查看minikube日志
 ```	
 minikube logs
@@ -1284,10 +1268,10 @@ rm -rf ~/.minikube
 # 7.kubeadm搭建Kubernetes {#7.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter7.md)
 
-## 7.2.特别说明
+## 7.3.特别说明
 	使用kubeadm搭建Kubernetes
 
-## 7.3.所有节点设置对应主机名
+## 7.4.所有节点设置对应主机名
 	master节点
 	hostnamectl set-hostname master
 	slave1节点
@@ -1295,13 +1279,13 @@ rm -rf ~/.minikube
 	slave2节点	
 	hostnamectl set-hostname slave2
 
-## 7.4.所有节点修改hosts
+## 7.5.所有节点修改hosts
 	vim /etc/hosts
 	192.168.0.6 master
 	192.168.0.7 slave1
 	192.168.0.8 slave2
 
-## 7.5.所有节点关闭SELinux
+## 7.6.所有节点关闭SELinux
 	暂时关闭
 ```	
 setenforce 0
@@ -1311,12 +1295,12 @@ setenforce 0
 sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' \
 /etc/sysconfig/selinux
 ```
-## 7.6.所有节点关闭防火墙
+## 7.7.所有节点关闭防火墙
 ```
 systemctl stop firewalld &&
 systemctl disable firewalld
 ```
-## 7.7.所有节点安装docker
+## 7.8.所有节点安装docker
 	安装docker
 	详细参考4.1>.安装docker
 	
@@ -1328,7 +1312,7 @@ systemctl disable firewalld
 	重新载入docker配置并重启docker
 	systemctl daemon-reload && systemctl restart docker
 
-## 7.8.所有节点安装k8s所需组件
+## 7.9.所有节点安装k8s所需组件
 	添加k8s安装源
 ```	
 cat <<EOF > kubernetes.repo
@@ -1361,14 +1345,14 @@ kubectl	--version
 kubeadm --version
 ```
 
-## 7.9.所有节点启动kubelet和docker
+## 7.10.所有节点启动kubelet和docker
 ```
 systemctl enable kubelet && 
 systemctl start kubelet &&
 systemctl enable docker &&
 systemctl start docker
 ```
-## 7.10.所有关闭swap
+## 7.11.所有关闭swap
 	临时关闭swap分区
 ```	
 swapoff /mnt/swap
@@ -1382,7 +1366,7 @@ sed -ri 's/.*swap.*/#&/' /etc/fstab && systemctl reboot
 free -m
 ```
 
-## 7.11.用kubeadm 初始化集群
+## 7.12.用kubeadm 初始化集群
 	特别注意
 	只在Master节点操作
 	
@@ -1428,7 +1412,7 @@ kubeadm init \
 	cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 	chown $(id -u):$(id -g) $HOME/.kube/config
 
-## 7.12.其他节点连接到Master节点
+## 7.13.其他节点连接到Master节点
 	在两个上Slave节点输入第9>>.步骤在主节点上获取的秘钥
 	如：kubeadm join 192.168.0.6:6443 \
 		--token e60qrb.6321jolakk1aix90 \
@@ -1438,7 +1422,7 @@ kubeadm init \
 	加入成功后看到:
 		This node has joined the cluster
 
-## 7.13.在master节点上查看集群
+## 7.14.在master节点上查看集群
 	mater节点和两个slave节点STATUS是NOTReady
 ```	
 kubectl get nodes
@@ -1449,12 +1433,12 @@ kubectl get nodes
 	slave1   NotReady   <none>                 5m51s   v1.22.4
 	slave2   NotReady      <none>                 2m31s   v1.22.4
 
-## 7.14.安装网络插件
+## 7.15.安装网络插件
 ```
 kubectl apply -f \
 	https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
-## 7.15.在master上查看集群节点			
+## 7.16.在master上查看集群节点			
 	再次执行命令查看集群命令，mater节点STATUS是Ready，两个slave节点STATUS是都是Ready
 ```	
 kubectl get nodes
@@ -1468,7 +1452,7 @@ kubectl get nodes
 	如果两个从节点中有一个节点状态是NotReady，另一个节点状态是Ready，不要着急，要多等一会儿
 	再使用命令kubectl get nodes查看集群节点，就可以看到所有节点都是Ready
 
-## 7.16.启动故障解决
+## 7.17.启动故障解决
 	查看所有命名空间的所有的pod
 ```	
 kubectl get pods -o wide --all-namespaces
@@ -1480,7 +1464,7 @@ kubectl -n kube-system logs PODNAME
 	重置kubeadm
 	可使用kubeadm reset命令重启kubeadm，再从第9>>.步骤开始重新执行
 
-## 7.17.基础命令
+## 7.18.基础命令
 	查看kubeadm需要的组件的版本
 ```	
 kubeadm config images list
@@ -1502,7 +1486,7 @@ kubectl get pods -o wide --all-namespaces
 kubectl describe pod
 ```
 
-## 7.18.部署第一个程序到k8s中
+## 7.19.部署第一个程序到k8s中
 	开始运行 guestbook
 ```
 kubectl create deployment guestbook --image=ibmcom/guestbook:v1
@@ -1527,7 +1511,7 @@ kubectl get service guestbook
 	http://192.168.0.7:31208
 	http://192.168.0.8:31208
 
-## 7.19.可视化面板kuboard
+## 7.20.可视化面板kuboard
 	安装
 ```	
 kubectl apply -f https://addons.kuboard.cn/kuboard/kuboard-v3.yaml
@@ -1578,7 +1562,7 @@ rm -rf /usr/share/kuboard
 # 8.二进制包搭建Kubernetes {#8.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter8.md)
 
-## 8.2.环境配置清单
+## 8.3.环境配置清单
 	操作系统									centos7
 	内核版本									3.10.0-1160.71.1.el7.x86_64
 	docker版本
@@ -1592,9 +1576,9 @@ rm -rf /usr/share/kuboard
 	coredns版本
 	说明
 	Kubernetes解压后
-## 8.3.服务器规划和IP地址规划
+## 8.4.服务器规划和IP地址规划
 
-### 8.3.1服务器规划
+### 8.4.1服务器规划
 :::tip 注意事项
 如果要搭建一主多从非高可用Kubernetes集群，使用服务器规划1<br>
 如果要搭建多主多从高可用Kubernetes集群，使用服务器规划2
@@ -1617,7 +1601,7 @@ binary-k8s-worker1 | 192.168.0.10 | etcd <br> docker <br> kubelet kube-proxy
 binary-k8s-worker2 | 192.168.0.11 | etcd <br> docker <br> kubelet kube-proxy
 负载均衡器(虚拟IP)  | 192.168.0.88 |
 
-### 8.3.2.IP地址规划
+### 8.4.2.IP地址规划
 	IP地址规划
 	kubernetes自身使用的ClusterIP：10.0.0.1
 	本地回环地址：127.0.0.1
@@ -1648,11 +1632,11 @@ binary-k8s-worker2 | 192.168.0.11 | etcd <br> docker <br> kubelet kube-proxy
 	keepalive   : 192.168.3.xx
 	2.一定要多预留一些IP地址，全部安装好之后，再给kube-apiserver添加IP地址很麻烦	
 
-## 8.4.安装前准备工作
+## 8.5.安装前准备工作
 :::tip 注意事项
 8.3章节涉及到的操作所有的Master节点和Worker Node都要执行，下载所有用到的软件包包只需要在Mater Node1进行就可以了
 :::
-### 8.4.1操作系统初始设置			
+### 8.5.1操作系统初始设置			
 
 ```
 systemctl stop firewalld && systemctl disable firewalld #关闭系统防火墙
@@ -1708,7 +1692,7 @@ ntpdate ntp.aliyun.com
 	setenforce 0  #临时关闭selinux
 	swapoff -a	#临时关闭swap
 
-### 8.4.2下载所有用到的软件包
+### 8.5.2下载所有用到的软件包
 	安装curl
 ```	
 yum -y install curl
@@ -1730,7 +1714,7 @@ mv kubernetes package
 ```
 
 	
-## 8.5.安装cfssl证书生成工具
+## 8.6.安装cfssl证书生成工具
 :::tip 注意事项
 8.4章节涉及到的操作只在Master Node1节点上进行操作
 :::		
@@ -1746,11 +1730,11 @@ cp cfssljson_linux-amd64 /usr/local/bin/cfssljson &&
 cp cfssl-certinfo_linux-amd64 /usr/bin/cfssl-certinfo
 ```
 
-## 8.6.搭建etcd集群
+## 8.7.搭建etcd集群
 :::tip 注意事项
 8.5章节涉及到的操作不要一次性在所有节点上操作，在Master1操作后复制到其他节点，这样比直接在所有节点上操作要快
 :::	
-### 8.6.1生成CA证书和https证书
+### 8.7.1生成CA证书和https证书
 	创建存放etcd证书配置文件和生成证书的目录
 ```
 mkdir -p ~/TLS/{etcd,k8s} && cd /root/TLS/etcd/
@@ -1830,7 +1814,7 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
 	-config=ca-config.json -profile=www server-csr.json | cfssljson -bare server
 ```
 
-### 8.6.2.部署etcd集群
+### 8.7.2.部署etcd集群
 
 	etcd简介
 	Etcd 是一个分布式键值存储系统，Kubernetes使用Etcd进行数据存储，所以先准备一个Etcd数据库，为解决Etcd单点
@@ -1882,12 +1866,12 @@ EOF
 	ETCD_INITIALCLUSTER_TOKEN：集群Token
 	ETCD_INITIALCLUSTER_STATE：加入集群的状态：new是新集群,existing表示加入已有集群
 
-### 8.6.4.拷贝etcd所需证书
+### 8.7.4.拷贝etcd所需证书
 ```
 cp ~/TLS/etcd/{server.pem,server-key.pem,ca.pem} /opt/etcd/ssl/
 ```
 
-### 8.6.5.让systemd管理etcd
+### 8.7.5.让systemd管理etcd
 ```
 cat > /usr/lib/systemd/system/etcd.service << EOF
 [Unit]
@@ -1915,7 +1899,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### 8.6.6.拷贝etcd安装文件到Worker Node	
+### 8.7.6.拷贝etcd安装文件到Worker Node	
 :::tip 注意事项
 在Master1 Node上执行下面操作，只需要拷贝到Worker Node1和Worker Node2即可，不需要拷贝到Master Node2
 :::	
@@ -1997,7 +1981,7 @@ EOF
 	ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster"
 	ETCD_INITIAL_CLUSTER_STATE="new"
 
-### 8.6.7.启动三个etcd并设置开机自启
+### 8.7.7.启动三个etcd并设置开机自启
 	启动多个节点的etcd
 ```
 systemctl daemon-reload &&
@@ -2032,12 +2016,12 @@ endpoint health --write-out=table
 journalctl -u etcd
 ```
 
-## 8.7.安装配置Docker
+## 8.8.安装配置Docker
 :::tip 注意事项
 所有节点都需要安装docker，可以先在Master Node1上安装，拷贝一部分安装内容到Worker Node1和Worker Node2，再在Worker Node1和Worker Node2完成剩余的安装操作，这样比直接在三台机器上完成全部操作要快很多
 :::
 
-### 8.7.1在Master1上安装docker
+### 8.8.1在Master1上安装docker
 	切换目录并在该目录并将该目录中的docker二进制安装文件解压到指定目录
 ```
 cd /opt/k8s/package/ &&
@@ -2079,7 +2063,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### 8.7.2在所有Worker Node上安装docker
+### 8.8.2在所有Worker Node上安装docker
 :::tip 注意事项
 只需要在Master Node1上安装Docker，然后将所有安装文件从Master Node1上拷贝到Worker Node1和Worker Node2上
 :::
@@ -2109,7 +2093,7 @@ root@192.168.0.11:/usr/lib/systemd/system &&
 scp -r /etc/docker root@192.168.0.11:/etc
 ```
 
-### 8.7.3启动三台机器上的docker
+### 8.8.3启动三台机器上的docker
 
 	刷新配置文件后启动三台机器上的docker并设置为开机启动
 ```
@@ -2126,12 +2110,12 @@ systemctl status docker
 systemctl status docker
 ```
 
-## 8.8.搭建kube-apiserver
+## 8.9.搭建kube-apiserver
 :::tip 注意事项
 8.7章节所有操作只在Master Node1节点操作，不需要在其他节点操作，因为kube-apiserver是Master节点的专用组件，Worker Node不需要使用这个组件
 :::
 
-### 8.8.1.生成CA证书和Https证书 				
+### 8.9.1.生成CA证书和Https证书 				
 	切换目录
 ```
 cd ~/TLS/k8s
@@ -2271,7 +2255,7 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json \
 -profile=kubernetes server-csr.json | cfssljson -bare server
 ```
 
-### 8.8.2.在Master Node1上部署kube-apiserver		
+### 8.9.2.在Master Node1上部署kube-apiserver		
 	创建kube-apiserver工作目录
 ```
 mkdir -p /opt/kubernetes/{bin,cfg,ssl,logs}
@@ -2362,11 +2346,11 @@ EOF
 	--requestheader-username-headers
 	--enable-aggregator-routing
 
-### 8.8.3.拷贝所需证书
+### 8.9.3.拷贝所需证书
 ```
 cp ~/TLS/k8s/ca*pem ~/TLS/k8s/server*pem /opt/kubernetes/ssl/
 ```
-### 8.8.4.启用TLS bootstrapping
+### 8.9.4.启用TLS bootstrapping
 	TLS Bootstraping介绍
 	Master apiserver启用TLS认证后，Node节点kubelet和kube-proxy要与kube-apiserver进
 	行通信，必须使用CA签发的有效证书才可以，当Node节点很多时，这种客户端证书颁发需要大量工作，同样也会增加集群
@@ -2383,7 +2367,7 @@ EOF
 	注意事项：token也可自行生成替换
 	head -c 16 /dev/urandom | od -An -t x | tr -d ' '
 
-### 8.8.5.让systemd管理apiserver
+### 8.9.5.让systemd管理apiserver
 ```
 cat > /usr/lib/systemd/system/kube-apiserver.service << EOF
 [Unit]
@@ -2399,7 +2383,7 @@ Restart=on-failure
 WantedBy=multi-user.target
 EOF
 ```
-### 8.8.6.启动kube-apiserver
+### 8.9.6.启动kube-apiserver
 	刷新配置文件后启动kube-apiserver并设置为开机启动状态
 ```
 systemctl daemon-reload &&
@@ -2415,17 +2399,17 @@ systemctl status kube-apiserver
 cat /var/log/messages|grep kube-apiserver|grep -i error
 ```
 
-## 8.9.在Master Node1上部署kube-controller-manager
+## 8.10.在Master Node1上部署kube-controller-manager
 :::tip 注意事项
 8.8章节所有操作只在Master Node1节点操作，不需要在其他节点操作，因为kube-controller-manager是Master节点的专用组件，Worker Node不需要使用这个组件
 :::
 
-### 8.9.1.切换目录并拷贝kube-controller-manager相关文件到/opt/kubernetes/bin
+### 8.10.1.切换目录并拷贝kube-controller-manager相关文件到/opt/kubernetes/bin
 ```
 cp /opt/k8s/package/kubernetes/server/bin/kube-controller-manager /opt/kubernetes/bin
 ```
 
-### 8.9.2.生成证书
+### 8.10.2.生成证书
 	切换工作目录
 ```
 cd ~/TLS/k8s
@@ -2460,7 +2444,7 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
 kube-controller-manager-csr.json | cfssljson -bare kube-controller-manager
 ```
 
-### 8.9.2.创建kube-controller-manager配置文件
+### 8.10.2.创建kube-controller-manager配置文件
 ```
 cat > /opt/kubernetes/cfg/kube-controller-manager.conf << EOF
 KUBE_CONTROLLER_MANAGER_OPTS="--logtostderr=false \\
@@ -2485,7 +2469,7 @@ EOF
 	--cluster-signing-cert-file ：自动为kubelet颁发证书的CA,apiserver保持一致
 	--cluster-signing-key-file ：自动为kubelet颁发证书的CA,apiserver保持一致	
 
-### 8.9.3.生成配置文件
+### 8.10.3.生成配置文件
 :::tip 注意事项
 以下是shell命令,直接在shell终端执行
 :::
@@ -2512,7 +2496,7 @@ kubectl config set-context default \
   
 kubectl config use-context default --kubeconfig=${KUBE_CONFIG}
 ```
-### 8.9.4.让systemd管理controller-manager
+### 8.10.4.让systemd管理controller-manager
 ```
 cat > /usr/lib/systemd/system/kube-controller-manager.service << EOF
 [Unit]
@@ -2529,7 +2513,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### 8.9.5.启动kube-controller-manager
+### 8.10.5.启动kube-controller-manager
 	刷新配置文件后启动kube-controller-manager并设置为开机启动
 ```
 systemctl daemon-reload &&
@@ -2545,16 +2529,16 @@ systemctl status kube-controller-manager
 cat /var/log/messages|grep kube-controller-manager|grep -i error
 ```
 
-## 8.10.部署kube-scheduler
+## 8.11.部署kube-scheduler
 :::tip 注意事项
 8.9章节所有操作只在Master Node1节点操作，不需要在其他节点操作，因为kube-scheduler是Master节点的专用组件，Worker Node不需要使用这个组件
 :::
-### 8.9.1 切换目录并拷贝kube-dcheduler相关文件到/opt/kubernetes/bin
+### 8.10.1 切换目录并拷贝kube-dcheduler相关文件到/opt/kubernetes/bin
 ```
 cp /opt/k8s/package/kubernetes/server/bin/kube-scheduler /opt/kubernetes/bin
 ```
 
-### 8.10.2.生成证书	
+### 8.11.2.生成证书	
 	切换工作目录
 ```
 cd ~/TLS/k8s
@@ -2588,7 +2572,7 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
 kube-scheduler-csr.json | cfssljson -bare kube-scheduler
 ```
 
-### 8.10.3.创建kube-scheduler.conf配置文件
+### 8.11.3.创建kube-scheduler.conf配置文件
 ```
 cat > /opt/kubernetes/cfg/kube-scheduler.conf << EOF
 KUBE_SCHEDULER_OPTS="--logtostderr=false \\
@@ -2603,7 +2587,7 @@ EOF
 	--kubeconfig ：连接apiserver配置文件
 	--leader-elect ：当该组件启动多个时,自动选举(HA)。
 
-### 8.10.4.生成kube-scheduler.kubeconfig文件
+### 8.11.4.生成kube-scheduler.kubeconfig文件
 :::tip 注意事项
 在shell中执行直接执行下面命令
 :::
@@ -2634,7 +2618,7 @@ kubectl config set-context default \
   
 kubectl config use-context default --kubeconfig=${KUBE_CONFIG}
 ```
-### 8.10.5.让systemd管理kube-scheduler
+### 8.11.5.让systemd管理kube-scheduler
 ```
 cat > /usr/lib/systemd/system/kube-scheduler.service << EOF
 [Unit]
@@ -2651,7 +2635,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### 8.10.6.启动并设置开机启动
+### 8.11.6.启动并设置开机启动
 	刷新配置文件后启动kube-scheduler并设置为开机启动
 ```
 systemctl daemon-reload &&
@@ -2667,12 +2651,12 @@ systemctl status kube-scheduler
 cat /var/log/messages|grep kube-scheduler|grep -i error
 ```
 
-## 8.11.使用kubectl查看集群状态
+## 8.12.使用kubectl查看集群状态
 :::tip 注意事项
 8.10章节所有操作只在Master1节点操作，不需要在其他节点操作，因为kubectl是Master节点的专用组件，Worker Node不需要使用这个组件
 :::
 
-### 8.11.1.生成所需证书 
+### 8.12.1.生成所需证书 
 	切换工作目录
 ```
 cd ~/TLS/k8s
@@ -2704,7 +2688,7 @@ EOF
 cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
 -config=ca-config.json -profile=kubernetes admin-csr.json | cfssljson -bare admin
 ```
-### 8.11.2.在.kube文件夹中生成config文件
+### 8.12.2.在.kube文件夹中生成config文件
 ```
 mkdir /root/.kube
 
@@ -2730,7 +2714,7 @@ kubectl config set-context default \
   
 kubectl config use-context default --kubeconfig=${KUBE_CONFIG}
 ```
-### 8.11.3.通过kubectl工具查看集群组件
+### 8.12.3.通过kubectl工具查看集群组件
 	命令
 ```
 kubectl get cs
@@ -2743,7 +2727,7 @@ kubectl get cs
 	etcd-2               Healthy   {"health":"true"}   
 	etcd-1               Healthy   {"health":"true"} 
 
-### 8.11.4.授权kubelet-bootstrap用户允许请求证书
+### 8.12.4.授权kubelet-bootstrap用户允许请求证书
 	创建授权用户kubelet-bootstrap
 ```
 kubectl create clusterrolebinding kubelet-bootstrap \
@@ -2763,7 +2747,7 @@ kubectl create clusterrolebinding kubelet-bootstrap \
 	删除授权kubelet-bootstrap用户：第三步
 	systemctl restart kubelet
 
-## 8.12.在Master Node1上部署第一个Worker Node
+## 8.13.在Master Node1上部署第一个Worker Node
 :::tip 注意事项
 8.11.章节所有操作只在Master Node1节点操作，即当Master Node1既充当Master Node,也当Worker Node
 :::
@@ -2776,8 +2760,8 @@ scp kubelet  kube-proxy root@192.168.0.10:/opt/kubernetes/bin/ &&
 scp kubelet  kube-proxy root@192.168.0.11:/opt/kubernetes/bin/
 ```
 
-### 8.12.2.在Master Node1部署kubelet
-#### 8.12.2.1.创建kubelet配置文件
+### 8.13.2.在Master Node1部署kubelet
+#### 8.13.2.1.创建kubelet配置文件
 ```
 cat > /opt/kubernetes/cfg/kubelet.conf << EOF
 KUBELET_OPTS="--logtostderr=false \\
@@ -2801,7 +2785,7 @@ EOF
 	--cert-dir ：kubelet证书目录。
 	--pod-infra-container-image ：管理Pod网络容器的镜像 init container
 
-#### 8.12.2.2.创建kubelet编排文件
+#### 8.13.2.2.创建kubelet编排文件
 ```
 cat > /opt/kubernetes/cfg/kubelet-config.yml << EOF
 kind: KubeletConfiguration
@@ -2837,7 +2821,7 @@ maxPods: 110
 EOF
 ```
 
-#### 8.12.2.3.生成kubelet初次加入集群引导kubeconfig文件
+#### 8.13.2.3.生成kubelet初次加入集群引导kubeconfig文件
 
 ```
 KUBE_CONFIG="/opt/kubernetes/cfg/bootstrap.kubeconfig"
@@ -2862,7 +2846,7 @@ kubectl config set-context default \
 kubectl config use-context default --kubeconfig=${KUBE_CONFIG}
 ```
 
-#### 8.12.2.4.systemd管理kubelet
+#### 8.13.2.4.systemd管理kubelet
 
 ```
 cat > /usr/lib/systemd/system/kubelet.service << EOF
@@ -2880,7 +2864,7 @@ LimitNOFILE=65536
 WantedBy=multi-user.target
 EOF
 ```
-#### 8.12.3.5.启动kubelet并设置开机启动
+#### 8.13.3.5.启动kubelet并设置开机启动
 	刷新配置文件后启动kubelet并设置开机启动
 ```
 systemctl daemon-reload &&
@@ -2896,7 +2880,7 @@ systemctl status kubelet
 cat /var/log/messages|grep kubelet
 ```
 
-#### 8.12.2.6.允许kubelet证书申请并加入集群
+#### 8.13.2.6.允许kubelet证书申请并加入集群
 	查看kubelet证书签名请求
 ```
 kubectl get csr
@@ -2934,8 +2918,8 @@ kubectl get nodes
 	注意事项
 	由于网络插件还没有部署,节点会没有准备就绪NotReady
 
-### 8.12.3.部署kube-proxy
-#### 8.12.3.1.创建kube-proxy配置文件
+### 8.13.3.部署kube-proxy
+#### 8.13.3.1.创建kube-proxy配置文件
 ```
 cat > /opt/kubernetes/cfg/kube-proxy.conf << EOF
 KUBE_PROXY_OPTS="--logtostderr=false \\
@@ -2944,7 +2928,7 @@ KUBE_PROXY_OPTS="--logtostderr=false \\
 --config=/opt/kubernetes/cfg/kube-proxy-config.yml"
 EOF
 ```
-#### 8.12.3.2.配置参数文件
+#### 8.13.3.2.配置参数文件
 ```
 cat > /opt/kubernetes/cfg/kube-proxy-config.yml << EOF
 kind: KubeProxyConfiguration
@@ -2958,7 +2942,7 @@ clusterCIDR: 10.244.0.0/16
 EOF
 ```
 
-#### 8.12.3.3.生成kube-proxy证书文件
+#### 8.13.3.3.生成kube-proxy证书文件
 	切换工作目录
 ```
 cd ~/TLS/k8s
@@ -2992,7 +2976,7 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
 -config=ca-config.json -profile=kubernetes kube-proxy-csr.json | cfssljson -bare kube-proxy
 ```
 
-#### 8.12.3.4.生成kube-proxy.kubeconfig文件
+#### 8.13.3.4.生成kube-proxy.kubeconfig文件
 ```
 KUBE_CONFIG="/opt/kubernetes/cfg/kube-proxy.kubeconfig"
 KUBE_APISERVER="https://192.168.0.9:6443"
@@ -3017,7 +3001,7 @@ kubectl config set-context default \
 kubectl config use-context default --kubeconfig=${KUBE_CONFIG}
 ```
 
-#### 8.12.3.5.systemd管理kube-proxy
+#### 8.13.3.5.systemd管理kube-proxy
 ```
 cat > /usr/lib/systemd/system/kube-proxy.service << EOF
 [Unit]
@@ -3035,7 +3019,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-#### 8.11.3.6.启动kube-proxy并设置开机自启
+#### 8.12.3.6.启动kube-proxy并设置开机自启
 	刷新配置文件后启动kube-proxy并设置开机启动
 ```
 systemctl daemon-reload &&
@@ -3047,7 +3031,7 @@ systemctl enable kube-proxy
 ```
 	systemctl status kube-proxy
 ```
-### 8.12.4.部署网络组件(Calico)
+### 8.13.4.部署网络组件(Calico)
 	Calico简介
 	Calico是一个纯三层的数据中心网络方案，是目前Kubernetes主流的网络方案。
 	
@@ -3099,7 +3083,7 @@ kubectl get nodes
 	NAME          		  STATUS   ROLES    AGE   VERSION
 	binary-k8s-master1    Ready    <none>   34m   v1.20.0
 
-### 8.12.5.授权apiserver访问kubelet
+### 8.13.5.授权apiserver访问kubelet
 	应用场景：如kubectl logs
 	
 	创建配置文件
@@ -3146,9 +3130,9 @@ EOF
 kubectl apply -f apiserver-to-kubelet-rbac.yaml
 ```
 
-## 8.13.增加Worker Node
+## 8.14.增加Worker Node
 
-### 8.13.1.在所有Worker Node创建工作目录并拷贝二进制文件
+### 8.14.1.在所有Worker Node创建工作目录并拷贝二进制文件
 	在所有Worker Node1和Worker Node2中创建工作目录
 ```
 mkdir -p /opt/kubernetes/bin &&
@@ -3157,7 +3141,7 @@ mkdir -p /opt/kubernetes/ssl &&
 mkdir -p /opt/kubernetes/logs
 ```
 
-### 8.13.2拷贝Master Node1上部署好的文件到Worker Node
+### 8.14.2拷贝Master Node1上部署好的文件到Worker Node
 	进入Master Node1，执行下面操作，镜相关文件拷贝到Worker Node1和Worker Node2
 	拷贝到Worker Node1（192.168.0.10）
 ```
@@ -3174,7 +3158,7 @@ root@192.168.0.11:/usr/lib/systemd/system &&
 scp -r /opt/kubernetes/ssl/ca.pem root@192.168.0.11:/opt/kubernetes/ssl/
 ```
 
-### 8.13.3.删除所有Worker Node中kubelet证书和kubeconfig文件
+### 8.14.3.删除所有Worker Node中kubelet证书和kubeconfig文件
 	Worker Node1节点（192.168.0.10）
 ```
 rm -f /opt/kubernetes/cfg/kubelet.kubeconfig &&
@@ -3188,7 +3172,7 @@ rm -f /opt/kubernetes/ssl/kubelet*
 	说明:
 	这几个文件是证书申请审批后自动生成的,每个Node不同,必须删除
 
-### 8.13.4. 修改Worker Node1和Worker Node2主机名
+### 8.14.4. 修改Worker Node1和Worker Node2主机名
 	Worker Node1（192.168.0.10）
 ```
 sed -i 's/--hostname-override=binary-k8s-master1/--hostname-override=binary-k8s-worker1/g' \
@@ -3205,7 +3189,7 @@ sed -i 's/hostnameOverride: binary-k8s-master1/hostnameOverride: binary-k8s-work
 /opt/kubernetes/cfg/kube-proxy-config.yml #修改hostnameOverride的值binary-k8s-worker2
 ```
 
-### 8.13.5.启动Worker Node1和Worker Node2中kubelet并设置开机自启
+### 8.14.5.启动Worker Node1和Worker Node2中kubelet并设置开机自启
 ```
 systemctl daemon-reload && 
 systemctl start kubelet kube-proxy && 
@@ -3224,7 +3208,7 @@ systemctl status kube-proxy
 cat /var/log/messages|grep kube-proxy
 ```
 
-### 8.13.6.在Master1上同意新的Node kubelet证书申请
+### 8.14.6.在Master1上同意新的Node kubelet证书申请
 	查看证书请求
 ```
 kubectl get csr
@@ -3261,7 +3245,7 @@ kubectl get nodes
 	删除多余的csr
 	kubectl delete csr node-csr-Rd_0WEaOFSkRT7geRKfz__I1v6E-CQfJpYwMTDEK-mw
 
-### 8.13.7.在Master1上部署kubernetes-dashboard
+### 8.14.7.在Master1上部署kubernetes-dashboard
 	切换目录并在该目录中下载kubernetes-dashboard安装所需要的yaml文件	
 ```	
 cd /opt/k8s/package &&
@@ -3314,7 +3298,7 @@ $(kubectl -n kube-system get secret | awk '/dashboard-admin/{print $1}')
 	https://192.168.0.10:30441/
 	https://192.168.0.11:30441/
 
-### 8.13.8.在Master1上部署CoreDNS
+### 8.14.8.在Master1上部署CoreDNS
 	介绍
 	CoreDNS主要用于集群内部Service名称解析。
 	
@@ -3433,12 +3417,12 @@ kubectl get deployments -n kube-system
 	calico-kube-controllers   1/1     1            1           168m
 	coredns                   2/2     2            2           147m
 
-## 8.14.增加Master2节点
+## 8.15.增加Master2节点
 :::danger 特别特别注意
 一定要先执行最开始的8.1章节公共步骤，如关闭防火墙等操作，否则是成功添加Master2节点的
 :::
 
-### 8.14.1.Kubernetes集群架构简介	
+### 8.15.1.Kubernetes集群架构简介	
 	Kubernetes作为容器集群系统，通过健康检查+重启策略实现了Pod故障自我修复能力，通过调度算法
 	实现将Pod分布式部署，并保持预期副本数，根据Node失效状态自动在其他Node拉起Pod，实现了应用
 	层的高可用性。针对Kubernetes集群，高可用性还应包含以下两个层面的考虑：Etcd数据库的高可用
@@ -3466,7 +3450,7 @@ Master Node1所有操作一致。所以我们只需将Master1所有K8s文件拷�
 启动即可。
 :::
 
-### 8.14.2.给Master Node2安装Docker
+### 8.15.2.给Master Node2安装Docker
 
 	进入Master Node1，将docker安装文件拷贝到Master Node2
 ```
@@ -3486,7 +3470,7 @@ systemctl daemon-reload && systemctl start docker && systemctl enable docker
 	systemctl status docker
 ```	
 
-### 8.14.5.给Master Node2节点拷贝所有需要的证书
+### 8.15.5.给Master Node2节点拷贝所有需要的证书
 	在Master Node2上创建etcd证书目录
 ```
 mkdir -p /opt/etcd/ssl
@@ -3546,7 +3530,7 @@ vi ~/.kube/config
 	...
 	server: https://192.168.0.12:6443
 
-### 8.14.6.启动Master所有服务并设置开机自启
+### 8.15.6.启动Master所有服务并设置开机自启
 ```
 systemctl daemon-reload &&
 systemctl start kube-apiserver &&
@@ -3560,7 +3544,7 @@ systemctl enable kubelet &&
 systemctl enable kube-proxy
 ```
 
-### 8.14.7.在Master查看集群组件状态
+### 8.15.7.在Master查看集群组件状态
 	注意：如果上面操作无误则这一步就可以查看到集群中组件的运行状态了
 	
 	查看组件状态
@@ -3576,7 +3560,7 @@ kubectl get cs
 	etcd-1               Healthy   {"health":"true"}
 	etcd-0               Healthy   {"health":"true"}
 
-### 8.14.8.审批所有Worker  Node上的kubelet证书申请
+### 8.15.8.审批所有Worker  Node上的kubelet证书申请
 	查看证书申请
 ```
 kubectl get csr
@@ -3622,16 +3606,16 @@ kubectl get nodes
 	
 	至此一个双Master节点k8s集群已经部署完毕，再添加新的Master节点步骤和上面的是相同的
 
-## 8.15.部署Nginx+Keepalived高可用负载均衡器
+## 8.16.部署Nginx+Keepalived高可用负载均衡器
 
-### 8.15.1.Nginx和Keepalived简介
+### 8.16.1.Nginx和Keepalived简介
 	Nginx是一个主流Web服务和反向代理服务器，这里用四层实现对apiserver实现负载均衡。Keepalived是一个主流高可
 	用软件，基于VIP绑定实现服务器双机热备，在上述拓扑中，Keepalived主要根据Nginx运行状态判断是否需要故障转移
 	（漂移VIP），例如当Nginx主节点挂掉，VIP会自动绑定在Nginx备节点，从而保证VIP一直可用，实现Nginx高可用。
 	如果你是在公有云上，一般都不支持keepalived，那么你可以直接用它们的负载均衡器产品，直接负载均衡多台Master 
 	kube-apiserver，架构与上面一样。
 
-### 8.15.2.在两台Master Node上安装软件
+### 8.16.2.在两台Master Node上安装软件
 	下载nginx和keepalived
 ```
 yum install epel-release -y &&
@@ -3796,11 +3780,11 @@ chmod +x /etc/keepalived/check_nginx.sh
 ​	配置说明
 ​	keepalived根据脚本返回状态码（0为工作正常，非0不正常）判断是否故障转移。
 
-### 8.15.3.Nginx增加Steam模块
-#### 8.15.3.1.查看Nginx版本模块
+### 8.16.3.Nginx增加Steam模块
+#### 8.16.3.1.查看Nginx版本模块
 	nginx -V
 	注意：如果已经安装 --with-stream模块,后面的步骤可以跳过
-#### 8.15.3.2.Master1和Master2安装Stream模块	
+#### 8.16.3.2.Master1和Master2安装Stream模块	
 	备份Master Node1和Master Node2上原来的Nginx文件
 ```
 mv /usr/sbin/nginx /usr/sbin/nginx.bak &&
@@ -3871,13 +3855,13 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### 8.15.4.启动nginx、keepalived并设置开机自启(master1/master2)
+### 8.16.4.启动nginx、keepalived并设置开机自启(master1/master2)
 ```
 systemctl daemon-reload &&
 systemctl start nginx keepalived &&
 systemctl enable nginx keepalived
 ```
-### 8.15.5.查看keepalived工作状态
+### 8.16.5.查看keepalived工作状态
 	查看Master1网卡详细信息
 ```
 ip addr
@@ -3921,7 +3905,7 @@ ip addr
 	可以看到，在Master1上的ens33网卡绑定了192.168.242.55 虚拟IP，说明工作正常。
 	inet 192.168.242.55/24 scope global ens33，而Master2上的ens33网卡没有绑定虚拟IP
 
-### 8.15.6.Nginx+keepalived高可用测试
+### 8.16.6.Nginx+keepalived高可用测试
 
 	在主节点Master Node1节点执行关闭nginx
 ```
@@ -3954,7 +3938,7 @@ ip addr
 	测试完成后重新启动Master Node1上的nginx
 	systemctl start nginx
 
-### 8.15.7.测试负载均衡器
+### 8.16.7.测试负载均衡器
 	找K8s集群中任意一个节点，使用curl查看K8s版本测试，使用VIP访问
 ```
 curl -k https://192.168.0.88:16443/version
@@ -4031,7 +4015,7 @@ tailf /var/log/nginx/k8s-access.log
 	192.168.242.55 192.168.0.9:6443 - [26/Jul/2022:01:30:36 -0400] 200 428
 	192.168.242.55 192.168.0.12:6443 - [26/Jul/2022:01:30:42 -0400] 200 428
 
-### 8.15.8.修改所有的Worker Node连接LB VIP
+### 8.16.8.修改所有的Worker Node连接LB VIP
 	为什么要改为连接LB VIP
 	试想下，虽然我们增加了Master2 Node和负载均衡器，但是我们是从单Master架构扩容的，也就是
 	说目前所有的Worker Node组件连接都还是Master1 Node，如果不改为连接VIP走负载均衡器，那么
@@ -4068,8 +4052,8 @@ kubectl get nodes
 	至此,一套高可用的k8s二进制可用集群就部署完成了~
 	^_^
 
-## 8.16.部署常见问题
-### 8.16.1系统断电后,某个etcd节点无法启动
+## 8.17.部署常见问题
+### 8.17.1系统断电后,某个etcd节点无法启动
 	报错信息
 	publish error: etcdserver: request timed out
 	
@@ -4091,11 +4075,11 @@ rm -rf /var/lib/etcd/default.etcd/member/*
 systemctl stop etcd &&
 systemctl restart etcd
 ```
-### 8.16.2 The connection to the server localhost:8080 was refused - did you specify the right host or port?
+### 8.17.2 The connection to the server localhost:8080 was refused - did you specify the right host or port?
 	8.10.使用kubectl查看集群状态章节没有正确执行会报这个错
 
 
-## 8.17.部署测试程序
+## 8.18.部署测试程序
 	创建guestbook
 ```
 kubectl create deployment guestbook --image=ibmcom/guestbook:v1

@@ -15,8 +15,91 @@ git config --global core.longpaths true
 #安装markmap-cli 
 #npm install -g markmap-cli
 
+#解析ini文件
+function parseIni() {
+    INIFILE=$1; SECTION=$2; ITEM=$3
+    result=`awk -F '=' '/\['$SECTION'\]/{a=1}a==1&&$1~/'$ITEM'/{print $2;exit}' $INIFILE`
+    echo ${result}
+}
+
+#给xxx.md写入Frontmatter配置信息
+function writeFrontmatterForOriginal() {
+    #在写入内容之前先写入Frontmatter选项配置信息
+    echo "---" >>  $2/$1.md
+    
+    #写入 博客列表展示的标题，这是地址栏上面的标题，同时也是博客列表中显示的标题
+    #获取完整的的md文件中的Frontmatter选项配置信息中的title属性的值
+    MD_FILE_ENSEMBLE_FRONTMATTER_TITLE=( $( parseIni ./config/config-$1.ini ensemble title) )
+    echo "title: $MD_FILE_ENSEMBLE_FRONTMATTER_TITLE" >>  $2/$1.md
+
+    #抽取所有一级标题，合并起来作为博客内容概述的一部分
+    BLOG_CONTENT_INTRO=`grep '^# [1-9][0-9]\?\.' $2/$1.md.bak | cut -d. -f2 | tr '\r\n' ','`
+    #写入 博客列表展示的description，这是地址栏上面的标题，同时也是博客列表中显示的标题
+    BLOG_CONTENT_INTRO='本篇博客涉及主要内容有：'$BLOG_CONTENT_INTRO'具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。'
+    echo "description: $BLOG_CONTENT_INTRO" >>  $2/$1.md
+
+    #写入 右侧toc面板展示的标题深度
+    #获取具体章节的的md文件中的Frontmatter选项配置信息中headerDepth的属性的值
+    MD_FILE_ENSEMBLE_FRONTMATTER_HEADERDEPTH=( $( parseIni ./config/config-$1.ini ensemble headerDepth) )
+    echo "headerDepth: $MD_FILE_ENSEMBLE_FRONTMATTER_HEADERDEPTH" >>  $2/$1.md
+
+    #写入是否原创
+    #获取具体章节的的md文件中的Frontmatter选项配置信息中isOriginal的属性的值
+    MD_FILE_ENSEMBLE_FRONTMATTER_ISORIGINAL=( $( parseIni ./config/config-$1.ini ensemble isOriginal) )
+    echo "isOriginal: $MD_FILE_ENSEMBLE_FRONTMATTER_ISORIGINAL" >>  $2/$1.md
+    
+    #写入分类信息
+    #获取完整的章节的的md文件中的Frontmatter选项配置信息中category的属性的值
+    MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORY=( $( parseIni ./config/config-$1.ini ensemble category) )
+    echo "category:" >>  $2/$1.md
+    ENSEMBLE_CATEGORY=(`echo $MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORY | tr ',' ' '` )
+    for CATEGORY in ${ENSEMBLE_CATEGORY[@]}
+    do
+        echo "  - $CATEGORY" >>  $2/$1.md   
+    done 
+    
+    #写入 是否被博客列表收藏，xxx.md切割出来的章节不用加入收藏列表，只把xxx.md加入收藏列表
+    #获取具体章节的的md文件中的Frontmatter选项配置信息中star的属性的值
+    MD_FILE_ENSEMBLE_FRONTMATTER_STAR=( $( parseIni ./config/config-$1.ini ensemble star) )
+    echo "star: $MD_FILE_ENSEMBLE_FRONTMATTER_STAR" >>  $2/$1.md
+            
+    #写入 是否开启版权校验
+    #获取具体章节的的md文件中的Frontmatter选项配置信息中的copyright属性的值
+    MD_FILE_ENSEMBLEFRONTMATTER_COPYRIGHT=( $( parseIni ./config/config-$1.ini ensemble copyright) )
+    echo "copyright: $MD_FILE_ENSEMBLEFRONTMATTER_COPYRIGHT" >>  $2/$1.md
+    
+    #写入 文章标签
+    #获取具体章节的的md文件中的Frontmatter选项配置信息中的tag属性的值
+    MD_FILE_ENSEMBLE_FRONTMATTER_TAG=( $( parseIni ./config/config-$1.ini ensemble tag) )
+    echo "tag:" >>  $2/$1.md
+    echo chapter-$i'的标签内容'$MD_FILE_ENSEMBLE_FRONTMATTER_TAG
+    CHAPTER_TAGS=(`echo $MD_FILE_ENSEMBLE_FRONTMATTER_TAG | tr ',' ' '` )
+    for TAG in ${CHAPTER_TAGS[@]}
+    do
+        echo "  - $TAG" >>    $2/$1.md   
+    done 
+    
+    #写入 写作日期
+    #获取具体章节的的md文件中的Frontmatter选项配置信息中date属性的值
+    MD_FILE_ENSEMBLE_FRONTMATTER_DATE=( $( parseIni ./config/config-$1.ini ensemble date) )
+    echo "date: $MD_FILE_ENSEMBLE_FRONTMATTER_DATE" >>  $2/$1.md
+    
+    #写入 是否置顶
+    #获取具体章节的的md文件中的Frontmatter选项配置信息中date属性的值
+    MD_FILE_ENSEMBLE_FRONTMATTER_STICKY=( $( parseIni ./config/config-$1.ini ensemble sticky) )
+    echo "sticky: $MD_FILE_ENSEMBLE_FRONTMATTER_STICKY" >>  $2/$1.md
+    
+    #写入 icon
+    #获取具体章节的的md文件中的Frontmatter选项配置信息中date属性的值
+    MD_FILE_ENSEMBLE_FRONTMATTER_ICON=( $( parseIni ./config/config-$1.ini ensemble icon) )
+    echo "icon: $MD_FILE_ENSEMBLE_FRONTMATTER_ICON" >>  $2/$1.md
+    
+    echo "---" >>   $2/$1.md
+    echo "" >>  $2/$1.md
+}
+
 #为xxx.md和xxx.md的所有章节生成二级和三级目录大纲，并将这个目录大纲转换为markmap文件
-function createOutLineMarkmapHtml(){
+function generateOutLineAndTransformOutLineToMarkmapForOriginal(){
     find . -name $1.md
     echo '生成markmap文件开始........................................................................'
     echo '开始为'$1'.md生成markmap文件........................'
@@ -25,8 +108,11 @@ function createOutLineMarkmapHtml(){
     rm -rf $2/$1.md
     echo '删除上一次操作后的'$1'.md文件'
     
+    #调用写入Frontmatter配置的方法
+    writeFrontmatterForOriginal $1 $2
+
     #从副本恢复一份新的md文件
-    cp $2/$1.md.bak $2/$1.md
+    cat $2/$1.md.bak >> $2/$1.md
     echo '从副本恢复一份新的'$1'.md文件'
 
     echo '开始为'$1'.md生成二级和三级目录大纲md文件......'
@@ -92,7 +178,7 @@ function createOutLineMarkmapHtml(){
 
 
 #生成xxx.md文件生成xxx-guidance.md
-function createOutLineGuidanceMd(){
+function generateGuidanceByMarkmapForOriginal(){
     echo '开始为'$1'md生和'$1'.md的所有章节成guidance文件........................................................................'
     
     echo '开始为'$1'.md生成guidance文件.......................................................'
@@ -101,20 +187,31 @@ function createOutLineGuidanceMd(){
     mkdir -p $3
 
     #抽取所有一级标题，合并起来作为博客内容概述的一部分
-    BLOG_CONTENT_INTRO=`grep '^# [1-9][0-9]\?\.' $2/$1.md | sed 's/#/\t\t/g'`
+    BLOG_CONTENT_INTRO=`grep '^# [1-9][0-9]\?\.' $2/$1.md | sed 's/#/  /g'`
     #创建xxx-guidance.md，并写入博客guidance内容
 
-    xxx=`grep '^# [1-9][0-9]\?\.' docs/blogs/environment/centos/centos7/centos7.md | cut -d ' ' -f2`
+    #获取完整的的md文件中的Frontmatter选项配置信息中的title属性的值
+    MD_FILE_ENSEMBLE_FRONTMATTER_TITLE=( $( parseIni ./config/config-$1.ini ensemble title) )
+
 cat > $3/$1-guidance.md  << EOF
 ---
-article: false
+title: $MD_FILE_ENSEMBLE_FRONTMATTER_TITLE-0.$6
+headerDepth: 4
+isOriginal: true
+category:
+star: false
+copyright: false
+tag:
+  - $6
+date: 2020-01-01
 ---
 
-# 博客内容介绍 {#intro}
+# $6 {#intro}
 ## 博客内容概述
     本篇博客涉及主要内容有：
 $BLOG_CONTENT_INTRO
-	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码均经过
+    严格测试，可直接复制运行即可。
 ## 博客内容大纲
 	
 ###	简单版博客内容大纲
@@ -130,6 +227,18 @@ $BLOG_CONTENT_INTRO
 
 EOF
 
+    #为xxx-guidance.md的Frontmatter配置中写入category配置信息
+    #获取完整的章节的的md文件中的Frontmatter选项配置信息中category的属性的值
+    MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORY=( $( parseIni ./config/config-$1.ini ensemble category) )
+    ENSEMBLE_CATEGORY=(`echo $MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORY | tr ',' ' '` )
+    #获取category:所在的行号
+    TARGET_LINE_NUMBER=`grep -n 'category:' $2/$1.md | cut -d ':' -f 1`
+    for CATEGORY in ${ENSEMBLE_CATEGORY[@]}
+    do
+        sed -i '/category:/a\\  - '"$CATEGORY"'' $3/$1-guidance.md
+    done 
+
+
     echo '结束为'$1'.md生成guidance文件.............................................................'
 
     echo '开始为'$1'.md所有章节生成guidance文件......................................................'
@@ -143,12 +252,22 @@ EOF
     for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
     do
 
+    #抽取当前一级标题下所有二级标题，合并起来作为章节内容概述的一部分
+    CHAPTER_CONTENT_INTRO=`grep '^## '"$i"'\.' $2/$1.md | sed 's/#/  /g'`
+    
     echo '开始为'$1'.md所有章节'$i'生成guidance文件......................................................'
 cat > $3/chapter/$1-guidance-chapter$i.md  << EOF    
 
-## $i.1.章节大纲
+## $i.1.章节内容概述
+    本章节涉及主要内容有：
+$CHAPTER_CONTENT_INTRO
+	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格
+    测试，可直接复制运行即可。
+
+## $i.2.章节内容大纲
 	
 <Markmap localtion="/$5/$4/chapter/$1-outline5-chapter$i.html"/>
+
 EOF
     echo '完成为'$1'.md所有章节'$i'生成guidance文件......................................................'
    
@@ -160,7 +279,7 @@ EOF
 }
 
 #二级标题序列增加1
-function title2Increment(){
+function title2IncrementByForOriginal(){
     echo '开始为'$1'.md中所有二级标题序列增加1........................................................................'
  
     #获取一级标题总数
@@ -185,24 +304,16 @@ function title2Increment(){
         do
             echo '二级标题由'$i.$j'提升为->'$i.$[$j+1]
             #替换二级标题，在原来的基础上+1
-            sed -i 's/\(^\#\{2,4\} \)'"$i"'\.'"$j"'\./\1'"$i"'\.'"$[$j+1]"'\./g' $2/$1.md
-            #处理二级标题中+1
-            #sed -i 's/^## '"$i"'\.'"$j"'\./## '"$i"'\.'"$[$j+1]"'\./g' $2/$1.md
-            #处理三级标题中+1
-            #sed -i 's/^### '"$i"'\.'"$j"'\./### '"$i"'\.'"$[$j+1]"'\./g' $2/$1.md
-            #处理四级标题中+1
-            #sed -i 's/^#### '"$i"'\.'"$j"'\./##### '"$i"'\.'"$[$j+1]"'\./g' $2/$1.md
-            #处理五级标题中+1
-            #sed -i 's/^##### '"$i"'\.'"$j"'\./##### '"$i"'\.'"$[$j+1]"'\./g' $2/$1.md
+            sed -i 's/\(^\#\{2,4\} \)'"$i"'\.'"$j"'\./\1'"$i"'\.'"$[$j+$3]"'\./g' $2/$1.md
         done
     done
 
     echo '完成为'$1'.md中所有二级标题序列增加1........................................................................' 
 }
 
-#给xxx.md文件中插入MarkmapComponment（vue插件）
-function insertOutLineGuidanceIntoMd(){
-    echo '开始为'$1'.md中插入MarkmapComponment........................................................................'
+#给xxx.md文件中插入Guidance
+function insertGuidanceIntoOriginal(){
+    echo '开始为'$1'.md中插入Guidance........................................................................'
 
     #给第一个一级标题上面一行的上面一行插入整个博客的guidance.md
     #获取一级标题所在行号
@@ -235,11 +346,11 @@ function insertOutLineGuidanceIntoMd(){
         echo '完成给标题'$i'下面插入MarkmapComponment......'
     done
 
-    echo '完成为'$1'.md中插入MarkmapComponment........................................................................'
+    echo '完成为'$1'.md中插入Guidance........................................................................'
 }
 
-#把上一步骤生成的MD文件根据章节数目切割成多个小md文件，每一个章节拆分为一个md文件
-function createShardingsMd(){
+#把上一步骤生成的MD文件根据章节数目切割成多个小md文件，每一个章节拆分为一个md文件，并同时给分片写入Frontmatter信息
+function generateChapterShardingsAndWriteFrontmatterForShardings(){
     echo '开始根据章节切割'$1'.md文件........................................................................'
 
     #删除上一次操作产生的shardings文件夹
@@ -251,15 +362,17 @@ function createShardingsMd(){
     echo '开始为'$1'.md生成内容介绍文件................................................'
     #将前面生成的xxx-guidance.md拷贝一份到所有章节目录中，并重名一下
     echo '开始将'$1'.md生成博客内容介绍拷贝一份到'$2'/shardings目录中........................'
-    cp $4/$1-guidance.md $2/shardings/$1-chapter-0.博客内容介绍.md
+    cp $4/$1-guidance.md $2/shardings/$1-chapter-0.$5.md
     echo '完成将'$1'.md生成博客内容介绍拷贝一份到'$2'/shardings目录中........................'
     echo '完成为'$1'.md生成内容介绍文件................................................'
+    
     #获取一级标题总数
     TOTAL_TITLE1_COUNTS=`grep '^# [1-9][0-9]\?\.' $2/$1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
     echo '一级标题总数'$TOTAL_TITLE1_COUNTS
     
     for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
     do
+        echo '开始为'$1'.md生成分片文件写入Frontmatter配置信息................................................'
         #获取章节起始行数
         CHAPTER_START_LINE_NUMBER=`grep -n '^# '"$i"'\.' $2/$1.md | cut -d ':' -f 1`
         echo '章节'$i'起始行数：'$CHAPTER_START_LINE_NUMBER
@@ -280,41 +393,81 @@ function createShardingsMd(){
 
         #在写入内容之前先写入Frontmatter选项配置信息
         echo "---" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        #写入 是否被博客列表收藏
-        echo "star: $i" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
         #写入 博客列表展示的标题，这是地址栏上面的标题，同时也是博客列表中显示的标题
-        echo "title: $CHAPTER_NAME" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        #写入 博客列表展示的标题，这是地址栏上面的标题，同时也是博客列表中显示的标题
-        echo "shortTitle: $CHAPTER_NAME-short" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+        #获取完整的的md文件中的Frontmatter选项配置信息中的title属性的值
+        MD_FILE_ENSEMBLE_FRONTMATTER_TITLE=( $( parseIni ./config/config-$1.ini ensemble title) )
+        echo "title: $MD_FILE_ENSEMBLE_FRONTMATTER_TITLE-$CHAPTER_NAME" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+        
+        #抽取当前一级标题下所有二级标题，合并起来作为章节内容概述的一部分
+        CHAPTER_CONTENT_INTRO=`grep '^## '"$i"'\.' $2/$1.md | sed 's/#/\t/g'`
+        #拼接完整的章节描述
+        CHAPTER_CONTENT_INTRO='本章节涉及主要内容有：$CHAPTER_CONTENT_INTRO具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。'
+        #写入 具体章节的描述信息
+        #获取具体章节的的md文件中的Frontmatter选项配置信息中description的属性的值
+        echo "description: $CHAPTER_CONTENT_INTRO" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+        
         #写入 右侧toc面板展示的标题深度
-        echo "headerDepth: 4" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        #写入文章分类
-        echo "category:" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        echo "- 环境搭建" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        #写入文章标签
-        echo "tag:" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        echo "- linux" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        TAG_NAME=`echo $CHAPTER_NAME | cut -d . -f 2`
-        echo "- $TAG_NAME" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        #写入 是否显示页面footer中的版权信息，设置为false,不然会有两个版权信息
-        echo "copyright: false" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+        #获取具体章节的的md文件中的Frontmatter选项配置信息中headerDepth的属性的值
+        MD_FILE_CHAPTER_FRONTMATTER_HEADERDEPTH=( $( parseIni ./config/config-$1.ini chapter-basic headerDepth) )
+        echo "headerDepth: $MD_FILE_CHAPTER_FRONTMATTER_HEADERDEPTH" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+
         #写入是否原创
-        echo "isOriginal: true" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+        #获取具体章节的的md文件中的Frontmatter选项配置信息中isOriginal的属性的值
+        MD_FILE_CHAPTER_FRONTMATTER_ISORIGINAL=( $( parseIni ./config/config-$1.ini chapter-basic isOriginal) )
+        echo "isOriginal: $MD_FILE_CHAPTER_FRONTMATTER_ISORIGINAL" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+       
+        #写入分类信息
+        #获取完整的章节的的md文件中的Frontmatter选项配置信息中category的属性的值
+        MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORY=( $( parseIni ./config/config-$1.ini ensemble category) )
+        echo "category:" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+        ENSEMBLE_CATEGORY=(`echo $MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORY | tr ',' ' '` )
+        for CATEGORY in ${ENSEMBLE_CATEGORY[@]}
+        do
+            echo "  - $CATEGORY" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md    
+        done 
+        
+        #写入 是否被博客列表收藏，xxx.md切割出来的章节不用加入收藏列表，只把xxx.md加入收藏列表
+        #获取具体章节的的md文件中的Frontmatter选项配置信息中的star属性的值
+        MD_FILE_CHAPTER_FRONTMATTER_STAR=( $( parseIni ./config/config-$1.ini chapter-basic star) )
+        echo "star: $MD_FILE_CHAPTER_FRONTMATTER_STAR" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+        
+        #写入 是否开启版权校验
+        #获取具体章节的的md文件中的Frontmatter选项配置信息中的copyright属性的值
+        MD_FILE_CHAPTER_FRONTMATTER_COPYRIGHT=( $( parseIni ./config/config-$1.ini chapter-basic copyright) )
+        echo "copyright: $MD_FILE_CHAPTER_FRONTMATTER_COPYRIGHT" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+        
+        #写入 文章标签
+        #获取具体章节的的md文件中的Frontmatter选项配置信息中的tag属性的值
+        MD_FILE_CHAPTER_FRONTMATTER_TAG=( $( parseIni ./config/config-$1.ini chapter-$i tag) )
+        echo "tag:" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+        echo chapter-$i'的标签内容'$MD_FILE_CHAPTER_FRONTMATTER_TAG
+        CHAPTER_TAGS=(`echo $MD_FILE_CHAPTER_FRONTMATTER_TAG | tr ',' ' '` )
+        for TAG in ${CHAPTER_TAGS[@]}
+        do
+            echo "  - $TAG" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md    
+        done 
+        
         #写入 写作日期
-        echo "date: 2020-01-01" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+        #获取具体章节的的md文件中的Frontmatter选项配置信息中date属性的值
+        MD_FILE_CHAPTER_FRONTMATTER_DATE=( $( parseIni ./config/config-$1.ini chapter-$i date) )
+        echo "date: $MD_FILE_CHAPTER_FRONTMATTER_DATE" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+        
         echo "---" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
         echo "" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+        echo '完成为'$1'.md生成分片文件写入Frontmatter配置信息................................................'
 
+        echo '开始为'$1'.md生成分片文件写入正文内容................................................'
         #根据行号将内容输出到文件
         sed -n ''"$CHAPTER_START_LINE_NUMBER"','"$CHAPTER_END_LINE_NUMBER"'p' $2/$1.md >> $2/$3/$1-chapter-$CHAPTER_NAME.md
-
+        echo '完成为'$1'.md生成分片文件写入正文内容................................................'
     done
 
     echo '完成根据章节切割'$1'.md文件........................................................................'
 }
 
-#为xxx.md文件和xxx.md拆分的所有章节md文件生成侧边栏配置，存放在json文件中，并且给 除博客内容介绍 外所有一级标题添加锚点
-function createSidebarConfigForMDAndMdShardingsAndAddAnchor(){
+
+#为xxx.md文件和xxx.md拆分的所有章节md文件生成侧边栏配置，存放在json文件中，并且给除 博客内容介绍章节 外所有一级标题添加锚点
+function generateSidebarConfigForAllAndSetAnchorForOriginal(){
     echo '开始为'$1'.为md文件和md文件拆分的所有章节md文件生成侧边栏配置........................................................................'
 
     #获取一级标题总数
@@ -351,8 +504,8 @@ function createSidebarConfigForMDAndMdShardingsAndAddAnchor(){
 
     #按章节阅读中拼接 博客内容介绍 
     echo "                  {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    echo "                      text: \"博客内容介绍\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    echo "                      link:\"$4/$5/$1-chapter-0.博客内容介绍.md\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "                      text: \"$6\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "                      link:\"$4/$5/$1-chapter-0.$6.md\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "                      icon:\"note\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "                   }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
 
@@ -381,7 +534,7 @@ function createSidebarConfigForMDAndMdShardingsAndAddAnchor(){
 
     #章节内容合集中拼接 博客内容介绍 
     echo "                  {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    echo "                      text: \"博客内容介绍\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "                      text: \"$6\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "                      link:\"$4/$1.md#intro\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "                      icon:\"note\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "                  }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
@@ -412,12 +565,6 @@ function createSidebarConfigForMDAndMdShardingsAndAddAnchor(){
     sed -i 's/\(^# '"$i"'\..*\)/& \{#'"$i"'\.\}/g' $2/$1.md
     done
     
- #   echo "      {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
- #   echo "        text: \"按照章节阅读\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
- #   echo "        icon:"note"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
- #   echo "        collapsable: true," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
- #   echo "        children:[" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-
     echo '完成为'$1'.为md文件和md文件拆分的所有章节md文件生成侧边栏配置.................................................................................'
 }
 
@@ -431,90 +578,115 @@ function writeSidebarConfig(){
 }    
 
 #门面模式，统一封装上面的方法，对外提供一个调用接口即可
-function enhanceMD() {
+function enhance() {
     echo '开始增强'$2'目录下'$1'.md文件.............................................................................................................................'
     
+    #生成markmap文件
+    #--------------------------------------------------------------------------------------------------------------
     # 要操作的md文件的名称，不带文件后缀名
     MD_FILE_NAME=$1
     # 要操作的md文件的相对路径，前后不带有/，用这个变量的时候再加上/
     MD_FILE_RELATIVE_PATH=$2
     # 要操作的md文件的相对与init.sh的路径
     MD_FILE_SOURCE_PATH="docs/blogs/$MD_FILE_RELATIVE_PATH"
-    #--------------------------------------------------------------------------------------------------------------
     #存放生成的markmap文件的路径的路径前缀
     MD_FILE_MARKMAP_TARGET_PATH_PREFIX="enhance/markmap"
-    #--------------------------------------------------------------------------------------------------------------
     # 生成的所有markmap文件存放的目录路径
     MD_FILE_MARKMAP_TARGET_PATH="docs/.vuepress/public/$MD_FILE_MARKMAP_TARGET_PATH_PREFIX/$MD_FILE_RELATIVE_PATH"
     # 为所有章节生成的markmap文件展示的标题层级深度
     MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH=5
+    #根据xxx.md文件标题生成博客大纲->将博客大纲转换为markmap文件
+    generateOutLineAndTransformOutLineToMarkmapForOriginal $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_MARKMAP_TARGET_PATH $MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH
+    #--------------------------------------------------------------------------------------------------------------
 
-    #开始生成markmap文件
-    createOutLineMarkmapHtml $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_MARKMAP_TARGET_PATH $MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH
 
-    #开始生成guidance文件（guidance文件中引用了上一步骤生成的markmap文件）......
+    #生成guidance文件（guidance文件中引用了上一步骤生成的markmap文件）......
     #--------------------------------------------------------------------------------------------------------------
     #存放生成的guidance文件的路径的路径前缀
     MD_FILE_GUIDANCE_TARGET_PATH_PREFIX="enhance/guidance"
-    #--------------------------------------------------------------------------------------------------------------
-    # 生成的所有guidance文件存放的目录路径
+    #生成的所有guidance文件存放的目录路径
     MD_FILE_GUIDANCE_TARGET_PATH="docs/.vuepress/public/$MD_FILE_GUIDANCE_TARGET_PATH_PREFIX/$MD_FILE_RELATIVE_PATH"
-    createOutLineGuidanceMd $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_GUIDANCE_TARGET_PATH $MD_FILE_RELATIVE_PATH $MD_FILE_MARKMAP_TARGET_PATH_PREFIX
+    #整个博客的内容guidance（概览）的一级标题
+    ENSEMBLE_GUIDANCE_TITLE1_TEXT="博客内容介绍"
+    #将上一步生成的markmap转换为guidance（概览）文件
+    generateGuidanceByMarkmapForOriginal $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_GUIDANCE_TARGET_PATH $MD_FILE_RELATIVE_PATH $MD_FILE_MARKMAP_TARGET_PATH_PREFIX $ENSEMBLE_GUIDANCE_TITLE1_TEXT
+    #--------------------------------------------------------------------------------------------------------------
 
-    #开始让md文件中的二级标题增加1......'
-    title2Increment $MD_FILE_NAME $MD_FILE_SOURCE_PATH
+
+    #开始让xxx.md文件中的二级标题增加1......'
+    #--------------------------------------------------------------------------------------------------------------
+    #二级标题序列增加步长
+    TITLE2_INCREMENT_STEP=2
+    title2IncrementByForOriginal $MD_FILE_NAME $MD_FILE_SOURCE_PATH $TITLE2_INCREMENT_STEP
+    #--------------------------------------------------------------------------------------------------------------
+
 
     #将xxx.md生成的guidance文件和xxx.md的所有章节生成的guidance文件插入到xxx.md中
+    #--------------------------------------------------------------------------------------------------------------
     #导入时使用的路径需要以public开头，所以这里要设置这个路径
     MD_FILE_GUIDANCE_FILE_INCLUDE_PATH="public/$MD_FILE_GUIDANCE_TARGET_PATH_PREFIX/$MD_FILE_RELATIVE_PATH"
-    insertOutLineGuidanceIntoMd $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_GUIDANCE_FILE_INCLUDE_PATH $MD_FILE_GUIDANCE_TARGET_PATH
+    insertGuidanceIntoOriginal $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_GUIDANCE_FILE_INCLUDE_PATH $MD_FILE_GUIDANCE_TARGET_PATH
+    #--------------------------------------------------------------------------------------------------------------
     
+
+    #为xxx.md生成章节分片
     #--------------------------------------------------------------------------------------------------------------
     #存放生成的shardings文件的文件夹名称
     MD_FILE_SHARDINGS_FOLDER_NAME="shardings"
+    generateChapterShardingsAndWriteFrontmatterForShardings $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_SHARDINGS_FOLDER_NAME $MD_FILE_GUIDANCE_TARGET_PATH $ENSEMBLE_GUIDANCE_TITLE1_TEXT
     #--------------------------------------------------------------------------------------------------------------
-    createShardingsMd $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_SHARDINGS_FOLDER_NAME $MD_FILE_GUIDANCE_TARGET_PATH
     
+    #生成sidebar配置json并设置锚点
     #--------------------------------------------------------------------------------------------------------------
     #存放生成的sidebar配置json文件的路径的路径前缀    
     MD_FILE_SIDEBAR_CONFIG_TARGET_PATH_PREFIX="enhance/config"
-    #--------------------------------------------------------------------------------------------------------------
     # 生成的所有chapter文件存放的目录路径
     MD_FILE_SIDEBAR_CONFIG_TARGET_PATH="docs/.vuepress/public/$MD_FILE_SIDEBAR_CONFIG_TARGET_PATH_PREFIX/$MD_FILE_RELATIVE_PATH"
-    
     #为md文件和md文件拆分的所有章节md文件生成侧边栏配置，存放在json文件中
     SIDEBAR_LINK_PREFIX="/blogs/$MD_FILE_RELATIVE_PATH"
-
-    createSidebarConfigForMDAndMdShardingsAndAddAnchor $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_SIDEBAR_CONFIG_TARGET_PATH $SIDEBAR_LINK_PREFIX $MD_FILE_SHARDINGS_FOLDER_NAME
+    generateSidebarConfigForAllAndSetAnchorForOriginal $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_SIDEBAR_CONFIG_TARGET_PATH $SIDEBAR_LINK_PREFIX $MD_FILE_SHARDINGS_FOLDER_NAME $ENSEMBLE_GUIDANCE_TITLE1_TEXT
+    #--------------------------------------------------------------------------------------------------------------
 
     echo '完成增强'$2'目录下'$1'.md文件.............................................................................................................................'
 }
 
-#解析yaml
-function parse_yaml() {
-   local prefix=$2
-   local s='[[:space:]]*' w='[a-zA-Z0-9_]*' fs=$(echo @|tr @ '\034')
-   sed -ne "s|^\($s\):|\1|" \
-        -e "s|^\($s\)\($w\)$s:$s[\"']\(.*\)[\"']$s\$|\1$fs\2$fs\3|p" \
-        -e "s|^\($s\)\($w\)$s:$s\(.*\)$s\$|\1$fs\2$fs\3|p"  $1 |
-   awk -F$fs '{
-      indent = length($1)/2;
-      vname[indent] = $2;
-      for (i in vname) {if (i > indent) {delete vname[i]}}
-      if (length($3) > 0) {
-         vn=""; for (i=0; i<indent; i++) {vn=(vn)(vname[i])("_")}
-         printf("%s%s%s=\"%s\"\n", "'$prefix'",vn, $2, $3);
-      }
-   }'
-}
-# 要操作的md文件的名称，不带文件后缀名
-MD_FILE_1_NAME="centos7"
-# 要操作的md文件的相对路径，前后不带有/，用这个变量的时候再加上/
-MD_FILE_1_RELATIVE_PATH="environment/centos/"$MD_FILE_1_NAME
-
-enhanceMD $MD_FILE_1_NAME $MD_FILE_1_RELATIVE_PATH
-
-#parse_yaml "./config.yaml" "conf_"
-
 :<<EOF
+
+对项目中的md文件进行初始化，包含了如下处理工作
+1.根据start.ini中的配置自动扫描所有的md文件 ，并增强该md文件
+    - 为md文件和md文件的每一个章节生成html格式的markmap文件
+    - 为md文件和md文件的每一个章节生成guidance文件（guidance文件中引用了上一步骤生成的markmap文件）
+    - 让md文件中的所有二级标题在原来的基础上增加1
+    - 为md生成shardings（分片），每一个分片都是一个章节
+    - 为md生成sidebar配置并将这个sidebar配置自动写入到sidebar.ts中
+        - 每个md文件的sidebar配置包括两部分，第一是按照章节阅读的sidebar配置，第二是章节内容合集的sidebar配置
+            - 按照章节阅读的sidebar配置：点击依据此配置生成的sidebar可以导航到md文件的不同章节分片中
+            - 章节内容合集的sidebar配置：点击依据此配置生成的sidebar可以导航到md文件的不同章节中，可以实现在一个页面查看这个合集中的所有内容
+2.   
+    
 EOF
+
+function init(){
+    #获取./config中以config-xxx.ini格式的文件总共有多少个，每个配置文件对应一个md文件
+    TOTAL_MD_COUNTS=`ls ./config/ | grep '^config-.*\.ini$' | wc -w`
+    echo '可以处理的md文件最大个数：'$TOTAL_MD_COUNTS
+
+    #解析config.ini中配置要操作的md文件的名称
+    for((i=1;i<=$TOTAL_MD_COUNTS;i++))
+    do
+        IS_ENHANCE=( $( parseIni ./config/start.ini markdown-$i enhance) )
+        #如果设置了增强该md，则继续执行下一步
+        if [ $IS_ENHANCE == "true" ]
+        then
+            #获取文件名称
+            MD_FILE_NAME=( $( parseIni ./config/start.ini markdown-$i fiename) )
+            #获取文件相当路径
+            RELATIVE_PATH=( $( parseIni ./config/start.ini markdown-$i relative_path) )
+            #进行增强处理
+            enhance $MD_FILE_NAME $RELATIVE_PATH
+        fi    
+    done
+    
+}
+init
+

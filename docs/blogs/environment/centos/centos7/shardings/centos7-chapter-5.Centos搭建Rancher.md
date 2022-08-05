@@ -1,16 +1,16 @@
 ---
-star: 5
-title: 5.Centos搭建Rancher
-shortTitle: 5.Centos搭建Rancher-short
+title: 在Centos7上搭建开发环境-5.Centos搭建Rancher
+description: 本章节涉及主要内容有：$CHAPTER_CONTENT_INTRO具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
-category:
-- 环境搭建
-tag:
-- linux
-- Centos搭建Rancher
-copyright: false
 isOriginal: true
-date: 2020-01-01
+category:
+  - 环境搭建
+star: false
+copyright: false
+tag:
+  - rancher
+  - 容器管理
+date: 2020-01-24
 ---
 
 # 5.Centos搭建Rancher

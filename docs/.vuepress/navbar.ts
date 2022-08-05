@@ -114,7 +114,7 @@ export default navbar([
     icon: "build",
     children: [
       { 
-        text: "centos",   
+        text: "centos", 
         children: [
           { 
             text: "centos7",

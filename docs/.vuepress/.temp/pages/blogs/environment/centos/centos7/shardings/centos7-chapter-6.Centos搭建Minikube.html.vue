@@ -1,13 +1,26 @@
 <template><div><h1 id="_6-centos搭建minikube" tabindex="-1"><a class="header-anchor" href="#_6-centos搭建minikube" aria-hidden="true">#</a> 6.Centos搭建Minikube</h1>
-<h2 id="_6-1-章节大纲" tabindex="-1"><a class="header-anchor" href="#_6-1-章节大纲" aria-hidden="true">#</a> 6.1.章节大纲</h2>
+<h2 id="_6-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_6-1-章节内容概述" aria-hidden="true">#</a> 6.1.章节内容概述</h2>
+<pre><code>本章节涉及主要内容有：
+ 6.1.minikube介绍
+ 6.2.版本说明
+ 6.3.开启Vmware虚拟化
+ 6.4.安装kubectl	
+ 6.5.安装minikube
+ 6.6.使用阿里云加速docker hub
+ 6.7.启动minikube
+ 6.8.minikube常用命令	
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格
+测试，可直接复制运行即可。
+</code></pre>
+<h2 id="_6-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_6-2-章节内容大纲" aria-hidden="true">#</a> 6.2.章节内容大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter6.html"/>
-<h2 id="_6-2-minikube介绍" tabindex="-1"><a class="header-anchor" href="#_6-2-minikube介绍" aria-hidden="true">#</a> 6.2.minikube介绍</h2>
+<h2 id="_6-3-minikube介绍" tabindex="-1"><a class="header-anchor" href="#_6-3-minikube介绍" aria-hidden="true">#</a> 6.3.minikube介绍</h2>
 <pre><code>Minikube这个工具支持在虚拟机上运行一套单节点的k8s集群
 </code></pre>
-<h2 id="_6-3-版本说明" tabindex="-1"><a class="header-anchor" href="#_6-3-版本说明" aria-hidden="true">#</a> 6.3.版本说明</h2>
+<h2 id="_6-4-版本说明" tabindex="-1"><a class="header-anchor" href="#_6-4-版本说明" aria-hidden="true">#</a> 6.4.版本说明</h2>
 <pre><code>minikube:1.2.6 kubectl client:1.18.0
 </code></pre>
-<h2 id="_6-4-开启vmware虚拟化" tabindex="-1"><a class="header-anchor" href="#_6-4-开启vmware虚拟化" aria-hidden="true">#</a> 6.4.开启Vmware虚拟化</h2>
+<h2 id="_6-5-开启vmware虚拟化" tabindex="-1"><a class="header-anchor" href="#_6-5-开启vmware虚拟化" aria-hidden="true">#</a> 6.5.开启Vmware虚拟化</h2>
 <pre><code>查看是否支持虚拟化，开始安装前，先查看本地机器是否支持虚拟化，有输出就支持
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>grep -E --color 'vmx|svm' /proc/cpuinfo
@@ -17,7 +30,7 @@ Vmware Workstation -&gt;Centos 64右键菜单 —&gt; 设置
 
 设置处理器数量设置为大于等于2,内存大于等于2G
 </code></pre>
-<h2 id="_6-5-安装kubectl" tabindex="-1"><a class="header-anchor" href="#_6-5-安装kubectl" aria-hidden="true">#</a> 6.5.安装kubectl</h2>
+<h2 id="_6-6-安装kubectl" tabindex="-1"><a class="header-anchor" href="#_6-6-安装kubectl" aria-hidden="true">#</a> 6.6.安装kubectl</h2>
 <pre><code>简介
 kubectl 是一个用来跟 K8S 集群进行交互的命令行工具
 	
@@ -27,7 +40,7 @@ kubectl 是一个用来跟 K8S 集群进行交互的命令行工具
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看kubectl版本
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl version --client
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_6-6-安装minikube" tabindex="-1"><a class="header-anchor" href="#_6-6-安装minikube" aria-hidden="true">#</a> 6.6.安装minikube</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_6-7-安装minikube" tabindex="-1"><a class="header-anchor" href="#_6-7-安装minikube" aria-hidden="true">#</a> 6.7.安装minikube</h2>
 <pre><code>下载minikube
 到 https://github.com/kubernetes/minikube/releases 找到minikube-linux-amd64并下载
 
@@ -36,12 +49,12 @@ kubectl 是一个用来跟 K8S 集群进行交互的命令行工具
 赋予运行权限并复制到/usr/local/bin/minikube
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>chmod +x ./minikube-linux-amd64 &amp;&amp; cp ./minikube-linux-amd64 /usr/local/bin/minikube
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_6-7-使用阿里云加速docker-hub" tabindex="-1"><a class="header-anchor" href="#_6-7-使用阿里云加速docker-hub" aria-hidden="true">#</a> 6.7.使用阿里云加速docker hub</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_6-8-使用阿里云加速docker-hub" tabindex="-1"><a class="header-anchor" href="#_6-8-使用阿里云加速docker-hub" aria-hidden="true">#</a> 6.8.使用阿里云加速docker hub</h2>
 <pre><code>登录阿里云docker相关页面
 访问：https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors
 登陆-&gt;左侧菜单选中镜像加速器-&gt;查看加速镜像地址 https://ngviu28h.mirror.aliyuncs.com
 </code></pre>
-<h2 id="_6-8-启动minikube" tabindex="-1"><a class="header-anchor" href="#_6-8-启动minikube" aria-hidden="true">#</a> 6.8.启动minikube</h2>
+<h2 id="_6-9-启动minikube" tabindex="-1"><a class="header-anchor" href="#_6-9-启动minikube" aria-hidden="true">#</a> 6.9.启动minikube</h2>
 <pre><code>注意事项
 启动minikube之前需要先启动docker，如无法启动加上--kubernetes-version=v具体版本号
 
@@ -82,7 +95,7 @@ rcvboxdrv setup
 	--image-repository='registry.cn-hangzhou.aliyuncs.com/google_containers' \
 	--registry-mirror='https://ngviu28h.mirror.aliyuncs.com' \
 	--kubernetes-version=v1.23.8
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_6-9-minikube常用命令" tabindex="-1"><a class="header-anchor" href="#_6-9-minikube常用命令" aria-hidden="true">#</a> 6.9.minikube常用命令</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_6-10-minikube常用命令" tabindex="-1"><a class="header-anchor" href="#_6-10-minikube常用命令" aria-hidden="true">#</a> 6.10.minikube常用命令</h2>
 <pre><code>查看minikube日志
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>minikube logs
