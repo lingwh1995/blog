@@ -1,5 +1,27 @@
 <template><div><div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code><span class="token comment">//@include(./Account.java)</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="_1-安装linux操作系统" tabindex="-1"><a class="header-anchor" href="#_1-安装linux操作系统" aria-hidden="true">#</a> 1.安装Linux操作系统</h1>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="intro" tabindex="-1"><a class="header-anchor" href="#intro" aria-hidden="true">#</a> 博客内容介绍</h1>
+<h2 id="博客内容概述" tabindex="-1"><a class="header-anchor" href="#博客内容概述" aria-hidden="true">#</a> 博客内容概述</h2>
+<pre><code>本篇博客涉及主要内容有：
+	 1.安装Linux操作系统
+	 2.Linux操作系统初始设置
+	 3.搭建基础开发环境
+	 4.Centos搭建docker
+	 5.Centos搭建Rancher
+	 6.Centos搭建Minikube
+	 7.kubeadm搭建Kubernetes
+	 8.二进制包搭建Kubernetes
+具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+</code></pre>
+<h2 id="博客内容大纲" tabindex="-1"><a class="header-anchor" href="#博客内容大纲" aria-hidden="true">#</a> 博客内容大纲</h2>
+<h3 id="简单版博客内容大纲" tabindex="-1"><a class="header-anchor" href="#简单版博客内容大纲" aria-hidden="true">#</a> 简单版博客内容大纲</h3>
+<!--最深展示二级标题内容-->
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/centos7-outline2.html"/>
+<blockquote></blockquote>
+<!--最深展示五级标题内容-->
+<h3 id="详细版博客内容大纲" tabindex="-1"><a class="header-anchor" href="#详细版博客内容大纲" aria-hidden="true">#</a> 详细版博客内容大纲</h3>
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/centos7-outline3.html"/>
+<blockquote></blockquote>
+<h1 id="1." tabindex="-1"><a class="header-anchor" href="#1." aria-hidden="true">#</a> 1.安装Linux操作系统</h1>
 <h2 id="_1-1-章节大纲" tabindex="-1"><a class="header-anchor" href="#_1-1-章节大纲" aria-hidden="true">#</a> 1.1.章节大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter1.html"/>
 <h2 id="_1-2-linux重要目录介绍" tabindex="-1"><a class="header-anchor" href="#_1-2-linux重要目录介绍" aria-hidden="true">#</a> 1.2.Linux重要目录介绍</h2>
@@ -36,7 +58,7 @@ VMware NetworkAdepter VMnet8：Host用于与NAT虚拟网络进行通信的虚拟
 /swap 	/*交换区，建议大小：2g
 /*主分区，剩下的空间全部分给这个分区
 </code></pre>
-<h1 id="_2-linux操作系统初始设置" tabindex="-1"><a class="header-anchor" href="#_2-linux操作系统初始设置" aria-hidden="true">#</a> 2.Linux操作系统初始设置</h1>
+<h1 id="2." tabindex="-1"><a class="header-anchor" href="#2." aria-hidden="true">#</a> 2.Linux操作系统初始设置</h1>
 <h2 id="_2-1-章节大纲" tabindex="-1"><a class="header-anchor" href="#_2-1-章节大纲" aria-hidden="true">#</a> 2.1.章节大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter2.html"/>
 <h2 id="_2-2-配置静态ip地址" tabindex="-1"><a class="header-anchor" href="#_2-2-配置静态ip地址" aria-hidden="true">#</a> 2.2.配置静态IP地址</h2>
@@ -124,7 +146,7 @@ yum -y install telnet-server
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>chmod +x centos-init.sh &amp;&amp;
 ./centos-init.sh
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h1 id="_3-搭建基础开发环境" tabindex="-1"><a class="header-anchor" href="#_3-搭建基础开发环境" aria-hidden="true">#</a> 3.搭建基础开发环境</h1>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h1 id="3." tabindex="-1"><a class="header-anchor" href="#3." aria-hidden="true">#</a> 3.搭建基础开发环境</h1>
 <h2 id="_3-1-章节大纲" tabindex="-1"><a class="header-anchor" href="#_3-1-章节大纲" aria-hidden="true">#</a> 3.1.章节大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter3.html"/>
 <h2 id="_3-2-安装jdk" tabindex="-1"><a class="header-anchor" href="#_3-2-安装jdk" aria-hidden="true">#</a> 3.2.安装jdk</h2>
@@ -278,7 +300,7 @@ FLUSH PRIVILEGES;
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>use mysql;	
 update user set host='%' where user='root';
 flush privileges;
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h1 id="_4-centos搭建docker" tabindex="-1"><a class="header-anchor" href="#_4-centos搭建docker" aria-hidden="true">#</a> 4.Centos搭建docker</h1>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h1 id="4." tabindex="-1"><a class="header-anchor" href="#4." aria-hidden="true">#</a> 4.Centos搭建docker</h1>
 <h2 id="_4-1-章节大纲" tabindex="-1"><a class="header-anchor" href="#_4-1-章节大纲" aria-hidden="true">#</a> 4.1.章节大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter4.html"/>
 <h2 id="_4-2-安装docker" tabindex="-1"><a class="header-anchor" href="#_4-2-安装docker" aria-hidden="true">#</a> 4.2.安装docker</h2>
@@ -885,7 +907,7 @@ max virtual memory areas vm.max_map_count [65530] is too low, increase to at lea
 解决方式，在宿主机执行
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sudo sysctl -w vm.max_map_count=262144
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="_5-centos搭建rancher" tabindex="-1"><a class="header-anchor" href="#_5-centos搭建rancher" aria-hidden="true">#</a> 5.Centos搭建Rancher</h1>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="5." tabindex="-1"><a class="header-anchor" href="#5." aria-hidden="true">#</a> 5.Centos搭建Rancher</h1>
 <h2 id="_5-1-章节大纲" tabindex="-1"><a class="header-anchor" href="#_5-1-章节大纲" aria-hidden="true">#</a> 5.1.章节大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter5.html"/>
 <pre><code>下载rancher
@@ -903,7 +925,7 @@ eureka:
 	#使用rancher扩容不能配置iip-address,否则会出问题
 	#ip-address: 192.168.0.4				
 </code></pre>
-<h1 id="_6-centos搭建minikube" tabindex="-1"><a class="header-anchor" href="#_6-centos搭建minikube" aria-hidden="true">#</a> 6.Centos搭建Minikube</h1>
+<h1 id="6." tabindex="-1"><a class="header-anchor" href="#6." aria-hidden="true">#</a> 6.Centos搭建Minikube</h1>
 <h2 id="_6-1-章节大纲" tabindex="-1"><a class="header-anchor" href="#_6-1-章节大纲" aria-hidden="true">#</a> 6.1.章节大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter6.html"/>
 <h2 id="_6-2-minikube介绍" tabindex="-1"><a class="header-anchor" href="#_6-2-minikube介绍" aria-hidden="true">#</a> 6.2.minikube介绍</h2>
@@ -1016,7 +1038,7 @@ rcvboxdrv setup
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>删除 ~/.minikube 目录缓存的文件
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>rm -rf ~/.minikube	
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="_7-kubeadm搭建kubernetes" tabindex="-1"><a class="header-anchor" href="#_7-kubeadm搭建kubernetes" aria-hidden="true">#</a> 7.kubeadm搭建Kubernetes</h1>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="7." tabindex="-1"><a class="header-anchor" href="#7." aria-hidden="true">#</a> 7.kubeadm搭建Kubernetes</h1>
 <h2 id="_7-1-章节大纲" tabindex="-1"><a class="header-anchor" href="#_7-1-章节大纲" aria-hidden="true">#</a> 7.1.章节大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter7.html"/>
 <h2 id="_7-2-特别说明" tabindex="-1"><a class="header-anchor" href="#_7-2-特别说明" aria-hidden="true">#</a> 7.2.特别说明</h2>
@@ -1263,7 +1285,7 @@ http://192.168.0.8:31208
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>清理遗留数据
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>rm -rf /usr/share/kuboard
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="_8-二进制包搭建kubernetes" tabindex="-1"><a class="header-anchor" href="#_8-二进制包搭建kubernetes" aria-hidden="true">#</a> 8.二进制包搭建Kubernetes</h1>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="8." tabindex="-1"><a class="header-anchor" href="#8." aria-hidden="true">#</a> 8.二进制包搭建Kubernetes</h1>
 <h2 id="_8-1-章节大纲" tabindex="-1"><a class="header-anchor" href="#_8-1-章节大纲" aria-hidden="true">#</a> 8.1.章节大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter8.html"/>
 <h2 id="_8-2-环境配置清单" tabindex="-1"><a class="header-anchor" href="#_8-2-环境配置清单" aria-hidden="true">#</a> 8.2.环境配置清单</h2>

@@ -39,8 +39,9 @@ icon: linux
 
 
 
+@include(@src/public/enhance/guidance/environment/centos/centos7/centos7-guidance.md{4-})
 
-# 1.安装Linux操作系统
+# 1.安装Linux操作系统 {#1.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter1.md)
 
 ## 1.2.Linux重要目录介绍
@@ -79,7 +80,7 @@ icon: linux
 	/swap 	/*交换区，建议大小：2g
 	/*主分区，剩下的空间全部分给这个分区
 	
-# 2.Linux操作系统初始设置
+# 2.Linux操作系统初始设置 {#2.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter2.md)
 
 ## 2.2.配置静态IP地址
@@ -199,7 +200,7 @@ curl https://gitee.com/lingwh1995/config-center/raw/master/centos/centos-init.sh
 chmod +x centos-init.sh &&
 ./centos-init.sh
 ```
-# 3.搭建基础开发环境
+# 3.搭建基础开发环境 {#3.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter3.md)
 
 ## 3.2.安装jdk
@@ -393,7 +394,7 @@ update user set host='%' where user='root';
 flush privileges;
 ```
 
-# 4.Centos搭建docker
+# 4.Centos搭建docker {#4.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter4.md)
 ## 4.2.安装docker
 ### 4.2.1.在线安装docker
@@ -1125,7 +1126,7 @@ systemctl restart firewalld
 sudo sysctl -w vm.max_map_count=262144
 ```
 
-# 5.Centos搭建Rancher
+# 5.Centos搭建Rancher {#5.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter5.md)
 	下载rancher
 ```	
@@ -1144,7 +1145,7 @@ docker run -di --name=rancher -p9003:8080 rancher/server:latest
 		#使用rancher扩容不能配置iip-address,否则会出问题
 		#ip-address: 192.168.0.4				
 
-# 6.Centos搭建Minikube
+# 6.Centos搭建Minikube {#6.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter6.md)
 ## 6.2.minikube介绍
 	Minikube这个工具支持在虚拟机上运行一套单节点的k8s集群
@@ -1280,7 +1281,7 @@ minikube delete
 rm -rf ~/.minikube	
 ```
 
-# 7.kubeadm搭建Kubernetes
+# 7.kubeadm搭建Kubernetes {#7.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter7.md)
 
 ## 7.2.特别说明
@@ -1574,7 +1575,7 @@ watch kubectl get pods -n kuboard
 rm -rf /usr/share/kuboard
 ```
 
-# 8.二进制包搭建Kubernetes
+# 8.二进制包搭建Kubernetes {#8.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter8.md)
 
 ## 8.2.环境配置清单

@@ -100,25 +100,29 @@ function createOutLineGuidanceMd(){
     #创建存放xxx.md成的guidance文件的文件夹
     mkdir -p $3
 
+    #抽取所有一级标题，合并起来作为博客内容概述的一部分
+    BLOG_CONTENT_INTRO=`grep '^# [1-9][0-9]\?\.' $2/$1.md | sed 's/#/\t\t/g'`
     #创建xxx-guidance.md，并写入博客guidance内容
+
+    xxx=`grep '^# [1-9][0-9]\?\.' docs/blogs/environment/centos/centos7/centos7.md | cut -d ' ' -f2`
 cat > $3/$1-guidance.md  << EOF
 ---
 article: false
 ---
 
-# 博客内容介绍
+# 博客内容介绍 {#intro}
 ## 博客内容概述
-
-	本篇博客的内容主要介绍安装Centos7操作系统、以及在Centos操作系统上搭建常见的开发环境，如Jdk、Maven、Docker、
-    Rancher、Minikube、Kubernetes、nginx、等软件的详细搭建过程，博客内容中图片较少，主要以实用为主，所有代码均
-	经过严格测试，可直接复制运行即可。
+    本篇博客涉及主要内容有：
+$BLOG_CONTENT_INTRO
+	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 ## 博客内容大纲
 	
 ###	简单版博客内容大纲
+<!--最深展示二级标题内容-->
 <Markmap localtion="/$5/$4/$1-outline2.html"/>
 
 >
-
+<!--最深展示五级标题内容-->
 ###	详细版博客内容大纲
 <Markmap localtion="/$5/$4/$1-outline3.html"/>
 
@@ -199,6 +203,22 @@ function title2Increment(){
 #给xxx.md文件中插入MarkmapComponment（vue插件）
 function insertOutLineGuidanceIntoMd(){
     echo '开始为'$1'.md中插入MarkmapComponment........................................................................'
+
+    #给第一个一级标题上面一行的上面一行插入整个博客的guidance.md
+    #获取一级标题所在行号
+    TARGET_LINE_NUMBER=`grep -n '^# 1\.' $2/$1.md | cut -d ':' -f 1`
+    echo '标题 # 1.所在行号：'$TARGET_LINE_NUMBER
+    TARGET_LINE_NUMBER=$[$TARGET_LINE_NUMBER-1]
+    echo '目标插入行号：'$TARGET_LINE_NUMBER
+
+    #特别注意:将xxx-catalog.md插入到xxx.md的时候过滤掉Frontmatter 配置相关内容
+    FRONTMATTER_END_LINE_NUMBER=`grep -n '^-\{3\}' $4/$1-guidance.md | tail -1 | cut -d ':' -f 1`
+    #获取FRONTMATTER_END_LINE_NUMBER所在行数的下一行
+    FRONTMATTER_END_LINE_NUMBER=$[$FRONTMATTER_END_LINE_NUMBER+1]
+
+    #执行插入整个博客guidance.md的操作
+    TARGET_STR="@include(@src/$3/$1-guidance.md{$FRONTMATTER_END_LINE_NUMBER-})"
+    sed -i ''"$TARGET_LINE_NUMBER"'i '"$TARGET_STR"'' $2/$1.md
 
     #获取一级标题总数
     TOTAL_TITLE1_COUNTS=`grep '^# [1-9][0-9]\?\.' $2/$1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
@@ -293,8 +313,8 @@ function createShardingsMd(){
     echo '完成根据章节切割'$1'.md文件........................................................................'
 }
 
-#为xxx.md文件和xxx.md文件拆分的所有章节md文件生成侧边栏配置，存放在json文件中
-function createSidebarConfigForMDAndMdShardings(){
+#为xxx.md文件和xxx.md拆分的所有章节md文件生成侧边栏配置，存放在json文件中，并且给 除博客内容介绍 外所有一级标题添加锚点
+function createSidebarConfigForMDAndMdShardingsAndAddAnchor(){
     echo '开始为'$1'.为md文件和md文件拆分的所有章节md文件生成侧边栏配置........................................................................'
 
     #获取一级标题总数
@@ -311,8 +331,8 @@ function createSidebarConfigForMDAndMdShardings(){
     SIDEBAR_CONFIGFILE_FULL_PATH_NAME=$3/$SIDEBAR_CONFIGFILE_NAME
     #每次写入之前先删除旧文件，再写入新的内容
     rm -rf $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    echo $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    echo "    {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    
+    echo "  {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "      // 必要的，分组的标题文字" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "      text: \"在Centos7上搭建开发环境\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "      // 可选的, 分组标题对应的图标" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
@@ -321,34 +341,82 @@ function createSidebarConfigForMDAndMdShardings(){
     echo "      collapsable: true," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "      // 必要的，分组的子项目" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "      children: [" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    
-    #左侧导航栏拼接博客内容介绍
 
-    echo "        {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    echo "          text: \"博客内容介绍\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    echo "          link:\"$4/$5/$1-chapter-0.博客内容介绍.md\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    echo "          icon:\"note\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    echo "        }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    #拼接 按照章节阅读sidebar
+    echo "          {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "              text: \"按照章节阅读\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "              icon:\"repo\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "              collapsable: true," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "              children:[" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
 
-    #拼接章节每个章节的导航列表
+    #按章节阅读中拼接 博客内容介绍 
+    echo "                  {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "                      text: \"博客内容介绍\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "                      link:\"$4/$5/$1-chapter-0.博客内容介绍.md\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "                      icon:\"note\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "                   }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+
     for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
     do
         #获取章节名称
         CHAPTER_NAME=`grep -n '^# '"$i"'\.' $2/$1.md | cut -d ' ' -f 2`
         echo '章节名称：'$CHAPTER_NAME
 
-        echo "        {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+        echo "                  {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME 
+        echo "                      text:\"$CHAPTER_NAME\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+        echo "                      icon:\"article\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+        echo "                      collapsable: true," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+        echo "                      link:\"$4/$5/$1-chapter-$CHAPTER_NAME.md\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+        echo "                  }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    done
+    echo "              ]" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "          }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
 
-        #把章节名称作为侧边栏中显示的导航条目的名称
-        echo "          text:\"$CHAPTER_NAME\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-        echo "          link:\"$4/$5/$1-chapter-$CHAPTER_NAME.md\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-        echo "          icon:\"note\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    #拼接 章节内容合集sidebar
+    echo "          {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "              text: \"章节内容合集\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "              icon:\"repo\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "              collapsable: true," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "              children:[" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
 
-        echo "        }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    #章节内容合集中拼接 博客内容介绍 
+    echo "                  {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "                      text: \"博客内容介绍\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "                      link:\"$4/$1.md#intro\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "                      icon:\"note\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "                  }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    
+    for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
+    do
+        #获取章节名称
+        CHAPTER_NAME=`grep -n '^# '"$i"'\.' $2/$1.md | cut -d ' ' -f 2`
+        echo '章节名称：'$CHAPTER_NAME
+
+        echo "                  {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME 
+        echo "                      text:\"$CHAPTER_NAME\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+        echo "                      icon:\"article\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+        echo "                      collapsable: true," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+        echo "                      link:\"$4/$1.md#$i.\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+        echo "                  }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    done    
+    echo "              ]" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "          }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+
+    echo "      ]" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "  }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+  
+    #给所有一级标题后面添加锚点使用的属性
+    for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
+    do
+    #sed -i 's/\(^# '"$k"'\..{*}\)/& \{#'"$K"'\.\}/g' $2/$1.md
+    sed -i 's/\(^# '"$i"'\..*\)/& \{#'"$i"'\.\}/g' $2/$1.md
     done
     
-    echo "      ]," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    echo "    }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+ #   echo "      {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+ #   echo "        text: \"按照章节阅读\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+ #   echo "        icon:"note"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+ #   echo "        collapsable: true," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+ #   echo "        children:[" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
 
     echo '完成为'$1'.为md文件和md文件拆分的所有章节md文件生成侧边栏配置.................................................................................'
 }
@@ -364,7 +432,7 @@ function writeSidebarConfig(){
 
 #门面模式，统一封装上面的方法，对外提供一个调用接口即可
 function enhanceMD() {
-    echo '开始增强'$1'文件.............................................................................................................................'
+    echo '开始增强'$2'目录下'$1'.md文件.............................................................................................................................'
     
     # 要操作的md文件的名称，不带文件后缀名
     MD_FILE_NAME=$1
@@ -417,9 +485,9 @@ function enhanceMD() {
     #为md文件和md文件拆分的所有章节md文件生成侧边栏配置，存放在json文件中
     SIDEBAR_LINK_PREFIX="/blogs/$MD_FILE_RELATIVE_PATH"
 
-    createSidebarConfigForMDAndMdShardings $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_SIDEBAR_CONFIG_TARGET_PATH $SIDEBAR_LINK_PREFIX $MD_FILE_SHARDINGS_FOLDER_NAME
+    createSidebarConfigForMDAndMdShardingsAndAddAnchor $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_SIDEBAR_CONFIG_TARGET_PATH $SIDEBAR_LINK_PREFIX $MD_FILE_SHARDINGS_FOLDER_NAME
 
-    echo '完成增强'$1'.md文件.............................................................................................................................'
+    echo '完成增强'$2'目录下'$1'.md文件.............................................................................................................................'
 }
 
 #解析yaml

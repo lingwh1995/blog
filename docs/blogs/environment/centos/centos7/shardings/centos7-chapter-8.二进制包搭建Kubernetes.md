@@ -1,5 +1,5 @@
 ---
-star: 100
+star: 8
 title: 8.二进制包搭建Kubernetes
 shortTitle: 8.二进制包搭建Kubernetes-short
 headerDepth: 4
@@ -10,7 +10,7 @@ tag:
 - 二进制包搭建Kubernetes
 copyright: false
 isOriginal: true
-date: 2020-01-02
+date: 2020-01-01
 ---
 
 # 8.二进制包搭建Kubernetes
