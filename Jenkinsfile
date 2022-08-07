@@ -29,6 +29,7 @@ pipeline {
         echo '正在推送文件...'
         echo 'xxxx'
         sh 'pwd'
+        sh 'ls'
         sh 'chmod +x ./deploy.sh'
         sh './deploy.sh'
         echo '完成文件推送...'
