@@ -1,18 +1,18 @@
 <template><div><div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code><span class="token comment">//@include(./Account.java)</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="intro" tabindex="-1"><a class="header-anchor" href="#intro" aria-hidden="true">#</a> 博客内容介绍</h1>
-<h2 id="博客内容概述" tabindex="-1"><a class="header-anchor" href="#博客内容概述" aria-hidden="true">#</a> 博客内容概述</h2>
+<h2 id="博客内容概述xxx" tabindex="-1"><a class="header-anchor" href="#博客内容概述xxx" aria-hidden="true">#</a> 博客内容概述xxx<div id="introxxx"></div></h2>
 <pre><code>本篇博客涉及主要内容有：
+ 1.安装Linux操作系统
+ 2.Linux操作系统初始设置
+ 3.搭建基础开发环境
+ 4.Centos搭建docker
+ 5.Centos搭建Rancher
+ 6.Centos搭建Minikube
+ 7.kubeadm搭建Kubernetes
+ 8.二进制包搭建Kubernetes
+具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码
+均经过严格测试，可直接复制运行即可。
 </code></pre>
-<p>1.安装Linux操作系统
-2.Linux操作系统初始设置
-3.搭建基础开发环境
-4.Centos搭建docker
-5.Centos搭建Rancher
-6.Centos搭建Minikube
-7.kubeadm搭建Kubernetes
-8.二进制包搭建Kubernetes
-具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码均经过严格
-测试，可直接复制运行即可。</p>
 <h2 id="博客内容大纲" tabindex="-1"><a class="header-anchor" href="#博客内容大纲" aria-hidden="true">#</a> 博客内容大纲</h2>
 <h3 id="简单版博客内容大纲" tabindex="-1"><a class="header-anchor" href="#简单版博客内容大纲" aria-hidden="true">#</a> 简单版博客内容大纲</h3>
 <!--最深展示二级标题内容-->
@@ -29,8 +29,8 @@
  1.2.Centos镜像下载
  1.3.安装前Vmaware相关设置
  1.3.安装时分区大小设置
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格
-测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
+均经过严格测试，可直接复制运行即可。
 </code></pre>
 <h2 id="_1-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_1-2-章节内容大纲" aria-hidden="true">#</a> 1.2.章节内容大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter1.html"/>
@@ -77,8 +77,8 @@ VMware NetworkAdepter VMnet8：Host用于与NAT虚拟网络进行通信的虚拟
  2.4.安装curl
  2.5.配置yml源
  2.6.安装常用基础系统软件
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格
-测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
+均经过严格测试，可直接复制运行即可。
 </code></pre>
 <h2 id="_2-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_2-2-章节内容大纲" aria-hidden="true">#</a> 2.2.章节内容大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter2.html"/>
@@ -173,8 +173,8 @@ yum -y install telnet-server
  3.1.安装jdk
  3.2.安装maven
  3.3.安装mysql
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格
-测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
+均经过严格测试，可直接复制运行即可。
 </code></pre>
 <h2 id="_3-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_3-2-章节内容大纲" aria-hidden="true">#</a> 3.2.章节内容大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter3.html"/>
@@ -342,8 +342,8 @@ flush privileges;
  4.5.docker官方私服可视化
  4.6.制作docker镜像并上传到私服
  4.7.Docker中安装常用软件
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格
-测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
+均经过严格测试，可直接复制运行即可。
 </code></pre>
 <h2 id="_4-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_4-2-章节内容大纲" aria-hidden="true">#</a> 4.2.章节内容大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter4.html"/>
@@ -955,8 +955,8 @@ max virtual memory areas vm.max_map_count [65530] is too low, increase to at lea
 <h2 id="_5-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_5-1-章节内容概述" aria-hidden="true">#</a> 5.1.章节内容概述</h2>
 <pre><code>本章节涉及主要内容有：
 
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格
-测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
+均经过严格测试，可直接复制运行即可。
 </code></pre>
 <h2 id="_5-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_5-2-章节内容大纲" aria-hidden="true">#</a> 5.2.章节内容大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter5.html"/>
@@ -986,8 +986,8 @@ eureka:
  6.6.使用阿里云加速docker hub
  6.7.启动minikube
  6.8.minikube常用命令	
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格
-测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
+均经过严格测试，可直接复制运行即可。
 </code></pre>
 <h2 id="_6-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_6-2-章节内容大纲" aria-hidden="true">#</a> 6.2.章节内容大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter6.html"/>
@@ -1122,8 +1122,8 @@ rcvboxdrv setup
  7.16.基础命令
  7.17.部署第一个程序到k8s中
  7.18.可视化面板kuboard
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格
-测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
+均经过严格测试，可直接复制运行即可。
 </code></pre>
 <h2 id="_7-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_7-2-章节内容大纲" aria-hidden="true">#</a> 7.2.章节内容大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter7.html"/>
@@ -1390,8 +1390,8 @@ http://192.168.0.8:31208
  8.14.部署Nginx+Keepalived高可用负载均衡器
  8.15.部署常见问题
  8.16.部署测试程序
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格
-测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
+均经过严格测试，可直接复制运行即可。
 </code></pre>
 <h2 id="_8-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_8-2-章节内容大纲" aria-hidden="true">#</a> 8.2.章节内容大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter8.html"/>

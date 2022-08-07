@@ -1,7 +1,7 @@
 ---
 home: true
-title: 个人主页
-icon: hacker
+#title: 个人主页
+#icon: hacker
 heroImage: /images/logo.svg
 heroText: Hello Linux
 tagline:  开源即是自由✨ 博学 明理 立诚 济世

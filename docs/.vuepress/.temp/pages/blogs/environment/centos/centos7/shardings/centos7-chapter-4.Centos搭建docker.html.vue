@@ -11,8 +11,8 @@
  4.5.docker官方私服可视化
  4.6.制作docker镜像并上传到私服
  4.7.Docker中安装常用软件
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格
-测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
+均经过严格测试，可直接复制运行即可。
 </code></pre>
 <h2 id="_4-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_4-2-章节内容大纲" aria-hidden="true">#</a> 4.2.章节内容大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter4.html"/>

@@ -9,8 +9,12 @@ export const pagesData = {
   "v-7cc98773": () => import(/* webpackChunkName: "v-7cc98773" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/index.html.js").then(({ data }) => data),
   // path: /blogs/backend/springcloud/springcloud-eureka.html
   "v-5a1b8662": () => import(/* webpackChunkName: "v-5a1b8662" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka.html.js").then(({ data }) => data),
+  // path: /blogs/environment/centos/
+  "v-60e2b560": () => import(/* webpackChunkName: "v-60e2b560" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/index.html.js").then(({ data }) => data),
   // path: /blogs/environment/centos/centos7/centos7.html
   "v-47b2c842": () => import(/* webpackChunkName: "v-47b2c842" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/centos7.html.js").then(({ data }) => data),
+  // path: /blogs/environment/centos/centos7/
+  "v-c09c1298": () => import(/* webpackChunkName: "v-c09c1298" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/index.html.js").then(({ data }) => data),
   // path: /blogs/environment/centos/centos7/shardings/centos7-chapter-0.%E5%8D%9A%E5%AE%A2%E5%86%85%E5%AE%B9%E4%BB%8B%E7%BB%8D.html
   "v-0d8f245b": () => import(/* webpackChunkName: "v-0d8f245b" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/shardings/centos7-chapter-0.博客内容介绍.html.js").then(({ data }) => data),
   // path: /blogs/environment/centos/centos7/shardings/centos7-chapter-1.%E5%AE%89%E8%A3%85Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html
@@ -29,6 +33,8 @@ export const pagesData = {
   "v-053b7631": () => import(/* webpackChunkName: "v-053b7631" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/shardings/centos7-chapter-7.kubeadm搭建Kubernetes.html.js").then(({ data }) => data),
   // path: /blogs/environment/centos/centos7/shardings/centos7-chapter-8.%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8C%85%E6%90%AD%E5%BB%BAKubernetes.html
   "v-871a354c": () => import(/* webpackChunkName: "v-871a354c" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/shardings/centos7-chapter-8.二进制包搭建Kubernetes.html.js").then(({ data }) => data),
+  // path: /blogs/environment/centos/centos7/shardings/
+  "v-7f474614": () => import(/* webpackChunkName: "v-7f474614" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/shardings/index.html.js").then(({ data }) => data),
   // path: /404.html
   "v-3706649a": () => import(/* webpackChunkName: "v-3706649a" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/404.html.js").then(({ data }) => data),
   // path: /category/
