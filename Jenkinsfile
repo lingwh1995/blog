@@ -30,6 +30,7 @@ pipeline {
         echo 'xxxx'
         sh 'pwd'
         sh 'ls'
+        sh 'npm -v'
         sh 'npm i'
         sh 'chmod +x ./deploy.sh'
         sh './deploy.sh'
