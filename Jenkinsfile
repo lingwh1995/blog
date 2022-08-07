@@ -30,7 +30,9 @@ pipeline {
         echo 'xxxx'
         sh 'pwd'
         sh 'ls'
-
+        sh 'npm i'
+        sh 'chmod +x ./deploy.sh'
+        sh './deploy.sh'
         echo '完成文件推送...'
       }
     }
