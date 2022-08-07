@@ -25,20 +25,20 @@ pipeline {
       }
     }
     stage('推送部署1') {
-      steps {
-        echo '正在推送文件...'
-        echo 'xxxx'
-        sh 'pwd'
-        sh 'ls'
-        sh 'node -v'
-        sh 'npm cache clean -f'
-        sh 'npm install -g n'
-        sh 'n stable'
-        sh 'npm i'
-        sh 'chmod +x ./deploy.sh'
-        sh './deploy.sh'
-        echo '完成文件推送...'
-      }
+      // steps {
+      //   echo '正在推送文件...'
+      //   echo 'xxxx'
+      //   sh 'pwd'
+      //   sh 'ls'
+      //   sh 'node -v'
+      //   sh 'npm cache clean -f'
+      //   sh 'npm install -g n'
+      //   sh 'n stable'
+      //   sh 'npm i'
+      //   sh 'chmod +x ./deploy.sh'
+      //   sh './deploy.sh'
+      //   echo '完成文件推送...'
+      // }
     }
   }
 }
