@@ -113,4 +113,8 @@ export const pagesComponents = {
   "v-62a7ba3f": defineAsyncComponent(() => import(/* webpackChunkName: "v-62a7ba3f" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/tag/高可用/index.html.vue")),
   // path: /tag/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%90%AD%E5%BB%BAk8s%E9%9B%86%E7%BE%A4/
   "v-ba3a0e40": defineAsyncComponent(() => import(/* webpackChunkName: "v-ba3a0e40" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/tag/二进制搭建k8s集群/index.html.vue")),
+  // path: /blogs/environment/README-cache.html
+  "v-37f94503": defineAsyncComponent(() => import(/* webpackChunkName: "v-37f94503" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/README-cache.html.vue")),
+  // path: /blogs/environment/centos/centos7/README-cache.html
+  "v-6c271fe2": defineAsyncComponent(() => import(/* webpackChunkName: "v-6c271fe2" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/README-cache.html.vue")),
 }

@@ -37,4 +37,4 @@ icon: navigate
 
             - <a href="centos7/shardings/centos7-chapter-8.二进制包搭建Kubernetes.html">8.二进制包搭建Kubernetes</a>
 
-        - <a href="./centos7/centos7.html#intro">章节内容合集11</a>
+        - <a href="centos7/centos7.html#intro">章节内容合集</a>

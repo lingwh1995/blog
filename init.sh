@@ -736,8 +736,12 @@ function generateBreadcrumbREADME {
         #将 章节内容合集 这一行移动到最后一行的下一行
         END_LINE_NUMBER=$[$END_LINE_NUMBER+1]
         sed -i ''"$READ_BY_COLLECT"'{h;d};'"$END_LINE_NUMBER"'G' $FINAL_README_FILE_NAME_FULL_PATH_NAME
-        #sed -i '6{h;d};100G' $CACHE_README_FILE_NAME_FULL_PATH_NAME
 
+        #当i=0时特殊处理
+        if [ $i == 0 ]
+        then
+            echo 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 
+        fi
         echo '完成为'$2'目录下'$1'.md文件及其分片创建breadcrumb使用的README.md.................................................................................'
     done;
 }
