@@ -41,7 +41,6 @@ icon: navigate
 
             - <a href="centos/centos7/centos7.html#intro">章节内容合集</a>
 
-- 环境搭建
 
     - <a href="ubuntu">ubuntu</a>
 

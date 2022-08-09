@@ -1018,9 +1018,11 @@ EOF
         rm -rf $COMPLETE_PATH/README-$1.md
 
         #删除多余的一级标题
-        FIRST_LEVEL1_LINK_LINE_NUMBER=grep -n '^---$' $COMPLETE_PATH/README.md | tail -1
+        FIRST_LEVEL1_LINK_LINE_NUMBER=`grep -n '^---$' $COMPLETE_PATH/README.md | tail -1 |cut -d':' -f1`
         FIRST_LEVEL1_LINK_LINE_NUMBER=$[$FIRST_LEVEL1_LINK_LINE_NUMBER+2]
         FIRST_LEVEL1_LINK_TEXT=`cat $COMPLETE_PATH/README.md  | head -n $FIRST_LEVEL1_LINK_LINE_NUMBER | tail -1`
+        echo '一级标题行号：'$FIRST_LEVEL1_LINK_LINE_NUMBER
+        echo '一级标题内容：'$FIRST_LEVEL1_LINK_TEXT
         echo 'README.md中一级标题行号：'$FIRST_LEVEL1_LINK_LINE_NUMBER'，文本内容：'$FIRST_LEVEL1_LINK_TEXT
 
         LINE_NUMBER_ARR_STR=`grep -n '^'"$FIRST_LEVEL1_LINK_TEXT"'' $COMPLETE_PATH/README.md | cut -d':' -f1 | tr '\r\n' ' '`

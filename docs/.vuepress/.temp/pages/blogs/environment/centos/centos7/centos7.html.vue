@@ -1372,7 +1372,7 @@ http://192.168.0.8:31208
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>清理遗留数据
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>rm -rf /usr/share/kuboard
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="8." tabindex="-1"><a class="header-anchor" href="#8." aria-hidden="true">#</a> 8.二进制包搭建Kubernetes</h1>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="_8-二进制包搭建kubernetes" tabindex="-1"><a class="header-anchor" href="#_8-二进制包搭建kubernetes" aria-hidden="true">#</a> 8.二进制包搭建Kubernetes</h1>
 <h2 id="_8-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_8-1-章节内容概述" aria-hidden="true">#</a> 8.1.章节内容概述</h2>
 <pre><code>本章节涉及主要内容有：
  8.1.环境配置清单

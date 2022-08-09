@@ -11,10 +11,12 @@ tag:
 date: 2020-01-01
 ---
 
+<Banner localtion="/banner/particles/particles.html"/>
+
 # 博客内容介绍 {#intro}
 ## 博客内容概述
     本篇博客涉及主要内容有：
-     1.安装Linux操作系统
+     1.windows安装Linux操作系统
      2.Linux操作系统初始设置
      3.搭建基础开发环境
      4.Centos搭建docker
