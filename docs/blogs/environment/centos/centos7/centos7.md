@@ -1,21 +1,3 @@
----
-title: 在Centos7上搭建开发环境
-description: 本篇博客涉及主要内容有：具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
-headerDepth: 4
-isOriginal: true
-category:
-  - 环境搭建
-star: 1
-copyright: false
-tag:
-  - linux
-  - centos
-  - 环境搭建
-date: 2021-03-01
-sticky: 1
-icon: linux
----
-
 ```java
 //@include(./Account.java)
 ```
@@ -25,7 +7,7 @@ icon: linux
 
 @include(@src/public/enhance/guidance/environment/centos/centos7/centos7-guidance.md{13-})
 
-# 1.安装Linux操作系统 {#1.}
+# 1.windows安装Linux操作系统 {#1.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter1.md)
 
 ## 1.3.Linux重要目录介绍

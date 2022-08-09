@@ -1,11 +1,10 @@
----
+﻿---
 home: true
 #title: 个人主页
 #icon: hacker
 heroImage: /images/logo.svg
 heroText: Hello Linux
 tagline:  开源即是自由✨ 博学 明理 立诚 济世
-bgImage: /images/blogbg-08.jpg
 actions:
   - text: GITHUB传送门 🥰
     link: https://github.com/lingwh1995

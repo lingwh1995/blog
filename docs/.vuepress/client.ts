@@ -4,11 +4,12 @@ import { defineClientConfig } from "@vuepress/client";
 import Markmap from "./components/Markmap.vue";
 import ScrollIntoView from "./components/ScrollIntoView.vue";
 import Popup from "./components/Popup.vue";
+import Banner from "./components/Banner.vue";
 
 export default defineClientConfig({
   enhance: ({ app, router, siteData }) => {
     app.component("Markmap", Markmap);
     app.component("ScrollIntoView", ScrollIntoView);
-    app.component("Popup", Popup);
+    app.component("Banner", Banner);
   },
 });

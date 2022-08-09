@@ -175,7 +175,7 @@ export default hopeTheme({
        //是否启用任务列表
        tasklist: true,
        //启用懒加载md中的图片
-       lazyLoad: true
+       lazyLoad: true,
     },
     
     /**

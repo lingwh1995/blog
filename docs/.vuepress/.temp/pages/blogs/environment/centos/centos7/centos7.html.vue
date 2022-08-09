@@ -1,8 +1,9 @@
 <template><div><div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code><span class="token comment">//@include(./Account.java)</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="intro" tabindex="-1"><a class="header-anchor" href="#intro" aria-hidden="true">#</a> 博客内容介绍</h1>
-<h2 id="博客内容概述xxx" tabindex="-1"><a class="header-anchor" href="#博客内容概述xxx" aria-hidden="true">#</a> 博客内容概述xxx<div id="introxxx"></div></h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><Banner localtion="/banner/particles/particles.html"/>
+<h1 id="intro" tabindex="-1"><a class="header-anchor" href="#intro" aria-hidden="true">#</a> 博客内容介绍</h1>
+<h2 id="博客内容概述" tabindex="-1"><a class="header-anchor" href="#博客内容概述" aria-hidden="true">#</a> 博客内容概述</h2>
 <pre><code>本篇博客涉及主要内容有：
- 1.安装Linux操作系统
+ 1.windows安装Linux操作系统
  2.Linux操作系统初始设置
  3.搭建基础开发环境
  4.Centos搭建docker
@@ -22,7 +23,7 @@
 <h3 id="详细版博客内容大纲" tabindex="-1"><a class="header-anchor" href="#详细版博客内容大纲" aria-hidden="true">#</a> 详细版博客内容大纲</h3>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/centos7-outline3.html"/>
 <blockquote></blockquote>
-<h1 id="1." tabindex="-1"><a class="header-anchor" href="#1." aria-hidden="true">#</a> 1.安装Linux操作系统</h1>
+<h1 id="1." tabindex="-1"><a class="header-anchor" href="#1." aria-hidden="true">#</a> 1.windows安装Linux操作系统</h1>
 <h2 id="_1-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_1-1-章节内容概述" aria-hidden="true">#</a> 1.1.章节内容概述</h2>
 <pre><code>本章节涉及主要内容有：
  1.1.Linux重要目录介绍

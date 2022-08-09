@@ -28,6 +28,7 @@ export default defineUserConfig({
     "@Markmap": path.resolve(__dirname, "components/Markmap.vue"),
     "@ScrollIntoView": path.resolve(__dirname, "components/ScrollIntoView.vue"),
     "@Popup": path.resolve(__dirname, "components/Popup.vue"),
+    "@Popup": path.resolve(__dirname, "components/Banner.vue")
   },
 });
 

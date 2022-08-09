@@ -1,15 +1,15 @@
 <template>
     <div>
     <!-- <h1>{{msg}}</h1> -->
-    <iframe
-      :src="localtion"
-      width="100%"
-      height="400"
-      frameborder="0"
-      scrolling="No"
-      leftmargin="0"
-      topmargin="0"
-    />
+      <iframe
+        :src="localtion"
+        width="100%"
+        height="600rm"
+        frameborder="0"
+        scrolling="No"
+        leftmargin="0"
+        topmargin="0"
+      />
     </div>
 
 </template>
@@ -27,6 +27,7 @@ export default {
 </script>
 
 <style>
+
 /**格子背景 */
 /* css-selector {
     background-color: #F1F1F5;
