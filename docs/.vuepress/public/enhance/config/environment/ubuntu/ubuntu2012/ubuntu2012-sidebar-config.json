@@ -13,57 +13,57 @@
               collapsable: true,
               children:[
                   {
-                      text: "",
-                      link:"/blogs/environment/ubuntu/ubuntu2012/博客内容介绍/ubuntu2012-chapter-0..md",
+                      text: "博客内容介绍",
+                      link:"/blogs/environment/ubuntu/ubuntu2012/shardings/ubuntu2012-chapter-0.博客内容介绍.md",
                       icon:"note",
                    },
                   {
                       text:"1.安装Ubuntu操作系统",
                       icon:"article",
                       collapsable: true,
-                      link:"/blogs/environment/ubuntu/ubuntu2012/博客内容介绍/ubuntu2012-chapter-1.安装Ubuntu操作系统.md",
+                      link:"/blogs/environment/ubuntu/ubuntu2012/shardings/ubuntu2012-chapter-1.安装Ubuntu操作系统.md",
                   },
                   {
                       text:"2.Ubuntu操作系统初始设置",
                       icon:"article",
                       collapsable: true,
-                      link:"/blogs/environment/ubuntu/ubuntu2012/博客内容介绍/ubuntu2012-chapter-2.Ubuntu操作系统初始设置.md",
+                      link:"/blogs/environment/ubuntu/ubuntu2012/shardings/ubuntu2012-chapter-2.Ubuntu操作系统初始设置.md",
                   },
                   {
                       text:"3.Ubuntu搭建基础开发环境",
                       icon:"article",
                       collapsable: true,
-                      link:"/blogs/environment/ubuntu/ubuntu2012/博客内容介绍/ubuntu2012-chapter-3.Ubuntu搭建基础开发环境.md",
+                      link:"/blogs/environment/ubuntu/ubuntu2012/shardings/ubuntu2012-chapter-3.Ubuntu搭建基础开发环境.md",
                   },
                   {
                       text:"4.UbuntuCentos搭建docker",
                       icon:"article",
                       collapsable: true,
-                      link:"/blogs/environment/ubuntu/ubuntu2012/博客内容介绍/ubuntu2012-chapter-4.UbuntuCentos搭建docker.md",
+                      link:"/blogs/environment/ubuntu/ubuntu2012/shardings/ubuntu2012-chapter-4.UbuntuCentos搭建docker.md",
                   },
                   {
                       text:"5.UbuntuCentos搭建Rancher",
                       icon:"article",
                       collapsable: true,
-                      link:"/blogs/environment/ubuntu/ubuntu2012/博客内容介绍/ubuntu2012-chapter-5.UbuntuCentos搭建Rancher.md",
+                      link:"/blogs/environment/ubuntu/ubuntu2012/shardings/ubuntu2012-chapter-5.UbuntuCentos搭建Rancher.md",
                   },
                   {
                       text:"6.UbuntuCentos搭建Minikube",
                       icon:"article",
                       collapsable: true,
-                      link:"/blogs/environment/ubuntu/ubuntu2012/博客内容介绍/ubuntu2012-chapter-6.UbuntuCentos搭建Minikube.md",
+                      link:"/blogs/environment/ubuntu/ubuntu2012/shardings/ubuntu2012-chapter-6.UbuntuCentos搭建Minikube.md",
                   },
                   {
                       text:"7.Ubuntukubeadm搭建Kubernetes",
                       icon:"article",
                       collapsable: true,
-                      link:"/blogs/environment/ubuntu/ubuntu2012/博客内容介绍/ubuntu2012-chapter-7.Ubuntukubeadm搭建Kubernetes.md",
+                      link:"/blogs/environment/ubuntu/ubuntu2012/shardings/ubuntu2012-chapter-7.Ubuntukubeadm搭建Kubernetes.md",
                   },
                   {
                       text:"8.Ubuntu二进制包搭建Kubernetes",
                       icon:"article",
                       collapsable: true,
-                      link:"/blogs/environment/ubuntu/ubuntu2012/博客内容介绍/ubuntu2012-chapter-8.Ubuntu二进制包搭建Kubernetes.md",
+                      link:"/blogs/environment/ubuntu/ubuntu2012/shardings/ubuntu2012-chapter-8.Ubuntu二进制包搭建Kubernetes.md",
                   },
               ]
           },
@@ -73,7 +73,7 @@
               collapsable: true,
               children:[
                   {
-                      text: "",
+                      text: "博客内容介绍",
                       link:"/blogs/environment/ubuntu/ubuntu2012/ubuntu2012.md#intro",
                       icon:"note",
                   },

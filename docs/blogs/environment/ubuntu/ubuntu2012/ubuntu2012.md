@@ -7,7 +7,7 @@
 
 @include(@src/public/enhance/guidance/environment/ubuntu/ubuntu2012/ubuntu2012-guidance.md{13-})
 
-# 1.安装Ubuntu操作系统
+# 1.安装Ubuntu操作系统 {#1.}
 @include(@src/public/enhance/guidance/environment/ubuntu/ubuntu2012/chapter/ubuntu2012-guidance-chapter1.md)
 
 ## 1.3.Ubuntu重要目录介绍
@@ -46,7 +46,7 @@
 	/swap 	/*交换区，建议大小：2g
 	/*主分区，剩下的空间全部分给这个分区
 	
-# 2.Ubuntu操作系统初始设置
+# 2.Ubuntu操作系统初始设置 {#2.}
 @include(@src/public/enhance/guidance/environment/ubuntu/ubuntu2012/chapter/ubuntu2012-guidance-chapter2.md)
 
 ## 2.3.配置静态IP地址
@@ -166,7 +166,8 @@ curl https://gitee.com/lingwh1995/config-center/raw/master/centos/centos-init.sh
 chmod +x centos-init.sh &&
 ./centos-init.sh
 ```
-# 3.Ubuntu搭建基础开发环境
+# 3.Ubuntu搭建基础开发环境 {#3.}
+@include(@src/public/enhance/guidance/environment/ubuntu/ubuntu2012/chapter/ubuntu2012-guidance-chapter3.md)
 
 ## 3.3.安装jdk
 	查看当前安装的java版本
@@ -359,7 +360,8 @@ update user set host='%' where user='root';
 flush privileges;
 ```
 
-# 4.UbuntuCentos搭建docker
+# 4.UbuntuCentos搭建docker {#4.}
+@include(@src/public/enhance/guidance/environment/ubuntu/ubuntu2012/chapter/ubuntu2012-guidance-chapter4.md)
 ## 4.3.安装docker
 ### 4.3.1.在线安装docker
 
@@ -1090,7 +1092,8 @@ systemctl restart firewalld
 sudo sysctl -w vm.max_map_count=262144
 ```
 
-# 5.UbuntuCentos搭建Rancher
+# 5.UbuntuCentos搭建Rancher {#5.}
+@include(@src/public/enhance/guidance/environment/ubuntu/ubuntu2012/chapter/ubuntu2012-guidance-chapter5.md)
 	下载rancher
 ```	
 docker pull rancher/server
@@ -1108,7 +1111,8 @@ docker run -di --name=rancher -p9003:8080 rancher/server:latest
 		#使用rancher扩容不能配置iip-address,否则会出问题
 		#ip-address: 192.168.0.4				
 
-# 6.UbuntuCentos搭建Minikube
+# 6.UbuntuCentos搭建Minikube {#6.}
+@include(@src/public/enhance/guidance/environment/ubuntu/ubuntu2012/chapter/ubuntu2012-guidance-chapter6.md)
 ## 6.3.minikube介绍
 	Minikube这个工具支持在虚拟机上运行一套单节点的k8s集群
 
@@ -1243,7 +1247,8 @@ minikube delete
 rm -rf ~/.minikube	
 ```
 
-# 7.Ubuntukubeadm搭建Kubernetes
+# 7.Ubuntukubeadm搭建Kubernetes {#7.}
+@include(@src/public/enhance/guidance/environment/ubuntu/ubuntu2012/chapter/ubuntu2012-guidance-chapter7.md)
 
 ## 7.3.特别说明
 	使用kubeadm搭建Kubernetes
@@ -1536,7 +1541,8 @@ watch kubectl get pods -n kuboard
 rm -rf /usr/share/kuboard
 ```
 
-# 8.Ubuntu二进制包搭建Kubernetes
+# 8.Ubuntu二进制包搭建Kubernetes {#8.}
+@include(@src/public/enhance/guidance/environment/ubuntu/ubuntu2012/chapter/ubuntu2012-guidance-chapter8.md)
 
 ## 8.3.环境配置清单
 	操作系统									centos7
@@ -4071,3 +4077,13 @@ kubectl expose deployment guestbook --type=NodePort --port=3000
 	查询端口映射
 ```
 kubectl get service guestbook
+```
+	NAME        TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+	guestbook   NodePort   10.10.10.253   <none>        3000:31208/TCP   1m
+	
+	访问服务（主节点和两个工作节点都可访问到这个服务）
+	http://192.168.0.6:31208
+	http://192.168.0.7:31208
+	http://192.168.0.8:31208
+ 
+		 

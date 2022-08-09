@@ -111,7 +111,7 @@ export default navbar([
   },
   {
     text: "环境搭建",
-    icon: "build",
+    icon: "shell",
     children: [
       { 
         text: "centos", 
