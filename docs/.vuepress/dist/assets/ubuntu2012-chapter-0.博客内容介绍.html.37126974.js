@@ -1,0 +1,12 @@
+import{_ as u,o,c,a as n,b as h,d as e,e as i,r as t}from"./app.b706ba55.js";const d={},s=h(`<h1 id="intro" tabindex="-1"><a class="header-anchor" href="#intro" aria-hidden="true">#</a> \u535A\u5BA2\u5185\u5BB9\u4ECB\u7ECD</h1><h2 id="\u535A\u5BA2\u5185\u5BB9\u6982\u8FF0" tabindex="-1"><a class="header-anchor" href="#\u535A\u5BA2\u5185\u5BB9\u6982\u8FF0" aria-hidden="true">#</a> \u535A\u5BA2\u5185\u5BB9\u6982\u8FF0</h2><pre><code>\u672C\u7BC7\u535A\u5BA2\u6D89\u53CA\u4E3B\u8981\u5185\u5BB9\u6709\uFF1A
+ 1.\u5B89\u88C5Ubuntu\u64CD\u4F5C\u7CFB\u7EDF
+ 2.Ubuntu\u64CD\u4F5C\u7CFB\u7EDF\u521D\u59CB\u8BBE\u7F6E
+ 3.Ubuntu\u642D\u5EFA\u57FA\u7840\u5F00\u53D1\u73AF\u5883
+ 4.UbuntuCentos\u642D\u5EFAdocker
+ 5.UbuntuCentos\u642D\u5EFARancher
+ 6.UbuntuCentos\u642D\u5EFAMinikube
+ 7.Ubuntukubeadm\u642D\u5EFAKubernetes
+ 8.Ubuntu\u4E8C\u8FDB\u5236\u5305\u642D\u5EFAKubernetes
+\u5177\u4F53\u6BCF\u4E2A\u7AE0\u8282\u4E2D\u5305\u542B\u7684\u5185\u5BB9\u53EF\u4F7F\u901A\u8FC7\u4E0B\u9762\u535A\u5BA2\u5185\u5BB9\u5927\u7EB2\u8FDB\u884C\u67E5\u770B\uFF0C\u535A\u5BA2\u5185\u5BB9\u4E2D\u56FE\u7247\u8F83\u5C11\uFF0C\u4E3B\u8981\u4EE5\u5B9E\u7528\u4E3A\u4E3B\uFF0C\u6240\u6709\u4EE3\u7801
+\u5747\u7ECF\u8FC7\u4E25\u683C\u6D4B\u8BD5\uFF0C\u53EF\u76F4\u63A5\u590D\u5236\u8FD0\u884C\u5373\u53EF\u3002
+</code></pre><h2 id="\u535A\u5BA2\u5185\u5BB9\u5927\u7EB2" tabindex="-1"><a class="header-anchor" href="#\u535A\u5BA2\u5185\u5BB9\u5927\u7EB2" aria-hidden="true">#</a> \u535A\u5BA2\u5185\u5BB9\u5927\u7EB2</h2><h3 id="\u7B80\u5355\u7248\u535A\u5BA2\u5185\u5BB9\u5927\u7EB2" tabindex="-1"><a class="header-anchor" href="#\u7B80\u5355\u7248\u535A\u5BA2\u5185\u5BB9\u5927\u7EB2" aria-hidden="true">#</a> \u7B80\u5355\u7248\u535A\u5BA2\u5185\u5BB9\u5927\u7EB2</h3>`,5),l=e("blockquote",null,null,-1),_=e("h3",{id:"\u8BE6\u7EC6\u7248\u535A\u5BA2\u5185\u5BB9\u5927\u7EB2",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#\u8BE6\u7EC6\u7248\u535A\u5BA2\u5185\u5BB9\u5927\u7EB2","aria-hidden":"true"},"#"),i(" \u8BE6\u7EC6\u7248\u535A\u5BA2\u5185\u5BB9\u5927\u7EB2")],-1),b=e("blockquote",null,null,-1);function m(p,f){const r=t("Banner"),a=t("Markmap");return o(),c("div",null,[n(r,{localtion:"/banner/particles/particles.html"}),s,n(a,{localtion:"/enhance/markmap/environment/ubuntu/ubuntu2012/ubuntu2012-outline2.html"}),l,_,n(a,{localtion:"/enhance/markmap/environment/ubuntu/ubuntu2012/ubuntu2012-outline3.html"}),b])}var x=u(d,[["render",m],["__file","ubuntu2012-chapter-0.\u535A\u5BA2\u5185\u5BB9\u4ECB\u7ECD.html.vue"]]);export{x as default};

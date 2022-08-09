@@ -17,6 +17,8 @@ icon: navigate
     - <a href="shardings">按照章节阅读</a>
 
 
+    - <a href="ubuntu2012-chapter-8.二进制包搭建Kubernetes.html">8.二进制包搭建Kubernetes</a>
+
         - <a href="shardings/ubuntu2012-chapter-0.博客内容介绍.html">博客内容介绍</a>
 
         - <a href="shardings/ubuntu2012-chapter-1.安装Ubuntu操作系统.html">1.安装Ubuntu操作系统</a>

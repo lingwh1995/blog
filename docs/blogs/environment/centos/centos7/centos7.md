@@ -5,7 +5,7 @@
 
 
 
-@include(@src/public/enhance/guidance/environment/centos/centos7/centos7-guidance.md{13-})
+@include(@src/public/enhance/guidance/environment/centos/centos7/centos7-guidance.md{18-})
 
 # 1.windows安装Linux操作系统 {#1.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter1.md)

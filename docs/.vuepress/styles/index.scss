@@ -15,17 +15,17 @@
 }
 #toc .toc-list .toc-item a {
     color: #B8860B;
-    font-size: 1.35rem;
+    font-size: 1.2rem;
     font-weight: 700;
 }
 #toc .toc-list .toc-list .toc-item a {
     color: #336699;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
 }
 #toc .toc-list .toc-list .toc-list .toc-item a {
     color: #008B8B;
-    font-size: 1.1rem;
+    font-size: 1.0rem;
     font-weight: 600;
 }
 #toc .toc-list .toc-list .toc-list .toc-list .toc-item a {
@@ -39,12 +39,14 @@
 .theme-hope-content {
     font-size: 1.4rem;
     color: #000000;
+    font-weight: 530;
 }
 .sidebar > .sidebar-links > li:not(:first-child) {
     margin-top: 0rem;
 }
 .sidebar > .sidebar-links .sidebar-group {
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: 550;
 }
 .sidebar > .sidebar-links > li a {
     font-weight: 500;

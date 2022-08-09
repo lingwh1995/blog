@@ -1,6 +1,6 @@
 ---
 title: 在Centos7上搭建开发环境-6.Centos搭建Minikube
-description: 本章节涉及主要内容有：$CHAPTER_CONTENT_INTRO具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：minikube介绍,版本说明,开启Vmware虚拟化,安装kubectl	,安装minikube,使用阿里云加速docker hub,启动minikube,minikube常用命令	,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -13,6 +13,10 @@ tag:
   - k8s网络插件
   - k8s可视化
 date: 2020-01-28
+head:
+  - - meta
+    - name: keywords
+      content: 本章节涉及主要内容有：minikube介绍,版本说明,开启Vmware虚拟化,安装kubectl	,安装minikube,使用阿里云加速docker hub,启动minikube,minikube常用命令	,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 6.Centos搭建Minikube

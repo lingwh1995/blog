@@ -15,6 +15,8 @@ icon: navigate
 - centos7
 
 
+    - <a href="centos7-chapter-.html">centos7-chapter-</a>
+
     - <a href="shardings">按照章节阅读</a>
 
         - <a href="shardings/centos7-chapter-0.博客内容介绍.html">博客内容介绍</a>

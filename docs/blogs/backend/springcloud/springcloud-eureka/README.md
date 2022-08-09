@@ -17,6 +17,8 @@ icon: navigate
     - <a href="shardings">按照章节阅读</a>
 
 
+    - <a href="springcloud-eureka-chapter-8.Ubuntu二进制包搭建Kubernetes.html">8.Ubuntu二进制包搭建Kubernetes</a>
+
         - <a href="shardings/springcloud-eureka-chapter-0.博客内容介绍.html">博客内容介绍</a>
 
         - <a href="shardings/springcloud-eureka-chapter-1.安装SpringCloud-Eureka操作系统.html">1.安装SpringCloud-Eureka操作系统</a>

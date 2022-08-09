@@ -1,6 +1,6 @@
 ---
 title: springcloud-eureka合集-8.SpringCloud-Eureka二进制包搭建Kubernetes
-description: 本章节涉及主要内容有：$CHAPTER_CONTENT_INTRO具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：环境配置清单,服务器规划和IP地址规划,安装前准备工作,安装cfssl证书生成工具,搭建etcd集群,安装配置Docker,搭建kube-apiserver,在Master Node1上部署kube-controller-manager,部署kube-scheduler,使用kubectl查看集群状态,在Master Node1上部署第一个Worker Node,增加Worker Node,增加Master2节点,部署Nginx+Keepalived高可用负载均衡器,部署常见问题,部署测试程序,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -21,6 +21,10 @@ tag:
   - keepalive
   - 高可用
 date: 2020-02-27
+head:
+  - - meta
+    - name: keywords
+      content: 本章节涉及主要内容有：环境配置清单,服务器规划和IP地址规划,安装前准备工作,安装cfssl证书生成工具,搭建etcd集群,安装配置Docker,搭建kube-apiserver,在Master Node1上部署kube-controller-manager,部署kube-scheduler,使用kubectl查看集群状态,在Master Node1上部署第一个Worker Node,增加Worker Node,增加Master2节点,部署Nginx+Keepalived高可用负载均衡器,部署常见问题,部署测试程序,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 8.SpringCloud-Eureka二进制包搭建Kubernetes

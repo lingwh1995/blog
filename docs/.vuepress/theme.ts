@@ -138,7 +138,10 @@ export default hopeTheme({
        * Using Waline
        */
       provider: "Waline",
-      serverURL: "https://waline-test-90exfa19s-lingwh1995.vercel.app/",
+      serverURL: "https://discuss-waline-qzh21gpbj-lingwh1995.vercel.app/",
+      meta: ['nick', 'mail', 'link'],
+      //是否waline的版权信息
+      copyright: false
     },
     mdEnhance: {
       //启用全部的md增强功能
@@ -191,16 +194,17 @@ export default hopeTheme({
       author: "lingwh",
       hostname: "https://github.com/lingwh1995",
       license: "Copyright 2021 © open linux lingwh",
-      triggerWords: 50,
+      triggerWords: 200,
       global: true,
-      disableCopy: true,
-      disableSelection: true
-    }
+      disableCopy: false,
+      disableSelection: false
+    },
+    /**是否开启seo*/
+    seo: true
   },
-  // 默认值: true,没发现有什么用
-  activeHeaderLinks: true,
   //当用户通过滚动查看页面的不同部分时，嵌套的标题链接和 URL 中的 Hash 值会实时更新，默认值: true,没发现有什么用
-  activeHash: true,
-  //侧边栏只会显示由当前活动页面的标题 (headers) 组成的链接
-  displayAllHeaders: true
+  activeHeaderLinks: true,
+  //切换页面时的进度条
+  nprogress: true,
+  pwa: true
 });

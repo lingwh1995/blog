@@ -1,6 +1,6 @@
 ---
 title: springcloud-eureka合集-1.安装SpringCloud-Eureka操作系统
-description: 本章节涉及主要内容有：$CHAPTER_CONTENT_INTRO具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：SpringCloud-Eureka重要目录介绍,SpringCloud-Eureka镜像下载,安装前Vmaware相关设置,安装时分区大小设置,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -11,6 +11,10 @@ tag:
   - 安装linux操作系统
   - centos
 date: 2020-01-05
+head:
+  - - meta
+    - name: keywords
+      content: 本章节涉及主要内容有：SpringCloud-Eureka重要目录介绍,SpringCloud-Eureka镜像下载,安装前Vmaware相关设置,安装时分区大小设置,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 1.安装SpringCloud-Eureka操作系统

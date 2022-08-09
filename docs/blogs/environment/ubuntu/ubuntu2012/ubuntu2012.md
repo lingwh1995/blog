@@ -5,7 +5,7 @@
 
 
 
-@include(@src/public/enhance/guidance/environment/ubuntu/ubuntu2012/ubuntu2012-guidance.md{13-})
+@include(@src/public/enhance/guidance/environment/ubuntu/ubuntu2012/ubuntu2012-guidance.md{18-})
 
 # 1.安装Ubuntu操作系统 {#1.}
 @include(@src/public/enhance/guidance/environment/ubuntu/ubuntu2012/chapter/ubuntu2012-guidance-chapter1.md)

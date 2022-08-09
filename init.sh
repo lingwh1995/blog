@@ -44,11 +44,16 @@ function writeFrontmatterForOriginal() {
     MD_FILE_ENSEMBLE_FRONTMATTER_TITLE=( $( parseIni ./config/config-$1.ini ensemble title) )
     echo "title: $MD_FILE_ENSEMBLE_FRONTMATTER_TITLE" >>  $2/$1.md
 
-    #抽取所有一级标题，合并起来作为博客内容概述的一部分
+    #抽取所有一级标题，作为博客正文中博客内容概述的中的内容
     BLOG_CONTENT_INTRO=`grep '^# [1-9][0-9]\?\.' $2/$1.md | cut -d. -f2 | tr '\r\n' ','`
     #写入 博客列表展示的description，这是地址栏上面的标题，同时也是博客列表中显示的标题
     BLOG_CONTENT_INTRO='本篇博客涉及主要内容有：'$BLOG_CONTENT_INTRO'具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。'
-    echo "description: $BLOG_CONTENT_INTRO" >>  $2/$1.md
+    
+    #抽取所有一级标题，以此为根据创建博客FRONTMATTER配置中description的值
+    BLOG_FRONTMATTER_DESCRIPTION=`grep '^# [1-9][0-9]\?\.'  $2/$1.md | cut -d '.' -f2 | tr '\r\n' ','`
+    BLOG_FRONTMATTER_DESCRIPTION='本章节涉及主要内容有：'$BLOG_FRONTMATTER_DESCRIPTION'具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。'
+
+    echo "description: $BLOG_FRONTMATTER_DESCRIPTION" >>  $2/$1.md
     
     #写入 右侧toc面板展示的标题深度
     #获取具体章节的的md文件中的Frontmatter选项配置信息中headerDepth的属性的值
@@ -59,9 +64,10 @@ function writeFrontmatterForOriginal() {
     #获取具体章节的的md文件中的Frontmatter选项配置信息中isOriginal的属性的值
     MD_FILE_ENSEMBLE_FRONTMATTER_ISORIGINAL=( $( parseIni ./config/config-$1.ini ensemble isOriginal) )
     echo "isOriginal: $MD_FILE_ENSEMBLE_FRONTMATTER_ISORIGINAL" >>  $2/$1.md
-    
+
     #写入分类信息
     #获取完整的章节的的md文件中的Frontmatter选项配置信息中category的属性的值
+
     MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORY=( $( parseIni ./config/config-$1.ini ensemble category) )
     echo "category:" >>  $2/$1.md
     ENSEMBLE_CATEGORY=(`echo $MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORY | tr ',' ' '` )
@@ -106,6 +112,14 @@ function writeFrontmatterForOriginal() {
     MD_FILE_ENSEMBLE_FRONTMATTER_ICON=( $( parseIni ./config/config-$1.ini ensemble icon) )
     echo "icon: $MD_FILE_ENSEMBLE_FRONTMATTER_ICON" >>  $2/$1.md
     
+    #写入SEO信息
+    #抽取所有一级标题，以此为根据创建博客正文内容中博客内容概述的文字，作为SEO的关键词
+    SEO_KEYWORDS=`grep '^# [1-9][0-9]\?\.'  $2/$1.md | cut -d '.' -f2 | tr '\r\n' ','`
+    echo "head:" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+    echo "  - - meta" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+    echo "    - name: keywords" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+    echo "      content: $SEO_KEYWORDS" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+
     echo "---" >>   $2/$1.md
     echo "" >>  $2/$1.md
 }
@@ -212,16 +226,22 @@ function generateGuidanceByMarkmapForOriginal() {
     #创建存放xxx.md成的guidance文件的文件夹
     mkdir -p $3
 
-    #抽取所有一级标题，合并起来作为博客内容概述的一部分
+    #抽取所有一级标题，以此为根据创建博客正文内容中博客内容概述的文字
     BLOG_CONTENT_INTRO=`grep '^# [1-9][0-9]\?\.' $2/$1.md | sed 's/#/    /g'`
-    #创建xxx-guidance.md，并写入博客guidance内容
+    #抽取所有一级标题，以此为根据创建博客FRONTMATTER配置中description的值
+    BLOG_FRONTMATTER_DESCRIPTION=`grep '^# [1-9][0-9]\?\.'  $2/$1.md | cut -d '.' -f2 | tr '\r\n' ','`
+    BLOG_FRONTMATTER_DESCRIPTION='本章节涉及主要内容有：'$BLOG_FRONTMATTER_DESCRIPTION'具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。'
 
     #获取完整的的md文件中的Frontmatter选项配置信息中的title属性的值
     MD_FILE_ENSEMBLE_FRONTMATTER_TITLE=( $( parseIni ./config/config-$1.ini ensemble title) )
+    
+    #抽取所有一级标题，以此为根据创建博客正文内容中博客内容概述的文字，作为SEO的关键词
+    SEO_KEYWORDS=`grep '^# [1-9][0-9]\?\.'  $2/$1.md | cut -d '.' -f2 | tr '\r\n' ','`
 
 cat > $3/$1-guidance.md  << EOF
 ---
-title: $MD_FILE_ENSEMBLE_FRONTMATTER_TITLE-0.$6
+title: $MD_FILE_ENSEMBLE_FRONTMATTER_TITLE-$6
+description: $BLOG_FRONTMATTER_DESCRIPTION
 headerDepth: 4
 isOriginal: true
 category:
@@ -230,6 +250,10 @@ copyright: false
 tag:
   - $6
 date: 2020-01-01
+head:
+  - - meta
+    - name: keywords
+      content: $SEO_KEYWORDS
 ---
 
 <Banner localtion="/banner/particles/particles.html"/>
@@ -447,9 +471,9 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
         echo "title: $MD_FILE_ENSEMBLE_FRONTMATTER_TITLE-$CHAPTER_NAME" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
         
         #抽取当前一级标题下所有二级标题，合并起来作为章节内容概述的一部分
-        CHAPTER_CONTENT_INTRO=`grep '^## '"$i"'\.' $2/$1.md | sed 's/#/\t/g'`
+        CHAPTER_CONTENT_INTRO=`grep '^## '"$i"'[0-9]\?\.' $2/$1.md | cut -d '.' -f3 | tr '\r\n' ','`
         #拼接完整的章节描述
-        CHAPTER_CONTENT_INTRO='本章节涉及主要内容有：$CHAPTER_CONTENT_INTRO具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。'
+        CHAPTER_CONTENT_INTRO='本章节涉及主要内容有：'$CHAPTER_CONTENT_INTRO'具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。'
         #写入 具体章节的描述信息
         #获取具体章节的的md文件中的Frontmatter选项配置信息中description的属性的值
         echo "description: $CHAPTER_CONTENT_INTRO" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
@@ -500,8 +524,18 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
         MD_FILE_CHAPTER_FRONTMATTER_DATE=( $( parseIni ./config/config-$1.ini chapter-$i date) )
         echo "date: $MD_FILE_CHAPTER_FRONTMATTER_DATE" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
         
+        SEO_KEYWORDS=$CHAPTER_CONTENT_INTRO
+        
+        #写入seo信息
+        echo "head:" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+        echo "  - - meta" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+        echo "    - name: keywords" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+        echo "      content: $SEO_KEYWORDS" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+
         echo "---" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
         echo "" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+
+
         echo '完成为'$1'.md生成分片文件写入Frontmatter配置信息................................................'
 
         echo '开始为'$1'.md生成分片文件写入正文内容................................................'

@@ -1,5 +1,6 @@
 ---
-title: 在Centos7上搭建开发环境-0.博客内容介绍
+title: 在Centos7上搭建开发环境-博客内容介绍
+description: 本章节涉及主要内容有：windows安装Linux操作系统,Linux操作系统初始设置,搭建基础开发环境,Centos搭建docker,Centos搭建Rancher,Centos搭建Minikube,kubeadm搭建Kubernetes,二进制包搭建Kubernetes,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -9,6 +10,10 @@ copyright: false
 tag:
   - 博客内容介绍
 date: 2020-01-01
+head:
+  - - meta
+    - name: keywords
+      content: windows安装Linux操作系统,Linux操作系统初始设置,搭建基础开发环境,Centos搭建docker,Centos搭建Rancher,Centos搭建Minikube,kubeadm搭建Kubernetes,二进制包搭建Kubernetes,
 ---
 
 <Banner localtion="/banner/particles/particles.html"/>

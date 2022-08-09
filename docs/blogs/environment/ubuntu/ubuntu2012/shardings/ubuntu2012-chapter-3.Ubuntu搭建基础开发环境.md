@@ -1,6 +1,6 @@
 ---
 title: 在Ubuntu2012上搭建开发环境-3.Ubuntu搭建基础开发环境
-description: 本章节涉及主要内容有：$CHAPTER_CONTENT_INTRO具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：安装jdk,安装maven,Ubuntu安装mysql,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -12,6 +12,10 @@ tag:
   - maven
   - mysql
 date: 2020-01-15
+head:
+  - - meta
+    - name: keywords
+      content: 本章节涉及主要内容有：安装jdk,安装maven,Ubuntu安装mysql,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 3.Ubuntu搭建基础开发环境
