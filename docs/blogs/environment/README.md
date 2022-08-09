@@ -19,8 +19,6 @@ icon: navigate
         - <a href="centos/centos7">centos7</a>
 
 
-            - <a href="centos/centos7/centos7-chapter-.html">centos7-chapter-</a>
-
             - <a href="centos/centos7/shardings">按照章节阅读</a>
 
                 - <a href="centos/centos7/shardings/centos7-chapter-0.博客内容介绍.html">博客内容介绍</a>
@@ -50,8 +48,6 @@ icon: navigate
 
             - <a href="ubuntu/ubuntu2012/shardings">按照章节阅读</a>
 
-
-            - <a href="ubuntu/ubuntu2012/ubuntu2012-chapter-8.二进制包搭建Kubernetes.html">8.二进制包搭建Kubernetes</a>
 
                 - <a href="ubuntu/ubuntu2012/shardings/ubuntu2012-chapter-0.博客内容介绍.html">博客内容介绍</a>
 

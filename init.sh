@@ -115,10 +115,10 @@ function writeFrontmatterForOriginal() {
     #写入SEO信息
     #抽取所有一级标题，以此为根据创建博客正文内容中博客内容概述的文字，作为SEO的关键词
     SEO_KEYWORDS=`grep '^# [1-9][0-9]\?\.'  $2/$1.md | cut -d '.' -f2 | tr '\r\n' ','`
-    echo "head:" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-    echo "  - - meta" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-    echo "    - name: keywords" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-    echo "      content: $SEO_KEYWORDS" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+    echo "head:" >>   $2/$1.md
+    echo "  - - meta" >>   $2/$1.md
+    echo "    - name: keywords" >>   $2/$1.md
+    echo "      content: $SEO_KEYWORDS" >>  $2/$1.md
 
     echo "---" >>   $2/$1.md
     echo "" >>  $2/$1.md
@@ -444,7 +444,7 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
     
     for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
     do
-        echo '开始为'$1'.md生成分片文件写入Frontmatter配置信息................................................'
+        echo '开始为'$1'.md生成的分片文件写入Frontmatter配置信息................................................'
         #获取章节起始行数
         CHAPTER_START_LINE_NUMBER=`grep -n '^# '"$i"'\.' $2/$1.md | cut -d ':' -f 1`
         echo '章节'$i'起始行数：'$CHAPTER_START_LINE_NUMBER
@@ -536,9 +536,9 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
         echo "" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
 
 
-        echo '完成为'$1'.md生成分片文件写入Frontmatter配置信息................................................'
+        echo '完成为'$1'.md生成的分片文件写入Frontmatter配置信息................................................'
 
-        echo '开始为'$1'.md生成分片文件写入正文内容................................................'
+        echo '开始为'$1'.md生成的分片文件写入正文内容................................................'
         #根据行号将内容输出到文件
         sed -n ''"$CHAPTER_START_LINE_NUMBER"','"$CHAPTER_END_LINE_NUMBER"'p' $2/$1.md >> $2/$3/$1-chapter-$CHAPTER_NAME.md
         echo '完成为'$1'.md生成分片文件写入正文内容................................................'
@@ -559,12 +559,6 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
 EOF
 
 function generateSidebarConfigForAllAndSetAnchorForOriginal() {
-   echo 'text here'-$1
-   echo 'text here'-$2
-   echo 'text here'-$3
-   echo 'text here'-$4
-   echo 'text here'-$5
-   echo 'text here'-$6
    
     echo '开始为'$1'.为md文件和md文件拆分的所有章节md文件生成侧边栏配置........................................................................'
 
@@ -980,6 +974,7 @@ function enhance() {
     generateBreadcrumbREADME $MD_FILE_NAME $MD_FILE_RELATIVE_PATH $MD_FILE_CHAPTER_SHARDINGS_FOLDER_NAME
     #--------------------------------------------------------------------------------------------------------------
 
+
     echo '完成增强'$2'目录下'$1'.md文件.............................................................................................................................'
 }
 
@@ -995,7 +990,7 @@ function mergeSidebarJsonAndBreadcrumbREADMEShardings() {
     echo '开始合并'$2'目录下'$1'.md文件的sidebar使用的配置json和breadcrumb使用的README.............................................................................................................................'
     
     #合并所有的sidebar配置json
-        #存放生成的sidebar配置json文件的路径的路径前缀    
+    #存放生成的sidebar配置json文件的路径的路径前缀    
     MD_FILE_SIDEBAR_CONFIG_TARGET_PATH_PREFIX="enhance/config"
     MD_FILE_SIDEBAR_CONFIG_TARGET_BASE_PATH="docs/.vuepress/public/$MD_FILE_SIDEBAR_CONFIG_TARGET_PATH_PREFIX"
     # 生成的所有chapter文件存放的目录路径
@@ -1099,7 +1094,8 @@ function test() {
     #--------------------------------------------------------------------------------------------------------------
     MD_FILE_CHAPTER_SHARDINGS_FOLDER_NAME=shardings
     #shardings文件所在的相对路径
-    generateBreadcrumbREADME $MD_FILE_NAME $MD_FILE_RELATIVE_PATH $MD_FILE_CHAPTER_SHARDINGS_FOLDER_NAME
+    #generateBreadcrumbREADME $MD_FILE_NAME $MD_FILE_RELATIVE_PATH $MD_FILE_CHAPTER_SHARDINGS_FOLDER_NAME
+    generateOutLineAndTransformOutLineToMarkmapForOriginal $1 $2 
 }
 
 function init() {
