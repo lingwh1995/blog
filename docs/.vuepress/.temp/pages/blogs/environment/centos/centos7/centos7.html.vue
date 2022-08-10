@@ -1,5 +1,4 @@
-<template><div><div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code><span class="token comment">//@include(./Account.java)</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><Banner localtion="/banner/particles/particles.html"/>
+<template><div><Banner localtion="/banner/particles/particles.html"/>
 <h1 id="intro" tabindex="-1"><a class="header-anchor" href="#intro" aria-hidden="true">#</a> 博客内容介绍</h1>
 <h2 id="博客内容概述" tabindex="-1"><a class="header-anchor" href="#博客内容概述" aria-hidden="true">#</a> 博客内容概述</h2>
 <pre><code>本篇博客涉及主要内容有：
@@ -35,7 +34,8 @@
 </code></pre>
 <h2 id="_1-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_1-2-章节内容大纲" aria-hidden="true">#</a> 1.2.章节内容大纲</h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter1.html"/>
-<h2 id="_1-3-linux重要目录介绍" tabindex="-1"><a class="header-anchor" href="#_1-3-linux重要目录介绍" aria-hidden="true">#</a> 1.3.Linux重要目录介绍</h2>
+<div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code><span class="token comment">//@include(./Account.java)</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_1-3-linux重要目录介绍" tabindex="-1"><a class="header-anchor" href="#_1-3-linux重要目录介绍" aria-hidden="true">#</a> 1.3.Linux重要目录介绍</h2>
 <pre><code>/usr → C:/Windows/ /*系统级的目录
 /usr/lib → C:/Windows/System32
 /usr/local → C:/Progrem Files/ /*用户级的程序目录，用户自己编译的软件默认会安装到这个目录下

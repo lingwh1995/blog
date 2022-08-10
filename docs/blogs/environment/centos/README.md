@@ -9,7 +9,7 @@ category:
 - 占位符 
 tag:
 - 网站地图
-icon: navigate 
+icon: navigate
 ---
 
 - centos

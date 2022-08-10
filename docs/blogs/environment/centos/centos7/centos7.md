@@ -1,14 +1,62 @@
-```java
-//@include(./Account.java)
-```
+---
+title: 在Centos7上搭建开发环境-章节内容合集
+description: 本章节涉及主要内容有：具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+headerDepth: 4
+isOriginal: true
+category:
+  - 环境搭建
+star: 1
+copyright: false
+tag:
+  - linux
+  - centos
+  - 环境搭建
+  - 安装linux操作系统
+  - centos
+  - yaml源
+  - 设置环境变量
+  - jdk
+  - maven
+  - mysql
+  - docker
+  - docker私服
+  - harbor
+  - docker可视化
+  - rancher
+  - 容器管理
+  - minikube
+  - k8s网络插件
+  - k8s可视化
+  - kubeadm搭建k8s集群
+  - etcd集群
+  - kube-apiserver
+  - kube-controller-manager
+  - kube-scheduler
+  - kubectl
+  - nginx
+  - keepalive
+  - 高可用
+  - 二进制搭建k8s集群
+date: 2020-01-01
+sticky: 1
+icon: linux
+head:
+  - - meta
+    - name: keywords
+      content: windows安装Linux操作系统,Linux操作系统初始设置,搭建基础开发环境,Centos搭建docker,Centos搭建Rancher,Centos搭建Minikube,kubeadm搭建Kubernetes,二进制包搭建Kubernetes,
+---
 
 
 
 
-@include(@src/public/enhance/guidance/environment/centos/centos7/centos7-guidance.md{18-})
+
+@include(@src/public/enhance/guidance/environment/centos/centos7/centos7-guidance.md)
 
 # 1.windows安装Linux操作系统 {#1.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter1.md)
+```java
+//@include(./Account.java)
+```
 
 ## 1.3.Linux重要目录介绍
 

@@ -19,6 +19,9 @@ head:
 
 # 1.windows安装Linux操作系统
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter1.md)
+```java
+//@include(./Account.java)
+```
 
 ## 1.3.Linux重要目录介绍
 

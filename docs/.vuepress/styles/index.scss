@@ -15,22 +15,22 @@
 }
 #toc .toc-list .toc-item a {
     color: #B8860B;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 700;
 }
 #toc .toc-list .toc-list .toc-item a {
     color: #336699;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 600;
 }
 #toc .toc-list .toc-list .toc-list .toc-item a {
     color: #008B8B;
-    font-size: 1.0rem;
+    font-size: 1.1rem;
     font-weight: 600;
 }
 #toc .toc-list .toc-list .toc-list .toc-list .toc-item a {
     color: #92893bfd;
-    font-size: 1.0rem;
+    font-size: 1.1rem;
     font-weight: 600;
 }
 #toc .toc-item.active > .toc-link {
@@ -53,4 +53,60 @@
 }
 p, ul, ol {
     line-height: 1.0rem;
-}           
+}
+/*博客正文中样式中标签样式修改开始----------------------------------------------------------------------*/
+.page .page-title .page-info .tags-wrapper li {
+    width: 9.9rem;
+}
+.page .page-title .page-info .tags-wrapper li:nth-child(n) {
+    float:left;
+    display:inline;
+}
+.page .page-title .page-info .tags-wrapper li:nth-child(6n+1) {
+    clear:both;
+}
+.page .page-title .page-info .category-info {
+    width: 50%;
+}
+.page .page-title .page-info .reading-time-info {
+    width: 50%;
+}
+/*博客正文中样式中标签样式修改结束----------------------------------------------------------------------*/
+
+/*博客主页中样式中标签样式修改开始----------------------------------------------------------------------*/
+.blog-home .page-info .tags-wrapper li {
+    width: 10rem;
+}
+.blog-home .page-info .tags-wrapper li:nth-child(n) {
+    float:left;
+    display:inline;
+}
+.blog-home .page-info .tags-wrapper li:nth-child(4n+1) {
+    clear:both;
+}
+.blog-home .page-info .category-info {
+    width: 50%;
+}
+.blog-home .page-info .reading-time-info {
+    width: 50%;
+}
+/*博客主页中样式中标签样式修改结束----------------------------------------------------------------------*/
+
+/*博客主页中样式中标签样式修改开始----------------------------------------------------------------------*/
+.blog-page .article-wrapper .page-info .tags-wrapper li {
+    width: 10rem;
+}
+.blog-page .article-wrapper .page-info .tags-wrapper li:nth-child(n) {
+    float:left;
+    display:inline;
+}
+.blog-page .article-wrapper .page-info .tags-wrapper li:nth-child(4n+1) {
+    clear:both;
+}
+.blog-page .article-wrapper .page-info .category-info {
+    width: 50%;
+}
+.blog-page .article-wrapper .page-info .reading-time-info {
+    width: 50%;
+}
+/*博客主页中样式中标签样式修改结束----------------------------------------------------------------------*/
