@@ -6,7 +6,6 @@ isOriginal: true
 category:
   - 环境搭建
 star: 1
-copyright: false
 tag:
   - linux
   - centos
@@ -37,22 +36,17 @@ tag:
   - keepalive
   - 高可用
   - 二进制搭建k8s集群
-date: 2020-01-01
+date: 2021-03-01
 sticky: 1
 icon: linux
 head:
   - - meta
     - name: keywords
-      content: windows安装Linux操作系统,Linux操作系统初始设置,搭建基础开发环境,Centos搭建docker,Centos搭建Rancher,Centos搭建Minikube,kubeadm搭建Kubernetes,二进制包搭建Kubernetes,
+      content: 安装Linux操作系统,Linux操作系统初始设置,搭建基础开发环境,Centos搭建docker,Centos搭建Rancher,Centos搭建Minikube,kubeadm搭建Kubernetes,二进制包搭建Kubernetes,
 ---
-
-
-
-
-
 @include(@src/public/enhance/guidance/environment/centos/centos7/centos7-guidance.md)
 
-# 1.windows安装Linux操作系统 {#1.}
+# 1.安装Linux操作系统 {#1.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter1.md)
 ```java
 //@include(./Account.java)

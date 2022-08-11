@@ -53,13 +53,15 @@ export default hopeTheme({
   // sidebar
   sidebar: sidebar,
 
+  //全局关闭显示copyright，使用footer信息来充当copyright信息
+  copyright: false,
   //非首页页面页脚显示文字
-  footer: "Copyright 2021 © <a href='https://github.com/lingwh1995' target='_blank'>lingwh</a>",
+  footer: "Copyright 2021 © lingwh <a href='https://github.com/lingwh1995' target='_blank'>GITHUB</a> <a href='https://gitee.com/lingwh1995' target='_blank'>GITEE</a>",
   //是否开启显示页脚
   displayFooter: true,
-
+  
   //页面信息配置
-  pageInfo: ["Author", "Original", "Date", "Category", "Tag", "ReadingTime"],
+  pageInfo: ["Author", "Original", "Date", "ReadingTime", "Word", "Category", "Tag"],
   
   /**
    * 博客主页配置
@@ -82,7 +84,9 @@ export default hopeTheme({
     //是否将博客首页个人信息处头像裁剪成圆形
     roundAvatar: true,
     //点击博客主页时间线后出来的页面最顶部的文字
-    timeline: "时间线", 
+    timeline: "时间线",
+    //博客主页文章列表文章主要内容简介下面的显示的都有什么信息，配置顺序决定显示顺序
+    articleInfo: ["Author", "Original", "Date", "ReadingTime", "Word", "Category", "Tag", "PageView"],
   },
 
   //文章加密配置

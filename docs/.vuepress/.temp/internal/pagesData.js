@@ -5,8 +5,6 @@ export const pagesData = {
   "v-4e6db822": () => import(/* webpackChunkName: "v-4e6db822" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/cinema.html.js").then(({ data }) => data),
   // path: /
   "v-8daa1a0e": () => import(/* webpackChunkName: "v-8daa1a0e" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/index.html.js").then(({ data }) => data),
-  // path: /blogs/backend/
-  "v-00bf5692": () => import(/* webpackChunkName: "v-00bf5692" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/index.html.js").then(({ data }) => data),
   // path: /blogs/environment/
   "v-7cc98773": () => import(/* webpackChunkName: "v-7cc98773" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/index.html.js").then(({ data }) => data),
   // path: /blogs/environment/centos/
@@ -17,8 +15,8 @@ export const pagesData = {
   "v-c09c1298": () => import(/* webpackChunkName: "v-c09c1298" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/index.html.js").then(({ data }) => data),
   // path: /blogs/environment/centos/centos7/shardings/centos7-chapter-0.%E5%8D%9A%E5%AE%A2%E5%86%85%E5%AE%B9%E4%BB%8B%E7%BB%8D.html
   "v-0d8f245b": () => import(/* webpackChunkName: "v-0d8f245b" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/shardings/centos7-chapter-0.博客内容介绍.html.js").then(({ data }) => data),
-  // path: /blogs/environment/centos/centos7/shardings/centos7-chapter-1.windows%E5%AE%89%E8%A3%85Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html
-  "v-d9d17798": () => import(/* webpackChunkName: "v-d9d17798" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/shardings/centos7-chapter-1.windows安装Linux操作系统.html.js").then(({ data }) => data),
+  // path: /blogs/environment/centos/centos7/shardings/centos7-chapter-1.%E5%AE%89%E8%A3%85Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html
+  "v-bda10792": () => import(/* webpackChunkName: "v-bda10792" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/shardings/centos7-chapter-1.安装Linux操作系统.html.js").then(({ data }) => data),
   // path: /blogs/environment/centos/centos7/shardings/centos7-chapter-2.Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E8%AE%BE%E7%BD%AE.html
   "v-69d1afba": () => import(/* webpackChunkName: "v-69d1afba" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/shardings/centos7-chapter-2.Linux操作系统初始设置.html.js").then(({ data }) => data),
   // path: /blogs/environment/centos/centos7/shardings/centos7-chapter-3.%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html

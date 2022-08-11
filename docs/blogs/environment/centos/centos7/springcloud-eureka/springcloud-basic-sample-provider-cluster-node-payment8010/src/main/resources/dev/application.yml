@@ -1,0 +1,5 @@
+#设置spring项目运行的环境
+spring:
+  profiles:
+    active: '@profile.active@'
+

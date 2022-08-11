@@ -1,0 +1,20 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: SPRINGCLOUD-ROUTER-CONNECT-LOADBALANCE-HARDCODE-GATEWAY9527
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true #开启从注册中心动态创建路由的功能，利用微服务名进行路由
+
+eureka:
+  instance:
+    hostname: ${spring.application.name}
+  client: #服务提供者provider注册进eureka服务列表内
+    service-url:
+      register-with-eureka: true
+      fetch-registry: true
+      defaultZone: http://localhost:7001/eureka

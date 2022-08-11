@@ -1,0 +1,230 @@
+EurekaServer注册中心搭建:
+1.单机版注册中心
+    1>.pom.xml引入依赖
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            </dependency>
+            <!--引入公共的工程-->
+            <dependency>
+                <groupId>org.openatom</groupId>
+                <artifactId>springcloud-api-commons</artifactId>
+            </dependency>
+        </dependencies>
+    2>.yml添加配置
+        server:
+          port: 7001 #访问端口
+        spring:
+          application:
+            name: SPRINGCLOUD-REGISTER-CENTER-SINGLE-NODE7001  #注意:服务名不要出现_
+          devtools: #热部署开关
+            restart:
+              enabled: true
+        eureka:
+          instance:
+            hostname: localhost
+          client:
+            register-with-eureka: true #不向注册中心注册自己
+            fetch-registry: false #表示自己就是注册中心,我的职责就是维护实例,不需要去检索服务
+            service-url:
+              defaultZone: http://localhost:7001/eureka
+          server:
+            enable-self-preservation: true #是否开启自我保护,true:服务失效不直接剔除,false:服务失效直接剔除
+            eviction-interval-timer-in-ms: 2000 #默认发送心跳的时间间隔,单位为ms
+    3>.编写主启动类并添加注解:
+        @SpringBootApplication
+        @EnableEurekaServer
+        public class RegisterCcenterSingleNode7001 {
+            public static void main(String[] args) {
+                SpringApplication.run(RegisterCcenterSingleNode7001.class,args);
+            }
+        }
+    4>.EurekaServer单节点访问路径
+        http://localhost:7001
+2.集群版注册中心
+    1>.pom.xml引入依赖
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            </dependency>
+            <!--引入公共的工程-->
+            <dependency>
+                <groupId>org.openatom</groupId>
+                <artifactId>springcloud-api-commons</artifactId>
+            </dependency>
+        </dependencies>
+    2>.yml添加配置
+        1>>.7002节点
+            server:
+              port: 7002 #访问端口
+            spring:
+              application:
+                name: SPRINGCLOUD-REGISTER-CENTER-CLUSTER-NODE7002 #注意:服务名不要出现_
+              devtools: #热部署开关
+                restart:
+                  enabled: true
+            eureka:
+              instance:
+                hostname: eureka7002
+              client:
+                register-with-eureka: false #不向注册中心注册自己
+                fetch-registry: false #表示自己就是注册中心,我的职责就是维护实例,不需要去检索服务
+                service-url: #把当前eureka7002注册到其他两个注册中心eureka7003、eureka7004中
+                  defaultZone: http://eureka7003:7003/eureka,http://eureka7004:7004/eureka
+              server:
+                enable-self-preservation: false #是否开启自我保护,true:服务失效不直接剔除,false:服务失效直接剔除
+                eviction-interval-timer-in-ms: 2000 #默认发送心跳的时间间隔,单位为ms
+        2>>.7003节点
+            server:
+              port: 7003 #访问端口
+            spring:
+              application:
+                name: SPRINGCLOUD-REGISTER-CENTER-CLUSTER-NODE7003  #注意:服务名不要出现_
+              devtools: #热部署工具
+                restart:
+                  enabled: true
+            eureka:
+              instance:
+                hostname: eureka7003
+              client:
+                register-with-eureka: false #不向注册中心注册自己
+                fetch-registry: false #表示自己就是注册中心,我的职责就是维护实例,不需要去检索服务
+                service-url: #把当前eureka7003注册到其他两个注册中心eureka7002、eureka7004中
+                  defaultZone: http://eureka7002:7002/eureka,http://eureka7004:7004/eureka
+              server:
+                enable-self-preservation: false #是否开启自我保护,true:服务失效不直接剔除,false:服务失效直接剔除
+                eviction-interval-timer-in-ms: 2000 #默认发送心跳的时间间隔,单位为ms
+        3>>.7004节点
+            server:
+              port: 7004 #访问端口
+            spring:
+              application:
+                name: SPRINGCLOUD-REGISTER-CENTER-CLUSTER-NODE7004   #注意:服务名不要出现_
+              devtools: #热部署工具
+                restart:
+                  enabled: true
+            eureka:
+              instance:
+                hostname: eureka7004
+              client:
+                register-with-eureka: false #不向注册中心注册自己
+                fetch-registry: false #表示自己就是注册中心,我的职责就是维护实例,不需要去检索服务
+                service-url: #把当前eureka7004注册到其他两个注册中心eureka7002、eureka7003中
+                  defaultZone: http://eureka7002:7002/eureka,http://eureka7003:7003/eureka
+              server:
+                enable-self-preservation: false #是否开启自我保护,true:服务失效不直接剔除,false:服务失效直接剔除
+                eviction-interval-timer-in-ms: 10000 #默认发送心跳的时间间隔,单位为ms
+    3>.修改host文件,C:\Windows\System32\drivers\etc\host
+        添加如下内容:
+        127.0.0.1		eureka7002
+        127.0.0.1		eureka7003
+        127.0.0.1		eureka7004
+    4>.编写主启动类并添加注解:
+        1>>.7002节点
+            @SpringBootApplication
+            @EnableEurekaServer
+            public class RegisterCcenterClusterNode7002 {
+                public static void main(String[] args) {
+                    SpringApplication.run(RegisterCcenterClusterNode7002.class,args);
+                }
+            }
+        2>>.7003节点
+            @SpringBootApplication
+            @EnableEurekaServer
+            public class RegisterCcenterClusterNode7003 {
+                public static void main(String[] args) {
+                    SpringApplication.run(RegisterCcenterClusterNode7003.class,args);
+                }
+            }
+        3>>.7004节点
+            @SpringBootApplication
+            @EnableEurekaServer
+            public class RegisterCcenterClusterNode7004 {
+                public static void main(String[] args) {
+                    SpringApplication.run(RegisterCcenterClusterNode7004.class,args);
+                }
+            }
+    5>.EurekaServer集群访问路径
+        eureka7002:7002: 查看集群是否生效:DS Replicas值为eureka7003、eureka7004
+        eureka7003:7003: 查看集群是否生效:DS Replicas值为eureka7002、eureka7004
+        eureka7004:7004: 查看集群是否生效:DS Replicas值为eureka7002、eureka7003
+
+EurekaClient搭建步骤
+ 1>.pom.xml引入依赖
+     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!--引入公共的工程-->
+        <dependency>
+            <groupId>org.openatom</groupId>
+            <artifactId>springcloud-api-commons</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+    </dependencies>
+    2>.yml添加配置
+        server:
+          port: 80
+        spring:
+            application:
+                name: SPRINGCLOUD-CONSUMER-LOADBALANCE-DEFAULT-ORDER80 #注意:服务名不要出现_
+            devtools:
+              restart:
+                enabled: true
+            logging:
+              level: info
+
+        eureka:
+          client:
+            register-with-eureka: true  #表示是否将自己注册进EurekaServer默认为true。
+            fetchRegistry: true  #是否从EurekaServer抓取已有的注册信息，默认为true。服务提供者是单节点无所谓，是集群必须设置为true才能配合ribbon使用负载均衡，否则报异常No instances available for SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER
+            service-url:
+              #单机版
+              defaultZone: http://localhost:7001/eureka
+              #集群版
+              #defaultZone: http://eureka7002:7002/eureka,http://eureka7003:7003/eureka,http://eureka7004:7004/eureka
+          instance:
+            instance-id: SPRINGCLOUD-CONSUMER-LOADBALANCE-DEFAULT-ORDER80 #Eureka仪表盘中Instances currently registered with Eureka.Status显示的内容
+            prefer-ip-address: false #访问路径可以显示IP地址，点击Eureka仪表盘中Instances currently registered with Eureka.Status显示的内容地址栏是否显示IP地址
+
+        #服务提供方信息
+        service:
+          provider:
+            name: SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER  #服务提供方名称
+            url: http://${service.provider.name} #服务提供方调用地址
+    3>.编写著启动类并添加注解:
+        @SpringBootApplication
+        @EnableEurekaClient
+        public class OrderServiceConsumerLoadBalanceDefault80 {
+            public static void main(String[] args) {
+                SpringApplication.run(OrderServiceConsumerLoadBalanceDefault80.class, args);
+            }
+        }
+    4.访问地址
+        http://localhost/consumer/payment/get/1

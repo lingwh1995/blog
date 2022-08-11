@@ -7,5 +7,4 @@ bgImage: /images/blogbg-08.jpg
 bgImageStyle: {height: 25rem}
 heroFullScreen: false
 layout: Blog
-copyright: false
 ---

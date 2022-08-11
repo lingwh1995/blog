@@ -6,7 +6,6 @@ isOriginal: true
 category:
   - 环境搭建
 star: false
-copyright: false
 tag:
   - yaml源
   - 设置环境变量

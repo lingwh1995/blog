@@ -1,0 +1,42 @@
+1..微服务集成ELK
+    1>.pom.xml中添加
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>5.2</version>
+        </dependency>
+    2>.logback-spring.xml配置日志推送到logstah
+        <?xml version="1.0" encoding="UTF-8"?>
+        <configuration>
+            <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+            <!--输出到控制台-->
+            <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+                <encoder>
+                    <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+                </encoder>
+            </appender>
+
+            <appender name="stash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+                 <!--  logstash服务器地址-->
+                <destination>192.168.119.129:5044</destination>
+                <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+            </appender>
+
+
+            <root  level="info" additivity="false">
+                <appender-ref ref="console"/>
+                <appender-ref ref="stash"/>
+            </root>
+
+        </configuration>
+2.测试效果
+    启动程序进行访问，程序就会把日志自动发送到 192.168.0.4:5044 服务器中。通过kibana可视化工具进行分析。
+    这里我们点击：Discover ->Create Index pattern ->打开 Include System ->设置index pattern值为*
+    ->点击Next Step ->选择@timestamp ->点击Create Index Pattern ->再次点击Discover 就可以看到日志数据
+3.本教程网址:https://blog.csdn.net/u014494148/article/details/124260528
+
+
+
+
+

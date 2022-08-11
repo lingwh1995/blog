@@ -1,16 +1,18 @@
 <template><div><h1 id="_4-centos搭建docker" tabindex="-1"><a class="header-anchor" href="#_4-centos搭建docker" aria-hidden="true">#</a> 4.Centos搭建docker</h1>
 <h2 id="_4-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_4-1-章节内容概述" aria-hidden="true">#</a> 4.1.章节内容概述</h2>
 <pre><code>本章节涉及主要内容有：
- 4.1.安装docker
- 4.2.docker启动故障解决		
- 4.3.docker容器可视化	
- 4.4.搭建docke私服
- 4.4.1搭建docke官方私服（不带有用户名和密码校验）
- 4.4.2搭建docke官方私服（带有用户名和密码校验）	
- 4.4.3.搭建harbor私服
- 4.5.docker官方私服可视化
- 4.6.制作docker镜像并上传到私服
- 4.7.Docker中安装常用软件
+ 4.1.章节内容概述
+ 4.2.章节内容大纲
+ 4.3.安装docker
+ 4.4.docker启动故障解决		
+ 4.5.docker容器可视化	
+ 4.6.搭建docke私服
+ 4.6.1搭建docke官方私服（不带有用户名和密码校验）
+ 4.6.2搭建docke官方私服（带有用户名和密码校验）	
+ 4.6.3.搭建harbor私服
+ 4.7.docker官方私服可视化
+ 4.8.制作docker镜像并上传到私服
+ 4.9.Docker中安装常用软件
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
 均经过严格测试，可直接复制运行即可。
 </code></pre>

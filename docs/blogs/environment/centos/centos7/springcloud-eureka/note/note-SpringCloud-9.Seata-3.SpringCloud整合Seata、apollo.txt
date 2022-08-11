@@ -1,0 +1,131 @@
+以springcloud-provider-seata-storage8008项目为准
+1.修改pom.xml
+    <!--Apollo客户端-->
+    <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-client</artifactId>
+            <!--是否依赖传递:true,依赖不传递,false:依赖传递,这是maven的特性-->
+            <optional>true</optional>
+        </dependency>
+        <!-- seata -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.seata</groupId>
+                    <artifactId>seata-spring-boot-starter</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-spring-boot-starter</artifactId>
+        </dependency>
+    </dependencies>
+2.yml文件中新增加如下内容,包括seata相关配置和apollo相关配置
+#所有服务信息
+#所有服务信息:这是自定义的节点,和seata和项目无关
+    service:
+      seata-server:
+        name: seata-server
+    #所有服务信息:这是自定义的节点,和seata和项目无关
+    seata:
+      enabled: true
+      application-id: seata-account
+      # 客户端和服务端在同一个事务组
+      tx-service-group: my_test_tx_group
+      # 事务群组,配置项值为TC集群名,需要与服务端在Eureka中注册时使用的应用名称保持一致
+      service:
+        vgroup-mapping.my_test_tx_group: ${service.seata-server.name}
+      config:
+        type: apollo
+        apollo:
+          seata: default
+          cluster: default
+          appId: ${app.id}
+          apolloMeta: http://localhost:8080
+          apolloConfigService: http://localhost:8080
+          namespace: ${service.seata-server.name}
+      registry:
+        type: eureka
+        eureka:
+          serviceUrl: http://localhost:7001/eureka
+          application: ${service.seata-server.name}
+          weight: 1
+3.在resource下编写apollo-env.properties文件
+    内容:
+       dev.meta=http://localhost:8080
+       pro.meta=http://localhost:8081
+4.编写代理数据源配置类
+    @Configuration
+    public class DataSourceProxyConfig {
+
+        @Value("${mybatis.mapperLocations}")
+        private String mapperLocations;
+
+        @Bean
+        @ConfigurationProperties(prefix = "spring.datasource")
+        public DataSource druidDataSource(){
+            return new DruidDataSource();
+        }
+
+        @Bean
+        public DataSource dataSourceProxy(DataSource dataSource) {
+            return new DataSourceProxy(dataSource);
+        }
+
+        @Bean
+        public SqlSessionFactory sqlSessionFactoryBean(DataSource dataSourceProxy) throws Exception {
+            SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+            sqlSessionFactoryBean.setDataSource(dataSourceProxy);
+            sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(mapperLocations));
+            sqlSessionFactoryBean.setTransactionFactory(new SpringManagedTransactionFactory());
+            return sqlSessionFactoryBean.getObject();
+        }
+
+    }
+5.编写主启动类并添加注解并设置启动参数
+    @EnableApolloConfig
+    @EnableEurekaClient
+    @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)//取消数据源的自动创建
+    public class StorageServiceProviderSeatal8008 {
+        public static void main(String[] args) {
+            /**
+             * 注意:
+             *  1.下面的启动参数要以seata-server中的registry.conf中config.apollo{}的配置为准
+             *  2.这里的配置其实和yml中以及seata-server中的registry.conf中config.apollo{}的配置是一致的
+              */
+            System.setProperty("env","DEV");
+            System.setProperty("seata","default");
+            System.setProperty("apollo.cluster","default");
+            System.setProperty("seata.config.apollo.namespace","seata-server");
+            System.setProperty("apolloConfigService","dafult");
+            SpringApplication.run(StorageServiceProviderSeatal8008.class, args);
+        }
+    }
+5.测试效果
+    1>.测试seata:
+        访问:http://localhost/order/create?userId=1&productId=1&count=10&money=100
+        由于feign超时调用,所以会在调用account相关服务的时候报异常,浏览器页面会直接报错,seata会自动进行回滚
+    2>.测试apllo:
+        1>>.修改seata-server相关配置:
+            将apollo中seata-server命名空间中的
+                service.vgroupMapping.my_test_tx_group = seata-server
+                service.seata-server.grouplist = localhost:8091
+            修改为:
+                service.vgroupMapping.my_test_tx_group1 = seata-server
+                service.seata-server.grouplist1 = localhost:8091
+        2>>.修改项目相关配置,以为springcloud-provider-seata-storage8008项目为准(其他两个项目也是这样修改)
+            在apollo中springcloud-seata项目中建立命名空间为seata-storage的配置文件,写入如下内容:
+                seata.tx-service-group = my_test_tx_group1
+                seata.service.vgroup-mapping. my_test_tx_group1 = seata-sever
+        3>>.重启seata和三个项目看
+            1>>>.seata中是否成功注册了RM
+            2>>>.seata控制的分布式事务是否回滚成功
+            如果上面两个都成功,说明seata和apoloo完美继承,项目可以使用apollo,seata也可以使用apollo
+6.特别特别注意
+    使用Apollo监听器监听配置文件变化使得程序重启时一定要关闭devtools的热部署功能,否则会出问题
+      devtools:
+        restart:
+          enabled: false

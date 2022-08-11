@@ -11,7 +11,14 @@ export default defineUserConfig({
     [
         'link', // 设置 favicon.ico，注意图片放在 public 文件夹下
         { rel: 'icon', href: '/images/headshot.jpg' }
-    ]
+    ],
+    [
+      "link",
+      {
+        rel: "stylesheet",
+        href: "//at.alicdn.com/t/c/font_3564358_3dg2o8i7td6.css",
+      },
+    ],
   ],
   description: "此生挚爱万宝路的技术博客",
 

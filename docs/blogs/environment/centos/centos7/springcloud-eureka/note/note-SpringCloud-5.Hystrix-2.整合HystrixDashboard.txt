@@ -1,0 +1,132 @@
+Hystrix DashBoard搭建
+    1>.Hystrix DashBoard项目
+        1>>.pom添加依赖
+            <dependencies>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-web</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-actuator</artifactId>
+                </dependency>
+                <!--引入公共的工程-->
+                <dependency>
+                    <groupId>org.openatom</groupId>
+                    <artifactId>springcloud-api-commons</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-starter-openfeign</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+                </dependency>
+            </dependencies>
+        2>>.配置YML文件
+            server:
+              port: 9001
+            spring:
+              application:
+                name: SPRINGCLOUD-MOINTOR-HYSTRIX-DASHBOARD9001
+        3>>.主启动类添加注解
+            @SpringBootApplication
+            @EnableHystrixDashboard
+            public class MointorHystrixDashboard9001 {
+
+                public static void main(String[] args) {
+                    SpringApplication.run(MointorHystrixDashboard9001.class, args);
+                }
+            }
+    2>.被监控的项目
+        1>>.pom中添加配置
+             #Eureka依赖/8001项目(基础的服务提供方)/8002项目(基础的服务提供方)依赖 + hystrix相关依赖
+              <dependencies>
+                 <dependency>
+                     <groupId>org.springframework.boot</groupId>
+                     <artifactId>spring-boot-starter-web</artifactId>
+                 </dependency>
+                 <dependency>
+                     <groupId>org.springframework.boot</groupId>
+                     <artifactId>spring-boot-starter-actuator</artifactId>
+                 </dependency>
+                 <dependency>
+                     <groupId>com.alibaba</groupId>
+                     <artifactId>druid-spring-boot-starter</artifactId>
+                 </dependency>
+                 <dependency>
+                     <groupId>org.mybatis.spring.boot</groupId>
+                     <artifactId>mybatis-spring-boot-starter</artifactId>
+                 </dependency>
+                 <dependency>
+                     <groupId>org.springframework.boot</groupId>
+                     <artifactId>spring-boot-starter-jdbc</artifactId>
+                 </dependency>
+                 <dependency>
+                     <groupId>mysql</groupId>
+                     <artifactId>mysql-connector-java</artifactId>
+                 </dependency>
+                 <!--引入公共的工程-->
+                 <dependency>
+                     <groupId>org.openatom</groupId>
+                     <artifactId>springcloud-api-commons</artifactId>
+                 </dependency>
+                 <dependency>
+                     <groupId>org.springframework.cloud</groupId>
+                     <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+                 </dependency>
+                 <dependency>
+                     <groupId>org.springframework.cloud</groupId>
+                     <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+                 </dependency>
+             </dependencies>
+         2>>.写主启动类并给容器中注册Servlet
+            @EnableDiscoveryClient
+            @SpringBootApplication
+            @EnableCircuitBreaker//服务提供方端启用Hystrix
+            public class PaymentServiceProviderHystrixClusterNode8003 {
+
+                public static void main(String[] args) {
+                    SpringApplication.run(PaymentServiceProviderHystrixClusterNode8003.class, args);
+                }
+
+                /**
+                 *此配置是为了服务监控而配置，与服务容错本身无关，springcloud升级后的坑
+                 *ServletRegistrationBean因为springboot的默认路径不是"/hystrix.stream"，
+                 *只要在自己的项目里配置上下面的servlet就可以了
+                 */
+                @Bean
+                public ServletRegistrationBean getServlet() {
+                    HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
+                    ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
+                    registrationBean.setLoadOnStartup(1);
+                    registrationBean.addUrlMappings("/hystrix.stream");
+                    registrationBean.setName("HystrixMetricsStreamServlet");
+                    return registrationBean;
+                }
+            }
+        3>>.主启动类添加注解
+            @SpringBootApplication
+            @EnableHystrixDashboard
+            public class MointorHystrixDashboard9001 {
+
+                public static void main(String[] args) {
+                    SpringApplication.run(MointorHystrixDashboard9001.class, args);
+                }
+            }
+    3>.查看效果
+        Hystrix DashBoard主界面:
+            http://localhost:9001/hystrix
+        监控消费端80:
+            填写:http://localhost/hystrix.stream
+        监控服务提供端8003
+            填写:http://localhost:8003/hystrix.stream
+        填写后访问8003,然后刷新Hystrix DashBoard主界面即监控流量效访访问情况
+    4>.注意事项:
+        Hystrix DashBoard只能监控设置了服务降级或服务熔断的方法,未设置降级或者熔断的方法是无法监控到的,
+        也是说未设置降级和熔断的方法点击是不会和Hystrix DashBoard产生任何关系的

@@ -2,7 +2,7 @@
 <h1 id="intro" tabindex="-1"><a class="header-anchor" href="#intro" aria-hidden="true">#</a> 博客内容介绍</h1>
 <h2 id="博客内容概述" tabindex="-1"><a class="header-anchor" href="#博客内容概述" aria-hidden="true">#</a> 博客内容概述</h2>
 <pre><code>本篇博客涉及主要内容有：
- 1.windows安装Linux操作系统
+ 1.安装Linux操作系统
  2.Linux操作系统初始设置
  3.搭建基础开发环境
  4.Centos搭建docker
@@ -10,8 +10,7 @@
  6.Centos搭建Minikube
  7.kubeadm搭建Kubernetes
  8.二进制包搭建Kubernetes
-具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码
-均经过严格测试，可直接复制运行即可。
+具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 </code></pre>
 <h2 id="博客内容大纲" tabindex="-1"><a class="header-anchor" href="#博客内容大纲" aria-hidden="true">#</a> 博客内容大纲</h2>
 <h3 id="简单版博客内容大纲" tabindex="-1"><a class="header-anchor" href="#简单版博客内容大纲" aria-hidden="true">#</a> 简单版博客内容大纲</h3>
@@ -22,13 +21,15 @@
 <h3 id="详细版博客内容大纲" tabindex="-1"><a class="header-anchor" href="#详细版博客内容大纲" aria-hidden="true">#</a> 详细版博客内容大纲</h3>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/centos7-outline3.html"/>
 <blockquote></blockquote>
-<h1 id="1." tabindex="-1"><a class="header-anchor" href="#1." aria-hidden="true">#</a> 1.windows安装Linux操作系统</h1>
+<h1 id="1." tabindex="-1"><a class="header-anchor" href="#1." aria-hidden="true">#</a> 1.安装Linux操作系统</h1>
 <h2 id="_1-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_1-1-章节内容概述" aria-hidden="true">#</a> 1.1.章节内容概述</h2>
 <pre><code>本章节涉及主要内容有：
- 1.1.Linux重要目录介绍
- 1.2.Centos镜像下载
- 1.3.安装前Vmaware相关设置
- 1.3.安装时分区大小设置
+ 1.1.章节内容概述
+ 1.2.章节内容大纲
+ 1.3.Linux重要目录介绍
+ 1.4.Centos镜像下载
+ 1.5.安装前Vmaware相关设置
+ 1.5.安装时分区大小设置
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
 均经过严格测试，可直接复制运行即可。
 </code></pre>
@@ -72,12 +73,14 @@ VMware NetworkAdepter VMnet8：Host用于与NAT虚拟网络进行通信的虚拟
 <h1 id="2." tabindex="-1"><a class="header-anchor" href="#2." aria-hidden="true">#</a> 2.Linux操作系统初始设置</h1>
 <h2 id="_2-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_2-1-章节内容概述" aria-hidden="true">#</a> 2.1.章节内容概述</h2>
 <pre><code>本章节涉及主要内容有：
- 2.1.配置静态IP地址
- 2.2.解决远程连接无法连接的问题
- 2.3.设置系统环境变量
- 2.4.安装curl
- 2.5.配置yml源
- 2.6.安装常用基础系统软件
+ 2.1.章节内容概述
+ 2.2.章节内容大纲
+ 2.3.配置静态IP地址
+ 2.4.解决远程连接无法连接的问题
+ 2.5.设置系统环境变量
+ 2.6.安装curl
+ 2.7.配置yml源
+ 2.8.安装常用基础系统软件
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
 均经过严格测试，可直接复制运行即可。
 </code></pre>
@@ -171,9 +174,11 @@ yum -y install telnet-server
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h1 id="3." tabindex="-1"><a class="header-anchor" href="#3." aria-hidden="true">#</a> 3.搭建基础开发环境</h1>
 <h2 id="_3-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_3-1-章节内容概述" aria-hidden="true">#</a> 3.1.章节内容概述</h2>
 <pre><code>本章节涉及主要内容有：
- 3.1.安装jdk
- 3.2.安装maven
- 3.3.安装mysql
+ 3.1.章节内容概述
+ 3.2.章节内容大纲
+ 3.3.安装jdk
+ 3.4.安装maven
+ 3.5.安装mysql
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
 均经过严格测试，可直接复制运行即可。
 </code></pre>
@@ -333,16 +338,18 @@ flush privileges;
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h1 id="4." tabindex="-1"><a class="header-anchor" href="#4." aria-hidden="true">#</a> 4.Centos搭建docker</h1>
 <h2 id="_4-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_4-1-章节内容概述" aria-hidden="true">#</a> 4.1.章节内容概述</h2>
 <pre><code>本章节涉及主要内容有：
- 4.1.安装docker
- 4.2.docker启动故障解决		
- 4.3.docker容器可视化	
- 4.4.搭建docke私服
- 4.4.1搭建docke官方私服（不带有用户名和密码校验）
- 4.4.2搭建docke官方私服（带有用户名和密码校验）	
- 4.4.3.搭建harbor私服
- 4.5.docker官方私服可视化
- 4.6.制作docker镜像并上传到私服
- 4.7.Docker中安装常用软件
+ 4.1.章节内容概述
+ 4.2.章节内容大纲
+ 4.3.安装docker
+ 4.4.docker启动故障解决		
+ 4.5.docker容器可视化	
+ 4.6.搭建docke私服
+ 4.6.1搭建docke官方私服（不带有用户名和密码校验）
+ 4.6.2搭建docke官方私服（带有用户名和密码校验）	
+ 4.6.3.搭建harbor私服
+ 4.7.docker官方私服可视化
+ 4.8.制作docker镜像并上传到私服
+ 4.9.Docker中安装常用软件
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
 均经过严格测试，可直接复制运行即可。
 </code></pre>
@@ -955,6 +962,8 @@ max virtual memory areas vm.max_map_count [65530] is too low, increase to at lea
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="5." tabindex="-1"><a class="header-anchor" href="#5." aria-hidden="true">#</a> 5.Centos搭建Rancher</h1>
 <h2 id="_5-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_5-1-章节内容概述" aria-hidden="true">#</a> 5.1.章节内容概述</h2>
 <pre><code>本章节涉及主要内容有：
+ 5.1.章节内容概述
+ 5.2.章节内容大纲
 
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
 均经过严格测试，可直接复制运行即可。
@@ -979,14 +988,16 @@ eureka:
 <h1 id="6." tabindex="-1"><a class="header-anchor" href="#6." aria-hidden="true">#</a> 6.Centos搭建Minikube</h1>
 <h2 id="_6-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_6-1-章节内容概述" aria-hidden="true">#</a> 6.1.章节内容概述</h2>
 <pre><code>本章节涉及主要内容有：
- 6.1.minikube介绍
- 6.2.版本说明
- 6.3.开启Vmware虚拟化
- 6.4.安装kubectl	
- 6.5.安装minikube
- 6.6.使用阿里云加速docker hub
- 6.7.启动minikube
- 6.8.minikube常用命令	
+ 6.1.章节内容概述
+ 6.2.章节内容大纲
+ 6.3.minikube介绍
+ 6.4.版本说明
+ 6.5.开启Vmware虚拟化
+ 6.6.安装kubectl	
+ 6.7.安装minikube
+ 6.8.使用阿里云加速docker hub
+ 6.9.启动minikube
+ 6.10.minikube常用命令	
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
 均经过严格测试，可直接复制运行即可。
 </code></pre>
@@ -1105,24 +1116,26 @@ rcvboxdrv setup
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="7." tabindex="-1"><a class="header-anchor" href="#7." aria-hidden="true">#</a> 7.kubeadm搭建Kubernetes</h1>
 <h2 id="_7-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_7-1-章节内容概述" aria-hidden="true">#</a> 7.1.章节内容概述</h2>
 <pre><code>本章节涉及主要内容有：
- 7.1.特别说明
- 7.2.所有节点设置对应主机名
- 7.3.所有节点修改hosts
- 7.4.所有节点关闭SELinux
- 7.5.所有节点关闭防火墙
- 7.6.所有节点安装docker
- 7.7.所有节点安装k8s所需组件
- 7.8.所有节点启动kubelet和docker
- 7.9.所有关闭swap
- 7.10.用kubeadm 初始化集群
- 7.11.其他节点连接到Master节点
- 7.12.在master节点上查看集群
- 7.13.安装网络插件
- 7.14.在master上查看集群节点			
- 7.15.启动故障解决
- 7.16.基础命令
- 7.17.部署第一个程序到k8s中
- 7.18.可视化面板kuboard
+ 7.1.章节内容概述
+ 7.2.章节内容大纲
+ 7.3.特别说明
+ 7.4.所有节点设置对应主机名
+ 7.5.所有节点修改hosts
+ 7.6.所有节点关闭SELinux
+ 7.7.所有节点关闭防火墙
+ 7.8.所有节点安装docker
+ 7.9.所有节点安装k8s所需组件
+ 7.10.所有节点启动kubelet和docker
+ 7.11.所有关闭swap
+ 7.12.用kubeadm 初始化集群
+ 7.13.其他节点连接到Master节点
+ 7.14.在master节点上查看集群
+ 7.15.安装网络插件
+ 7.16.在master上查看集群节点			
+ 7.17.启动故障解决
+ 7.18.基础命令
+ 7.19.部署第一个程序到k8s中
+ 7.20.可视化面板kuboard
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
 均经过严格测试，可直接复制运行即可。
 </code></pre>
@@ -1375,22 +1388,24 @@ http://192.168.0.8:31208
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="8." tabindex="-1"><a class="header-anchor" href="#8." aria-hidden="true">#</a> 8.二进制包搭建Kubernetes</h1>
 <h2 id="_8-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_8-1-章节内容概述" aria-hidden="true">#</a> 8.1.章节内容概述</h2>
 <pre><code>本章节涉及主要内容有：
- 8.1.环境配置清单
- 8.2.服务器规划和IP地址规划
- 8.3.安装前准备工作
- 8.4.安装cfssl证书生成工具
- 8.5.搭建etcd集群
- 8.6.安装配置Docker
- 8.7.搭建kube-apiserver
- 8.8.在Master Node1上部署kube-controller-manager
- 8.9.部署kube-scheduler
- 8.10.使用kubectl查看集群状态
- 8.11.在Master Node1上部署第一个Worker Node
- 8.12.增加Worker Node
- 8.13.增加Master2节点
- 8.14.部署Nginx+Keepalived高可用负载均衡器
- 8.15.部署常见问题
- 8.16.部署测试程序
+ 8.1.章节内容概述
+ 8.2.章节内容大纲
+ 8.3.环境配置清单
+ 8.4.服务器规划和IP地址规划
+ 8.5.安装前准备工作
+ 8.6.安装cfssl证书生成工具
+ 8.7.搭建etcd集群
+ 8.8.安装配置Docker
+ 8.9.搭建kube-apiserver
+ 8.10.在Master Node1上部署kube-controller-manager
+ 8.11.部署kube-scheduler
+ 8.12.使用kubectl查看集群状态
+ 8.13.在Master Node1上部署第一个Worker Node
+ 8.14.增加Worker Node
+ 8.15.增加Master2节点
+ 8.16.部署Nginx+Keepalived高可用负载均衡器
+ 8.17.部署常见问题
+ 8.18.部署测试程序
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
 均经过严格测试，可直接复制运行即可。
 </code></pre>

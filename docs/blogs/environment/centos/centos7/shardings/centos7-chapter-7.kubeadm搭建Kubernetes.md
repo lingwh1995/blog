@@ -6,7 +6,6 @@ isOriginal: true
 category:
   - 环境搭建
 star: false
-copyright: false
 tag:
   - kubeadm搭建k8s集群
   - docker

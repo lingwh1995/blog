@@ -36,10 +36,11 @@
 #toc .toc-item.active > .toc-link {
     background-color: var(--theme-color-mask);
 }
+/*博客正文字体*/
 .theme-hope-content {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
     color: #000000;
-    font-weight: 530;
+    font-weight: 500;
 }
 .sidebar > .sidebar-links > li:not(:first-child) {
     margin-top: 0rem;
@@ -54,59 +55,148 @@
 p, ul, ol {
     line-height: 1.0rem;
 }
-/*博客正文中样式中标签样式修改开始----------------------------------------------------------------------*/
-.page .page-title .page-info .tags-wrapper li {
-    width: 9.9rem;
+/*所有导航页面超链接字体大小*/
+.page .theme-hope-content .breadcrumb-link {
+    font-size: 1.1rem;
 }
-.page .page-title .page-info .tags-wrapper li:nth-child(n) {
-    float:left;
-    display:inline;
-}
-.page .page-title .page-info .tags-wrapper li:nth-child(6n+1) {
-    clear:both;
-}
-.page .page-title .page-info .category-info {
-    width: 50%;
-}
-.page .page-title .page-info .reading-time-info {
-    width: 50%;
-}
-/*博客正文中样式中标签样式修改结束----------------------------------------------------------------------*/
 
-/*博客主页中样式中标签样式修改开始----------------------------------------------------------------------*/
-.blog-home .page-info .tags-wrapper li {
-    width: 10rem;
-}
-.blog-home .page-info .tags-wrapper li:nth-child(n) {
-    float:left;
-    display:inline;
-}
-.blog-home .page-info .tags-wrapper li:nth-child(4n+1) {
-    clear:both;
-}
-.blog-home .page-info .category-info {
-    width: 50%;
-}
-.blog-home .page-info .reading-time-info {
-    width: 50%;
-}
-/*博客主页中样式中标签样式修改结束----------------------------------------------------------------------*/
+/*手机*/
+@media screen and (max-width:600px){
+    /*博客正文中样式中标签样式修改开始----------------------------------------------------------------------*/
+    .page .page-title .page-info .tags-wrapper li {
+        width: 8rem;
+    }
+    .page .page-title .page-info .tags-wrapper li:nth-child(n) {
+        float:left;
+        display:inline;
+    }
+    .page .page-title .page-info .tags-wrapper li:nth-child(2n+1) {
+        clear:both;
+    }
+    /*博客正文中样式中标签样式修改结束----------------------------------------------------------------------*/
 
-/*博客主页中样式中标签样式修改开始----------------------------------------------------------------------*/
-.blog-page .article-wrapper .page-info .tags-wrapper li {
-    width: 10rem;
+    /*博客主页中样式中标签样式修改开始----------------------------------------------------------------------*/
+    .blog-home .page-info .tags-wrapper li {
+        width: 8rem;
+    }
+    .blog-home .page-info .tags-wrapper li:nth-child(n) {
+        float:left;
+        display:inline;
+    }
+    .blog-home .page-info .tags-wrapper li:nth-child(2n+1) {
+        clear:both;
+    }
+    /*博客主页中样式中标签样式修改结束----------------------------------------------------------------------*/
+
+    /*博客主页中样式中标签样式修改开始----------------------------------------------------------------------*/
+    .blog-page .article-wrapper .page-info .tags-wrapper li {
+        width: 8rem;
+    }
+    .blog-page .article-wrapper .page-info .tags-wrapper li:nth-child(n) {
+        float:left;
+        display:inline;
+    }
+    .blog-page .article-wrapper .page-info .tags-wrapper li:nth-child(2n+1) {
+        clear:both;
+    }
+    /*博客主页中样式中标签样式修改结束----------------------------------------------------------------------*/
 }
-.blog-page .article-wrapper .page-info .tags-wrapper li:nth-child(n) {
-    float:left;
-    display:inline;
+
+/*平板*/
+@media screen and (min-width:600px) and (max-width:960px){
+    /*博客正文中样式中标签样式修改开始----------------------------------------------------------------------*/
+    .page .page-title .page-info .tags-wrapper li {
+        width: 9rem;
+    }
+    .page .page-title .page-info .tags-wrapper li:nth-child(n) {
+        float:left;
+        display:inline;
+    }
+    .page .page-title .page-info .tags-wrapper li:nth-child(2n+1) {
+        clear:both;
+    }
+    /*博客正文中样式中标签样式修改结束----------------------------------------------------------------------*/
+
+    /*博客主页中样式中标签样式修改开始----------------------------------------------------------------------*/
+    .blog-home .page-info .tags-wrapper li {
+        width: 9rem;
+    }
+    .blog-home .page-info .tags-wrapper li:nth-child(n) {
+        float:left;
+        display:inline;
+    }
+    .blog-home .page-info .tags-wrapper li:nth-child(2n+1) {
+        clear:both;
+    }
+    /*博客主页中样式中标签样式修改结束----------------------------------------------------------------------*/
+
+    /*博客主页中样式中标签样式修改开始----------------------------------------------------------------------*/
+    .blog-page .article-wrapper .page-info .tags-wrapper li {
+        width: 9rem;
+    }
+    .blog-page .article-wrapper .page-info .tags-wrapper li:nth-child(n) {
+        float:left;
+        display:inline;
+    }
+    .blog-page .article-wrapper .page-info .tags-wrapper li:nth-child(2n+1) {
+        clear:both;
+    }
+    /*博客主页中样式中标签样式修改结束----------------------------------------------------------------------*/
 }
-.blog-page .article-wrapper .page-info .tags-wrapper li:nth-child(4n+1) {
-    clear:both;
+
+/*PC*/
+@media screen and (min-width:960px){
+    /*博客正文中样式中标签样式修改开始----------------------------------------------------------------------*/
+    .page .page-title .page-info .tags-wrapper li {
+        width: 9.5rem;
+    }
+    .page .page-title .page-info .tags-wrapper li:nth-child(n) {
+        float:left;
+        display:inline;
+    }
+    .page .page-title .page-info .tags-wrapper li:nth-child(6n+1) {
+        clear:both;
+    }
+
+    /*博客正文中样式中标签样式修改结束----------------------------------------------------------------------*/
+
+    /*博客主页中样式中标签样式修改开始----------------------------------------------------------------------*/
+    .blog-home .page-info .tags-wrapper li {
+        width: 10rem;
+    }
+    .blog-home .page-info .tags-wrapper li:nth-child(n) {
+        float:left;
+        display:inline;
+    }
+    .blog-home .page-info .tags-wrapper li:nth-child(4n+1) {
+        clear:both;
+    }
+    /*博客主页中样式中标签样式修改结束----------------------------------------------------------------------*/
+
+    /*博客主页中点击全部出来的文章列表样式中标签样式修改开始----------------------------------------------------------------------*/
+    .blog-page .article-wrapper .page-info .tags-wrapper li {
+        width: 10rem;
+    }
+    .blog-page .article-wrapper .page-info .tags-wrapper li:nth-child(n) {
+        float:left;
+        display:inline;
+    }
+    .blog-page .article-wrapper .page-info .tags-wrapper li:nth-child(4n+1) {
+        clear:both;
+    }
+    /*博客主页中点击全部出来的文章列表样式中标签样式修改结束----------------------------------------------------------------------*/
 }
-.blog-page .article-wrapper .page-info .category-info {
-    width: 50%;
+
+/*pre标签自动换行，就是正文内容*/
+.page pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
-.blog-page .article-wrapper .page-info .reading-time-info {
-    width: 50%;
+  
+.theme-container .page {
+    padding-left: var(--sidebar-width);
 }
-/*博客主页中样式中标签样式修改结束----------------------------------------------------------------------*/
+.theme-container.sidebar-collapsed .page {
+    border: 1px solid red;
+    padding-left: 0;
+}

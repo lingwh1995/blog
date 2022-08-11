@@ -1,0 +1,46 @@
+1.下载工程,并在本地安装所有用到的依赖
+2.修改apollo/scripts/flyway/flyway-configdb.properties和apollo/scripts/flyway/flyway-portaldb.properties中数据库相关配置
+	特别注意:如果报了相关的错,给数据库连接信息后面加上&allowPublicKeyRetrieval=true
+4.在apollo文件夹下执行如下两个命令；目的是使用flyway脚本自动创建好数据库环境
+	mvn -N -Pconfigdb flyway:migrate
+	mvn -N -Pportaldb flyway:migrate
+5.使用Java代码直接调试运行,注意:打包时把相关的配置删除
+    1>.给apollo/apollo-configservice/src/main/resources/application.yml中添加数据库配置信息
+        spring；
+          datasource:
+            url: jdbc:mysql://192.168.0.2:3306/ApolloConfigDB?characterEncoding=utf8&useSSL=false
+            username: root
+            password: 123456
+            driver-class-name: com.mysql.cj.jdbc.Driver
+    2>.给apollo/apollo-adminservice/src/main/resources/application.yml中添加数据库配置信息
+        spring:
+          datasource:
+            url: jdbc:mysql://192.168.0.2:3306/ApolloConfigDB?characterEncoding=utf8&useSSL=false
+            username: root
+            password: 123456
+            driver-class-name: com.mysql.cj.jdbc.Driver
+    3>.给apollo/apollo-portal/src/main/resources/application.yml中添加数据库配置信息和Eureka配置信息(注意数据库使用的是和上面的是不同的)
+        spring:
+          datasource:
+            url: jdbc:mysql://192.168.0.2:3306/ApolloPortalDB?characterEncoding=utf8&useSSL=false
+            username: root
+            password: 123456
+            driver-class-name: com.mysql.cj.jdbc.Driver
+        eureka:
+          instance:
+            hostname: ${hostname:localhost}
+            preferIpAddress: true
+            status-page-url-path: /info
+            health-check-url-path: /health
+        client:
+          serviceUrl:
+            # This setting will be overridden by eureka.service.url setting from ApolloConfigDB.ServerConfig or System Property
+            # see com.ctrip.framework.apollo.biz.eureka.ApolloEurekaClientConfig
+            defaultZone: http://${eureka.instance.hostname}:8080/eureka/
+          healthcheck:
+            enabled: true
+          eurekaServiceUrlPollIntervalSeconds: 60
+6.访问地址
+	Eureka注册中心: http://localhost:8080/
+	Apollo配置中心: http://localhost:8070/
+	    登录用户名/密码: apollo/admin

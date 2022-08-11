@@ -1,0 +1,36 @@
+version: '1'
+
+services:
+
+  mysql:
+    restart: always
+    #如果本地没有镜像,会自动从远程或者私服拉取用到的镜像
+    image: mysql:latest
+    container_name: springcloud-eureka-mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+
+  eureka7005:
+    restart: always
+    image: ${DOCKER_REGISTRY_URL}/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005:latest
+    container_name: springcloud-eureka-eureka7005
+    ports:
+      - 7005:7005
+
+  payment8010:
+    restart: always
+    image: ${DOCKER_REGISTRY_URL}/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010:latest
+    container_name: springcloud-eureka-payment8010
+    ports:
+      - 8010:8010
+    depends_on:
+      - mysql
+
+  order80:
+    image: ${DOCKER_REGISTRY_URL}/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80:latest
+    container_name: springcloud-eureka-order80
+    restart: always
+    ports:
+      - 80:80

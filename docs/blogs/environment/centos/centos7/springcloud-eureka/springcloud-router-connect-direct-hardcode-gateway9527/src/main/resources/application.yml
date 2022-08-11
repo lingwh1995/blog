@@ -1,0 +1,17 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: SPRINGCLOUD-ROUTER-CONNECT-DIRECT-HARDCODE-GATEWAY9527
+
+eureka:
+  instance:
+    hostname: ${spring.application.name}
+  client: #服务提供者provider注册进eureka服务列表内
+    service-url:
+      register-with-eureka: true
+      fetch-registry: true
+      defaultZone: http://localhost:7001/eureka
+
+

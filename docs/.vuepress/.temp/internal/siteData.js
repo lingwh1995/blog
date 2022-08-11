@@ -1,4 +1,4 @@
-export const siteData = JSON.parse("{\"base\":\"/\",\"lang\":\"zh-CN\",\"title\":\"此生挚爱万宝路\",\"description\":\"此生挚爱万宝路的技术博客\",\"head\":[[\"link\",{\"rel\":\"icon\",\"href\":\"/images/headshot.jpg\"}]],\"locales\":{}}")
+export const siteData = JSON.parse("{\"base\":\"/\",\"lang\":\"zh-CN\",\"title\":\"此生挚爱万宝路\",\"description\":\"此生挚爱万宝路的技术博客\",\"head\":[[\"link\",{\"rel\":\"icon\",\"href\":\"/images/headshot.jpg\"}],[\"link\",{\"rel\":\"stylesheet\",\"href\":\"//at.alicdn.com/t/c/font_3564358_3dg2o8i7td6.css\"}]],\"locales\":{}}")
 
 if (import.meta.webpackHot) {
   import.meta.webpackHot.accept()

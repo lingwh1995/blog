@@ -1,0 +1,40 @@
+1.首先需要在SpringCloud项目中集成好Apollo
+2.编写监听器
+    1>.监听器写法一
+        @Component
+        public class AutomaticApolloWatcher {
+            @ApolloConfigChangeListener
+            public void watchSingle(ConfigChangeEvent changeEvent) {
+                for (String key : changeEvent.changedKeys()) {
+                    ConfigChange change = changeEvent.getChange(key);
+                    System.out.println(change);
+                }
+
+            }
+        }
+    2>.监听器写法二
+        @Component
+        @Slf4j
+        public class ApolloPropertiesChangedListener implements ApplicationContextAware {
+
+            private ApplicationContext applicationContext;
+
+            @Autowired
+            private RestartEndpoint restartEndpoint;
+
+            @ApolloConfigChangeListener
+            private void someChangeHandler(ConfigChangeEvent changeEvent) {
+                for (String key : changeEvent.changedKeys()) {
+                    ConfigChange change = changeEvent.getChange(key);
+                    log.info("Found change - {}", change.toString());
+                }
+                // 更新相应的bean的属性值，主要是存在@ConfigurationProperties注解的bean
+                this.applicationContext.publishEvent(new EnvironmentChangeEvent(changeEvent.changedKeys()));
+            }
+
+            @Override
+            public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+                this.applicationContext = applicationContext;
+            }
+3.测试监听器
+    在Apollo配置界面修改配置信息,然后后台会输入修改的配置信息

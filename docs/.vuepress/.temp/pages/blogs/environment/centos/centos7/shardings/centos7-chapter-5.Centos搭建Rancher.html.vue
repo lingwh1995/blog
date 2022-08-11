@@ -1,6 +1,8 @@
 <template><div><h1 id="_5-centos搭建rancher" tabindex="-1"><a class="header-anchor" href="#_5-centos搭建rancher" aria-hidden="true">#</a> 5.Centos搭建Rancher</h1>
 <h2 id="_5-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_5-1-章节内容概述" aria-hidden="true">#</a> 5.1.章节内容概述</h2>
 <pre><code>本章节涉及主要内容有：
+ 5.1.章节内容概述
+ 5.2.章节内容大纲
 
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
 均经过严格测试，可直接复制运行即可。

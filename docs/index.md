@@ -59,9 +59,7 @@ features:
   - title: Ubuntu
     icon: ubuntu
     details: Ubuntu是一个以桌面应用为主的Linux操作系统，用于个人电脑、平板及手机的操作系统。
-    link: https://www.ubuntu.org.cn/global
-#是否显示页面footer中的版权信息，设置为false,不然会有两个版权信息
-copyright: false    
+    link: https://www.ubuntu.org.cn/global  
 ---   
 ---
 <!-- 横版唐诗 -->

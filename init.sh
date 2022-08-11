@@ -6,12 +6,6 @@ set -e
 #设置git，使git在clone可以创建过长的文件名
 git config --global core.longpaths true
 
-#执行init之前先关闭项目，执行完成之后在启动项目
-#下载springcloud-eureka项目
-#cd docs/blogs/backend/springcloud
-#rm -rf springcloud-eureka
-#git clone https://gitee.com/lingwh1995/springcloud-eureka.git
-
 #安装markmap-cli 
 #npm install -g markmap-cli
 
@@ -31,13 +25,49 @@ function parseIni() {
 :<< EOF
 从远程仓库拉取文档
 EOF
-
 function cloneBooks() {
+    #删除上一个操作产生的books文件夹
+    rm -rf books
+    #创建boosk文件夹
     mkdir books
-    git clone git@gitee.com:lingwh1995/books.git books
-    rm -rf books/books .git
-    mv books/books books
+    #克隆文档
+    git clone $1
+    #删除多余的.git文件
+    rm -rf books/.git
+    #删除多余的jenkinsfile文件
+    rm -rf books/Jenkinsfile
+    #删除多余的脚本
+    rm -rf books/*.sh
+    #删除config文件夹
+    rm -rf books/config
 }
+
+:<< EOF
+增强之前的前置操作
+在docs/blogs文件夹中创建存放文件的目录并拷贝xxx.md到这个文件夹中并重命名
+EOF
+function preEnhance() {
+    BASE_PATH="docs/blogs"
+    #删除上一次操作产生的文件夹 
+    rm -rf $BASE_PATH/$2
+    #创建新的操作目录
+    mkdir -p $BASE_PATH/$2
+    cp -r books/$2/* $BASE_PATH/$2/
+    #重命名文件
+    mv $BASE_PATH/$2/$1.md $BASE_PATH/$2/$1.md.original
+} 
+
+:<< EOF
+增强之后的后置操作
+在docs/blogs文件夹中创建存放文件的目录并拷贝xxx.md到这个文件夹中并重命名
+EOF
+function afterEnhance() {
+    BASE_PATH="docs/blogs"
+    #删除上xxx.mdoriginal文件
+    #重命名文件
+    rm -rf $BASE_PATH/$2/$1.md.original
+} 
+
 
 :<< EOF
     给xxx.md写入Frontmatter配置信息
@@ -86,11 +116,6 @@ function writeFrontmatterForOriginal() {
     MD_FILE_ENSEMBLE_FRONTMATTER_STAR=( $( parseIni ./config/config-$1.ini ensemble star) )
     echo "star: $MD_FILE_ENSEMBLE_FRONTMATTER_STAR" >> $2/$1.md
             
-    #写入 是否开启版权校验
-    #获取具体章节的的md文件中的Frontmatter选项配置信息中的copyright属性的值
-    MD_FILE_ENSEMBLEFRONTMATTER_COPYRIGHT=( $( parseIni ./config/config-$1.ini ensemble copyright) )
-    echo "copyright: $MD_FILE_ENSEMBLEFRONTMATTER_COPYRIGHT" >> $2/$1.md
-    
     #写入文章标签：文章合集的标签+每个章节的标签
     #获取具体章节的的md文件中的Frontmatter选项配置信息中的tag属性的值
     MD_FILE_ENSEMBLE_FRONTMATTER_TAGS_STR=( $( parseIni ./config/config-$1.ini ensemble tag) )
@@ -102,11 +127,10 @@ function writeFrontmatterForOriginal() {
         echo "  - $ENSEMBLE_TAG" >> $2/$1.md
     done 
 
-
     #注释掉的原因是，标签太长了，影响显示    
     #写入所有章节的文章标签
     #获取一级标题总数
-    TOTAL_TITLE1_COUNTS=`grep '^# [1-9][0-9]\?\.' $2/$1.md.bak | tail -1 | cut -c 3-4 | sed 's/\.//g'`
+    TOTAL_TITLE1_COUNTS=`grep '^# [1-9][0-9]\?\.' $2/$1.md.original | tail -1 | cut -c 3-4 | sed 's/\.//g'`
     echo '一级标题总数：'$TOTAL_TITLE1_COUNTS
 
     ALL_CHAPTERS_TAGS_STR=""
@@ -120,6 +144,7 @@ function writeFrontmatterForOriginal() {
             ALL_CHAPTERS_TAGS_STR=$ALL_CHAPTERS_TAGS_STR$MD_FILE_CHAPTER_FRONTMATTER_TAGS_STR' '
         fi    
     done
+
 :<< EOF
 EOF
 
@@ -141,7 +166,7 @@ EOF
     
     #写入 写作日期
     #获取具体章节的的md文件中的Frontmatter选项配置信息中date属性的值
-    MD_FILE_ENSEMBLE_FRONTMATTER_DATE=( $( parseIni ./config/config-$1.ini chapter-0 date) )
+    MD_FILE_ENSEMBLE_FRONTMATTER_DATE=( $( parseIni ./config/config-$1.ini ensemble date) )
     echo "date: $MD_FILE_ENSEMBLE_FRONTMATTER_DATE" >>  $2/$1.md
     
     #写入 是否置顶
@@ -156,7 +181,7 @@ EOF
     
     #写入SEO信息
     #抽取所有一级标题，以此为根据创建博客正文内容中博客内容概述的文字，作为SEO的关键词
-    SEO_KEYWORDS=`grep '^# [1-9][0-9]\?\.'  $2/$1.md.bak | cut -d '.' -f2 | tr '\r\n' ','`
+    SEO_KEYWORDS=`grep '^# [1-9][0-9]\?\.'  $2/$1.md.original | cut -d '.' -f2 | tr '\r\n' ','`
     echo 文章合集SEO关键字：$SEO_KEYWORDS
     echo "head:" >>   $2/$1.md
     echo "  - - meta" >>   $2/$1.md
@@ -165,12 +190,16 @@ EOF
 
     echo "---" >>   $2/$1.md
     echo "" >>  $2/$1.md
+
 }
 
 :<< EOF
     为xxx.md和xxx.md的所有章节生成二级和三级目录大纲，并将这个目录大纲转换为markmap文件
     $1:$MD_FILE_NAME
     $2:$MD_FILE_SOURCE_PATH
+    $3:$MD_FILE_MARKMAP_TARGET_PATH
+    $4:$MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH
+    $5:$INCLUDE_CODE_PROJECT_NAME
 EOF
 function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     echo '生成markmap文件开始........................................................................'
@@ -183,10 +212,23 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     #调用写入Frontmatter配置的方法
     writeFrontmatterForOriginal $1 $2
 
-    #从副本恢复一份新的md文件
-    cat $2/$1.md.bak >> $2/$1.md
+    #从原件恢复一份新的md文件
+    cat $2/$1.md.original >> $2/$1.md
     echo '从副本恢复一份新的'$1'.md文件'
 
+    #替换xxx.md中@import语法为@include语法，注意：当引用的项目名称不为空的时候才执行替换操作
+    #markdown-preview-enhanced插件@import语法示例：@import "springcloud-eureka/springcloud-api-commons/pom.xml"
+    #获取引用的代码的项目名称
+    INCLUDE_CODE_PROJECT_NAME_STR=`echo $5 | tr ',' ' '`
+    INCLUDE_CODE_PROJECT_NAME_ARR=( $INCLUDE_CODE_PROJECT_NAME_STR )
+   
+    if [ $INCLUDE_CODE_PROJECT_NAME != "" ]
+    then
+        for((i=0;i<${#INCLUDE_CODE_PROJECT_NAME_ARR[@]};i++)); do
+            echo $2/$1'.md引用了'$2'下的'${INCLUDE_CODE_PROJECT_NAME_ARR[i]}'这个项目中的代码'
+            sed -i 's#^@import "\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"#@include(\1)#g' $2/$1.md
+        done
+    fi
 
     echo '开始为'$1'.md生成二级和三级目录大纲md文件......'
     #生成二级目录大纲md文件
@@ -277,8 +319,7 @@ cat > $3/$1-guidance.md  << EOF
 ## 博客内容概述
     本篇博客涉及主要内容有：
 $BLOG_CONTENT_INTRO
-	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码
-    均经过严格测试，可直接复制运行即可。
+	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 ## 博客内容大纲
 	
 ###	简单版博客内容大纲
@@ -327,9 +368,10 @@ cat > $3/chapter/$1-guidance-chapter$i.md  << EOF
 
 ## $i.1.章节内容概述
     本章节涉及主要内容有：
+     $i.1.章节内容概述
+     $i.2.章节内容大纲
 $CHAPTER_CONTENT_INTRO
-	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
-    均经过严格测试，可直接复制运行即可。
+	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 
 ## $i.2.章节内容大纲
 	
@@ -483,10 +525,6 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
     MD_FILE_CHAPTER_BASIC_FRONTMATTER_START=( $( parseIni ./config/config-$1.ini chapter-basic star) )
     echo "star: $MD_FILE_CHAPTER_BASIC_FRONTMATTER_START" >> $CHAPTER_0_FULL_PATH_NAME
 
-    #获取完整的的md文件中的copyright
-    MD_FILE_ENSEMBLE_FRONTMATTER_COPYRIGHT=( $( parseIni ./config/config-$1.ini ensemble copyright) )
-    echo "copyright: $MD_FILE_ENSEMBLE_FRONTMATTER_COPYRIGHT" >> $CHAPTER_0_FULL_PATH_NAME
-
     #写入 文章标签
     #获取具体章节的的md文件中的Frontmatter选项配置信息中的tag属性的值
     MD_FILE_ENSEMBLE_FRONTMATTER_TAGS_STR=( $( parseIni ./config/config-$1.ini ensemble tag) )
@@ -579,11 +617,6 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
         #获取具体章节的的md文件中的Frontmatter选项配置信息中的star属性的值
         MD_FILE_CHAPTER_FRONTMATTER_STAR=( $( parseIni ./config/config-$1.ini chapter-basic star) )
         echo "star: $MD_FILE_CHAPTER_FRONTMATTER_STAR" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        
-        #写入 是否开启版权校验
-        #获取具体章节的的md文件中的Frontmatter选项配置信息中的copyright属性的值
-        MD_FILE_CHAPTER_FRONTMATTER_COPYRIGHT=( $( parseIni ./config/config-$1.ini chapter-basic copyright) )
-        echo "copyright: $MD_FILE_CHAPTER_FRONTMATTER_COPYRIGHT" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
         
         #写入 文章标签
         #获取具体章节的的md文件中的Frontmatter选项配置信息中的tag属性的值
@@ -746,6 +779,7 @@ function generateSidebarConfigForAllAndSetAnchorForOriginal() {
     $1:$MD_FILE_NAME
     $2:$MD_FILE_RELATIVE_PATH
     $3:$MD_FILE_CHAPTER_SHARDINGS_FOLDER_NAME
+    $4:$INCLUDE_CODE_PROJECT_NAME
 EOF
 function generateBreadcrumbREADME {
    
@@ -773,27 +807,38 @@ function generateBreadcrumbREADME {
        
         #获取当前导航栏分类的文件夹相对位置
         CURRENT_CATALOG_FOLDER_NAME_RELATIVE_PATH=$BASE_PATH/$CURRENT_CATALOG_FOLDER_NAME
-        IGNORE_FOLDER_LIST_STR=`ls $CURRENT_CATALOG_FOLDER_NAME_RELATIVE_PATH -I $CURRENT_CATALOG_CHILD_FOLDER_NAME -I README*.md `
-        IGNORE_FOLDER_LIST_ARR=(`echo $IGNORE_FOLDER_LIST_STR | tr ' ' ' '` )
+        echo '当前导航栏分类的文件夹相对位置：'$CURRENT_CATALOG_FOLDER_NAME_RELATIVE_PATH
 
+        IGNORE_FOLDER_LIST_STR=`ls $CURRENT_CATALOG_FOLDER_NAME_RELATIVE_PATH -I $CURRENT_CATALOG_CHILD_FOLDER_NAME -I README*.md `
+        echo '要忽略的文件夹字符串：'$IGNORE_FOLDER_LIST_STR
+
+        #获取当前项目依赖的java代码的项目名称，并忽略掉
+        INCLUDE_CODE_PROJECT_NAME_STR=$4
+        echo '引用的代码的项目名称字符串：'$INCLUDE_CODE_PROJECT_NAME_STR
+        INCLUDE_CODE_PROJECT_NAME_ARR=(`echo $INCLUDE_CODE_PROJECT_NAME_STR | tr ',' ' '` )
+        echo '引用的代码的项目名称数组：'$INCLUDE_CODE_PROJECT_NAME_STR
+
+        IGNORE_FOLDER_LIST_ARR=(`echo $IGNORE_FOLDER_LIST_STR$INCLUDE_CODE_PROJECT_NAME_ARR | tr ' ' ' '` )
+        echo '要忽略的文件夹名称+引用的代码的项目名称字符串：'$IGNORE_FOLDER_LIST_STR$INCLUDE_CODE_PROJECT_NAME_ARR
         #获取当前需要过滤的文件列表
         IGNORE_FOLDER_LIST_STR=""
 
         for(( j=0;j<${#IGNORE_FOLDER_LIST_ARR[@]};j++)) do
-            echo ${IGNORE_FOLDER_LIST_ARR[j]}
+            echo '要忽略的文件夹名称数组中第'$j'个文件夹的名称是：'${IGNORE_FOLDER_LIST_ARR[j]}
             IGNORE_FOLDER_LIST_STR=$IGNORE_FOLDER_LIST_STR'-I '${IGNORE_FOLDER_LIST_ARR[j]}' '
         done
+        echo '要忽略文件名字符串：'$IGNORE_FOLDER_LIST_STR
 
         #如果i值大于等于1，说明处理的不是第一层目录了，不需要再添加额外的文件名过滤了，否则章节标题中如果有被过滤的文字，生成导航README.md将不会包含这个章节
-        if [ $i -ge 1 ]
-        then 
-            IGNORE_FOLDER_LIST_STR=""
-        fi
+        #if [ $i -ge 1 ]
+        #then 
+        #    IGNORE_FOLDER_LIST_STR=""
+        #fi
 
         #行号数组
-        PATHS_LINENUMBER_STR=`ls -lR $CURRENT_REALTIVE_PATH -I README*.md -I *.bak -I *.md.* $IGNORE_FOLDER_LIST_STR | grep -n $BASE_PATH  | cut -d: -f1 | sed 's/ /,/g' | tr '\r\n' ' ' `
+        PATHS_LINENUMBER_STR=`ls -lR $CURRENT_REALTIVE_PATH -I README*.md -I *.original -I *.md.* $IGNORE_FOLDER_LIST_STR | grep -n $BASE_PATH  | cut -d: -f1 | sed 's/ /,/g' | tr '\r\n' ' ' `
         #查询行号数组语句
-        echo 'ls -lR '"$CURRENT_REALTIVE_PATH "'-I README*.md -I *.bak -I *.md.* '"$IGNORE_FOLDER_LIST_STR"''
+        echo 'ls -lR '"$CURRENT_REALTIVE_PATH "'-I README*.md -I *.original -I *.md.* '"$IGNORE_FOLDER_LIST_STR"''
 
         echo '行号数组字符串：'$PATHS_LINENUMBER_STR
         PATHS_LINENUMBER_ARR=( $PATHS_LINENUMBER_STR )
@@ -842,16 +887,16 @@ function generateBreadcrumbREADME {
 
             echo '截取结束行数' $END_LINENUMBER
             #将递归查询当前目录中所有文件的结果根据目录层级切割成不同的分片
-            ls -lR $CURRENT_REALTIVE_PATH -I README*.md -I *.bak -I *.md.* $IGNORE_FOLDER_LIST_STR | \
+            ls -lR $CURRENT_REALTIVE_PATH -I README*.md -I *.original -I *.md.* $IGNORE_FOLDER_LIST_STR | \
             sed -n ''"$START_LINENUMBER"','"$END_LINENUMBER"'p' >> $CACHE_README_FILE_NAME_FULL_PATH_NAME
             
             echo '--------------------------------------------------------------------'
             echo '当前操作文件名称：'$1.md
             echo '当前操作目录：（相对路径）' $CURRENT_REALTIVE_PATH
-            echo "查询文件目录语句："ls -lR $CURRENT_REALTIVE_PATH -I README*.md -I *.bak -I *.md.* $IGNORE_FOLDER_LIST_STR
+            echo "查询文件目录语句："ls -lR $CURRENT_REALTIVE_PATH -I README*.md -I *.original -I *.md.* $IGNORE_FOLDER_LIST_STR
             echo '截取内容：'
             echo '------------'
-            ls -lR $CURRENT_REALTIVE_PATH -I README*.md -I *.bak -I *.md.* $IGNORE_FOLDER_LIST_STR | \
+            ls -lR $CURRENT_REALTIVE_PATH -I README*.md -I *.original -I *.md.* $IGNORE_FOLDER_LIST_STR | \
             sed -n ''"$START_LINENUMBER"','"$END_LINENUMBER"'p'
             echo '------------'
             echo '输出文件全路径名：'$CACHE_README_FILE_NAME_FULL_PATH_NAME
@@ -874,8 +919,7 @@ function generateBreadcrumbREADME {
             
 
             #执行替换文件名的操作，为文件名添加超链接
-            
-            sed -i 's#\('"$NBSP"'-\) \(.*\)#\1 <a href="'"$HREF_STR"'\2">\2<\/a>#g' $CACHE_README_FILE_NAME_FULL_PATH_NAME
+            sed -i 's#\('"$NBSP"'-\) \(.*\)#\1 <a class="breadcrumb-link" href="'"$HREF_STR"'\2">\2<\/a>#g' $CACHE_README_FILE_NAME_FULL_PATH_NAME
             
             #删除所有包含total和docs的的行
             sed -i '/\(^total\|^docs\)/d' $CACHE_README_FILE_NAME_FULL_PATH_NAME
@@ -918,12 +962,9 @@ function generateBreadcrumbREADME {
         echo 'article: false' >> $FINAL_README_FILE_NAME_FULL_PATH_NAME
         echo 'toc: false' >> $FINAL_README_FILE_NAME_FULL_PATH_NAME
         echo 'comment: false' >> $FINAL_README_FILE_NAME_FULL_PATH_NAME
-        echo 'copyrignht: false' >> $FINAL_README_FILE_NAME_FULL_PATH_NAME
+        #导航页面中不展示footer
         echo 'footer: false' >> $FINAL_README_FILE_NAME_FULL_PATH_NAME
-        echo 'category:' >> $FINAL_README_FILE_NAME_FULL_PATH_NAME
-        echo '- 占位符 ' >> $FINAL_README_FILE_NAME_FULL_PATH_NAME
-        echo 'tag:' >> $FINAL_README_FILE_NAME_FULL_PATH_NAME
-        echo '- 网站地图' >> $FINAL_README_FILE_NAME_FULL_PATH_NAME
+        echo 'pageInfo: false' >> $FINAL_README_FILE_NAME_FULL_PATH_NAME
         echo 'icon: navigate' >> $FINAL_README_FILE_NAME_FULL_PATH_NAME
         echo '---' >> $FINAL_README_FILE_NAME_FULL_PATH_NAME
         echo '- '"${PATH_NAME_CN}"'' >> $FINAL_README_FILE_NAME_FULL_PATH_NAME
@@ -992,9 +1033,17 @@ function enhance() {
     # 为所有章节生成的markmap文件展示的标题层级深度
     MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH=5
     #根据xxx.md文件标题生成博客大纲->将博客大纲转换为markmap文件
-    generateOutLineAndTransformOutLineToMarkmapForOriginal $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_MARKMAP_TARGET_PATH $MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH
+    generateOutLineAndTransformOutLineToMarkmapForOriginal $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_MARKMAP_TARGET_PATH $MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH $3
     #--------------------------------------------------------------------------------------------------------------
 
+
+    #开始让xxx.md文件中的二级标题增加1......'
+    #--------------------------------------------------------------------------------------------------------------
+    #二级标题序列增加步长
+    TITLE2_INCREMENT_STEP=2
+    title2IncrementByForOriginal $MD_FILE_NAME $MD_FILE_SOURCE_PATH $TITLE2_INCREMENT_STEP
+    #--------------------------------------------------------------------------------------------------------------
+    
 
     #生成guidance文件（guidance文件中引用了上一步骤生成的markmap文件）......
     #--------------------------------------------------------------------------------------------------------------
@@ -1006,14 +1055,6 @@ function enhance() {
     ENSEMBLE_GUIDANCE_TITLE1_TEXT="博客内容介绍"
     #将上一步生成的markmap转换为guidance（概览）文件
     generateGuidanceByMarkmapForOriginal $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_GUIDANCE_TARGET_PATH $MD_FILE_RELATIVE_PATH $MD_FILE_MARKMAP_TARGET_PATH_PREFIX $ENSEMBLE_GUIDANCE_TITLE1_TEXT
-    #--------------------------------------------------------------------------------------------------------------
-
-
-    #开始让xxx.md文件中的二级标题增加1......'
-    #--------------------------------------------------------------------------------------------------------------
-    #二级标题序列增加步长
-    TITLE2_INCREMENT_STEP=2
-    title2IncrementByForOriginal $MD_FILE_NAME $MD_FILE_SOURCE_PATH $TITLE2_INCREMENT_STEP
     #--------------------------------------------------------------------------------------------------------------
 
 
@@ -1046,7 +1087,7 @@ function enhance() {
     #生成breadcrumb使用的README.md
     #--------------------------------------------------------------------------------------------------------------
     #shardings文件所在的相对路径
-    generateBreadcrumbREADME $MD_FILE_NAME $MD_FILE_RELATIVE_PATH $MD_FILE_CHAPTER_SHARDINGS_FOLDER_NAME
+    generateBreadcrumbREADME $MD_FILE_NAME $MD_FILE_RELATIVE_PATH $MD_FILE_CHAPTER_SHARDINGS_FOLDER_NAME $3
     #--------------------------------------------------------------------------------------------------------------
 
 
@@ -1057,6 +1098,7 @@ function enhance() {
     合并Sidebar使用的配置json并且合并多级README-xxx.md
     $1: $MD_FILE_NAME 
     $2: $MD_FILE_RELATIVE_PATH
+            
 EOF
 #合并Sidebar使用的配置json和Breadcrumb使用的README.md
 function mergeSidebarJsonAndBreadcrumbREADMEShardings() {
@@ -1116,7 +1158,7 @@ EOF
         
         tail -n +$[$START_LINE_NUMBER+1] $COMPLETE_PATH/README-$1.md >>  $COMPLETE_PATH/README.md   
         
-        #操作完成后删除没用的READ-X.md
+        #操作完成后删除没用的READ-xxx.md
         echo '删除不再使用的'$COMPLETE_PATH/README-$1.md
         rm -rf $COMPLETE_PATH/README-$1.md
 
@@ -1176,7 +1218,18 @@ function init() {
     #获取存放文档的git仓库地址
     GIT_REPOSITORY_URL=( $( parseIni ./config/start.ini books gitRepository) )
     #从远程仓库克隆文档
-    cloneBooks $GIT_REPOSITORY_URL
+    IS_CLONE=( $( parseIni ./config/start.ini books clone) )
+    
+    if [ $IS_CLONE == "true" ]
+    then
+        cloneBooks $GIT_REPOSITORY_URL
+    fi
+
+    #删除blog/docs/.vuepress/public/enhance，这样可以防止本次init后仍然保存着上一次enhance=true，本次enhance=false的xxx.md的相关init执行产物
+    #简单来说，就是没用的文件和文件夹全部都要清理掉
+    rm -rf docs/.vuepress/public/enhance
+    mkdir -p docs/.vuepress/public/enhance
+    rm -rf docs/blogs/*
 
     #获取./config中以config-xxx.ini格式的文件总共有多少个，每个配置文件对应一个md文件
     TOTAL_MD_COUNTS=`ls ./config/ | grep '^config-.*\.ini$' | wc -w`
@@ -1189,12 +1242,21 @@ function init() {
         #如果设置了增强该md，则继续执行下一步
         if [ $IS_ENHANCE == "true" ]
         then
-            #获取文件名称
+            #获取xxx.md文件名称
             MD_FILE_NAME=( $( parseIni ./config/start.ini markdown-$a fileName) )
-            #获取文件相对路径
+            #获取xx.md文件相对路径
             MD_FILE_RELATIVE_PATH=( $( parseIni ./config/start.ini markdown-$a relativePath) )
+            #获取xxx.md文件应用的java代码的项目名称
+            INCLUDE_CODE_PROJECT_NAME=( $( parseIni ./config/start.ini markdown-$a includeCodeProjectName) )
+           
+            #增强之前的前置操作
+            preEnhance $MD_FILE_NAME $MD_FILE_RELATIVE_PATH
+
             #进行增强处理
-            enhance $MD_FILE_NAME $MD_FILE_RELATIVE_PATH
+            enhance $MD_FILE_NAME $MD_FILE_RELATIVE_PATH $INCLUDE_CODE_PROJECT_NAME
+
+            #增强之后的后置操作
+            afterEnhance $MD_FILE_NAME $MD_FILE_RELATIVE_PATH
             #test $MD_FILE_NAME $MD_FILE_RELATIVE_PATH $a
         fi    
     done
