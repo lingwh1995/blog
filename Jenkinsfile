@@ -24,7 +24,7 @@ pipeline {
         echo '完成文件推送...'
       }
     }
-    stage('推送部署1') {
+    // stage('推送部署1') {
       // steps {
       //   echo '正在推送文件...'
       //   echo 'xxxx'
@@ -39,6 +39,6 @@ pipeline {
       //   sh './deploy.sh'
       //   echo '完成文件推送...'
       // }
-    }
+    // }
   }
 }
