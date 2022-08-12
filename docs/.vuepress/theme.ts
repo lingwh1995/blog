@@ -30,7 +30,7 @@ export default hopeTheme({
   pure: false,
 
   // 默认为 GitHub. 同时也可以是一个完整的 URL
-  repo: "https://github.com/",
+  repo: "https://gitee.com/lingwh1995/blog",
   // 自定义仓库链接文字。默认从 `repo` 中自动推断为
   // "GitHub" / "GitLab" / "Gitee" / "Bitbucket" 其中之一，或是 "Source"。
   repoLabel: "Github",
@@ -56,7 +56,7 @@ export default hopeTheme({
   //全局关闭显示copyright，使用footer信息来充当copyright信息
   copyright: false,
   //非首页页面页脚显示文字
-  footer: "Copyright 2021 © lingwh <a href='https://github.com/lingwh1995' target='_blank'>GITHUB</a> <a href='https://gitee.com/lingwh1995' target='_blank'>GITEE</a>",
+  footer: "Copyright 2021 © lingwh 欢迎访问",
   //是否开启显示页脚
   displayFooter: true,
   

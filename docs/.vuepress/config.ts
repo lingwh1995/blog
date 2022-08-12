@@ -16,13 +16,13 @@ export default defineUserConfig({
       "link",
       {
         rel: "stylesheet",
-        href: "//at.alicdn.com/t/c/font_3564358_3dg2o8i7td6.css",
+        href: "//at.alicdn.com/t/c/font_3564358_nrgvwqy4sv.css",
       },
     ],
   ],
   description: "此生挚爱万宝路的技术博客",
 
-  base: "/",
+  base:"/",
   theme,
   markdown: {
     //vuepress解析md标题的深度
@@ -35,7 +35,9 @@ export default defineUserConfig({
     "@Markmap": path.resolve(__dirname, "components/Markmap.vue"),
     "@ScrollIntoView": path.resolve(__dirname, "components/ScrollIntoView.vue"),
     "@Popup": path.resolve(__dirname, "components/Popup.vue"),
-    "@Popup": path.resolve(__dirname, "components/Banner.vue")
+    "@Popup": path.resolve(__dirname, "components/Banner.vue"),
+    //特别注意：下面这一行代码一定不能分开写到多行，否则影响sed执行效果
+    /*"@theme-hope/module/navbar/components/RepoLink": path.resolve(__dirname,"components/Pure.vue"),*/
   },
 });
 

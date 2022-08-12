@@ -19,10 +19,9 @@
  8.16.部署Nginx+Keepalived高可用负载均衡器
  8.17.部署常见问题
  8.18.部署测试程序
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
-均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 </code></pre>
-<h2 id="_8-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_8-2-章节内容大纲" aria-hidden="true">#</a> 8.2.章节内容大纲</h2>
+<h2 id="_8-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_8-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter8.html" target="_blank">8.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter8.html"/>
 <h2 id="_8-3-环境配置清单" tabindex="-1"><a class="header-anchor" href="#_8-3-环境配置清单" aria-hidden="true">#</a> 8.3.环境配置清单</h2>
 <pre><code>操作系统									centos7

@@ -13,12 +13,12 @@
 具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 </code></pre>
 <h2 id="博客内容大纲" tabindex="-1"><a class="header-anchor" href="#博客内容大纲" aria-hidden="true">#</a> 博客内容大纲</h2>
-<h3 id="简单版博客内容大纲" tabindex="-1"><a class="header-anchor" href="#简单版博客内容大纲" aria-hidden="true">#</a> 简单版博客内容大纲</h3>
+<h3 id="简单版博客内容大纲" tabindex="-1"><a class="header-anchor" href="#简单版博客内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/centos7-outline2.html" target="_blank">简单版博客内容大纲</a></h3>
 <!--最深展示二级标题内容-->
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/centos7-outline2.html"/>
 <blockquote></blockquote>
 <!--最深展示五级标题内容-->
-<h3 id="详细版博客内容大纲" tabindex="-1"><a class="header-anchor" href="#详细版博客内容大纲" aria-hidden="true">#</a> 详细版博客内容大纲</h3>
+<h3 id="详细版博客内容大纲" tabindex="-1"><a class="header-anchor" href="#详细版博客内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/centos7-outline3.html" target="_blank">详细版博客内容大纲</a></h3>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/centos7-outline3.html"/>
 <blockquote></blockquote>
 <h1 id="1." tabindex="-1"><a class="header-anchor" href="#1." aria-hidden="true">#</a> 1.安装Linux操作系统</h1>
@@ -30,10 +30,9 @@
  1.4.Centos镜像下载
  1.5.安装前Vmaware相关设置
  1.5.安装时分区大小设置
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
-均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 </code></pre>
-<h2 id="_1-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_1-2-章节内容大纲" aria-hidden="true">#</a> 1.2.章节内容大纲</h2>
+<h2 id="_1-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_1-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter1.html" target="_blank">1.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter1.html"/>
 <div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code><span class="token comment">//@include(./Account.java)</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_1-3-linux重要目录介绍" tabindex="-1"><a class="header-anchor" href="#_1-3-linux重要目录介绍" aria-hidden="true">#</a> 1.3.Linux重要目录介绍</h2>
@@ -81,10 +80,9 @@ VMware NetworkAdepter VMnet8：Host用于与NAT虚拟网络进行通信的虚拟
  2.6.安装curl
  2.7.配置yml源
  2.8.安装常用基础系统软件
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
-均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 </code></pre>
-<h2 id="_2-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_2-2-章节内容大纲" aria-hidden="true">#</a> 2.2.章节内容大纲</h2>
+<h2 id="_2-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_2-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter2.html" target="_blank">2.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter2.html"/>
 <h2 id="_2-3-配置静态ip地址" tabindex="-1"><a class="header-anchor" href="#_2-3-配置静态ip地址" aria-hidden="true">#</a> 2.3.配置静态IP地址</h2>
 <p><strong>修改网络配置</strong></p>
@@ -179,10 +177,9 @@ yum -y install telnet-server
  3.3.安装jdk
  3.4.安装maven
  3.5.安装mysql
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
-均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 </code></pre>
-<h2 id="_3-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_3-2-章节内容大纲" aria-hidden="true">#</a> 3.2.章节内容大纲</h2>
+<h2 id="_3-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_3-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter3.html" target="_blank">3.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter3.html"/>
 <h2 id="_3-3-安装jdk" tabindex="-1"><a class="header-anchor" href="#_3-3-安装jdk" aria-hidden="true">#</a> 3.3.安装jdk</h2>
 <pre><code>查看当前安装的java版本
@@ -350,10 +347,9 @@ flush privileges;
  4.7.docker官方私服可视化
  4.8.制作docker镜像并上传到私服
  4.9.Docker中安装常用软件
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
-均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 </code></pre>
-<h2 id="_4-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_4-2-章节内容大纲" aria-hidden="true">#</a> 4.2.章节内容大纲</h2>
+<h2 id="_4-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_4-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter4.html" target="_blank">4.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter4.html"/>
 <h2 id="_4-3-安装docker" tabindex="-1"><a class="header-anchor" href="#_4-3-安装docker" aria-hidden="true">#</a> 4.3.安装docker</h2>
 <h3 id="_4-3-1-在线安装docker" tabindex="-1"><a class="header-anchor" href="#_4-3-1-在线安装docker" aria-hidden="true">#</a> 4.3.1.在线安装docker</h3>
@@ -965,10 +961,9 @@ max virtual memory areas vm.max_map_count [65530] is too low, increase to at lea
  5.1.章节内容概述
  5.2.章节内容大纲
 
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
-均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 </code></pre>
-<h2 id="_5-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_5-2-章节内容大纲" aria-hidden="true">#</a> 5.2.章节内容大纲</h2>
+<h2 id="_5-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_5-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter5.html" target="_blank">5.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter5.html"/>
 <pre><code>下载rancher
 </code></pre>
@@ -998,10 +993,9 @@ eureka:
  6.8.使用阿里云加速docker hub
  6.9.启动minikube
  6.10.minikube常用命令	
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
-均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 </code></pre>
-<h2 id="_6-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_6-2-章节内容大纲" aria-hidden="true">#</a> 6.2.章节内容大纲</h2>
+<h2 id="_6-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_6-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter6.html" target="_blank">6.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter6.html"/>
 <h2 id="_6-3-minikube介绍" tabindex="-1"><a class="header-anchor" href="#_6-3-minikube介绍" aria-hidden="true">#</a> 6.3.minikube介绍</h2>
 <pre><code>Minikube这个工具支持在虚拟机上运行一套单节点的k8s集群
@@ -1136,10 +1130,9 @@ rcvboxdrv setup
  7.18.基础命令
  7.19.部署第一个程序到k8s中
  7.20.可视化面板kuboard
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
-均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 </code></pre>
-<h2 id="_7-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_7-2-章节内容大纲" aria-hidden="true">#</a> 7.2.章节内容大纲</h2>
+<h2 id="_7-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_7-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter7.html" target="_blank">7.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter7.html"/>
 <h2 id="_7-3-特别说明" tabindex="-1"><a class="header-anchor" href="#_7-3-特别说明" aria-hidden="true">#</a> 7.3.特别说明</h2>
 <pre><code>使用kubeadm搭建Kubernetes
@@ -1406,10 +1399,9 @@ http://192.168.0.8:31208
  8.16.部署Nginx+Keepalived高可用负载均衡器
  8.17.部署常见问题
  8.18.部署测试程序
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
-均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 </code></pre>
-<h2 id="_8-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_8-2-章节内容大纲" aria-hidden="true">#</a> 8.2.章节内容大纲</h2>
+<h2 id="_8-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_8-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter8.html" target="_blank">8.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter8.html"/>
 <h2 id="_8-3-环境配置清单" tabindex="-1"><a class="header-anchor" href="#_8-3-环境配置清单" aria-hidden="true">#</a> 8.3.环境配置清单</h2>
 <pre><code>操作系统									centos7

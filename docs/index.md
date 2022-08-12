@@ -24,10 +24,10 @@ features:
     details: Java是一种流行的编程语言和计算平台，由 Sun Microsystems 在 1995 年首次发布。
     link: https://www.java.com/en/
 
-  - title: Mysql
-    icon: mysql
-    details: MySQL是一个关系型数据库管理系统，由瑞典MySQL AB 公司开发，属于 Oracle 旗下产品。
-    link: https://www.mysql.com/
+  - title: Rancher
+    icon: rancher
+    details: Rancher是一个开源的多集群编排平台，允许运营团队部署、管理和保护企业的Kubernetes和Docker。
+    link: https://rancher.com/
 
   - title: Github
     icon: github

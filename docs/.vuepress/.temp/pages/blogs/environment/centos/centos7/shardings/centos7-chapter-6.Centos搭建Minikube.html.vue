@@ -11,10 +11,9 @@
  6.8.使用阿里云加速docker hub
  6.9.启动minikube
  6.10.minikube常用命令	
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
-均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 </code></pre>
-<h2 id="_6-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_6-2-章节内容大纲" aria-hidden="true">#</a> 6.2.章节内容大纲</h2>
+<h2 id="_6-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_6-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter6.html" target="_blank">6.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter6.html"/>
 <h2 id="_6-3-minikube介绍" tabindex="-1"><a class="header-anchor" href="#_6-3-minikube介绍" aria-hidden="true">#</a> 6.3.minikube介绍</h2>
 <pre><code>Minikube这个工具支持在虚拟机上运行一套单节点的k8s集群

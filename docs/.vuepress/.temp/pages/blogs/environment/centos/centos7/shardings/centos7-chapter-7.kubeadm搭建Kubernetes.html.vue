@@ -21,10 +21,9 @@
  7.18.基础命令
  7.19.部署第一个程序到k8s中
  7.20.可视化面板kuboard
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码
-均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 </code></pre>
-<h2 id="_7-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_7-2-章节内容大纲" aria-hidden="true">#</a> 7.2.章节内容大纲</h2>
+<h2 id="_7-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_7-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter7.html" target="_blank">7.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter7.html"/>
 <h2 id="_7-3-特别说明" tabindex="-1"><a class="header-anchor" href="#_7-3-特别说明" aria-hidden="true">#</a> 7.3.特别说明</h2>
 <pre><code>使用kubeadm搭建Kubernetes

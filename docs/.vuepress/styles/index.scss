@@ -191,12 +191,15 @@ p, ul, ol {
 .page pre {
     white-space: pre-wrap;
     word-wrap: break-word;
+    background: #F6F8FA;
 }
-  
+
 .theme-container .page {
     padding-left: var(--sidebar-width);
 }
 .theme-container.sidebar-collapsed .page {
-    border: 1px solid red;
     padding-left: 0;
+}
+.repo-link {
+    color: red;
 }

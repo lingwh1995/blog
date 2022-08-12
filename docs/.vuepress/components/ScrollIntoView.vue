@@ -21,7 +21,6 @@ export default {
         const currentToc = document.querySelector('#toc .active');
         console.log(currentToc)
         currentToc.scrollIntoView(true)
-        this.click
     }
     
 
