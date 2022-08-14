@@ -7,6 +7,10 @@ cp ./id_rsa* .ssh/
 source ./enhance/lib/tools.sh
 # 确保脚本抛出遇到的错误
 
+npm install -g n
+n stable
+npm i
+
 #获取纯模式启动状态
 PLUGIN_ENABLE_STATE=( $( parsePluginIni plugin-003 enable) )
 
