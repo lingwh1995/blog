@@ -145,15 +145,12 @@ function deployCI() {
 #判断系统类型
 uNames=`uname -s`
 osName=${uNames: 0: 4}
-if [ "$osName" == "Darw" ] # Darwin
-then
-	echo "Mac OS X"
-elif [ "$osName" == "Linu" ] # Linux
+if [ "$osName" == "Linu" ] # Linux
 then
     #代表持续集成环境
     echo "GNU/Linux"
     echo "当前是持续集成发布模式"
-    deployCI
+    deployCI $1
 elif [ "$osName" == "MING" ] # MINGW, windows, git-bash
 then
     #代表本地环境
