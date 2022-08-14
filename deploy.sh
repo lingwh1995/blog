@@ -134,7 +134,7 @@ function deployLocalhost() {
 }
 
 #持续集成发布模式
-function deployPureCI() {
+function deployCI() {
     updateNodeVersionWhenCI
     beforeBuildAndDeploy
     deployPureCI $1
