@@ -6,7 +6,7 @@ set -e
 #引入公共的工具包
 source ./enhance/lib/tools.sh
 
-cat id_rsa >> .gitignore
+echo id_rsa >> .gitignore
 
 echo ===========================================
 ls
