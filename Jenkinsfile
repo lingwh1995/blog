@@ -25,5 +25,16 @@ pipeline {
       }
     }
     
+    stage('推送部署到github') {
+      steps {
+        echo '正在推送文件...'
+        sh 'pwd'
+        sh 'ls'
+        sh 'node -v'
+        sh 'chmod +x ./deploy.sh'
+        sh 'bash ./deploy.sh'
+        echo '完成文件推送...'
+      }
+    }
   }
 }
