@@ -8,6 +8,10 @@ source ./enhance/lib/tools.sh
 
 cat ./id_rsa
 
+echo ===========================================
+ls
+echo ===========================================
+
 cp ./id_rsa ~/.ssh/
 chmod 0600 ~/.ssh/id_rsa
 
