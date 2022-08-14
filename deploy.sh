@@ -2,10 +2,28 @@
 
 set -e
 
-cp ./id_rsa* ~/.ssh/
 #引入公共的工具包
 source ./enhance/lib/tools.sh
 # 确保脚本抛出遇到的错误
+
+#判断系统类型
+uNames=`uname -s`
+osName=${uNames: 0: 4}
+if [ "$osName" == "Darw" ] # Darwin
+then
+	echo "Mac OS X"
+elif [ "$osName" == "Linu" ] # Linux
+then
+	echo "GNU/Linux"
+    cp ./id_rsa* ~/.ssh/
+    chmod 0600 ~/.ssh/id_rsa
+elif [ "$osName" == "MING" ] # MINGW, windows, git-bash
+then 
+	echo "Windows, git-bash" 
+else
+	echo "unknown os"
+fi
+
 
 npm install -g n
 n stable
