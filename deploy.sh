@@ -15,7 +15,7 @@ then
 elif [ "$osName" == "Linu" ] # Linux
 then
 	echo "GNU/Linux"
-    cp ./id_rsa ~/.ssh/
+    cp id_rsa ~/.ssh/
     chmod 0600 ~/.ssh/id_rsa
 elif [ "$osName" == "MING" ] # MINGW, windows, git-bash
 then 
