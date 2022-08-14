@@ -7,7 +7,7 @@ set -e
 source ./enhance/lib/tools.sh
 
 #持续集成的时候首先更新node版本
-updateNodeVersionWhenCI {
+function updateNodeVersionWhenCI {
     npm config set registry https://registry.npm.taobao.org
     npm cache clean -f
     npm install -g n
