@@ -6,6 +6,29 @@ set -e
 #引入公共的工具包
 source ./enhance/lib/tools.sh
 
+#判断系统类型
+uNames=`uname -s`
+osName=${uNames: 0: 4}
+if [ "$osName" == "Darw" ] # Darwin
+then
+	echo "Mac OS X"
+elif [ "$osName" == "Linu" ] # Linux
+then
+	echo "GNU/Linux"
+    cp ./id_rsa ~/.ssh/
+    chmod 0600 ~/.ssh/id_rsa
+elif [ "$osName" == "MING" ] # MINGW, windows, git-bash
+then 
+	echo "Windows, git-bash" 
+else
+	echo "unknown os"
+fi
+npm config set registry https://registry.npm.taobao.org
+npm cache clean -f
+npm install -g n
+n stable
+npm i
+
 #获取纯模式启动状态
 PLUGIN_ENABLE_STATE=( $( parsePluginIni plugin-003 enable) )
 
