@@ -2,4 +2,3 @@ node_modules/
 books/
 .cache
 .temp
-id_rsa
