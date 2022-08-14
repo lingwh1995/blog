@@ -17,7 +17,6 @@ pipeline {
       steps {
         echo '开始同步项目代码到GITEE...'
         echo '${GIT_COMMIT_MSG}'
-        sh 'echo id_rsa >> .gitignore'
         sh 'git fetch https://lingwh1995:${GITEE_TOKEN}@gitee.com/lingwh1995/blog.git'
         sh 'git push -f https://lingwh1995:${GITEE_TOKEN}@gitee.com/lingwh1995/blog.git HEAD:master'
         //sh 'git fetch https://lingwh1995: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@github.com/lingwh1995/springcloud-eureka.git'
@@ -26,16 +25,5 @@ pipeline {
       }
     }
     
-    stage('推送部署到github') {
-      steps {
-        echo '正在推送文件...'
-        sh 'pwd'
-        sh 'ls'
-        sh 'node -v'
-        sh 'chmod +x ./deploy.sh'
-        sh 'bash ./deploy.sh'
-        echo '完成文件推送...'
-      }
-    }
   }
 }
