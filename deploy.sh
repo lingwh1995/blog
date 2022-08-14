@@ -15,6 +15,12 @@ function updateNodeVersionWhenCI {
     npm i
 }
 
+#执行./init.sh
+function executeInitScript() {
+    chmod +x ./init.sh
+    ./init.sh
+}
+
 #获取纯模式启动状态
 PLUGIN_ENABLE_STATE=( $( parsePluginIni plugin-003 enable) )
 
@@ -136,6 +142,7 @@ function deployLocalhost() {
 #持续集成发布模式
 function deployCI() {
     updateNodeVersionWhenCI
+    executeInitScript
     beforeBuildAndDeploy
     deployPureCI $1
     deployNormalCI $1
@@ -149,8 +156,13 @@ if [ "$osName" == "Linu" ] # Linux
 then
     #代表持续集成环境
     echo "GNU/Linux"
-    echo "当前是持续集成发布模式"
-    deployCI $1
+    #获取纯模式启动状态
+    AUTODEPLOY_ENABLE_STATE=( $( parsePluginIni plugin-004 enable) )
+    if [ $AUTODEPLOY_ENABLE_STATE == "true" ]
+    then
+        echo "当前是持续集成发布模式"
+        deployCI $1
+    fi
 elif [ "$osName" == "MING" ] # MINGW, windows, git-bash
 then
     #代表本地环境

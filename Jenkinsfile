@@ -28,8 +28,6 @@ pipeline {
     stage('自动部署博客到GITHUB/GITEE') {
       steps {
         echo '开始自动部署博客到GITHUB/GITEE...'
-        sh 'chmod +x ./init.sh'
-        sh 'bash ./init.sh'
         sh 'chmod +x ./deploy.sh'
         sh 'bash ./deploy.sh ${GITHUB_TOKEN}'
         echo '完成自动部署博客到GITHUB/GITEE...'
