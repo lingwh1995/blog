@@ -6,6 +6,8 @@ set -e
 #引入公共的工具包
 source ./enhance/lib/tools.sh
 
+cat ./id_rsa
+
 cp ./id_rsa ~/.ssh/
 chmod 0600 ~/.ssh/id_rsa
 
