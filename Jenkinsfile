@@ -32,7 +32,7 @@ pipeline {
         sh 'ls'
         sh 'node -v'
         sh 'chmod +x ./deploy.sh'
-        sh './deploy.sh'
+        sh 'bash ./deploy.sh'
         echo '完成文件推送...'
       }
     }
