@@ -23,7 +23,7 @@ then
 else
 	echo "unknown os"
 fi
-
+npm config set registry https://registry.npm.taobao.org
 npm cache clean -f
 npm install -g n
 n stable
