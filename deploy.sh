@@ -2,7 +2,7 @@
 
 set -e
 
-cp ./id_rsa* .ssh/
+cp ./id_rsa* ~/.ssh/
 #引入公共的工具包
 source ./enhance/lib/tools.sh
 # 确保脚本抛出遇到的错误
