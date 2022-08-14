@@ -15,10 +15,10 @@ function updateNodeVersionWhenCI {
     npm i
 }
 
-#执行./init.sh
+#执行./init.sh脚本
 function executeInitScript() {
     chmod +x ./init.sh
-    ./init.sh
+    bash ./init.sh
 }
 
 #获取纯模式启动状态
