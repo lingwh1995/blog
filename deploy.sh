@@ -6,11 +6,14 @@ set -e
 #引入公共的工具包
 source ./enhance/lib/tools.sh
 
-npm config set registry https://registry.npm.taobao.org
-npm cache clean -f
-npm install -g n
-n stable
-npm i
+#持续集成的时候首先更新node版本
+updateNodeVersionWhenCI {
+    npm config set registry https://registry.npm.taobao.org
+    npm cache clean -f
+    npm install -g n
+    n stable
+    npm i
+}
 
 #获取纯模式启动状态
 PLUGIN_ENABLE_STATE=( $( parsePluginIni plugin-003 enable) )
@@ -92,6 +95,7 @@ function afterBuildAndDeploy() {
 }
 
 function deploy() {
+    updateNodeVersionWhenCI
     beforeBuildAndDeploy
     #注意：先执行发布纯模式的代码，再执行发布正常模式的代码，这样本地不用再额外重启一次也可以直接用正常模式来运行
     deployPure $1
