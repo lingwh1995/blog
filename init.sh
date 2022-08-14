@@ -51,9 +51,15 @@ function cloneDocumentsOriginalFromRemote() {
         #删除多余的脚本
         rm -rf $LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/*.sh
         echo '执行了命令: rm -rf '$LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/*.sh
+        #删除多余的脚本
+        rm -rf $LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/*.sh
+        echo '执行了命令: rm -rf '$LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/*.sh.bak
         #删除config文件夹
         rm -rf $LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/config
         echo '执行了命令: rm -rf '$LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/config
+        #删除.gitignore文件
+        rm -rf $LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/.gitignore
+        echo '执行了命令: rm -rf '$LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/.gitignore
         echo '完成清理本地文档原件仓库文件夹中无用文件.......................'
     fi
 
@@ -691,7 +697,8 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
     $4:$SIDEBAR_LINK_PREFIX
     $5:$MD_FILE_SHARDINGS_FOLDER_NAME
     $6:$ENSEMBLE_GUIDANCE_TITLE1_TEXT
-
+    合集中ID格式 {#centos7_1-4-o}
+    章节中ID格式 {#centos7_1-5-c}
 EOF
 function generateSidebarConfigForAllAndSetAnchorForOriginal() {
    
@@ -729,7 +736,7 @@ function generateSidebarConfigForAllAndSetAnchorForOriginal() {
     #拼接 按照章节阅读sidebar
     echo "          {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "              text: \"按照章节阅读\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    echo "              icon:\"repo\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "              icon:\"list\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "              collapsable: true," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "              children:[" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
 
@@ -737,7 +744,7 @@ function generateSidebarConfigForAllAndSetAnchorForOriginal() {
     echo "                  {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "                      text: \"$6\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "                      link:\"$4/$5/$1-chapter-0.$6.md\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    echo "                      icon:\"note\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "                      icon:\"article\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "                   }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
 
     for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
@@ -767,7 +774,7 @@ function generateSidebarConfigForAllAndSetAnchorForOriginal() {
     echo "                  {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "                      text: \"$6\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "                      link:\"$4/$1.md#intro\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    echo "                      icon:\"note\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "                      icon:\"article\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "                  }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     
     for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
@@ -1098,7 +1105,7 @@ function enhance() {
     generateChapterShardingsAndWriteFrontmatterForShardings $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_CHAPTER_SHARDINGS_FOLDER_NAME $MD_FILE_GUIDANCE_TARGET_PATH $ENSEMBLE_GUIDANCE_TITLE1_TEXT $ENSEMBLE_GUIDANCE_TITLE1_TEXT
     #--------------------------------------------------------------------------------------------------------------
     
-    #生成sidebar配置json并设置锚点
+    #生成sidebar配置json并为一级标题设置锚点
     #--------------------------------------------------------------------------------------------------------------
     #存放生成的sidebar配置json文件的路径的路径前缀    
     MD_FILE_SIDEBAR_CONFIG_TARGET_PATH_PREFIX="enhance/config"

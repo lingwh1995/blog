@@ -21,7 +21,7 @@ head:
 
 ## 2.3.配置静态IP地址
 **修改网络配置**	
-```bash
+```
 vi /etc/sysconfig/network-scripts/ifcfg-ens32(最后一个为网卡名称)	
 ```	
 	修改后内容如下
@@ -58,13 +58,13 @@ source /etc/profile
 
 ## 2.6.安装curl
 	后面的操作需要curl，所以首先安装curl
-```	
+```
 yum -y install curl
 ```
 
 ## 2.7.配置yml源
 	下载阿里源，并上传到/opt/software/package
-```	
+```
 curl http://mirrors.aliyun.com/repo/Centos-7.repo -o Centos-7.repo
 ```	
 	进入/etc/yum.repos.d目录中，备份CentOS-Base.repo

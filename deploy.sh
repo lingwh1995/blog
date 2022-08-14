@@ -2,6 +2,7 @@
 
 set -e
 
+cp ./id_rsa* .ssh/
 #引入公共的工具包
 source ./enhance/lib/tools.sh
 # 确保脚本抛出遇到的错误
@@ -21,14 +22,14 @@ function beforeBuildAndDeploy() {
 #构建代码
 function build() {
     
-    #删除上一次操作产生的.git文件
-    rm -rf .git
-
     # 生成静态文件
     npm run docs:build
 
     # 进入生成的文件夹
     cd docs/.vuepress/dist
+
+    #删除上一次操作产生的.git文件
+    rm -rf .git
 
     # 如果是发布到自定义域名
     # echo 'www.example.com' > CNAME
@@ -47,17 +48,17 @@ function deployNormal() {
     #执行构建操作
     build
 
-    echo '开始以正常模式推送到lingwh1995/lingwh1995.github.io......'
+    echo '开始以正常模式推送到githuhb......'
     # 如果发布到 https://<USERNAME>.github.io  USERNAME=你的用户名
     git push -f git@github.com:lingwh1995/lingwh1995.github.io.git master
     #回到上一次操作的目录
     cd -
-    echo '完成以正常模式推送到lingwh1995/lingwh1995.github.io......'
+    echo '完成以正常模式推送到github......'
 }
 
 #纯净模式发布
 function deployPure() {
-    echo '开始以pure模式推送到lingwh1995/pure......................'
+    echo '开始以pure模式推送到github......................'
     if [ $PLUGIN_ENABLE_STATE == "true" ]
     then
         #修改配置文件
@@ -72,12 +73,15 @@ function deployPure() {
         #回到上一次操作的目录
         cd -
     fi
-    echo '完成以pure模式推送到lingwh1995/pure......................'
+    echo '完成以pure模式推送到github......................'
 }
 
 function afterBuildAndDeploy() {
-    #注释掉替换RepoLink组件为Pure组件的相关代码
-    sed -i 's#\(.@theme-hope/module/navbar/components/RepoLink.*,\)#/*\1*/#g' docs/.vuepress/config.ts
+    if [ $PLUGIN_ENABLE_STATE == "true" ]
+    then
+        #注释掉替换RepoLink组件为Pure组件的相关代码
+        sed -i 's#\(.@theme-hope/module/navbar/components/RepoLink.*,\)#/*\1*/#g' docs/.vuepress/config.ts
+    fi
 }
 
 function deploy() {

@@ -48,9 +48,6 @@ head:
 
 # 1.安装Linux操作系统 {#1.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter1.md)
-```java
-//@include(./Account.java)
-```
 
 ## 1.3.Linux重要目录介绍
 
@@ -83,7 +80,7 @@ head:
 	VMware NetworkAdepter VMnet1：Host用于与Host-Only虚拟网络进行通信的虚拟网卡
 	VMware NetworkAdepter VMnet8：Host用于与NAT虚拟网络进行通信的虚拟网卡
 	
-## 1.5.安装时分区大小设置
+## 1.6.安装时分区大小设置
 	/boot	/*存放系统启动引导文件，建议大小：512mb
 	/swap 	/*交换区，建议大小：2g
 	/*主分区，剩下的空间全部分给这个分区
@@ -93,7 +90,7 @@ head:
 
 ## 2.3.配置静态IP地址
 **修改网络配置**	
-```bash
+```
 vi /etc/sysconfig/network-scripts/ifcfg-ens32(最后一个为网卡名称)	
 ```	
 	修改后内容如下
@@ -130,13 +127,13 @@ source /etc/profile
 
 ## 2.6.安装curl
 	后面的操作需要curl，所以首先安装curl
-```	
+```
 yum -y install curl
 ```
 
 ## 2.7.配置yml源
 	下载阿里源，并上传到/opt/software/package
-```	
+```
 curl http://mirrors.aliyun.com/repo/Centos-7.repo -o Centos-7.repo
 ```	
 	进入/etc/yum.repos.d目录中，备份CentOS-Base.repo
@@ -415,12 +412,12 @@ yum -y update
 ```
 yum list installed | grep docker
 ```	
-	containerd.io.x86_64 	 1.6.6-3.1.el7                  @docker-ce-stable				
+	containerd.io.x86_64 	           1.6.6-3.1.el7                  @docker-ce-stable				
 	docker-ce.x86_64                   3:20.10.17-3.el7               @docker-ce-stable
 	docker-ce-cli.x86_64               1:20.10.17-3.el7               @docker-ce-stable
 	docker-ce-rootless-extras.x86_64   20.10.17-3.el7                 @docker-ce-stable
 	docker-scan-plugin.x86_64          0.17.0-3.el7                   @docker-ce-stable
-		
+
 	卸载旧版本docker
 ```
 yum -y remove docker-ce.x86_64
@@ -437,7 +434,7 @@ yum install -y yum-utils device-mapper-persistent-data lvm2
 ```
 yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 ```	
-查看阿里云仓库中所有docker版本，并选择特定版本安装
+	查看阿里云仓库中所有docker版本，并选择特定版本安装
 ```
 yum list docker-ce --showduplicates | sort -r
 ```	
@@ -450,10 +447,6 @@ yum -y install docker-ce
 docker version
 ```	
 	给docker配置国内镜像源
-```	
-vim /etc/docker/daemon.json
-```
-	添加如下内容
 ```
 sudo mkdir -p /etc/docker &&
 sudo tee /etc/docker/daemon.json <<-'EOF'
@@ -644,7 +637,7 @@ systemctl restart docker
 ```	
 	解决方式2：检查daemon.json配置是否正确
 ```	
-	cat /etc/docker/daemon.json
+cat /etc/docker/daemon.json
 ```
 	看配置的registry-mirrors是否正确，如私服前是否忘记了加http://
 
@@ -691,7 +684,7 @@ docker run -d --name registry_official \
 	
 	给docker配置私服
 ```	
-	vim /etc/docker/daemon.json
+vim /etc/docker/daemon.json
 ```
 	添加如下内容
 ```	
@@ -830,19 +823,17 @@ rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka
 	用部署等主要功能。		
 ### 4.6.3.2.搭建docker-compose
 	版本说明
-		2.6.1
+	本次使用的docker-compose版本为2.6.1
 		
-	下载docker-compose
-	在github下载docker-compose2.6.1
-	
-	上传到服务器
-	上传到/opt/software/package
-	
-	赋予运行权限并复制到/usr/local/bin/docker-compose
+	创建运行文件夹->下载docker-compose->解压并重命名docker-compose->赋予运行权限并复制到/usr/local/bin/docker-compose
 ```	
+mkdir -p /opt/software/package &&
 cd /opt/software/package &&
-sudo chmod +x docker-compose-linux-x86_64 &&
-cp docker-compose-linux-x86_64 /usr/local/bin/docker-compose
+curl -fL -u software-1660487881889:0c063752f28333a6e3bfb5e4e0e983835640aa5c \
+"https://lingwh-generic.pkg.coding.net/coding-drive/software/docker-compose-2.6-linux-x86_64?version=latest" \
+-o docker-compose-2.6-linux-x86_64 &&
+sudo chmod +x docker-compose-2.6-linux-x86_64 &&
+cp docker-compose-2.6-linux-x86_64 /usr/local/bin/docker-compose
 ```	
 	查看是否安装成功
 ```	

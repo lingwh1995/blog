@@ -29,13 +29,12 @@
  1.3.Linux重要目录介绍
  1.4.Centos镜像下载
  1.5.安装前Vmaware相关设置
- 1.5.安装时分区大小设置
+ 1.6.安装时分区大小设置
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 </code></pre>
 <h2 id="_1-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_1-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter1.html" target="_blank">1.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter1.html"/>
-<div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code><span class="token comment">//@include(./Account.java)</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_1-3-linux重要目录介绍" tabindex="-1"><a class="header-anchor" href="#_1-3-linux重要目录介绍" aria-hidden="true">#</a> 1.3.Linux重要目录介绍</h2>
+<h2 id="_1-3-linux重要目录介绍" tabindex="-1"><a class="header-anchor" href="#_1-3-linux重要目录介绍" aria-hidden="true">#</a> 1.3.Linux重要目录介绍</h2>
 <pre><code>/usr → C:/Windows/ /*系统级的目录
 /usr/lib → C:/Windows/System32
 /usr/local → C:/Progrem Files/ /*用户级的程序目录，用户自己编译的软件默认会安装到这个目录下
@@ -64,7 +63,7 @@ VMnet8：用于虚拟NAT网络下的虚拟交换机
 VMware NetworkAdepter VMnet1：Host用于与Host-Only虚拟网络进行通信的虚拟网卡
 VMware NetworkAdepter VMnet8：Host用于与NAT虚拟网络进行通信的虚拟网卡
 </code></pre>
-<h2 id="_1-5-安装时分区大小设置" tabindex="-1"><a class="header-anchor" href="#_1-5-安装时分区大小设置" aria-hidden="true">#</a> 1.5.安装时分区大小设置</h2>
+<h2 id="_1-6-安装时分区大小设置" tabindex="-1"><a class="header-anchor" href="#_1-6-安装时分区大小设置" aria-hidden="true">#</a> 1.6.安装时分区大小设置</h2>
 <pre><code>/boot	/*存放系统启动引导文件，建议大小：512mb
 /swap 	/*交换区，建议大小：2g
 /*主分区，剩下的空间全部分给这个分区
@@ -86,7 +85,7 @@ VMware NetworkAdepter VMnet8：Host用于与NAT虚拟网络进行通信的虚拟
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter2.html"/>
 <h2 id="_2-3-配置静态ip地址" tabindex="-1"><a class="header-anchor" href="#_2-3-配置静态ip地址" aria-hidden="true">#</a> 2.3.配置静态IP地址</h2>
 <p><strong>修改网络配置</strong></p>
-<div class="language-bash ext-sh line-numbers-mode"><pre v-pre class="language-bash"><code><span class="token function">vi</span> /etc/sysconfig/network-scripts/ifcfg-ens32<span class="token punctuation">(</span>最后一个为网卡名称<span class="token punctuation">)</span>	
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vi /etc/sysconfig/network-scripts/ifcfg-ens32(最后一个为网卡名称)	
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>修改后内容如下
 bootproto=static
 onboot=yes
@@ -359,12 +358,12 @@ flush privileges;
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看当前安装的docker版本
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum list installed | grep docker
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>containerd.io.x86_64 	 1.6.6-3.1.el7                  @docker-ce-stable				
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>containerd.io.x86_64 	           1.6.6-3.1.el7                  @docker-ce-stable				
 docker-ce.x86_64                   3:20.10.17-3.el7               @docker-ce-stable
 docker-ce-cli.x86_64               1:20.10.17-3.el7               @docker-ce-stable
 docker-ce-rootless-extras.x86_64   20.10.17-3.el7                 @docker-ce-stable
 docker-scan-plugin.x86_64          0.17.0-3.el7                   @docker-ce-stable
-	
+
 卸载旧版本docker
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y remove docker-ce.x86_64
@@ -378,7 +377,8 @@ yum -y remove containerd.io.x86_64
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>配置使用阿里的yum源
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>查看阿里云仓库中所有docker版本，并选择特定版本安装</p>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看阿里云仓库中所有docker版本，并选择特定版本安装
+</code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum list docker-ce --showduplicates | sort -r
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装最新版本docker-ce(docker社区、ee企业版 ce为社区版)
 </code></pre>
@@ -387,9 +387,6 @@ yum -y remove containerd.io.x86_64
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker version
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>给docker配置国内镜像源
-</code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim /etc/docker/daemon.json
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>添加如下内容
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sudo mkdir -p /etc/docker &amp;&amp;
 sudo tee /etc/docker/daemon.json &lt;&lt;-'EOF'
@@ -561,7 +558,7 @@ See &quot;systemctl status docker.service&quot; and &quot;journalctl -xe&quot; f
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl restart docker
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>解决方式2：检查daemon.json配置是否正确
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	cat /etc/docker/daemon.json
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat /etc/docker/daemon.json
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>看配置的registry-mirrors是否正确，如私服前是否忘记了加http://
 </code></pre>
 <h2 id="_4-5-docker容器可视化" tabindex="-1"><a class="header-anchor" href="#_4-5-docker容器可视化" aria-hidden="true">#</a> 4.5.docker容器可视化</h2>
@@ -601,7 +598,7 @@ See &quot;systemctl status docker.service&quot; and &quot;journalctl -xe&quot; f
 
 给docker配置私服
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	vim /etc/docker/daemon.json
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim /etc/docker/daemon.json
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>添加如下内容
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>{
@@ -722,20 +719,18 @@ nexus和Maven中央仓库的关系，harbor除了存储和分发镜像外还具�
 </code></pre>
 <h3 id="_4-6-3-2-搭建docker-compose" tabindex="-1"><a class="header-anchor" href="#_4-6-3-2-搭建docker-compose" aria-hidden="true">#</a> 4.6.3.2.搭建docker-compose</h3>
 <pre><code>版本说明
-	2.6.1
+本次使用的docker-compose版本为2.6.1
 	
-下载docker-compose
-在github下载docker-compose2.6.1
-
-上传到服务器
-上传到/opt/software/package
-
-赋予运行权限并复制到/usr/local/bin/docker-compose
+创建运行文件夹-&gt;下载docker-compose-&gt;解压并重命名docker-compose-&gt;赋予运行权限并复制到/usr/local/bin/docker-compose
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /opt/software/package &amp;&amp;
-sudo chmod +x docker-compose-linux-x86_64 &amp;&amp;
-cp docker-compose-linux-x86_64 /usr/local/bin/docker-compose
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>查看是否安装成功
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mkdir -p /opt/software/package &amp;&amp;
+cd /opt/software/package &amp;&amp;
+curl -fL -u software-1660487881889:0c063752f28333a6e3bfb5e4e0e983835640aa5c \
+"https://lingwh-generic.pkg.coding.net/coding-drive/software/docker-compose-2.6-linux-x86_64?version=latest" \
+-o docker-compose-2.6-linux-x86_64 &amp;&amp;
+sudo chmod +x docker-compose-2.6-linux-x86_64 &amp;&amp;
+cp docker-compose-2.6-linux-x86_64 /usr/local/bin/docker-compose
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>查看是否安装成功
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker-compose --version
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_4-6-3-3-安装harbor" tabindex="-1"><a class="header-anchor" href="#_4-6-3-3-安装harbor" aria-hidden="true">#</a> 4.6.3.3.安装harbor</h3>

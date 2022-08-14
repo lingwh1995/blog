@@ -12,13 +12,13 @@ export default sidebar([
       children: [
           {
               text: "按照章节阅读",
-              icon:"repo",
+              icon:"list",
               collapsable: true,
               children:[
                   {
                       text: "博客内容介绍",
                       link:"/blogs/environment/centos/centos7/shardings/centos7-chapter-0.博客内容介绍.md",
-                      icon:"note",
+                      icon:"article",
                    },
                   {
                       text:"1.安装Linux操作系统",
@@ -78,7 +78,7 @@ export default sidebar([
                   {
                       text: "博客内容介绍",
                       link:"/blogs/environment/centos/centos7/centos7.md#intro",
-                      icon:"note",
+                      icon:"article",
                   },
                   {
                       text:"1.安装Linux操作系统",

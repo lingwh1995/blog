@@ -6,6 +6,8 @@ import ScrollIntoView from "./components/ScrollIntoView.vue";
 import Popup from "./components/Popup.vue";
 import Banner from "./components/Banner.vue";
 import Pure from "./components/Pure.vue";
+import JumpToChapter from "./components/JumpToChapter.vue";
+import JumpToOriginal from "./components/JumpToOriginal.vue";
 
 export default defineClientConfig({
   enhance: ({ app, router, siteData }) => {
@@ -14,5 +16,7 @@ export default defineClientConfig({
     app.component("Popup", Popup);
     app.component("Banner", Banner);
     app.component("Pure", Pure);
+    app.component("JumpToChapter", JumpToChapter);
+    app.component("JumpToOriginal", JumpToOriginal);
   },
 });

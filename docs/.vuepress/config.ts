@@ -35,7 +35,9 @@ export default defineUserConfig({
     "@Markmap": path.resolve(__dirname, "components/Markmap.vue"),
     "@ScrollIntoView": path.resolve(__dirname, "components/ScrollIntoView.vue"),
     "@Popup": path.resolve(__dirname, "components/Popup.vue"),
-    "@Popup": path.resolve(__dirname, "components/Banner.vue"),
+    "@Banner": path.resolve(__dirname, "components/Banner.vue"),
+    "@JumpToChapter": path.resolve(__dirname, "components/JumpToChapter.vue"),
+    "@JumpToOriginal": path.resolve(__dirname, "components/JumpToOriginal.vue"),
     //特别注意：下面这一行代码一定不能分开写到多行，否则影响sed执行效果
     /*"@theme-hope/module/navbar/components/RepoLink": path.resolve(__dirname,"components/Pure.vue"),*/
   },

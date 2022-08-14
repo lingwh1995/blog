@@ -31,7 +31,7 @@
         <div class="content">页面色彩丰富</div>
       </div>
       <div class="item" @click="goPureMode">
-        <div class="title">👁️&nbsp;纯净模式</div>
+        <div class="title">🍀&nbsp;纯净模式</div>
         <div class="content">页面色彩简单</div>  
       </div>
     </div>
@@ -42,23 +42,21 @@ export default {
   data() {
     return {
       msg: "我是一个引入到MD中的Vue组件",
-      modeLink: "https://lingwh1995.github.io/",
-      pureButtonBackground: "#666666",
+      pureButtonBackground: "#3eaf7c",
       pureButtonBackgroundWidth:"1.0rem",
       pureButtonBackgroundHeight:"1.0rem",
       currentMode:"常规模式"
     };
   },
   mounted() {
+    const origin = window.location.origin
     if(window.location.pathname.startsWith("/pure/")){
-      this.modeLink="https://lingwh1995.github.io/"
-        this.pureButtonBackground=`var(--theme-color)`
+      this.pureButtonBackground="#666666"
         this.pureButtonBackgroundWidth="1.1rem"
         this.pureButtonBackgroundHeight="1.1rem"
         this.currentMode="纯净模式"
       }else {
-        this.modeLink="https://lingwh1995.github.io/pure/"
-        this.pureButtonBackground="#666666"
+        this.pureButtonBackground="#3eaf7c"
         this.pureButtonBackgroundWidth="1.0rem"
         this.pureButtonBackgroundHeight="1.0rem"
         this.currentMode="常规模式"
@@ -66,10 +64,12 @@ export default {
   },
   methods: {
     goNormalMode() {
-      window.location.href="https://lingwh1995.github.io/"
+      const origin = window.location.origin
+      window.location.href= origin + '/'
     },
     goPureMode() {
-      window.location.href="https://lingwh1995.github.io/pure/"
+      const origin = window.location.origin
+      window.location.href= origin + '/pure/'
     }  
   }
 };
@@ -123,12 +123,13 @@ export default {
       font-size: 1rem;
       font-weight: 600;
     }
+    /*
     .popup .item:first-child .content:hover {
       font-size: 1.6rem;
       font-weight: 900;
       transition: all 0.18s ease-out;
       transform: scale(1.1);
-    }
+    }*/
     .popup .item:not(:first-child) .content:hover {
       font-size: 1.2rem;
       font-weight: 900;

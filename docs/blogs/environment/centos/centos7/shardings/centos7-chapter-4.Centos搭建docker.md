@@ -31,12 +31,12 @@ yum -y update
 ```
 yum list installed | grep docker
 ```	
-	containerd.io.x86_64 	 1.6.6-3.1.el7                  @docker-ce-stable				
+	containerd.io.x86_64 	           1.6.6-3.1.el7                  @docker-ce-stable				
 	docker-ce.x86_64                   3:20.10.17-3.el7               @docker-ce-stable
 	docker-ce-cli.x86_64               1:20.10.17-3.el7               @docker-ce-stable
 	docker-ce-rootless-extras.x86_64   20.10.17-3.el7                 @docker-ce-stable
 	docker-scan-plugin.x86_64          0.17.0-3.el7                   @docker-ce-stable
-		
+
 	卸载旧版本docker
 ```
 yum -y remove docker-ce.x86_64
@@ -53,7 +53,7 @@ yum install -y yum-utils device-mapper-persistent-data lvm2
 ```
 yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 ```	
-查看阿里云仓库中所有docker版本，并选择特定版本安装
+	查看阿里云仓库中所有docker版本，并选择特定版本安装
 ```
 yum list docker-ce --showduplicates | sort -r
 ```	
@@ -66,10 +66,6 @@ yum -y install docker-ce
 docker version
 ```	
 	给docker配置国内镜像源
-```	
-vim /etc/docker/daemon.json
-```
-	添加如下内容
 ```
 sudo mkdir -p /etc/docker &&
 sudo tee /etc/docker/daemon.json <<-'EOF'
@@ -260,7 +256,7 @@ systemctl restart docker
 ```	
 	解决方式2：检查daemon.json配置是否正确
 ```	
-	cat /etc/docker/daemon.json
+cat /etc/docker/daemon.json
 ```
 	看配置的registry-mirrors是否正确，如私服前是否忘记了加http://
 
@@ -307,7 +303,7 @@ docker run -d --name registry_official \
 	
 	给docker配置私服
 ```	
-	vim /etc/docker/daemon.json
+vim /etc/docker/daemon.json
 ```
 	添加如下内容
 ```	
@@ -446,19 +442,17 @@ rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka
 	用部署等主要功能。		
 ### 4.6.3.2.搭建docker-compose
 	版本说明
-		2.6.1
+	本次使用的docker-compose版本为2.6.1
 		
-	下载docker-compose
-	在github下载docker-compose2.6.1
-	
-	上传到服务器
-	上传到/opt/software/package
-	
-	赋予运行权限并复制到/usr/local/bin/docker-compose
+	创建运行文件夹->下载docker-compose->解压并重命名docker-compose->赋予运行权限并复制到/usr/local/bin/docker-compose
 ```	
+mkdir -p /opt/software/package &&
 cd /opt/software/package &&
-sudo chmod +x docker-compose-linux-x86_64 &&
-cp docker-compose-linux-x86_64 /usr/local/bin/docker-compose
+curl -fL -u software-1660487881889:0c063752f28333a6e3bfb5e4e0e983835640aa5c \
+"https://lingwh-generic.pkg.coding.net/coding-drive/software/docker-compose-2.6-linux-x86_64?version=latest" \
+-o docker-compose-2.6-linux-x86_64 &&
+sudo chmod +x docker-compose-2.6-linux-x86_64 &&
+cp docker-compose-2.6-linux-x86_64 /usr/local/bin/docker-compose
 ```	
 	查看是否安装成功
 ```	
