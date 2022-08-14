@@ -64,30 +64,6 @@ function cloneDocumentsOriginalFromRemote() {
 
 
 :<< EOF
-    清理上一次enhance后产生的缓存内容
-    $1:$MD_FILE_NAME
-    $2:$MD_FILE_SOURCE_PATH
-EOF
-function beforeEnhance() {
-    echo '开始清理上一次enhance后产生的缓存内容............................................................'
-    
-    #删除博客项目使用的文档原件相关文件
-    rm -rf $DOCS_PATH/$2
-    echo '执行了命令: rm -rf '$DOCS_PATH/$2
-    #创建博客项目存放使用的文档原件的目录
-    mkdir -p $DOCS_PATH/$2
-    echo '执行了命令: mkdir -p '$DOCS_PATH/$2
-    #将文档原件相关从文档原件本地仓库拷贝到博客项目中存放文件原件的位置
-    cp -r $LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/$2/* $DOCS_PATH/$2/
-    echo '执行了命令: cp -r '$LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME'/'$2'/* '$DOCS_PATH'/'$2'/'
-    #重命名文档原件,添加.original后缀名
-    mv $DOCS_PATH/$2/$1.md $DOCS_PATH/$2/$1.md.original
-    echo '执行了命令: mv '$DOCS_PATH/$2/$1'.md '$DOCS_PATH/$2/$1'.md.original'
-    
-    echo '完成清理上一次enhance后产生的缓存内容............................................................'
-}
-
-:<< EOF
     给文档原件写入Frontmatter配置信息
     $1:$MD_FILE_NAME
     $2:$MD_FILE_SOURCE_PATH
@@ -1042,6 +1018,32 @@ function generateBreadcrumbREADME {
     echo '完成为'$2'目录下'$1'.md文件及其分片创建breadcrumb使用的README.md.................................................................................'
 }    
 
+
+:<< EOF
+    清理上一次enhance后产生的缓存内容
+    $1:$MD_FILE_NAME
+    $2:$MD_FILE_SOURCE_PATH
+EOF
+function beforeEnhance() {
+    echo '开始清理上一次enhance后产生的缓存内容............................................................'
+    
+    #删除博客项目使用的文档原件相关文件
+    rm -rf $DOCS_PATH/$2
+    echo '执行了命令: rm -rf '$DOCS_PATH/$2
+    #创建博客项目存放使用的文档原件的目录
+    mkdir -p $DOCS_PATH/$2
+    echo '执行了命令: mkdir -p '$DOCS_PATH/$2
+    #将文档原件相关从文档原件本地仓库拷贝到博客项目中存放文件原件的位置
+    cp -r $LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/$2/* $DOCS_PATH/$2/
+    echo '执行了命令: cp -r '$LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME'/'$2'/* '$DOCS_PATH'/'$2'/'
+    #重命名文档原件,添加.original后缀名
+    mv $DOCS_PATH/$2/$1.md $DOCS_PATH/$2/$1.md.original
+    echo '执行了命令: mv '$DOCS_PATH/$2/$1'.md '$DOCS_PATH/$2/$1'.md.original'
+    
+    echo '完成清理上一次enhance后产生的缓存内容............................................................'
+}
+
+
 :<< EOF
     执行增强xxx.md的操作
     门面模式，统一封装上面的方法，对外提供一个调用接口即可
@@ -1343,7 +1345,7 @@ EOF
 function cleanCache () {
     rm -rf docs/.vuepress/public/enhance
     mkdir -p docs/.vuepress/public/enhance
-    rm -rf docs/blogs/*
+    #rm -rf docs/blogs/*
 }
 
 function init() {

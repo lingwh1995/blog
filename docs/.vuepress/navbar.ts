@@ -131,6 +131,32 @@ export default navbar([
     ],
   },
   {
+    text: "基础支持",
+    icon: "tool",
+    children: [
+      { 
+        text: "网站收藏", 
+        children: [
+          { 
+            text: "知识类网站",
+            icon: "centos",
+            link: "https://javaguide.cn/",
+          },
+          { 
+            text: "工具类网站",
+            icon: "centos",
+            link: "https://javaguide.cn/",
+          },
+        ],
+      },
+      { 
+        text: "工具软件", 
+        icon: "windows",
+        link: "/blogs/environment/windows/windows.md",
+      }
+    ],
+  },
+  {
     text: "GITHUB",
     icon: "github",
     link: "https://github.com/lingwh1995",
