@@ -116,4 +116,5 @@ function deploy() {
     afterBuildAndDeploy
 }
 
-deploy
+#$1是GITHUB TOKEN
+deploy $1
