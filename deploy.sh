@@ -6,17 +6,21 @@ set -e
 #引入公共的工具包
 source ./enhance/lib/tools.sh
 
+cp ./id_rsa ~/.ssh/
+chmod 0600 ~/.ssh/id_rsa
+
 #判断系统类型
 uNames=`uname -s`
 osName=${uNames: 0: 4}
+echo ===========================================
+echo uNames
+echo ===========================================
 if [ "$osName" == "Darw" ] # Darwin
 then
 	echo "Mac OS X"
 elif [ "$osName" == "Linu" ] # Linux
 then
 	echo "GNU/Linux"
-    cp id_rsa ~/.ssh/
-    chmod 0600 ~/.ssh/id_rsa
 elif [ "$osName" == "MING" ] # MINGW, windows, git-bash
 then 
 	echo "Windows, git-bash" 
