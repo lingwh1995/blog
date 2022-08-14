@@ -94,8 +94,8 @@ function afterBuildAndDeploy() {
 function deploy() {
     beforeBuildAndDeploy
     #注意：先执行发布纯模式的代码，再执行发布正常模式的代码，这样本地不用再额外重启一次也可以直接用正常模式来运行
-    deployPure
-    deployNormal
+    deployPure $1
+    deployNormal $1
     afterBuildAndDeploy
 }
 
