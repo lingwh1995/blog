@@ -25,17 +25,14 @@ pipeline {
       }
     }
     
-    stage('推送部署到github') {
+    stage('自动部署博客到GITHUB/GITEE') {
       steps {
-        echo '正在推送文件...'
-        sh 'pwd'
-        sh 'ls'
-        sh 'node -v'
+        echo '开始自动部署博客到GITHUB/GITEE...'
         sh 'chmod +x ./init.sh'
         sh 'bash ./init.sh'
         sh 'chmod +x ./deploy.sh'
         sh 'bash ./deploy.sh ${GITHUB_TOKEN}'
-        echo '完成文件推送...'
+        echo '完成自动部署博客到GITHUB/GITEE...'
       }
     }
   }
