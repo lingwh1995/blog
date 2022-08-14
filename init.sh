@@ -3,12 +3,6 @@
 # 确保脚本抛出遇到的错误
 set -e
 
-#设置git，使git在clone可以创建过长的文件名
-git config --global core.longpaths true
-
-#安装markmap-cli 
-#npm install -g markmap-cli
-
 #引入公共的工具包
 source ./enhance/lib/tools.sh
 
@@ -38,6 +32,8 @@ function cloneDocumentsOriginalFromRemote() {
         echo '开始获取远程文档原件仓库地址和本地文档原件仓库文件夹名称.......'
 
         echo '开始从远程文档原件仓库拉取文档原件到本地......................'
+        #设置git，使git在clone可以创建过长的文件名
+        git config --global core.longpaths true
         git clone $GIT_REPOSITORY_URL
         echo '完成从远程文档原件仓库拉取文档原件到本地......................'
 
@@ -227,6 +223,12 @@ EOF
 EOF
 function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     echo '为文档原件和文档原件的的所有章节分片生成二级和三级目录大纲,并将这个目录大纲转换为markmap文件..........'
+    
+    echo '开始安装markmap-cli........................................................................'
+    #安装markmap-cli 
+    npm install -g markmap-cli
+    echo '完成安装markmap-cli开始........................................................................'
+    
     echo '生成markmap文件开始........................................................................'
     echo '开始为'$1'.md生成markmap文件........................'
   
