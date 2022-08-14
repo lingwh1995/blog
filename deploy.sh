@@ -15,8 +15,8 @@ then
 elif [ "$osName" == "Linu" ] # Linux
 then
 	echo "GNU/Linux"
-    cp ./id_rsa ~/.ssh/
-    chmod 0600 ~/.ssh/id_rsa
+    #cp ./id_rsa ~/.ssh/
+    #chmod 0600 ~/.ssh/id_rsa
 elif [ "$osName" == "MING" ] # MINGW, windows, git-bash
 then 
 	echo "Windows, git-bash" 
@@ -72,7 +72,8 @@ function deployNormal() {
 
     echo '开始以正常模式推送到githuhb......'
     # 如果发布到 https://<USERNAME>.github.io  USERNAME=你的用户名
-    git push -f git@github.com:lingwh1995/lingwh1995.github.io.git master
+    #git push -f git@github.com:lingwh1995/lingwh1995.github.io.git master
+    git push -f https://lingwh1995:$1@github.com/lingwh1995/lingwh1995.github.io.git HEAD:master
     #回到上一次操作的目录
     cd -
     echo '完成以正常模式推送到github......'
@@ -91,7 +92,8 @@ function deployPure() {
         build
         
         # 如果发布到 https://<USERNAME>.github.io/<REPO>  REPO=github上的项目,需要开启gitpages服务
-        git push -f git@github.com:lingwh1995/pure.git master
+        #git push -f git@github.com:lingwh1995/pure.git master
+        git push -f https://lingwh1995:$1@github.com/lingwh1995/pure.git HEAD:master
         #回到上一次操作的目录
         cd -
     fi
