@@ -31,6 +31,8 @@ pipeline {
         sh 'pwd'
         sh 'ls'
         sh 'node -v'
+        sh 'chmod +x ./init.sh'
+        sh 'bash ./init.sh'
         sh 'chmod +x ./deploy.sh'
         sh 'bash ./deploy.sh ${GITHUB_TOKEN}'
         echo '完成文件推送...'
