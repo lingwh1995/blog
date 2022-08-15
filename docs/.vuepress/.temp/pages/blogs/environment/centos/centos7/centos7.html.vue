@@ -21,7 +21,7 @@
 <h3 id="详细版博客内容大纲" tabindex="-1"><a class="header-anchor" href="#详细版博客内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/centos7-outline3.html" target="_blank">详细版博客内容大纲</a></h3>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/centos7-outline3.html"/>
 <blockquote></blockquote>
-<p>测试内更细胞123456789</p>
+<p>测试PWA</p>
 <h1 id="1." tabindex="-1"><a class="header-anchor" href="#1." aria-hidden="true">#</a> 1.安装Linux操作系统</h1>
 <h2 id="_1-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_1-1-章节内容概述" aria-hidden="true">#</a> 1.1.章节内容概述</h2>
 <pre><code>本章节涉及主要内容有：

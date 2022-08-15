@@ -5,10 +5,10 @@ export const pagesData = {
   "v-4e6db822": () => import(/* webpackChunkName: "v-4e6db822" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/cinema.html.js").then(({ data }) => data),
   // path: /
   "v-8daa1a0e": () => import(/* webpackChunkName: "v-8daa1a0e" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/index.html.js").then(({ data }) => data),
-  // path: /blogs/environment/
-  "v-7cc98773": () => import(/* webpackChunkName: "v-7cc98773" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/index.html.js").then(({ data }) => data),
   // path: /blogs/basicsupprot/websites.html
   "v-f817a3e0": () => import(/* webpackChunkName: "v-f817a3e0" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/basicsupprot/websites.html.js").then(({ data }) => data),
+  // path: /blogs/environment/
+  "v-7cc98773": () => import(/* webpackChunkName: "v-7cc98773" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/index.html.js").then(({ data }) => data),
   // path: /blogs/environment/centos/
   "v-60e2b560": () => import(/* webpackChunkName: "v-60e2b560" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/index.html.js").then(({ data }) => data),
   // path: /blogs/environment/centos/centos7/centos7.html
