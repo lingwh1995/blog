@@ -20,7 +20,7 @@ head:
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter1.md)
 
 ## 1.3.Linux重要目录介绍
-
+	测试内更细胞
 	/usr → C:/Windows/ /*系统级的目录
 	/usr/lib → C:/Windows/System32
 	/usr/local → C:/Progrem Files/ /*用户级的程序目录，用户自己编译的软件默认会安装到这个目录下
@@ -34,16 +34,18 @@ head:
 	/var 存放临时文件，如各种服务的日志文件。
 
 ## 1.4.Centos镜像下载
-	如何是学习环境，建议安装centos mini版镜像，生产环境可以安装完整版
-	下载地址
+	如果是学习环境，建议安装centos mini版镜像，生产环境可以安装完整   
+
+    下载地址
+<a href="http://ftp.sjtu.edu.cn/centos/">xxx</a>	
+	
 
 ## 1.5.安装前Vmaware相关设置
-**虚拟机联网设置**
-
+	虚拟机联网设置
 	导航栏->编辑->虚拟网络编辑器->VMnet8NAT模式->更改设置->VMnet8NAT模式
-		->更改底部子网:192.168.0.0，子网掩码:255.255.255.0->NAT设置->网关IP:192.168.0.2	
-**Vmware网卡说明**
+		->更改底部子网:192.168.0.0，子网掩码:255.255.255.0->NAT设置->网关IP:192.168.0.2   
 
+	Vmware网卡说明  
 	VMnet0：用于虚拟桥接网络下的虚拟交换机
 	VMnet1：用于虚拟Host-Only网络下的虚拟交换机
 	VMnet8：用于虚拟NAT网络下的虚拟交换机

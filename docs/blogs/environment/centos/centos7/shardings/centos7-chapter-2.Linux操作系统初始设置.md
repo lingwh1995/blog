@@ -20,7 +20,8 @@ head:
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter2.md)
 
 ## 2.3.配置静态IP地址
-**修改网络配置**	
+
+	修改网络配置	
 ```
 vi /etc/sysconfig/network-scripts/ifcfg-ens32(最后一个为网卡名称)	
 ```	
@@ -33,25 +34,26 @@ vi /etc/sysconfig/network-scripts/ifcfg-ens32(最后一个为网卡名称)
 	#和上面网关IP保持 一致
 	GATEWAY=192.168.0.2
 	DNS1=8.8.8.8
-	DNS2=8.8.4.4
-**重启网络**
+	DNS2=8.8.4.4   
+
+	重启网络
 ```
 systemctl restart network
 ```
 
 ## 2.4.解决远程连接无法连接的问题
-**修改sshd配置文件**
+	修改sshd配置文件
+	说明：sshd_config里面的UseDNS=no【原本为yes】
 ```
 vim /etc/ssh/sshd_config
 ```	
-	说明：sshd_config里面的UseDNS=no【原本为yes】
-**重启ssh服务**
+	重启ssh服务
 ```
 systemctl restart sshd.service
 ```
 
 ## 2.5.设置系统环境变量
-```
+```java
 echo "export LC_ALL=en_US.UTF-8"  >>  /etc/profile &&
 source /etc/profile
 ```
@@ -84,7 +86,8 @@ yum makecache && yum update
 ### 2.8.1.手动安装常用软件
 **vim**
 
-	安装vim	
+	安装vim
+`yum -y install vim*`
 ```		
 yum -y install vim*
 ```	
@@ -126,7 +129,7 @@ git version
 yum -y install curl
 ```
 
-	下载脚本并
+	下载脚本
 ```
 curl https://gitee.com/lingwh1995/config-center/raw/master/centos/centos-init.sh -o centos-init.sh
 ```

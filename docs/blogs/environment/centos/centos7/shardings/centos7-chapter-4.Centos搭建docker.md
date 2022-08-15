@@ -394,20 +394,20 @@ docker run -d --name registry_official_auth  \
 ```			
 	给docker配置私服
 ```	
-	vim /etc/docker/daemon.json
+vim /etc/docker/daemon.json
 ```	
 	添加以下内容
 ```	
 {
-	"insecure-registries":["192.168.0.4:5000","192.168.0.4:5001"],
-	"registry-mirrors": [
-			"https://5pfmrxk8.mirror.aliyuncs.com",
-			"http://hub-mirror.c.163.com",
-			"https://docker.mirrors.ustc.edu.cn",
-			"https://registry.docker-cn.com",
-			"http://192.168.0.4:5000",
-			"http://192.168.0.4:5001"
-	]
+    "insecure-registries":["192.168.0.4:5000","192.168.0.4:5001"],
+    "registry-mirrors": [
+        "https://5pfmrxk8.mirror.aliyuncs.com",
+        "http://hub-mirror.c.163.com",
+        "https://docker.mirrors.ustc.edu.cn",
+        "https://registry.docker-cn.com",
+        "http://192.168.0.4:5000",
+        "http://192.168.0.4:5001"
+    ]
 }
 ```	
 	daemon.json配置说明
@@ -424,13 +424,14 @@ firewall-cmd --reload
 ```
 	刷新docker daemon并重启docker
 ```	
-systemctl daemon-reload && systemctl restart docker
+systemctl daemon-reload &&
+systemctl restart docker
 ```	
 	验证仓库是否搭建成功
 	访问:http://192.168.0.4:5000/v2/_catalog，看到{"repositories":[]}表示私有仓库搭建成功且内容为空
 	
 	彻底删除私服中的镜像:注意这个路径是要看registry具体挂载到linux上什么位置的
-```	
+```
 rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka/
 ```
 
@@ -442,8 +443,11 @@ rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka
 	用部署等主要功能。		
 ### 4.6.3.2.搭建docker-compose
 	版本说明
-	本次使用的docker-compose版本为2.6.1
-		
+	本次使用的docker-compose版本为2.6.1   
+
+	官方网址
+<a href="https://github.com/docker/compose/">&nbsp;&nbsp;docker-compose</a>	
+
 	创建运行文件夹->下载docker-compose->解压并重命名docker-compose->赋予运行权限并复制到/usr/local/bin/docker-compose
 ```	
 mkdir -p /opt/software/package &&

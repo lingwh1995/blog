@@ -197,7 +197,7 @@ export default hopeTheme({
         mode: "external", // 使用外置模式
         external: {
           base: "https://sfc.vuejs.org/", // 使用 vue sfc playground.
-          defaultImportsMap: "import-map.json",
+          defaultImportsMap: "./import-map.json",
         },
         internal: {
           defaultImportsMap: "import-map.json",

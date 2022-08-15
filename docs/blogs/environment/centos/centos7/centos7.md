@@ -44,40 +44,13 @@ head:
     - name: keywords
       content: 安装Linux操作系统,Linux操作系统初始设置,搭建基础开发环境,Centos搭建docker,Centos搭建Rancher,Centos搭建Minikube,kubeadm搭建Kubernetes,二进制包搭建Kubernetes,
 ---
-
-::: playground 基础用法
-
-@file App.vue
-
-```vue
-<script setup>
-import { ref } from "vue";
-
-const msg = ref("Hello World!");
-</script>
-
-<template>
-  <h1>{{ msg }}</h1>
-  <input v-model="msg" />
-</template>
-```
-{{ msg }}
-:::
-::: v-pre
-
-dddd
-:::
-
-
-dddd
-
 @include(@src/public/enhance/guidance/environment/centos/centos7/centos7-guidance.md)
 
 # 1.安装Linux操作系统 {#1.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter1.md)
 
 ## 1.3.Linux重要目录介绍
-
+	测试内更细胞
 	/usr → C:/Windows/ /*系统级的目录
 	/usr/lib → C:/Windows/System32
 	/usr/local → C:/Progrem Files/ /*用户级的程序目录，用户自己编译的软件默认会安装到这个目录下
@@ -91,16 +64,18 @@ dddd
 	/var 存放临时文件，如各种服务的日志文件。
 
 ## 1.4.Centos镜像下载
-	如何是学习环境，建议安装centos mini版镜像，生产环境可以安装完整版
-	下载地址
+	如果是学习环境，建议安装centos mini版镜像，生产环境可以安装完整   
+
+    下载地址
+<a href="http://ftp.sjtu.edu.cn/centos/">xxx</a>	
+	
 
 ## 1.5.安装前Vmaware相关设置
-**虚拟机联网设置**
-
+	虚拟机联网设置
 	导航栏->编辑->虚拟网络编辑器->VMnet8NAT模式->更改设置->VMnet8NAT模式
-		->更改底部子网:192.168.0.0，子网掩码:255.255.255.0->NAT设置->网关IP:192.168.0.2	
-**Vmware网卡说明**
+		->更改底部子网:192.168.0.0，子网掩码:255.255.255.0->NAT设置->网关IP:192.168.0.2   
 
+	Vmware网卡说明  
 	VMnet0：用于虚拟桥接网络下的虚拟交换机
 	VMnet1：用于虚拟Host-Only网络下的虚拟交换机
 	VMnet8：用于虚拟NAT网络下的虚拟交换机
@@ -116,7 +91,8 @@ dddd
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter2.md)
 
 ## 2.3.配置静态IP地址
-**修改网络配置**	
+
+	修改网络配置	
 ```
 vi /etc/sysconfig/network-scripts/ifcfg-ens32(最后一个为网卡名称)	
 ```	
@@ -129,25 +105,26 @@ vi /etc/sysconfig/network-scripts/ifcfg-ens32(最后一个为网卡名称)
 	#和上面网关IP保持 一致
 	GATEWAY=192.168.0.2
 	DNS1=8.8.8.8
-	DNS2=8.8.4.4
-**重启网络**
+	DNS2=8.8.4.4   
+
+	重启网络
 ```
 systemctl restart network
 ```
 
 ## 2.4.解决远程连接无法连接的问题
-**修改sshd配置文件**
+	修改sshd配置文件
+	说明：sshd_config里面的UseDNS=no【原本为yes】
 ```
 vim /etc/ssh/sshd_config
 ```	
-	说明：sshd_config里面的UseDNS=no【原本为yes】
-**重启ssh服务**
+	重启ssh服务
 ```
 systemctl restart sshd.service
 ```
 
 ## 2.5.设置系统环境变量
-```
+```java
 echo "export LC_ALL=en_US.UTF-8"  >>  /etc/profile &&
 source /etc/profile
 ```
@@ -180,7 +157,8 @@ yum makecache && yum update
 ### 2.8.1.手动安装常用软件
 **vim**
 
-	安装vim	
+	安装vim
+`yum -y install vim*`
 ```		
 yum -y install vim*
 ```	
@@ -222,7 +200,7 @@ git version
 yum -y install curl
 ```
 
-	下载脚本并
+	下载脚本
 ```
 curl https://gitee.com/lingwh1995/config-center/raw/master/centos/centos-init.sh -o centos-init.sh
 ```
@@ -802,20 +780,20 @@ docker run -d --name registry_official_auth  \
 ```			
 	给docker配置私服
 ```	
-	vim /etc/docker/daemon.json
+vim /etc/docker/daemon.json
 ```	
 	添加以下内容
 ```	
 {
-	"insecure-registries":["192.168.0.4:5000","192.168.0.4:5001"],
-	"registry-mirrors": [
-			"https://5pfmrxk8.mirror.aliyuncs.com",
-			"http://hub-mirror.c.163.com",
-			"https://docker.mirrors.ustc.edu.cn",
-			"https://registry.docker-cn.com",
-			"http://192.168.0.4:5000",
-			"http://192.168.0.4:5001"
-	]
+    "insecure-registries":["192.168.0.4:5000","192.168.0.4:5001"],
+    "registry-mirrors": [
+        "https://5pfmrxk8.mirror.aliyuncs.com",
+        "http://hub-mirror.c.163.com",
+        "https://docker.mirrors.ustc.edu.cn",
+        "https://registry.docker-cn.com",
+        "http://192.168.0.4:5000",
+        "http://192.168.0.4:5001"
+    ]
 }
 ```	
 	daemon.json配置说明
@@ -832,13 +810,14 @@ firewall-cmd --reload
 ```
 	刷新docker daemon并重启docker
 ```	
-systemctl daemon-reload && systemctl restart docker
+systemctl daemon-reload &&
+systemctl restart docker
 ```	
 	验证仓库是否搭建成功
 	访问:http://192.168.0.4:5000/v2/_catalog，看到{"repositories":[]}表示私有仓库搭建成功且内容为空
 	
 	彻底删除私服中的镜像:注意这个路径是要看registry具体挂载到linux上什么位置的
-```	
+```
 rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka/
 ```
 
@@ -850,8 +829,11 @@ rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka
 	用部署等主要功能。		
 ### 4.6.3.2.搭建docker-compose
 	版本说明
-	本次使用的docker-compose版本为2.6.1
-		
+	本次使用的docker-compose版本为2.6.1   
+
+	官方网址
+<a href="https://github.com/docker/compose/">&nbsp;&nbsp;docker-compose</a>	
+
 	创建运行文件夹->下载docker-compose->解压并重命名docker-compose->赋予运行权限并复制到/usr/local/bin/docker-compose
 ```	
 mkdir -p /opt/software/package &&
