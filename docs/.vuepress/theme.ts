@@ -234,7 +234,6 @@ export default hopeTheme({
       maxPicSize: 2048,
       //显示更新内容可用提示，并允许用户立即刷新。当新的 SW 成功注册后，将转为更新内容就绪弹窗
       update: "hint",
-      install: "安装我吧"
     }
   },
   //当用户通过滚动查看页面的不同部分时，嵌套的标题链接和 URL 中的 Hash 值会实时更新，默认值: true,没发现有什么用

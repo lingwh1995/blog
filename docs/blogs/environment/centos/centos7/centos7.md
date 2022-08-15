@@ -46,7 +46,7 @@ head:
 ---
 
 @include(@src/public/enhance/guidance/environment/centos/centos7/centos7-guidance.md)
-测试内更细胞
+测试内更细胞123456789
 # 1.安装Linux操作系统 {#1.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter1.md)
 
