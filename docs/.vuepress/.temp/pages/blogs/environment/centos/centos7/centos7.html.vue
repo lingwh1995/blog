@@ -1,21 +1,4 @@
-<template><div><p>::: playground 基础用法</p>
-<p>@file App.vue</p>
-<div class="language-vue ext-vue line-numbers-mode"><pre v-pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">setup</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
-<span class="token keyword">import</span> <span class="token punctuation">{</span> ref <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"vue"</span><span class="token punctuation">;</span>
-
-<span class="token keyword">const</span> msg <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span><span class="token string">"Hello World!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>{{ msg }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">v-model</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>msg<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>{{ msg }}
-:::</p>
-<div v-pre>
-<p>dddd</p>
-</div>
-<p>dddd</p>
+<template><div><p>测试内更细胞</p>
 <Banner localtion="/banner/particles/particles.html"/>
 <h1 id="intro" tabindex="-1"><a class="header-anchor" href="#intro" aria-hidden="true">#</a> 博客内容介绍</h1>
 <h2 id="博客内容概述" tabindex="-1"><a class="header-anchor" href="#博客内容概述" aria-hidden="true">#</a> 博客内容概述</h2>
@@ -66,16 +49,18 @@
 /var 存放临时文件，如各种服务的日志文件。
 </code></pre>
 <h2 id="_1-4-centos镜像下载" tabindex="-1"><a class="header-anchor" href="#_1-4-centos镜像下载" aria-hidden="true">#</a> 1.4.Centos镜像下载</h2>
-<pre><code>如何是学习环境，建议安装centos mini版镜像，生产环境可以安装完整版
+<pre><code>如果是学习环境，建议安装centos mini版镜像，生产环境可以安装完整   
+
 下载地址
 </code></pre>
+<p><a href="http://ftp.sjtu.edu.cn/centos/">xxx</a></p>
 <h2 id="_1-5-安装前vmaware相关设置" tabindex="-1"><a class="header-anchor" href="#_1-5-安装前vmaware相关设置" aria-hidden="true">#</a> 1.5.安装前Vmaware相关设置</h2>
-<p><strong>虚拟机联网设置</strong></p>
-<pre><code>导航栏-&gt;编辑-&gt;虚拟网络编辑器-&gt;VMnet8NAT模式-&gt;更改设置-&gt;VMnet8NAT模式
-	-&gt;更改底部子网:192.168.0.0，子网掩码:255.255.255.0-&gt;NAT设置-&gt;网关IP:192.168.0.2	
-</code></pre>
-<p><strong>Vmware网卡说明</strong></p>
-<pre><code>VMnet0：用于虚拟桥接网络下的虚拟交换机
+<pre><code>虚拟机联网设置
+导航栏-&gt;编辑-&gt;虚拟网络编辑器-&gt;VMnet8NAT模式-&gt;更改设置-&gt;VMnet8NAT模式
+	-&gt;更改底部子网:192.168.0.0，子网掩码:255.255.255.0-&gt;NAT设置-&gt;网关IP:192.168.0.2   
+
+Vmware网卡说明  
+VMnet0：用于虚拟桥接网络下的虚拟交换机
 VMnet1：用于虚拟Host-Only网络下的虚拟交换机
 VMnet8：用于虚拟NAT网络下的虚拟交换机
 VMware NetworkAdepter VMnet1：Host用于与Host-Only虚拟网络进行通信的虚拟网卡
@@ -102,7 +87,8 @@ VMware NetworkAdepter VMnet8：Host用于与NAT虚拟网络进行通信的虚拟
 <h2 id="_2-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_2-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter2.html" target="_blank">2.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter2.html"/>
 <h2 id="_2-3-配置静态ip地址" tabindex="-1"><a class="header-anchor" href="#_2-3-配置静态ip地址" aria-hidden="true">#</a> 2.3.配置静态IP地址</h2>
-<p><strong>修改网络配置</strong></p>
+<pre><code>修改网络配置	
+</code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vi /etc/sysconfig/network-scripts/ifcfg-ens32(最后一个为网卡名称)	
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>修改后内容如下
 bootproto=static
@@ -113,20 +99,22 @@ NETMASK=255.255.255.0
 #和上面网关IP保持 一致
 GATEWAY=192.168.0.2
 DNS1=8.8.8.8
-DNS2=8.8.4.4
+DNS2=8.8.4.4   
+
+重启网络
 </code></pre>
-<p><strong>重启网络</strong></p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl restart network
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_2-4-解决远程连接无法连接的问题" tabindex="-1"><a class="header-anchor" href="#_2-4-解决远程连接无法连接的问题" aria-hidden="true">#</a> 2.4.解决远程连接无法连接的问题</h2>
-<p><strong>修改sshd配置文件</strong></p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim /etc/ssh/sshd_config
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>说明：sshd_config里面的UseDNS=no【原本为yes】
+<pre><code>修改sshd配置文件
+说明：sshd_config里面的UseDNS=no【原本为yes】
 </code></pre>
-<p><strong>重启ssh服务</strong></p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim /etc/ssh/sshd_config
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>重启ssh服务
+</code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl restart sshd.service
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_2-5-设置系统环境变量" tabindex="-1"><a class="header-anchor" href="#_2-5-设置系统环境变量" aria-hidden="true">#</a> 2.5.设置系统环境变量</h2>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>echo "export LC_ALL=en_US.UTF-8"  >>  /etc/profile &amp;&amp;
-source /etc/profile
+<div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code>echo <span class="token string">"export LC_ALL=en_US.UTF-8"</span>  <span class="token operator">>></span>  <span class="token operator">/</span>etc<span class="token operator">/</span>profile <span class="token operator">&amp;&amp;</span>
+source <span class="token operator">/</span>etc<span class="token operator">/</span>profile
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_2-6-安装curl" tabindex="-1"><a class="header-anchor" href="#_2-6-安装curl" aria-hidden="true">#</a> 2.6.安装curl</h2>
 <pre><code>后面的操作需要curl，所以首先安装curl
 </code></pre>
@@ -147,8 +135,9 @@ source /etc/profile
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_2-8-安装常用基础系统软件" tabindex="-1"><a class="header-anchor" href="#_2-8-安装常用基础系统软件" aria-hidden="true">#</a> 2.8.安装常用基础系统软件</h2>
 <h3 id="_2-8-1-手动安装常用软件" tabindex="-1"><a class="header-anchor" href="#_2-8-1-手动安装常用软件" aria-hidden="true">#</a> 2.8.1.手动安装常用软件</h3>
 <p><strong>vim</strong></p>
-<pre><code>安装vim	
+<pre><code>安装vim
 </code></pre>
+<p><code v-pre>yum -y install vim*</code></p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y install vim*
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>配置vim	
 set nu         # 设置显示行号
@@ -179,7 +168,7 @@ yum -y install telnet-server
 安装curl
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y install curl
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>下载脚本并
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>下载脚本
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>curl https://gitee.com/lingwh1995/config-center/raw/master/centos/centos-init.sh -o centos-init.sh
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>赋予可运行权限并运行该脚本
@@ -694,19 +683,19 @@ systemctl restart docker
 	registry:latest	
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>给docker配置私服
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	vim /etc/docker/daemon.json
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim /etc/docker/daemon.json
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>添加以下内容
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>{
-	"insecure-registries":["192.168.0.4:5000","192.168.0.4:5001"],
-	"registry-mirrors": [
-			"https://5pfmrxk8.mirror.aliyuncs.com",
-			"http://hub-mirror.c.163.com",
-			"https://docker.mirrors.ustc.edu.cn",
-			"https://registry.docker-cn.com",
-			"http://192.168.0.4:5000",
-			"http://192.168.0.4:5001"
-	]
+    "insecure-registries":["192.168.0.4:5000","192.168.0.4:5001"],
+    "registry-mirrors": [
+        "https://5pfmrxk8.mirror.aliyuncs.com",
+        "http://hub-mirror.c.163.com",
+        "https://docker.mirrors.ustc.edu.cn",
+        "https://registry.docker-cn.com",
+        "http://192.168.0.4:5000",
+        "http://192.168.0.4:5001"
+    ]
 }
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>daemon.json配置说明
 insecure-registries：docker信任的私服地址
@@ -721,8 +710,9 @@ daemon.json配置注意事项：把私服配置到registry-mirrors时，一定�
 firewall-cmd --reload
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>刷新docker daemon并重启docker
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp; systemctl restart docker
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>验证仓库是否搭建成功
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
+systemctl restart docker
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>验证仓库是否搭建成功
 访问:http://192.168.0.4:5000/v2/_catalog，看到{&quot;repositories&quot;:[]}表示私有仓库搭建成功且内容为空
 
 彻底删除私服中的镜像:注意这个路径是要看registry具体挂载到linux上什么位置的
@@ -737,9 +727,12 @@ nexus和Maven中央仓库的关系，harbor除了存储和分发镜像外还具�
 </code></pre>
 <h3 id="_4-6-3-2-搭建docker-compose" tabindex="-1"><a class="header-anchor" href="#_4-6-3-2-搭建docker-compose" aria-hidden="true">#</a> 4.6.3.2.搭建docker-compose</h3>
 <pre><code>版本说明
-本次使用的docker-compose版本为2.6.1
-	
-创建运行文件夹-&gt;下载docker-compose-&gt;解压并重命名docker-compose-&gt;赋予运行权限并复制到/usr/local/bin/docker-compose
+本次使用的docker-compose版本为2.6.1   
+
+官方网址
+</code></pre>
+<p><a href="https://github.com/docker/compose/">  docker-compose</a></p>
+<pre><code>创建运行文件夹-&gt;下载docker-compose-&gt;解压并重命名docker-compose-&gt;赋予运行权限并复制到/usr/local/bin/docker-compose
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mkdir -p /opt/software/package &amp;&amp;
 cd /opt/software/package &amp;&amp;

@@ -192,21 +192,6 @@ export default hopeTheme({
       tasklist: true,
       //启用懒加载md中的图片
       lazyLoad: true,
-      //配置你的 playground
-      playground: {
-        mode: "external", // 使用外置模式
-        external: {
-          base: "https://sfc.vuejs.org/", // 使用 vue sfc playground.
-          defaultImportsMap: "./import-map.json",
-        },
-        internal: {
-          defaultImportsMap: "import-map.json",
-          showCode: false, // 不显示代码
-          showCompileOutput: false, // 不显示 js, css, ssr 面板
-          showImportMap: true, // 显示 import map
-          clearConsole: false, // 不清空控制台
-        },
-      },
     },
     /**
     * 版权保护

@@ -14,7 +14,8 @@
 <h2 id="_2-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_2-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter2.html" target="_blank">2.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter2.html"/>
 <h2 id="_2-3-配置静态ip地址" tabindex="-1"><a class="header-anchor" href="#_2-3-配置静态ip地址" aria-hidden="true">#</a> 2.3.配置静态IP地址</h2>
-<p><strong>修改网络配置</strong></p>
+<pre><code>修改网络配置	
+</code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vi /etc/sysconfig/network-scripts/ifcfg-ens32(最后一个为网卡名称)	
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>修改后内容如下
 bootproto=static
@@ -25,20 +26,22 @@ NETMASK=255.255.255.0
 #和上面网关IP保持 一致
 GATEWAY=192.168.0.2
 DNS1=8.8.8.8
-DNS2=8.8.4.4
+DNS2=8.8.4.4   
+
+重启网络
 </code></pre>
-<p><strong>重启网络</strong></p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl restart network
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_2-4-解决远程连接无法连接的问题" tabindex="-1"><a class="header-anchor" href="#_2-4-解决远程连接无法连接的问题" aria-hidden="true">#</a> 2.4.解决远程连接无法连接的问题</h2>
-<p><strong>修改sshd配置文件</strong></p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim /etc/ssh/sshd_config
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>说明：sshd_config里面的UseDNS=no【原本为yes】
+<pre><code>修改sshd配置文件
+说明：sshd_config里面的UseDNS=no【原本为yes】
 </code></pre>
-<p><strong>重启ssh服务</strong></p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim /etc/ssh/sshd_config
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>重启ssh服务
+</code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl restart sshd.service
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_2-5-设置系统环境变量" tabindex="-1"><a class="header-anchor" href="#_2-5-设置系统环境变量" aria-hidden="true">#</a> 2.5.设置系统环境变量</h2>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>echo "export LC_ALL=en_US.UTF-8"  >>  /etc/profile &amp;&amp;
-source /etc/profile
+<div class="language-java ext-java line-numbers-mode"><pre v-pre class="language-java"><code>echo <span class="token string">"export LC_ALL=en_US.UTF-8"</span>  <span class="token operator">>></span>  <span class="token operator">/</span>etc<span class="token operator">/</span>profile <span class="token operator">&amp;&amp;</span>
+source <span class="token operator">/</span>etc<span class="token operator">/</span>profile
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_2-6-安装curl" tabindex="-1"><a class="header-anchor" href="#_2-6-安装curl" aria-hidden="true">#</a> 2.6.安装curl</h2>
 <pre><code>后面的操作需要curl，所以首先安装curl
 </code></pre>
@@ -59,8 +62,9 @@ source /etc/profile
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_2-8-安装常用基础系统软件" tabindex="-1"><a class="header-anchor" href="#_2-8-安装常用基础系统软件" aria-hidden="true">#</a> 2.8.安装常用基础系统软件</h2>
 <h3 id="_2-8-1-手动安装常用软件" tabindex="-1"><a class="header-anchor" href="#_2-8-1-手动安装常用软件" aria-hidden="true">#</a> 2.8.1.手动安装常用软件</h3>
 <p><strong>vim</strong></p>
-<pre><code>安装vim	
+<pre><code>安装vim
 </code></pre>
+<p><code v-pre>yum -y install vim*</code></p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y install vim*
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>配置vim	
 set nu         # 设置显示行号
@@ -91,7 +95,7 @@ yum -y install telnet-server
 安装curl
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y install curl
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>下载脚本并
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>下载脚本
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>curl https://gitee.com/lingwh1995/config-center/raw/master/centos/centos-init.sh -o centos-init.sh
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>赋予可运行权限并运行该脚本

@@ -20,7 +20,6 @@ head:
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter1.md)
 
 ## 1.3.Linux重要目录介绍
-	测试内更细胞
 	/usr → C:/Windows/ /*系统级的目录
 	/usr/lib → C:/Windows/System32
 	/usr/local → C:/Progrem Files/ /*用户级的程序目录，用户自己编译的软件默认会安装到这个目录下

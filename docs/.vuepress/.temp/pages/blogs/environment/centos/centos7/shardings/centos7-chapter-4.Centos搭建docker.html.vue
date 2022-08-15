@@ -343,19 +343,19 @@ systemctl restart docker
 	registry:latest	
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>给docker配置私服
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	vim /etc/docker/daemon.json
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim /etc/docker/daemon.json
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>添加以下内容
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>{
-	"insecure-registries":["192.168.0.4:5000","192.168.0.4:5001"],
-	"registry-mirrors": [
-			"https://5pfmrxk8.mirror.aliyuncs.com",
-			"http://hub-mirror.c.163.com",
-			"https://docker.mirrors.ustc.edu.cn",
-			"https://registry.docker-cn.com",
-			"http://192.168.0.4:5000",
-			"http://192.168.0.4:5001"
-	]
+    "insecure-registries":["192.168.0.4:5000","192.168.0.4:5001"],
+    "registry-mirrors": [
+        "https://5pfmrxk8.mirror.aliyuncs.com",
+        "http://hub-mirror.c.163.com",
+        "https://docker.mirrors.ustc.edu.cn",
+        "https://registry.docker-cn.com",
+        "http://192.168.0.4:5000",
+        "http://192.168.0.4:5001"
+    ]
 }
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>daemon.json配置说明
 insecure-registries：docker信任的私服地址
@@ -370,8 +370,9 @@ daemon.json配置注意事项：把私服配置到registry-mirrors时，一定�
 firewall-cmd --reload
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>刷新docker daemon并重启docker
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp; systemctl restart docker
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>验证仓库是否搭建成功
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
+systemctl restart docker
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>验证仓库是否搭建成功
 访问:http://192.168.0.4:5000/v2/_catalog，看到{&quot;repositories&quot;:[]}表示私有仓库搭建成功且内容为空
 
 彻底删除私服中的镜像:注意这个路径是要看registry具体挂载到linux上什么位置的
@@ -386,9 +387,12 @@ nexus和Maven中央仓库的关系，harbor除了存储和分发镜像外还具�
 </code></pre>
 <h3 id="_4-6-3-2-搭建docker-compose" tabindex="-1"><a class="header-anchor" href="#_4-6-3-2-搭建docker-compose" aria-hidden="true">#</a> 4.6.3.2.搭建docker-compose</h3>
 <pre><code>版本说明
-本次使用的docker-compose版本为2.6.1
-	
-创建运行文件夹-&gt;下载docker-compose-&gt;解压并重命名docker-compose-&gt;赋予运行权限并复制到/usr/local/bin/docker-compose
+本次使用的docker-compose版本为2.6.1   
+
+官方网址
+</code></pre>
+<p><a href="https://github.com/docker/compose/">  docker-compose</a></p>
+<pre><code>创建运行文件夹-&gt;下载docker-compose-&gt;解压并重命名docker-compose-&gt;赋予运行权限并复制到/usr/local/bin/docker-compose
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mkdir -p /opt/software/package &amp;&amp;
 cd /opt/software/package &amp;&amp;

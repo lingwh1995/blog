@@ -50,13 +50,14 @@ function cloneDocumentsOriginalFromRemote() {
         #删除多余的脚本
         rm -rf $LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/*.sh
         echo '执行了命令: rm -rf '$LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/*.sh.bak
-        #删除config文件夹
-        rm -rf $LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/config
-        echo '执行了命令: rm -rf '$LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/config
         #删除.gitignore文件
         rm -rf $LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/.gitignore
         echo '执行了命令: rm -rf '$LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/.gitignore
+        #删除enhance文件夹
+        rm -rf $LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/enhance
+        echo '执行了命令: rm -rf '$LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/enhance
         echo '完成清理本地文档原件仓库文件夹中无用文件.......................'
+        cat LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/environment/centos/centos7/centos7.md
     fi
 
     echo '从远程文档原件仓库拉取文档原件到本地插件..........................................................'
