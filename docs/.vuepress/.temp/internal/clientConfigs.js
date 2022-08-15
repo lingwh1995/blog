@@ -9,8 +9,9 @@ import clientConfig7 from 'D:/repository/workspace/VSCode/PERSONAL/blog/node_mod
 import clientConfig8 from 'D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-copyright2/lib/client/config.js'
 import clientConfig9 from 'D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/md-enhance/config.js'
 import clientConfig10 from 'D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-photo-swipe/lib/client/config.js'
-import clientConfig11 from 'D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/theme-hope/config.js'
-import clientConfig12 from 'D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/client.ts'
+import clientConfig11 from 'D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pwa2/config.js'
+import clientConfig12 from 'D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/theme-hope/config.js'
+import clientConfig13 from 'D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/client.ts'
 
 export const clientConfigs = [
   clientConfig0,
@@ -26,4 +27,5 @@ export const clientConfigs = [
   clientConfig10,
   clientConfig11,
   clientConfig12,
+  clientConfig13,
 ]

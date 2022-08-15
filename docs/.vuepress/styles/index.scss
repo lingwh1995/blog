@@ -202,6 +202,21 @@ p, ul, ol {
     background: #F6F8FA;
 }
 
+.theme-hope-content pre, .theme-hope-content pre[class*=language-] {
+    overflow: auto;
+    margin: 0 0;
+    padding: 1rem;
+    border-radius: 6px;
+    line-height: 1.4;
+}
+
+div[class*=language-] {
+    position: relative;
+    border-radius: 6px;
+    background: var(--code-bg-color);
+    transition: background-color var(--color-transition);
+}
+
 .theme-container.sidebar-collapsed .page {
     padding-left: 0;
 }

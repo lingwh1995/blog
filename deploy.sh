@@ -39,8 +39,6 @@ function build() {
     npm run docs:build
     # 进入生成的文件夹
     cd docs/.vuepress/dist
-    #删除上一次操作产生的.git文件
-    rm -rf .git
     # 如果是发布到自定义域名
     # echo 'www.example.com' > CNAME
 

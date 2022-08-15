@@ -1,56 +1,62 @@
 {
-  "hash": "7b5a4e75",
-  "browserHash": "0187b379",
+  "hash": "6d951000",
+  "browserHash": "7101d199",
   "optimized": {
     "@vue/devtools-api": {
       "src": "../../../../node_modules/@vue/devtools-api/lib/esm/index.js",
       "file": "@vue_devtools-api.js",
-      "fileHash": "cbd69cc8",
+      "fileHash": "1fb8a81f",
       "needsInterop": false
     },
     "@vuepress/shared": {
       "src": "../../../../node_modules/@vuepress/shared/dist/index.js",
       "file": "@vuepress_shared.js",
-      "fileHash": "473317c8",
+      "fileHash": "a637e544",
       "needsInterop": false
     },
     "vue": {
       "src": "../../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "ddbc7de3",
+      "fileHash": "bef8fc34",
       "needsInterop": false
     },
     "vue-router": {
       "src": "../../../../node_modules/vue-router/dist/vue-router.esm-bundler.js",
       "file": "vue-router.js",
-      "fileHash": "765022f5",
+      "fileHash": "f9f6b9ff",
       "needsInterop": false
     },
     "autosize": {
       "src": "../../../../node_modules/autosize/dist/autosize.esm.js",
       "file": "autosize.js",
-      "fileHash": "3dc86200",
+      "fileHash": "aa17444e",
+      "needsInterop": false
+    },
+    "register-service-worker": {
+      "src": "../../../../node_modules/register-service-worker/index.js",
+      "file": "register-service-worker.js",
+      "fileHash": "d77243ff",
       "needsInterop": false
     },
     "@vueuse/core": {
       "src": "../../../../node_modules/@vueuse/core/index.mjs",
       "file": "@vueuse_core.js",
-      "fileHash": "bdccf38c",
+      "fileHash": "162c4812",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-CAX2B3IN": {
-      "file": "chunk-CAX2B3IN.js"
+    "chunk-Z5G34GEI": {
+      "file": "chunk-Z5G34GEI.js"
     },
-    "chunk-5YX57F3Q": {
-      "file": "chunk-5YX57F3Q.js"
+    "chunk-S4HDREAB": {
+      "file": "chunk-S4HDREAB.js"
     },
-    "chunk-WSKU7LAI": {
-      "file": "chunk-WSKU7LAI.js"
+    "chunk-DBMRRQIZ": {
+      "file": "chunk-DBMRRQIZ.js"
     },
-    "chunk-Y5HXPZI6": {
-      "file": "chunk-Y5HXPZI6.js"
+    "chunk-KD4LKBJV": {
+      "file": "chunk-KD4LKBJV.js"
     }
   }
 }

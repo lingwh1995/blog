@@ -44,6 +44,33 @@ head:
     - name: keywords
       content: 安装Linux操作系统,Linux操作系统初始设置,搭建基础开发环境,Centos搭建docker,Centos搭建Rancher,Centos搭建Minikube,kubeadm搭建Kubernetes,二进制包搭建Kubernetes,
 ---
+
+::: playground 基础用法
+
+@file App.vue
+
+```vue
+<script setup>
+import { ref } from "vue";
+
+const msg = ref("Hello World!");
+</script>
+
+<template>
+  <h1>{{ msg }}</h1>
+  <input v-model="msg" />
+</template>
+```
+{{ msg }}
+:::
+::: v-pre
+
+dddd
+:::
+
+
+dddd
+
 @include(@src/public/enhance/guidance/environment/centos/centos7/centos7-guidance.md)
 
 # 1.安装Linux操作系统 {#1.}

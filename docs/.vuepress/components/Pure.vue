@@ -43,8 +43,8 @@ export default {
     return {
       msg: "我是一个引入到MD中的Vue组件",
       pureButtonBackground: "#3eaf7c",
-      pureButtonBackgroundWidth:"1.0rem",
-      pureButtonBackgroundHeight:"1.0rem",
+      pureButtonBackgroundWidth:"1.1rem",
+      pureButtonBackgroundHeight:"1.1rem",
       currentMode:"常规模式"
     };
   },
@@ -52,14 +52,14 @@ export default {
     const origin = window.location.origin
     if(window.location.pathname.startsWith("/pure/")){
       this.pureButtonBackground="#666666"
-        this.pureButtonBackgroundWidth="1.1rem"
-        this.pureButtonBackgroundHeight="1.1rem"
-        this.currentMode="纯净模式"
-      }else {
-        this.pureButtonBackground="#3eaf7c"
-        this.pureButtonBackgroundWidth="1.0rem"
-        this.pureButtonBackgroundHeight="1.0rem"
-        this.currentMode="常规模式"
+      this.pureButtonBackgroundWidth="1.1rem"
+      this.pureButtonBackgroundHeight="1.1rem"
+      this.currentMode="纯净模式"
+    }else {
+      this.pureButtonBackground="#3eaf7c"
+      this.pureButtonBackgroundWidth="1.1rem"
+      this.pureButtonBackgroundHeight="1.1rem"
+      this.currentMode="常规模式"
     }
   },
   methods: {
@@ -76,6 +76,10 @@ export default {
 </script>
 
 <style type="text/css">
+    .nav-item .pure-button {
+        position: relative;
+        top: -0.08rem;
+    }
     .nav-item:hover .popup{
       visibility: visible;
     }

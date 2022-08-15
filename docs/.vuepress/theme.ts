@@ -110,7 +110,7 @@ export default hopeTheme({
   contributors: true,
 
   //插件配置
-  plugins: {    
+  plugins: {
     blog: {
       //是否自动抽取文章摘要
       autoExcerpt: true,
@@ -147,12 +147,20 @@ export default hopeTheme({
       //是否waline的版权信息
       copyright: false
     },
+    /**
+     * 是否启用vuepress自带组件
+     * Badge 开启在MD文件中支持自定义颜色的徽章功能
+     * CodePen 开启在MD文件中嵌入演示功能
+     * FontIcon 开启在MD文件中嵌入FontIcon功能
+     * PDF 开启在MD文件中嵌入PDF功能
+     * StackBlitz 开启在MD文件中嵌入StackBlitz代码演示功能
+     * YouTube 开启在MD文件中嵌入YouTube视频功能
+     */
+    components: ["Badge","FontIcon"],
     mdEnhance: {
       //启用全部的md增强功能
       //enableAll: true,
-      
       //根据需要启动md增强功能
-
       //启用幻灯片支持
       presentation: {
         plugins: ["highlight", "math", "search", "notes", "zoom"],
@@ -169,6 +177,7 @@ export default hopeTheme({
       mark: true,
       //启用对添加提示、注释、信息、注意、警告和详情自定义容器的支持
       container: true,
+      vpre: true,
       /**
        * 启用自自定义对齐，语法
        * 
@@ -176,15 +185,29 @@ export default hopeTheme({
        *  重大的变动。
        *  :::
        */
-       align: true,
-       //启用属性增强，在md文件中添加属性，生成的dom上就有属性
-       attrs: true,
-       //是否启用任务列表
-       tasklist: true,
-       //启用懒加载md中的图片
-       lazyLoad: true,
+      align: true,
+      //启用属性增强，在md文件中添加属性，生成的dom上就有属性
+      attrs: true,
+      //是否启用任务列表
+      tasklist: true,
+      //启用懒加载md中的图片
+      lazyLoad: true,
+      //配置你的 playground
+      playground: {
+        mode: "external", // 使用外置模式
+        external: {
+          base: "https://sfc.vuejs.org/", // 使用 vue sfc playground.
+          defaultImportsMap: "import-map.json",
+        },
+        internal: {
+          defaultImportsMap: "import-map.json",
+          showCode: false, // 不显示代码
+          showCompileOutput: false, // 不显示 js, css, ssr 面板
+          showImportMap: true, // 显示 import map
+          clearConsole: false, // 不清空控制台
+        },
+      },
     },
-    
     /**
     * 版权保护
     * triggerWords：触发版权数目的最小复制字数
@@ -204,11 +227,33 @@ export default hopeTheme({
       disableSelection: false
     },
     /**是否开启seo*/
-    seo: true
+    seo: true,
+    /**PWA:提供渐进式 Web 应用程序支持 */
+    pwa: {
+      //是否在 Service Worker 首次成功注册时显示 PWA 安装按钮
+      showInstall: true,
+      favicon: "/images/headshot.jpg",
+      //PWA应用程序图标
+      manifest: {
+        icons: [{src: "/images/headshot.jpg",sizes: "192x192",type: "image/jpg"}],
+      },
+      //允许缓存的最大大小 (以 KB 为单位)
+      maxSize: 2048,
+      //PWA应用主题色，默认绿色
+      themeColor: "#46bd87",
+      //是否缓存图片
+      cachePic: false,
+      //是否缓存主页和 404 错误页之外的 HTML 文件
+      cacheHTML: false,
+      //图片允许缓存的最大大小 (以 KB 为单位)
+      maxPicSize: 2048,
+      //显示更新内容可用提示，并允许用户立即刷新。当新的 SW 成功注册后，将转为更新内容就绪弹窗
+      update: "hint",
+      install: "安装我吧"
+    }
   },
   //当用户通过滚动查看页面的不同部分时，嵌套的标题链接和 URL 中的 Hash 值会实时更新，默认值: true,没发现有什么用
   activeHeaderLinks: true,
   //切换页面时的进度条
   nprogress: true,
-  pwa: true
 });

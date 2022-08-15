@@ -1,4 +1,3 @@
-// .vuepress/client.ts
 import { defineClientConfig } from "@vuepress/client";
 //导入xxx.vue报错 https://blog.csdn.net/longan_97/article/details/124549562
 import Markmap from "./components/Markmap.vue";
