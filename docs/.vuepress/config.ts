@@ -39,7 +39,7 @@ export default defineUserConfig({
     "@JumpToChapter": path.resolve(__dirname, "components/JumpToChapter.vue"),
     "@JumpToOriginal": path.resolve(__dirname, "components/JumpToOriginal.vue"),
     //特别注意：下面这一行代码一定不能分开写到多行，否则影响sed执行效果
-    "@theme-hope/module/navbar/components/RepoLink": path.resolve(__dirname,"components/Pure.vue"),
+    /*"@theme-hope/module/navbar/components/RepoLink": path.resolve(__dirname,"components/Pure.vue"),*/
   },
   //开启PWA时将这个值设置为false
   shouldPrefetch: false,
