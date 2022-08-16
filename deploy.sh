@@ -122,7 +122,7 @@ function deployPureLocalhost() {
 function deployPureCI() {
     if [ $PLUGIN_ENABLE_STATE == "true" ]
     then
-         '开始以pure模式推送到github......................'
+        echo '开始以pure模式推送到github......................'
         #修改配置文件
         sed -i 's/pure:.*,/pure: true,/g' docs/.vuepress/theme.ts
         sed -i 's/base:.*,/base:\"\/pure\/\",/g' docs/.vuepress/config.ts
