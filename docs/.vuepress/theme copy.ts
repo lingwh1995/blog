@@ -217,7 +217,6 @@ export default hopeTheme({
     pwa: {
       //是否在 Service Worker 首次成功注册时显示 PWA 安装按钮
       showInstall: true,
-      //favicon: "/images/pwa.png",
       //PWA应用程序图标
       manifest: {
         name: "个人博客",
@@ -270,7 +269,6 @@ export default hopeTheme({
       maxPicSize: 4096,
       //显示更新内容可用提示，并允许用户立即刷新。当新的 SW 成功注册后，将转为更新内容就绪弹窗
       update: "hint",
-      //appendBase: true,
     }
   },
   //当用户通过滚动查看页面的不同部分时，嵌套的标题链接和 URL 中的 Hash 值会实时更新，默认值: true,没发现有什么用
