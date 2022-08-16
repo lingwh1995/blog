@@ -196,6 +196,7 @@ p, ul, ol {
         border-radius: 6px;
         line-height: 1.4;
     }
+    /**设置移动端隐藏按照章节查看中二级包括二级以上的侧边栏*/
     .sidebar .sidebar-links .sidebar-sub-headers {
         display: none;
     }
