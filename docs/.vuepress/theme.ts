@@ -217,7 +217,6 @@ export default hopeTheme({
     pwa: {
       //是否在 Service Worker 首次成功注册时显示 PWA 安装按钮
       showInstall: true,
-      //favicon: "/images/pwa.png",
       //PWA应用程序图标
       manifest: {
         name: "个人博客",
