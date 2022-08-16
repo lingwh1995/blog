@@ -1,6 +1,6 @@
 ---
 title: 在Centos7上搭建开发环境-4.Centos搭建docker
-description: 本章节涉及主要内容有：安装docker,docker启动故障解决		,docker容器可视化	,搭建docke私服,1搭建docke官方私服（不带有用户名和密码校验）,2搭建docke官方私服（带有用户名和密码校验）	,3,docker官方私服可视化,制作docker镜像并上传到私服,Docker中安装常用软件,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：安装docker,docker启动故障解决		,docker容器可视化	,搭建docke私服,3,docker官方私服可视化,制作docker镜像并上传到私服,Docker中安装常用软件,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -15,7 +15,7 @@ date: 2020-01-22
 head:
   - - meta
     - name: keywords
-      content: 本章节涉及主要内容有：安装docker,docker启动故障解决		,docker容器可视化	,搭建docke私服,1搭建docke官方私服（不带有用户名和密码校验）,2搭建docke官方私服（带有用户名和密码校验）	,3,docker官方私服可视化,制作docker镜像并上传到私服,Docker中安装常用软件,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+      content: 本章节涉及主要内容有：安装docker,docker启动故障解决		,docker容器可视化	,搭建docke私服,3,docker官方私服可视化,制作docker镜像并上传到私服,Docker中安装常用软件,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 4.Centos搭建docker
@@ -284,7 +284,7 @@ docker run -d --name portainer \
 	单机版选择local即可
 
 ## 4.6.搭建docke私服
-## 4.6.1搭建docke官方私服（不带有用户名和密码校验）
+### 4.6.1.搭建docke官方私服（不带有用户名和密码校验）
 	
 	拉取仓库镜像
 ```	
@@ -363,7 +363,7 @@ systemctl restart docker
 rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka/
 ```
 
-## 4.6.2搭建docke官方私服（带有用户名和密码校验）	
+### 4.6.2.搭建docke官方私服（带有用户名和密码校验）	
 	拉取仓库镜像
 ```	
 docker pull registry

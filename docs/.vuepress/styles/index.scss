@@ -11,7 +11,7 @@
     display: none;
 }
 #toc {
-    max-width: 22rem;
+    max-width: 21rem;
 }
 #toc .toc-list .toc-item a {
     color: #B8860B;
@@ -36,11 +36,7 @@
 #toc .toc-item.active > .toc-link {
     background-color: var(--theme-color-mask);
 }
-/*博客正文字体*/
-.theme-hope-content {
-    font-size: 1.35rem;
-    font-weight: 500;
-}
+
 .sidebar > .sidebar-links > li:not(:first-child) {
     margin-top: 0rem;
 }
@@ -61,9 +57,6 @@ p, ul, ol {
 
 /*手机*/
 @media screen and (max-width:600px){
-    .sidebar {
-        width: 100%;
-    }
     /*博客正文中样式中标签样式修改开始----------------------------------------------------------------------*/
     .page .page-title .page-info .tags-wrapper li {
         width: 8rem;
@@ -102,22 +95,45 @@ p, ul, ol {
         clear:both;
     }
     /*博客主页中样式中标签样式修改结束----------------------------------------------------------------------*/
+
+    $sidebar-width-max600:100%;
+    
+    /*侧边栏宽度*/
+    .sidebar {
+        width: $sidebar-width-max600;
+    }
+    /*侧边栏切换按钮宽度*/
+    .toggle-sidebar-wrapper {
+        left: $sidebar-width-max600; 
+    }
+    /*博客正文字体*/
+    .theme-hope-content {
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+    .theme-hope-content pre, .theme-hope-content pre[class*=language-] {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        background: #F6F8FA;
+        overflow: auto;
+        margin: 0 0;
+        padding: 1rem;
+        border-radius: 6px;
+        line-height: 1.4;
+    }
 }
 
 /*平板*/
 @media screen and (min-width:600px) and (max-width:960px){
-    .sidebar {
-        width: 45%;
-    }
     /*博客正文中样式中标签样式修改开始----------------------------------------------------------------------*/
     .page .page-title .page-info .tags-wrapper li {
-        width: 9rem;
+        width: 8.5rem;
     }
     .page .page-title .page-info .tags-wrapper li:nth-child(n) {
         float:left;
         display:inline;
     }
-    .page .page-title .page-info .tags-wrapper li:nth-child(2n+1) {
+    .page .page-title .page-info .tags-wrapper li:nth-child(3n+1) {
         clear:both;
     }
     /*博客正文中样式中标签样式修改结束----------------------------------------------------------------------*/
@@ -147,25 +163,51 @@ p, ul, ol {
         clear:both;
     }
     /*博客主页中样式中标签样式修改结束----------------------------------------------------------------------*/
+
+    $sidebar-width-min600_max900:50%;
+    
+    /*侧边栏宽度*/
+    .sidebar {
+        width: $sidebar-width-min600_max900;
+    }
+    /*侧边栏切换按钮宽度*/
+    .toggle-sidebar-wrapper {
+        left: $sidebar-width-min600_max900; 
+    }
+    /**主要内容*/
+    .theme-container .page { 
+        padding-left: $sidebar-width-min600_max900;
+    }
+    /*博客正文字体*/
+    .theme-hope-content {
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+    .theme-hope-content pre, .theme-hope-content pre[class*=language-] {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        background: #F6F8FA;
+        overflow: auto;
+        margin: 0 0;
+        padding: 1rem;
+        border-radius: 6px;
+        line-height: 1.4;
+    }
 }
 
-/*PC*/
-@media screen and (min-width:960px){
-    .sidebar {
-        width: 18%;
-    }
+/*PC分辨率 960-1440 */
+@media screen and (min-width:960px) and (max-width:1440px){   
     /*博客正文中样式中标签样式修改开始----------------------------------------------------------------------*/
     .page .page-title .page-info .tags-wrapper li {
-        width: 9.5rem;
+        width: 9rem;
     }
     .page .page-title .page-info .tags-wrapper li:nth-child(n) {
         float:left;
         display:inline;
     }
-    .page .page-title .page-info .tags-wrapper li:nth-child(6n+1) {
+    .page .page-title .page-info .tags-wrapper li:nth-child(5n+1) {
         clear:both;
     }
-
     /*博客正文中样式中标签样式修改结束----------------------------------------------------------------------*/
 
     /*博客主页中样式中标签样式修改开始----------------------------------------------------------------------*/
@@ -193,30 +235,107 @@ p, ul, ol {
         clear:both;
     }
     /*博客主页中点击全部出来的文章列表样式中标签样式修改结束----------------------------------------------------------------------*/
+
+    $sidebar-width-min960_max1440:30%;
+
+    /*侧边栏宽度*/
+    .sidebar {
+        width: $sidebar-width-min960_max1440;
+    }
+    /*侧边栏切换按钮宽度*/
+    .toggle-sidebar-wrapper {
+        left: $sidebar-width-min960_max1440; 
+    }
+    /**主要内容*/
+    .theme-container .page { 
+        padding-left: $sidebar-width-min960_max1440;
+    }
+    /*博客正文字体*/
+    .theme-hope-content {
+        font-size: 1.3rem;
+        font-weight: 500;
+    }
+    .theme-hope-content pre, .theme-hope-content pre[class*=language-] {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        background: #F6F8FA;
+        overflow: auto;
+        margin: 0 0;
+        padding: 1rem;
+        border-radius: 6px;
+        line-height: 1.4;
+    }
 }
 
-/*pre标签自动换行，就是正文内容*/
-.page pre {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    background: #F6F8FA;
-}
+/*PC分辨率 1440+ */
+@media screen and (min-width:1440px){
 
-.theme-hope-content pre, .theme-hope-content pre[class*=language-] {
-    overflow: auto;
-    margin: 0 0;
-    padding: 1rem;
-    border-radius: 6px;
-    line-height: 1.4;
-}
+    /*博客正文中样式中标签样式修改开始----------------------------------------------------------------------*/
+    .page .page-title .page-info .tags-wrapper li {
+        width: 9.5rem;
+    }
+    .page .page-title .page-info .tags-wrapper li:nth-child(n) {
+        float:left;
+        display:inline;
+    }
+    .page .page-title .page-info .tags-wrapper li:nth-child(6n+1) {
+        clear:both;
+    }
+    /*博客正文中样式中标签样式修改结束----------------------------------------------------------------------*/
 
-div[class*=language-] {
-    position: relative;
-    border-radius: 6px;
-    background: var(--code-bg-color);
-    transition: background-color var(--color-transition);
-}
+    /*博客主页中样式中标签样式修改开始----------------------------------------------------------------------*/
+    .blog-home .page-info .tags-wrapper li {
+        width: 10rem;
+    }
+    .blog-home .page-info .tags-wrapper li:nth-child(n) {
+        float:left;
+        display:inline;
+    }
+    .blog-home .page-info .tags-wrapper li:nth-child(4n+1) {
+        clear:both;
+    }
+    /*博客主页中样式中标签样式修改结束----------------------------------------------------------------------*/
 
-.theme-container.sidebar-collapsed .page {
-    padding-left: 0;
+    /*博客主页中点击全部出来的文章列表样式中标签样式修改开始----------------------------------------------------------------------*/
+    .blog-page .article-wrapper .page-info .tags-wrapper li {
+        width: 10rem;
+    }
+    .blog-page .article-wrapper .page-info .tags-wrapper li:nth-child(n) {
+        float:left;
+        display:inline;
+    }
+    .blog-page .article-wrapper .page-info .tags-wrapper li:nth-child(4n+1) {
+        clear:both;
+    }
+    /*博客主页中点击全部出来的文章列表样式中标签样式修改结束----------------------------------------------------------------------*/
+
+    $sidebar-width-min1440:20%;
+
+    /*侧边栏宽度*/
+    .sidebar {
+        width: $sidebar-width-min1440;
+    }
+    /*侧边栏切换按钮宽度*/
+    .toggle-sidebar-wrapper {
+        left: $sidebar-width-min1440; 
+    }
+    /**主要内容*/
+    .theme-container .page { 
+        padding-left: $sidebar-width-min1440;
+    }
+    /*博客正文字体*/
+    .theme-hope-content {
+        font-size: 1.4rem;
+        font-weight: 500;
+    }
+    .theme-hope-content pre, .theme-hope-content pre[class*=language-] {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        background: #F6F8FA;
+        overflow: auto;
+        margin: 0 0;
+        padding: 1rem;
+        border-radius: 6px;
+        line-height: 1.4;
+    }
 }

@@ -191,7 +191,7 @@ export default hopeTheme({
       //是否启用任务列表
       tasklist: true,
       //启用懒加载md中的图片
-      lazyLoad: true,
+      lazyLoad: false,
     },
     /**
     * 版权保护
@@ -216,18 +216,47 @@ export default hopeTheme({
     /**PWA:提供渐进式 Web 应用程序支持 */
     pwa: {
       //是否在 Service Worker 首次成功注册时显示 PWA 安装按钮
-      showInstall: false,
-      favicon: "/images/headshot.jpg",
+      showInstall: true,
+      //favicon: "/images/pwa.png",
       //PWA应用程序图标
       manifest: {
-        icons: [{src: "/images/headshot.jpg",sizes: "192x192",type: "image/jpg"}],
+        name: "个人博客",
+        short_name: "此生挚爱万宝路的个人博客",
+        icons: [
+          {
+            src: "/images/pwa/128.png",
+            type: "image/png",
+            sizes: "128x128",
+          },
+          {
+            src: "/images/pwa/144.png",
+            type: "image/png",
+            sizes: "144x144",
+          },
+          {
+            src: "/images/pwa/192.png",
+            type: "image/png",
+            sizes: "192x192",
+          },
+          {
+            src: "/images/pwa/256.png",
+            type: "image/png",
+            sizes: "256x256",
+          },
+          {
+            src: "/images/pwa/512.png",
+            type: "image/png",
+            sizes: "512x512",
+          },
+        ],
+        display: "standalone",
       },
       //允许缓存的最大大小 (以 KB 为单位)
       maxSize: 2048,
       //PWA应用主题色，默认绿色
       themeColor: "#46bd87",
       //是否缓存图片
-      cachePic: false,
+      cachePic: true,
       //是否缓存主页和 404 错误页之外的 HTML 文件
       cacheHTML: false,
       //图片允许缓存的最大大小 (以 KB 为单位)

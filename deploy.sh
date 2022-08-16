@@ -85,9 +85,9 @@ function deployNormalCI() {
 
 #在本地以 纯净模式发布
 function deployPureLocalhost() {
-    echo '开始以pure模式推送到github......................'
     if [ $PLUGIN_ENABLE_STATE == "true" ]
     then
+    echo '开始以pure模式推送到github......................'
         #修改配置文件
         sed -i 's/pure:.*,/pure: true,/g' docs/.vuepress/theme.ts
         sed -i 's/base:.*,/base:\"\/pure\/\",/g' docs/.vuepress/config.ts
@@ -99,15 +99,15 @@ function deployPureLocalhost() {
         git push -f git@github.com:lingwh1995/pure.git master
         #回到上一次操作的目录
         cd -
-    fi
     echo '完成以pure模式推送到github......................'
+    fi
 }
 
 #持续集成以 纯净模式发布
 function deployPureCI() {
-    echo '开始以pure模式推送到github......................'
     if [ $PLUGIN_ENABLE_STATE == "true" ]
     then
+    echo '开始以pure模式推送到github......................'
         #修改配置文件
         sed -i 's/pure:.*,/pure: true,/g' docs/.vuepress/theme.ts
         sed -i 's/base:.*,/base:\"\/pure\/\",/g' docs/.vuepress/config.ts
@@ -119,8 +119,8 @@ function deployPureCI() {
         git push -f https://lingwh1995:$1@github.com/lingwh1995/pure.git HEAD:master
         #回到上一次操作的目录
         cd -
-    fi
     echo '完成以pure模式推送到github......................'
+    fi
 }
 
 function afterBuildAndDeploy() {

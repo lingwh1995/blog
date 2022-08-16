@@ -21,7 +21,6 @@
 <h3 id="详细版博客内容大纲" tabindex="-1"><a class="header-anchor" href="#详细版博客内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/centos7-outline3.html" target="_blank">详细版博客内容大纲</a></h3>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/centos7-outline3.html"/>
 <blockquote></blockquote>
-<p>测试PWA</p>
 <h1 id="1." tabindex="-1"><a class="header-anchor" href="#1." aria-hidden="true">#</a> 1.安装Linux操作系统</h1>
 <h2 id="_1-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_1-1-章节内容概述" aria-hidden="true">#</a> 1.1.章节内容概述</h2>
 <pre><code>本章节涉及主要内容有：
@@ -347,8 +346,6 @@ flush privileges;
  4.4.docker启动故障解决		
  4.5.docker容器可视化	
  4.6.搭建docke私服
- 4.6.1搭建docke官方私服（不带有用户名和密码校验）
- 4.6.2搭建docke官方私服（带有用户名和密码校验）	
  4.6.3.搭建harbor私服
  4.7.docker官方私服可视化
  4.8.制作docker镜像并上传到私服
@@ -589,7 +586,7 @@ See &quot;systemctl status docker.service&quot; and &quot;journalctl -xe&quot; f
 单机版选择local即可
 </code></pre>
 <h2 id="_4-6-搭建docke私服" tabindex="-1"><a class="header-anchor" href="#_4-6-搭建docke私服" aria-hidden="true">#</a> 4.6.搭建docke私服</h2>
-<h2 id="_4-6-1搭建docke官方私服-不带有用户名和密码校验" tabindex="-1"><a class="header-anchor" href="#_4-6-1搭建docke官方私服-不带有用户名和密码校验" aria-hidden="true">#</a> 4.6.1搭建docke官方私服（不带有用户名和密码校验）</h2>
+<h3 id="_4-6-1-搭建docke官方私服-不带有用户名和密码校验" tabindex="-1"><a class="header-anchor" href="#_4-6-1-搭建docke官方私服-不带有用户名和密码校验" aria-hidden="true">#</a> 4.6.1.搭建docke官方私服（不带有用户名和密码校验）</h3>
 <pre><code>拉取仓库镜像
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker pull registry
@@ -657,7 +654,7 @@ systemctl restart docker
 彻底删除私服中的镜像:注意这个路径是要看registry具体挂载到linux上什么位置的
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_4-6-2搭建docke官方私服-带有用户名和密码校验" tabindex="-1"><a class="header-anchor" href="#_4-6-2搭建docke官方私服-带有用户名和密码校验" aria-hidden="true">#</a> 4.6.2搭建docke官方私服（带有用户名和密码校验）</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_4-6-2-搭建docke官方私服-带有用户名和密码校验" tabindex="-1"><a class="header-anchor" href="#_4-6-2-搭建docke官方私服-带有用户名和密码校验" aria-hidden="true">#</a> 4.6.2.搭建docke官方私服（带有用户名和密码校验）</h3>
 <pre><code>拉取仓库镜像
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker pull registry

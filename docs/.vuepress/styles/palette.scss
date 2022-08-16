@@ -42,7 +42,7 @@ $sidebar-width: 18%;
 /*$sidebar-mobile-width: 30%;*/
 
 /*主要内容的宽度*/
-$content-width: 85%;
+$content-width: 82%;
 /*主页内容的宽度*/
 $home-page-width: 1160px !default;
 
@@ -54,10 +54,10 @@ $font-family-fancy: 'Georgia Pro, Crimson, Georgia, -apple-system, BlinkMacSyste
 /*代码上使用的字体*/
 $font-family-code: 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace';
 /*代码块中行号的宽度*/
-$line-numbers-width: 2.5rem;
+$line-numbers-width: 2.0rem;
 
 /*设置点击切换背景色按钮时一个颜色到另一个颜色过渡使用的时间*/
-$color-transition: "0.3s ease";
+$color-transition: "0.2s ease";
 /*设置动画切换速度，如收起侧边栏时的速度*/
 $transform-transition: "0.3s ease";
 /*布局配置结束-----------------------------------------------------------------------*/

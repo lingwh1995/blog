@@ -44,7 +44,6 @@ head:
     - name: keywords
       content: 安装Linux操作系统,Linux操作系统初始设置,搭建基础开发环境,Centos搭建docker,Centos搭建Rancher,Centos搭建Minikube,kubeadm搭建Kubernetes,二进制包搭建Kubernetes,
 ---
-
 @include(@src/public/enhance/guidance/environment/centos/centos7/centos7-guidance.md)
 
 # 1.安装Linux操作系统 {#1.}
@@ -670,7 +669,7 @@ docker run -d --name portainer \
 	单机版选择local即可
 
 ## 4.6.搭建docke私服
-## 4.6.1搭建docke官方私服（不带有用户名和密码校验）
+### 4.6.1.搭建docke官方私服（不带有用户名和密码校验）
 	
 	拉取仓库镜像
 ```	
@@ -749,7 +748,7 @@ systemctl restart docker
 rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka/
 ```
 
-## 4.6.2搭建docke官方私服（带有用户名和密码校验）	
+### 4.6.2.搭建docke官方私服（带有用户名和密码校验）	
 	拉取仓库镜像
 ```	
 docker pull registry

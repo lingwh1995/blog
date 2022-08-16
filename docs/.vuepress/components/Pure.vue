@@ -78,7 +78,7 @@ export default {
 <style type="text/css">
     .nav-item .pure-button {
         position: relative;
-        top: -0.08rem;
+        top: -0.07rem;
     }
     .nav-item:hover .popup{
       visibility: visible;
