@@ -42,11 +42,11 @@ icon: linux
 head:
   - - meta
     - name: keywords
-      content: 安装Linux操作系统哈哈哈,Linux操作系统初始设置,搭建基础开发环境,Centos搭建docker,Centos搭建Rancher,Centos搭建Minikube,kubeadm搭建Kubernetes,二进制包搭建Kubernetes,
+      content: 安装Linux操作系统,Linux操作系统初始设置,搭建基础开发环境,Centos搭建docker,Centos搭建Rancher,Centos搭建Minikube,kubeadm搭建Kubernetes,二进制包搭建Kubernetes,
 ---
 @include(@src/public/enhance/guidance/environment/centos/centos7/centos7-guidance.md)
 
-# 1.安装Linux操作系统哈哈哈 {#1.}
+# 1.安装Linux操作系统 {#1.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter1.md)
 
 ## 1.3.Linux重要目录介绍

@@ -7,7 +7,6 @@
  4.4.docker启动故障解决		
  4.5.docker容器可视化	
  4.6.搭建docke私服
- 4.6.3.搭建harbor私服
  4.7.docker官方私服可视化
  4.8.制作docker镜像并上传到私服
  4.9.Docker中安装常用软件
@@ -376,14 +375,14 @@ systemctl restart docker
 彻底删除私服中的镜像:注意这个路径是要看registry具体挂载到linux上什么位置的
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_4-6-3-搭建harbor私服" tabindex="-1"><a class="header-anchor" href="#_4-6-3-搭建harbor私服" aria-hidden="true">#</a> 4.6.3.搭建harbor私服</h2>
-<h3 id="_4-6-3-1-harbor简介" tabindex="-1"><a class="header-anchor" href="#_4-6-3-1-harbor简介" aria-hidden="true">#</a> 4.6.3.1.harbor简介</h3>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_4-6-3-搭建harbor私服" tabindex="-1"><a class="header-anchor" href="#_4-6-3-搭建harbor私服" aria-hidden="true">#</a> 4.6.3.搭建harbor私服</h3>
+<h4 id="_4-6-3-1-harbor简介" tabindex="-1"><a class="header-anchor" href="#_4-6-3-1-harbor简介" aria-hidden="true">#</a> 4.6.3.1.harbor简介</h4>
 <pre><code>Harbor是一个用于存储和分发Docker镜像的企业级Registry服务器，虽然Docker官方也提供了公共的镜像仓库，但是
 从安全和效率等方面考虑，部署企业内部的私有环境Registry是非常必要的，harbor和docker中央仓库的关系就类似于
 nexus和Maven中央仓库的关系，harbor除了存储和分发镜像外还具有用户管理，项目管理，配置管理和日志查询，高可
 用部署等主要功能。		
 </code></pre>
-<h3 id="_4-6-3-2-搭建docker-compose" tabindex="-1"><a class="header-anchor" href="#_4-6-3-2-搭建docker-compose" aria-hidden="true">#</a> 4.6.3.2.搭建docker-compose</h3>
+<h4 id="_4-6-3-2-搭建docker-compose" tabindex="-1"><a class="header-anchor" href="#_4-6-3-2-搭建docker-compose" aria-hidden="true">#</a> 4.6.3.2.搭建docker-compose</h4>
 <pre><code>版本说明
 本次使用的docker-compose版本为2.6.1   
 
@@ -402,7 +401,7 @@ cp docker-compose-2.6-linux-x86_64 /usr/local/bin/docker-compose
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>查看是否安装成功
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker-compose --version
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_4-6-3-3-安装harbor" tabindex="-1"><a class="header-anchor" href="#_4-6-3-3-安装harbor" aria-hidden="true">#</a> 4.6.3.3.安装harbor</h3>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h4 id="_4-6-3-3-安装harbor" tabindex="-1"><a class="header-anchor" href="#_4-6-3-3-安装harbor" aria-hidden="true">#</a> 4.6.3.3.安装harbor</h4>
 <pre><code>特别注意
 注意docker的版本,低版本的docker不能运行harbor2.5
 	

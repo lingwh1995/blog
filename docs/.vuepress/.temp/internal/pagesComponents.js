@@ -13,6 +13,12 @@ export const pagesComponents = {
   "v-7cc98773": defineAsyncComponent(() => import(/* webpackChunkName: "v-7cc98773" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/index.html.vue")),
   // path: /blogs/environment/centos/
   "v-60e2b560": defineAsyncComponent(() => import(/* webpackChunkName: "v-60e2b560" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/index.html.vue")),
+  // path: /blogs/environment/centos/centos7/centos7.html
+  "v-47b2c842": defineAsyncComponent(() => import(/* webpackChunkName: "v-47b2c842" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/centos7.html.vue")),
+  // path: /blogs/environment/centos/centos7/
+  "v-c09c1298": defineAsyncComponent(() => import(/* webpackChunkName: "v-c09c1298" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/index.html.vue")),
+  // path: /blogs/environment/centos/centos7/shardings/centos7-chapter-0.%E5%8D%9A%E5%AE%A2%E5%86%85%E5%AE%B9%E4%BB%8B%E7%BB%8D.html
+  "v-0d8f245b": defineAsyncComponent(() => import(/* webpackChunkName: "v-0d8f245b" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/shardings/centos7-chapter-0.博客内容介绍.html.vue")),
   // path: /blogs/environment/centos/centos7/shardings/centos7-chapter-1.%E5%AE%89%E8%A3%85Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html
   "v-bda10792": defineAsyncComponent(() => import(/* webpackChunkName: "v-bda10792" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/shardings/centos7-chapter-1.安装Linux操作系统.html.vue")),
   // path: /blogs/environment/centos/centos7/shardings/centos7-chapter-2.Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E8%AE%BE%E7%BD%AE.html
@@ -107,12 +113,4 @@ export const pagesComponents = {
   "v-ba3a0e40": defineAsyncComponent(() => import(/* webpackChunkName: "v-ba3a0e40" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/tag/二进制搭建k8s集群/index.html.vue")),
   // path: /tag/%E5%8D%9A%E5%AE%A2%E5%86%85%E5%AE%B9%E4%BB%8B%E7%BB%8D/
   "v-3730b097": defineAsyncComponent(() => import(/* webpackChunkName: "v-3730b097" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/tag/博客内容介绍/index.html.vue")),
-  // path: /blogs/environment/centos/centos7/centos7.html
-  "v-47b2c842": defineAsyncComponent(() => import(/* webpackChunkName: "v-47b2c842" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/centos7.html.vue")),
-}
-// path: /blogs/environment/centos/centos7/centos7-outline5-chapter8.html
-  "v-7fe944ac": defineAsyncComponent(() => import(/* webpackChunkName: "v-7fe944ac" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/centos7-outline5-chapter8.html.vue")),
-}
-// path: /blogs/environment/centos/centos7/centos7-outline5-chapter8.html
-  "v-7fe944ac": defineAsyncComponent(() => import(/* webpackChunkName: "v-7fe944ac" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/centos7-outline5-chapter8.html.vue")),
 }

@@ -733,7 +733,8 @@ function generateSidebarConfigForAllAndSetAnchorForOriginal() {
 
         echo "                  {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME 
         echo "                      text:\"$CHAPTER_NAME\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-        echo "                      icon:\"article\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+        echo "                      icon:\"article\"," >> $
+        echo "                      collapsable: true," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME        
         echo "                      link:\"$4/$5/$1-chapter-$CHAPTER_NAME.md\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
         echo "                  }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     done
