@@ -56,8 +56,8 @@ function deployNormalLocalhost() {
     sed -i 's/base:.*,/base:\"\/\",/g' docs/.vuepress/config.ts
     
     #修改纯模式PWA相关配置
-    sed -i 's/name: ".*"/name: "个人博客"/' docs/.vuepress/theme.ts
-    sed -i 's/short_name: ".*"/short_name: "此生挚爱万宝路的个人博客"/' docs/.vuepress/theme.ts
+    sed -i 's/name: "个人博客.*"/name: "个人博客"/' docs/.vuepress/theme.ts
+    sed -i 's/short_name: "此生挚爱万宝路的个人博客.*"/short_name: "此生挚爱万宝路的个人博客"/' docs/.vuepress/theme.ts
 
     #执行构建操作
     build
@@ -78,8 +78,8 @@ function deployNormalCI() {
     sed -i 's/base:.*,/base:\"\/\",/g' docs/.vuepress/config.ts
     
     #修改纯模式PWA相关配置
-    sed -i 's/name: ".*"/name: "个人博客"/' docs/.vuepress/theme.ts
-    sed -i 's/short_name: ".*"/short_name: "此生挚爱万宝路的个人博客"/' docs/.vuepress/theme.ts
+    sed -i 's/name: "个人博客.*"/name: "个人博客"/' docs/.vuepress/theme.ts
+    sed -i 's/short_name: "此生挚爱万宝路的个人博客.*"/short_name: "此生挚爱万宝路的个人博客"/' docs/.vuepress/theme.ts
 
     #执行构建操作
     build
@@ -103,8 +103,8 @@ function deployPureLocalhost() {
         sed -i 's/base:.*,/base:\"\/pure\/\",/g' docs/.vuepress/config.ts
 
         #修改纯模式PWA相关配置
-        sed -i 's/name: ".*"/name: "个人博客(纯模式)"/' docs/.vuepress/theme.ts
-        sed -i 's/short_name: ".*"/short_name: "此生挚爱万宝路的个人博客(纯模式)"/' docs/.vuepress/theme.ts
+        sed -i 's/name: "个人博客.*"/name: "个人博客(纯模式)"/' docs/.vuepress/theme.ts
+        sed -i 's/short_name: "此生挚爱万宝路的个人博客.*"/short_name: "此生挚爱万宝路的个人博客(纯模式)"/' docs/.vuepress/theme.ts
         
         #执行构建操作
         build
@@ -128,8 +128,8 @@ function deployPureCI() {
         sed -i 's/base:.*,/base:\"\/pure\/\",/g' docs/.vuepress/config.ts
 
         #修改纯模式PWA相关配置
-        sed -i 's/name: ".*"/name: "个人博客(纯模式)"/' docs/.vuepress/theme.ts
-        sed -i 's/short_name: ".*"/short_name: "此生挚爱万宝路的个人博客(纯模式)"/' docs/.vuepress/theme.ts
+        sed -i 's/name: "个人博客.*"/name: "个人博客(纯模式)"/' docs/.vuepress/theme.ts
+        sed -i 's/short_name: "此生挚爱万宝路的个人博客.*"/short_name: "此生挚爱万宝路的个人博客(纯模式)"/' docs/.vuepress/theme.ts
 
         #执行构建操作
         build
