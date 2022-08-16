@@ -57,7 +57,6 @@ function cloneDocumentsOriginalFromRemote() {
         rm -rf $LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/enhance
         echo '执行了命令: rm -rf '$LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/enhance
         echo '完成清理本地文档原件仓库文件夹中无用文件.......................'
-        cat $LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/environment/centos/centos7/centos7.md
     fi
 
     echo '从远程文档原件仓库拉取文档原件到本地插件..........................................................'
