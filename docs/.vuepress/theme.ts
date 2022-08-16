@@ -257,8 +257,8 @@ export default hopeTheme({
       themeColor: "#46bd87",
       //是否缓存图片
       cachePic: true,
-      //是否缓存主页和 404 错误页之外的 HTML 文件
-      cacheHTML: true,
+      //是否缓存主页和 404 错误页之外的 HTML 文件，可减少40%体积
+      cacheHTML: false,
       //图片允许缓存的最大大小 (以 KB 为单位)
       maxPicSize: 2048,
       //显示更新内容可用提示，并允许用户立即刷新。当新的 SW 成功注册后，将转为更新内容就绪弹窗
