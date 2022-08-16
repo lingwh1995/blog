@@ -19,7 +19,7 @@ icon: navigate
 
             - <a class="breadcrumb-link" href="centos7/shardings/centos7-chapter-0.博客内容介绍.html">博客内容介绍</a>
 
-            - <a class="breadcrumb-link" href="centos7/shardings/centos7-chapter-1.安装Linux操作系统.html">1.安装Linux操作系统</a>
+            - <a class="breadcrumb-link" href="centos7/shardings/centos7-chapter-1.安装Linux操作系统哈哈哈.html">1.安装Linux操作系统哈哈哈</a>
 
             - <a class="breadcrumb-link" href="centos7/shardings/centos7-chapter-2.Linux操作系统初始设置.html">2.Linux操作系统初始设置</a>
 

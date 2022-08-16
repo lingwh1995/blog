@@ -1,5 +1,5 @@
 ---
-title: 在Centos7上搭建开发环境-1.安装Linux操作系统
+title: 在Centos7上搭建开发环境-1.安装Linux操作系统哈哈哈
 description: 本章节涉及主要内容有：Linux重要目录介绍,Centos镜像下载,安装前Vmaware相关设置,安装时分区大小设置,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
@@ -16,7 +16,7 @@ head:
       content: 本章节涉及主要内容有：Linux重要目录介绍,Centos镜像下载,安装前Vmaware相关设置,安装时分区大小设置,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 ---
 
-# 1.安装Linux操作系统
+# 1.安装Linux操作系统哈哈哈
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter1.md)
 
 ## 1.3.Linux重要目录介绍

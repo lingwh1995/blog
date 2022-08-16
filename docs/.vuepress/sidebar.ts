@@ -21,10 +21,10 @@ export default sidebar([
                       icon:"article",
                    },
                   {
-                      text:"1.安装Linux操作系统",
+                      text:"1.安装Linux操作系统哈哈哈",
                       icon:"article",
                       collapsable: true,
-                      link:"/blogs/environment/centos/centos7/shardings/centos7-chapter-1.安装Linux操作系统.md",
+                      link:"/blogs/environment/centos/centos7/shardings/centos7-chapter-1.安装Linux操作系统哈哈哈.md",
                   },
                   {
                       text:"2.Linux操作系统初始设置",
@@ -81,7 +81,7 @@ export default sidebar([
                       icon:"article",
                   },
                   {
-                      text:"1.安装Linux操作系统",
+                      text:"1.安装Linux操作系统哈哈哈",
                       icon:"article",
                       collapsable: true,
                       link:"/blogs/environment/centos/centos7/centos7.md#1.",
