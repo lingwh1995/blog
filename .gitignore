@@ -1,5 +1,6 @@
 node_modules/
 books/
-docs/.vuepress/.cache/
-docs/.vuepress/.temp/
-docs/.vuepress/dist/
+/docs/.vuepress/.cache/
+/docs/.vuepress/.temp/
+/docs/.vuepress/dist/
+.idea
