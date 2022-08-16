@@ -4,10 +4,10 @@ import sidebar from "./sidebar";
 import { path } from "@vuepress/utils";
 
 export default hopeTheme({
-  hostname: "https://vuepress-theme-hope-v2-demo.mrhope.site",
+  hostname: "个人博客",
   //全局的博主信息，所有文章如果不指定authoer就使用下面配置的信息
   author: {
-    name: "lingwh",
+    name: "个人博客",
     url: "https://github.com/lingwh1995"
   },
   darkmode: "toggle",
@@ -71,7 +71,7 @@ export default hopeTheme({
   //博客主页个人简介信息
   blog: {
     //博客主页个人简介信息处博主名称
-    name: "lingwh",
+    name: "个人博客",
     description: "<h4 style='color:#4ABF8A;'>lingwh.walkman@hotmail.com</h4>",
     //intro: "/intro.html",
     medias: {
@@ -204,7 +204,7 @@ export default hopeTheme({
     */
     copyright: {
       author: "lingwh",
-      hostname: "https://github.com/lingwh1995",
+      hostname: "个人博客",
       license: "Copyright 2021 © open linux lingwh",
       triggerWords: 200,
       global: true,

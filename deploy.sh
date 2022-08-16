@@ -51,10 +51,14 @@ function build() {
 
 #在本地 以正常模式发布
 function deployNormalLocalhost() {
-    #修改配置文件
+    #修改配置文件，恢复纯模式相关设置到正常
     sed -i 's/pure:.*,/pure: false,/g' docs/.vuepress/theme.ts
     sed -i 's/base:.*,/base:\"\/\",/g' docs/.vuepress/config.ts
     
+    #修改纯模式PWA相关配置
+    sed -i 's/name: ".*"/name: "个人博客"/' docs/.vuepress/theme.ts
+    sed -i 's/short_name: ".*"/short_name: "此生挚爱万宝路的个人博客"/' docs/.vuepress/theme.ts
+
     #执行构建操作
     build
 
@@ -73,6 +77,10 @@ function deployNormalCI() {
     sed -i 's/pure:.*,/pure: false,/g' docs/.vuepress/theme.ts
     sed -i 's/base:.*,/base:\"\/\",/g' docs/.vuepress/config.ts
     
+    #修改纯模式PWA相关配置
+    sed -i 's/name: ".*"/name: "个人博客"/' docs/.vuepress/theme.ts
+    sed -i 's/short_name: ".*"/short_name: "此生挚爱万宝路的个人博客"/' docs/.vuepress/theme.ts
+
     #执行构建操作
     build
 
@@ -89,11 +97,15 @@ function deployNormalCI() {
 function deployPureLocalhost() {
     if [ $PLUGIN_ENABLE_STATE == "true" ]
     then
-    echo '开始以pure模式推送到github......................'
+        echo '开始以pure模式推送到github......................'
         #修改配置文件
         sed -i 's/pure:.*,/pure: true,/g' docs/.vuepress/theme.ts
         sed -i 's/base:.*,/base:\"\/pure\/\",/g' docs/.vuepress/config.ts
 
+        #修改纯模式PWA相关配置
+        sed -i 's/name: ".*"/name: "个人博客(纯模式)"/' docs/.vuepress/theme.ts
+        sed -i 's/short_name: ".*"/short_name: "此生挚爱万宝路的个人博客(纯模式)"/' docs/.vuepress/theme.ts
+        
         #执行构建操作
         build
         
@@ -102,7 +114,7 @@ function deployPureLocalhost() {
         git push -f git@github.com:lingwh1995/pure.git HEAD:master
         #回到上一次操作的目录
         cd -
-    echo '完成以pure模式推送到github......................'
+        echo '完成以pure模式推送到github......................'
     fi
 }
 
@@ -110,10 +122,14 @@ function deployPureLocalhost() {
 function deployPureCI() {
     if [ $PLUGIN_ENABLE_STATE == "true" ]
     then
-    echo '开始以pure模式推送到github......................'
+         '开始以pure模式推送到github......................'
         #修改配置文件
         sed -i 's/pure:.*,/pure: true,/g' docs/.vuepress/theme.ts
         sed -i 's/base:.*,/base:\"\/pure\/\",/g' docs/.vuepress/config.ts
+
+        #修改纯模式PWA相关配置
+        sed -i 's/name: ".*"/name: "个人博客(纯模式)"/' docs/.vuepress/theme.ts
+        sed -i 's/short_name: ".*"/short_name: "此生挚爱万宝路的个人博客(纯模式)"/' docs/.vuepress/theme.ts
 
         #执行构建操作
         build
@@ -123,7 +139,7 @@ function deployPureCI() {
         git push -f https://lingwh1995:$1@github.com/lingwh1995/pure.git HEAD:master
         #回到上一次操作的目录
         cd -
-    echo '完成以pure模式推送到github......................'
+        echo '完成以pure模式推送到github......................'
     fi
 }
 
