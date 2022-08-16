@@ -27,12 +27,12 @@
         <div class="content">{{currentMode}}</div>
       </div>
       <div class="item" @click="goNormalMode">
-        <div class="title">😄&nbsp;常规模式</div>
-        <div class="content">页面色彩丰富</div>
+        <div class="title">常规模式➡️</div>
+        <div class="content">😄页面色彩丰富</div>
       </div>
       <div class="item" @click="goPureMode">
-        <div class="title">🍀&nbsp;纯净模式</div>
-        <div class="content">页面色彩简单</div>  
+        <div class="title">纯净模式➡️</div>
+        <div class="content">🍀页面色彩简单</div>  
       </div>
     </div>
   </div>
@@ -135,7 +135,7 @@ export default {
       transform: scale(1.1);
     }*/
     .popup .item:not(:first-child) .content:hover {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 900;
       transition: all 0.18s ease-out;
       transform: scale(1.1);
