@@ -388,8 +388,9 @@ nexus和Maven中央仓库的关系，harbor除了存储和分发镜像外还具�
 
 官方网址
 </code></pre>
-<p><a href="https://github.com/docker/compose/">  docker-compose</a></p>
-<pre><code>创建运行文件夹-&gt;下载docker-compose-&gt;解压并重命名docker-compose-&gt;赋予运行权限并复制到/usr/local/bin/docker-compose
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>https://github.com/docker/compose/
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装docker-compose
+创建运行文件夹-&gt;下载docker-compose-&gt;解压并重命名docker-compose-&gt;赋予运行权限并复制到/usr/local/bin/docker-compose
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mkdir -p /opt/software/package &amp;&amp;
 cd /opt/software/package &amp;&amp;
@@ -402,220 +403,239 @@ cp docker-compose-2.6-linux-x86_64 /usr/local/bin/docker-compose
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker-compose --version
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h4 id="_4-6-3-3-安装harbor" tabindex="-1"><a class="header-anchor" href="#_4-6-3-3-安装harbor" aria-hidden="true">#</a> 4.6.3.3.安装harbor</h4>
-<pre><code>特别注意
+<pre><code>版本说明
+本次使用的harbor版本为2.5.2
+
+特别注意
 注意docker的版本,低版本的docker不能运行harbor2.5
-	
-版本说明
-	2.5
-	
-在github下载harbor2.5.2，上传到/opt/software/package
+
+官方网址
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /opt/software/package
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>解压到/opt/software/install
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code></code></pre><div class="line-numbers" aria-hidden="true"></div></div><pre><code>创建存放下载文件夹-&gt;下载harbor-&gt;创建运行文件夹-&gt;解压到运行文件夹
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>tar -zxvf harbor-offline-installer-v2.5.2.tgz -C /opt/software/install
-cd /opt/software/install/harbor
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>复制一份harbor.yml.tmpl，重命名为harbor.yml并修改harbor.yml
-</code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cp harbor.yml.tmpl harbor.yml &amp;&amp;
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mkdir -p /opt/software/package &amp;&amp;
+cd /opt/software/package &amp;&amp;
+curl -fL -u software-1660737546177:da4715201c1e37859c2473112e90af4d1615abb4 \
+"https://lingwh-generic.pkg.coding.net/coding-drive/software/harbor-offline-installer-v2.5.2.tgz?version=latest" \
+-o harbor-offline-installer-v2.5.2.tgz &amp;&amp;
+mkdir -p /opt/software/install &amp;&amp;
+tar -zxvf harbor-offline-installer-v2.5.2.tgz -C /opt/software/install
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>复制一份harbor.yml.tmpl，重命名为harbor.yml并修改harbor.yml
+cd /opt/software/install/harbor &amp;&amp;
+cp harbor.yml.tmpl harbor.yml &amp;&amp;
 vim harbor.yml
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>修改harbor.yml
+
+修改harbor.yml配置
+修改hostname
+hostname: 192.168.0.4
+修改端口
+port:5001
+注释掉https相关部分
+#https:
+	# https port for harbor, default is 443
+	# port: 443
+	# The path of cert and key files for nginx
+	#certificate: /your/certificate/path
+	#private_key: /your/private/key/path
+修改密码
+	harbor_admin_password: 123456
+
+安装harbor
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	具体修改以下内容
-	修改hostname
-	hostname: 192.168.0.4
-	修改端口
-	port:5001
-	注释掉https相关部分
-	#https:
-		# https port for harbor, default is 443
-		# port: 443
-		# The path of cert and key files for nginx
-		#certificate: /your/certificate/path
-		#private_key: /your/private/key/path
-	修改密码
-		harbor_admin_password: 123456
-	
-	安装docker-compose
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>./install.sh</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	执行完成后，使用docker images查看harbor相关镜像
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>docker images</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	启动harbor
-	一次性启动所有harbor相关的容器,一般执行完./install.sh就已经启动了相关的容器
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>docker-compose up -d</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	让docker信任harbor私服
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>vim /etc/docker/daemon.json,添加以下内容:</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	配置Docker(Register)注册仓库服务器信任192.168.0.4:5001:
-	{"insecure-registries":["192.168.0.4:5001"]}
-	
-	重新加载docker daemon配置文件并重启docker
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>systemctl daemon-reload &amp;&amp; systemctl restart docker</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	登录harbor首页(密码可以去harbor.yml中查看)
-	访问地址：http://192.168.0.4:5001/
-	用户名/密码：admin/123456
-		
-	在Harbor中创建项目,推送的时候可以用
-	如:springcloud-eureka	
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>./install.sh
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>使用docker-compose启动harbor
+一次性启动所有harbor相关的容器,一般执行完./install.sh就已经启动了相关的容器
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker-compose up -d
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>让docker信任harbor私服
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim /etc/docker/daemon.json,添加以下内容:
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>配置Docker(Register)注册仓库服务器信任192.168.0.4:5001:
+{&quot;insecure-registries&quot;:[&quot;192.168.0.4:5001&quot;]}
 
-## 4.7.docker官方私服可视化
-### 4.7.1docker-registry-web方案
-	下载docker pull hyper/docker-registry-web镜像
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>docker pull hyper/docker-registry-web</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	启动docker-registry-web
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>docker run -d --restart=always <br>
--p 9002:8080 <br>
---name registry-web <br>
---link registry_default <br>
--e REGISTRY_URL=http://192.168.0.4:5000/v2 <br>
--e REGISTRY_NAME=192.168.0.4:5000 <br>
-hyper/docker-registry-web:latest</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>
-## 4.8.制作docker镜像并上传到私服
-
-### 4.8.1.制作Dokcer镜像		
-	进入/opt/software/package，并在这个目录中下载jdk
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>cd /opt/software/package &amp;&amp;
-wget https://repo.huaweicloud.com/java/jdk/8u181-b13/jdk-8u181-linux-x64.tar.gz</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	编写Dockerfile(Dockerfile内容如下)	
+重新加载docker daemon配置文件并重启docker
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp; 
+systemctl restart docker
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>登录harbor首页(密码可以去harbor.yml中查看)
+访问地址：http://192.168.0.4:5001/
+用户名/密码：admin/123456
 	
-	#基于centos基础镜像构建
-	FROM centos	
-	#作者
-	MAINTAINER lingwh
-	#将jdk添加到基础镜像中
-	ADD jdk-8u181-linux-x64.tar.gz /usr/local
-	#设置java相关的环境变量
-	ENV JAVA_HOME /usr/local/jdk1.8.0_181
-	ENV JRE_HOME ${JAVA_HOME}/jre
-	ENV CLASSPATH .:${JAVA_HOME}/lib:${JRE_HOME}/lib
-	ENV PATH ${JAVA_HOME}/bin:$PATH
-	#输出Java版本信息
-	CMD ["java","-version"]		
-					
-	在当前目录中执行构建镜像的命令
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>docker build -t='jdk/jdk1.8.0_181' .</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	查看到刚才制作好的镜像
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>docker images</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	创建容器
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>docker run -it --name=myjdk8 镜像id /bin/bash</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>
-### 4.8.2.上传本地jdk镜像到私服
-	给镜像打标签
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>docker tag jdk/jdk1.8.0_181 192.168.0.4:5000/jdk/jdk1.8.0_181:latest #更改镜像的TAG标签</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	上传标记的镜像
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>docker push 192.168.0.4:5000/jdk/jdk1.8.0_181:latest</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	查看推送到私服中的镜像
-	访问:http://192.168.0.4:5000/v2/_catalog,看到:{"repositories":["jdk/jdk1.8.0_181"]}
+在Harbor中创建项目,推送的时候可以用
+如:springcloud-eureka	
+</code></pre>
+<h2 id="_4-7-docker官方私服可视化" tabindex="-1"><a class="header-anchor" href="#_4-7-docker官方私服可视化" aria-hidden="true">#</a> 4.7.docker官方私服可视化</h2>
+<h3 id="_4-7-1docker-registry-web方案" tabindex="-1"><a class="header-anchor" href="#_4-7-1docker-registry-web方案" aria-hidden="true">#</a> 4.7.1docker-registry-web方案</h3>
+<pre><code>下载docker pull hyper/docker-registry-web镜像
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker pull hyper/docker-registry-web
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>启动docker-registry-web
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker run -d --restart=always \
+	-p 9002:8080 \
+	--name registry-web \
+	--link registry_default \
+	-e REGISTRY_URL=http://192.168.0.4:5000/v2 \
+	-e REGISTRY_NAME=192.168.0.4:5000 \
+	hyper/docker-registry-web:latest
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_4-8-制作docker镜像并上传到私服" tabindex="-1"><a class="header-anchor" href="#_4-8-制作docker镜像并上传到私服" aria-hidden="true">#</a> 4.8.制作docker镜像并上传到私服</h2>
+<h3 id="_4-8-1-制作dokcer镜像" tabindex="-1"><a class="header-anchor" href="#_4-8-1-制作dokcer镜像" aria-hidden="true">#</a> 4.8.1.制作Dokcer镜像</h3>
+<pre><code>进入/opt/software/package，并在这个目录中下载jdk
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /opt/software/package &amp;&amp;
+wget https://repo.huaweicloud.com/java/jdk/8u181-b13/jdk-8u181-linux-x64.tar.gz
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>编写Dockerfile(Dockerfile内容如下)	
 
-## 4.9.Docker中安装常用软件
-### 4.9.1.Docker安装mysql
-	下载mysql镜像
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>docker pull mysql</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	启动mysql容器
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>docker run -di --name mysql -p 3306:3306 --restart=always -e MYSQL_ROOT_PASSWORD=123456 mysql</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	关闭docker中的mysql容器
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>myqldocker exec -it mysql bash</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>### 4.9.2.Docker中安装consul
-	下载consul镜像
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>docker pull consul</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	启动consul容器
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>docker run -d --name=consul <br>
--p 8500:8500 <br>
---restart=always <br>
-agent -server -bootstrap -ui -node=1 -client='0.0.0.0' <br>
-consul:latest</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>
-### 4.9.3.Docker容器中安装vim	 
-	进入容器内部
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>docker exec -it 容器id /bin/bash</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	备份旧的源
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>mv /etc/apt/sources.list /etc/apt/sources.list.bak</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	写入新的源
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>echo &quot;deb http://mirrors.163.com/debian/ jessie main non-free contrib&quot; <br>
-&gt;&gt; 	/etc/apt/sources.list &amp;&amp;
-echo &quot;deb http://mirrors.163.com/debian/ jessie-proposed-updates main non-free contrib&quot; <br>
-&gt;&gt;/etc/apt/sources.list &amp;&amp;
-echo &quot;deb-src http://mirrors.163.com/debian/ jessie main non-free contrib&quot; <br>
-&gt;&gt;/etc/apt/sources.list &amp;&amp;
-echo &quot;deb-src http://mirrors.163.com/debian/ jessie-proposed-updates main non-free contrib&quot; <br>
-&gt;&gt;/etc/apt/sources.list</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>
-	更新源
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>apt update</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	安装vim
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>apt-get install vim</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>
-### 4.9.3.docker安装elk
-	下载elk镜像
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>docker pull sebp/elk:6.8.22</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	启动ELK容器，指定最小内存和最大内存，并映射相关端口
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>docker run -d --name elk <br>
---restart always <br>
--p 5601:5601 <br>
--p 9200:9200 <br>
--p 5044:5044 <br>
--e ES_MIN_MEM=1024m <br>
--e ES_MAX_MEM=2048 <br>
-sebp/elk:6.8.22</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	开放elk需要用的端口,并且重新载入端口
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>firewall-cmd --add-port=5601/tcp --permanent &amp;&amp;
+#基于centos基础镜像构建
+FROM centos	
+#作者
+MAINTAINER lingwh
+#将jdk添加到基础镜像中
+ADD jdk-8u181-linux-x64.tar.gz /usr/local
+#设置java相关的环境变量
+ENV JAVA_HOME /usr/local/jdk1.8.0_181
+ENV JRE_HOME ${JAVA_HOME}/jre
+ENV CLASSPATH .:${JAVA_HOME}/lib:${JRE_HOME}/lib
+ENV PATH ${JAVA_HOME}/bin:$PATH
+#输出Java版本信息
+CMD [&quot;java&quot;,&quot;-version&quot;]		
+				
+在当前目录中执行构建镜像的命令
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker build -t='jdk/jdk1.8.0_181' .
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看到刚才制作好的镜像
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker images	
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>创建容器
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker run -it --name=myjdk8 镜像id /bin/bash
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_4-8-2-上传本地jdk镜像到私服" tabindex="-1"><a class="header-anchor" href="#_4-8-2-上传本地jdk镜像到私服" aria-hidden="true">#</a> 4.8.2.上传本地jdk镜像到私服</h3>
+<pre><code>给镜像打标签
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker tag jdk/jdk1.8.0_181 192.168.0.4:5000/jdk/jdk1.8.0_181:latest #更改镜像的TAG标签
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>上传标记的镜像
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker push 192.168.0.4:5000/jdk/jdk1.8.0_181:latest	
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看推送到私服中的镜像
+访问:http://192.168.0.4:5000/v2/_catalog,看到:{&quot;repositories&quot;:[&quot;jdk/jdk1.8.0_181&quot;]}
+</code></pre>
+<h2 id="_4-9-docker中安装常用软件" tabindex="-1"><a class="header-anchor" href="#_4-9-docker中安装常用软件" aria-hidden="true">#</a> 4.9.Docker中安装常用软件</h2>
+<h3 id="_4-9-1-docker安装mysql" tabindex="-1"><a class="header-anchor" href="#_4-9-1-docker安装mysql" aria-hidden="true">#</a> 4.9.1.Docker安装mysql</h3>
+<pre><code>下载mysql镜像
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker pull mysql
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>启动mysql容器
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker run -di --name mysql -p 3306:3306 --restart=always -e MYSQL_ROOT_PASSWORD=123456 mysql
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>关闭docker中的mysql容器
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>myqldocker exec -it mysql bash	
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_4-9-2-docker中安装consul" tabindex="-1"><a class="header-anchor" href="#_4-9-2-docker中安装consul" aria-hidden="true">#</a> 4.9.2.Docker中安装consul</h3>
+<pre><code>下载consul镜像
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker pull consul
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>启动consul容器
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker run -d --name=consul \
+	-p 8500:8500 \
+	--restart=always \
+	agent -server -bootstrap -ui -node=1 -client='0.0.0.0' \
+	consul:latest
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_4-9-3-docker容器中安装vim" tabindex="-1"><a class="header-anchor" href="#_4-9-3-docker容器中安装vim" aria-hidden="true">#</a> 4.9.3.Docker容器中安装vim</h3>
+<pre><code>进入容器内部
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker exec -it 容器id /bin/bash
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>备份旧的源
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mv /etc/apt/sources.list /etc/apt/sources.list.bak
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>写入新的源
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>echo "deb http://mirrors.163.com/debian/ jessie main non-free contrib" \
+	>> 	/etc/apt/sources.list &amp;&amp;
+echo "deb http://mirrors.163.com/debian/ jessie-proposed-updates main non-free contrib" \
+	>>/etc/apt/sources.list &amp;&amp;
+echo "deb-src http://mirrors.163.com/debian/ jessie main non-free contrib" \
+	>>/etc/apt/sources.list &amp;&amp;
+echo "deb-src http://mirrors.163.com/debian/ jessie-proposed-updates main non-free contrib" \
+	>>/etc/apt/sources.list
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>更新源
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>apt update
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装vim
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>apt-get install vim
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_4-9-3-docker安装elk" tabindex="-1"><a class="header-anchor" href="#_4-9-3-docker安装elk" aria-hidden="true">#</a> 4.9.3.docker安装elk</h3>
+<pre><code>下载elk镜像
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker pull sebp/elk:6.8.22
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>启动ELK容器，指定最小内存和最大内存，并映射相关端口
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker run -d --name elk \
+	--restart always \
+	-p 5601:5601 \
+	-p 9200:9200 \
+	-p 5044:5044 \
+	-e ES_MIN_MEM=1024m \
+	-e ES_MAX_MEM=2048 \
+	sebp/elk:6.8.22
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>开放elk需要用的端口,并且重新载入端口
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>firewall-cmd --add-port=5601/tcp --permanent &amp;&amp;
 firewall-cmd --reload &amp;&amp;
 firewall-cmd --add-port=9200/tcp --permanent &amp;&amp;
 firewall-cmd --reload &amp;&amp;
 firewall-cmd --add-port=5044/tcp --permanent &amp;&amp;
-firewall-cmd --reload</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	访问Kibana
-	192.168.0.4:5601
-	
-	进入ELK中进行配置
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>docker exec -it elk /bin/bash</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	修改logstash配置,把下面内容粘贴进去
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>vim /etc/logstash/conf.d/02-beats-input.conf</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code></code></pre><div class="line-numbers" aria-hidden="true"></div></div><p>input{
-tcp{
-host =&gt; &quot;0.0.0.0&quot;
-port =&gt; 5044
-codec=&gt; json_lines
-}
+firewall-cmd --reload
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>访问Kibana
+192.168.0.4:5601
+
+进入ELK中进行配置
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker exec -it elk /bin/bash
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>修改logstash配置,把下面内容粘贴进去
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim /etc/logstash/conf.d/02-beats-input.conf
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>input{
+	tcp{
+		host => "0.0.0.0"
+		port => 5044
+		codec=> json_lines
+	}
 }
 output{
-elasticsearch{
-hosts =&gt; [&quot;192.168.0.4:9200&quot;]
-action =&gt; &quot;index&quot;
-index =&gt; &quot;%{[appName]}-%{+YYYY.MM.dd}&quot;
+	elasticsearch{
+		hosts => ["192.168.0.4:9200"]
+		action => "index"
+		index => "%{[appName]}-%{+YYYY.MM.dd}"
+	}
 }
-}</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	配置说明:
-	input代表数据输入配置 ， logstatsh的开放端口是 5044
-	output代表数据输出配置，输出到elasticsearch, hosts是es的地址192.168.0.4:9200
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>配置说明:
+input代表数据输入配置 ， logstatsh的开放端口是 5044
+output代表数据输出配置，输出到elasticsearch, hosts是es的地址192.168.0.4:9200
+
+退出容器
+</code></pre>
+<p>``	
+exit</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	重启ELK容器
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>docker restart elk</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	注意事项	
+	当把docker和centos7的冲突解决后,需要让centos放行elk(具体是es)的部署地址
 	
-	退出容器
-``	
-exit
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>重启ELK容器
-</code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker restart elk
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>注意事项	
-当把docker和centos7的冲突解决后,需要让centos放行elk(具体是es)的部署地址
-
-查看容器详细信息
-</code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker inspect 容器id
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查找到elk(具体是es)容器的ip,假设为172.17.0.2
-
-执行放行操作
-</code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>firewall-cmd --zone=trusted --add-source=172.17.0.2/16 --permanent
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>重新载入防火墙配置
-</code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>firewall-cmd --reload
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>重启防火墙
-</code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl restart firewalld
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>docker启动elk报错/或一直重启故障解决
-错误日志：
-max virtual memory areas vm.max_map_count [65530] is too low, increase to at least
-解决方式，在宿主机执行
-</code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sudo sysctl -w vm.max_map_count=262144
+	查看容器详细信息
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>docker inspect 容器id</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	查找到elk(具体是es)容器的ip,假设为172.17.0.2
+	
+	执行放行操作
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>firewall-cmd --zone=trusted --add-source=172.17.0.2/16 --permanent</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	重新载入防火墙配置
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>firewall-cmd --reload</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	重启防火墙
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>systemctl restart firewalld</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	docker启动elk报错/或一直重启故障解决
+	错误日志：
+	max virtual memory areas vm.max_map_count [65530] is too low, increase to at least
+	解决方式，在宿主机执行
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>sudo sysctl -w vm.max_map_count=262144</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></div></template>

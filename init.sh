@@ -12,7 +12,7 @@ source ./enhance/lib/tools.sh
 EOF
 function cloneDocumentsOriginalFromRemote() {
     echo '从远程文档原件仓库拉取文档原件到本地插件..........................................................'
-    
+
     #获取插件启用状态
     PLUGIN_ENABLE_STATE=( $( parsePluginIni plugin-001 enable) )
     echo '插件启用状态: '$PLUGIN_ENABLE_STATE
@@ -23,7 +23,7 @@ function cloneDocumentsOriginalFromRemote() {
         rm -rf $LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME
         echo '执行了命令: rm -rf '$LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME
         echo '完成清理本地文档原件仓库历史缓存............................'
-        
+
         echo '开始获取远程文档原件仓库地址和本地文档原件仓库文件夹名称.......'
         #获取远程文档原件仓库地址
         GIT_REPOSITORY_URL=( $( parsePluginIni plugin-001 git-repository-url) )
@@ -72,10 +72,10 @@ function writeFrontmatterForOriginal() {
     echo '给文档原件写入Frontmatter配置信息...............................................................'
     #在写入内容之前先写入Frontmatter选项配置信息
     echo "---" >> $2/$1.md
-    
+
     #写入 博客列表展示的标题，这是地址栏上面的标题，同时也是博客列表中显示的标题
     #获取完整的的md文件中的Frontmatter选项配置信息中的title属性的值
-   
+
     MD_FILE_ENSEMBLE_FRONTMATTER_TITLE=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble title) )
     echo "title: $MD_FILE_ENSEMBLE_FRONTMATTER_TITLE-章节内容合集" >> $2/$1.md
 
@@ -84,7 +84,7 @@ function writeFrontmatterForOriginal() {
     BLOG_FRONTMATTER_DESCRIPTION='本章节涉及主要内容有：'$BLOG_FRONTMATTER_DESCRIPTION'具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。'
 
     echo "description: $BLOG_FRONTMATTER_DESCRIPTION" >> $2/$1.md
-    
+
     #写入 右侧toc面板展示的标题深度
     #获取具体章节的的md文件中的Frontmatter选项配置信息中headerDepth的属性的值
     MD_FILE_ENSEMBLE_FRONTMATTER_HEADERDEPTH=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble headerDepth) )
@@ -103,14 +103,14 @@ function writeFrontmatterForOriginal() {
     ENSEMBLE_CATEGORY=(`echo $MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORY | tr ',' ' '` )
     for CATEGORY in ${ENSEMBLE_CATEGORY[@]}
     do
-        echo "  - $CATEGORY" >> $2/$1.md   
-    done 
+        echo "  - $CATEGORY" >> $2/$1.md
+    done
 
     #写入 是否被博客列表收藏，xxx.md切割出来的章节不用加入收藏列表，只把xxx.md加入收藏列表
     #获取具体章节的的md文件中的Frontmatter选项配置信息中star的属性的值
     MD_FILE_ENSEMBLE_FRONTMATTER_STAR=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble star) )
     echo "star: $MD_FILE_ENSEMBLE_FRONTMATTER_STAR" >> $2/$1.md
-            
+
     #写入文章标签：文章合集的标签+每个章节的标签
     #获取具体章节的的md文件中的Frontmatter选项配置信息中的tag属性的值
     MD_FILE_ENSEMBLE_FRONTMATTER_TAGS_STR=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble tag) )
@@ -120,9 +120,9 @@ function writeFrontmatterForOriginal() {
     for ENSEMBLE_TAG in ${MD_FILE_ENSEMBLE_FRONTMATTER_TAGS_ARR[@]}
     do
         echo "  - $ENSEMBLE_TAG" >> $2/$1.md
-    done 
+    done
 
-    #注释掉的原因是，标签太长了，影响显示    
+    #注释掉的原因是，标签太长了，影响显示
     #写入所有章节的文章标签
     #获取一级标题总数
     TOTAL_TITLE1_COUNTS=`grep '^# [1-9][0-9]\?\.' $2/$1.md.original | tail -1 | cut -c 3-4 | sed 's/\.//g'`
@@ -137,7 +137,7 @@ function writeFrontmatterForOriginal() {
         if [ $MD_FILE_CHAPTER_FRONTMATTER_TAGS_STR != "" ]
         then
             ALL_CHAPTERS_TAGS_STR=$ALL_CHAPTERS_TAGS_STR$MD_FILE_CHAPTER_FRONTMATTER_TAGS_STR' '
-        fi    
+        fi
     done
 
 :<< EOF
@@ -158,22 +158,22 @@ EOF
         echo '章节中的每一个标签：'${ALL_CHAPTERS_TAGS_ARR[i]}
         echo "  - ${ALL_CHAPTERS_TAGS_ARR[i]}" >> $2/$1.md
     done
-    
+
     #写入 写作日期
     #获取具体章节的的md文件中的Frontmatter选项配置信息中date属性的值
     MD_FILE_ENSEMBLE_FRONTMATTER_DATE=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble date) )
     echo "date: $MD_FILE_ENSEMBLE_FRONTMATTER_DATE" >>  $2/$1.md
-    
+
     #写入 是否置顶
     #获取具体章节的的md文件中的Frontmatter选项配置信息中date属性的值
     MD_FILE_ENSEMBLE_FRONTMATTER_STICKY=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble sticky) )
     echo "sticky: $MD_FILE_ENSEMBLE_FRONTMATTER_STICKY" >>  $2/$1.md
-    
+
     #写入 icon
     #获取具体章节的的md文件中的Frontmatter选项配置信息中date属性的值
     MD_FILE_ENSEMBLE_FRONTMATTER_ICON=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble icon) )
     echo "icon: $MD_FILE_ENSEMBLE_FRONTMATTER_ICON" >>  $2/$1.md
-    
+
     #写入SEO信息
     #抽取所有一级标题，以此为根据创建博客正文内容中博客内容概述的文字，作为SEO的关键词
     SEO_KEYWORDS=`grep '^# [1-9][0-9]\?\.'  $2/$1.md.original | cut -d '.' -f2 | tr '\r\n' ','`
@@ -199,19 +199,19 @@ EOF
 EOF
 function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     echo '为文档原件和文档原件的的所有章节分片生成二级和三级目录大纲,并将这个目录大纲转换为markmap文件..........'
-    
+
     echo '开始安装markmap-cli........................................................................'
-    #安装markmap-cli 
+    #安装markmap-cli
     npm install -g markmap-cli
     echo '完成安装markmap-cli开始........................................................................'
-    
+
     echo '生成markmap文件开始........................................................................'
     echo '开始为'$1'.md生成markmap文件........................'
-  
+
     #删除上一次操作后的md文件
     rm -rf $2/$1.md
     echo '删除上一次操作后的'$1'.md文件'
-    
+
     #获取为文档原件写入Frontmatter配置信息插件启用状态
     PLUGIN_ENABLE_STATE=( $( parsePluginIni plugin-002 enable) )
     if [ $PLUGIN_ENABLE_STATE == "true" ]
@@ -229,7 +229,7 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     #获取引用的代码的项目名称
     INCLUDE_CODE_PROJECT_NAME_STR=`echo $5 | tr ',' ' '`
     INCLUDE_CODE_PROJECT_NAME_ARR=( $INCLUDE_CODE_PROJECT_NAME_STR )
-   
+
     if [ $INCLUDE_CODE_PROJECT_NAME != "" ]
     then
         for((i=0;i<${#INCLUDE_CODE_PROJECT_NAME_ARR[@]};i++)); do
@@ -244,7 +244,7 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     #生成三级目录大纲md文件
     grep '^#\{1,3\} [1-9][0-9]\?' $2/$1.md > $2/$1-outline3.md
     echo '完成为'$1'.md生成二级和三级目录大纲md文件............'
-    
+
     echo '开始为'$1'.md生成二级和三级目录大纲markmap文件，并输出到指定文件夹中......'
 
     #创建存放为xxx.md生成的markmap文件的文件夹
@@ -257,7 +257,7 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     markmap --no-open $2/$1-outline2.md -o $3/$1-outline2.html
     markmap --no-open $2/$1-outline3.md -o $3/$1-outline3.html
     echo '完成为'$1'.md生成二级和三级目录大纲markmap文件，并输出到指定文件夹中............'
-      
+
     echo '开始删除'$1'.md生成的二级和三级目录大纲md文件......'
     #删除生成三级目录大纲md文件
     rm -rf $2/$1-outline*.md
@@ -269,7 +269,7 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
 
     #获取一级标题总数
     TOTAL_TITLE1_COUNTS=`grep '^#\{1\} [1-9]\+' $2/$1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
-     
+
     #创建存放为xxx.md的所有章节生成的markmap文件的文件夹
     mkdir -p $3/chapter
 
@@ -289,7 +289,7 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
         markmap --no-open $2/$1-outline$4-chapter$i.md  -o $3/chapter/$1-outline$4-chapter$i.html
         echo '完成为'$1'.md第'$i'章节生成目录大纲markmap文件，markmap文件标题深度：'$4'............'
     done
-     
+
     echo '开始删除'$1'.md所有章节生成的目录大纲md文件......'
     #删除生成三级目录大纲md文件
     rm -rf $2/$1-outline$4-chapter*.md
@@ -313,9 +313,9 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
 EOF
 function generateGuidanceByMarkmapForOriginal() {
     echo '开始为'$1'md生和'$1'.md的所有章节成guidance文件........................................................................'
-    
+
     echo '开始为'$1'.md生成guidance文件.......................................................'
-    
+
     #创建存放xxx.md成的guidance文件的文件夹
     mkdir -p $3
 
@@ -331,7 +331,7 @@ cat > $3/$1-guidance.md  << EOF
 $BLOG_CONTENT_INTRO
 	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 ## 博客内容大纲
-	
+
 ###	<a href="/$5/$4/$1-outline2.html" target="_blank">简单版博客内容大纲</a>
 <!--最深展示二级标题内容-->
 <Markmap localtion="/$5/$4/$1-outline2.html"/>
@@ -371,9 +371,9 @@ EOF
 
     #抽取当前一级标题下所有二级标题，合并起来作为章节内容概述的一部分
     CHAPTER_CONTENT_INTRO=`grep '^## '"$i"'\.' $2/$1.md | sed 's/#/  /g'`
-    
+
     echo '开始为'$1'.md所有章节'$i'生成guidance文件......................................................'
-cat > $3/chapter/$1-guidance-chapter$i.md  << EOF    
+cat > $3/chapter/$1-guidance-chapter$i.md  << EOF
 
 ## $i.1.章节内容概述
     本章节涉及主要内容有：
@@ -383,12 +383,12 @@ $CHAPTER_CONTENT_INTRO
 	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 
 ## <a href="/$5/$4/chapter/$1-outline5-chapter$i.html" target="_blank">$i.2.章节内容大纲</a>
-	
+
 <Markmap localtion="/$5/$4/chapter/$1-outline5-chapter$i.html"/>
 
 EOF
     echo '完成为'$1'.md所有章节'$i'生成guidance文件......................................................'
-   
+
     done
 
     echo '完成为'$1'.md所有章节生成guidance文件......................................................'
@@ -403,11 +403,11 @@ EOF
 EOF
 function title2IncrementByForOriginal() {
     echo '开始为'$1'.md中所有二级标题序列增加1........................................................................'
- 
+
     #获取一级标题总数
     TOTAL_TITLE1_COUNTS=`grep '^# [1-9][0-9]\?\.' $2/$1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
     echo $1'.md初始文件中一级标题总数'$TOTAL_TITLE1_COUNTS
-  
+
     for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
     do
         #根据一级标题获取二级标题总数
@@ -457,7 +457,7 @@ function insertGuidanceIntoOriginal() {
     #获取一级标题总数
     TOTAL_TITLE1_COUNTS=`grep '^# [1-9][0-9]\?\.' $2/$1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
     echo '一级标题总数'$TOTAL_TITLE1_COUNTS
-    
+
     #给每个章节下面的插入每个章节对应的Guidance
     for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
     do
@@ -495,10 +495,10 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
     CHAPTER_0_FULL_PATH_NAME=$2/$3/$1-chapter-0.$6.md
     echo '第0章全路径名：'$CHAPTER_0_FULL_PATH_NAME
     echo '---' >> $CHAPTER_0_FULL_PATH_NAME
-    
+
     #获取完整的的md文件中的Frontmatter选项配置信息中的title属性的值
     MD_FILE_ENSEMBLE_FRONTMATTER_TITLE=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble title) )
-    
+
     #写入title
     echo "title: $MD_FILE_ENSEMBLE_FRONTMATTER_TITLE-$6" >> $CHAPTER_0_FULL_PATH_NAME
 
@@ -528,7 +528,7 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
     for CATEGORY in ${MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORYS_ARR[@]}
     do
         echo "  - $CATEGORY" >> $CHAPTER_0_FULL_PATH_NAME
-    done 
+    done
 
     #获取chapter-basic的md文件中的star
     MD_FILE_CHAPTER_BASIC_FRONTMATTER_START=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini chapter-basic star) )
@@ -559,20 +559,20 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
     cat $4/$1-guidance.md >> $CHAPTER_0_FULL_PATH_NAME
 
     echo '完成为'$1'.md生成内容介绍文件................................................'
-    
+
     echo '开始为'$1'.md的所有章节生成内容介绍文件.......................................'
 
     #获取一级标题总数
     TOTAL_TITLE1_COUNTS=`grep '^# [1-9][0-9]\?\.' $2/$1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
     echo '一级标题总数'$TOTAL_TITLE1_COUNTS
-    
+
     for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
     do
         echo '开始为'$1'.md生成的分片文件写入Frontmatter配置信息................................................'
         #获取章节起始行数
         CHAPTER_START_LINE_NUMBER=`grep -n '^# '"$i"'\.' $2/$1.md | cut -d ':' -f 1`
         echo '章节'$i'起始行数：'$CHAPTER_START_LINE_NUMBER
-        
+
         #获取章节结束行数
         CHAPTER_END_LINE_NUMBER=`grep -n '^# '"$[$i+1]"'\.' $2/$1.md | cut -d ':' -f 1`
         CHAPTER_END_LINE_NUMBER=$[$CHAPTER_END_LINE_NUMBER-1]
@@ -582,7 +582,7 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
             CHAPTER_END_LINE_NUMBER=`cat $2/$1.md |wc -l`
         fi
         echo '章节'$i'结束行数：'$CHAPTER_END_LINE_NUMBER
-        
+
         #获取章节名称
         CHAPTER_NAME=`grep -n '^# '"$i"'\.' $2/$1.md | cut -d ' ' -f 2`
         echo '章节名称：'$CHAPTER_NAME
@@ -593,7 +593,7 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
         #获取完整的的md文件中的Frontmatter选项配置信息中的title属性的值
         MD_FILE_ENSEMBLE_FRONTMATTER_TITLE=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble title) )
         echo "title: $MD_FILE_ENSEMBLE_FRONTMATTER_TITLE-$CHAPTER_NAME" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        
+
         #抽取当前一级标题下所有二级标题，合并起来作为章节内容概述的一部分
         CHAPTER_CONTENT_INTRO=`grep '^## '"$i"'[0-9]\?\.' $2/$1.md | cut -d '.' -f3 | tr '\r\n' ','`
         #拼接完整的章节描述
@@ -601,7 +601,7 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
         #写入 具体章节的描述信息
         #获取具体章节的的md文件中的Frontmatter选项配置信息中description的属性的值
         echo "description: $CHAPTER_CONTENT_INTRO" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        
+
         #写入 右侧toc面板展示的标题深度
         #获取具体章节的的md文件中的Frontmatter选项配置信息中headerDepth的属性的值
         MD_FILE_CHAPTER_FRONTMATTER_HEADERDEPTH=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini chapter-basic headerDepth) )
@@ -611,7 +611,7 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
         #获取具体章节的的md文件中的Frontmatter选项配置信息中isOriginal的属性的值
         MD_FILE_CHAPTER_FRONTMATTER_ISORIGINAL=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini chapter-basic isOriginal) )
         echo "isOriginal: $MD_FILE_CHAPTER_FRONTMATTER_ISORIGINAL" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-       
+
         #写入分类信息
         #获取完整的章节的的md文件中的Frontmatter选项配置信息中category的属性的值
         MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORYS_STR=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble category) )
@@ -619,14 +619,14 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
         MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORYS_ARR=(`echo $MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORYS_STR | tr ',' ' '` )
         for CATEGORY in ${MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORYS_ARR[@]}
         do
-            echo "  - $CATEGORY" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md    
-        done 
-        
+            echo "  - $CATEGORY" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+        done
+
         #写入 是否被博客列表收藏，xxx.md切割出来的章节不用加入收藏列表，只把xxx.md加入收藏列表
         #获取具体章节的的md文件中的Frontmatter选项配置信息中的star属性的值
         MD_FILE_CHAPTER_FRONTMATTER_STAR=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini chapter-basic star) )
         echo "star: $MD_FILE_CHAPTER_FRONTMATTER_STAR" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        
+
         #写入 文章标签
         #获取具体章节的的md文件中的Frontmatter选项配置信息中的tag属性的值
         MD_FILE_CHAPTER_FRONTMATTER_TAGS_STR=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini chapter-$i tag) )
@@ -635,16 +635,16 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
         MD_FILE_CHAPTER_FRONTMATTER_TAGS_ARR=(`echo $MD_FILE_CHAPTER_FRONTMATTER_TAGS_STR | tr ',' ' '` )
         for TAG in ${MD_FILE_CHAPTER_FRONTMATTER_TAGS_ARR[@]}
         do
-            echo "  - $TAG" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md    
-        done 
-        
+            echo "  - $TAG" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
+        done
+
         #写入 写作日期
         #获取具体章节的的md文件中的Frontmatter选项配置信息中date属性的值
         MD_FILE_CHAPTER_FRONTMATTER_DATE=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini chapter-$i date) )
         echo "date: $MD_FILE_CHAPTER_FRONTMATTER_DATE" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
-        
+
         MD_FILE_CHAPTER_FRONTMATTER_SEO_KEYWORDS=$CHAPTER_CONTENT_INTRO
-        
+
         #写入seo信息
         echo "head:" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
         echo "  - - meta" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
@@ -679,7 +679,7 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
     章节中ID格式 {#centos7_1-5-c}
 EOF
 function generateSidebarConfigForAllAndSetAnchorForOriginal() {
-   
+
     echo '开始为'$1'.为md文件和md文件拆分的所有章节md文件生成侧边栏配置........................................................................'
 
     #获取一级标题总数
@@ -696,10 +696,10 @@ function generateSidebarConfigForAllAndSetAnchorForOriginal() {
     SIDEBAR_CONFIGFILE_FULL_PATH_NAME=$3/$SIDEBAR_CONFIGFILE_NAME
     #每次写入之前先删除旧文件，再写入新的内容
     rm -rf $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    
+
     #根据文件名称查找完整版文档（完整版博客的）的标题，并用作侧边栏显示的文字使用
     SIDEBAR_TEXT=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble title) )
-    
+
 
     echo "  {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "      // 必要的，分组的标题文字" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
@@ -718,7 +718,7 @@ function generateSidebarConfigForAllAndSetAnchorForOriginal() {
     echo "              collapsable: true," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "              children:[" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
 
-    #按章节阅读中拼接 博客内容介绍 
+    #按章节阅读中拼接 博客内容介绍
     echo "                  {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "                      text: \"$6\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "                      icon: \"article\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
@@ -747,13 +747,13 @@ function generateSidebarConfigForAllAndSetAnchorForOriginal() {
     echo "              collapsable: true," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "              children:[" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
 
-    #章节内容合集中拼接 博客内容介绍 
+    #章节内容合集中拼接 博客内容介绍
     echo "                  {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "                      text: \"$6\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "                      icon: \"article\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "                      link: \"$4/$1.md#intro\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "                  }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    
+
     for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
     do
         #获取章节名称
@@ -765,19 +765,19 @@ function generateSidebarConfigForAllAndSetAnchorForOriginal() {
         echo "                      icon: \"article\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
         echo "                      link: \"$4/$1.md#$i.\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
         echo "                  }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    done    
+    done
     echo "              ]" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "          }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
 
     echo "      ]" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "  }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-  
+
     #给所有一级标题后面添加锚点使用的属性
     for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
     do
     sed -i 's/\(^# '"$i"'\..*\)/& \{#'"$i"'\.\}/g' $2/$1.md
     done
-    
+
     echo '完成为'$1'.为md文件和md文件拆分的所有章节md文件生成侧边栏配置.................................................................................'
 }
 
@@ -790,7 +790,7 @@ function generateSidebarConfigForAllAndSetAnchorForOriginal() {
     $4:$INCLUDE_CODE_PROJECT_NAME
 EOF
 function generateBreadcrumbREADME {
-   
+
     echo '开始为'$2'目录下'$1'.md文件及其分片创建breadcrumb使用的README.md.................................................................................'
 
     echo '路径数组字符串：'$2/$3
@@ -803,15 +803,15 @@ function generateBreadcrumbREADME {
     PATHS_ARR_LENGTH=${#PATHS_ARR[@]}
     #blogs文件夹相当于init.sh的路径
     CURRENT_REALTIVE_PATH=$DOCS_PATH
-    
+
     for(( i=0;i<${#PATHS_ARR[@]};i++)) do
         CURRENT_REALTIVE_PATH=$CURRENT_REALTIVE_PATH/${PATHS_ARR[i]}
         echo '当前处理的路径：'$CURRENT_REALTIVE_PATH
-        
+
         #获取当前导航栏分类的文件夹名称
         CURRENT_CATALOG_FOLDER_NAME=`echo $2/$3 | cut -d '/' -f1`
         CURRENT_CATALOG_CHILD_FOLDER_NAME=`echo $2/$3 | cut -d '/' -f2`
-       
+
         #获取当前导航栏分类的文件夹相对位置
         CURRENT_CATALOG_FOLDER_NAME_RELATIVE_PATH=$DOCS_PATH/$CURRENT_CATALOG_FOLDER_NAME
         echo '当前导航栏分类的文件夹相对位置：'$CURRENT_CATALOG_FOLDER_NAME_RELATIVE_PATH
@@ -838,7 +838,7 @@ function generateBreadcrumbREADME {
 
         #如果i值大于等于1，说明处理的不是第一层目录了，不需要再添加额外的文件名过滤了，否则章节标题中如果有被过滤的文字，生成导航README.md将不会包含这个章节
         #if [ $i -ge 1 ]
-        #then 
+        #then
         #    IGNORE_FOLDER_LIST_STR=""
         #fi
 
@@ -849,11 +849,11 @@ function generateBreadcrumbREADME {
 
         echo '行号数组字符串：'$PATHS_LINENUMBER_STR
         PATHS_LINENUMBER_ARR=( $PATHS_LINENUMBER_STR )
-       
+
         #生成的内容中间先输出到这个文件中
         CACHE_README_FILE_NAME="README-cache.md"
         FINAL_README_FILE_NAME="README.md"
-       
+
         SHARDING_README_FILE_NAME="README-$1.md"
 
         #开始创建README.md文件的分片文件
@@ -871,7 +871,7 @@ function generateBreadcrumbREADME {
             then
                  echo ------行号数组大于1时：说明当前位置不是最深一层的文件夹中-----------
             fi
-           
+
             if [ ${#PATHS_LINENUMBER_ARR[@]} -eq 1 ]
             then
                  echo ------行号数组等于1时：说明当前位置是最深一层的文件夹中-----------
@@ -896,7 +896,7 @@ function generateBreadcrumbREADME {
             #将递归查询当前目录中所有文件的结果根据目录层级切割成不同的分片
             ls -lR $CURRENT_REALTIVE_PATH -I README*.md -I *.original -I *.md.* $IGNORE_FOLDER_LIST_STR | \
             sed -n ''"$START_LINENUMBER"','"$END_LINENUMBER"'p' >> $CACHE_README_FILE_NAME_FULL_PATH_NAME
-            
+
             echo '--------------------------------------------------------------------'
             echo '当前操作文件名称：'$1.md
             echo '当前操作目录：（相对路径）' $CURRENT_REALTIVE_PATH
@@ -908,14 +908,14 @@ function generateBreadcrumbREADME {
             echo '------------'
             echo '输出文件全路径名：'$CACHE_README_FILE_NAME_FULL_PATH_NAME
             echo '--------------------------------------------------------------------'
-            
+
             #替换README.md分片中所有行中不包含文件名的部分为指定字符串，格式为  4*($k+1)个空格-一个空格
             #获取前面的n个空格
             NBSP=""
             for((l=0;l<$[$k+1];l++)) do
-                NBSP=$NBSP"    "   
+                NBSP=$NBSP"    "
             done
-            
+
             #执行替换文件名前面部分的操作
             sed -i 's/^.*[0-9]\{2\}:[0-9]\{2\}/'"$NBSP"'-/g' $CACHE_README_FILE_NAME_FULL_PATH_NAME
 
@@ -923,11 +923,11 @@ function generateBreadcrumbREADME {
             for((m=0;m<$k;m++)) do
                 HREF_STR=$HREF_STR${PATHS_ARR[m+1+i]}/
             done
-            
+
 
             #执行替换文件名的操作，为文件名添加超链接
             sed -i 's#\('"$NBSP"'-\) \(.*\)#\1 <a class="breadcrumb-link" href="'"$HREF_STR"'\2">\2<\/a>#g' $CACHE_README_FILE_NAME_FULL_PATH_NAME
-            
+
             #删除所有包含total和docs的的行
             sed -i '/\(^total\|^docs\)/d' $CACHE_README_FILE_NAME_FULL_PATH_NAME
 
@@ -939,11 +939,11 @@ function generateBreadcrumbREADME {
 
             CHAPTER_FOLDER_NAME_CN=( $( parseI18nIni breadcrumb $3) )
             #配置导航页面中的shardings（存放章节分片的文件夹）为中文
-            #替换路径导航中的英文为中文    
+            #替换路径导航中的英文为中文
             sed -i 's/.*- '"$3"'/'"$CHAPTER_FOLDER_NAME_CN"'/g' $CACHE_README_FILE_NAME_FULL_PATH_NAME
             #替换页面中的英文为中文
             sed -i 's/>'"$3"'</>'"$CHAPTER_FOLDER_NAME_CN"'</g' $CACHE_README_FILE_NAME_FULL_PATH_NAME
-            
+
             ALL_CHAPTERS_COLLECT_CN=( $( parseI18nIni breadcrumb allchapters) )
 
             #替换文件名称为文件内容合集
@@ -954,8 +954,8 @@ function generateBreadcrumbREADME {
             #替换章节1到最后一章名称格式为只包含文件信息，如   centos7-chapter-1.安装Linux操作系统.md -> 1.安装Linux操作系统.md
             sed -i 's/>'"$1"'-chapter-\([0-9]\{1,2\}.*\)</>\1</g' $CACHE_README_FILE_NAME_FULL_PATH_NAME
 
-        done 
-       
+        done
+
         #配置路径导航文字显示为中文
         PATH_NAME_CN=( $( parseI18nIni breadcrumb ${PATHS_ARR[i]}) )
         if [ ! $PATH_NAME_CN ]
@@ -980,19 +980,19 @@ function generateBreadcrumbREADME {
         echo '------------------------------'
         cat  $CACHE_README_FILE_NAME_FULL_PATH_NAME
         echo '------------------------------'
-        
+
         cat  $CACHE_README_FILE_NAME_FULL_PATH_NAME | grep - >> $FINAL_README_FILE_NAME_FULL_PATH_NAME
         echo '读取README-'$1'.md到README.md的语句'
         echo 'cat '$CACHE_README_FILE_NAME_FULL_PATH_NAME' | grep - >> '$FINAL_README_FILE_NAME_FULL_PATH_NAME
-        
+
         #删除中间文件
         rm -rf $CACHE_README_FILE_NAME_FULL_PATH_NAME
 
         #给README.md的分片文件中第二个---每一行后面插入换行符
         TARGET_LINE_NUMBER=`grep -n '^---' $FINAL_README_FILE_NAME_FULL_PATH_NAME | tail -1 | cut -d ':' -f 1`
-       
+
         sed -i ''"$TARGET_LINE_NUMBER"',$s/\(^.*\)/&\n/g' $FINAL_README_FILE_NAME_FULL_PATH_NAME
-       
+
         #当不是处于最后一层的时候，移动章节内容合集 所在行到最后一行，如果是处于最后一层，则不做任何操作
         if [ ${#PATHS_LINENUMBER_ARR[@]} -gt 1 ]
         then
@@ -1000,21 +1000,21 @@ function generateBreadcrumbREADME {
             READ_BY_COLLECT=`grep -n '章节内容合集' $FINAL_README_FILE_NAME_FULL_PATH_NAME | cut -d ':' -f1`
             #获取最后一行的位置
             END_LINE_NUMBER=`grep -n '<a' $FINAL_README_FILE_NAME_FULL_PATH_NAME | tail -1 | cut -d':' -f1`
-            
+
             #将 章节内容合集 这一行移动到最后一行的下一行
             END_LINE_NUMBER=$[$END_LINE_NUMBER+1]
             sed -i ''"$READ_BY_COLLECT"'{h;d};'"$END_LINE_NUMBER"'G' $FINAL_README_FILE_NAME_FULL_PATH_NAME
         fi
-       
+
         #当i=0时特殊处理，先暂时保存当前目录生成的README.md文件，最后和其他所有的README.md合并到一起
         if [ $i -le 1 ]
         then
             mv $FINAL_README_FILE_NAME_FULL_PATH_NAME $SHARDING_README_FILE_NAME_FULL_PATH_NAME
         fi
-    
+
     done;
     echo '完成为'$2'目录下'$1'.md文件及其分片创建breadcrumb使用的README.md.................................................................................'
-}    
+}
 
 
 :<< EOF
@@ -1024,7 +1024,7 @@ function generateBreadcrumbREADME {
 EOF
 function beforeEnhance() {
     echo '开始清理上一次enhance后产生的缓存内容............................................................'
-    
+
     #删除博客项目使用的文档原件相关文件
     rm -rf $DOCS_PATH/$2
     echo '执行了命令: rm -rf '$DOCS_PATH/$2
@@ -1037,7 +1037,7 @@ function beforeEnhance() {
     #重命名文档原件,添加.original后缀名
     mv $DOCS_PATH/$2/$1.md $DOCS_PATH/$2/$1.md.original
     echo '执行了命令: mv '$DOCS_PATH/$2/$1'.md '$DOCS_PATH/$2/$1'.md.original'
-    
+
     echo '完成清理上一次enhance后产生的缓存内容............................................................'
 }
 
@@ -1045,7 +1045,7 @@ function beforeEnhance() {
 :<< EOF
     执行增强xxx.md的操作
     门面模式，统一封装上面的方法，对外提供一个调用接口即可
-    $1: $MD_FILE_NAME 
+    $1: $MD_FILE_NAME
     $2: $MD_FILE_RELATIVE_PATH
     $3: 配置文件后缀名称
 EOF
@@ -1077,7 +1077,7 @@ function enhance() {
     TITLE2_INCREMENT_STEP=2
     title2IncrementByForOriginal $MD_FILE_NAME $MD_FILE_SOURCE_PATH $TITLE2_INCREMENT_STEP
     #--------------------------------------------------------------------------------------------------------------
-    
+
 
     #生成guidance文件（guidance文件中引用了上一步骤生成的markmap文件）......
     #--------------------------------------------------------------------------------------------------------------
@@ -1098,7 +1098,7 @@ function enhance() {
     MD_FILE_GUIDANCE_FILE_INCLUDE_PATH="public/$MD_FILE_GUIDANCE_TARGET_PATH_PREFIX/$MD_FILE_RELATIVE_PATH"
     insertGuidanceIntoOriginal $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_GUIDANCE_FILE_INCLUDE_PATH $MD_FILE_GUIDANCE_TARGET_PATH
     #--------------------------------------------------------------------------------------------------------------
-    
+
 
     #为xxx.md生成章节分片
     #--------------------------------------------------------------------------------------------------------------
@@ -1106,10 +1106,10 @@ function enhance() {
     MD_FILE_CHAPTER_SHARDINGS_FOLDER_NAME="shardings"
     generateChapterShardingsAndWriteFrontmatterForShardings $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_CHAPTER_SHARDINGS_FOLDER_NAME $MD_FILE_GUIDANCE_TARGET_PATH $ENSEMBLE_GUIDANCE_TITLE1_TEXT $ENSEMBLE_GUIDANCE_TITLE1_TEXT
     #--------------------------------------------------------------------------------------------------------------
-    
+
     #生成sidebar配置json并为一级标题设置锚点
     #--------------------------------------------------------------------------------------------------------------
-    #存放生成的sidebar配置json文件的路径的路径前缀    
+    #存放生成的sidebar配置json文件的路径的路径前缀
     MD_FILE_SIDEBAR_CONFIG_TARGET_PATH_PREFIX="enhance/config"
     # 生成的所有chapter文件存放的目录路径
     MD_FILE_SIDEBAR_CONFIG_TARGET_PATH=$PUBLIC_FOLDER_PATH/$MD_FILE_SIDEBAR_CONFIG_TARGET_PATH_PREFIX/$MD_FILE_RELATIVE_PATH
@@ -1135,7 +1135,7 @@ EOF
 function afterEnhance() {
     #删除前面操作产生的xxx.md.original文件
     rm -rf $DOCS_PATH/$2/$1.md.original
-} 
+}
 
 :<< EOF
     针对所有的md文件执行增强操作
@@ -1160,7 +1160,7 @@ function enhanceAll() {
     #获取$ENHANCE_BOOT_PATH/中以boot-xxx.ini格式命名的文件总共有多少个,每个配置文件对应一个xxx.md文件
     BOOT_FILE_COUNTS=`ls $ENHANCE_BOOT_PATH/ | grep '^boot-.*\.ini$' | wc -w`
     echo '引导文件的总数目: '$BOOT_FILE_COUNTS
-    
+
     for((a=1;a<=$BOOT_FILE_COUNTS;a++))
     do
         #从bootstrap.ini中获取xxx.md的enhance状态
@@ -1174,7 +1174,7 @@ function enhanceAll() {
             MD_FILE_RELATIVE_PATH=( $( parseBootstrapIni markdown-$a relativePath) )
             #获取xxx.md文件引用的代码的项目名称
             INCLUDE_CODE_PROJECT_NAME=( $( parseBootstrapIni markdown-$a includeCodeProjectName) )
-           
+
             #增强之前的前置操作
             beforeEnhance $MD_FILE_NAME $MD_FILE_RELATIVE_PATH
 
@@ -1183,21 +1183,21 @@ function enhanceAll() {
 
             #增强之后的后置操作
             afterEnhance $MD_FILE_NAME $MD_FILE_RELATIVE_PATH
-        fi    
+        fi
     done
 }
 
 
 :<< EOF
     针对单个md文件执行合并BreadcrumbREADME碎片
-    $1: $MD_FILE_NAME 
+    $1: $MD_FILE_NAME
     $2: $MD_FILE_RELATIVE_PATH
-            
+
 EOF
 function mergeBreadcrumbREADMEShardings() {
-    
+
     echo '开始合并'$2'目录下'$1'.md文件的sidebar使用的配置json和breadcrumb使用的README.............................................................................................................................'
-    
+
     #配置路径导航README,合并深度
     MERGE_DEPTH=2
 
@@ -1205,8 +1205,8 @@ function mergeBreadcrumbREADMEShardings() {
     合并深度：所有的博客文档全部都放在blog/docs/blogs目录下，如：
     centos7：
         blog/docs/blogs/environment/centos/centos7/centos7.md
-    ubuntu2012：    
-        blog/docs/blogs/environment/ubuntu/ubuntu2012/ubuntu2012.md  
+    ubuntu2012：
+        blog/docs/blogs/environment/ubuntu/ubuntu2012/ubuntu2012.md
     springcloud-erueka：
         blog/docs/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md
     springcloud-alibaba：
@@ -1228,16 +1228,16 @@ EOF
         COMPLETE_PATH=$DOCS_PATH/$PATH_SUFIX
         echo '当前处理路径：'$COMPLETE_PATH
         START_LINE_NUMBER=`grep -n '^---$' $COMPLETE_PATH/README-$1.md | tail -1 | cut  -d ':' -f1`
-       
+
         #如果文件不存在，说明是第一次给README.md中写入内容，则写入头 
         if [ ! -f "$COMPLETE_PATH/README.md" ]
         then
             echo '第一次给文件中写入内容，将头信息也写入进去.....'
             head -$START_LINE_NUMBER $COMPLETE_PATH/README-$1.md >>  $COMPLETE_PATH/README.md
         fi
-        
+
         tail -n +$[$START_LINE_NUMBER+1] $COMPLETE_PATH/README-$1.md >>  $COMPLETE_PATH/README.md   
-        
+
         #操作完成后删除没用的READ-xxx.md
         echo '删除不再使用的'$COMPLETE_PATH/README-$1.md
         rm -rf $COMPLETE_PATH/README-$1.md
@@ -1255,10 +1255,10 @@ EOF
         for((j=1;j<${#LINE_NUMBER_ARR[@]};j++)); do
             sed -i ''"${LINE_NUMBER_ARR[j]}"'d' $COMPLETE_PATH/README.md
         done
-        
+
     done
 
-:<< EOF 
+:<< EOF
 EOF
 
    echo '完成合并'$2'目录下'$1'.md文件的sidebar使用的配置json和breadcrumb使用的README.............................................................................................................................'
@@ -1269,7 +1269,7 @@ EOF
     针对所有的md文件执行合并BreadcrumbREADME碎片
 EOF
 function mergeAllBreadcrumbREADMEShardings() {
-    
+
     #获取$ENHANCE_BOOT_PATH/中以boot-xxx.ini格式命名的文件总共有多少个,每个配置文件对应一个xxx.md文件
     BOOT_FILE_COUNTS=`ls $ENHANCE_BOOT_PATH/ | grep '^boot-.*\.ini$' | wc -w`
     echo '引导文件的总数目: '$BOOT_FILE_COUNTS
@@ -1285,7 +1285,7 @@ function mergeAllBreadcrumbREADMEShardings() {
             MD_FILE_RELATIVE_PATH=( $( parseBootstrapIni markdown-$b relativePath) )
             #进行增强处理
             mergeBreadcrumbREADMEShardings $MD_FILE_NAME $MD_FILE_RELATIVE_PATH $SIDEBAR_JS_FULL_NAME_PATH
-        fi    
+        fi
     done
 }
 
@@ -1316,7 +1316,7 @@ function mergeSidebarJson() {
             MD_FILE_RELATIVE_PATH=( $( parseBootstrapIni markdown-$b relativePath) )
 
             #合并所有的sidebar配置json
-            #存放生成的sidebar配置json文件的路径的路径前缀    
+            #存放生成的sidebar配置json文件的路径的路径前缀
             MD_FILE_SIDEBAR_CONFIG_TARGET_PATH_PREFIX="enhance/config"
             MD_FILE_SIDEBAR_CONFIG_TARGET_BASE_PATH=$PUBLIC_FOLDER_PATH/$MD_FILE_SIDEBAR_CONFIG_TARGET_PATH_PREFIX
             # 生成的所有chapter文件存放的目录路径
@@ -1326,7 +1326,7 @@ function mergeSidebarJson() {
             #cat $MD_FILE_SIDEBAR_CONFIG_TARGET_PATH/$1-sidebar-config.json >> $MD_FILE_SIDEBAR_CONFIG_TARGET_BASE_PATH/$SIDEBAR_CONFIG_JSON_NAME
             #直接替换sidebar.js
             cat $MD_FILE_SIDEBAR_CONFIG_TARGET_PATH/$MD_FILE_NAME-sidebar-config.json >> $SIDEBAR_JS_FULL_NAME_PATH
-        fi    
+        fi
     done
 
     #拼接json尾部

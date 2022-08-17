@@ -21,10 +21,10 @@ head:
 
 ## 2.3.配置静态IP地址
 
-	修改网络配置	
+	修改网络配置
 ```
-vi /etc/sysconfig/network-scripts/ifcfg-ens32(最后一个为网卡名称)	
-```	
+vi /etc/sysconfig/network-scripts/ifcfg-ens32(最后一个为网卡名称)
+```
 	修改后内容如下
 	bootproto=static
 	onboot=yes
@@ -34,7 +34,7 @@ vi /etc/sysconfig/network-scripts/ifcfg-ens32(最后一个为网卡名称)
 	#和上面网关IP保持 一致
 	GATEWAY=192.168.0.2
 	DNS1=8.8.8.8
-	DNS2=8.8.4.4   
+	DNS2=8.8.4.4
 
 	重启网络
 ```
@@ -46,14 +46,14 @@ systemctl restart network
 	说明：sshd_config里面的UseDNS=no【原本为yes】
 ```
 vim /etc/ssh/sshd_config
-```	
+```
 	重启ssh服务
 ```
 systemctl restart sshd.service
 ```
 
 ## 2.5.设置系统环境变量
-```java
+```
 echo "export LC_ALL=en_US.UTF-8"  >>  /etc/profile &&
 source /etc/profile
 ```
@@ -68,64 +68,61 @@ yum -y install curl
 	下载阿里源，并上传到/opt/software/package
 ```
 curl http://mirrors.aliyun.com/repo/Centos-7.repo -o Centos-7.repo
-```	
+```
 	进入/etc/yum.repos.d目录中，备份CentOS-Base.repo
-```	
+```
 cd /etc/yum.repos.d && cp CentOS-Base.repo CentOS-Base.repo.bak
-```	
+```
 	复制/opt/software/package/Centos-7.repo到当前目录并重命名为CentOS-Base.repo
-```	
+```
 cp /opt/software/package/Centos-7.repo /CentOS-Base.repo
-```	
+```
 	生成yum源缓存并更新yum源
-```	
+```
 yum makecache && yum update
 ```
 
 ## 2.8.安装常用基础系统软件
 ### 2.8.1.手动安装常用软件
-**vim**
-
 	安装vim
-`yum -y install vim*`
-```		
+```
 yum -y install vim*
-```	
-	配置vim	
+```
+	配置vim
 	set nu         # 设置显示行号
 	set showmode   #设置在命令行界面最下面显示当前模式等
 	set ruler      #在右下角显示光标所在的行数等信息
 	set autoindent #设置每次单击Enter键后，光标移动到下一行时与上一行的起始字符对齐
 	syntax on      #即设置语法检测，当编辑C或者Shell脚本时，关键字会用特殊颜色显示		
-**wget**
+
+	wget
 ```
 yum -y install wget
-```	
-**telnet**
+```
+	telnet
 ```
 yum -y install telnet
 yum -y install telnet-server
-```	
-**git**
-
-	卸载旧版本	
+```
+	git
+	卸载旧版本
 ```
 yum remove git
 ```
-	安装 yum 源的 Git 版本
-```	
+	安装git
+```
 yum install -y git
 ```
 	查看版本
-```	
-git version 
+```
+git version
 ```
 ### 2.8.2.使用脚本安装常用软件
 	脚本介绍
 	这个脚本中包含了centos设置yum源并且安装了一些的常用软件，如vim、git、wget、curl、等，会定时更新
 
 	安装curl
-```	
+```
 yum -y install curl
 ```
 

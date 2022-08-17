@@ -33,27 +33,27 @@ head:
 	/var 存放临时文件，如各种服务的日志文件。
 
 ## 1.4.Centos镜像下载
-	如果是学习环境，建议安装centos mini版镜像，生产环境可以安装完整   
+	如果是学习环境，建议安装centos mini版镜像，生产环境可以安装完整版本
 
     下载地址
-```	
+```
 http://ftp.sjtu.edu.cn/centos/
-```	
+```
 
 ## 1.5.安装前Vmaware相关设置
 	虚拟机联网设置
 	导航栏->编辑->虚拟网络编辑器->VMnet8NAT模式->更改设置->VMnet8NAT模式
-		->更改底部子网:192.168.0.0，子网掩码:255.255.255.0->NAT设置->网关IP:192.168.0.2   
+		->更改底部子网:192.168.0.0，子网掩码:255.255.255.0->NAT设置->网关IP:192.168.0.2
 
-	Vmware网卡说明  
+	Vmware网卡说明
 	VMnet0：用于虚拟桥接网络下的虚拟交换机
 	VMnet1：用于虚拟Host-Only网络下的虚拟交换机
 	VMnet8：用于虚拟NAT网络下的虚拟交换机
 	VMware NetworkAdepter VMnet1：Host用于与Host-Only虚拟网络进行通信的虚拟网卡
 	VMware NetworkAdepter VMnet8：Host用于与NAT虚拟网络进行通信的虚拟网卡
-	
+
 ## 1.6.安装时分区大小设置
 	/boot	/*存放系统启动引导文件，建议大小：512mb
 	/swap 	/*交换区，建议大小：2g
 	/*主分区，剩下的空间全部分给这个分区
-	
+
