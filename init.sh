@@ -714,15 +714,15 @@ function generateSidebarConfigForAllAndSetAnchorForOriginal() {
     #拼接 按照章节阅读sidebar
     echo "          {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "              text: \"按照章节阅读\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    echo "              icon:\"list\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "              icon: \"list\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "              collapsable: true," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "              children:[" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
 
     #按章节阅读中拼接 博客内容介绍 
     echo "                  {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "                      text: \"$6\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    echo "                      link:\"$4/$5/$1-chapter-0.$6.md\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    echo "                      icon:\"article\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "                      icon: \"article\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "                      link: \"$4/$5/$1-chapter-0.$6.md\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "                   }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
 
     for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
@@ -732,9 +732,9 @@ function generateSidebarConfigForAllAndSetAnchorForOriginal() {
         echo '章节名称：'$CHAPTER_NAME
 
         echo "                  {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME 
-        echo "                      text:\"$CHAPTER_NAME\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-        echo "                      icon:\"article\"," >> $
-        echo "                      link:\"$4/$5/$1-chapter-$CHAPTER_NAME.md\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+        echo "                      text: \"$CHAPTER_NAME\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+        echo "                      icon: \"article\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+        echo "                      link: \"$4/$5/$1-chapter-$CHAPTER_NAME.md\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
         echo "                  }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     done
     echo "              ]" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
@@ -743,15 +743,15 @@ function generateSidebarConfigForAllAndSetAnchorForOriginal() {
     #拼接 章节内容合集sidebar
     echo "          {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "              text: \"章节内容合集\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    echo "              icon:\"repo\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "              icon: \"repo\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "              collapsable: true," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "              children:[" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
 
     #章节内容合集中拼接 博客内容介绍 
     echo "                  {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "                      text: \"$6\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    echo "                      link:\"$4/$1.md#intro\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-    echo "                      icon:\"article\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "                      icon: \"article\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+    echo "                      link: \"$4/$1.md#intro\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "                  }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     
     for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
@@ -761,10 +761,9 @@ function generateSidebarConfigForAllAndSetAnchorForOriginal() {
         echo '章节名称：'$CHAPTER_NAME
 
         echo "                  {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME 
-        echo "                      text:\"$CHAPTER_NAME\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-        echo "                      icon:\"article\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-        echo "                      collapsable: true," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
-        echo "                      link:\"$4/$1.md#$i.\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+        echo "                      text: \"$CHAPTER_NAME\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+        echo "                      icon: \"article\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
+        echo "                      link: \"$4/$1.md#$i.\"," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
         echo "                  }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     done    
     echo "              ]" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME

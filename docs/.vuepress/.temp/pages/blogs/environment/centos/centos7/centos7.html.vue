@@ -52,8 +52,8 @@
 
 下载地址
 </code></pre>
-<p><a href="http://ftp.sjtu.edu.cn/centos/">xxx</a></p>
-<h2 id="_1-5-安装前vmaware相关设置" tabindex="-1"><a class="header-anchor" href="#_1-5-安装前vmaware相关设置" aria-hidden="true">#</a> 1.5.安装前Vmaware相关设置</h2>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>http://ftp.sjtu.edu.cn/centos/
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_1-5-安装前vmaware相关设置" tabindex="-1"><a class="header-anchor" href="#_1-5-安装前vmaware相关设置" aria-hidden="true">#</a> 1.5.安装前Vmaware相关设置</h2>
 <pre><code>虚拟机联网设置
 导航栏-&gt;编辑-&gt;虚拟网络编辑器-&gt;VMnet8NAT模式-&gt;更改设置-&gt;VMnet8NAT模式
 	-&gt;更改底部子网:192.168.0.0，子网掩码:255.255.255.0-&gt;NAT设置-&gt;网关IP:192.168.0.2   

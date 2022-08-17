@@ -106,6 +106,10 @@ p, ul, ol {
     .toggle-sidebar-wrapper {
         left: $sidebar-width-max600; 
     }
+    /**主要内容*/
+    .theme-container .page { 
+        padding-left: 1rem;
+    }
     /*博客正文字体*/
     .theme-hope-content {
         font-size: 1.1rem;
@@ -123,7 +127,7 @@ p, ul, ol {
     }
     .theme-hope-content .sidebar-links .sidebar-sub-headers {
         display: none;
-    }
+    } 
 }
 
 /*平板*/
@@ -179,7 +183,7 @@ p, ul, ol {
     }
     /**主要内容*/
     .theme-container .page { 
-        padding-left: $sidebar-width-min600_max900;
+        padding-left: 1rem;
     }
     /*博客正文字体*/
     .theme-hope-content {
@@ -255,7 +259,7 @@ p, ul, ol {
     }
     /**主要内容*/
     .theme-container .page { 
-        padding-left: $sidebar-width-min960_max1440;
+        padding-left: 1rem;
     }
     /*博客正文字体*/
     .theme-hope-content {
@@ -272,6 +276,10 @@ p, ul, ol {
         border-radius: 6px;
         line-height: 1.4;
     }
+    /**设置移动端隐藏按照章节查看中二级包括二级以上的侧边栏*/
+    .sidebar .sidebar-links .sidebar-sub-headers {
+        display: none;
+    } 
 }
 
 /*PC分辨率 1440+ */
