@@ -1,6 +1,6 @@
 ---
 title: 在Centos7上搭建开发环境-3.搭建基础开发环境
-description: 本章节涉及主要内容有：安装jdk,安装maven,安装mysql,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：安装jdk,安装maven,安装mysql,,,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -14,13 +14,13 @@ date: 2020-01-15
 head:
   - - meta
     - name: keywords
-      content: 本章节涉及主要内容有：安装jdk,安装maven,安装mysql,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+      content: 本章节涉及主要内容有：安装jdk,安装maven,安装mysql,,,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 3.搭建基础开发环境
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter3.md)
 
-## 3.3.安装jdk
+## 3.1.安装jdk
 	查看当前安装的java版本
 
 ```
@@ -40,8 +40,9 @@ version=latest" -o jdk-8u181-linux-x64.tar.gz
 ```
 	解压jdk后赋予权限并放入指定目录
 ```
+cd /opt/software/package &&
 tar -zxvf jdk-8u181-linux-x64.tar.gz &&
-chmod +x jdk1.8.0_181
+chmod +x jdk1.8.0_181 &&
 mv jdk1.8.0_181 /usr/local/bin/jdk1.8.0_181
 ```
 	配置环境变量
@@ -64,7 +65,7 @@ source /etc/profile
 java -version
 ```
 
-## 3.4.安装maven
+## 3.2.安装maven
 	注意
 	maven linux版和windows版并不通用
 
@@ -118,7 +119,7 @@ vim /usr/local/bin/apache-maven-3.8.6/conf/settings.xml
 </mirror>
 ```
 
-## 3.5.安装mysql
+## 3.3.安装mysql
 <!--
 	参考网站
 	安装mysql
@@ -157,7 +158,7 @@ rpm -Uvh mysql80-community-release-el7-3.noarch.rpm
 rpm -ivh mysql80-community-release-el7-3.noarch.rpm
 ```
 	查看刚才下载的mysql安装源，可以看到新增的两个mysql源
-```	
+```
 ls /etc/yum.repos.d
 ```
 	[root@localhost package]# ls /etc/yum.repos.d
@@ -209,5 +210,106 @@ FLUSH PRIVILEGES;
 use mysql;
 update user set host='%' where user='root';
 flush privileges;
+```
+
+## 3.4安装nodejs
+	安装wget
+```
+yum -y install wget
+```
+
+	安装gcc
+```
+yum install gcc gcc-c++
+```
+
+	下载node国内镜像
+```
+wget https://registry.npmmirror.com/-/binary/node/v14.0.0/node-v14.0.0-linux-x64.tar.gz
+```
+
+	解压并重命名文件夹
+```
+tar -xvf node-v14.0.0-linux-x64.tar.gz &&
+mv node-v14.0.0-linux-x64 node
+```
+	配置环境变量
+```
+vi /etc/profile
+```
+在文件最后添加以下配置
+```
+export NODE_HOME=/root/node
+export PATH=$PATH:$NODE_HOME/bin
+```
+	刷新环境变量配置
+```
+source /etc/profile
+```
+	验证结果
+```
+node -v
+```
+```
+npm -v
+```
+
+## 3.5安装fastgithub
+	下载依赖包
+```
+yum -y install libicu
+```
+
+	下载fastGithub
+```
+wget -c https://github.com/dotnetcore/FastGithub/releases/download/2.0.4/fastgithub_linux-x64.zip
+```
+
+    解压
+```
+unzip fastgithub_linux-x64.zip
+```
+
+	配置全局代理
+```
+vim /etc/profile
+```
+
+	添加代理配置
+```
+export http_proxy=http://127.0.0.1:38457
+export https_proxy=https://127.0.0.1:38457
+```
+	刷新配置文件
+```
+source /etc/profile
+```
+
+	配置git使用全局代理
+```
+git config --global http.proxy http://127.0.0.1:38457
+git config --global https.proxy http://127.0.0.1:38457
+```
+
+	设置权限
+```
+chmod -r 777 fastgithub_linux-x64/dnscrypt-proxy &&
+chmod +x fastgithub_linux-x64/fastgithub
+```
+
+	以服务形式运行fastGithub
+```
+sudo ./fastgithub_linux-x64/fastgithub start &&
+systemctl enable fastgithub
+```
+
+	以服务形式停止fastgithub
+```
+sudo ./fastgithub_linux-x64/fastgithub stop
+```
+
+	测试运行效果
+```
+wget -c https://github.com/tanghaibao/goatools/blob/main/data/association.txt
 ```
 

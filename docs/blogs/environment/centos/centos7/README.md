@@ -10,8 +10,6 @@ icon: navigate
 
 - centos7
 
-    - <a class="breadcrumb-link" href="Account.java">Account.java</a>
-
 
     - <a class="breadcrumb-link" href="shardings">按照章节阅读</a>
 

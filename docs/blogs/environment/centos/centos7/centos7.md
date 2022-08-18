@@ -178,7 +178,7 @@ yum -y install telnet-server
 	git
 	卸载旧版本
 ```
-yum remove git
+yum -y remove git
 ```
 	安装git
 ```
@@ -188,6 +188,44 @@ yum install -y git
 ```
 git version
 ```
+	指定版本git
+	下载需要安装的版本号
+```
+wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.29.0.tar.gz
+```
+    安装需要的组件
+```
+yum -y install curl-devel expat-devel gettext-devel openssl-devel zlib-devel
+```
+
+    卸载Centos自带的git
+```
+yum -y remove git
+```
+
+    安装git
+```
+tar -zxf git-2.29.0.tar.gz &&
+cd git-2.29.0 &&
+make prefix=/usr/local/git all &&
+make prefix=/usr/local/git install
+```
+	添加环境变量
+```
+vim /etc/profile
+```
+	export PATH=$PATH:/usr/local/git/bin
+
+	刷新环境变量
+```
+source /etc/profile
+```
+
+	查看版本
+```
+git version
+```
+
 ### 2.8.2.使用脚本安装常用软件
 	脚本介绍
 	这个脚本中包含了centos设置yum源并且安装了一些的常用软件，如vim、git、wget、curl、等，会定时更新
@@ -199,18 +237,18 @@ yum -y install curl
 
 	下载脚本
 ```
-curl https://gitee.com/lingwh1995/config-center/raw/master/centos/centos-init.sh -o centos-init.sh
+curl https://gitee.com/lingwh1995/config-center/raw/master/centos/centos7/centos7-init.sh -o centos7-init.sh
 ```
 
 	赋予可运行权限并运行该脚本
 ```
-chmod +x centos-init.sh &&
-./centos-init.sh
+chmod +x centos7-init.sh &&
+./centos7-init.sh
 ```
 # 3.搭建基础开发环境 {#3.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter3.md)
 
-## 3.3.安装jdk
+## 3.1.安装jdk
 	查看当前安装的java版本
 
 ```
@@ -230,8 +268,9 @@ version=latest" -o jdk-8u181-linux-x64.tar.gz
 ```
 	解压jdk后赋予权限并放入指定目录
 ```
+cd /opt/software/package &&
 tar -zxvf jdk-8u181-linux-x64.tar.gz &&
-chmod +x jdk1.8.0_181
+chmod +x jdk1.8.0_181 &&
 mv jdk1.8.0_181 /usr/local/bin/jdk1.8.0_181
 ```
 	配置环境变量
@@ -254,7 +293,7 @@ source /etc/profile
 java -version
 ```
 
-## 3.4.安装maven
+## 3.2.安装maven
 	注意
 	maven linux版和windows版并不通用
 
@@ -308,7 +347,7 @@ vim /usr/local/bin/apache-maven-3.8.6/conf/settings.xml
 </mirror>
 ```
 
-## 3.5.安装mysql
+## 3.3.安装mysql
 <!--
 	参考网站
 	安装mysql
@@ -347,7 +386,7 @@ rpm -Uvh mysql80-community-release-el7-3.noarch.rpm
 rpm -ivh mysql80-community-release-el7-3.noarch.rpm
 ```
 	查看刚才下载的mysql安装源，可以看到新增的两个mysql源
-```	
+```
 ls /etc/yum.repos.d
 ```
 	[root@localhost package]# ls /etc/yum.repos.d
@@ -401,6 +440,107 @@ update user set host='%' where user='root';
 flush privileges;
 ```
 
+## 3.4安装nodejs
+	安装wget
+```
+yum -y install wget
+```
+
+	安装gcc
+```
+yum install gcc gcc-c++
+```
+
+	下载node国内镜像
+```
+wget https://registry.npmmirror.com/-/binary/node/v14.0.0/node-v14.0.0-linux-x64.tar.gz
+```
+
+	解压并重命名文件夹
+```
+tar -xvf node-v14.0.0-linux-x64.tar.gz &&
+mv node-v14.0.0-linux-x64 node
+```
+	配置环境变量
+```
+vi /etc/profile
+```
+在文件最后添加以下配置
+```
+export NODE_HOME=/root/node
+export PATH=$PATH:$NODE_HOME/bin
+```
+	刷新环境变量配置
+```
+source /etc/profile
+```
+	验证结果
+```
+node -v
+```
+```
+npm -v
+```
+
+## 3.5安装fastgithub
+	下载依赖包
+```
+yum -y install libicu
+```
+
+	下载fastGithub
+```
+wget -c https://github.com/dotnetcore/FastGithub/releases/download/2.0.4/fastgithub_linux-x64.zip
+```
+
+    解压
+```
+unzip fastgithub_linux-x64.zip
+```
+
+	配置全局代理
+```
+vim /etc/profile
+```
+
+	添加代理配置
+```
+export http_proxy=http://127.0.0.1:38457
+export https_proxy=https://127.0.0.1:38457
+```
+	刷新配置文件
+```
+source /etc/profile
+```
+
+	配置git使用全局代理
+```
+git config --global http.proxy http://127.0.0.1:38457
+git config --global https.proxy http://127.0.0.1:38457
+```
+
+	设置权限
+```
+chmod -r 777 fastgithub_linux-x64/dnscrypt-proxy &&
+chmod +x fastgithub_linux-x64/fastgithub
+```
+
+	以服务形式运行fastGithub
+```
+sudo ./fastgithub_linux-x64/fastgithub start &&
+systemctl enable fastgithub
+```
+
+	以服务形式停止fastgithub
+```
+sudo ./fastgithub_linux-x64/fastgithub stop
+```
+
+	测试运行效果
+```
+wget -c https://github.com/tanghaibao/goatools/blob/main/data/association.txt
+```
+
 # 4.Centos搭建docker {#4.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter4.md)
 ## 4.3.安装docker
@@ -414,7 +554,7 @@ yum -y update
 ```
 yum list installed | grep docker
 ```
-	containerd.io.x86_64 	           1.6.6-3.1.el7                  @docker-ce-stable				
+	containerd.io.x86_64 	           1.6.6-3.1.el7                  @docker-ce-stable
 	docker-ce.x86_64                   3:20.10.17-3.el7               @docker-ce-stable
 	docker-ce-cli.x86_64               1:20.10.17-3.el7               @docker-ce-stable
 	docker-ce-rootless-extras.x86_64   20.10.17-3.el7                 @docker-ce-stable
@@ -844,10 +984,12 @@ curl -fL -u software-1660487881889:0c063752f28333a6e3bfb5e4e0e983835640aa5c \
 sudo chmod +x docker-compose-2.6-linux-x86_64 &&
 cp docker-compose-2.6-linux-x86_64 /usr/local/bin/docker-compose
 ```
+
 	查看是否安装成功
 ```
 docker-compose --version
 ```
+
 #### 4.6.3.3.安装harbor
 	版本说明
 	本次使用的harbor版本为2.5.2
@@ -857,8 +999,10 @@ docker-compose --version
 
 	官方网址
 ```
+https://github.com/goharbor/harbor
 ```
-	创建存放下载文件夹->下载harbor->创建运行文件夹->解压到运行文件夹
+>
+   创建存放下载文件夹->下载harbor->创建运行文件夹->解压到运行文件夹
 ```
 mkdir -p /opt/software/package &&
 cd /opt/software/package &&
@@ -870,24 +1014,28 @@ tar -zxvf harbor-offline-installer-v2.5.2.tgz -C /opt/software/install
 ```
 
 	复制一份harbor.yml.tmpl，重命名为harbor.yml并修改harbor.yml
-	cd /opt/software/install/harbor &&
-	cp harbor.yml.tmpl harbor.yml &&
-	vim harbor.yml
+```
+cd /opt/software/install/harbor &&
+cp harbor.yml.tmpl harbor.yml
+```
 
-	修改harbor.yml配置
-	修改hostname
+    修改harbor.yml配置
+```
+vim harbor.yml
+```
+	修改hostname为部署harbor的机器的IP
 	hostname: 192.168.0.4
-	修改端口
+	修改端口为可连通的端口
 	port:5001
 	注释掉https相关部分
 	#https:
-		# https port for harbor, default is 443
-		# port: 443
-		# The path of cert and key files for nginx
-		#certificate: /your/certificate/path
-		#private_key: /your/private/key/path
+	  #https port for harbor, default is 443
+	  #port: 443
+	  #The path of cert and key files for nginx
+	  #certificate: /your/certificate/path
+	  #private_key: /your/private/key/path
 	修改密码
-		harbor_admin_password: 123456
+	  harbor_admin_password: 123456
 
 	安装harbor
 ```

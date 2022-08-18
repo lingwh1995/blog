@@ -107,7 +107,7 @@ yum -y install telnet-server
 	git
 	卸载旧版本
 ```
-yum remove git
+yum -y remove git
 ```
 	安装git
 ```
@@ -117,6 +117,44 @@ yum install -y git
 ```
 git version
 ```
+	指定版本git
+	下载需要安装的版本号
+```
+wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.29.0.tar.gz
+```
+    安装需要的组件
+```
+yum -y install curl-devel expat-devel gettext-devel openssl-devel zlib-devel
+```
+
+    卸载Centos自带的git
+```
+yum -y remove git
+```
+
+    安装git
+```
+tar -zxf git-2.29.0.tar.gz &&
+cd git-2.29.0 &&
+make prefix=/usr/local/git all &&
+make prefix=/usr/local/git install
+```
+	添加环境变量
+```
+vim /etc/profile
+```
+	export PATH=$PATH:/usr/local/git/bin
+
+	刷新环境变量
+```
+source /etc/profile
+```
+
+	查看版本
+```
+git version
+```
+
 ### 2.8.2.使用脚本安装常用软件
 	脚本介绍
 	这个脚本中包含了centos设置yum源并且安装了一些的常用软件，如vim、git、wget、curl、等，会定时更新
@@ -128,11 +166,11 @@ yum -y install curl
 
 	下载脚本
 ```
-curl https://gitee.com/lingwh1995/config-center/raw/master/centos/centos-init.sh -o centos-init.sh
+curl https://gitee.com/lingwh1995/config-center/raw/master/centos/centos7/centos7-init.sh -o centos7-init.sh
 ```
 
 	赋予可运行权限并运行该脚本
 ```
-chmod +x centos-init.sh &&
-./centos-init.sh
+chmod +x centos7-init.sh &&
+./centos7-init.sh
 ```

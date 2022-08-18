@@ -14,8 +14,6 @@ icon: navigate
 
         - <a class="breadcrumb-link" href="centos/centos7">centos7</a>
 
-            - <a class="breadcrumb-link" href="centos/centos7/Account.java">Account.java</a>
-
 
             - <a class="breadcrumb-link" href="centos/centos7/shardings">按照章节阅读</a>
 
