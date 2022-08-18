@@ -12,7 +12,7 @@ pipeline {
         echo '完成从CODING检出代码......'
       }
     }
-     
+
     stage('推送部署') {
       steps {
         echo '开始同步项目代码到GITEE...'
@@ -23,7 +23,7 @@ pipeline {
         echo '完成同步项目代码到GITEE...'
       }
     }
-    
+
     stage('自动部署博客到GITHUB/GITEE') {
       steps {
         echo '开始自动部署博客到GITHUB/GITEE...'
