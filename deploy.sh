@@ -16,9 +16,10 @@ function updateNodeVersionWhenCI {
         npm cache clean -f
         npm install -g n
         n stable
-        npm i
         echo '完成更新node版本........'
     fi
+    #安装项目依赖
+    npm i
 }
 
 #执行./init.sh脚本
