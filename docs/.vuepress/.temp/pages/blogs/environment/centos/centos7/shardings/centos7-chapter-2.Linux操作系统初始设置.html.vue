@@ -64,7 +64,7 @@ source /etc/profile
 <pre><code>安装vim
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y install vim*
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>配置vim	
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>配置vim
 set nu         # 设置显示行号
 set showmode   #设置在命令行界面最下面显示当前模式等
 set ruler      #在右下角显示光标所在的行数等信息
@@ -79,7 +79,7 @@ wget
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y install telnet
 yum -y install telnet-server
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>git
-卸载旧版本	
+卸载旧版本
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum remove git
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装git
@@ -87,7 +87,7 @@ yum -y install telnet-server
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum install -y git
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看版本
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git version 
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git version
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_2-8-2-使用脚本安装常用软件" tabindex="-1"><a class="header-anchor" href="#_2-8-2-使用脚本安装常用软件" aria-hidden="true">#</a> 2.8.2.使用脚本安装常用软件</h3>
 <pre><code>脚本介绍
 这个脚本中包含了centos设置yum源并且安装了一些的常用软件，如vim、git、wget、curl、等，会定时更新

@@ -8,13 +8,17 @@ source ./enhance/lib/tools.sh
 
 #持续集成的时候首先更新node版本
 function updateNodeVersionWhenCI {
-    echo '开始更新node版本........'
-    npm config set registry https://registry.npm.taobao.org
-    npm cache clean -f
-    npm install -g n
-    n stable
-    npm i
-    echo '完成更新node版本........'
+    NATIVE_JENKINS_SUPPORT_ENABLE_STATE=( $( parsePluginIni plugin-005 enable) )
+    if [ $NATIVE_JENKINS_SUPPORT_ENABLE_STATE == "true" ]
+    then
+        echo '开始更新node版本........'
+        npm config set registry https://registry.npm.taobao.org
+        npm cache clean -f
+        npm install -g n
+        n stable
+        npm i
+        echo '完成更新node版本........'
+    fi
 }
 
 #执行./init.sh脚本
@@ -33,7 +37,7 @@ function beforeBuildAndDeploy() {
         #放开将RepoLink组件为Pure组件的注释
         sed -i 's#/\*\(.@theme-hope/module/navbar/components/RepoLink.*,\)\*/#\1#g' docs/.vuepress/config.ts
     fi
-}    
+}
 
 #构建代码
 function build() {
@@ -44,7 +48,7 @@ function build() {
     # 如果是发布到自定义域名
     # echo 'www.example.com' > CNAME
 
-    git init 
+    git init
     git add -A
     git commit -m 'deploy'
 }
@@ -54,7 +58,7 @@ function deployNormalLocalhost() {
     #修改配置文件，恢复纯模式相关设置到正常
     sed -i 's/pure:.*,/pure: false,/g' docs/.vuepress/theme.ts
     sed -i 's/base:.*,/base:\"\/\",/g' docs/.vuepress/config.ts
-    
+
     #修改纯模式PWA相关配置
     sed -i 's/name: "个人博客.*"/name: "个人博客"/' docs/.vuepress/theme.ts
     sed -i 's/short_name: "此生挚爱万宝路的个人博客.*"/short_name: "此生挚爱万宝路的个人博客"/' docs/.vuepress/theme.ts
@@ -76,7 +80,7 @@ function deployNormalCI() {
     #修改配置文件
     sed -i 's/pure:.*,/pure: false,/g' docs/.vuepress/theme.ts
     sed -i 's/base:.*,/base:\"\/\",/g' docs/.vuepress/config.ts
-    
+
     #修改纯模式PWA相关配置
     sed -i 's/name: "个人博客.*"/name: "个人博客"/' docs/.vuepress/theme.ts
     sed -i 's/short_name: "此生挚爱万宝路的个人博客.*"/short_name: "此生挚爱万宝路的个人博客"/' docs/.vuepress/theme.ts
@@ -105,10 +109,10 @@ function deployPureLocalhost() {
         #修改纯模式PWA相关配置
         sed -i 's/name: "个人博客.*"/name: "个人博客(纯模式)"/' docs/.vuepress/theme.ts
         sed -i 's/short_name: "此生挚爱万宝路的个人博客.*"/short_name: "此生挚爱万宝路的个人博客(纯模式)"/' docs/.vuepress/theme.ts
-        
+
         #执行构建操作
         build
-        
+
         # 如果发布到 https://<USERNAME>.github.io/<REPO>  REPO=github上的项目,需要开启gitpages服务
         git fetch git@github.com:lingwh1995/pure.git
         git push -f git@github.com:lingwh1995/pure.git HEAD:master
@@ -133,7 +137,7 @@ function deployPureCI() {
 
         #执行构建操作
         build
-        
+
         # 如果发布到 https://<USERNAME>.github.io/<REPO>  REPO=github上的项目,需要开启gitpages服务
         git fetch https://lingwh1995:$1@github.com/lingwh1995/pure.git
         git push -f https://lingwh1995:$1@github.com/lingwh1995/pure.git HEAD:master

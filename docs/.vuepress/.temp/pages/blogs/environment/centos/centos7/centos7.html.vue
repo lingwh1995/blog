@@ -136,7 +136,7 @@ source /etc/profile
 <pre><code>安装vim
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y install vim*
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>配置vim	
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>配置vim
 set nu         # 设置显示行号
 set showmode   #设置在命令行界面最下面显示当前模式等
 set ruler      #在右下角显示光标所在的行数等信息
@@ -151,7 +151,7 @@ wget
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y install telnet
 yum -y install telnet-server
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>git
-卸载旧版本	
+卸载旧版本
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum remove git
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装git
@@ -159,7 +159,7 @@ yum -y install telnet-server
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum install -y git
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看版本
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git version 
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git version
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_2-8-2-使用脚本安装常用软件" tabindex="-1"><a class="header-anchor" href="#_2-8-2-使用脚本安装常用软件" aria-hidden="true">#</a> 2.8.2.使用脚本安装常用软件</h3>
 <pre><code>脚本介绍
 这个脚本中包含了centos设置yum源并且安装了一些的常用软件，如vim、git、wget、curl、等，会定时更新
@@ -216,7 +216,7 @@ export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
 export PATH=${JAVA_HOME}/bin:$PATH
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>刷新环境变量文件
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>source /etc/profile	
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>source /etc/profile
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看java版本
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>java -version
@@ -234,7 +234,7 @@ curl -fL -u software-1659088796431:ba211676fbe4a719c3b40b22083cd70388d41acc \
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>解压到/usr/local/bin/目录下
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>tar -zxvf apache-maven-3.8.6-bin.tar.gz -C /usr/local/bin
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>配置环境变量	
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>配置环境变量
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim  /etc/profile
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>添加如下内容
@@ -257,7 +257,7 @@ export PATH=$PATH:$M2_HOME/bin
 	&lt;name>aliyun maven&lt;/name>
 	&lt;url>http://maven.aliyun.com/nexus/content/groups/public/&lt;/url>
 	&lt;mirrorOf>central&lt;/mirrorOf>
-&lt;/mirror>	
+&lt;/mirror>
 &lt;mirror>
 	&lt;id>repo2&lt;/id>
 	&lt;name>Mirror from Maven Repo2&lt;/name>
@@ -265,7 +265,7 @@ export PATH=$PATH:$M2_HOME/bin
 	&lt;mirrorOf>central&lt;/mirrorOf>
 &lt;/mirror>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_3-5-安装mysql" tabindex="-1"><a class="header-anchor" href="#_3-5-安装mysql" aria-hidden="true">#</a> 3.5.安装mysql</h2>
-<!-- 
+<!--
 	参考网站
 	安装mysql
 	https://blog.csdn.net/qq_38127559/article/details/121659232
@@ -334,7 +334,7 @@ systemctl enable mysqld.service
 FLUSH PRIVILEGES;
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>扩展或者添加远程用户权限:
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>use mysql;	
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>use mysql;
 update user set host='%' where user='root';
 flush privileges;
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h1 id="4." tabindex="-1"><a class="header-anchor" href="#4." aria-hidden="true">#</a> 4.Centos搭建docker</h1>
@@ -343,8 +343,8 @@ flush privileges;
  4.1.章节内容概述
  4.2.章节内容大纲
  4.3.安装docker
- 4.4.docker启动故障解决		
- 4.5.docker容器可视化	
+ 4.4.docker启动故障解决
+ 4.5.docker容器可视化
  4.6.搭建docke私服
  4.7.docker官方私服可视化
  4.8.制作docker镜像并上传到私服
@@ -423,7 +423,7 @@ systemctl enable docker
 [root@localhost ~]# docker run hello-world
 Unable to find image 'hello-world:latest' locally
 latest: Pulling from library/hello-world
-2db29710123e: Pull complete 
+2db29710123e: Pull complete
 Digest: sha256:2498fce14358aa50ead0cc6c19990fc6ff866ce72aeb5546e1d59caac3d0d60f
 Status: Downloaded newer image for hello-world:latest
 
@@ -457,7 +457,7 @@ curl -fL -u software-1659095503164:3316a6a052e6f17880d37a00d38454342aceffdf \
 "https://lingwh-generic.pkg.coding.net/coding-drive/software/docker-20.10.9.tgz?version=latest" \
 -o docker-20.10.9.tgz &amp;&amp;
 tar -xf docker-20.10.9.tgz &amp;&amp; mv docker/* /usr/bin/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>配置docker私有镜像	
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>配置docker私有镜像
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sudo mkdir -p /etc/docker &amp;&amp;
 sudo tee /etc/docker/daemon.json &lt;&lt;-'EOF'
@@ -478,7 +478,7 @@ Description=Docker Application Container Engine
 Documentation=https://docs.docker.com
 After=network-online.target firewalld.service
 Wants=network-online.target
- 
+
 [Service]
 Type=notify
 ExecStart=/usr/bin/dockerd
@@ -491,7 +491,7 @@ KillMode=process
 Restart=on-failure
 StartLimitBurst=3
 StartLimitInterval=60s
- 
+
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -645,7 +645,7 @@ daemon.json配置注意事项：把私服配置到registry-mirrors时，一定�
 firewall-cmd --reload
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>刷新daemon并重启docker
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp; 
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
 systemctl restart docker
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>验证仓库是否搭建成功
 访问:http://192.168.0.4:5000/v2/_catalog，看到{&quot;repositories&quot;:[]}表示私有仓库搭建成功且内容为空
@@ -676,7 +676,7 @@ systemctl restart docker
 	-e "REGISTRY_AUTH=htpasswd"  \
 	-e "REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm"  \
 	-e REGISTRY_AUTH_HTPASSWD_PATH=/opt/docker/auth/htpasswd \
-	registry:latest	
+	registry:latest
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>给docker配置私服
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim /etc/docker/daemon.json
@@ -719,11 +719,11 @@ systemctl restart docker
 <pre><code>Harbor是一个用于存储和分发Docker镜像的企业级Registry服务器，虽然Docker官方也提供了公共的镜像仓库，但是
 从安全和效率等方面考虑，部署企业内部的私有环境Registry是非常必要的，harbor和docker中央仓库的关系就类似于
 nexus和Maven中央仓库的关系，harbor除了存储和分发镜像外还具有用户管理，项目管理，配置管理和日志查询，高可
-用部署等主要功能。		
+用部署等主要功能。
 </code></pre>
 <h4 id="_4-6-3-2-搭建docker-compose" tabindex="-1"><a class="header-anchor" href="#_4-6-3-2-搭建docker-compose" aria-hidden="true">#</a> 4.6.3.2.搭建docker-compose</h4>
 <pre><code>版本说明
-本次使用的docker-compose版本为2.6.1   
+本次使用的docker-compose版本为2.6.1
 
 官方网址
 </code></pre>
@@ -794,14 +794,14 @@ port:5001
 
 重新加载docker daemon配置文件并重启docker
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp; 
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
 systemctl restart docker
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>登录harbor首页(密码可以去harbor.yml中查看)
 访问地址：http://192.168.0.4:5001/
 用户名/密码：admin/123456
-	
+
 在Harbor中创建项目,推送的时候可以用
-如:springcloud-eureka	
+如:springcloud-eureka
 </code></pre>
 <h2 id="_4-7-docker官方私服可视化" tabindex="-1"><a class="header-anchor" href="#_4-7-docker官方私服可视化" aria-hidden="true">#</a> 4.7.docker官方私服可视化</h2>
 <h3 id="_4-7-1docker-registry-web方案" tabindex="-1"><a class="header-anchor" href="#_4-7-1docker-registry-web方案" aria-hidden="true">#</a> 4.7.1docker-registry-web方案</h3>
@@ -823,10 +823,10 @@ systemctl restart docker
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /opt/software/package &amp;&amp;
 wget https://repo.huaweicloud.com/java/jdk/8u181-b13/jdk-8u181-linux-x64.tar.gz
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>编写Dockerfile(Dockerfile内容如下)	
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>编写Dockerfile(Dockerfile内容如下)
 
 #基于centos基础镜像构建
-FROM centos	
+FROM centos
 #作者
 MAINTAINER lingwh
 #将jdk添加到基础镜像中
@@ -837,14 +837,14 @@ ENV JRE_HOME ${JAVA_HOME}/jre
 ENV CLASSPATH .:${JAVA_HOME}/lib:${JRE_HOME}/lib
 ENV PATH ${JAVA_HOME}/bin:$PATH
 #输出Java版本信息
-CMD [&quot;java&quot;,&quot;-version&quot;]		
-				
+CMD [&quot;java&quot;,&quot;-version&quot;]
+
 在当前目录中执行构建镜像的命令
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker build -t='jdk/jdk1.8.0_181' .
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看到刚才制作好的镜像
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker images	
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker images
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>创建容器
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker run -it --name=myjdk8 镜像id /bin/bash
@@ -854,7 +854,7 @@ CMD [&quot;java&quot;,&quot;-version&quot;]
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker tag jdk/jdk1.8.0_181 192.168.0.4:5000/jdk/jdk1.8.0_181:latest #更改镜像的TAG标签
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>上传标记的镜像
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker push 192.168.0.4:5000/jdk/jdk1.8.0_181:latest	
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker push 192.168.0.4:5000/jdk/jdk1.8.0_181:latest
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看推送到私服中的镜像
 访问:http://192.168.0.4:5000/v2/_catalog,看到:{&quot;repositories&quot;:[&quot;jdk/jdk1.8.0_181&quot;]}
 </code></pre>
@@ -868,7 +868,7 @@ CMD [&quot;java&quot;,&quot;-version&quot;]
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker run -di --name mysql -p 3306:3306 --restart=always -e MYSQL_ROOT_PASSWORD=123456 mysql
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>关闭docker中的mysql容器
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>myqldocker exec -it mysql bash	
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>myqldocker exec -it mysql bash
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_4-9-2-docker中安装consul" tabindex="-1"><a class="header-anchor" href="#_4-9-2-docker中安装consul" aria-hidden="true">#</a> 4.9.2.Docker中安装consul</h3>
 <pre><code>下载consul镜像
 </code></pre>
@@ -987,7 +987,7 @@ exit</p>
 	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 
 ## &lt;a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter5.html" target="_blank">5.2.章节内容大纲&lt;/a>
-	
+
 &lt;Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter5.html"/>
 
 
@@ -1021,7 +1021,7 @@ exit</p>
 	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 
 ## &lt;a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter6.html" target="_blank">6.2.章节内容大纲&lt;/a>
-	
+
 &lt;Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter6.html"/>
 
 
@@ -1146,7 +1146,7 @@ rcvboxdrv setup</p>
 	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 
 ## &lt;a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter7.html" target="_blank">7.2.章节内容大纲&lt;/a>
-	
+
 &lt;Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter7.html"/>
 
 
@@ -1191,8 +1191,8 @@ systemctl disable firewalld</p>
 
 ## 7.9.所有节点安装k8s所需组件
 	添加k8s安装源
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>cat &lt;<EOF > kubernetes.repo
-[kubernetes]
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><!-- cat <<EOF > kubernetes.repo -->
+<p>[kubernetes]
 name=Kubernetes
 baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64
 enabled=1
@@ -1392,7 +1392,7 @@ https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flann
 	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 
 ## &lt;a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter8.html" target="_blank">8.2.章节内容大纲&lt;/a>
-	
+
 &lt;Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter8.html"/>
 
 

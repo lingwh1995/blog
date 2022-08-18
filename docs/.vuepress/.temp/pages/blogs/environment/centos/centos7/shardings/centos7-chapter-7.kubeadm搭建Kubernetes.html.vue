@@ -68,7 +68,7 @@ systemctl daemon-reload &amp;&amp; systemctl restart docker
 <h2 id="_7-9-所有节点安装k8s所需组件" tabindex="-1"><a class="header-anchor" href="#_7-9-所有节点安装k8s所需组件" aria-hidden="true">#</a> 7.9.所有节点安装k8s所需组件</h2>
 <pre><code>添加k8s安装源
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat &lt;&lt;EOF > kubernetes.repo
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>&lt;!-- cat &lt;&lt;EOF > kubernetes.repo -->
 [kubernetes]
 name=Kubernetes
 baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64

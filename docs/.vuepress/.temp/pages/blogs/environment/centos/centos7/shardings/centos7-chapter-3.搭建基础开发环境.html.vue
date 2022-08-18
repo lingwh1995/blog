@@ -40,7 +40,7 @@ export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
 export PATH=${JAVA_HOME}/bin:$PATH
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>刷新环境变量文件
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>source /etc/profile	
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>source /etc/profile
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看java版本
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>java -version
@@ -58,7 +58,7 @@ curl -fL -u software-1659088796431:ba211676fbe4a719c3b40b22083cd70388d41acc \
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>解压到/usr/local/bin/目录下
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>tar -zxvf apache-maven-3.8.6-bin.tar.gz -C /usr/local/bin
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>配置环境变量	
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>配置环境变量
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim  /etc/profile
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>添加如下内容
@@ -81,7 +81,7 @@ export PATH=$PATH:$M2_HOME/bin
 	&lt;name>aliyun maven&lt;/name>
 	&lt;url>http://maven.aliyun.com/nexus/content/groups/public/&lt;/url>
 	&lt;mirrorOf>central&lt;/mirrorOf>
-&lt;/mirror>	
+&lt;/mirror>
 &lt;mirror>
 	&lt;id>repo2&lt;/id>
 	&lt;name>Mirror from Maven Repo2&lt;/name>
@@ -89,7 +89,7 @@ export PATH=$PATH:$M2_HOME/bin
 	&lt;mirrorOf>central&lt;/mirrorOf>
 &lt;/mirror>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_3-5-安装mysql" tabindex="-1"><a class="header-anchor" href="#_3-5-安装mysql" aria-hidden="true">#</a> 3.5.安装mysql</h2>
-<!-- 
+<!--
 	参考网站
 	安装mysql
 	https://blog.csdn.net/qq_38127559/article/details/121659232
@@ -158,7 +158,7 @@ systemctl enable mysqld.service
 FLUSH PRIVILEGES;
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>扩展或者添加远程用户权限:
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>use mysql;	
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>use mysql;
 update user set host='%' where user='root';
 flush privileges;
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div></template>
