@@ -74,7 +74,7 @@ function deployNormalLocalhost() {
 
     #如果发布到 https://<USERNAME>.github.io  USERNAME=你的用户名
     echo '开始执行构建操作...........................'
-    git fetch git@github.com:lingwh1995/lingwh1995.github.io.git
+    #git fetch git@github.com:lingwh1995/lingwh1995.github.io.git
     git push -f git@github.com:lingwh1995/lingwh1995.github.io.git HEAD:master
     echo '完成执行构建操作...........................'
     #回到上一次操作的目录
@@ -102,7 +102,7 @@ function deployNormalCI() {
 
     # 如果发布到 https://<USERNAME>.github.io  USERNAME=你的用户名
     echo '开始执行构建操作...........................'
-    git fetch https://lingwh1995:$1@github.com/lingwh1995/lingwh1995.github.io.git
+    #git fetch https://lingwh1995:$1@github.com/lingwh1995/lingwh1995.github.io.git
     git push -f https://lingwh1995:$1@github.com/lingwh1995/lingwh1995.github.io.git HEAD:master
     echo '完成执行构建操作...........................'
     #回到上一次操作的目录
@@ -132,7 +132,7 @@ function deployPureLocalhost() {
 
         # 如果发布到 https://<USERNAME>.github.io/<REPO>  REPO=github上的项目,需要开启gitpages服务
         echo '开始执行构建操作...........................'
-        git fetch git@github.com:lingwh1995/pure.git
+        #git fetch git@github.com:lingwh1995/pure.git
         git push -f git@github.com:lingwh1995/pure.git HEAD:master
         echo '完成执行构建操作...........................'
         #回到上一次操作的目录
@@ -163,7 +163,7 @@ function deployPureCI() {
 
         # 如果发布到 https://<USERNAME>.github.io/<REPO>  REPO=github上的项目,需要开启gitpages服务
         echo '开始执行推送操作...........................'
-        git fetch https://lingwh1995:$1@github.com/lingwh1995/pure.git
+        #git fetch https://lingwh1995:$1@github.com/lingwh1995/pure.git
         git push -f https://lingwh1995:$1@github.com/lingwh1995/pure.git HEAD:master
         echo '完成执行推送操作...........................'
         #回到上一次操作的目录
