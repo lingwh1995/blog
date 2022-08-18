@@ -9,7 +9,7 @@ source ./enhance/lib/tools.sh
 #持续集成的时候首先更新node版本
 function updateNodeVersionWhenCI {
     NATIVE_JENKINS_SUPPORT_ENABLE_STATE=( $( parsePluginIni plugin-005 enable) )
-    if [ $NATIVE_JENKINS_SUPPORT_ENABLE_STATE == "true" ]
+    if [ ! $NATIVE_JENKINS_SUPPORT_ENABLE_STATE == "true" ]
     then
         echo '开始更新node版本........'
         npm config set registry https://registry.npm.taobao.org
