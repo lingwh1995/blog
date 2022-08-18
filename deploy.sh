@@ -182,10 +182,6 @@ then
     echo "GNU/Linux"
     #获取纯模式启动状态
     AUTODEPLOY_ENABLE_STATE=( $( parsePluginIni plugin-004 enable) )
-   echo '-----------------------------------'
-  echo $AUTODEPLOY_ENABLE_STATE
-   echo '-----------------------------------'
-   
     if [ $AUTODEPLOY_ENABLE_STATE == "true" ]
     then
         echo "当前是持续集成发布模式"
