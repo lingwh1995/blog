@@ -49,7 +49,7 @@ head:
 :::tip 注意事项
 如果要搭建一主多从非高可用Kubernetes集群，使用服务器规划1<br>
 如果要搭建多主多从高可用Kubernetes集群，使用服务器规划2
-:::	
+:::
 
 
 	服务器规划1：一主多从服务器规划
@@ -58,7 +58,7 @@ head:
 binary-k8s-master1 | 192.168.0.9  | etcd <br> docker <br> kube-apiserver kube-controller-manager kube-scheduler<br> kubelet kube-proxy
 binary-k8s-worker1 | 192.168.0.10 | etcd <br> docker <br> kubelet kube-proxy
 binary-k8s-worker1 | 192.168.0.11 | etcd <br> docker <br> kubelet kube-proxy
-	
+
 	服务器规划2：多主多从高可用服务器规划
 角色 | IP | 组件
 :--- | :--- | :---:
@@ -90,43 +90,43 @@ binary-k8s-worker2 | 192.168.0.11 | etcd <br> docker <br> kubelet kube-proxy
 	预留IP位置11：168.168.0.103
 	预留IP位置12：168.168.0.104
 	预留IP位置13：168.168.0.105
-	
+
 	注意事项
 	1.可以将这些IP地址进行分类，如下所示（本次为了学习使用，并没有进行详细规划）
 	Etcd Cluster: 192.168.0.xxx
 	Master Node : 192.168.1.xxx
 	Worker Node : 192.168.2.xxx
 	keepalive   : 192.168.3.xx
-	2.一定要多预留一些IP地址，全部安装好之后，再给kube-apiserver添加IP地址很麻烦	
+	2.一定要多预留一些IP地址，全部安装好之后，再给kube-apiserver添加IP地址很麻烦
 
 ## 8.5.安装前准备工作
 :::tip 注意事项
 8.3章节涉及到的操作所有的Master节点和Worker Node都要执行，下载所有用到的软件包包只需要在Mater Node1进行就可以了
 :::
-### 8.5.1操作系统初始设置			
+### 8.5.1操作系统初始设置
 
 ```
 systemctl stop firewalld && systemctl disable firewalld #关闭系统防火墙
-```	
+```
 ```
 sed -i 's/enforcing/disabled/' /etc/selinux/config #永久关闭selinux
-```	
+```
 ```
 sed -ri 's/.*swap.*/#&/' /etc/fstab #永久关闭swap
 ```
 
 根据规划设置主机名
-	
+
 ```
 hostnamectl set-hostname binary-k8s-master1 && systemctl reboot #binary-k8s-master1（192.168.0.9）
 ```
-```	
+```
 hostnamectl set-hostname binary-k8s-worker1  && systemctl reboot #binary-k8s-worker1 （192.168.0.10）
 ```
 ```
 hostnamectl set-hostname binary-k8s-worker2  && systemctl reboot #binary-k8s-worker2 （192.168.0.11）
 ```
-```	
+```
 hostnamectl set-hostname binary-k8s-master2 && systemctl reboot #binary-k8s-master2（192.168.0.12）
 ```
 
@@ -148,7 +148,7 @@ EOF
 ```
 	让配置生效
 ```
-sysctl --system  
+sysctl --system
 ```
 	使用阿里云时间服务器进行临时同步
 ```
@@ -161,12 +161,12 @@ ntpdate ntp.aliyun.com
 
 ### 8.5.2下载所有用到的软件包
 	安装curl
-```	
+```
 yum -y install curl
 ```
 
 	创建目录后切换到该目录中，并在该目录中下载本次安装所有用到的软件包
-```	
+```
 mkdir -p /opt/k8s &&
 cd /opt/k8s &&
 curl -fL -u software-1658989668964:1db7b96a6698ef06009de91348cb797dfd87fc99 \
@@ -175,16 +175,16 @@ curl -fL -u software-1658989668964:1db7b96a6698ef06009de91348cb797dfd87fc99 \
 ```
 
 	解压tar包并重命名
-```	
+```
 tar -zxvf kubernetes-all.tar.gz &&
 mv kubernetes package
 ```
 
-	
+
 ## 8.6.安装cfssl证书生成工具
 :::tip 注意事项
 8.4章节涉及到的操作只在Master Node1节点上进行操作
-:::		
+:::
 	cfssl简介
 	cfssl是一个开源的证书管理工具，使用json文件生成证书，相比openssl更方便使用,这里在Master Node1节点操作后复
 	制到其他节点，不需要在所有节点上操作。
@@ -200,7 +200,7 @@ cp cfssl-certinfo_linux-amd64 /usr/bin/cfssl-certinfo
 ## 8.7.搭建etcd集群
 :::tip 注意事项
 8.5章节涉及到的操作不要一次性在所有节点上操作，在Master1操作后复制到其他节点，这样比直接在所有节点上操作要快
-:::	
+:::
 ### 8.7.1生成CA证书和https证书
 	创建存放etcd证书配置文件和生成证书的目录
 ```
@@ -250,7 +250,7 @@ EOF
 ```
 cfssl gencert -initca ca-csr.json | cfssljson -bare ca -
 ```
-	使用自签CA签发etcd https证书	
+	使用自签CA签发etcd https证书
 ```
 cat > server-csr.json << EOF
 {
@@ -287,7 +287,7 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
 	Etcd 是一个分布式键值存储系统，Kubernetes使用Etcd进行数据存储，所以先准备一个Etcd数据库，为解决Etcd单点
 	故障，应采用集群方式部署，这里使用3台组建集群，可容忍1台机器故障，当然，你也可以使用5台组建集群，可容忍2台
 	机器故障
-					
+
 	服务器规划
 	节点名称	IP
 	etcd-1	192.168.0.9
@@ -295,7 +295,7 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
 	etcd-2	192.168.0.11
 	特别说明
 	为了节省机器,这里与k8s节点复用,也可以部署在k8s机器之外,只要apiserver能连接到就行。
-	
+
 	在Master Node1上创建etcd工作目录
 ```
 	mkdir /opt/etcd/{bin,cfg,ssl} -p
@@ -305,7 +305,7 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
 cd /opt/k8s/package &&
 tar -xf etcd-v3.4.9-linux-amd64.tar.gz &&
 mv etcd-v3.4.9-linux-amd64/{etcd,etcdctl} /opt/etcd/bin/
-```			
+```
 	创建etcd配置文件
 ```
 cat > /opt/etcd/cfg/etcd.conf << EOF
@@ -366,14 +366,14 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### 8.7.6.拷贝etcd安装文件到Worker Node	
+### 8.7.6.拷贝etcd安装文件到Worker Node
 :::tip 注意事项
 在Master1 Node上执行下面操作，只需要拷贝到Worker Node1和Worker Node2即可，不需要拷贝到Master Node2
-:::	
+:::
 	在Worker Node1上和Worker Node2上创建etcd工作目录
 ```
 	mkdir /opt/etcd/{bin,cfg,ssl} -p
-```	
+```
 	复制etcd安装文件和配置文件到192.168.0.10机器上
 ```
 scp -r /opt/etcd/ root@192.168.0.10:/opt &&
@@ -383,7 +383,7 @@ scp /usr/lib/systemd/system/etcd.service root@192.168.0.10:/usr/lib/systemd/syst
 ```
 scp -r /opt/etcd/ root@192.168.0.11:/opt &&
 scp /usr/lib/systemd/system/etcd.service root@192.168.0.11:/usr/lib/systemd/system/
-```							
+```
 	修改Worker Node1（192.168.0.10）中etcd.conf配置，下面命令会直接覆盖拷贝过来的配置
 ```
 cat > /opt/etcd/cfg/etcd.conf << EOF
@@ -402,12 +402,12 @@ ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster"
 ETCD_INITIAL_CLUSTER_STATE="new"
 EOF
 ```
-	修改后内容	
+	修改后内容
 	ETCD_NAME="etcd-2"	#此处需要修改
 	ETCD_DATA_DIR="/var/lib/etcd/default.etcd"
 	ETCD_LISTEN_PEER_URLS="https://192.168.0.10:2380" 	#此处需要修改
 	ETCD_LISTEN_CLIENT_URLS="https://192.168.0.10:2379" 	#此处需要修改
-	
+
 	#[Clustering]
 	ETCD_INITIAL_ADVERTISE_PEER_URLS="https://192.168.0.10:2380" #此处需要修改
 	ETCD_ADVERTISE_CLIENT_URLS="https://192.168.0.10:2379" #此处需要修改
@@ -415,7 +415,7 @@ EOF
 	2=https://192.168.0.10:2380,etcd-3=https://192.168.0.11:2380"
 	ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster"
 	ETCD_INITIAL_CLUSTER_STATE="new"
-							
+
 	修改Worker Node2（192.168.0.11）中etcd.conf配置，下面命令会直接覆盖拷贝过来的配置
 ```
 cat > /opt/etcd/cfg/etcd.conf << EOF
@@ -439,7 +439,7 @@ EOF
 	ETCD_DATA_DIR="/var/lib/etcd/default.etcd"
 	ETCD_LISTEN_PEER_URLS="https://192.168.0.11:2380" 	#此处需要修改
 	ETCD_LISTEN_CLIENT_URLS="https://192.168.0.11:2379" 	#此处需要修改
-	
+
 	#[Clustering]
 	ETCD_INITIAL_ADVERTISE_PEER_URLS="https://192.168.0.11:2380" #此处需要修改
 	ETCD_ADVERTISE_CLIENT_URLS="https://192.168.0.11:2379" #此处需要修改
@@ -455,10 +455,10 @@ systemctl daemon-reload &&
 systemctl start etcd &&
 systemctl enable etcd
 ```
-	注意事项	
+	注意事项
 	etcd须多个节点同时启动,不然执行systemctl start etcd会一直卡在前台,连接其他节点,建议通过批量管理工
 	具,或者脚本同时启动etcd。
-	
+
 	检查etcd集群状态
 ```
 ETCDCTL_API=3 /opt/etcd/bin/etcdctl \
@@ -476,7 +476,7 @@ endpoint health --write-out=table
 	| https://192.168.0.10:2379 |   true | 44.433731ms |       |
 	| https://192.168.0.11:2379 |   true | 50.266126ms |       |
 	+---------------------------+--------+-------------+-------+
-	
+
 	etcd启动问题排查
 	命令1
 ```
@@ -494,7 +494,7 @@ journalctl -u etcd
 cd /opt/k8s/package/ &&
 tar -xf docker-19.03.9.tgz && mv docker/* /usr/bin/
 ```
-	配置docker私有镜像	
+	配置docker私有镜像
 ```
 sudo mkdir -p /etc/docker &&
 sudo tee /etc/docker/daemon.json <<-'EOF'
@@ -511,7 +511,7 @@ Description=Docker Application Container Engine
 Documentation=https://docs.docker.com
 After=network-online.target firewalld.service
 Wants=network-online.target
- 
+
 [Service]
 Type=notify
 ExecStart=/usr/bin/dockerd
@@ -524,7 +524,7 @@ KillMode=process
 Restart=on-failure
 StartLimitBurst=3
 StartLimitInterval=60s
- 
+
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -569,11 +569,11 @@ systemctl start docker &&
 systemctl enable docker
 ```
 	查看启动状态
-```	
+```
 systemctl status docker
 ```
 	启动故障排查
-```	
+```
 systemctl status docker
 ```
 
@@ -582,7 +582,7 @@ systemctl status docker
 8.7章节所有操作只在Master Node1节点操作，不需要在其他节点操作，因为kube-apiserver是Master节点的专用组件，Worker Node不需要使用这个组件
 :::
 
-### 8.9.1.生成CA证书和Https证书 				
+### 8.9.1.生成CA证书和Https证书
 	切换目录
 ```
 cd ~/TLS/k8s
@@ -632,7 +632,7 @@ EOF
 	生成自签CA证书（生成成功目录下回多ca-key.pem  ca.csr  ca.pem）
 ```
 cfssl gencert -initca ca-csr.json | cfssljson -bare ca -
-```			
+```
 	使用自签CA签发kube-apiserver https
 ```
 cat > server-csr.json << EOF
@@ -715,14 +715,14 @@ EOF
 			VIP		:192.168.3.xxx
 
 
-​			 
+​
 ​	生成https证书（当前目录下会生成server.pem 和 server-key.pem文件）
 ```
 cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json \
 -profile=kubernetes server-csr.json | cfssljson -bare server
 ```
 
-### 8.9.2.在Master Node1上部署kube-apiserver		
+### 8.9.2.在Master Node1上部署kube-apiserver
 	创建kube-apiserver工作目录
 ```
 mkdir -p /opt/kubernetes/{bin,cfg,ssl,logs}
@@ -824,7 +824,7 @@ cp ~/TLS/k8s/ca*pem ~/TLS/k8s/server*pem /opt/kubernetes/ssl/
 	扩展复杂度。为了简化流程，Kubernetes引入了TLS bootstraping机制来自动颁发客户端证书，kubelet会以一个低
 	权限用户自动向apiserver申请证书，kubelet的证书由apiserver动态签署。所以强烈建议在Node上使用这种方式，目
 	前主要用于kubelet，kube-proxy还是由我们统一颁发一个证书。
-	
+
 	创建上述配置文件中token文件：（格式：token,用户名,UID,用户组）
 ```
 cat > /opt/kubernetes/cfg/token.csv << EOF
@@ -894,7 +894,7 @@ cat > kube-controller-manager-csr.json << EOF
     "names": [
     {
         "C": "CN",
-        "L": "BeiJing", 
+        "L": "BeiJing",
         "ST": "BeiJing",
         "O": "system:masters",
         "OU": "System"
@@ -930,11 +930,11 @@ KUBE_CONTROLLER_MANAGER_OPTS="--logtostderr=false \\
 --cluster-signing-duration=87600h0m0s"
 EOF
 ```
-	配置文件说明		
+	配置文件说明
 	--kubeconfig ：连接apiserver配置文件。
 	--leader-elect ：当该组件启动多个时,自动选举(HA)
 	--cluster-signing-cert-file ：自动为kubelet颁发证书的CA,apiserver保持一致
-	--cluster-signing-key-file ：自动为kubelet颁发证书的CA,apiserver保持一致	
+	--cluster-signing-key-file ：自动为kubelet颁发证书的CA,apiserver保持一致
 
 ### 8.10.3.生成配置文件
 :::tip 注意事项
@@ -949,18 +949,18 @@ kubectl config set-cluster kubernetes \
   --embed-certs=true \
   --server=${KUBE_APISERVER} \
   --kubeconfig=${KUBE_CONFIG}
-  
+
 kubectl config set-credentials kube-controller-manager \
   --client-certificate=./kube-controller-manager.pem \
   --client-key=./kube-controller-manager-key.pem \
   --embed-certs=true \
   --kubeconfig=${KUBE_CONFIG}
-  
+
 kubectl config set-context default \
   --cluster=kubernetes \
   --user=kube-controller-manager \
   --kubeconfig=${KUBE_CONFIG}
-  
+
 kubectl config use-context default --kubeconfig=${KUBE_CONFIG}
 ```
 ### 8.10.4.让systemd管理controller-manager
@@ -1005,7 +1005,7 @@ cat /var/log/messages|grep kube-controller-manager|grep -i error
 cp /opt/k8s/package/kubernetes/server/bin/kube-scheduler /opt/kubernetes/bin
 ```
 
-### 8.11.2.生成证书	
+### 8.11.2.生成证书
 	切换工作目录
 ```
 cd ~/TLS/k8s
@@ -1071,18 +1071,18 @@ kubectl config set-cluster kubernetes \
   --embed-certs=true \
   --server=${KUBE_APISERVER} \
   --kubeconfig=${KUBE_CONFIG}
-  
+
 kubectl config set-credentials kube-scheduler \
   --client-certificate=./kube-scheduler.pem \
   --client-key=./kube-scheduler-key.pem \
   --embed-certs=true \
   --kubeconfig=${KUBE_CONFIG}
-  
+
 kubectl config set-context default \
   --cluster=kubernetes \
   --user=kube-scheduler \
   --kubeconfig=${KUBE_CONFIG}
-  
+
 kubectl config use-context default --kubeconfig=${KUBE_CONFIG}
 ```
 ### 8.11.5.让systemd管理kube-scheduler
@@ -1123,12 +1123,12 @@ cat /var/log/messages|grep kube-scheduler|grep -i error
 8.10章节所有操作只在Master1节点操作，不需要在其他节点操作，因为kubectl是Master节点的专用组件，Worker Node不需要使用这个组件
 :::
 
-### 8.12.1.生成所需证书 
+### 8.12.1.生成所需证书
 	切换工作目录
 ```
 cd ~/TLS/k8s
 ```
-	使用自签CA签发kubectl连接集群的证书	
+	使用自签CA签发kubectl连接集群的证书
 ```
 cat > admin-csr.json <<EOF
 {
@@ -1167,18 +1167,18 @@ kubectl config set-cluster kubernetes \
   --embed-certs=true \
   --server=${KUBE_APISERVER} \
   --kubeconfig=${KUBE_CONFIG}
-  
+
 kubectl config set-credentials cluster-admin \
   --client-certificate=./admin.pem \
   --client-key=./admin-key.pem \
   --embed-certs=true \
   --kubeconfig=${KUBE_CONFIG}
-  
+
 kubectl config set-context default \
   --cluster=kubernetes \
   --user=cluster-admin \
   --kubeconfig=${KUBE_CONFIG}
-  
+
 kubectl config use-context default --kubeconfig=${KUBE_CONFIG}
 ```
 ### 8.12.3.通过kubectl工具查看集群组件
@@ -1188,11 +1188,11 @@ kubectl get cs
 ```
 	Master1节点组件运行正常会显示如下结果
 	NAME                 STATUS    MESSAGE             ERROR
-	controller-manager   Healthy   ok                  
-	scheduler            Healthy   ok                  
-	etcd-0               Healthy   {"health":"true"}   
-	etcd-2               Healthy   {"health":"true"}   
-	etcd-1               Healthy   {"health":"true"} 
+	controller-manager   Healthy   ok
+	scheduler            Healthy   ok
+	etcd-0               Healthy   {"health":"true"}
+	etcd-2               Healthy   {"health":"true"}
+	etcd-1               Healthy   {"health":"true"}
 
 ### 8.12.4.授权kubelet-bootstrap用户允许请求证书
 	创建授权用户kubelet-bootstrap
@@ -1263,7 +1263,7 @@ readOnlyPort: 10255
 cgroupDriver: cgroupfs
 clusterDNS:
 - 10.0.0.2
-clusterDomain: cluster.local 
+clusterDomain: cluster.local
 failSwapOn: false
 authentication:
   anonymous:
@@ -1272,7 +1272,7 @@ authentication:
     cacheTTL: 2m0s
     enabled: true
   x509:
-    clientCAFile: /opt/kubernetes/ssl/ca.pem 
+    clientCAFile: /opt/kubernetes/ssl/ca.pem
 authorization:
   mode: Webhook
   webhook:
@@ -1300,16 +1300,16 @@ kubectl config set-cluster kubernetes \
   --embed-certs=true \
   --server=${KUBE_APISERVER} \
   --kubeconfig=${KUBE_CONFIG}
-  
+
 kubectl config set-credentials "kubelet-bootstrap" \
   --token=${TOKEN} \
   --kubeconfig=${KUBE_CONFIG}
-  
+
 kubectl config set-context default \
   --cluster=kubernetes \
   --user="kubelet-bootstrap" \
   --kubeconfig=${KUBE_CONFIG}
-  
+
 kubectl config use-context default --kubeconfig=${KUBE_CONFIG}
 ```
 
@@ -1353,21 +1353,21 @@ cat /var/log/messages|grep kubelet
 kubectl get csr
 ```
 	[root@binary-k8s-master1 bin]# kubectl get csr
-	NAME                                                   AGE	CONDITIO	...              
+	NAME                                                   AGE	CONDITIO	...
 	node-csr-IiJqGnj7y-9pMOIaYb9rpYxtIaEuACOITLI-WpfdpDI   16s	Pending		...
-	
+
 	手动批准证书签名请求
 ```
 kubectl certificate approve node-csr-IiJqGnj7y-9pMOIaYb9rpYxtIaEuACOITLI-WpfdpDI
-```	
+```
 	再次使用命令查看申请是否通过
 ```
 kubectl get csr
 ```
 	[root@binary-k8s-master1 bin]# kubectl get csr
-	NAME                                                   AGE	CONDITIO	...              
+	NAME                                                   AGE	CONDITIO	...
 	node-csr-IiJqGnj7y-9pMOIaYb9rpYxtIaEuACOITLI-WpfdpDI   16s	Approved	...
-	
+
 	补充命令
 	手动拒绝证书签名请求
 	kubectl certificate deny node-csr-IiJqGnj7y-9pMOIaYb9rpYxtIaEuACOITLI-WpfdpDI
@@ -1453,18 +1453,18 @@ kubectl config set-cluster kubernetes \
   --embed-certs=true \
   --server=${KUBE_APISERVER} \
   --kubeconfig=${KUBE_CONFIG}
-  
+
 kubectl config set-credentials kube-proxy \
   --client-certificate=./kube-proxy.pem \
   --client-key=./kube-proxy-key.pem \
   --embed-certs=true \
   --kubeconfig=${KUBE_CONFIG}
-  
+
 kubectl config set-context default \
   --cluster=kubernetes \
   --user=kube-proxy \
   --kubeconfig=${KUBE_CONFIG}
-  
+
 kubectl config use-context default --kubeconfig=${KUBE_CONFIG}
 ```
 
@@ -1501,7 +1501,7 @@ systemctl enable kube-proxy
 ### 8.13.4.部署网络组件(Calico)
 	Calico简介
 	Calico是一个纯三层的数据中心网络方案，是目前Kubernetes主流的网络方案。
-	
+
 	切换目录
 ```
 cd /root/TLS/k8s
@@ -1513,9 +1513,9 @@ wget http://docs.projectcalico.org/v3.8/manifests/calico.yaml
 ```
 	备份calico.yaml并修改calico.yaml
 ```
-cp calico.yaml calico.yaml.bak && 
+cp calico.yaml calico.yaml.bak &&
 sed -i 's/192.168.0.0/10.244.0.0/g' calico.yaml
-```	
+```
 
 	查询修改结果
 ```
@@ -1537,7 +1537,7 @@ kubectl get pods -n kube-system
 	NAME                                      READY   STATUS    RESTARTS   AGE
 	calico-kube-controllers-bcc6f659f-r28g7   1/1     Running   0          18m
 	calico-node-dkjn6                         1/1     Running   6          18m
-	
+
 	注意事项
 	calico部署很慢，不过不用等8分钟，执行kubectl apply命令后稍等一会儿就可以通过kubectl get nodes
 	查看节点状态了
@@ -1552,7 +1552,7 @@ kubectl get nodes
 
 ### 8.13.5.授权apiserver访问kubelet
 	应用场景：如kubectl logs
-	
+
 	创建配置文件
 ```
 cat > apiserver-to-kubelet-rbac.yaml << EOF
@@ -1632,7 +1632,7 @@ rm -f /opt/kubernetes/cfg/kubelet.kubeconfig &&
 rm -f /opt/kubernetes/ssl/kubelet*
 ```
 	Worker Node2节点（192.168.0.11）
-```	
+```
 rm -f /opt/kubernetes/cfg/kubelet.kubeconfig &&
 rm -f /opt/kubernetes/ssl/kubelet*
 ```
@@ -1647,7 +1647,7 @@ sed -i 's/--hostname-override=binary-k8s-master1/--hostname-override=binary-k8s-
 sed -i 's/hostnameOverride: binary-k8s-master1/hostnameOverride: binary-k8s-worker1/g' \
 /opt/kubernetes/cfg/kube-proxy-config.yml #修改hostnameOverride的值binary-k8s-worker1
 ```
-	
+
 	Worker Node2（192.168.0.11）
 ```
 sed -i 's/--hostname-override=binary-k8s-master1/--hostname-override=binary-k8s-worker2/g' \
@@ -1658,18 +1658,18 @@ sed -i 's/hostnameOverride: binary-k8s-master1/hostnameOverride: binary-k8s-work
 
 ### 8.14.5.启动Worker Node1和Worker Node2中kubelet并设置开机自启
 ```
-systemctl daemon-reload && 
-systemctl start kubelet kube-proxy && 
+systemctl daemon-reload &&
+systemctl start kubelet kube-proxy &&
 systemctl enable kubelet kube-proxy
 ```
 
 	查看启动状态
-```	
+```
 systemctl status kubelet
 ```
-```	
+```
 systemctl status kube-proxy
-```	
+```
 	启动故障解决
 ```
 cat /var/log/messages|grep kube-proxy
@@ -1681,19 +1681,19 @@ cat /var/log/messages|grep kube-proxy
 kubectl get csr
 ```
 	[root@binary-k8s-master1 k8s]# kubectl get csr
-	
+
 	NAME                                                    ... CONDITION         ...
 	node-csr-IiJqGnj7y-9pMOIaYb9rpYxtIaEuACOITLI-WpfdpDI    ... Approved,Issued   ...
 	node-csr-TlSHYrzacOBQbJyQcfVwuArXPKRbjcoMESZykQ3Qr0w   ... Pending            ...
 	node-csr-vb-rAPL-grn0NxFGBs-_5pScCDkICmvHRnbhn_bRdsc    ... Pending           ...
-	
+
 	手动批准证书签名请求
 ```
 kubectl certificate approve node-csr-TlSHYrzacOBQbJyQcfVwuArXPKRbjcoMESZykQ3Qr0w
 ```
 ```
 kubectl certificate approve node-csr-vb-rAPL-grn0NxFGBs-_5pScCDkICmvHRnbhn_bRdsc
-```	
+```
 
 	查看所有Node状态(要稍等会才会变成ready,会下载一些初始化镜像)
 	注意事项
@@ -1707,14 +1707,14 @@ kubectl get nodes
 	binary-k8s-master1    Ready    <none>   79s   v1.20.0
 	binary-k8s-worker1    Ready    <none>   26m   v1.20.0
 	binary-k8s-worker2    Ready    <none>   26m   v1.20.0
-	
+
 	补充命令
 	删除多余的csr
 	kubectl delete csr node-csr-Rd_0WEaOFSkRT7geRKfz__I1v6E-CQfJpYwMTDEK-mw
 
 ### 8.14.7.在Master1上部署kubernetes-dashboard
-	切换目录并在该目录中下载kubernetes-dashboard安装所需要的yaml文件	
-```	
+	切换目录并在该目录中下载kubernetes-dashboard安装所需要的yaml文件
+```
 cd /opt/k8s/package &&
 wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.4.0/aio/deploy/recommended.yaml
 ```
@@ -1728,10 +1728,10 @@ vim recommended.yaml
 	name: kubernetes-dashboard
 	spec:
 	  type: NodePort
-	  
+
 	安装kubernetes-dashboard
 ```
-kubectl apply -f recommended.yaml	
+kubectl apply -f recommended.yaml
 ```
 	查看部署情况
 	注意事项，等待大约2分钟使用kubectl get pods,svc -n kubernetes-dashboard才能看到所有pods,svc状态正常
@@ -1742,11 +1742,11 @@ kubectl get pods,svc -n kubernetes-dashboard
 	NAME                                             READY   STATUS    RESTARTS   AGE
 	pod/dashboard-metrics-scraper-5b8896d7fc-jj8vp   1/1     Running   0          60m
 	pod/kubernetes-dashboard-897c7599f-pdk9g         1/1     Running   0          60m
-	
+
 	NAME                                TYPE        CLUSTER-IP  	 PORT(S)         AGE
 	service/dashboard-metrics-scraper   ClusterIP   10.0.0.254       8000/TCP        60m
 	service/kubernetes-dashboard        NodePort    10.0.0.173       443:30441/TCP   60m
-	
+
 	创建dashboard-admin使用的service account并绑定默认cluster-admin管理员集群角色
 ```
 kubectl create serviceaccount dashboard-admin -n kube-system
@@ -1768,10 +1768,10 @@ $(kubectl -n kube-system get secret | awk '/dashboard-admin/{print $1}')
 ### 8.14.8.在Master1上部署CoreDNS
 	介绍
 	CoreDNS主要用于集群内部Service名称解析。
-	
+
 	从kubernetes源码包中获取coredns.yaml
 ```
-cd /opt/k8s/package/kubernetes && 
+cd /opt/k8s/package/kubernetes &&
 mkdir  kubernetes-src &&
 tar fx kubernetes-src.tar.gz -C ./kubernetes-src &&
 cd kubernetes-src/cluster/addons/dns/coredns/ &&
@@ -1790,13 +1790,13 @@ sed -i -e "s@__DNS__DOMAIN__@${CLUSTER_DNS_DOMAIN}@" \
 ```
 	注意：CLUSTER_DNS_DOMAIN和CLUSTER_DNS_SVC_IP的值要和在node节点的kubelet-config.yaml/kubelet-
 	config.yal中clusterDNS和clusterDomain的值保持一致
-	
+
 	修改coredns.yaml中coredns镜像仓库地址
 ```
 vim coredns.yaml
 ```
 	将135行k8s.gcr.io/coredns:1.6.7修改为registry.aliyuncs.com/google_containers/coredns:v1.8.6
-	
+
 	创建coredns使用的service account并绑定默认cluster-admin管理员集群角色
 ```
 kubectl create serviceaccount coredns -n kube-system
@@ -1805,9 +1805,9 @@ kubectl create clusterrolebinding coredns \
 ```
 
 	部署coredns
-```	
+```
 kubectl apply -f coredns.yaml
-```	
+```
 	查看coredns的pod是否正常
 ```
 kubectl get pods -n kube-system
@@ -1857,11 +1857,11 @@ spec:
     imagePullPolicy: IfNotPresent
   restartPolicy: Always
 EOF
-```  
+```
 	创建busybox
 ```
 kubectl create -f busybox.yaml
-```	
+```
 	进入busybox中
 ```
 kubectl exec -it busybox -- sh
@@ -1874,7 +1874,7 @@ kubectl exec -it busybox -- sh
 	/ # nslookup kubernetes
 	Server:    10.0.0.2
 	Address 1: 10.0.0.2 kube-dns.kube-system.svc.cluster.local
-	
+
 	查看coredns一共部署了几个副本
 ```
 kubectl get deployments -n kube-system
@@ -1889,7 +1889,7 @@ kubectl get deployments -n kube-system
 一定要先执行最开始的8.1章节公共步骤，如关闭防火墙等操作，否则是成功添加Master2节点的
 :::
 
-### 8.15.1.Kubernetes集群架构简介	
+### 8.15.1.Kubernetes集群架构简介
 	Kubernetes作为容器集群系统，通过健康检查+重启策略实现了Pod故障自我修复能力，通过调度算法
 	实现将Pod分布式部署，并保持预期副本数，根据Node失效状态自动在其他Node拉起Pod，实现了应用
 	层的高可用性。针对Kubernetes集群，高可用性还应包含以下两个层面的考虑：Etcd数据库的高可用
@@ -1900,9 +1900,9 @@ kubectl get deployments -n kube-system
 	点kubeapiserver、kube-controller-manager和kube-scheduler，其中kube-controller-
 	manager和kube-scheduler组件自身通过选择机制已经实现了高可用，所以Master高可用主要针对
 	kube-apiserver组件，而该组件是以HTTP API提供服务，因此对他高可用与Web服务器类似，增加
-	负载均衡器对其负载均衡即可，并且可水平扩容。	
-	
-	多主多从架构架构服务器规划	
+	负载均衡器对其负载均衡即可，并且可水平扩容。
+
+	多主多从架构架构服务器规划
 角色 | IP | 组件
 :--- | :--- | :---:
 binary-k8s-master1 | 192.168.0.9  | etcd <br> docker <br> kube-apiserver kube-controller-manager kube-scheduler <br> kubelet kube-proxy <br> nginx keepalived
@@ -1935,7 +1935,7 @@ systemctl daemon-reload && systemctl start docker && systemctl enable docker
 	查看启动状态
 ```
 	systemctl status docker
-```	
+```
 
 ### 8.15.5.给Master Node2节点拷贝所有需要的证书
 	在Master Node2上创建etcd证书目录
@@ -1961,19 +1961,19 @@ rm -f /opt/kubernetes/ssl/kubelet*
 	修改Master2修改配置文件和主机名
 	修改apiserver、kubelet和kube-proxy配置文件为本地IP
 ```
-vi /opt/kubernetes/cfg/kube-apiserver.conf 
+vi /opt/kubernetes/cfg/kube-apiserver.conf
 ```
 	...
 	--bind-address=192.168.0.12 \
 	--advertise-address=192.168.0.12 \
 	...
-	
+
 	修改kube-controller-manager配置文件
 ```
 vi /opt/kubernetes/cfg/kube-controller-manager.kubeconfig
 ```
 	server: https://192.168.0.12:6443
-	
+
 	修改kube-scheduler配置文件
 ```
 vi /opt/kubernetes/cfg/kube-scheduler.kubeconfig
@@ -1984,7 +1984,7 @@ vi /opt/kubernetes/cfg/kube-scheduler.kubeconfig
 vi /opt/kubernetes/cfg/kubelet.conf
 ```
 	--hostname-override=binary-k8s-master2
-	
+
 	修改kube-proxy配置文件
 ```
 vi /opt/kubernetes/cfg/kube-proxy-config.yml
@@ -2013,7 +2013,7 @@ systemctl enable kube-proxy
 
 ### 8.15.7.在Master查看集群组件状态
 	注意：如果上面操作无误则这一步就可以查看到集群中组件的运行状态了
-	
+
 	查看组件状态
 ```
 kubectl get cs
@@ -2021,8 +2021,8 @@ kubectl get cs
 	[root@localhost ~]# kubectl get cs
 	Warning: v1 ComponentStatus is deprecated in v1.19+
 	NAME                 STATUS    MESSAGE             ERROR
-	controller-manager   Healthy   ok 
-	scheduler            Healthy   ok   
+	controller-manager   Healthy   ok
+	scheduler            Healthy   ok
 	etcd-2               Healthy   {"health":"true"}
 	etcd-1               Healthy   {"health":"true"}
 	etcd-0               Healthy   {"health":"true"}
@@ -2035,7 +2035,7 @@ kubectl get csr
 	[root@localhost ~]# kubectl get csr
 	NAME                                                   ... CONDITION ...
 	node-csr-Pkp1fPd9NZApJVRqRFlIIjskZ_gL_qDmcSWGvSuN-VQ   ... Pending	 ...
-	
+
 	同意证书申请
 ```
 kubectl certificate approve node-csr-Pkp1fPd9NZApJVRqRFlIIjskZ_gL_qDmcSWGvSuN-VQ
@@ -2046,12 +2046,12 @@ kubectl get csr
 ```
 	[root@localhost ~]# kubectl get csr
 	NAME                                                  ... CONDITION 	  ...
-	node-csr-Pkp1fPd9NZApJVRqRFlIIjskZ_gL_qDmcSWGvSuN-VQ  ... Approved,Issued ...	
-	
+	node-csr-Pkp1fPd9NZApJVRqRFlIIjskZ_gL_qDmcSWGvSuN-VQ  ... Approved,Issued ...
+
 	查看节点加入状态没等到所有pods状态都已经变为Running，执行下一步操作
 ```
 kubectl get pods -n kube-system
-```	
+```
 	[root@binary-k8s-master1 ~]# kubectl get pods -n kube-system
 	NAME                                      READY   STATUS     RESTARTS   AGE
 	calico-kube-controllers-bcc6f659f-7mf9n   1/1     Running    1          141m
@@ -2070,7 +2070,7 @@ kubectl get nodes
 	binary-k8s-master2   Ready    <none>   17m    v1.20.0
 	binary-k8s-worker1   Ready    <none>   142m   v1.20.0
 	binary-k8s-worker2   Ready    <none>   141m   v1.20.0
-	
+
 	至此一个双Master节点k8s集群已经部署完毕，再添加新的Master节点步骤和上面的是相同的
 
 ## 8.16.部署Nginx+Keepalived高可用负载均衡器
@@ -2112,7 +2112,7 @@ stream {
        server 192.168.0.9:6443;   # Master1 APISERVER IP:PORT
        server 192.168.0.12:6443;   # Master2 APISERVER IP:PORT
     }
-    
+
     server {
        listen 16443; # 由于nginx与master节点复用，这个监听端口不能是6443，否则会冲突
        proxy_pass k8s-apiserver;
@@ -2148,78 +2148,78 @@ EOF
 	Master Node1上的keepalived配置文件
 ```
 cat > /etc/keepalived/keepalived.conf << EOF
-global_defs { 
-   notification_email { 
-     acassen@firewall.loc 
-     failover@firewall.loc 
-     sysadmin@firewall.loc 
-   } 
-   notification_email_from Alexandre.Cassen@firewall.loc  
-   smtp_server 127.0.0.1 
-   smtp_connect_timeout 30 
+global_defs {
+   notification_email {
+     acassen@firewall.loc
+     failover@firewall.loc
+     sysadmin@firewall.loc
+   }
+   notification_email_from Alexandre.Cassen@firewall.loc
+   smtp_server 127.0.0.1
+   smtp_connect_timeout 30
    router_id NGINX_MASTER
-} 
+}
 
 vrrp_script check_nginx {
     script "/etc/keepalived/check_nginx.sh"
 }
 
-vrrp_instance VI_1 { 
-    state MASTER 
+vrrp_instance VI_1 {
+    state MASTER
     interface ens33  # 修改为实际网卡名
-    virtual_router_id 51 # VRRP 路由 ID实例，每个实例是唯一的 
-    priority 100    # 优先级，备服务器设置 90 
-    advert_int 1    # 指定VRRP 心跳包通告间隔时间，默认1秒 
-    authentication { 
-        auth_type PASS      
-        auth_pass 1111 
-    }  
+    virtual_router_id 51 # VRRP 路由 ID实例，每个实例是唯一的
+    priority 100    # 优先级，备服务器设置 90
+    advert_int 1    # 指定VRRP 心跳包通告间隔时间，默认1秒
+    authentication {
+        auth_type PASS
+        auth_pass 1111
+    }
     # 虚拟IP
-    virtual_ipaddress { 
+    virtual_ipaddress {
         192.168.0.88/24
-    } 
+    }
     track_script {
         check_nginx
-    } 
+    }
 }
 EOF
 ```
-​	
+​
 ​	Master Node2的keepalived配置文件
 ```
 cat > /etc/keepalived/keepalived.conf << EOF
-global_defs { 
-   notification_email { 
-     acassen@firewall.loc 
-     failover@firewall.loc 
-     sysadmin@firewall.loc 
-   } 
-   notification_email_from Alexandre.Cassen@firewall.loc  
-   smtp_server 127.0.0.1 
-   smtp_connect_timeout 30 
+global_defs {
+   notification_email {
+     acassen@firewall.loc
+     failover@firewall.loc
+     sysadmin@firewall.loc
+   }
+   notification_email_from Alexandre.Cassen@firewall.loc
+   smtp_server 127.0.0.1
+   smtp_connect_timeout 30
    router_id NGINX_BACKUP
-} 
+}
 
 vrrp_script check_nginx {
     script "/etc/keepalived/check_nginx.sh"
 }
 
-vrrp_instance VI_1 { 
-    state BACKUP 
+vrrp_instance VI_1 {
+    state BACKUP
     interface ens33
-    virtual_router_id 51 # VRRP 路由 ID实例，每个实例是唯一的 
+    virtual_router_id 51 # VRRP 路由 ID实例，每个实例是唯一的
     priority 90
     advert_int 1
-    authentication { 
-        auth_type PASS      
-        auth_pass 1111 
-    }  
-    virtual_ipaddress { 
+    authentication {
+        auth_type PASS
+        auth_pass 1111
+    }
+    virtual_ipaddress {
         192.168.0.88/24
-    } 
+    }
     track_script {
         check_nginx
-    } 
+    }
 }
 EOF
 ```
@@ -2251,7 +2251,7 @@ chmod +x /etc/keepalived/check_nginx.sh
 #### 8.16.3.1.查看Nginx版本模块
 	nginx -V
 	注意：如果已经安装 --with-stream模块,后面的步骤可以跳过
-#### 8.16.3.2.Master1和Master2安装Stream模块	
+#### 8.16.3.2.Master1和Master2安装Stream模块
 	备份Master Node1和Master Node2上原来的Nginx文件
 ```
 mv /usr/sbin/nginx /usr/sbin/nginx.bak &&
@@ -2267,14 +2267,14 @@ cd /opt/k8s/package/
 ```
 	Master Node1编译环境准备
 ```
-yum -y install libxml2 libxml2-dev libxslt-devel 
-yum -y install gd-devel 
-yum -y install perl-devel perl-ExtUtils-Embed 
+yum -y install libxml2 libxml2-dev libxslt-devel
+yum -y install gd-devel
+yum -y install perl-devel perl-ExtUtils-Embed
 yum -y install GeoIP GeoIP-devel GeoIP-data
 yum -y install pcre-devel
 yum -y install openssl openssl-devel
 yum -y install gcc make
-```	
+```
 	编译nginx，加上本次需新增的模块: --with-stream
 ```
 tar -xf nginx-1.20.1.tar.gz
@@ -2294,7 +2294,7 @@ make
 	nginx: [alert] could not open error log file: open() "/usr/share/nginx/logs/error.log" failed (2: No such file or directory)
 	nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 	nginx: configuration file /etc/nginx/nginx.conf test is successful
-	
+
 	替换nginx到Master1/Master2
 ```
 cp ./objs/nginx /usr/sbin/ &&
@@ -2345,29 +2345,29 @@ ip addr
 	    inet6 fe80::5c3d:f3b3:1254:f87b/64 scope link noprefixroute 
 	       valid_lft forever preferred_lft forever
 	...
-	
+
 	查看Master2网卡详细信息
 ```
 ip addr
 ```
 	[root@binary-k8s-master1 ~]# ip addr
 	...
-	2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state 
+	2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state
 			 UP group default qlen 1000
 	    link/ether 00:50:56:2d:95:d6 brd ff:ff:ff:ff:ff:ff
 	    inet 192.168.0.12/24 brd 192.168.0.255 scope global noprefixroute ens33
 	       valid_lft forever preferred_lft forever
-	    inet6 fe80::fe5b:93a6:43c0:3e2e/64 scope link tentative 
-		    noprefixroute dadfailed 
+	    inet6 fe80::fe5b:93a6:43c0:3e2e/64 scope link tentative
+		    noprefixroute dadfailed
 	       valid_lft forever preferred_lft forever
-	    inet6 fe80::5c3d:f3b3:1254:f87b/64 scope link tentative 
-		    noprefixroute dadfailed 
+	    inet6 fe80::5c3d:f3b3:1254:f87b/64 scope link tentative
+		    noprefixroute dadfailed
 	       valid_lft forever preferred_lft forever
 	    inet6 fe80::7bd2:e647:9e81:ef45/64 scope link tentative
-		     noprefixroute dadfailed 
+		     noprefixroute dadfailed
 	       valid_lft forever preferred_lft forever
 	...
-	
+
 	如何确定是否配置成功
 	可以看到，在Master1上的ens33网卡绑定了192.168.242.55 虚拟IP，说明工作正常。
 	inet 192.168.242.55/24 scope global ens33，而Master2上的ens33网卡没有绑定虚拟IP
@@ -2384,21 +2384,21 @@ ip addr
 ```
 	[root@binary-k8s-master1 ~]# ip addr
 	...
-	2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast 
+	2: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast
 		state UP group default qlen 1000
 	link/ether 00:50:56:2d:95:d6 brd ff:ff:ff:ff:ff:ff
 	inet 192.168.0.12/24 brd 192.168.0.255 scope global noprefixroute ens33
 	   valid_lft forever preferred_lft forever
 	inet 192.168.0.88/24 scope global ens33
 	   valid_lft forever preferred_lft forever
-	inet6 fe80::fe5b:93a6:43c0:3e2e/64 scope link tentative 
+	inet6 fe80::fe5b:93a6:43c0:3e2e/64 scope link tentative
 	    noprefixroute dadfailed valid_lft forever preferred_lft forever
-	inet6 fe80::5c3d:f3b3:1254:f87b/64 scope link tentative 
+	inet6 fe80::5c3d:f3b3:1254:f87b/64 scope link tentative
 	    noprefixroute dadfailed valid_lft forever preferred_lft forever
-	inet6 fe80::7bd2:e647:9e81:ef45/64 scope link tentative 
+	inet6 fe80::7bd2:e647:9e81:ef45/64 scope link tentative
 	    noprefixroute dadfailed valid_lft forever preferred_lft forever
 	...
-	
+
 	如何确定虚拟IP是否发生飘移
 	可以看到，在Master2上的ens33网卡绑定了192.168.242.55 虚拟IP，说明工作正常。
 
@@ -2423,7 +2423,7 @@ curl -k https://192.168.0.88:16443/version
 	  "compiler": "gc",
 	  "platform": "linux/amd64"
 	}
-	
+
 	Master Node2机器
 	[root@binary-k8s-master2 ~]# curl -k https://192.168.0.88:16443/version
 	{
@@ -2437,7 +2437,7 @@ curl -k https://192.168.0.88:16443/version
 	  "compiler": "gc",
 	  "platform": "linux/amd64"
 	}
-	
+
 	Worker Node1机器
 	[root@binary-k8s-worker1 ~]# curl -k https://192.168.0.88:16443/version
 	{
@@ -2451,7 +2451,7 @@ curl -k https://192.168.0.88:16443/version
 	  "compiler": "gc",
 	  "platform": "linux/amd64"
 	}
-	
+
 	Worker Node2机器
 	[root@binary-k8s-worker2 ~]# curl -k https://192.168.0.88:16443/version
 	{
@@ -2465,11 +2465,11 @@ curl -k https://192.168.0.88:16443/version
 	  "compiler": "gc",
 	  "platform": "linux/amd64"
 	}
-	
+
 	如何确定负载均衡器是否搭建正常
 	如果所有节点可以正确获取到K8s版本信息，说明负载均衡器搭建正常。
 	该请求数据流程：curl -> vip(nginx) -> apiserver
-	
+
 	通过查看Nginx日志也可以看到转发apiserver IP：
 ```
 tailf /var/log/nginx/k8s-access.log
@@ -2488,7 +2488,7 @@ tailf /var/log/nginx/k8s-access.log
 	说目前所有的Worker Node组件连接都还是Master1 Node，如果不改为连接VIP走负载均衡器，那么
 	Master还是单点故障。因此接下来就是要改所有Worker Node（kubectl get node命令查看到的节
 	点）组件配置文件，由原来192.168.0.9修改为192.168.242.55（VIP）。
-	
+
 	在所有Worker Node执行
 	注意事项
 	这里除了Worker Node1和Worker Node2，Master Node1和Master Node2这两个节点也充当了Worker Node，所以所有的四个节点
@@ -2507,7 +2507,7 @@ kubectl get nodes
 	binary-k8s-master2   Ready    <none>   177m    v1.20.0
 	binary-k8s-worker1    Ready    <none>   5h1m    v1.20.0
 	binary-k8s-worker2    Ready    <none>   5h1m    v1.20.0
-	
+
 	为了确保配置成功，重启集群中所有机器，再次在Master Node1和Master Node2中查看节点状态，如一切部署无误结果如下所示
 	[root@binary-k8s-master1 cfg]# kubectl get nodes
 	NAME                 STATUS   ROLES    AGE     VERSION
@@ -2523,11 +2523,11 @@ kubectl get nodes
 ### 8.17.1系统断电后,某个etcd节点无法启动
 	报错信息
 	publish error: etcdserver: request timed out
-	
+
 	解决方法(如果没有重要数据,或者刚进行完初始化)
 	检查日志发现并没有特别明显的错误，根据经验来讲，etcd 节点坏掉一个其实对集群没有大的影响，
 	这时集群已经可以正常使用了，但是这个坏掉的 etcd 节点并没有启动
-	
+
 	#进入 etcd 的数据存储目录进行备份 备份原有数据：
 ```
 cd /var/lib/etcd/default.etcd/member/ &&
@@ -2565,10 +2565,8 @@ kubectl get service guestbook
 ```
 	NAME        TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
 	guestbook   NodePort   10.10.10.253   <none>        3000:31208/TCP   1m
-	
+
 	访问服务（主节点和两个工作节点都可访问到这个服务）
 	http://192.168.0.6:31208
 	http://192.168.0.7:31208
 	http://192.168.0.8:31208
- 
-		 

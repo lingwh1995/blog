@@ -1,6 +1,6 @@
 ---
 title: 在Centos7上搭建开发环境-3.搭建基础开发环境
-description: 本章节涉及主要内容有：安装jdk,安装maven,安装mysql,,,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：安装jdk,安装maven,安装mysql,安装nodejs,安装fastgithub,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -14,13 +14,13 @@ date: 2020-01-15
 head:
   - - meta
     - name: keywords
-      content: 本章节涉及主要内容有：安装jdk,安装maven,安装mysql,,,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+      content: 本章节涉及主要内容有：安装jdk,安装maven,安装mysql,安装nodejs,安装fastgithub,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 3.搭建基础开发环境
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter3.md)
 
-## 3.1.安装jdk
+## 3.3.安装jdk
 	查看当前安装的java版本
 
 ```
@@ -65,7 +65,7 @@ source /etc/profile
 java -version
 ```
 
-## 3.2.安装maven
+## 3.4.安装maven
 	注意
 	maven linux版和windows版并不通用
 
@@ -119,7 +119,7 @@ vim /usr/local/bin/apache-maven-3.8.6/conf/settings.xml
 </mirror>
 ```
 
-## 3.3.安装mysql
+## 3.5.安装mysql
 <!--
 	参考网站
 	安装mysql
@@ -212,7 +212,7 @@ update user set host='%' where user='root';
 flush privileges;
 ```
 
-## 3.4安装nodejs
+## 3.6.安装nodejs
 	安装wget
 ```
 yum -y install wget
@@ -254,7 +254,7 @@ node -v
 npm -v
 ```
 
-## 3.5安装fastgithub
+## 3.7.安装fastgithub
 	下载依赖包
 ```
 yum -y install libicu
@@ -262,33 +262,14 @@ yum -y install libicu
 
 	下载fastGithub
 ```
-wget -c https://github.com/dotnetcore/FastGithub/releases/download/2.0.4/fastgithub_linux-x64.zip
+curl -fL -u fastgithub-1660864382041:5d8500249a7d3da57c34a3214397f54709cf55dc \
+"https://lingwh-generic.pkg.coding.net/coding-drive/fastgithub/v2.1.4/fastgithub_win-x64.zip?version=2.1.4" \
+-o fastgithub_win-x64.zip
 ```
 
     解压
 ```
 unzip fastgithub_linux-x64.zip
-```
-
-	配置全局代理
-```
-vim /etc/profile
-```
-
-	添加代理配置
-```
-export http_proxy=http://127.0.0.1:38457
-export https_proxy=https://127.0.0.1:38457
-```
-	刷新配置文件
-```
-source /etc/profile
-```
-
-	配置git使用全局代理
-```
-git config --global http.proxy http://127.0.0.1:38457
-git config --global https.proxy http://127.0.0.1:38457
 ```
 
 	设置权限
@@ -311,5 +292,11 @@ sudo ./fastgithub_linux-x64/fastgithub stop
 	测试运行效果
 ```
 wget -c https://github.com/tanghaibao/goatools/blob/main/data/association.txt
+```
+
+	配置git使用代理（不配置无法提交代码）
+```
+git config --global http.proxy http://127.0.0.1:38457
+git config --global https.proxy http://127.0.0.1:38457
 ```
 

@@ -81,10 +81,37 @@ yum -y install telnet-server
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>git
 卸载旧版本
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum remove git
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y remove git
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装git
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum install -y git
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看版本
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git version
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>指定版本git
+下载需要安装的版本号
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.29.0.tar.gz
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装需要的组件
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y install curl-devel expat-devel gettext-devel openssl-devel zlib-devel
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>卸载Centos自带的git
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y remove git
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装git
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>tar -zxf git-2.29.0.tar.gz &amp;&amp;
+cd git-2.29.0 &amp;&amp;
+make prefix=/usr/local/git all &amp;&amp;
+make prefix=/usr/local/git install
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>添加环境变量
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim /etc/profile
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>export PATH=$PATH:/usr/local/git/bin
+
+刷新环境变量
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>source /etc/profile
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看版本
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git version
@@ -97,9 +124,9 @@ yum -y install telnet-server
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y install curl
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>下载脚本
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>curl https://gitee.com/lingwh1995/config-center/raw/master/centos/centos-init.sh -o centos-init.sh
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>curl https://gitee.com/lingwh1995/config-center/raw/master/centos/centos7/centos7-init.sh -o centos7-init.sh
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>赋予可运行权限并运行该脚本
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>chmod +x centos-init.sh &amp;&amp;
-./centos-init.sh
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>chmod +x centos7-init.sh &amp;&amp;
+./centos7-init.sh
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div></div></template>

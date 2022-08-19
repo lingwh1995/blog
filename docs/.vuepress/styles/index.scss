@@ -97,17 +97,17 @@ p, ul, ol {
     /*博客主页中样式中标签样式修改结束----------------------------------------------------------------------*/
 
     $sidebar-width-max600:100%;
-    
+
     /*侧边栏宽度*/
     .sidebar {
         width: $sidebar-width-max600;
     }
     /*侧边栏切换按钮宽度*/
     .toggle-sidebar-wrapper {
-        left: $sidebar-width-max600; 
+        left: $sidebar-width-max600;
     }
     /**主要内容*/
-    .theme-container .page { 
+    .theme-container .page {
         padding-left: 1rem;
     }
     /*博客正文字体*/
@@ -123,11 +123,10 @@ p, ul, ol {
         margin: 0 0;
         padding: 1rem;
         border-radius: 6px;
-        line-height: 1.4;
     }
     .theme-container .sidebar-links .sidebar-sub-headers {
         display: none;
-    } 
+    }
 }
 
 /*平板*/
@@ -172,17 +171,17 @@ p, ul, ol {
     /*博客主页中样式中标签样式修改结束----------------------------------------------------------------------*/
 
     $sidebar-width-min600_max900:50%;
-    
+
     /*侧边栏宽度*/
     .sidebar {
         width: $sidebar-width-min600_max900;
     }
     /*侧边栏切换按钮宽度*/
     .toggle-sidebar-wrapper {
-        left: $sidebar-width-min600_max900; 
+        left: $sidebar-width-min600_max900;
     }
     /**主要内容*/
-    .theme-container .page { 
+    .theme-container .page {
         padding-left: 1rem;
     }
     /*博客正文字体*/
@@ -198,7 +197,6 @@ p, ul, ol {
         margin: 0 0;
         padding: 1rem;
         border-radius: 6px;
-        line-height: 1.4;
     }
     /**设置移动端隐藏按照章节查看中二级包括二级以上的侧边栏*/
     .theme-container .sidebar-links .sidebar-sub-headers {
@@ -207,7 +205,7 @@ p, ul, ol {
 }
 
 /*PC分辨率 960-1440 */
-@media screen and (min-width:960px) and (max-width:1440px){   
+@media screen and (min-width:960px) and (max-width:1440px){
     /*博客正文中样式中标签样式修改开始----------------------------------------------------------------------*/
     .page .page-title .page-info .tags-wrapper li {
         width: 9rem;
@@ -255,10 +253,10 @@ p, ul, ol {
     }
     /*侧边栏切换按钮宽度*/
     .toggle-sidebar-wrapper {
-        left: $sidebar-width-min960_max1440; 
+        left: $sidebar-width-min960_max1440;
     }
     /**主要内容*/
-    .theme-container .page { 
+    .theme-container .page {
         padding-left: 1rem;
     }
     /*博客正文字体*/
@@ -274,12 +272,11 @@ p, ul, ol {
         margin: 0 0;
         padding: 1rem;
         border-radius: 6px;
-        line-height: 1.4;
     }
     /**设置移动端隐藏按照章节查看中二级包括二级以上的侧边栏*/
     .sidebar .sidebar-links .sidebar-sub-headers {
         display: none;
-    } 
+    }
 }
 
 /*PC分辨率 1440+ */
@@ -332,10 +329,10 @@ p, ul, ol {
     }
     /*侧边栏切换按钮宽度*/
     .toggle-sidebar-wrapper {
-        left: $sidebar-width-min1440; 
+        left: $sidebar-width-min1440;
     }
     /**主要内容*/
-    .theme-container .page { 
+    .theme-container .page {
         padding-left: $sidebar-width-min1440;
     }
     /*博客正文字体*/
@@ -351,6 +348,5 @@ p, ul, ol {
         margin: 0 0;
         padding: 1rem;
         border-radius: 6px;
-        line-height: 1.4;
     }
 }

@@ -202,7 +202,7 @@ docker run hello-world
 	[root@localhost ~]# docker run hello-world
 	Unable to find image 'hello-world:latest' locally
 	latest: Pulling from library/hello-world
-	2db29710123e: Pull complete 
+	2db29710123e: Pull complete
 	Digest: sha256:2498fce14358aa50ead0cc6c19990fc6ff866ce72aeb5546e1d59caac3d0d60f
 	Status: Downloaded newer image for hello-world:latest
 
@@ -448,9 +448,10 @@ rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka
 	官方网址
 ```
 https://github.com/docker/compose/
-```
+```   
 
-	安装docker-compose
+	
+	
 	创建运行文件夹->下载docker-compose->解压并重命名docker-compose->赋予运行权限并复制到/usr/local/bin/docker-compose
 ```
 mkdir -p /opt/software/package &&
@@ -478,8 +479,7 @@ docker-compose --version
 ```
 https://github.com/goharbor/harbor
 ```
->
-   创建存放下载文件夹->下载harbor->创建运行文件夹->解压到运行文件夹
+	创建存放下载文件夹->下载harbor->创建运行文件夹->解压到运行文件夹
 ```
 mkdir -p /opt/software/package &&
 cd /opt/software/package &&

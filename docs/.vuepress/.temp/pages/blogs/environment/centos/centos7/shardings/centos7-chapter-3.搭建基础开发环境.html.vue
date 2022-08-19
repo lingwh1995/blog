@@ -3,14 +3,16 @@
 <pre><code>本章节涉及主要内容有：
  3.1.章节内容概述
  3.2.章节内容大纲
- 3.3.安装jdk
- 3.4.安装maven
- 3.5.安装mysql
+ 3.1.安装jdk
+ 3.2.安装maven
+ 3.3.安装mysql
+ 3.4安装nodejs
+ 3.5安装fastgithub
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 </code></pre>
 <h2 id="_3-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_3-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter3.html" target="_blank">3.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter3.html"/>
-<h2 id="_3-3-安装jdk" tabindex="-1"><a class="header-anchor" href="#_3-3-安装jdk" aria-hidden="true">#</a> 3.3.安装jdk</h2>
+<h2 id="_3-1-安装jdk" tabindex="-1"><a class="header-anchor" href="#_3-1-安装jdk" aria-hidden="true">#</a> 3.1.安装jdk</h2>
 <pre><code>查看当前安装的java版本
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum list installed | grep java
@@ -26,10 +28,11 @@ curl -fL -u software-1659088335906:c2e556a8a52386cbe0c6361ee3a7d8a21d3c9ca0 \
 version=latest" -o jdk-8u181-linux-x64.tar.gz
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>解压jdk后赋予权限并放入指定目录
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>tar -zxvf jdk-8u181-linux-x64.tar.gz &amp;&amp;
-chmod +x jdk1.8.0_181
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /opt/software/package &amp;&amp;
+tar -zxvf jdk-8u181-linux-x64.tar.gz &amp;&amp;
+chmod +x jdk1.8.0_181 &amp;&amp;
 mv jdk1.8.0_181 /usr/local/bin/jdk1.8.0_181
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>配置环境变量
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>配置环境变量
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim /etc/profile
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>添加如下内容
@@ -44,7 +47,7 @@ export PATH=${JAVA_HOME}/bin:$PATH
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看java版本
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>java -version
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_3-4-安装maven" tabindex="-1"><a class="header-anchor" href="#_3-4-安装maven" aria-hidden="true">#</a> 3.4.安装maven</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_3-2-安装maven" tabindex="-1"><a class="header-anchor" href="#_3-2-安装maven" aria-hidden="true">#</a> 3.2.安装maven</h2>
 <pre><code>注意
 maven linux版和windows版并不通用
 
@@ -88,7 +91,7 @@ export PATH=$PATH:$M2_HOME/bin
 	&lt;url>http://repo2.maven.org/maven2/&lt;/url>
 	&lt;mirrorOf>central&lt;/mirrorOf>
 &lt;/mirror>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_3-5-安装mysql" tabindex="-1"><a class="header-anchor" href="#_3-5-安装mysql" aria-hidden="true">#</a> 3.5.安装mysql</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_3-3-安装mysql" tabindex="-1"><a class="header-anchor" href="#_3-3-安装mysql" aria-hidden="true">#</a> 3.3.安装mysql</h2>
 <!--
 	参考网站
 	安装mysql
@@ -161,4 +164,69 @@ FLUSH PRIVILEGES;
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>use mysql;
 update user set host='%' where user='root';
 flush privileges;
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div></template>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_3-4安装nodejs" tabindex="-1"><a class="header-anchor" href="#_3-4安装nodejs" aria-hidden="true">#</a> 3.4安装nodejs</h2>
+<pre><code>安装wget
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y install wget
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装gcc
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum install gcc gcc-c++
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>下载node国内镜像
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>wget https://registry.npmmirror.com/-/binary/node/v14.0.0/node-v14.0.0-linux-x64.tar.gz
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>解压并重命名文件夹
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>tar -xvf node-v14.0.0-linux-x64.tar.gz &amp;&amp;
+mv node-v14.0.0-linux-x64 node
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>配置环境变量
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vi /etc/profile
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>在文件最后添加以下配置</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>export NODE_HOME=/root/node
+export PATH=$PATH:$NODE_HOME/bin
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>刷新环境变量配置
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>source /etc/profile
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>验证结果
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>node -v
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>npm -v
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_3-5安装fastgithub" tabindex="-1"><a class="header-anchor" href="#_3-5安装fastgithub" aria-hidden="true">#</a> 3.5安装fastgithub</h2>
+<pre><code>下载依赖包
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y install libicu
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>下载fastGithub
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>wget -c https://github.com/dotnetcore/FastGithub/releases/download/2.0.4/fastgithub_linux-x64.zip
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>解压
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>unzip fastgithub_linux-x64.zip
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>配置全局代理
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim /etc/profile
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>添加代理配置
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>export http_proxy=http://127.0.0.1:38457
+export https_proxy=https://127.0.0.1:38457
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>刷新配置文件
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>source /etc/profile
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>配置git使用全局代理
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git config --global http.proxy http://127.0.0.1:38457
+git config --global https.proxy http://127.0.0.1:38457
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>设置权限
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>chmod -r 777 fastgithub_linux-x64/dnscrypt-proxy &amp;&amp;
+chmod +x fastgithub_linux-x64/fastgithub
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>以服务形式运行fastGithub
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sudo ./fastgithub_linux-x64/fastgithub start &amp;&amp;
+systemctl enable fastgithub
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>以服务形式停止fastgithub
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sudo ./fastgithub_linux-x64/fastgithub stop
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>测试运行效果
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>wget -c https://github.com/tanghaibao/goatools/blob/main/data/association.txt
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></div></template>

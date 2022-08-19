@@ -22,7 +22,7 @@
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看当前安装的docker版本
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum list installed | grep docker
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>containerd.io.x86_64 	           1.6.6-3.1.el7                  @docker-ce-stable				
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>containerd.io.x86_64 	           1.6.6-3.1.el7                  @docker-ce-stable
 docker-ce.x86_64                   3:20.10.17-3.el7               @docker-ce-stable
 docker-ce-cli.x86_64               1:20.10.17-3.el7               @docker-ce-stable
 docker-ce-rootless-extras.x86_64   20.10.17-3.el7                 @docker-ce-stable
@@ -411,8 +411,9 @@ cp docker-compose-2.6-linux-x86_64 /usr/local/bin/docker-compose
 
 官方网址
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code></code></pre><div class="line-numbers" aria-hidden="true"></div></div><pre><code>创建存放下载文件夹-&gt;下载harbor-&gt;创建运行文件夹-&gt;解压到运行文件夹
-</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>https://github.com/goharbor/harbor
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><blockquote></blockquote>
+<p>创建存放下载文件夹-&gt;下载harbor-&gt;创建运行文件夹-&gt;解压到运行文件夹</p>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mkdir -p /opt/software/package &amp;&amp;
 cd /opt/software/package &amp;&amp;
 curl -fL -u software-1660737546177:da4715201c1e37859c2473112e90af4d1615abb4 \
@@ -421,24 +422,25 @@ curl -fL -u software-1660737546177:da4715201c1e37859c2473112e90af4d1615abb4 \
 mkdir -p /opt/software/install &amp;&amp;
 tar -zxvf harbor-offline-installer-v2.5.2.tgz -C /opt/software/install
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>复制一份harbor.yml.tmpl，重命名为harbor.yml并修改harbor.yml
-cd /opt/software/install/harbor &amp;&amp;
-cp harbor.yml.tmpl harbor.yml &amp;&amp;
-vim harbor.yml
-
-修改harbor.yml配置
-修改hostname
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /opt/software/install/harbor &amp;&amp;
+cp harbor.yml.tmpl harbor.yml
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>修改harbor.yml配置
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim harbor.yml
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>修改hostname为部署harbor的机器的IP
 hostname: 192.168.0.4
-修改端口
+修改端口为可连通的端口
 port:5001
 注释掉https相关部分
 #https:
-	# https port for harbor, default is 443
-	# port: 443
-	# The path of cert and key files for nginx
-	#certificate: /your/certificate/path
-	#private_key: /your/private/key/path
+  #https port for harbor, default is 443
+  #port: 443
+  #The path of cert and key files for nginx
+  #certificate: /your/certificate/path
+  #private_key: /your/private/key/path
 修改密码
-	harbor_admin_password: 123456
+  harbor_admin_password: 123456
 
 安装harbor
 </code></pre>
