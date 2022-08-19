@@ -532,7 +532,6 @@ git config --global https.proxy http://127.0.0.1:38457
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter4.md)
 ## 4.3.安装docker
 ### 4.3.1.在线安装docker
-
 	以root身份更新yum，将yum包更新到最新
 ```
 yum -y update
