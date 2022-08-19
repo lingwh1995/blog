@@ -23,9 +23,9 @@ export default navbar([
       {
         text: "springboot",
         children: [
-          { 
+          {
             icon: "leaf",
-            text: "springboot", 
+            text: "springboot",
             link: "/xxx",
           },
         ],
@@ -40,17 +40,17 @@ export default navbar([
           },
           {
             text: "springcloud-zookeeper",
-            icon: "cache",            
+            icon: "cache",
             link: "/backend/springcloud/article/article6",
           },
           {
             text: "springcloud-consul",
-            icon: "cache",            
+            icon: "cache",
             link: "/backend/springcloud/article/article6",
           },
           {
             text: "springcloud-alibaba",
-            icon: "cache",            
+            icon: "cache",
             link: "/backend/springcloud/article/article6",
           }
         ],
@@ -61,16 +61,16 @@ export default navbar([
     text: "前端",
     icon: "html",
     children: [
-      { 
-        text: "ECMAScript 5", 
+      {
+        text: "ECMAScript 5",
         link: "/xxx"
       },
-      { 
-        text: "ECMAScript 6", 
+      {
+        text: "ECMAScript 6",
         link: "/xxx"
       },
-      { 
-        text: "Framework", 
+      {
+        text: "Framework",
         link: "/xxx"
       }
     ],
@@ -82,13 +82,13 @@ export default navbar([
       {
         text: "关系型数据库",
         children: [
-          { 
+          {
             text: "mysql",
             icon: "mysql",
             link: "/database/relational/article1"
           },
-          { 
-            text: "oracle", 
+          {
+            text: "oracle",
             link: "/database/relational/article2"
           },
         ],
@@ -113,18 +113,18 @@ export default navbar([
     text: "环境搭建",
     icon: "shell",
     children: [
-      { 
-        text: "centos", 
+      {
+        text: "centos",
         children: [
-          { 
+          {
             text: "centos7",
             icon: "centos",
             link: "/blogs/environment/centos/centos7/shardings/centos7-chapter-0.博客内容介绍.md",
           },
         ],
       },
-      { 
-        text: "windows", 
+      {
+        text: "windows",
         icon: "windows",
         link: "/blogs/environment/windows/windows.md",
       }
@@ -134,23 +134,23 @@ export default navbar([
     text: "基础支持",
     icon: "tool",
     children: [
-      { 
-        text: "网站收藏", 
+      {
+        text: "网站收藏",
         children: [
-          { 
-            text: "知识类网站",
-            icon: "centos",
-            link: "https://javaguide.cn/",
-          },
-          { 
+          {
             text: "工具类网站",
-            icon: "centos",
-            link: "https://javaguide.cn/",
+            icon: "repair",
+            link: "/blogs/basicsupprot/tools.md",
+          },
+          {
+            text: "知识类网站",
+            icon: "study",
+            link: "/blogs/basicsupprot/knowledge.md",
           },
         ],
       },
-      { 
-        text: "工具软件", 
+      {
+        text: "工具软件",
         icon: "windows",
         link: "/blogs/environment/windows/windows.md",
       }
