@@ -27,8 +27,11 @@ export default defineUserConfig({
   markdown: {
     //vuepress解析md标题的深度
     headers: {
-      level : [1,2,3,4,5]
+      level: [1,2,3,4,5]
     },
+    code: {
+      lineNumbers: true,
+    }
   },
   //自定义的vue组件的别名
   alias: {

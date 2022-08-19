@@ -35,21 +35,21 @@ export default hopeTheme({
   // "GitHub" / "GitLab" / "Gitee" / "Bitbucket" 其中之一，或是 "Source"。
   repoLabel: "Github",
   // 是否在导航栏内显示仓库链接，默认为 `true`
-  repoDisplay: true,  
+  repoDisplay: true,
 
   //暂时不知道是干什么的
   docsDir: "blog/docs",
 
   // navbar:如果要禁止显示navbar，将值配置为false
   navbar: navbar,
-  
+
   //配置导航栏导航条目的位置
   navbarLayout: {
     left: ["Brand"],
     center: ["Links"],
     right: ["Language", "Repo", "Outlook", "Search"],
   },
-  
+
   // sidebar
   sidebar: sidebar,
 
@@ -59,10 +59,10 @@ export default hopeTheme({
   footer: "Copyright 2021 © lingwh 欢迎访问",
   //是否开启显示页脚
   displayFooter: true,
-  
+
   //页面信息配置
   pageInfo: ["Author", "Original", "Date", "ReadingTime", "Word", "Category", "Tag"],
-  
+
   /**
    * 博客主页配置
    */

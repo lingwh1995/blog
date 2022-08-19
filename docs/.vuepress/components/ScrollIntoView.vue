@@ -36,7 +36,7 @@ export default {
     }else{
       console.log('当前不在shardings中');
     }
-    
+
   },
   methods: {
     transformReadMode() {
@@ -96,7 +96,7 @@ export default {
       document.querySelector(selector).scrollIntoView({
         behavior:"smooth"
       })
-    } 
+    }
   },
 }
 </script>

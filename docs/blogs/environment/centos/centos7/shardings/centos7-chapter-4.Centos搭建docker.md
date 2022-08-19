@@ -78,7 +78,7 @@ sudo tee /etc/docker/daemon.json <<-'EOF'
     ]
 }
 EOF
-````
+```
 	daemon.json配置说明
 	registry-mirrors：docker国内镜像源地址
 
@@ -726,7 +726,7 @@ output{
 	output代表数据输出配置，输出到elasticsearch, hosts是es的地址192.168.0.4:9200
 	
 	退出容器
-``	
+```
 exit
 ```	
 	重启ELK容器

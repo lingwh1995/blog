@@ -174,7 +174,7 @@ systemctl enable docker
 [root@localhost ~]# docker run hello-world
 Unable to find image 'hello-world:latest' locally
 latest: Pulling from library/hello-world
-2db29710123e: Pull complete 
+2db29710123e: Pull complete
 Digest: sha256:2498fce14358aa50ead0cc6c19990fc6ff866ce72aeb5546e1d59caac3d0d60f
 Status: Downloaded newer image for hello-world:latest
 
@@ -389,8 +389,7 @@ nexus和Maven中央仓库的关系，harbor除了存储和分发镜像外还具�
 官方网址
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>https://github.com/docker/compose/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装docker-compose
-创建运行文件夹-&gt;下载docker-compose-&gt;解压并重命名docker-compose-&gt;赋予运行权限并复制到/usr/local/bin/docker-compose
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>创建运行文件夹-&gt;下载docker-compose-&gt;解压并重命名docker-compose-&gt;赋予运行权限并复制到/usr/local/bin/docker-compose
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mkdir -p /opt/software/package &amp;&amp;
 cd /opt/software/package &amp;&amp;
@@ -412,8 +411,8 @@ cp docker-compose-2.6-linux-x86_64 /usr/local/bin/docker-compose
 官方网址
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>https://github.com/goharbor/harbor
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><blockquote></blockquote>
-<p>创建存放下载文件夹-&gt;下载harbor-&gt;创建运行文件夹-&gt;解压到运行文件夹</p>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>创建存放下载文件夹-&gt;下载harbor-&gt;创建运行文件夹-&gt;解压到运行文件夹
+</code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mkdir -p /opt/software/package &amp;&amp;
 cd /opt/software/package &amp;&amp;
 curl -fL -u software-1660737546177:da4715201c1e37859c2473112e90af4d1615abb4 \
@@ -617,27 +616,31 @@ output代表数据输出配置，输出到elasticsearch, hosts是es的地址192.
 
 退出容器
 </code></pre>
-<p>``	
-exit</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	重启ELK容器
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>docker restart elk</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	注意事项	
-	当把docker和centos7的冲突解决后,需要让centos放行elk(具体是es)的部署地址
-	
-	查看容器详细信息
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>docker inspect 容器id</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	查找到elk(具体是es)容器的ip,假设为172.17.0.2
-	
-	执行放行操作
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>firewall-cmd --zone=trusted --add-source=172.17.0.2/16 --permanent</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	重新载入防火墙配置
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>firewall-cmd --reload</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	重启防火墙
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>systemctl restart firewalld</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	docker启动elk报错/或一直重启故障解决
-	错误日志：
-	max virtual memory areas vm.max_map_count [65530] is too low, increase to at least
-	解决方式，在宿主机执行
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>sudo sysctl -w vm.max_map_count=262144</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>exit
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>重启ELK容器
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker restart elk
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>注意事项	
+当把docker和centos7的冲突解决后,需要让centos放行elk(具体是es)的部署地址
+
+查看容器详细信息
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker inspect 容器id
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查找到elk(具体是es)容器的ip,假设为172.17.0.2
+
+执行放行操作
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>firewall-cmd --zone=trusted --add-source=172.17.0.2/16 --permanent
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>重新载入防火墙配置
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>firewall-cmd --reload
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>重启防火墙
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl restart firewalld
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>docker启动elk报错/或一直重启故障解决
+错误日志：
+max virtual memory areas vm.max_map_count [65530] is too low, increase to at least
+解决方式，在宿主机执行
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sudo sysctl -w vm.max_map_count=262144
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></div></template>

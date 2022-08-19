@@ -22,7 +22,7 @@ export default {
       console.log(hash+'--')
       this.goAnchor(hash)
     })
-    
+
     //获取一级标题json对象
     const Title1Json = {}
     document.querySelectorAll('#toc .toc-list .level1').forEach(function(item,index){
@@ -91,7 +91,7 @@ export default {
       document.querySelector(selector).scrollIntoView({
         behavior:"smooth"
       })
-    } 
+    }
   },
 }
 </script>

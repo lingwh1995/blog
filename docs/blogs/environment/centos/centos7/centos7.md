@@ -588,7 +588,7 @@ sudo tee /etc/docker/daemon.json <<-'EOF'
     ]
 }
 EOF
-````
+```
 	daemon.json配置说明
 	registry-mirrors：docker国内镜像源地址
 
@@ -989,7 +989,7 @@ docker-compose --version
 ```
 https://github.com/goharbor/harbor
 ```
-	创建存放下载文件夹->下载harbor->创建运行文件夹->解压到运行文件夹
+    创建存放下载文件夹->下载harbor->创建运行文件夹->解压到运行文件夹
 ```
 mkdir -p /opt/software/package &&
 cd /opt/software/package &&
@@ -1035,9 +1035,9 @@ vim harbor.yml
 docker-compose up -d
 ```
 
-	让docker信任harbor私服
+	配置docker使用harbor私服
 ```
-vim /etc/docker/daemon.json,添加以下内容:
+vim /etc/docker/daemon.json
 ```
 	配置Docker(Register)注册仓库服务器信任192.168.0.4:5001:
 	{"insecure-registries":["192.168.0.4:5001"]}
@@ -1236,7 +1236,7 @@ output{
 	output代表数据输出配置，输出到elasticsearch, hosts是es的地址192.168.0.4:9200
 	
 	退出容器
-``	
+```
 exit
 ```	
 	重启ELK容器

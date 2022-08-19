@@ -349,4 +349,27 @@ p, ul, ol {
         padding: 1rem;
         border-radius: 6px;
     }
+    .theme-hope-content pre {
+        padding-top: 2rem;
+    }
+    /*代码块背景色*/
+    // div[class*=language-] {
+    //     position: relative;
+    //     border-radius: 6px;
+    //     background: #C7EDCC;
+    //     transition: background-color var(--color-transition);
+    // }
+    /*按钮背景色*/
+    .copy-code-button {
+        border-width: 0;
+        background-color: transparent;
+        cursor: pointer;
+        width: 32px;
+        height: 32px;
+        padding: 7px 8px;
+        border-radius: 50%;
+        background: var(--theme-color);
+        color: #fff;
+        outline: none;
+    }
 }

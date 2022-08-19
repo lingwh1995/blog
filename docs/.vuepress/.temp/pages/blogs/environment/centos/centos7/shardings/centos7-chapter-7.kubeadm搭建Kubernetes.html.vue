@@ -16,7 +16,7 @@
  7.13.其他节点连接到Master节点
  7.14.在master节点上查看集群
  7.15.安装网络插件
- 7.16.在master上查看集群节点			
+ 7.16.在master上查看集群节点
  7.17.启动故障解决
  7.18.基础命令
  7.19.部署第一个程序到k8s中
@@ -33,7 +33,7 @@
 hostnamectl set-hostname master
 slave1节点
 hostnamectl set-hostname slave1
-slave2节点	
+slave2节点
 hostnamectl set-hostname slave2
 </code></pre>
 <h2 id="_7-5-所有节点修改hosts" tabindex="-1"><a class="header-anchor" href="#_7-5-所有节点修改hosts" aria-hidden="true">#</a> 7.5.所有节点修改hosts</h2>
@@ -101,7 +101,7 @@ systemctl start docker
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>永久关闭swap分区
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sed -ri 's/.*swap.*/#&amp;/' /etc/fstab &amp;&amp; systemctl reboot
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看swap分区是否关闭	
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看swap分区是否关闭
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>free -m
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_7-12-用kubeadm-初始化集群" tabindex="-1"><a class="header-anchor" href="#_7-12-用kubeadm-初始化集群" aria-hidden="true">#</a> 7.12.用kubeadm 初始化集群</h2>
@@ -119,14 +119,14 @@ systemctl start docker
 	--service-cidr=10.96.0.0/12 \
 	--pod-network-cidr=10.244.0.0/16 \
 	--ignore-preflight-errors=all
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>命令说明：	
-这个参数就是master主机的IP地址，例如我的Master主机的IP是：192.168.181.131	
---apiserver-advertise-address=192.168.181.131    
-这个是镜像地址，由于国外地址无法访问，故使用的阿里云仓库地址：		
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>命令说明：
+这个参数就是master主机的IP地址，例如我的Master主机的IP是：192.168.181.131
+--apiserver-advertise-address=192.168.181.131
+这个是镜像地址，由于国外地址无法访问，故使用的阿里云仓库地址：
 registry.aliyuncs.com/google_containers
 --image-repository=registry.aliyuncs.com/google_containers
 这个参数是下载的k8s软件版本号，可使用kubeadm config images list查询
---kubernetes-version=v1.17.4   
+--kubernetes-version=v1.17.4
 这个参数后的IP地址直接就套用10.96.0.0/12 ,以后安装时也套用即可，不要更改
 --service-cidr=10.96.0.0/12
 k8s内部的pod节点之间网络可以使用的IP段，不能和service-cidr写一样，如果不知道怎么配，就先
@@ -139,10 +139,10 @@ k8s内部的pod节点之间网络可以使用的IP段，不能和service-cidr写
 	--discovery-token-ca-cert-hash \
 	sha256:02829b33a24eef53805ffedef79c0371cb4d9ac0d04bfad7fe26eb022cb638ac
 注意
-可以保存秘钥，方便在其他节点上使用 
+可以保存秘钥，方便在其他节点上使用
 重新获取kubeadm join...
-kubeadm token create --print-join-command	
-					
+kubeadm token create --print-join-command
+
 复制授权文件，以便 kubectl 可以有权限访问集群
 如果其他节点需要访问集群，需要从主节点复制这个文件过去其他节点
 mkdir -p $HOME/.kube
@@ -155,7 +155,7 @@ chown $(id -u):$(id -g) $HOME/.kube/config
 	--token e60qrb.6321jolakk1aix90 \
 	--discovery-token-ca-cert-hash \
 	sha256:02829b33a24eef53805ffedef79c0371cb4d9ac0d04bfad7fe26eb022cb638ac
-	
+
 加入成功后看到:
 	This node has joined the cluster
 </code></pre>
@@ -180,7 +180,7 @@ slave2   NotReady      &lt;none&gt;                 2m31s   v1.22.4
 NAME     STATUS     ROLES                  AGE     VERSION
 master   Ready      control-plane,master   9m32s   v1.22.4
 slave1   Ready   &lt;none&gt;                 5m51s   v1.22.4
-slave2   Ready      &lt;none&gt;                 2m31s   v1.22.4	
+slave2   Ready      &lt;none&gt;                 2m31s   v1.22.4
 注意事项
 如果两个从节点中有一个节点状态是NotReady，另一个节点状态是Ready，不要着急，要多等一会儿
 再使用命令kubectl get nodes查看集群节点，就可以看到所有节点都是Ready
@@ -221,7 +221,7 @@ slave2   Ready      &lt;none&gt;                 2m31s   v1.22.4
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>对外暴露端口
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl expose deployment guestbook --type=NodePort --port=3000
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查询端口映射	
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查询端口映射
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get service guestbook
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>NAME        TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
@@ -241,7 +241,7 @@ http://192.168.0.8:31208
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get pods -n kuboard
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>登录kuboard-v3
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>http://192.168.0.6:30080	
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>http://192.168.0.6:30080
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>用户名/密码： admin/Kuboard123
 
 查看kuboard所有相关的pod是否成功运行,状态为RUNNING代表成功运行
