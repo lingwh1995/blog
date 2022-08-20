@@ -372,4 +372,7 @@ p, ul, ol {
         color: #fff;
         outline: none;
     }
+    .copy-code-button:hover {
+        background: var(--theme-color);
+    }
 }
