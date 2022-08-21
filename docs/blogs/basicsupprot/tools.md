@@ -20,6 +20,8 @@ icon: repair
 ## <a href="https://icon-sets.iconify.design/" target="_blank">Icon-Sets-icon-sets矢量图标库</a>
 # M
 ## <a href="https://mvnrepository.com/" target="_blank">Mvnrepository-maven中央仓库</a>
+# J
+## <a href="https://www.jsdelivr.com/" target="_blank">Jsdelivr-静态资源CDN</a>
 # N
 ## <a href="https://pic.netbian.com/" target="_blank">Netbian-彼岸图网</a>
 # R

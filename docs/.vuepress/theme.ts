@@ -108,9 +108,9 @@ export default hopeTheme({
   editLink: false,
   //是否在文章页面底部右侧显示 文章的贡献者
   contributors: true,
-
   //插件配置
   plugins: {
+    photoSwipe: true,
     blog: {
       //是否自动抽取文章摘要
       autoExcerpt: true,
@@ -177,7 +177,6 @@ export default hopeTheme({
       mark: true,
       //启用对添加提示、注释、信息、注意、警告和详情自定义容器的支持
       container: true,
-      vpre: true,
       /**
        * 启用自自定义对齐，语法
        *
@@ -261,6 +260,10 @@ export default hopeTheme({
       //显示更新内容可用提示，并允许用户立即刷新。当新的 SW 成功注册后，将转为更新内容就绪弹窗
       //update: "hint",
       update: "available",
+      // 启用图片标记
+      imageMark: true,
+      // 启用图片大小
+      imageSize: false,
     }
   },
   //当用户通过滚动查看页面的不同部分时，嵌套的标题链接和 URL 中的 Hash 值会实时更新，默认值: true,没发现有什么用
