@@ -1,0 +1,47 @@
+1.spring boot admin监控
+    1>.Client端
+        1>>.pom.xml添加依赖
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-actuator</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>de.codecentric</groupId>
+                    <artifactId>spring-boot-admin-starter-client</artifactId>
+                </dependency>
+        2>>.修改application-dev.yml、application-prod.yml、application-test.yml,最每个环境单独放一份,不要写在公共配置中(除非万不得已)
+
+            spring:
+            # 将Client作为服务注册到SpringBootAdmin Server端，通过Server来监听项目的运行情况
+              boot:
+                admin:
+                  client:
+                    url: http://${eureka.instance.ip-address}:${server.port}
+
+
+            #actuator监控:开始
+            #通过下面的配置启用所有的监控端点，默认情况下，这些端点是禁用的；
+            management:
+              endpoints:
+                web:
+                  exposure:
+                    include: '*'
+                enabled-by-default: true
+              endpoint:
+                health:
+                  #访问/actuator/health时，显示详细信息，而不是仅仅显示"status": "UP",
+                  #设置为always方便下面的springboot admin使用
+                  show-details: always
+                # 日志记录
+                logfile:
+                  #springboot admin中可以查看当前服务日志,把日志路径配置正确即可
+                  external-file: ${application.mointor.logging.log-location}
+            #actuator监控:结束
+    2>.Server端
+        1>>.修改pom.xml
+                <dependency>
+                    <groupId>de.codecentric</groupId>
+                    <artifactId>spring-boot-admin-starter-server</artifactId>
+                </dependency>
+        2>>.将Server端和Client端注册进同一个eureka中即可
+        3>>.启动Server端,就可以监控到所有服务的详细信息了

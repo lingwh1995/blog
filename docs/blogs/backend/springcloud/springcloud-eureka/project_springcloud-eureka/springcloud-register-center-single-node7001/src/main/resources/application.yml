@@ -1,0 +1,19 @@
+server:
+  port: 7001 #访问端口
+spring:
+  application:
+    name: SPRINGCLOUD-REGISTER-CENTER-SINGLE-NODE7001  #注意:服务名不要出现_
+  devtools: #热部署开关
+    restart:
+      enabled: true
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: true #不向注册中心注册自己
+    fetch-registry: false #表示自己就是注册中心,我的职责就是维护实例,不需要去检索服务
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+  server:
+    enable-self-preservation: true #是否开启自我保护,true:服务失效不直接剔除,false:服务失效直接剔除
+    eviction-interval-timer-in-ms: 2000 #默认发送心跳的时间间隔,单位为ms

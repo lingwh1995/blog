@@ -1,0 +1,188 @@
+1.硬编码实现OpenFeign负载均衡(对所有的FeignClient进行更细致的配置,在Ribbon相关配置中配置连接超时等属性)
+     1.pom中引入依赖
+        #SpringCloud默认负载均衡/Ribbon负载均衡/EurekaClient + OpenFeign相关依赖
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+            </dependency>
+            <!--引入公共的工程-->
+            <dependency>
+                <groupId>org.openatom</groupId>
+                <artifactId>springcloud-api-commons</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+            </dependency>
+        </dependencies>
+     2>.编写YML
+        #在SpringCloud默认负载均衡配置 + #通过对Ribbon的配置实现对OpenFeign的配置,同时修改服务名
+        server:
+          port: 80
+
+        spring:
+          application:
+            name: SPRINGCLOUD-CONSUMER-LOADBALANCE-OPENFEIGN-HARDCORE-ORDER80 #注意:服务名不要出现_
+          devtools:
+            restart:
+              enabled: true
+          logging:
+            level: info
+
+        eureka:
+          client:
+            register-with-eureka: true  #表示是否将自己注册进EurekaServer默认为true。
+            fetchRegistry: true  #是否从EurekaServer抓取已有的注册信息，默认为true。服务提供者是单节点无所谓，是集群必须设置为true才能配合ribbon使用负载均衡，否则报异常No instances available for SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER
+            service-url:
+              #单机版
+              defaultZone: http://localhost:7001/eureka
+              #集群版
+              #defaultZone: http://eureka7002:7002/eureka,http://eureka7003:7003/eureka,http://eureka7004:7004/eureka
+          instance:
+            instance-id: ${spring.application.name} #Eureka仪表盘中Instances currently registered with Eureka.Status显示的内容
+            prefer-ip-address: false #访问路径可以显示IP地址，点击Eureka仪表盘中Instances currently registered with Eureka.Status显示的内容地址栏是否显示IP地址
+
+        #通过对Ribbon的配置实现对OpenFeign的配置-----------------------------------开始-----------------------------------
+        SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER: #服务提供方名称
+          ribbon:
+            NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule  #Ribbon负载均衡规则类所在的路径,自带七种规则,也可以是自定位规则的类所在的路径
+            ConnectTimeout: 5000  #建立连接所用的时间,适用于网络正常的情况下,两端建立连接所用的时间,不配置如果连接超时会报异常
+            ReadTimeout: 5000   #建立连接后,从服务器读取到可用资源的所用的时间,不配置如果读取资源超时会报异常(java.net.SocketTimeoutException: Read timed out)
+        #通过对Ribbon的配置实现对OpenFeign的配置-----------------------------------结束-----------------------------------
+
+        logging: #OpenFeign增强日志配置
+          level:
+            org.openatom.springcloud.services.PaymentServiceOpenFeign: debug  #OpenFeign日志以什么级别监控哪个接口
+     3>.容器中注入不用注入RestTemplate,OpenFeign已经在底层对RestTemplate做了封装
+     4>.在服务消费端编写OpenFeignService,并为这个类添加@FeignClient注解(注意:OpenFeignService中方法和服务提供端一样)
+        @Component
+        @FeignClient(name="SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER")
+        public interface PaymentServiceOpenFeign {
+            @PostMapping(value = "/provider/payment/create")
+            CommonResult create(@RequestBody Payment payment);
+
+            @GetMapping(value = "/provider/payment/get/{id}")
+            CommonResult<Payment> getPaymentById(@PathVariable("id") Long id);
+
+            @GetMapping(value = "/provider/payment/openfeign/timeout")
+            String getPaymentByIdOpenFeignTimeout();
+        }
+     5>.主启动类添加注解@EnableFeignClients(前提是已经搭建好了EurekaClient/SpringCloud默认负载均衡/Ribbon负载均衡)
+        @EnableEurekaClient //添加@EnableEurekaClient好像没什么用,但是还是加上
+        @SpringBootApplication
+        @EnableFeignClients
+        public class OrderServiceConsumerLoadBalanceOpenFeignHardcode80 {
+            public static void main(String[] args) {
+                SpringApplication.run(OrderServiceConsumerLoadBalanceOpenFeignHardcode80.class, args);
+            }
+        }
+2.YML文件配置+硬编码实现实现OpenFeign负载均衡(可以对每一个不同的FeignClient进行更细致的配置,在Feign相关配置中配置连接超时等属性)
+     1.pom中引入依赖
+         #SpringCloud默认负载均衡/Ribbon负载均衡/EurekaClient + OpenFeign相关依赖
+         <dependencies>
+             <dependency>
+                 <groupId>org.springframework.boot</groupId>
+                 <artifactId>spring-boot-starter-web</artifactId>
+             </dependency>
+             <dependency>
+                 <groupId>org.springframework.boot</groupId>
+                 <artifactId>spring-boot-starter-actuator</artifactId>
+             </dependency>
+             <!--引入公共的工程-->
+             <dependency>
+                 <groupId>org.openatom</groupId>
+                 <artifactId>springcloud-api-commons</artifactId>
+             </dependency>
+             <dependency>
+                 <groupId>org.springframework.cloud</groupId>
+                 <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+             </dependency>
+             <dependency>
+                 <groupId>org.springframework.cloud</groupId>
+                 <artifactId>spring-cloud-starter-openfeign</artifactId>
+             </dependency>
+         </dependencies>
+     2>.编写YML
+        #在SpringCloud默认负载均衡配置 +某个/某些服务的Ribbon配置 + 对OpenFeign进行单独配置,同时修改服务名
+        #注意:此时Ribbon中连接超时时间和读取超时时间全部放在了OpenFeign中进行配置
+        server:
+          port: 80
+
+        spring:
+          application:
+            name: SPRINGCLOUD-CONSUMER-LOADBALANCE-OPENFEIGN-CONFIGURATION-ORDER80 #注意:服务名不要出现_
+          devtools:
+            restart:
+              enabled: true
+          logging: #Spring运行日志配置
+            level: info
+
+        eureka:
+          client:
+            register-with-eureka: true  #表示是否将自己注册进EurekaServer默认为true。
+            fetchRegistry: true  #是否从EurekaServer抓取已有的注册信息，默认为true。服务提供者是单节点无所谓，是集群必须设置为true才能配合ribbon使用负载均衡，否则报异常No instances available for SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER
+            service-url:
+              #单机版
+              defaultZone: http://localhost:7001/eureka
+              #集群版
+              #defaultZone: http://eureka7002:7002/eureka,http://eureka7003:7003/eureka,http://eureka7004:7004/eureka
+          instance:
+            instance-id: ${spring.application.name} #Eureka仪表盘中Instances currently registered with Eureka.Status显示的内容
+            prefer-ip-address: false #访问路径可以显示IP地址，点击Eureka仪表盘中Instances currently registered with Eureka.Status显示的内容地址栏是否显示IP地址
+
+        #某个/某些服务的Ribbon配置---------------------------------------开始----------------------------------
+        SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER: #服务提供方名称
+          ribbon:
+            NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule  #Ribbon负载均衡规则类所在的路径,自带七种规则,也可以是自定位规则的类所在的路径
+        #某个/某些服务的Ribbon配置---------------------------------------结束----------------------------------
+
+        #对OpenFeign进行单独配置-----------------------------------开始-----------------------------------
+        feign:
+          client:
+            config:
+              #这里填具体的服务名称（也可以填default，表示对所有服务生效）
+              SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER:  #服务提供方名称
+                #connectTimeout和readTimeout这两个得一起配置才会生效
+                connectTimeout: 5000  #指的是建立连接所用的时间，适用于网络状况正常的情况下,两端连接所用的时间
+                readTimeout: 5000   #指的是建立连接后从服务器读取到可用资源所用的时间
+        #对OpenFeign进行单独配置-----------------------------------结束-----------------------------------
+        logging: #OpenFeign增强日志配置
+          level:
+            org.openatom.springcloud.services.PaymentServiceOpenFeign: debug  #OpenFeign日志以什么级别监控哪个接口
+     3>.容器中注入不用注入RestTemplate,OpenFeign已经在底层对RestTemplate做了封装
+     4>.在服务消费端编写OpenFeignService,并为这个类添加@FeignClient注解(注意:OpenFeignService中方法和服务提供端一样)
+        @Component
+        @FeignClient(name="SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER")
+        public interface PaymentServiceOpenFeign {
+            @PostMapping(value = "/provider/payment/create")
+            CommonResult create(@RequestBody Payment payment);
+
+            @GetMapping(value = "/provider/payment/get/{id}")
+            CommonResult<Payment> getPaymentById(@PathVariable("id") Long id);
+
+            @GetMapping(value = "/provider/payment/openfeign/timeout")
+            String getPaymentByIdOpenFeignTimeout();
+        }
+     5>.主启动类添加注解@EnableFeignClients(前提是已经搭建好了EurekaClient/SpringCloud默认负载均衡/Ribbon负载均衡)
+         @EnableEurekaClient  //添加@EnableEurekaClient好像没什么用,但是还是加上
+         @SpringBootApplication
+         @EnableFeignClients
+         public class OrderServiceConsumerLoadBalanceOpenFeignConfiguration80 {
+             public static void main(String[] args) {
+                 SpringApplication.run(OrderServiceConsumerLoadBalanceOpenFeignConfiguration80.class, args);
+             }
+         }
+3.OpenFeign增强日志
+    在第1或者第2步骤的基础上,给YML文件中添加如下配置,可以在控制台输出远程调用详细信息
+    logging: #OpenFeign增强日志配置
+      level:
+        org.openatom.springcloud.services.PaymentServiceOpenFeign: debug  #OpenFeign日志以什么级别监控哪个接口

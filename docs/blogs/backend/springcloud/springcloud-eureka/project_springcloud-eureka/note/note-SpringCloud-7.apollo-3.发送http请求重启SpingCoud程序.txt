@@ -1,0 +1,26 @@
+1.修改YML
+    server:
+      tomcat:
+        mbeanregistry:
+          enabled: true
+    management:
+      endpoint:
+        restart:
+          enabled: true
+2.编写重启程序Controller
+    @Controller
+    public class RestartApplicationController {
+
+        @Autowired
+        private RestartEndpoint restartEndpoint;
+
+        /**
+         * 访问这个地址可以重启SpringBoot项目
+         */
+        @GetMapping("/consumer/apollo/restart")
+        public void restartApplication(){
+            restartEndpoint.restart();
+        }
+    }
+3.测试重启程序
+     访问: http://localhost/consumer/apollo/restart

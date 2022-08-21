@@ -249,7 +249,6 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     cat $2/$1.md.original >> $2/$1.md
     echo '根据文档原件生成创建一份新的'$1'.md文件'
 
-
     if [ -n "$5" ]
     then
         echo 'includeCodeProjectName的值不为空............................................'
@@ -259,8 +258,11 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
         INCLUDE_CODE_PROJECT_NAME_STR=`echo $5 | tr ',' ' '`
         INCLUDE_CODE_PROJECT_NAME_ARR=( $INCLUDE_CODE_PROJECT_NAME_STR )
         for((i=0;i<${#INCLUDE_CODE_PROJECT_NAME_ARR[@]};i++)); do
+            #给md文档依赖的项目文件夹添加前缀，实际上就是重命名一下这个依赖的项目文件夹的名称
+            mv $2/${INCLUDE_CODE_PROJECT_NAME_ARR[i]} $2/project_${INCLUDE_CODE_PROJECT_NAME_ARR[i]}
+           
             echo $2/$1'.md引用了'$2'下的'${INCLUDE_CODE_PROJECT_NAME_ARR[i]}'这个项目中的代码'
-            sed -i 's#^@import "\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"#@include(\1)#g' $2/$1.md
+            sed -i 's#^@import "\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"#@include(project_\1)#g' $2/$1.md
         done
     fi
 
@@ -848,7 +850,14 @@ function generateBreadcrumbREADME {
         INCLUDE_CODE_PROJECT_NAME_STR=$4
         echo '引用的代码的项目名称字符串：'$INCLUDE_CODE_PROJECT_NAME_STR
         INCLUDE_CODE_PROJECT_NAME_ARR=(`echo $INCLUDE_CODE_PROJECT_NAME_STR | tr ',' ' '` )
-        echo '引用的代码的项目名称数组：'$INCLUDE_CODE_PROJECT_NAME_STR
+        
+        #给md依赖的代码的项目的名称添加前缀project_
+        if [ -n "$INCLUDE_CODE_PROJECT_NAME_STR" ]
+        then
+            for(( j=0;j<${#INCLUDE_CODE_PROJECT_NAME_ARR[@]};j++)) do
+               INCLUDE_CODE_PROJECT_NAME_ARR[j]=project_${INCLUDE_CODE_PROJECT_NAME_ARR[j]}
+            done
+        fi
 
         IGNORE_FOLDER_LIST_ARR=(`echo $IGNORE_FOLDER_LIST_STR$INCLUDE_CODE_PROJECT_NAME_ARR | tr ' ' ' '` )
         echo '要忽略的文件夹名称+引用的代码的项目名称字符串：'$IGNORE_FOLDER_LIST_STR$INCLUDE_CODE_PROJECT_NAME_ARR

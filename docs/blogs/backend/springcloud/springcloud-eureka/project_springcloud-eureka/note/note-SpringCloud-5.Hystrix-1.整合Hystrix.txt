@@ -1,0 +1,489 @@
+1.Hystrix服务降级
+    消费端服务降级
+        1>.pom添加依赖
+            #OpenFeign依赖 + hystrix相关依赖
+             <dependencies>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-web</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-actuator</artifactId>
+                </dependency>
+                <!--引入公共的工程-->
+                <dependency>
+                    <groupId>org.openatom</groupId>
+                    <artifactId>springcloud-api-commons</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-starter-openfeign</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+                </dependency>
+            </dependencies>
+        2>.配置YML文件
+            #OpenFeign负载均衡(YML版配置版) + OpenFeign中hysrix相关配置 +hystrix相关配置
+              server:
+                port: 80
+
+              spring:
+                application:
+                  name: SPRINGCLOUD-CONSUMER-HYSTRIX-LOADBALANCE-OPENFEIGN-CONFIGURATION-ORDER80 #注意:服务名不要出现_
+                devtools:
+                  restart:
+                    enabled: true
+                logging: #Spring运行日志配置
+                  level: info
+
+              eureka:
+                client:
+                  register-with-eureka: true  #表示是否将自己注册进EurekaServer默认为true。
+                  fetchRegistry: true  #是否从EurekaServer抓取已有的注册信息，默认为true。服务提供者是单节点无所谓，是集群必须设置为true才能配合ribbon使用负载均衡，否则报异常No instances available for SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER
+                  service-url:
+                    #单机版
+                    defaultZone: http://localhost:7001/eureka
+                    #集群版
+                    #defaultZone: http://eureka7002:7002/eureka,http://eureka7003:7003/eureka,http://eureka7004:7004/eureka
+                instance:
+                  instance-id: ${spring.application.name} #Eureka仪表盘中Instances currently registered with Eureka.Status显示的内容
+                  prefer-ip-address: false #访问路径可以显示IP地址，点击Eureka仪表盘中Instances currently registered with Eureka.Status显示的内容地址栏是否显示IP地址
+
+              #通过对Ribbon的配置实现对OpenFeign的配置
+              SPRINGCLOUD-PROVIDER-HYSTRIX-PAYMENT-SERVICE-CLUSTER: #服务提供方名称
+                ribbon:
+                  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule  #Ribbon负载均衡规则类所在的路径,自带七种规则,也可以是自定位规则的类所在的路径
+              #对OpenFeign进行单独配置
+              feign:
+                client:
+                  config:
+                    #这里填具体的服务名称（也可以填default，表示对所有服务生效）
+                    SPRINGCLOUD-PROVIDER-HYSTRIX-PAYMENT-SERVICE-CLUSTER:  #服务提供方名称
+                      #connectTimeout和readTimeout这两个得一起配置才会生效
+                      connectTimeout: 10000  #指的是建立连接所用的时间，适用于网络状况正常的情况下,两端连接所用的时间
+                      readTimeout: 10000   #指的是建立连接后从服务器读取到可用资源所用的时间
+
+            #OpenFeign中hystrix相关配置---------------------------开始-----------------------------
+                hystrix:
+                  enabled: true   #是否全局启动hystrix
+            #OpenFeign中hystrix相关配置---------------------------结束-----------------------------
+
+            #hystrix相关配置---------------------------开始-----------------------------
+              hystrix:
+                command:
+                  default:
+                    execution:
+                      isolation:
+                        thread:
+                          timeoutInMilliseconds: 10000 # 设置hystrix的默认熔断超时时间为10000ms
+            #hystrix相关配置---------------------------结束-----------------------------
+              logging: #OpenFeign增强日志配置
+                level:
+                  org.openatom.springcloud.services.PaymentServiceHystrixOpenFeign: debug  #OpenFeign日志以什么级别监控哪个接口
+        3>.编写主启动类并添加@EnableHystrix注解
+            @EnableEurekaClient  //添加@EnableEurekaClient好像没什么用,但是还是加上
+            @SpringBootApplication
+            @EnableFeignClients
+            @EnableHystrix //消费者端启用Hystrix
+            public class OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80 {
+                public static void main(String[] args) {
+                    SpringApplication.run(OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.class, args);
+                }
+            }
+
+        4>.服务降级
+            1>>.为某一个方法编写降级方法(把降级处理和业务混合在一起,耦合度太高)
+                @HystrixCommand(fallbackMethod = "getPaymentByIdUseHystrixDegradationInConsumerFallback",
+                        //修改value值来分别测试提供方服务降级和消费方服务降级,要测试提供方服务降级将value值设置为大于5s,要测试消费方服务降级将value设置为小于5s,理论是这样,最好是设置为1s或2秒
+                        commandProperties = {@HystrixProperty(name="execution.isolation.thread.timeoutInMilliseconds",value="2000")})
+                @GetMapping("/consumer/payment/degradation_in_consumer/get/{id}")
+                public CommonResult<Payment> getPaymentByIdUseHystrixDegradationInConsumer(@PathVariable("id") Long id) {
+                    return paymentServiceHystrixOpenFeign.getPaymentByIdUseHystrixDegradation(id);
+                }
+
+                public CommonResult<Payment> getPaymentByIdUseHystrixDegradationInConsumerFallback(Long id) {
+                    Payment payment = new Payment(id,"服务消费:降级成功");
+                    return new CommonResult(10000,"我是服务消费端",payment);
+                }
+            2>>.为某一个类中未设置降级的方法编写默认的降级方法(把降级处理和业务混合在一起,耦合度太高)
+                1>>>.Controller添加注解
+                    @DefaultProperties(defaultFallback = "defaultGlobalFallback")
+                2>>>.编写默认的降级回调方法
+                    /**
+                     * 测试默认的全局降级回调方法
+                     * 访问地址:
+                     *      http://localhost:/consumer/payment/degradation_in_consumer_default/get/1
+                     * @param id
+                     * @return
+                     */
+                    @HystrixCommand
+                    @GetMapping("/consumer/payment/degradation_in_consumer_default/get/{id}")
+                    public CommonResult<Payment> getPaymentByIdOkTestDefaultGlobalCallback(@PathVariable("id") Long id) {
+                        //模拟发生了异常
+                        int i = 10/0;
+                        return paymentServiceHystrixOpenFeign.getPaymentByIdOk(id);
+                    }
+
+                    /**
+                     * 全局服务降级默认回调方法,未配置@HystrixCommand的方法失败后都会找这个方法
+                     *      用处:可以在这里设置发生了异常后,跳转到一个统一的用户界面
+                     *  特别注意:这个为全局服务降级兜底的方法不要有任何参数,否则会报错
+                     * @return
+                     */
+                    public CommonResult<Payment> defaultGlobalFallback() {
+                        Payment payment = new Payment(null,"消费端:Hystrix全局服务降级....");
+                        return new CommonResult(10000,"我是消费端",payment);
+                    }
+            3>>.为@FeignClient中的所有方法编写降级方法(把降级处理和业务分离,耦合度低)
+                1>>>.新建一个实现类,实现@FeignClient标注的接口,在这个实现类中编写降级方法
+                    @Component
+                    public class PaymentServiceHystrixOpenFeignImpl implements PaymentServiceHystrixOpenFeign {
+                        //不用这个测试方法,所以代码不做修改
+                        @Override
+                        public CommonResult create(Payment payment) {
+                            return null;
+                        }
+                        //不用这个测试方法,所以代码不做修改
+                        @Override
+                        public CommonResult<Payment> getPaymentByIdOk(Long id) {
+                            return null;
+                        }
+                        //不用这个测试方法,所以代码不做修改
+                        @Override
+                        public CommonResult<Payment> getPaymentByIdTimeout(Long id) {
+                            return null;
+                        }
+
+                        /**
+                         * 测试Hystrix在Service层进行服务降级
+                         * @param id
+                         * @return
+                         */
+                        @Override
+                        public CommonResult<Payment> getPaymentByIdUseHystrixDegradation(Long id) {
+                            Payment payment = new Payment(null,"消费端:Hystrix在Service层对所有服务进行服务降级....");
+                            return new CommonResult(10000,"发生了错误",payment);
+                        }
+
+                        //不用这个测试方法,所以代码不做修改
+                        @Override
+                        public CommonResult<Payment> getPaymentByIdOkHystrixCircuitBreaker(Long id) {
+                            return null;
+                        }
+                    }
+                2>>>.修改接口上的@FeignClinet,修改为@FeignClient(name="SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER",fallback = PaymentServiceHystrixOpenFeignImpl.class)
+                    添加了fallback的值
+
+
+    提供端服务降级
+        1>.pom添加依赖
+            #Eureka依赖/8001项目(基础的服务提供方)/8002项目(基础的服务提供方)依赖 + hystrix相关依赖
+              <dependencies>
+                 <dependency>
+                     <groupId>org.springframework.boot</groupId>
+                     <artifactId>spring-boot-starter-web</artifactId>
+                 </dependency>
+                 <dependency>
+                     <groupId>org.springframework.boot</groupId>
+                     <artifactId>spring-boot-starter-actuator</artifactId>
+                 </dependency>
+                 <dependency>
+                     <groupId>com.alibaba</groupId>
+                     <artifactId>druid-spring-boot-starter</artifactId>
+                 </dependency>
+                 <dependency>
+                     <groupId>org.mybatis.spring.boot</groupId>
+                     <artifactId>mybatis-spring-boot-starter</artifactId>
+                 </dependency>
+                 <dependency>
+                     <groupId>org.springframework.boot</groupId>
+                     <artifactId>spring-boot-starter-jdbc</artifactId>
+                 </dependency>
+                 <dependency>
+                     <groupId>mysql</groupId>
+                     <artifactId>mysql-connector-java</artifactId>
+                 </dependency>
+                 <!--引入公共的工程-->
+                 <dependency>
+                     <groupId>org.openatom</groupId>
+                     <artifactId>springcloud-api-commons</artifactId>
+                 </dependency>
+                 <dependency>
+                     <groupId>org.springframework.cloud</groupId>
+                     <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+                 </dependency>
+                 <dependency>
+                     <groupId>org.springframework.cloud</groupId>
+                     <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+                 </dependency>
+             </dependencies>
+        2>.配置YML文件
+            #OpenFeign负载均衡(YML版配置版) + OpenFeign中hysrix相关配置 +hystrix相关配置
+              server:
+                port: 80
+
+              spring:
+                application:
+                  name: SPRINGCLOUD-CONSUMER-HYSTRIX-LOADBALANCE-OPENFEIGN-CONFIGURATION-ORDER80 #注意:服务名不要出现_
+                devtools:
+                  restart:
+                    enabled: true
+                logging: #Spring运行日志配置
+                  level: info
+
+              eureka:
+                client:
+                  register-with-eureka: true  #表示是否将自己注册进EurekaServer默认为true。
+                  fetchRegistry: true  #是否从EurekaServer抓取已有的注册信息，默认为true。服务提供者是单节点无所谓，是集群必须设置为true才能配合ribbon使用负载均衡，否则报异常No instances available for SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER
+                  service-url:
+                    #单机版
+                    defaultZone: http://localhost:7001/eureka
+                    #集群版
+                    #defaultZone: http://eureka7002:7002/eureka,http://eureka7003:7003/eureka,http://eureka7004:7004/eureka
+                instance:
+                  instance-id: ${spring.application.name} #Eureka仪表盘中Instances currently registered with Eureka.Status显示的内容
+                  prefer-ip-address: false #访问路径可以显示IP地址，点击Eureka仪表盘中Instances currently registered with Eureka.Status显示的内容地址栏是否显示IP地址
+
+              #通过对Ribbon的配置实现对OpenFeign的配置
+              SPRINGCLOUD-PROVIDER-HYSTRIX-PAYMENT-SERVICE-CLUSTER: #服务提供方名称
+                ribbon:
+                  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule  #Ribbon负载均衡规则类所在的路径,自带七种规则,也可以是自定位规则的类所在的路径
+              #对OpenFeign进行单独配置
+              feign:
+                client:
+                  config:
+                    #这里填具体的服务名称（也可以填default，表示对所有服务生效）
+                    SPRINGCLOUD-PROVIDER-HYSTRIX-PAYMENT-SERVICE-CLUSTER:  #服务提供方名称
+                      #connectTimeout和readTimeout这两个得一起配置才会生效
+                      connectTimeout: 10000  #指的是建立连接所用的时间，适用于网络状况正常的情况下,两端连接所用的时间
+                      readTimeout: 10000   #指的是建立连接后从服务器读取到可用资源所用的时间
+
+            #OpenFeign中hystrix相关配置---------------------------开始-----------------------------
+                hystrix:
+                  enabled: true   #是否全局启动hystrix
+            #OpenFeign中hystrix相关配置---------------------------结束-----------------------------
+
+            #hystrix相关配置---------------------------开始-----------------------------
+              hystrix:
+                command:
+                  default:
+                    execution:
+                      isolation:
+                        thread:
+                          timeoutInMilliseconds: 10000 # 设置hystrix的默认熔断超时时间为10000ms
+            #hystrix相关配置---------------------------结束-----------------------------
+              logging: #OpenFeign增强日志配置
+                level:
+                  org.openatom.springcloud.services.PaymentServiceHystrixOpenFeign: debug  #OpenFeign日志以什么级别监控哪个接口
+        3>.服务降级
+            1>>.为某一个方法编写降级方法(把降级处理和业务混合在一起,耦合度太高)
+                @HystrixCommand(fallbackMethod = "getPaymentByIdUseHystrixDegradationInConsumerFallback",
+                        //修改value值来分别测试提供方服务降级和消费方服务降级,要测试提供方服务降级将value值设置为大于5s,要测试消费方服务降级将value设置为小于5s,理论是这样,最好是设置为1s或2秒
+                        commandProperties = {@HystrixProperty(name="execution.isolation.thread.timeoutInMilliseconds",value="2000")})
+                @GetMapping("/consumer/payment/degradation_in_consumer/get/{id}")
+                public CommonResult<Payment> getPaymentByIdUseHystrixDegradationInConsumer(@PathVariable("id") Long id) {
+                    return paymentServiceHystrixOpenFeign.getPaymentByIdUseHystrixDegradation(id);
+                }
+
+                public CommonResult<Payment> getPaymentByIdUseHystrixDegradationInConsumerFallback(Long id) {
+                    Payment payment = new Payment(id,"服务消费:降级成功");
+                    return new CommonResult(10000,"我是服务消费端",payment);
+                }
+            2>>.为某一个类中未设置降级的方法编写默认的降级方法(把降级处理和业务混合在一起,耦合度太高)
+                1>>>.Controller添加注解
+                    @DefaultProperties(defaultFallback = "defaultGlobalFallback")
+                2>>>.编写默认的降级回调方法
+                    /**
+                     * 测试默认的全局降级回调方法
+                     * 访问地址:
+                     *      http://localhost:/consumer/payment/degradation_in_consumer_default/get/1
+                     * @param id
+                     * @return
+                     */
+                    @HystrixCommand
+                    @GetMapping("/consumer/payment/degradation_in_consumer_default/get/{id}")
+                    public CommonResult<Payment> getPaymentByIdOkTestDefaultGlobalCallback(@PathVariable("id") Long id) {
+                        //模拟发生了异常
+                        int i = 10/0;
+                        return paymentServiceHystrixOpenFeign.getPaymentByIdOk(id);
+                    }
+
+                    /**
+                     * 全局服务降级默认回调方法,未配置@HystrixCommand的方法失败后都会找这个方法
+                     *      用处:可以在这里设置发生了异常后,跳转到一个统一的用户界面
+                     *  特别注意:这个为全局服务降级兜底的方法不要有任何参数,否则会报错
+                     * @return
+                     */
+                    public CommonResult<Payment> defaultGlobalFallback() {
+                        Payment payment = new Payment(null,"消费端:Hystrix全局服务降级....");
+                        return new CommonResult(10000,"我是消费端",payment);
+                    }
+            3>>.为@FeignClient中的所有方法编写降级方法(把降级处理和业务分离,耦合度低)
+                1>>>.新建一个实现类,实现@FeignClient标注的接口,在这个实现类中编写降级方法
+                    @Component
+                    public class PaymentServiceHystrixOpenFeignImpl implements PaymentServiceHystrixOpenFeign {
+                        //不用这个测试方法,所以代码不做修改
+                        @Override
+                        public CommonResult create(Payment payment) {
+                            return null;
+                        }
+                        //不用这个测试方法,所以代码不做修改
+                        @Override
+                        public CommonResult<Payment> getPaymentByIdOk(Long id) {
+                            return null;
+                        }
+                        //不用这个测试方法,所以代码不做修改
+                        @Override
+                        public CommonResult<Payment> getPaymentByIdTimeout(Long id) {
+                            return null;
+                        }
+
+                        /**
+                         * 测试Hystrix在Service层进行服务降级
+                         * @param id
+                         * @return
+                         */
+                        @Override
+                        public CommonResult<Payment> getPaymentByIdUseHystrixDegradation(Long id) {
+                            Payment payment = new Payment(null,"消费端:Hystrix在Service层对所有服务进行服务降级....");
+                            return new CommonResult(10000,"发生了错误",payment);
+                        }
+
+                        //不用这个测试方法,所以代码不做修改
+                        @Override
+                        public CommonResult<Payment> getPaymentByIdOkHystrixCircuitBreaker(Long id) {
+                            return null;
+                        }
+                    }
+                2>>>.修改接口上的@FeignClinet,修改为@FeignClient(name="SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER",fallback = PaymentServiceHystrixOpenFeignImpl.class)
+                    添加了fallback的值
+2.Hystrix服务熔断
+    以提供端服务熔断为例:
+    1>.pom添加依赖
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-actuator</artifactId>
+            </dependency>
+            <!--引入公共的工程-->
+            <dependency>
+                <groupId>org.openatom</groupId>
+                <artifactId>springcloud-api-commons</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+            </dependency>
+        </dependencies>
+    2>.配置【消费端】YML文件
+        server:
+          port: 80
+
+        spring:
+          application:
+            name: SPRINGCLOUD-CONSUMER-HYSTRIX-LOADBALANCE-OPENFEIGN-CONFIGURATION-ORDER80 #注意:服务名不要出现_
+          devtools:
+            restart:
+              enabled: true
+          logging: #Spring运行日志配置
+            level: info
+
+        eureka:
+          client:
+            register-with-eureka: true  #表示是否将自己注册进EurekaServer默认为true。
+            fetchRegistry: true  #是否从EurekaServer抓取已有的注册信息，默认为true。服务提供者是单节点无所谓，是集群必须设置为true才能配合ribbon使用负载均衡，否则报异常No instances available for SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER
+            service-url:
+              #单机版
+              defaultZone: http://localhost:7001/eureka
+              #集群版
+              #defaultZone: http://eureka7002:7002/eureka,http://eureka7003:7003/eureka,http://eureka7004:7004/eureka
+          instance:
+            instance-id: SPRINGCLOUD-CONSUMER-HYSTRIX-LOADBALANCE-OPENFEIGN-CONFIGURATION-ORDER80 #Eureka仪表盘中Instances currently registered with Eureka.Status显示的内容
+            prefer-ip-address: false #访问路径可以显示IP地址，点击Eureka仪表盘中Instances currently registered with Eureka.Status显示的内容地址栏是否显示IP地址
+
+        #对Ribbon进行单独配置
+        SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER-HYSTRIX: #服务提供方名称
+          ribbon:
+            NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule  #Ribbon负载均衡规则类所在的路径,自带七种规则,也可以是自定位规则的类所在的路径
+        #对OpenFeign进行单独配置
+        feign:
+          client:
+            config:
+              #这里填具体的服务名称（也可以填default，表示对所有服务生效）
+              SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER-HYSTRIX:  #服务提供方名称
+                #connectTimeout和readTimeout这两个得一起配置才会生效
+                connectTimeout: 10000  #指的是建立连接所用的时间，适用于网络状况正常的情况下,两端连接所用的时间
+                readTimeout: 10000   #指的是建立连接后从服务器读取到可用资源所用的时间
+          hystrix:
+            enabled: true   #是否全局启动hystrix
+        hystrix:
+          command:
+            default:
+              execution:
+                isolation:
+                  thread:
+                    timeoutInMilliseconds: 10000 # 设置hystrix的默认熔断超时时间为10000ms
+        logging: #OpenFeign增强日志配置
+          level:
+            org.openatom.springcloud.services.PaymentServiceHystrixOpenFeign: debug  #OpenFeign日志以什么级别监控哪个接口
+    3>.服务降级
+        1>>.编写代码
+            /**
+             * 当下游服务(服务提供方)发生故障时对服务下游服务(服务提供方)进行降级
+             *  10内请求失败,失败率为60%时熔断服务
+             * @param id
+             * @return
+             */
+            @HystrixCommand(fallbackMethod = "getPaymentByIdUseHystrixCircuitBreakerFallback",commandProperties = {
+                    @HystrixProperty(name = "circuitBreaker.enabled",value = "true"),// 是否开启断路器
+                    @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold",value = "10"),// 请求次数
+                    @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds",value = "10000"), // 时间窗口期
+                    @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage",value = "60"),// 失败率达到多少后跳闸
+            })
+            @Override
+            public Payment getPaymentByIdUseHystrixCircuitBreaker(Long id) {
+                //当ID小于0时,消费端使用不合理的参数多次调用此服务,则服务熔断
+                if(id<0){
+                    throw new RuntimeException("id不能小于0");
+                }
+                return paymentHystrixDao.getPaymentById(id);
+            }
+
+            /**
+             * 当方法getPaymentByIdUseHystrixCircuitBreaker()执行失败时,执行下面的方法
+             * @param id
+             * @return
+             */
+            public Payment getPaymentByIdUseHystrixCircuitBreakerFallback(Long id) {
+                return new Payment(id,"服务提供方:测试服务熔断成功");
+            }
+        2>>.测试服务熔断
+            模拟发生异常熔断服务:
+                路径1:    http://localhost/consumer/payment/circuitbreaker/get/-1
+            模拟不发生异常让服务自动恢复:
+                路径2:    http://localhost/consumer/payment/circuitbreaker/get/1
+            测试方式:先多次访问路径1，将服务熔断,再多次访问路径2,刚开始访问依然返回的是异常信息,多次访问后可以看到服务恢复正常
+3.服务降级和熔断的区别
+    服务降级:当服务调用发生异常时，快速返回一个事先设置好的值,针对系统全局稳定性考虑,消费端和服务端都可以做
+    服务熔断:当调用服务发生多次异常时服务会会熔断,如数据库连接故障,当故障修复时服务又会恢复到正常状态,针对服务提供方稳定性考虑
+5.服务熔断后恢复过程
+    服务熔断(下游服务发生了异常)->断路器半开(放开一定的访问流量,探测一下服务是否恢复正常)->断路器全开(放开全部访问流量)->服务恢复正常

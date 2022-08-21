@@ -1,0 +1,57 @@
+1.iptables
+    #查看是否安装iptables
+    yum list installed | grep iptables-services
+    #如果没安装则安装下
+    yum install iptables-services -y
+    #开启iptables
+    systemctl start iptables
+    #开机启动iptables
+    systemctl enable iptables
+    #关闭iptables
+    systemctl stop iptables
+    #设置开机不自启
+    systemctl disable iptables
+    #重启iptables
+    systemctl restart iptables
+
+2.firewall
+    #查看防火墙状态
+    systemctl status firewalld
+    #开启防火墙
+    systemctl start firewalld
+    #开机启动防火墙
+    systemctl enable firewalld
+    #关闭防火墙
+    systemctl stop firewalld
+    #永久关闭防火墙
+    systemctl disable firewalld
+    #重启动防火墙
+    systemctl restart firewalld
+
+3.docker
+    #查看docker状态
+    systemctl status docker
+    #启动docker
+    systemctl start docker
+    #开机启动docker
+    systemctl enable docker
+    #关闭docker
+    systemctl stop docker
+    #开机不启动docker
+    systemctl disable docker
+    #重启docker
+    systemctl restart docker
+
+4.docker与firewall共存(需要docker版本大于等于20.10.0)
+    #关闭docker
+    systemctl stop docker
+    #让firewall不拦截docker
+    firewall-cmd --zone=trusted --remove-interface=docker0 --permanent
+    #重新加载防火墙配置
+    firewall-cmd --reload
+    #重新启动防火墙
+    systemctl restart firewalld
+    #重新启动docker
+    systemctl restart docker
+    #将docker加入开机启动
+    systemctl enable docker

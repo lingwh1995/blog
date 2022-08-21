@@ -18,9 +18,9 @@
                       link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-0.博客内容介绍.md",
                    },
                   {
-                      text: "1.我是SpringCloud-Eureka",
+                      text: "1.安装Linux操作系统",
                       icon: "article",
-                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-1.我是SpringCloud-Eureka.md",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-1.安装Linux操作系统.md",
                   },
               ]
           },
@@ -35,7 +35,7 @@
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#intro",
                   },
                   {
-                      text: "1.我是SpringCloud-Eureka",
+                      text: "1.安装Linux操作系统",
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#1.",
                   },

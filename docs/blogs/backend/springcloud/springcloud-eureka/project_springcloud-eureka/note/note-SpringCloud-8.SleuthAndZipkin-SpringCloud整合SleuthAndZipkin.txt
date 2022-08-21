@@ -1,0 +1,25 @@
+1.下载ZipkinServer
+    1>.启动zipkin-server:
+        jar -jar zipkin-server-2.23.9-exec.jar
+    2>.访问zipkin-server主界面
+        http://localhost:9411/zipkin/
+2.引入Sleuth、Zipkin依赖
+    <!--包含了sleuth+zipkin-->
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-zipkin</artifactId>
+    </dependency>
+3>.YML中添加相关配置
+    spring:
+      zipkin:
+        base-url: http://localhost:9411
+      sleuth:
+        sampler:
+          probability: 1  # span的采样率，默认为 0.1,这个值介于0到1之间
+4>.测试效果
+    发起调用:
+        http://localhost/consumer/payment/get/1
+        http://localhost/consumer/payment/timeout/get/1
+    访问:
+        http://localhost:9411/zipkin/
+        查看调用链路

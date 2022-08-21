@@ -1,0 +1,30 @@
+SpringCloud服务发现:
+1.编写代码
+    @RestController
+    @Slf4j
+    public class SpringCloudServiceDiscoveryController {
+
+        @Resource
+        private DiscoveryClient discoveryClient;
+        //从配置文件中动态获取服务名称
+        @Value("${spring.application.name}")
+        private String APPLICATION_NAME;
+
+        @GetMapping(value = "/consumer/payment/discovery")
+        public Object discovery() {
+            List<String> services = discoveryClient.getServices();
+            for (String element : services) {
+                log.info("*****element: "+element);
+            }
+            List<ServiceInstance> instances = discoveryClient.getInstances(APPLICATION_NAME);
+            for (ServiceInstance instance : instances) {
+                log.info(instance.getInstanceId()+"\t"+instance.getServiceId()+"\t"+instance.getHost()+"\t"+instance.getPort()+"\t"+instance.getUri());
+            }
+            return this.discoveryClient;
+        }
+    }
+2.访问服务发现
+    服务提供方服务发现:http://localhost:8001/provider/payment/discovery
+    服务提供方服务发现:http://localhost:8002/provider/payment/discovery
+    服务消费方服务发现:http://localhost/consumer/payment/discovery
+    注意:访问提供端服务发现和消费端服务发现效果是一样的,因为都是从同一个注册中心获取
