@@ -19,7 +19,7 @@
  7.16.在master上查看集群节点
  7.17.启动故障解决
  7.18.基础命令
- 7.19.部署第一个程序到k8s中
+ 7.19.部署测试程序
  7.20.可视化面板kuboard
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 </code></pre>
@@ -68,7 +68,7 @@ systemctl daemon-reload &amp;&amp; systemctl restart docker
 <h2 id="_7-9-所有节点安装k8s所需组件" tabindex="-1"><a class="header-anchor" href="#_7-9-所有节点安装k8s所需组件" aria-hidden="true">#</a> 7.9.所有节点安装k8s所需组件</h2>
 <pre><code>添加k8s安装源
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>&lt;!-- cat &lt;&lt;EOF > kubernetes.repo -->
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat &lt;&lt;EOF > kubernetes.repo
 [kubernetes]
 name=Kubernetes
 baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64
@@ -90,7 +90,7 @@ EOF
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl	--version
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubeadm --version
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_7-10-所有节点启动kubelet和docker" tabindex="-1"><a class="header-anchor" href="#_7-10-所有节点启动kubelet和docker" aria-hidden="true">#</a> 7.10.所有节点启动kubelet和docker</h2>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl enable kubelet &amp;&amp; 
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl enable kubelet &amp;&amp;
 systemctl start kubelet &amp;&amp;
 systemctl enable docker &amp;&amp;
 systemctl start docker
@@ -211,7 +211,7 @@ slave2   Ready      &lt;none&gt;                 2m31s   v1.22.4
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看pod日志
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl describe pod
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_7-19-部署第一个程序到k8s中" tabindex="-1"><a class="header-anchor" href="#_7-19-部署第一个程序到k8s中" aria-hidden="true">#</a> 7.19.部署第一个程序到k8s中</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_7-19-部署测试程序" tabindex="-1"><a class="header-anchor" href="#_7-19-部署测试程序" aria-hidden="true">#</a> 7.19.部署测试程序</h2>
 <pre><code>开始运行 guestbook
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl create deployment guestbook --image=ibmcom/guestbook:v1
@@ -265,7 +265,7 @@ http://192.168.0.8:31208
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>卸载kuboard-v3
 执行卸载命令
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	kubectl delete -f https://addons.kuboard.cn/kuboard/kuboard-v3.yaml
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl delete -f https://addons.kuboard.cn/kuboard/kuboard-v3.yaml
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>清理遗留数据
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>rm -rf /usr/share/kuboard

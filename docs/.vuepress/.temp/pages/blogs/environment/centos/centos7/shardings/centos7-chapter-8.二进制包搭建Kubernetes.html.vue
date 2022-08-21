@@ -23,6 +23,10 @@
 </code></pre>
 <h2 id="_8-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_8-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter8.html" target="_blank">8.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter8.html"/>
+<!--
+	参考网站
+	https://blog.csdn.net/qq_44078641/article/details/120049473
+-->
 <h2 id="_8-3-环境配置清单" tabindex="-1"><a class="header-anchor" href="#_8-3-环境配置清单" aria-hidden="true">#</a> 8.3.环境配置清单</h2>
 <pre><code>操作系统									centos7
 内核版本									3.10.0-1160.71.1.el7.x86_64
@@ -149,12 +153,23 @@ keepalive   : 192.168.3.xx
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl stop firewalld &amp;&amp; systemctl disable firewalld #关闭系统防火墙
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sed -i 's/enforcing/disabled/' /etc/selinux/config #永久关闭selinux
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sed -ri 's/.*swap.*/#&amp;/' /etc/fstab #永久关闭swap
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>根据规划设置主机名</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-master1 &amp;&amp; systemctl reboot #binary-k8s-master1（192.168.0.9）
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-worker1  &amp;&amp; systemctl reboot #binary-k8s-worker1 （192.168.0.10）
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-worker2  &amp;&amp; systemctl reboot #binary-k8s-worker2 （192.168.0.11）
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-master2 &amp;&amp; systemctl reboot #binary-k8s-master2（192.168.0.12）
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>添加hosts
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>根据规划设置主机名
+binary-k8s-master1(192.168.0.9)</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-master1 &amp;&amp;
+systemctl reboot
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>binary-k8s-worker1(192.168.0.10)
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-worker1  &amp;&amp;
+systemctl reboot
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>binary-k8s-worker2(192.168.0.11)
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-worker2  &amp;&amp;
+systemctl reboot
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>binary-k8s-master2(192.168.0.12)
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-master2 &amp;&amp;
+systemctl reboot
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>添加hosts
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat >> /etc/hosts &lt;&lt; EOF
 192.168.0.9 binary-k8s-master1
@@ -1579,6 +1594,10 @@ https://192.168.0.10:30441/
 https://192.168.0.11:30441/
 </code></pre>
 <h3 id="_8-14-8-在master1上部署coredns" tabindex="-1"><a class="header-anchor" href="#_8-14-8-在master1上部署coredns" aria-hidden="true">#</a> 8.14.8.在Master1上部署CoreDNS</h3>
+<!--
+	参考网站
+	https://blog.csdn.net/weixin_47402482/article/details/115057159
+-->
 <pre><code>介绍
 CoreDNS主要用于集群内部Service名称解析。
 

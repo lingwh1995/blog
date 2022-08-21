@@ -262,6 +262,8 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
             mv $2/${INCLUDE_CODE_PROJECT_NAME_ARR[i]} $2/project_${INCLUDE_CODE_PROJECT_NAME_ARR[i]}
            
             echo $2/$1'.md引用了'$2'下的'${INCLUDE_CODE_PROJECT_NAME_ARR[i]}'这个项目中的代码'
+            sed -i '/^@import "\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"/a\```' $2/$1.md
+            sed -i '/^@import "\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"/i\```' $2/$1.md
             sed -i 's#^@import "\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"#@include(project_\1)#g' $2/$1.md
         done
     fi

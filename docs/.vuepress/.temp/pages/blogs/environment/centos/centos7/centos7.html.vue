@@ -5,11 +5,14 @@
  1.安装Linux操作系统
  2.Linux操作系统初始设置
  3.搭建基础开发环境
- 4.Centos搭建docker
- 5.Centos搭建Rancher
- 6.Centos搭建Minikube
+ 4.搭建docker技术栈
+ 5.搭建Rancher技术栈
+ 6.搭建Minikube
  7.kubeadm搭建Kubernetes
  8.二进制包搭建Kubernetes
+ 9.搭建持续集成环境
+ 10.搭建Mycat技术栈
+ 11.搭建常用私服环境
 具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 </code></pre>
 <h2 id="博客内容大纲" tabindex="-1"><a class="header-anchor" href="#博客内容大纲" aria-hidden="true">#</a> 博客内容大纲</h2>
@@ -27,9 +30,9 @@
  1.1.章节内容概述
  1.2.章节内容大纲
  1.3.Linux重要目录介绍
- 1.4.Centos镜像下载
- 1.5.安装前Vmaware相关设置
- 1.6.安装时分区大小设置
+ 1.2.Centos镜像下载
+ 1.3.安装前Vmaware相关设置
+ 1.4.安装时分区大小设置
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 </code></pre>
 <h2 id="_1-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_1-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter1.html" target="_blank">1.2.章节内容大纲</a></h2>
@@ -47,13 +50,13 @@
 /tmp 用于存放各种临时文件，是公用的临时文件存储点。
 /var 存放临时文件，如各种服务的日志文件。
 </code></pre>
-<h2 id="_1-4-centos镜像下载" tabindex="-1"><a class="header-anchor" href="#_1-4-centos镜像下载" aria-hidden="true">#</a> 1.4.Centos镜像下载</h2>
+<h2 id="_1-2-centos镜像下载" tabindex="-1"><a class="header-anchor" href="#_1-2-centos镜像下载" aria-hidden="true">#</a> 1.2.Centos镜像下载</h2>
 <pre><code>如果是学习环境，建议安装centos mini版镜像，生产环境可以安装完整版本
 
 下载地址
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>http://ftp.sjtu.edu.cn/centos/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_1-5-安装前vmaware相关设置" tabindex="-1"><a class="header-anchor" href="#_1-5-安装前vmaware相关设置" aria-hidden="true">#</a> 1.5.安装前Vmaware相关设置</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_1-3-安装前vmaware相关设置" tabindex="-1"><a class="header-anchor" href="#_1-3-安装前vmaware相关设置" aria-hidden="true">#</a> 1.3.安装前Vmaware相关设置</h2>
 <pre><code>虚拟机联网设置
 导航栏-&gt;编辑-&gt;虚拟网络编辑器-&gt;VMnet8NAT模式-&gt;更改设置-&gt;VMnet8NAT模式
 	-&gt;更改底部子网:192.168.0.0，子网掩码:255.255.255.0-&gt;NAT设置-&gt;网关IP:192.168.0.2
@@ -65,7 +68,7 @@ VMnet8：用于虚拟NAT网络下的虚拟交换机
 VMware NetworkAdepter VMnet1：Host用于与Host-Only虚拟网络进行通信的虚拟网卡
 VMware NetworkAdepter VMnet8：Host用于与NAT虚拟网络进行通信的虚拟网卡
 </code></pre>
-<h2 id="_1-6-安装时分区大小设置" tabindex="-1"><a class="header-anchor" href="#_1-6-安装时分区大小设置" aria-hidden="true">#</a> 1.6.安装时分区大小设置</h2>
+<h2 id="_1-4-安装时分区大小设置" tabindex="-1"><a class="header-anchor" href="#_1-4-安装时分区大小设置" aria-hidden="true">#</a> 1.4.安装时分区大小设置</h2>
 <pre><code>/boot	/*存放系统启动引导文件，建议大小：512mb
 /swap 	/*交换区，建议大小：2g
 /*主分区，剩下的空间全部分给这个分区
@@ -132,7 +135,7 @@ source /etc/profile
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum makecache &amp;&amp; yum update
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_2-8-安装常用基础系统软件" tabindex="-1"><a class="header-anchor" href="#_2-8-安装常用基础系统软件" aria-hidden="true">#</a> 2.8.安装常用基础系统软件</h2>
-<h3 id="_2-8-1-手动安装常用软件" tabindex="-1"><a class="header-anchor" href="#_2-8-1-手动安装常用软件" aria-hidden="true">#</a> 2.8.1.手动安装常用软件</h3>
+<h3 id="_2-8-1-手动安装常用基础软件" tabindex="-1"><a class="header-anchor" href="#_2-8-1-手动安装常用基础软件" aria-hidden="true">#</a> 2.8.1.手动安装常用基础软件</h3>
 <pre><code>安装vim
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y install vim*
@@ -150,44 +153,7 @@ wget
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y install telnet
 yum -y install telnet-server
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>git
-卸载旧版本
-</code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y remove git
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装git
-</code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum install -y git
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看版本
-</code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git version
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>指定版本git
-下载需要安装的版本号
-</code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.29.0.tar.gz
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装需要的组件
-</code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y install curl-devel expat-devel gettext-devel openssl-devel zlib-devel
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>卸载Centos自带的git
-</code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y remove git
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装git
-</code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>tar -zxf git-2.29.0.tar.gz &amp;&amp;
-cd git-2.29.0 &amp;&amp;
-make prefix=/usr/local/git all &amp;&amp;
-make prefix=/usr/local/git install
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>添加环境变量
-</code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim /etc/profile
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>export PATH=$PATH:/usr/local/git/bin
-
-刷新环境变量
-</code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>source /etc/profile
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看版本
-</code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git version
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_2-8-2-使用脚本安装常用软件" tabindex="-1"><a class="header-anchor" href="#_2-8-2-使用脚本安装常用软件" aria-hidden="true">#</a> 2.8.2.使用脚本安装常用软件</h3>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_2-8-2-使用脚本安装常用软件" tabindex="-1"><a class="header-anchor" href="#_2-8-2-使用脚本安装常用软件" aria-hidden="true">#</a> 2.8.2.使用脚本安装常用软件</h3>
 <pre><code>脚本介绍
 这个脚本中包含了centos设置yum源并且安装了一些的常用软件，如vim、git、wget、curl、等，会定时更新
 
@@ -211,6 +177,7 @@ make prefix=/usr/local/git install
  3.5.安装mysql
  3.6.安装nodejs
  3.7.安装fastgithub
+ 3.8.安装git
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 </code></pre>
 <h2 id="_3-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_3-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter3.html" target="_blank">3.2.章节内容大纲</a></h2>
@@ -424,7 +391,43 @@ systemctl enable fastgithub
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git config --global http.proxy http://127.0.0.1:38457
 git config --global https.proxy http://127.0.0.1:38457
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h1 id="4." tabindex="-1"><a class="header-anchor" href="#4." aria-hidden="true">#</a> 4.Centos搭建docker</h1>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_3-8-安装git" tabindex="-1"><a class="header-anchor" href="#_3-8-安装git" aria-hidden="true">#</a> 3.8.安装git</h2>
+<h3 id="_3-8-1-安装默认版本git" tabindex="-1"><a class="header-anchor" href="#_3-8-1-安装默认版本git" aria-hidden="true">#</a> 3.8.1.安装默认版本git</h3>
+<pre><code>卸载旧版本
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y remove git
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装git
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum install -y git
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看版本
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git version
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_3-8-2-安装指定版本git" tabindex="-1"><a class="header-anchor" href="#_3-8-2-安装指定版本git" aria-hidden="true">#</a> 3.8.2.安装指定版本git</h3>
+<pre><code>下载需要安装的版本号
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.29.0.tar.gz
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装需要的组件
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y install curl-devel expat-devel gettext-devel openssl-devel zlib-devel
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>卸载Centos自带的git
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y remove git
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装git
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>tar -zxf git-2.29.0.tar.gz &amp;&amp;
+cd git-2.29.0 &amp;&amp;
+make prefix=/usr/local/git all &amp;&amp;
+make prefix=/usr/local/git install
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>添加环境变量
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>echo export PATH=$PATH:/usr/local/git/bin >> /etc/profile
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>刷新环境变量
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>source /etc/profile
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看版本
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>git version
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="4." tabindex="-1"><a class="header-anchor" href="#4." aria-hidden="true">#</a> 4.搭建docker技术栈</h1>
 <h2 id="_4-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_4-1-章节内容概述" aria-hidden="true">#</a> 4.1.章节内容概述</h2>
 <pre><code>本章节涉及主要内容有：
  4.1.章节内容概述
@@ -877,10 +880,14 @@ port:5001
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>配置docker使用harbor私服
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim /etc/docker/daemon.json
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>配置Docker(Register)注册仓库服务器信任192.168.0.4:5001:
-{&quot;insecure-registries&quot;:[&quot;192.168.0.4:5001&quot;]}
-
-重新加载docker daemon配置文件并重启docker
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>配置Docker(Register)注册仓库服务器信任192.168.0.4:5001
+没有配置任何私服配置
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>{"insecure-registries":["192.168.0.4:5001"]}
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>已经配置任何私服配置
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>"insecure-registries":["192.168.0.4:5001"]
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>重新加载docker daemon配置文件并重启docker
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
 systemctl restart docker
@@ -892,7 +899,7 @@ systemctl restart docker
 如:springcloud-eureka
 </code></pre>
 <h2 id="_4-7-docker官方私服可视化" tabindex="-1"><a class="header-anchor" href="#_4-7-docker官方私服可视化" aria-hidden="true">#</a> 4.7.docker官方私服可视化</h2>
-<h3 id="_4-7-1docker-registry-web方案" tabindex="-1"><a class="header-anchor" href="#_4-7-1docker-registry-web方案" aria-hidden="true">#</a> 4.7.1docker-registry-web方案</h3>
+<h3 id="_4-7-1-docker-registry-web方案" tabindex="-1"><a class="header-anchor" href="#_4-7-1-docker-registry-web方案" aria-hidden="true">#</a> 4.7.1.docker-registry-web方案</h3>
 <pre><code>下载docker pull hyper/docker-registry-web镜像
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker pull hyper/docker-registry-web
@@ -907,12 +914,17 @@ systemctl restart docker
 	hyper/docker-registry-web:latest
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_4-8-制作docker镜像并上传到私服" tabindex="-1"><a class="header-anchor" href="#_4-8-制作docker镜像并上传到私服" aria-hidden="true">#</a> 4.8.制作docker镜像并上传到私服</h2>
 <h3 id="_4-8-1-制作dokcer镜像" tabindex="-1"><a class="header-anchor" href="#_4-8-1-制作dokcer镜像" aria-hidden="true">#</a> 4.8.1.制作Dokcer镜像</h3>
-<pre><code>进入/opt/software/package，并在这个目录中下载jdk
+<pre><code>下载地址
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /opt/software/package &amp;&amp;
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>https://repo.huaweicloud.com/java/jdk/
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>创建存放docker镜像的文件夹-&gt;在这个目录中下载jdk
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mkdir -p /opt/software/docker/images &amp;&amp;
+cd /opt/software/docker/images &amp;&amp;
 wget https://repo.huaweicloud.com/java/jdk/8u181-b13/jdk-8u181-linux-x64.tar.gz
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>编写Dockerfile(Dockerfile内容如下)
-
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>编写Dockerfile(Dockerfile内容如下)
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat &lt;&lt;EOF > Dockerfile
 #基于centos基础镜像构建
 FROM centos
 #作者
@@ -925,9 +937,9 @@ ENV JRE_HOME ${JAVA_HOME}/jre
 ENV CLASSPATH .:${JAVA_HOME}/lib:${JRE_HOME}/lib
 ENV PATH ${JAVA_HOME}/bin:$PATH
 #输出Java版本信息
-CMD [&quot;java&quot;,&quot;-version&quot;]
-
-在当前目录中执行构建镜像的命令
+CMD ["java","-version"]
+EOF
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>在当前目录中执行构建镜像的命令
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker build -t='jdk/jdk1.8.0_181' .
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看到刚才制作好的镜像
@@ -939,7 +951,7 @@ CMD [&quot;java&quot;,&quot;-version&quot;]
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_4-8-2-上传本地jdk镜像到私服" tabindex="-1"><a class="header-anchor" href="#_4-8-2-上传本地jdk镜像到私服" aria-hidden="true">#</a> 4.8.2.上传本地jdk镜像到私服</h3>
 <pre><code>给镜像打标签
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker tag jdk/jdk1.8.0_181 192.168.0.4:5000/jdk/jdk1.8.0_181:latest #更改镜像的TAG标签
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker tag jdk/jdk1.8.0_181 192.168.0.4:5000/jdk/jdk1.8.0_181:latest
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>上传标记的镜像
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker push 192.168.0.4:5000/jdk/jdk1.8.0_181:latest
@@ -1046,7 +1058,7 @@ output代表数据输出配置，输出到elasticsearch, hosts是es的地址192.
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>重启ELK容器
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker restart elk
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>注意事项	
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>注意事项
 当把docker和centos7的冲突解决后,需要让centos放行elk(具体是es)的部署地址
 
 查看容器详细信息
@@ -1069,7 +1081,7 @@ max virtual memory areas vm.max_map_count [65530] is too low, increase to at lea
 解决方式，在宿主机执行
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sudo sysctl -w vm.max_map_count=262144
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="5." tabindex="-1"><a class="header-anchor" href="#5." aria-hidden="true">#</a> 5.Centos搭建Rancher</h1>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="5." tabindex="-1"><a class="header-anchor" href="#5." aria-hidden="true">#</a> 5.搭建Rancher技术栈</h1>
 <h2 id="_5-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_5-1-章节内容概述" aria-hidden="true">#</a> 5.1.章节内容概述</h2>
 <pre><code>本章节涉及主要内容有：
  5.1.章节内容概述
@@ -1090,11 +1102,11 @@ max virtual memory areas vm.max_map_count [65530] is too low, increase to at lea
 eureka:
   instance:
 	#使用rancher扩容不能配置instance-id,否则会出问题
-	#instance-id: ${spring.application.name} 
+	#instance-id: ${spring.application.name}
 	#使用rancher扩容不能配置iip-address,否则会出问题
-	#ip-address: 192.168.0.4				
+	#ip-address: 192.168.0.4
 </code></pre>
-<h1 id="6." tabindex="-1"><a class="header-anchor" href="#6." aria-hidden="true">#</a> 6.Centos搭建Minikube</h1>
+<h1 id="6." tabindex="-1"><a class="header-anchor" href="#6." aria-hidden="true">#</a> 6.搭建Minikube</h1>
 <h2 id="_6-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_6-1-章节内容概述" aria-hidden="true">#</a> 6.1.章节内容概述</h2>
 <pre><code>本章节涉及主要内容有：
  6.1.章节内容概述
@@ -1102,11 +1114,13 @@ eureka:
  6.3.minikube介绍
  6.4.版本说明
  6.5.开启Vmware虚拟化
- 6.6.安装kubectl	
+ 6.6.安装kubectl
  6.7.安装minikube
  6.8.使用阿里云加速docker hub
- 6.9.启动minikube
- 6.10.minikube常用命令	
+ 6.9.启动minikube(下面两种启动方式任选一种)
+ 6.10.安装dashboard
+ 6.12.部署测试程序
+ 6.12.minikube常用命令
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 </code></pre>
 <h2 id="_6-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_6-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter6.html" target="_blank">6.2.章节内容大纲</a></h2>
@@ -1115,61 +1129,79 @@ eureka:
 <pre><code>Minikube这个工具支持在虚拟机上运行一套单节点的k8s集群
 </code></pre>
 <h2 id="_6-4-版本说明" tabindex="-1"><a class="header-anchor" href="#_6-4-版本说明" aria-hidden="true">#</a> 6.4.版本说明</h2>
-<pre><code>minikube:1.2.6 kubectl client:1.18.0
+<pre><code>minikube:1.2.6 kubectl:1.18.0
 </code></pre>
 <h2 id="_6-5-开启vmware虚拟化" tabindex="-1"><a class="header-anchor" href="#_6-5-开启vmware虚拟化" aria-hidden="true">#</a> 6.5.开启Vmware虚拟化</h2>
 <pre><code>查看是否支持虚拟化，开始安装前，先查看本地机器是否支持虚拟化，有输出就支持
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>grep -E --color 'vmx|svm' /proc/cpuinfo
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>开启虚拟化
-Vmware Workstation -&gt;Centos 64右键菜单 —&gt; 设置 
-	-&gt; 处理器 -&gt;勾选 虚拟化IntelVT-x/EPT 或 ADM-V/RVI(V)
+Vmware Workstation -&gt;Centos 64右键菜单 —&gt; 设置-&gt; 处理器 -&gt;勾选 虚拟化IntelVT-x/EPT 或 ADM-V/RVI(V)
 
+设置处理器和内存
 设置处理器数量设置为大于等于2,内存大于等于2G
 </code></pre>
 <h2 id="_6-6-安装kubectl" tabindex="-1"><a class="header-anchor" href="#_6-6-安装kubectl" aria-hidden="true">#</a> 6.6.安装kubectl</h2>
 <pre><code>简介
 kubectl 是一个用来跟 K8S 集群进行交互的命令行工具
-	
-下载kubectl，上传到/opt/software/package，赋予可运行权限,并放入/usr/local/bin/目录下
+
+官方下载地址
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>chmod +x ./kubectl &amp;&amp; cp ./kubectl /usr/local/bin/kubectl
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看kubectl版本
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>创建存放kubectl安装包文件夹-&gt;进入该文件夹-&gt;下载kubectl-&gt;赋予可运行权限,并放入/usr/local/bin/目录下
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mkdir -p /opt/software/package &amp;&amp;
+cd /opt/software/package &amp;&amp;
+curl -fL -u software-1660952069446:7cd40c9384cc107052a8e14acc0c01c15bfa5f41 \
+"https://lingwh-generic.pkg.coding.net/coding-drive/software/kubectl?version=latest" \
+-o kubectl &amp;&amp;
+chmod +x ./kubectl &amp;&amp; cp ./kubectl /usr/local/bin/kubectl
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>查看kubectl版本
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl version --client
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_6-7-安装minikube" tabindex="-1"><a class="header-anchor" href="#_6-7-安装minikube" aria-hidden="true">#</a> 6.7.安装minikube</h2>
-<pre><code>下载minikube
-到 https://github.com/kubernetes/minikube/releases 找到minikube-linux-amd64并下载
-
-上传到/opt/software/package
-
-赋予运行权限并复制到/usr/local/bin/minikube
+<pre><code>官方网址
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>chmod +x ./minikube-linux-amd64 &amp;&amp; cp ./minikube-linux-amd64 /usr/local/bin/minikube
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>https://github.com/kubernetes/minikube/releases
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>创建存放minikube安装包文件夹-&gt;进入该文件夹-&gt;下载minikube-&gt;赋予运行权限并复制到/usr/local/bin/minikube
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mkdir -p /opt/software/package &amp;&amp;
+cd /opt/software/package &amp;&amp;
+curl -fL -u software-1660950689210:1711c0580b6468ff8099f7987884c6f0c9ca2650 \
+"https://lingwh-generic.pkg.coding.net/coding-drive/software/minikube-linux-amd64?version=latest" \
+-o minikube-linux-amd64 &amp;&amp;
+chmod +x ./minikube-linux-amd64 &amp;&amp; cp ./minikube-linux-amd64 /usr/local/bin/minikube
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>查看minikube版本
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>minikube version
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_6-8-使用阿里云加速docker-hub" tabindex="-1"><a class="header-anchor" href="#_6-8-使用阿里云加速docker-hub" aria-hidden="true">#</a> 6.8.使用阿里云加速docker hub</h2>
 <pre><code>登录阿里云docker相关页面
-访问：https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors
-登陆-&gt;左侧菜单选中镜像加速器-&gt;查看加速镜像地址 https://ngviu28h.mirror.aliyuncs.com
 </code></pre>
-<h2 id="_6-9-启动minikube" tabindex="-1"><a class="header-anchor" href="#_6-9-启动minikube" aria-hidden="true">#</a> 6.9.启动minikube</h2>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>登陆-&gt;左侧菜单选中镜像加速器-&gt;查看加速镜像地址
+我的加速地址是：https://ngviu28h.mirror.aliyuncs.com
+</code></pre>
+<h2 id="_6-9-启动minikube-下面两种启动方式任选一种" tabindex="-1"><a class="header-anchor" href="#_6-9-启动minikube-下面两种启动方式任选一种" aria-hidden="true">#</a> 6.9.启动minikube(下面两种启动方式任选一种)</h2>
+<h3 id="_6-9-1-使用docker作为虚拟化引擎-需要先安装docker" tabindex="-1"><a class="header-anchor" href="#_6-9-1-使用docker作为虚拟化引擎-需要先安装docker" aria-hidden="true">#</a> 6.9.1.使用docker作为虚拟化引擎(需要先安装Docker)</h3>
 <pre><code>注意事项
 启动minikube之前需要先启动docker，如无法启动加上--kubernetes-version=v具体版本号
 
-使用docker作为虚拟化引擎(需要先安装Docker)
+启动minikube
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>minikube start --driver=docker --force \
 	--image-mirror-country='cn' \
 	--image-repository='registry.cn-hangzhou.aliyuncs.com/google_containers' \
 	--registry-mirror='https://ngviu28h.mirror.aliyuncs.com' \
 	--kubernetes-version=v1.23.8
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>使用virtualbox作为虚拟化引擎(需要先安装Virtualbox)
-
-下载Centos7版VirtualBox
-访问：https://www.virtualbox.org/wiki/Downloads，选择AMD64版本下载
-上传到/opt/software/package中
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_6-9-2-使用virtualbox作为虚拟化引擎-需要先安装virtualbox" tabindex="-1"><a class="header-anchor" href="#_6-9-2-使用virtualbox作为虚拟化引擎-需要先安装virtualbox" aria-hidden="true">#</a> 6.9.2.使用virtualbox作为虚拟化引擎(需要先安装Virtualbox)</h3>
+<pre><code>官方网站
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>VirtualBox-6.1-6.1.34_150636_el7-2.x86_64.rpm
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装问题解决(virtualbox内核无法编译)
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>https://www.virtualbox.org/wiki/Downloads
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>下载Centos7版VirtualBox
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /opt/software/package &amp;&amp;
+wget https://download.virtualbox.org/virtualbox/6.1.36/VirtualBox-6.1-6.1.36_152435_el7-1.x86_64.rpm
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>安装问题解决(virtualbox内核无法编译)
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sudo yum install gcc kernel kernel-devel -y
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>重启机器
@@ -1178,39 +1210,72 @@ kubectl 是一个用来跟 K8S 集群进行交互的命令行工具
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装VirtualBox
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum install VirtualBox-6.1-6.1.34_150636_el7-2.x86_64.rpm -y
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>补充内容：Centos版VirtualBox操作命令						
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>补充内容：Centos版VirtualBox操作命令
 VBoxManage list runningvms //查看机器列表
 VBoxHeadless -startvm &quot;虚拟机名&quot; //启动虚拟机
 测试VirtualBox是否安装成功
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>virtualbox
-rcvboxdrv setup
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>使用virtualbox作为虚拟化引擎
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>使用virtualbox作为虚拟化引擎
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>minikube start --driver=virtualbox --force \
 	--image-mirror-country='cn' \
 	--image-repository='registry.cn-hangzhou.aliyuncs.com/google_containers' \
 	--registry-mirror='https://ngviu28h.mirror.aliyuncs.com' \
 	--kubernetes-version=v1.23.8
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_6-10-minikube常用命令" tabindex="-1"><a class="header-anchor" href="#_6-10-minikube常用命令" aria-hidden="true">#</a> 6.10.minikube常用命令</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_6-10-安装dashboard" tabindex="-1"><a class="header-anchor" href="#_6-10-安装dashboard" aria-hidden="true">#</a> 6.10.安装dashboard</h2>
+<pre><code>安装dashboard
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>minikube dashboard
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>设置其他机器也可以访问dashboard
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl proxy --port=8001 --address='192.168.0.4' --accept-hosts='^.*' &amp;
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>开放访问端口
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>firewall-cmd --zone=public --add-port=8001/tcp --permanent &amp;&amp;
+firewall-cmd --reload
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>访问kubectl dashboard
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>http://192.168.0.4:8001/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_6-12-部署测试程序" tabindex="-1"><a class="header-anchor" href="#_6-12-部署测试程序" aria-hidden="true">#</a> 6.12.部署测试程序</h2>
+<pre><code>开始运行 guestbook
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl create deployment guestbook --image=ibmcom/guestbook:v1
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查询pod运行状态，状态应该显示为Running表示pod运行成功
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get pods
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>对外暴露端口
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl port-forward --address 0.0.0.0 pod/guestbook-5bccb95cd6-dk6zh 7080:3000
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>开放访问端口
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>firewall-cmd --zone=public --add-port=7080/tcp --permanent &amp;&amp;
+firewall-cmd --reload
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>访问服务（主节点和两个工作节点都可访问到这个服务）
+http://192.168.0.4:7080
+</code></pre>
+<h2 id="_6-12-minikube常用命令" tabindex="-1"><a class="header-anchor" href="#_6-12-minikube常用命令" aria-hidden="true">#</a> 6.12.minikube常用命令</h2>
 <pre><code>查看minikube日志
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>minikube logs
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看minikube状态
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>minikube status								
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看节点				
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>minikube status
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看node
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get nodes
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看所有命名空间的pod
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>minikube kubectl -- get po -A
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看所有命名空间的pod
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get pods --all-namespaces
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>停止集群
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>minikube stop
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>清空集群
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>minikube delete --all
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装集群可视化 Web UI 控制台
-</code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>minikube dashboard
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>卸载minikube
 停止运行
 </code></pre>
@@ -1220,7 +1285,7 @@ rcvboxdrv setup
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>minikube delete
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>删除 ~/.minikube 目录缓存的文件
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>rm -rf ~/.minikube	
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>rm -rf ~/.minikube
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="7." tabindex="-1"><a class="header-anchor" href="#7." aria-hidden="true">#</a> 7.kubeadm搭建Kubernetes</h1>
 <h2 id="_7-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_7-1-章节内容概述" aria-hidden="true">#</a> 7.1.章节内容概述</h2>
 <pre><code>本章节涉及主要内容有：
@@ -1242,7 +1307,7 @@ rcvboxdrv setup
  7.16.在master上查看集群节点
  7.17.启动故障解决
  7.18.基础命令
- 7.19.部署第一个程序到k8s中
+ 7.19.部署测试程序
  7.20.可视化面板kuboard
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 </code></pre>
@@ -1291,7 +1356,7 @@ systemctl daemon-reload &amp;&amp; systemctl restart docker
 <h2 id="_7-9-所有节点安装k8s所需组件" tabindex="-1"><a class="header-anchor" href="#_7-9-所有节点安装k8s所需组件" aria-hidden="true">#</a> 7.9.所有节点安装k8s所需组件</h2>
 <pre><code>添加k8s安装源
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>&lt;!-- cat &lt;&lt;EOF > kubernetes.repo -->
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat &lt;&lt;EOF > kubernetes.repo
 [kubernetes]
 name=Kubernetes
 baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64
@@ -1313,7 +1378,7 @@ EOF
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl	--version
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubeadm --version
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_7-10-所有节点启动kubelet和docker" tabindex="-1"><a class="header-anchor" href="#_7-10-所有节点启动kubelet和docker" aria-hidden="true">#</a> 7.10.所有节点启动kubelet和docker</h2>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl enable kubelet &amp;&amp; 
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl enable kubelet &amp;&amp;
 systemctl start kubelet &amp;&amp;
 systemctl enable docker &amp;&amp;
 systemctl start docker
@@ -1434,7 +1499,7 @@ slave2   Ready      &lt;none&gt;                 2m31s   v1.22.4
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看pod日志
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl describe pod
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_7-19-部署第一个程序到k8s中" tabindex="-1"><a class="header-anchor" href="#_7-19-部署第一个程序到k8s中" aria-hidden="true">#</a> 7.19.部署第一个程序到k8s中</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_7-19-部署测试程序" tabindex="-1"><a class="header-anchor" href="#_7-19-部署测试程序" aria-hidden="true">#</a> 7.19.部署测试程序</h2>
 <pre><code>开始运行 guestbook
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl create deployment guestbook --image=ibmcom/guestbook:v1
@@ -1488,7 +1553,7 @@ http://192.168.0.8:31208
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>卸载kuboard-v3
 执行卸载命令
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	kubectl delete -f https://addons.kuboard.cn/kuboard/kuboard-v3.yaml
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl delete -f https://addons.kuboard.cn/kuboard/kuboard-v3.yaml
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>清理遗留数据
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>rm -rf /usr/share/kuboard
@@ -1517,6 +1582,10 @@ http://192.168.0.8:31208
 </code></pre>
 <h2 id="_8-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_8-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter8.html" target="_blank">8.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter8.html"/>
+<!--
+	参考网站
+	https://blog.csdn.net/qq_44078641/article/details/120049473
+-->
 <h2 id="_8-3-环境配置清单" tabindex="-1"><a class="header-anchor" href="#_8-3-环境配置清单" aria-hidden="true">#</a> 8.3.环境配置清单</h2>
 <pre><code>操作系统									centos7
 内核版本									3.10.0-1160.71.1.el7.x86_64
@@ -1643,12 +1712,23 @@ keepalive   : 192.168.3.xx
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl stop firewalld &amp;&amp; systemctl disable firewalld #关闭系统防火墙
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sed -i 's/enforcing/disabled/' /etc/selinux/config #永久关闭selinux
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sed -ri 's/.*swap.*/#&amp;/' /etc/fstab #永久关闭swap
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>根据规划设置主机名</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-master1 &amp;&amp; systemctl reboot #binary-k8s-master1（192.168.0.9）
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-worker1  &amp;&amp; systemctl reboot #binary-k8s-worker1 （192.168.0.10）
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-worker2  &amp;&amp; systemctl reboot #binary-k8s-worker2 （192.168.0.11）
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-master2 &amp;&amp; systemctl reboot #binary-k8s-master2（192.168.0.12）
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>添加hosts
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>根据规划设置主机名
+binary-k8s-master1(192.168.0.9)</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-master1 &amp;&amp;
+systemctl reboot
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>binary-k8s-worker1(192.168.0.10)
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-worker1  &amp;&amp;
+systemctl reboot
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>binary-k8s-worker2(192.168.0.11)
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-worker2  &amp;&amp;
+systemctl reboot
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>binary-k8s-master2(192.168.0.12)
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-master2 &amp;&amp;
+systemctl reboot
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>添加hosts
 </code></pre>
 <div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat >> /etc/hosts &lt;&lt; EOF
 192.168.0.9 binary-k8s-master1
@@ -3073,6 +3153,10 @@ https://192.168.0.10:30441/
 https://192.168.0.11:30441/
 </code></pre>
 <h3 id="_8-14-8-在master1上部署coredns" tabindex="-1"><a class="header-anchor" href="#_8-14-8-在master1上部署coredns" aria-hidden="true">#</a> 8.14.8.在Master1上部署CoreDNS</h3>
+<!--
+	参考网站
+	https://blog.csdn.net/weixin_47402482/article/details/115057159
+-->
 <pre><code>介绍
 CoreDNS主要用于集群内部Service名称解析。
 
@@ -3821,5 +3905,443 @@ guestbook   NodePort   10.10.10.253   &lt;none&gt;        3000:31208/TCP   1m
 http://192.168.0.6:31208
 http://192.168.0.7:31208
 http://192.168.0.8:31208
+</code></pre>
+<h1 id="9." tabindex="-1"><a class="header-anchor" href="#9." aria-hidden="true">#</a> 9.搭建持续集成环境</h1>
+<h2 id="_9-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_9-1-章节内容概述" aria-hidden="true">#</a> 9.1.章节内容概述</h2>
+<pre><code>本章节涉及主要内容有：
+ 9.1.章节内容概述
+ 9.2.章节内容大纲
+ 9.3.使用本地内网穿透搭建持续集成环境
+ 9.4.使用Coding内网穿透搭建持续集成环境
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+</code></pre>
+<h2 id="_9-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_9-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter9.html" target="_blank">9.2.章节内容大纲</a></h2>
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter9.html"/>
+<h2 id="_9-3-使用本地内网穿透搭建持续集成环境" tabindex="-1"><a class="header-anchor" href="#_9-3-使用本地内网穿透搭建持续集成环境" aria-hidden="true">#</a> 9.3.使用本地内网穿透搭建持续集成环境</h2>
+<h3 id="_9-3-1-持续集成环境组件列表" tabindex="-1"><a class="header-anchor" href="#_9-3-1-持续集成环境组件列表" aria-hidden="true">#</a> 9.3.1.持续集成环境组件列表</h3>
+<pre><code>Jenkins、git、maven、docker
+</code></pre>
+<h3 id="_9-3-2-安装jekins" tabindex="-1"><a class="header-anchor" href="#_9-3-2-安装jekins" aria-hidden="true">#</a> 9.3.2.安装jekins</h3>
+<pre><code>下载tomcat
+https://downloads.apache.org/tomcat/
+
+下载Jenkins的war包
+https://www.jenkins.io/download/
+
+上传tomcat和jenkins.war到/opt/software/package
+cd /opt/software/package/
+
+解压tomcat到/opt/software/install
+tar -zxvf apache-tomcat-8.5.79.tar.gz -C /opt/software/install
+
+复制jekins.war复制到 /opt/software/install/apache-tomcat-8.5.79/webapps中
+cp jenkins.war /opt/software/install/apache-tomcat-8.5.79/webapps
+
+配置Jekins字符编码(解决输出控制台中文乱码问题)
+设置jenkins所在服务器环境变量
+vim  /etc/profile
+export JAVA_TOOL_OPTIONS=&quot;-Duser.timezone=Asia/Shanghai -Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8&quot;
+source /etc/profile
+
+在jekins中进入系统管理-&gt;系统配置-&gt;全局属性-&gt;环境变量
+键: JAVA_TOOL_OPTIONS
+值: -Duser.timezone=Asia/Shanghai -Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8
+如项目已经启动修改完字符配置后要重启tomcat
+</code></pre>
+<h3 id="_9-3-3-安装jdk" tabindex="-1"><a class="header-anchor" href="#_9-3-3-安装jdk" aria-hidden="true">#</a> 9.3.3.安装jdk</h3>
+<pre><code>详细参考 3.搭建基础开发环境-&gt;3.3.安装jdk
+</code></pre>
+<h3 id="_9-3-4-安装maven" tabindex="-1"><a class="header-anchor" href="#_9-3-4-安装maven" aria-hidden="true">#</a> 9.3.4.安装maven</h3>
+<pre><code>详细参考 3.搭建基础开发环境-&gt;3.4.安装maven
+
+注意事项
+如果在jekins启动的情况下在settings.xml中新增了源的配置，想要jenkins构建的时候使用新配置的阿里云的源，必须重启tomcat，使用 http://192.168.0.4/jenkins/reload 热重启是无法识别阿里云源的
+
+问题解决
+使用jekins构建时Could not resolve dependencies for project...
+修改jekinsfile中sh后面的maven命令
+maven命令扩展:实现多模块情况下只针对某一个模块打包
+-pl, --projects
+	指定项目其中的一个模块及其依赖
+-am, --also-make
+	自动构建该模块所依赖的其他模块
+</code></pre>
+<h3 id="_9-3-5-安装git" tabindex="-1"><a class="header-anchor" href="#_9-3-5-安装git" aria-hidden="true">#</a> 9.3.5.安装git</h3>
+<pre><code>详细参考 3.搭建基础开发环境-&gt;3.8.安装git-&gt;3.8.1.安装默认版本git
+</code></pre>
+<h3 id="_9-3-6-启动jenkins" tabindex="-1"><a class="header-anchor" href="#_9-3-6-启动jenkins" aria-hidden="true">#</a> 9.3.6.启动Jenkins</h3>
+<pre><code>启动部署了Jenkins的tomcat
+访问:http://192.168.0.5:8080/jenkins
+
+进入tomcat部署机器复制密码
+cat /root/.jenkins/secrets/initialAdminPassword
+
+在jekins界面输入密码
+如:7960e85d79cb4dd2b0d12c740e9aec62
+
+设置Jenkins用户密码
+登录界面设置 admin/123456
+</code></pre>
+<h3 id="_9-3-7-安装配置jenkins用到的插件" tabindex="-1"><a class="header-anchor" href="#_9-3-7-安装配置jenkins用到的插件" aria-hidden="true">#</a> 9.3.7.安装配置Jenkins用到的插件</h3>
+<pre><code>Publish Over SSH
+
+安装Publish Over SSH
+DASHBOARD-&gt;系统管理-&gt;插件管理-&gt;可选插件-&gt;输入 Publish Over SSH-&gt;Download now and install after restart-&gt;重启Tomcat
+
+配置Publish Over SSH
+进入配置界面
+DASHBOARD-&gt;系统管理-&gt;系统配置-&gt;Publish over SSH
+配置Jenkins所在服务器到docker所在服务器的免密登录
+需要百度查询确定
+</code></pre>
+<h3 id="_9-3-8-搭建内网穿透" tabindex="-1"><a class="header-anchor" href="#_9-3-8-搭建内网穿透" aria-hidden="true">#</a> 9.3.8.搭建内网穿透</h3>
+<pre><code>下载natapp
+登录 https://natapp.cn/ 后下载Linux64位版
+
+注册账号，注意这里的端口就是我们我们要用到的jekins的端口，实名制认证后得到一个token(cce8e31a304892ea)
+
+上传natapp到服务器
+赋予 运行权限
+chmod a+x natapp
+
+运行natapp
+./natapp -authtoken=cce8e31a304892ea
+
+运行成功后效果如下
+Powered By NATAPP       Please visit https://natapp.cn
+Tunnel Status			Online
+Version             	2.3.9
+Forwarding              http://2edv7s.natappfree.cc -&gt; 127.0.0.1:8080
+
+使用内网穿透
+启动本地Jenkins，访问地址为: http://192.168.0.5/jenkins，
+内网穿透后公网访问Jenkins，访问地址为: http://2edv7s.natappfree.cc/jenkins
+</code></pre>
+<h2 id="_9-4-使用coding内网穿透搭建持续集成环境" tabindex="-1"><a class="header-anchor" href="#_9-4-使用coding内网穿透搭建持续集成环境" aria-hidden="true">#</a> 9.4.使用Coding内网穿透搭建持续集成环境</h2>
+<h3 id="_9-4-1-持续集成环境组件列表" tabindex="-1"><a class="header-anchor" href="#_9-4-1-持续集成环境组件列表" aria-hidden="true">#</a> 9.4.1.持续集成环境组件列表</h3>
+<pre><code>git、maven、Coding.net
+</code></pre>
+<h3 id="_9-4-2-安装jdk" tabindex="-1"><a class="header-anchor" href="#_9-4-2-安装jdk" aria-hidden="true">#</a> 9.4.2.安装jdk</h3>
+<pre><code>详细参考 3.搭建基础开发环境-&gt;3.3.安装jdk
+</code></pre>
+<h3 id="_9-4-3-安装maven" tabindex="-1"><a class="header-anchor" href="#_9-4-3-安装maven" aria-hidden="true">#</a> 9.4.3.安装maven</h3>
+<pre><code>详细参考 3.搭建基础开发环境-&gt;3.4.安装maven
+
+注意事项
+如果在jekins启动的情况下在settings.xml中新增了源的配置，想要jenkins构建的时候使用新配置的阿里云的源，必须重启tomcat，使用 http://192.168.0.4/jenkins/reload 热重启是无法识别阿里云源的
+
+问题解决
+使用jekins构建时Could not resolve dependencies for project...
+修改jekinsfile中sh后面的maven命令
+maven命令扩展:实现多模块情况下只针对某一个模块打包
+-pl, --projects
+	指定项目其中的一个模块及其依赖
+-am, --also-make
+	自动构建该模块所依赖的其他模块
+</code></pre>
+<h3 id="_9-4-4-安装git" tabindex="-1"><a class="header-anchor" href="#_9-4-4-安装git" aria-hidden="true">#</a> 9.4.4.安装git</h3>
+<pre><code>详细参考 3.搭建基础开发环境-&gt;3.8.安装git-&gt;3.8.2.安装指定版本git(Coding需要高版本的git)
+</code></pre>
+<h3 id="_9-4-5-使用coding提供的接入命令搭建持续集成环境" tabindex="-1"><a class="header-anchor" href="#_9-4-5-使用coding提供的接入命令搭建持续集成环境" aria-hidden="true">#</a> 9.4.5.使用Coding提供的接入命令搭建持续集成环境</h3>
+<pre><code>登录Coding(这里换成自己的Coding.net用户名)
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>https://lingwh.coding.net/p/java/ci/agent
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>接入新节点-&gt;linux-&gt;Bash-&gt;生成接入命令
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>curl -fL 'https://coding.net/public-files/coding-ci/install/linux/install.sh?version=2022.03.22-b3bd8b2ac67f552c7be7bf82c311f6c11083f619' | CODING_SERVER=wss://lingwh.coding.net PACKAGE_URL=https://coding.net JENKINS_VERSION=2.293-cci-v2.2 JENKINS_HOME_VERSION=v43 PYPI_HOST=https://lingwh.coding.net/ci/pypi/simple PYPI_EXTRA_INDEX_URL= LOG_REPORT=http://worker-beat.coding.net bash -s 4ada5d876d32c8990debd64b62823c3a5ecbb959 false default
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看Coding.net中节点接入状态(这里换成自己的Coding.net用户名)
+在目标机器(192.168.0.5)上执行生成接入命令,执行成功后到Coding.net中Jenkins节点列表查看节点是否准备就绪,如果接入命令执行成功了,则节点状态显示为 在线
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>https://lingwh.coding.net/p/java/ci/agent/136295/list
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_9-4-6-安装配置jenkins用到的插件" tabindex="-1"><a class="header-anchor" href="#_9-4-6-安装配置jenkins用到的插件" aria-hidden="true">#</a> 9.4.6.安装配置Jenkins用到的插件</h3>
+<pre><code>Publish Over SSH
+
+安装Publish Over SSH
+DASHBOARD-&gt;系统管理-&gt;插件管理-&gt;可选插件-&gt;输入 Publish Over SSH-&gt;Download now and install after restart-&gt;重启Tomcat
+
+配置Publish Over SSH
+进入配置界面
+DASHBOARD-&gt;系统管理-&gt;系统配置-&gt;Publish over SSH
+配置Jenkins所在服务器到docker所在服务器的免密登录
+需要百度查询确定
+</code></pre>
+<h1 id="10." tabindex="-1"><a class="header-anchor" href="#10." aria-hidden="true">#</a> 10.搭建Mycat技术栈</h1>
+<h2 id="_10-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_10-1-章节内容概述" aria-hidden="true">#</a> 10.1.章节内容概述</h2>
+<pre><code>本章节涉及主要内容有：
+ 10.1.章节内容概述
+ 10.2.章节内容大纲
+ 10.3.安装myact1.6
+ 10.4.搭建mycat2
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+</code></pre>
+<h2 id="_10-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_10-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter10.html" target="_blank">10.2.章节内容大纲</a></h2>
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter10.html"/>
+<h2 id="_10-3-安装myact1-6" tabindex="-1"><a class="header-anchor" href="#_10-3-安装myact1-6" aria-hidden="true">#</a> 10.3.安装myact1.6</h2>
+<h3 id="_10-3-1-服务器环境说明" tabindex="-1"><a class="header-anchor" href="#_10-3-1-服务器环境说明" aria-hidden="true">#</a> 10.3.1.服务器环境说明</h3>
+<pre><code>192.168.0.6 mycat1.6
+192.168.0.7 mysql
+192.168.0.8 mysql
+</code></pre>
+<h3 id="_10-3-2-搭建jdk" tabindex="-1"><a class="header-anchor" href="#_10-3-2-搭建jdk" aria-hidden="true">#</a> 10.3.2.搭建JDK</h3>
+<pre><code>详细参考 3.搭建基础开发环境-&gt;3.3.安装jdk
+</code></pre>
+<h3 id="_10-3-3-搭建myact1-6" tabindex="-1"><a class="header-anchor" href="#_10-3-3-搭建myact1-6" aria-hidden="true">#</a> 10.3.3.搭建myact1.6</h3>
+<pre><code>官方网址	
+http://www.mycat.org.cn/
+
+下载mycat1.6
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>wget http://dl.mycat.org.cn/1.6.7.3/20190828135747/Mycat-server-1.6.7.3-release-20190828135747-linux.tar.gz
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>上传到 /opt/software/package
+
+解压到/user/local/bin
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>tar -zxvf Mycat-server-1.6.7.3-release-20190828135747-linux.tar.gz -C /usr/local/bin	
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>删除mycat中低版本的mysql连接包（如使用低版本数据可以不删除）
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>rm -rf /usr/local/bin/mycat/lib/mysql-connector-java-5.1.35.jar
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>替换低版本的mysql连接包为高版本的mysql连接包
+上传适用于mysql8.0.29的连接包到/opt/software/package，并复制一份到mycat的指定文件夹中				
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>chomd 777 mysql-connector-java-8.0.29.jar &amp;&amp;
+cp mysql-connector-java-8.0.29.jar /usr/local/bin/mycat/lib/	
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_10-3-4-在各个节点上安装mysql" tabindex="-1"><a class="header-anchor" href="#_10-3-4-在各个节点上安装mysql" aria-hidden="true">#</a> 10.3.4.在各个节点上安装mysql</h3>
+<pre><code>在节点1安装mysql8.0.29(192.168.0.7)
+详细参考 3.搭建基础开发环境-&gt;3.5.安装mysql
+
+在节点2安装mysql8.0.29(192.168.0.8)	
+详细参考 3.搭建基础开发环境-&gt;3.5.安装mysql
+</code></pre>
+<h3 id="_10-3-5-配置mycat" tabindex="-1"><a class="header-anchor" href="#_10-3-5-配置mycat" aria-hidden="true">#</a> 10.3.5.配置mycat</h3>
+<pre><code>notepad++安装插件
+notepad++安装nppftp这个插件，连接到远程服务器之后自动可以编辑远程服务器的文本文件
+</code></pre>
+<h3 id="_10-3-6-启动和关闭mycat-默认端口8066" tabindex="-1"><a class="header-anchor" href="#_10-3-6-启动和关闭mycat-默认端口8066" aria-hidden="true">#</a> 10.3.6.启动和关闭mycat，默认端口8066</h3>
+<pre><code>进入mycat安装目录
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /usr/local/bin/mycat
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>启动mycat
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>/bin/mycat start
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>关闭mycat
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>/bin/mycat stop
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看mycat日志
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>tail -f logs/wrapper.log 
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看mycat状态
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>bin/mycat status
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>前台启动mycat	
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>bin/mycat console #前台启动
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_10-4-搭建mycat2" tabindex="-1"><a class="header-anchor" href="#_10-4-搭建mycat2" aria-hidden="true">#</a> 10.4.搭建mycat2</h2>
+<h3 id="_10-4-1-服务器环境说明" tabindex="-1"><a class="header-anchor" href="#_10-4-1-服务器环境说明" aria-hidden="true">#</a> 10.4.1.服务器环境说明</h3>
+<pre><code>注意事项
+mycat2需要一个数据库来存放默认mycat2自身运行所需的数据
+
+192.168.0.6 mycat2:jdk+mycat+mysql(需要在192.168.0.6上多安装一个mysql)
+192.168.0.7 mysql
+192.168.0.8 mysql
+</code></pre>
+<h3 id="_10-4-2-搭建jdk" tabindex="-1"><a class="header-anchor" href="#_10-4-2-搭建jdk" aria-hidden="true">#</a> 10.4.2.搭建JDK</h3>
+<pre><code>详细参考 3.搭建基础开发环境-&gt;3.3.安装jdk
+</code></pre>
+<h3 id="_10-4-3-安装mycat2自身运行需要的mysql8-192-168-0-6" tabindex="-1"><a class="header-anchor" href="#_10-4-3-安装mycat2自身运行需要的mysql8-192-168-0-6" aria-hidden="true">#</a> 10.4.3.安装mycat2自身运行需要的mysql8(192.168.0.6)</h3>
+<pre><code>创建用户mycat（注意：不能使用root用户，必须创建mycat这个用户）
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>CREATE USER 'mycat'@'%' IDENTIFIED BY 'Mysql123456_';
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>赋予权限
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>GRANT XA_RECOVER_ADMIN ON *.* TO 'root'@'%';
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>赋予权限
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>GRANT ALL PRIVILEGES ON *.* TO 'mycat'@'%' ;
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>刷新配置
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>flush privileges;
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_10-4-3-组装mycat2完整程序包" tabindex="-1"><a class="header-anchor" href="#_10-4-3-组装mycat2完整程序包" aria-hidden="true">#</a> 10.4.3.组装mycat2完整程序包</h3>
+<pre><code>下载mycat2外壳
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>wget http://dl.mycat.org.cn/2.0/install-template/mycat2-install-template-1.20.zip		 
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>下载mycat2核心jar
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>wget http://dl.mycat.org.cn/2.0/1.22-release/mycat2-1.20-jar-with-dependencies.jar
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>组装mycat2并上传一份到/opt/software/package中	
+解压zip包，把jar包放入mycat2-install-template-1.20.zip/mycat/lib中
+
+修改/opt/software/package/mycat2-install-template-1.20/mycat/lib中下面文件的权限	
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /opt/software/install/mycat/lib &amp;&amp;
+chmod 777 libwrapper-linux-ppc-64.so &amp;&amp;
+chmod 777 libwrapper-linux-x86-32.so &amp;&amp;
+chmod 777 libwrapper-linux-x86-64.so &amp;&amp;
+chmod 777 wrapper.jar
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>修改/opt/software/package/mycat2-install-template-1.20/mycat/bin中下面文件的权限
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /opt/software/install/mycat/bin &amp;&amp;
+chmod +x wrapper-linux-x86-64 &amp;&amp;
+chmod +x wrapper-linux-x86-32 &amp;&amp;
+chmod +x wrapper &amp;&amp;
+chmod +x mycat
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>替换低版本的mysql连接包为高版本的mysql连接包
+上传适用于mysql8.0.29的连接包到/opt/software/package，修改权限并复制一份到mycat的指定文件夹中	
+
+修改默认原型库的数据库连接信息
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /opt/software/package/mycat2-install-template-1.20/mycat/conf/datasource
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim prototypeDs.datasource.json
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>修改下面三个字段的值
+&quot;password&quot;:&quot;Mysql123456_&quot;,
+&quot;url&quot;:&quot;jdbc:mysql://192.168.0.6:3306/mycat_prototy?useUnicode=true&amp;serverTimezone=Asia/Shanghai&amp;characterEncoding=UTF-8&quot;,
+&quot;user&quot;:&quot;root&quot;
+</code></pre>
+<h3 id="_10-4-4-在各个节点上安装mysql" tabindex="-1"><a class="header-anchor" href="#_10-4-4-在各个节点上安装mysql" aria-hidden="true">#</a> 10.4.4.在各个节点上安装mysql</h3>
+<pre><code>在节点1安装mysql8.0.29(192.168.0.7)
+详细参考 3.搭建基础开发环境-&gt;3.5.安装mysql
+
+在节点2安装mysql8.0.29(192.168.0.8)	
+详细参考 3.搭建基础开发环境-&gt;3.5.安装mysql
+</code></pre>
+<h3 id="_10-4-5-配置mycat" tabindex="-1"><a class="header-anchor" href="#_10-4-5-配置mycat" aria-hidden="true">#</a> 10.4.5.配置mycat</h3>
+<pre><code>notepad++安装插件
+notepad++安装nppftp这个插件，连接到远程服务器之后自动可以编辑远程服务器的文本文件
+</code></pre>
+<h3 id="_10-4-6-启动和关闭mycat-默认端口8066" tabindex="-1"><a class="header-anchor" href="#_10-4-6-启动和关闭mycat-默认端口8066" aria-hidden="true">#</a> 10.4.6.启动和关闭mycat，默认端口8066</h3>
+<pre><code>进入mycat安装目录
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /usr/local/bin/mycat
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>启动mycat
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>/bin/mycat start
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>关闭mycat
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>/bin/mycat stop
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看mycat日志
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>tail -f logs/wrapper.log 
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看mycat状态
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>bin/mycat status
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>前台启动mycat	
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>bin/mycat console #前台启动
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h1 id="11." tabindex="-1"><a class="header-anchor" href="#11." aria-hidden="true">#</a> 11.搭建常用私服环境</h1>
+<h2 id="_11-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_11-1-章节内容概述" aria-hidden="true">#</a> 11.1.章节内容概述</h2>
+<pre><code>本章节涉及主要内容有：
+ 11.1.章节内容概述
+ 11.2.章节内容大纲
+ 11.3.搭建yum私服
+ 11.3.1.安装httpd
+ 11.3.2.安装yum相关工具
+ 11.3.3.配置切换使用的源为私服的源
+ 11.3.4.重新生成测试机yum缓存配置
+ 11.3.5.使用yum私服来下载软件
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+</code></pre>
+<h2 id="_11-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_11-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter11.html" target="_blank">11.2.章节内容大纲</a></h2>
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter11.html"/>
+<h2 id="_11-3-搭建yum私服" tabindex="-1"><a class="header-anchor" href="#_11-3-搭建yum私服" aria-hidden="true">#</a> 11.3.搭建yum私服</h2>
+<h2 id="_11-3-1-安装httpd" tabindex="-1"><a class="header-anchor" href="#_11-3-1-安装httpd" aria-hidden="true">#</a> 11.3.1.安装httpd</h2>
+<pre><code>配置阿里云源
+详细参考 2.Linux操作系统初始设置-&gt;2.5.配置yml源
+
+安装nginx或apache，此处以apache为例
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum install httpd
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>检测是否安装成功
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>rpm -ql httpd
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>或
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>curl http://127.0.0.1	
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>启动apache
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>/bin/systemctl start httpd.service
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>配置服务自启动 
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>chkconfig httpd on
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>访问apache
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>http://192.168.0.9
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>访问失败解决	
+如无法访问成功，可开放端口或关闭防火墙
+查询服务器的配置文件
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>find / -name httpd.conf
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>卸载httpd
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y remove httpd
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_11-3-2-安装yum相关工具" tabindex="-1"><a class="header-anchor" href="#_11-3-2-安装yum相关工具" aria-hidden="true">#</a> 11.3.2.安装yum相关工具</h2>
+<pre><code>安装createrepo 和 reposync
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y install createrepo reposync
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装 yum-utils
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum install yum-utils
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>下载rpm包
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>reposync --repoid=base &amp;&amp;
+reposync --repoid=updates &amp;&amp;
+reposync --repoid=extras &amp;&amp;
+reposync --repoid=epel
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>创建存放包的目录
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mkdir -p /var/www/html/base/ &amp;&amp;
+mkdir -p /var/www/html/updates/ &amp;&amp;
+mkdir -p /var/www/html/extras/ &amp;&amp;
+mkdir -p /var/www/html/epel/
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>生成包对应的源数据，对下载的各个目录，需要生成包的源数据，比如 base 目录源数据生成命令如下
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>createrepo --update /var/www/html/base/ &amp;&amp;
+createrepo --update /var/www/html/updates/ &amp;&amp;
+createrepo --update /var/www/html/extras/ &amp;&amp;
+createrepo --update /var/www/html/epel/
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_11-3-3-配置切换使用的源为私服的源" tabindex="-1"><a class="header-anchor" href="#_11-3-3-配置切换使用的源为私服的源" aria-hidden="true">#</a> 11.3.3.配置切换使用的源为私服的源</h2>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /etc/yum.repos.d/ &amp;&amp;
+cp CentOS-Base.repo CentOS-Base.bak.2022
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>修改阿里源为本地源</p>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vi CentOS-Base.repo
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>注释掉原有的配置，添加私服配置，参考如下：
+
+[base]
+name=CentOS-$releasever - Base - mirrors.aliyun.com
+failovermethod=priority
+baseurl=http://192.168.220.100/base/
+#baseurl=http://mirrors.aliyun.com/centos/$releasever/os/$basearch/
+#        http://mirrors.aliyuncs.com/centos/$releasever/os/$basearch/
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=os
+gpgcheck=1
+gpgkey=http://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-6
+
+#released updates 
+[updates]
+name=CentOS-$releasever - Updates - mirrors.aliyun.com
+failovermethod=priority
+baseurl=http://192.168.220.100/updates/
+#baseurl=http://mirrors.aliyun.com/centos/$releasever/updates/$basearch/
+#        http://mirrors.aliyuncs.com/centos/$releasever/updates/$basearch/
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=updates
+gpgcheck=1
+gpgkey=http://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-6
+
+#additional packages that may be useful
+[extras]
+name=CentOS-$releasever - Extras - mirrors.aliyun.com
+failovermethod=priority
+baseurl=http://192.168.220.100/extras/
+#baseurl=http://mirrors.aliyun.com/centos/$releasever/extras/$basearch/
+#        http://mirrors.aliyuncs.com/centos/$releasever/extras/$basearch/
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&amp;arch=$basearch&amp;repo=extras
+gpgcheck=1
+gpgkey=http://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-6
+</code></pre>
+<h2 id="_11-3-4-重新生成测试机yum缓存配置" tabindex="-1"><a class="header-anchor" href="#_11-3-4-重新生成测试机yum缓存配置" aria-hidden="true">#</a> 11.3.4.重新生成测试机yum缓存配置</h2>
+<pre><code>在测试机器上，先清理已有缓存，再重新生成 yum 源缓存配置，将软件包信息缓存本机，提高搜索安装效率。
+</code></pre>
+<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum clean all &amp;&amp;
+yum makecache
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_11-3-5-使用yum私服来下载软件" tabindex="-1"><a class="header-anchor" href="#_11-3-5-使用yum私服来下载软件" aria-hidden="true">#</a> 11.3.5.使用yum私服来下载软件</h2>
+<pre><code>在测试机上使用yum install xxx来安装包
 </code></pre>
 </div></template>

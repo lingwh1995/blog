@@ -8,7 +8,7 @@ category:
 star: false
 tag:
   - 持续集成
-date: 2020-03-1
+date: 2020-03-01
 head:
   - - meta
     - name: keywords

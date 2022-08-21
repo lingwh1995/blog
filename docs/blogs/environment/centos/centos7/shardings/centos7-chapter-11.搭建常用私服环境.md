@@ -8,7 +8,7 @@ category:
 star: false
 tag:
   - 私服搭建
-date: 2020-03-8
+date: 2020-03-08
 head:
   - - meta
     - name: keywords

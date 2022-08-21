@@ -32,3 +32,8 @@ head:
 	/var 存放临时文件，如各种服务的日志文件。
 
 ## 1.4.Centos镜像下载
+	如果是学习环境，建议安装centos mini版镜像，生产环境可以安装完整版本
+
+```
+@include(project_springcloud-eureka/pom.xml)
+```
