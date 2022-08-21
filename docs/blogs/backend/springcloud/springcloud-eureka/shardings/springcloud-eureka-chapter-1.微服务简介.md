@@ -25,7 +25,7 @@ https://martinfowler.com/articles/microservices.html
 	如需国内译版,请使用谷歌翻译插件翻译自行翻译
 
 ## 1.5.微服务架构图
-<img src="./images/microservice_architecture.png"  width="80%" height="400rem" />
+<img src="./images/microservice_architecture.png"  width="100%" height="800rem" />
 
 ## 1.6.微服务架构落地实现方案
 

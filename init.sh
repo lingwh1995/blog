@@ -416,6 +416,7 @@ $CHAPTER_CONTENT_INTRO
 
 <Markmap localtion="/$5/$4/chapter/$1-outline5-chapter$i.html"/>
 
+
 EOF
     echo '完成为'$1'.md所有章节'$i'生成guidance文件......................................................'
 
@@ -502,6 +503,7 @@ function insertGuidanceIntoOriginal() {
     echo '完成为'$1'.md中插入Guidance........................................................................'
 }
 
+
 :<< EOF
     把上一步骤生成的MD文件根据章节数目切割成多个小md文件，每一个章节拆分为一个md文件，并同时给分片写入Frontmatter信息
     $1:$MD_FILE_NAME
@@ -519,6 +521,11 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
     #创建存放每一章节md文件的目录
     mkdir $2/$3
 
+    #将图片文件夹复制到shardings目录下
+    if [ -d $2/images ]
+    then
+        cp -r $2/images $2/$3/
+    fi
     echo '开始为'$1'.md生成内容介绍文件................................................'
 
     #创建第0章，第0章的内容就是整个博客内容的介绍
