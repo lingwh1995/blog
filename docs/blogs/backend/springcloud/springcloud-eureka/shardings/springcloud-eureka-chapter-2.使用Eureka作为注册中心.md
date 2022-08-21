@@ -1,41 +1,20 @@
 ---
-title: 基于Eureka搭建Springcloud微服务-章节内容合集
-description: 本章节涉及主要内容有：具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+title: 基于Eureka搭建Springcloud微服务-2.使用Eureka作为注册中心
+description: 本章节涉及主要内容有：Eureka注册中心简介,Linux重要目录介绍,Centos镜像下载,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
   - springcloud
-star: 2
+star: false
 tag:
-  - springcloud
-  - springcloud-eureka
-  - 微服务
-  - 微服务入门
-date: 2021-03-20
-sticky: 2
-icon: linux
+date: 
 head:
   - - meta
     - name: keywords
-      content: 微服务简介,使用Eureka作为注册中心,
+      content: 本章节涉及主要内容有：Eureka注册中心简介,Linux重要目录介绍,Centos镜像下载,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 ---
-@include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/springcloud-eureka-guidance.md)
 
-# 1.微服务简介 {#1.}
-@include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter1.md)
-## 1.3.Martin Fowler微服务论文英文原版
-```
-https://martinfowler.com/articles/microservices.html
-```
-## 1.4.Martin Fowler微服务论文国内译版
-	如需国内译版,请使用谷歌翻译插件翻译自行翻译
-
-## 1.5.微服务架构图
-<img src="./images/microservice_architecture.png"  width="80%" height="400rem" />
-
-## 1.6.微服务架构落地实现方案
-
-# 2.使用Eureka作为注册中心 {#2.}
+# 2.使用Eureka作为注册中心
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter2.md)
 ## 2.3.Eureka注册中心简介
 	Eureka是Netflix公司开发的服务发现框架,Spring Cloud对它提供了支持,将它集成在了自己spring-cloud-netflix子项目中,用来实现Spring Cloud的服务发现功能,

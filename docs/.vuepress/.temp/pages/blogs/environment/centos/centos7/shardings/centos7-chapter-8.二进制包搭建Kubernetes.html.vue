@@ -150,65 +150,65 @@ keepalive   : 192.168.3.xx
 <p>8.3章节涉及到的操作所有的Master节点和Worker Node都要执行，下载所有用到的软件包包只需要在Mater Node1进行就可以了</p>
 </div>
 <h3 id="_8-5-1操作系统初始设置" tabindex="-1"><a class="header-anchor" href="#_8-5-1操作系统初始设置" aria-hidden="true">#</a> 8.5.1操作系统初始设置</h3>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl stop firewalld &amp;&amp; systemctl disable firewalld #关闭系统防火墙
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sed -i 's/enforcing/disabled/' /etc/selinux/config #永久关闭selinux
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sed -ri 's/.*swap.*/#&amp;/' /etc/fstab #永久关闭swap
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>根据规划设置主机名
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl stop firewalld &amp;&amp; systemctl disable firewalld #关闭系统防火墙
+</code></pre></div><div class="language-text ext-text"><pre v-pre class="language-text"><code>sed -i 's/enforcing/disabled/' /etc/selinux/config #永久关闭selinux
+</code></pre></div><div class="language-text ext-text"><pre v-pre class="language-text"><code>sed -ri 's/.*swap.*/#&amp;/' /etc/fstab #永久关闭swap
+</code></pre></div><p>根据规划设置主机名
 binary-k8s-master1(192.168.0.9)</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-master1 &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-master1 &amp;&amp;
 systemctl reboot
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>binary-k8s-worker1(192.168.0.10)
+</code></pre></div><pre><code>binary-k8s-worker1(192.168.0.10)
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-worker1  &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-worker1  &amp;&amp;
 systemctl reboot
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>binary-k8s-worker2(192.168.0.11)
+</code></pre></div><pre><code>binary-k8s-worker2(192.168.0.11)
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-worker2  &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-worker2  &amp;&amp;
 systemctl reboot
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>binary-k8s-master2(192.168.0.12)
+</code></pre></div><pre><code>binary-k8s-master2(192.168.0.12)
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-master2 &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>hostnamectl set-hostname binary-k8s-master2 &amp;&amp;
 systemctl reboot
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>添加hosts
+</code></pre></div><pre><code>添加hosts
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat >> /etc/hosts &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat >> /etc/hosts &lt;&lt; EOF
 192.168.0.9 binary-k8s-master1
 192.168.0.10 binary-k8s-worker1
 192.168.0.11 binary-k8s-worker2
 192.168.0.12 binary-k8s-master2
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>将桥接的IPV4流量传递到iptables的链
+</code></pre></div><pre><code>将桥接的IPV4流量传递到iptables的链
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /etc/sysctl.d/k8s.conf &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /etc/sysctl.d/k8s.conf &lt;&lt; EOF
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>让配置生效
+</code></pre></div><pre><code>让配置生效
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sysctl --system
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>使用阿里云时间服务器进行临时同步
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>sysctl --system
+</code></pre></div><pre><code>使用阿里云时间服务器进行临时同步
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>ntpdate ntp.aliyun.com
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>补充命令
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>ntpdate ntp.aliyun.com
+</code></pre></div><pre><code>补充命令
 setenforce 0  #临时关闭selinux
 swapoff -a	#临时关闭swap
 </code></pre>
 <h3 id="_8-5-2下载所有用到的软件包" tabindex="-1"><a class="header-anchor" href="#_8-5-2下载所有用到的软件包" aria-hidden="true">#</a> 8.5.2下载所有用到的软件包</h3>
 <pre><code>安装curl
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y install curl
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>创建目录后切换到该目录中，并在该目录中下载本次安装所有用到的软件包
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>yum -y install curl
+</code></pre></div><pre><code>创建目录后切换到该目录中，并在该目录中下载本次安装所有用到的软件包
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mkdir -p /opt/k8s &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>mkdir -p /opt/k8s &amp;&amp;
 cd /opt/k8s &amp;&amp;
 curl -fL -u software-1658989668964:1db7b96a6698ef06009de91348cb797dfd87fc99 \
 "https://lingwh-generic.pkg.coding.net/coding-drive/software/kubernetes-all-2022.7.28.tar.gz?version=latest" \
 -o kubernetes-all.tar.gz
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>解压tar包并重命名
+</code></pre></div><pre><code>解压tar包并重命名
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>tar -zxvf kubernetes-all.tar.gz &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>tar -zxvf kubernetes-all.tar.gz &amp;&amp;
 mv kubernetes package
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_8-6-安装cfssl证书生成工具" tabindex="-1"><a class="header-anchor" href="#_8-6-安装cfssl证书生成工具" aria-hidden="true">#</a> 8.6.安装cfssl证书生成工具</h2>
+</code></pre></div><h2 id="_8-6-安装cfssl证书生成工具" tabindex="-1"><a class="header-anchor" href="#_8-6-安装cfssl证书生成工具" aria-hidden="true">#</a> 8.6.安装cfssl证书生成工具</h2>
 <div class="custom-container tip"><p class="custom-container-title">注意事项</p>
 <p>8.4章节涉及到的操作只在Master Node1节点上进行操作</p>
 </div>
@@ -218,21 +218,21 @@ cfssl是一个开源的证书管理工具，使用json文件生成证书，相�
 
 切换到存放cfssl-utils的目录中，给cfssl-utils赋予运行权限并拷贝一份到/usr/bin/目录中
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /opt/k8s/package/cfssl-utils &amp;&amp; chmod +x * &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cd /opt/k8s/package/cfssl-utils &amp;&amp; chmod +x * &amp;&amp;
 cp cfssl_linux-amd64 /usr/local/bin/cfssl &amp;&amp;
 cp cfssljson_linux-amd64 /usr/local/bin/cfssljson &amp;&amp;
 cp cfssl-certinfo_linux-amd64 /usr/bin/cfssl-certinfo
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_8-7-搭建etcd集群" tabindex="-1"><a class="header-anchor" href="#_8-7-搭建etcd集群" aria-hidden="true">#</a> 8.7.搭建etcd集群</h2>
+</code></pre></div><h2 id="_8-7-搭建etcd集群" tabindex="-1"><a class="header-anchor" href="#_8-7-搭建etcd集群" aria-hidden="true">#</a> 8.7.搭建etcd集群</h2>
 <div class="custom-container tip"><p class="custom-container-title">注意事项</p>
 <p>8.5章节涉及到的操作不要一次性在所有节点上操作，在Master1操作后复制到其他节点，这样比直接在所有节点上操作要快</p>
 </div>
 <h3 id="_8-7-1生成ca证书和https证书" tabindex="-1"><a class="header-anchor" href="#_8-7-1生成ca证书和https证书" aria-hidden="true">#</a> 8.7.1生成CA证书和https证书</h3>
 <pre><code>创建存放etcd证书配置文件和生成证书的目录
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mkdir -p ~/TLS/{etcd,k8s} &amp;&amp; cd /root/TLS/etcd/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>设置自签证书颁发机构(CA)
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>mkdir -p ~/TLS/{etcd,k8s} &amp;&amp; cd /root/TLS/etcd/
+</code></pre></div><pre><code>设置自签证书颁发机构(CA)
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > ca-config.json &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > ca-config.json &lt;&lt; EOF
 {
   "signing": {
     "default": {
@@ -269,12 +269,12 @@ cat > ca-csr.json &lt;&lt; EOF
     ]
 }
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>生成自签CA证书（当前目录下会生成 ca.pem和ca-key.pem文件）
+</code></pre></div><pre><code>生成自签CA证书（当前目录下会生成 ca.pem和ca-key.pem文件）
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cfssl gencert -initca ca-csr.json | cfssljson -bare ca -
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>使用自签CA签发etcd https证书
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cfssl gencert -initca ca-csr.json | cfssljson -bare ca -
+</code></pre></div><pre><code>使用自签CA签发etcd https证书
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > server-csr.json &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > server-csr.json &lt;&lt; EOF
 {
     "CN": "etcd",
     "hosts": [
@@ -296,11 +296,11 @@ EOF
     ]
 }
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>生成https证书（hosts字段中ip为所有etcd节点的集群内部通信ip,一个都不能少,可以多写几个预留的ip）
+</code></pre></div><pre><code>生成https证书（hosts字段中ip为所有etcd节点的集群内部通信ip,一个都不能少,可以多写几个预留的ip）
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
 	-config=ca-config.json -profile=www server-csr.json | cfssljson -bare server
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-7-2-部署etcd集群" tabindex="-1"><a class="header-anchor" href="#_8-7-2-部署etcd集群" aria-hidden="true">#</a> 8.7.2.部署etcd集群</h3>
+</code></pre></div><h3 id="_8-7-2-部署etcd集群" tabindex="-1"><a class="header-anchor" href="#_8-7-2-部署etcd集群" aria-hidden="true">#</a> 8.7.2.部署etcd集群</h3>
 <pre><code>etcd简介
 Etcd 是一个分布式键值存储系统，Kubernetes使用Etcd进行数据存储，所以先准备一个Etcd数据库，为解决Etcd单点
 故障，应采用集群方式部署，这里使用3台组建集群，可容忍1台机器故障，当然，你也可以使用5台组建集群，可容忍2台
@@ -316,15 +316,15 @@ etcd-2	192.168.0.11
 
 在Master Node1上创建etcd工作目录
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	mkdir /opt/etcd/{bin,cfg,ssl} -p
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>切换到存放etcd安装包工作的目录并解压etcd二进制包安装包到文件到指定目录
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>	mkdir /opt/etcd/{bin,cfg,ssl} -p
+</code></pre></div><pre><code>切换到存放etcd安装包工作的目录并解压etcd二进制包安装包到文件到指定目录
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /opt/k8s/package &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cd /opt/k8s/package &amp;&amp;
 tar -xf etcd-v3.4.9-linux-amd64.tar.gz &amp;&amp;
 mv etcd-v3.4.9-linux-amd64/{etcd,etcdctl} /opt/etcd/bin/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>创建etcd配置文件
+</code></pre></div><pre><code>创建etcd配置文件
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /opt/etcd/cfg/etcd.conf &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /opt/etcd/cfg/etcd.conf &lt;&lt; EOF
 #[Member]
 ETCD_NAME="etcd-1"
 ETCD_DATA_DIR="/var/lib/etcd/default.etcd"
@@ -339,7 +339,7 @@ etcd-2=https://192.168.0.10:2380,etcd-3=https://192.168.0.11:2380"
 ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster"
 ETCD_INITIAL_CLUSTER_STATE="new"
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>etcd配置说明:
+</code></pre></div><pre><code>etcd配置说明:
 ETCD_NAME： 节点名称,集群中唯一
 ETCD_DATA_DIR：数据目录
 ETCD_LISTEN_PEER_URLS：集群通讯监听地址
@@ -349,9 +349,9 @@ ETCD_INITIALCLUSTER_TOKEN：集群Token
 ETCD_INITIALCLUSTER_STATE：加入集群的状态：new是新集群,existing表示加入已有集群
 </code></pre>
 <h3 id="_8-7-4-拷贝etcd所需证书" tabindex="-1"><a class="header-anchor" href="#_8-7-4-拷贝etcd所需证书" aria-hidden="true">#</a> 8.7.4.拷贝etcd所需证书</h3>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cp ~/TLS/etcd/{server.pem,server-key.pem,ca.pem} /opt/etcd/ssl/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_8-7-5-让systemd管理etcd" tabindex="-1"><a class="header-anchor" href="#_8-7-5-让systemd管理etcd" aria-hidden="true">#</a> 8.7.5.让systemd管理etcd</h3>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /usr/lib/systemd/system/etcd.service &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cp ~/TLS/etcd/{server.pem,server-key.pem,ca.pem} /opt/etcd/ssl/
+</code></pre></div><h3 id="_8-7-5-让systemd管理etcd" tabindex="-1"><a class="header-anchor" href="#_8-7-5-让systemd管理etcd" aria-hidden="true">#</a> 8.7.5.让systemd管理etcd</h3>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /usr/lib/systemd/system/etcd.service &lt;&lt; EOF
 [Unit]
 Description=Etcd Server
 After=network.target
@@ -375,24 +375,24 @@ LimitNOFILE=65536
 [Install]
 WantedBy=multi-user.target
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-7-6-拷贝etcd安装文件到worker-node" tabindex="-1"><a class="header-anchor" href="#_8-7-6-拷贝etcd安装文件到worker-node" aria-hidden="true">#</a> 8.7.6.拷贝etcd安装文件到Worker Node</h3>
+</code></pre></div><h3 id="_8-7-6-拷贝etcd安装文件到worker-node" tabindex="-1"><a class="header-anchor" href="#_8-7-6-拷贝etcd安装文件到worker-node" aria-hidden="true">#</a> 8.7.6.拷贝etcd安装文件到Worker Node</h3>
 <div class="custom-container tip"><p class="custom-container-title">注意事项</p>
 <p>在Master1 Node上执行下面操作，只需要拷贝到Worker Node1和Worker Node2即可，不需要拷贝到Master Node2</p>
 </div>
 <pre><code>在Worker Node1上和Worker Node2上创建etcd工作目录
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	mkdir /opt/etcd/{bin,cfg,ssl} -p
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>复制etcd安装文件和配置文件到192.168.0.10机器上
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>	mkdir /opt/etcd/{bin,cfg,ssl} -p
+</code></pre></div><pre><code>复制etcd安装文件和配置文件到192.168.0.10机器上
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>scp -r /opt/etcd/ root@192.168.0.10:/opt &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>scp -r /opt/etcd/ root@192.168.0.10:/opt &amp;&amp;
 scp /usr/lib/systemd/system/etcd.service root@192.168.0.10:/usr/lib/systemd/system/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>复制etcd安装文件和配置文件到192.168.0.11机器上
+</code></pre></div><pre><code>复制etcd安装文件和配置文件到192.168.0.11机器上
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>scp -r /opt/etcd/ root@192.168.0.11:/opt &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>scp -r /opt/etcd/ root@192.168.0.11:/opt &amp;&amp;
 scp /usr/lib/systemd/system/etcd.service root@192.168.0.11:/usr/lib/systemd/system/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>修改Worker Node1（192.168.0.10）中etcd.conf配置，下面命令会直接覆盖拷贝过来的配置
+</code></pre></div><pre><code>修改Worker Node1（192.168.0.10）中etcd.conf配置，下面命令会直接覆盖拷贝过来的配置
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /opt/etcd/cfg/etcd.conf &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /opt/etcd/cfg/etcd.conf &lt;&lt; EOF
 #[Member]
 ETCD_NAME="etcd-2"
 ETCD_DATA_DIR="/var/lib/etcd/default.etcd"
@@ -407,7 +407,7 @@ etcd-2=https://192.168.0.10:2380,etcd-3=https://192.168.0.11:2380"
 ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster"
 ETCD_INITIAL_CLUSTER_STATE="new"
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>修改后内容
+</code></pre></div><pre><code>修改后内容
 ETCD_NAME=&quot;etcd-2&quot;	#此处需要修改
 ETCD_DATA_DIR=&quot;/var/lib/etcd/default.etcd&quot;
 ETCD_LISTEN_PEER_URLS=&quot;https://192.168.0.10:2380&quot; 	#此处需要修改
@@ -423,7 +423,7 @@ ETCD_INITIAL_CLUSTER_STATE=&quot;new&quot;
 
 修改Worker Node2（192.168.0.11）中etcd.conf配置，下面命令会直接覆盖拷贝过来的配置
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /opt/etcd/cfg/etcd.conf &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /opt/etcd/cfg/etcd.conf &lt;&lt; EOF
 #[Member]
 ETCD_NAME="etcd-3"
 ETCD_DATA_DIR="/var/lib/etcd/default.etcd"
@@ -438,7 +438,7 @@ etcd-2=https://192.168.0.10:2380,etcd-3=https://192.168.0.11:2380"
 ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster"
 ETCD_INITIAL_CLUSTER_STATE="new"
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>修改后内容
+</code></pre></div><pre><code>修改后内容
 ETCD_NAME=&quot;etcd-3&quot;	#此处需要修改
 ETCD_DATA_DIR=&quot;/var/lib/etcd/default.etcd&quot;
 ETCD_LISTEN_PEER_URLS=&quot;https://192.168.0.11:2380&quot; 	#此处需要修改
@@ -455,22 +455,22 @@ ETCD_INITIAL_CLUSTER_STATE=&quot;new&quot;
 <h3 id="_8-7-7-启动三个etcd并设置开机自启" tabindex="-1"><a class="header-anchor" href="#_8-7-7-启动三个etcd并设置开机自启" aria-hidden="true">#</a> 8.7.7.启动三个etcd并设置开机自启</h3>
 <pre><code>启动多个节点的etcd
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
 systemctl start etcd &amp;&amp;
 systemctl enable etcd
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>注意事项
+</code></pre></div><pre><code>注意事项
 etcd须多个节点同时启动,不然执行systemctl start etcd会一直卡在前台,连接其他节点,建议通过批量管理工
 具,或者脚本同时启动etcd。
 
 检查etcd集群状态
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>ETCDCTL_API=3 /opt/etcd/bin/etcdctl \
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>ETCDCTL_API=3 /opt/etcd/bin/etcdctl \
 --cacert=/opt/etcd/ssl/ca.pem \
 --cert=/opt/etcd/ssl/server.pem \
 --key=/opt/etcd/ssl/server-key.pem \
 --endpoints="https://192.168.0.9:2379,https://192.168.0.10:2379,https://192.168.0.11:2379" \
 endpoint health --write-out=table
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>如果启动成功会显示如下内容:
+</code></pre></div><pre><code>如果启动成功会显示如下内容:
 +---------------------------+--------+-------------+-------+
 |         ENDPOINT          | HEALTH |    TOOK     | ERROR |
 +---------------------------+--------+-------------+-------+
@@ -482,27 +482,27 @@ endpoint health --write-out=table
 etcd启动问题排查
 命令1
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>journalctl -u etcd
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_8-8-安装配置docker" tabindex="-1"><a class="header-anchor" href="#_8-8-安装配置docker" aria-hidden="true">#</a> 8.8.安装配置Docker</h2>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>journalctl -u etcd
+</code></pre></div><h2 id="_8-8-安装配置docker" tabindex="-1"><a class="header-anchor" href="#_8-8-安装配置docker" aria-hidden="true">#</a> 8.8.安装配置Docker</h2>
 <div class="custom-container tip"><p class="custom-container-title">注意事项</p>
 <p>所有节点都需要安装docker，可以先在Master Node1上安装，拷贝一部分安装内容到Worker Node1和Worker Node2，再在Worker Node1和Worker Node2完成剩余的安装操作，这样比直接在三台机器上完成全部操作要快很多</p>
 </div>
 <h3 id="_8-8-1在master1上安装docker" tabindex="-1"><a class="header-anchor" href="#_8-8-1在master1上安装docker" aria-hidden="true">#</a> 8.8.1在Master1上安装docker</h3>
 <pre><code>切换目录并在该目录并将该目录中的docker二进制安装文件解压到指定目录
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /opt/k8s/package/ &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cd /opt/k8s/package/ &amp;&amp;
 tar -xf docker-19.03.9.tgz &amp;&amp; mv docker/* /usr/bin/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>配置docker私有镜像
+</code></pre></div><pre><code>配置docker私有镜像
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sudo mkdir -p /etc/docker &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>sudo mkdir -p /etc/docker &amp;&amp;
 sudo tee /etc/docker/daemon.json &lt;&lt;-'EOF'
 {
   "registry-mirrors": ["https://3s9106.mirror.alncs.com"]
 }
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>配置docker.service文件
+</code></pre></div><pre><code>配置docker.service文件
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /usr/lib/systemd/system/docker.service &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /usr/lib/systemd/system/docker.service &lt;&lt; EOF
 [Unit]
 Description=Docker Application Container Engine
 Documentation=https://docs.docker.com
@@ -525,54 +525,54 @@ StartLimitInterval=60s
 [Install]
 WantedBy=multi-user.target
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-8-2在所有worker-node上安装docker" tabindex="-1"><a class="header-anchor" href="#_8-8-2在所有worker-node上安装docker" aria-hidden="true">#</a> 8.8.2在所有Worker Node上安装docker</h3>
+</code></pre></div><h3 id="_8-8-2在所有worker-node上安装docker" tabindex="-1"><a class="header-anchor" href="#_8-8-2在所有worker-node上安装docker" aria-hidden="true">#</a> 8.8.2在所有Worker Node上安装docker</h3>
 <div class="custom-container tip"><p class="custom-container-title">注意事项</p>
 <p>只需要在Master Node1上安装Docker，然后将所有安装文件从Master Node1上拷贝到Worker Node1和Worker Node2上</p>
 </div>
 <pre><code>在Worker Node1和Worker Node2上创建存放docker安装文件的目录
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mkdir -p /opt/k8s/package &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>mkdir -p /opt/k8s/package &amp;&amp;
 mkdir -p /etc/docker
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>从Mater1上复制Docker安装文件到Worker Node1和Worker Node2
+</code></pre></div><pre><code>从Mater1上复制Docker安装文件到Worker Node1和Worker Node2
 Worker Node1（192.168.0.10）
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>scp /usr/bin/docker* root@192.168.0.10:/usr/bin &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>scp /usr/bin/docker* root@192.168.0.10:/usr/bin &amp;&amp;
 scp /usr/bin/runc root@192.168.0.10:/usr/bin &amp;&amp;
 scp /usr/bin/containerd* root@192.168.0.10:/usr/bin &amp;&amp;
 scp /usr/lib/systemd/system/docker.service \
 root@192.168.0.10:/usr/lib/systemd/system &amp;&amp;
 scp -r /etc/docker root@192.168.0.10:/etc
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>Worker Node2（192.168.0.11）
+</code></pre></div><pre><code>Worker Node2（192.168.0.11）
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>scp /usr/bin/docker* root@192.168.0.11:/usr/bin &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>scp /usr/bin/docker* root@192.168.0.11:/usr/bin &amp;&amp;
 scp /usr/bin/runc root@192.168.0.11:/usr/bin &amp;&amp;
 scp /usr/bin/containerd* root@192.168.0.11:/usr/bin &amp;&amp;
 scp /usr/lib/systemd/system/docker.service \
 root@192.168.0.11:/usr/lib/systemd/system &amp;&amp;
 scp -r /etc/docker root@192.168.0.11:/etc
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-8-3启动三台机器上的docker" tabindex="-1"><a class="header-anchor" href="#_8-8-3启动三台机器上的docker" aria-hidden="true">#</a> 8.8.3启动三台机器上的docker</h3>
+</code></pre></div><h3 id="_8-8-3启动三台机器上的docker" tabindex="-1"><a class="header-anchor" href="#_8-8-3启动三台机器上的docker" aria-hidden="true">#</a> 8.8.3启动三台机器上的docker</h3>
 <pre><code>刷新配置文件后启动三台机器上的docker并设置为开机启动
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
 systemctl start docker &amp;&amp;
 systemctl enable docker
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>查看启动状态
+</code></pre></div><pre><code>查看启动状态
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl status docker
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>启动故障排查
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl status docker
+</code></pre></div><pre><code>启动故障排查
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl status docker
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_8-9-搭建kube-apiserver" tabindex="-1"><a class="header-anchor" href="#_8-9-搭建kube-apiserver" aria-hidden="true">#</a> 8.9.搭建kube-apiserver</h2>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl status docker
+</code></pre></div><h2 id="_8-9-搭建kube-apiserver" tabindex="-1"><a class="header-anchor" href="#_8-9-搭建kube-apiserver" aria-hidden="true">#</a> 8.9.搭建kube-apiserver</h2>
 <div class="custom-container tip"><p class="custom-container-title">注意事项</p>
 <p>8.7章节所有操作只在Master Node1节点操作，不需要在其他节点操作，因为kube-apiserver是Master节点的专用组件，Worker Node不需要使用这个组件</p>
 </div>
 <h3 id="_8-9-1-生成ca证书和https证书" tabindex="-1"><a class="header-anchor" href="#_8-9-1-生成ca证书和https证书" aria-hidden="true">#</a> 8.9.1.生成CA证书和Https证书</h3>
 <pre><code>切换目录
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd ~/TLS/k8s
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>设置CA自签机构
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cd ~/TLS/k8s
+</code></pre></div><pre><code>设置CA自签机构
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > ca-config.json &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > ca-config.json &lt;&lt; EOF
 {
   "signing": {
     "default": {
@@ -611,12 +611,12 @@ cat > ca-csr.json &lt;&lt; EOF
     ]
 }
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>生成自签CA证书（生成成功目录下回多ca-key.pem  ca.csr  ca.pem）
+</code></pre></div><pre><code>生成自签CA证书（生成成功目录下回多ca-key.pem  ca.csr  ca.pem）
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cfssl gencert -initca ca-csr.json | cfssljson -bare ca -
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>使用自签CA签发kube-apiserver https
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cfssl gencert -initca ca-csr.json | cfssljson -bare ca -
+</code></pre></div><pre><code>使用自签CA签发kube-apiserver https
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > server-csr.json &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > server-csr.json &lt;&lt; EOF
 {
     "CN": "kubernetes",
     "hosts": [
@@ -662,7 +662,7 @@ EOF
     ]
 }
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>关于IP地址的说明
+</code></pre></div><pre><code>关于IP地址的说明
 IP地址列表
 	kubernetes自身使用的ClusterIP：10.0.0.1
 	本地回环地址：127.0.0.1
@@ -696,22 +696,22 @@ IP地址列表
 </code></pre>
 <p>​
 ​	生成https证书（当前目录下会生成server.pem 和 server-key.pem文件）</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json \
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json \
 -profile=kubernetes server-csr.json | cfssljson -bare server
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-9-2-在master-node1上部署kube-apiserver" tabindex="-1"><a class="header-anchor" href="#_8-9-2-在master-node1上部署kube-apiserver" aria-hidden="true">#</a> 8.9.2.在Master Node1上部署kube-apiserver</h3>
+</code></pre></div><h3 id="_8-9-2-在master-node1上部署kube-apiserver" tabindex="-1"><a class="header-anchor" href="#_8-9-2-在master-node1上部署kube-apiserver" aria-hidden="true">#</a> 8.9.2.在Master Node1上部署kube-apiserver</h3>
 <pre><code>创建kube-apiserver工作目录
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mkdir -p /opt/kubernetes/{bin,cfg,ssl,logs}
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>切换目录并解压kubernetes软件包并将kube-apiserver拷贝到指定目录
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>mkdir -p /opt/kubernetes/{bin,cfg,ssl,logs}
+</code></pre></div><pre><code>切换目录并解压kubernetes软件包并将kube-apiserver拷贝到指定目录
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /opt/k8s/package &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cd /opt/k8s/package &amp;&amp;
 tar -zxvf kubernetes-server-linux-amd64.tar.gz &amp;&amp;
 cd /opt/k8s/package/kubernetes/server/bin &amp;&amp;
 cp kube-apiserver /opt/kubernetes/bin &amp;&amp;
 cp kubectl /usr/bin/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>创建kube-apiserver配置文件
+</code></pre></div><pre><code>创建kube-apiserver配置文件
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /opt/kubernetes/cfg/kube-apiserver.conf &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /opt/kubernetes/cfg/kube-apiserver.conf &lt;&lt; EOF
 KUBE_APISERVER_OPTS="--logtostderr=false \\
 --v=2 \\
 --log-dir=/opt/kubernetes/logs \\
@@ -752,7 +752,7 @@ LimitRanger,ServiceAccount,ResourceQuota,NodeRestriction \\
 --audit-log-maxsize=100 \\
 --audit-log-path=/opt/kubernetes/logs/k8s-audit.log"
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>配置说明:
+</code></pre></div><pre><code>配置说明:
 上面两个\\第一个是转义符,第二个是换行符,使用转义符是为了使用EOF保留换行符。
 --logtostderr ：启用日志
 --v ：日志等级
@@ -787,8 +787,8 @@ EOF
 --enable-aggregator-routing
 </code></pre>
 <h3 id="_8-9-3-拷贝所需证书" tabindex="-1"><a class="header-anchor" href="#_8-9-3-拷贝所需证书" aria-hidden="true">#</a> 8.9.3.拷贝所需证书</h3>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cp ~/TLS/k8s/ca*pem ~/TLS/k8s/server*pem /opt/kubernetes/ssl/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_8-9-4-启用tls-bootstrapping" tabindex="-1"><a class="header-anchor" href="#_8-9-4-启用tls-bootstrapping" aria-hidden="true">#</a> 8.9.4.启用TLS bootstrapping</h3>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cp ~/TLS/k8s/ca*pem ~/TLS/k8s/server*pem /opt/kubernetes/ssl/
+</code></pre></div><h3 id="_8-9-4-启用tls-bootstrapping" tabindex="-1"><a class="header-anchor" href="#_8-9-4-启用tls-bootstrapping" aria-hidden="true">#</a> 8.9.4.启用TLS bootstrapping</h3>
 <pre><code>TLS Bootstraping介绍
 Master apiserver启用TLS认证后，Node节点kubelet和kube-proxy要与kube-apiserver进
 行通信，必须使用CA签发的有效证书才可以，当Node节点很多时，这种客户端证书颁发需要大量工作，同样也会增加集群
@@ -798,14 +798,14 @@ Master apiserver启用TLS认证后，Node节点kubelet和kube-proxy要与kube-ap
 
 创建上述配置文件中token文件：（格式：token,用户名,UID,用户组）
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /opt/kubernetes/cfg/token.csv &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /opt/kubernetes/cfg/token.csv &lt;&lt; EOF
 4136692876ad4b01bb9dd0988480ebba,kubelet-bootstrap,10001,"system:node-bootstrapper"
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>注意事项：token也可自行生成替换
+</code></pre></div><pre><code>注意事项：token也可自行生成替换
 head -c 16 /dev/urandom | od -An -t x | tr -d ' '
 </code></pre>
 <h3 id="_8-9-5-让systemd管理apiserver" tabindex="-1"><a class="header-anchor" href="#_8-9-5-让systemd管理apiserver" aria-hidden="true">#</a> 8.9.5.让systemd管理apiserver</h3>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /usr/lib/systemd/system/kube-apiserver.service &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /usr/lib/systemd/system/kube-apiserver.service &lt;&lt; EOF
 [Unit]
 Description=Kubernetes API Server
 Documentation=https://github.com/kubernetes/kubernetes
@@ -818,31 +818,31 @@ Restart=on-failure
 [Install]
 WantedBy=multi-user.target
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-9-6-启动kube-apiserver" tabindex="-1"><a class="header-anchor" href="#_8-9-6-启动kube-apiserver" aria-hidden="true">#</a> 8.9.6.启动kube-apiserver</h3>
+</code></pre></div><h3 id="_8-9-6-启动kube-apiserver" tabindex="-1"><a class="header-anchor" href="#_8-9-6-启动kube-apiserver" aria-hidden="true">#</a> 8.9.6.启动kube-apiserver</h3>
 <pre><code>刷新配置文件后启动kube-apiserver并设置为开机启动状态
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
 systemctl start kube-apiserver &amp;&amp;
 systemctl enable kube-apiserver
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>查看启动状态
+</code></pre></div><pre><code>查看启动状态
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl status kube-apiserver
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>启动故障排查
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl status kube-apiserver
+</code></pre></div><pre><code>启动故障排查
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat /var/log/messages|grep kube-apiserver|grep -i error
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_8-10-在master-node1上部署kube-controller-manager" tabindex="-1"><a class="header-anchor" href="#_8-10-在master-node1上部署kube-controller-manager" aria-hidden="true">#</a> 8.10.在Master Node1上部署kube-controller-manager</h2>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat /var/log/messages|grep kube-apiserver|grep -i error
+</code></pre></div><h2 id="_8-10-在master-node1上部署kube-controller-manager" tabindex="-1"><a class="header-anchor" href="#_8-10-在master-node1上部署kube-controller-manager" aria-hidden="true">#</a> 8.10.在Master Node1上部署kube-controller-manager</h2>
 <div class="custom-container tip"><p class="custom-container-title">注意事项</p>
 <p>8.8章节所有操作只在Master Node1节点操作，不需要在其他节点操作，因为kube-controller-manager是Master节点的专用组件，Worker Node不需要使用这个组件</p>
 </div>
 <h3 id="_8-10-1-切换目录并拷贝kube-controller-manager相关文件到-opt-kubernetes-bin" tabindex="-1"><a class="header-anchor" href="#_8-10-1-切换目录并拷贝kube-controller-manager相关文件到-opt-kubernetes-bin" aria-hidden="true">#</a> 8.10.1.切换目录并拷贝kube-controller-manager相关文件到/opt/kubernetes/bin</h3>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cp /opt/k8s/package/kubernetes/server/bin/kube-controller-manager /opt/kubernetes/bin
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_8-10-2-生成证书" tabindex="-1"><a class="header-anchor" href="#_8-10-2-生成证书" aria-hidden="true">#</a> 8.10.2.生成证书</h3>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cp /opt/k8s/package/kubernetes/server/bin/kube-controller-manager /opt/kubernetes/bin
+</code></pre></div><h3 id="_8-10-2-生成证书" tabindex="-1"><a class="header-anchor" href="#_8-10-2-生成证书" aria-hidden="true">#</a> 8.10.2.生成证书</h3>
 <pre><code>切换工作目录
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd ~/TLS/k8s
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>生成CA自签签证
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cd ~/TLS/k8s
+</code></pre></div><pre><code>生成CA自签签证
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > kube-controller-manager-csr.json &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > kube-controller-manager-csr.json &lt;&lt; EOF
 {
     "CN": "system:kube-controller-manager",
     "hosts": [],
@@ -861,13 +861,13 @@ systemctl enable kube-apiserver
     ]
 }
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>使用CA自签证书签发kube-controller-manager
+</code></pre></div><pre><code>使用CA自签证书签发kube-controller-manager
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
 -config=ca-config.json -profile=kubernetes \
 kube-controller-manager-csr.json | cfssljson -bare kube-controller-manager
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-10-2-创建kube-controller-manager配置文件" tabindex="-1"><a class="header-anchor" href="#_8-10-2-创建kube-controller-manager配置文件" aria-hidden="true">#</a> 8.10.2.创建kube-controller-manager配置文件</h3>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /opt/kubernetes/cfg/kube-controller-manager.conf &lt;&lt; EOF
+</code></pre></div><h3 id="_8-10-2-创建kube-controller-manager配置文件" tabindex="-1"><a class="header-anchor" href="#_8-10-2-创建kube-controller-manager配置文件" aria-hidden="true">#</a> 8.10.2.创建kube-controller-manager配置文件</h3>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /opt/kubernetes/cfg/kube-controller-manager.conf &lt;&lt; EOF
 KUBE_CONTROLLER_MANAGER_OPTS="--logtostderr=false \\
 --v=2 \\
 --log-dir=/opt/kubernetes/logs \\
@@ -883,7 +883,7 @@ KUBE_CONTROLLER_MANAGER_OPTS="--logtostderr=false \\
 --service-account-private-key-file=/opt/kubernetes/ssl/ca-key.pem \\
 --cluster-signing-duration=87600h0m0s"
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>配置文件说明
+</code></pre></div><pre><code>配置文件说明
 --kubeconfig ：连接apiserver配置文件。
 --leader-elect ：当该组件启动多个时,自动选举(HA)
 --cluster-signing-cert-file ：自动为kubelet颁发证书的CA,apiserver保持一致
@@ -893,7 +893,7 @@ EOF
 <div class="custom-container tip"><p class="custom-container-title">注意事项</p>
 <p>以下是shell命令,直接在shell终端执行</p>
 </div>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>KUBE_CONFIG="/opt/kubernetes/cfg/kube-controller-manager.kubeconfig"
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>KUBE_CONFIG="/opt/kubernetes/cfg/kube-controller-manager.kubeconfig"
 KUBE_APISERVER="https://192.168.0.9:6443"
 
 kubectl config set-cluster kubernetes \
@@ -914,8 +914,8 @@ kubectl config set-context default \
   --kubeconfig=${KUBE_CONFIG}
 
 kubectl config use-context default --kubeconfig=${KUBE_CONFIG}
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-10-4-让systemd管理controller-manager" tabindex="-1"><a class="header-anchor" href="#_8-10-4-让systemd管理controller-manager" aria-hidden="true">#</a> 8.10.4.让systemd管理controller-manager</h3>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /usr/lib/systemd/system/kube-controller-manager.service &lt;&lt; EOF
+</code></pre></div><h3 id="_8-10-4-让systemd管理controller-manager" tabindex="-1"><a class="header-anchor" href="#_8-10-4-让systemd管理controller-manager" aria-hidden="true">#</a> 8.10.4.让systemd管理controller-manager</h3>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /usr/lib/systemd/system/kube-controller-manager.service &lt;&lt; EOF
 [Unit]
 Description=Kubernetes Controller Manager
 Documentation=https://github.com/kubernetes/kubernetes
@@ -928,31 +928,31 @@ Restart=on-failure
 [Install]
 WantedBy=multi-user.target
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-10-5-启动kube-controller-manager" tabindex="-1"><a class="header-anchor" href="#_8-10-5-启动kube-controller-manager" aria-hidden="true">#</a> 8.10.5.启动kube-controller-manager</h3>
+</code></pre></div><h3 id="_8-10-5-启动kube-controller-manager" tabindex="-1"><a class="header-anchor" href="#_8-10-5-启动kube-controller-manager" aria-hidden="true">#</a> 8.10.5.启动kube-controller-manager</h3>
 <pre><code>刷新配置文件后启动kube-controller-manager并设置为开机启动
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
 systemctl start kube-controller-manager &amp;&amp;
 systemctl enable kube-controller-manager
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>查看kube-controller-manager启动状态
+</code></pre></div><pre><code>查看kube-controller-manager启动状态
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl status kube-controller-manager
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>启动故障排查
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl status kube-controller-manager
+</code></pre></div><pre><code>启动故障排查
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat /var/log/messages|grep kube-controller-manager|grep -i error
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_8-11-部署kube-scheduler" tabindex="-1"><a class="header-anchor" href="#_8-11-部署kube-scheduler" aria-hidden="true">#</a> 8.11.部署kube-scheduler</h2>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat /var/log/messages|grep kube-controller-manager|grep -i error
+</code></pre></div><h2 id="_8-11-部署kube-scheduler" tabindex="-1"><a class="header-anchor" href="#_8-11-部署kube-scheduler" aria-hidden="true">#</a> 8.11.部署kube-scheduler</h2>
 <div class="custom-container tip"><p class="custom-container-title">注意事项</p>
 <p>8.9章节所有操作只在Master Node1节点操作，不需要在其他节点操作，因为kube-scheduler是Master节点的专用组件，Worker Node不需要使用这个组件</p>
 </div>
 <h3 id="_8-10-1-切换目录并拷贝kube-dcheduler相关文件到-opt-kubernetes-bin" tabindex="-1"><a class="header-anchor" href="#_8-10-1-切换目录并拷贝kube-dcheduler相关文件到-opt-kubernetes-bin" aria-hidden="true">#</a> 8.10.1 切换目录并拷贝kube-dcheduler相关文件到/opt/kubernetes/bin</h3>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cp /opt/k8s/package/kubernetes/server/bin/kube-scheduler /opt/kubernetes/bin
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_8-11-2-生成证书" tabindex="-1"><a class="header-anchor" href="#_8-11-2-生成证书" aria-hidden="true">#</a> 8.11.2.生成证书</h3>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cp /opt/k8s/package/kubernetes/server/bin/kube-scheduler /opt/kubernetes/bin
+</code></pre></div><h3 id="_8-11-2-生成证书" tabindex="-1"><a class="header-anchor" href="#_8-11-2-生成证书" aria-hidden="true">#</a> 8.11.2.生成证书</h3>
 <pre><code>切换工作目录
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd ~/TLS/k8s
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>创建证书请求文件
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cd ~/TLS/k8s
+</code></pre></div><pre><code>创建证书请求文件
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > kube-scheduler-csr.json &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > kube-scheduler-csr.json &lt;&lt; EOF
 {
   "CN": "system:kube-scheduler",
   "hosts": [],
@@ -971,13 +971,13 @@ systemctl enable kube-controller-manager
   ]
 }
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>生成证书
+</code></pre></div><pre><code>生成证书
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
 -config=ca-config.json -profile=kubernetes \
 kube-scheduler-csr.json | cfssljson -bare kube-scheduler
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-11-3-创建kube-scheduler-conf配置文件" tabindex="-1"><a class="header-anchor" href="#_8-11-3-创建kube-scheduler-conf配置文件" aria-hidden="true">#</a> 8.11.3.创建kube-scheduler.conf配置文件</h3>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /opt/kubernetes/cfg/kube-scheduler.conf &lt;&lt; EOF
+</code></pre></div><h3 id="_8-11-3-创建kube-scheduler-conf配置文件" tabindex="-1"><a class="header-anchor" href="#_8-11-3-创建kube-scheduler-conf配置文件" aria-hidden="true">#</a> 8.11.3.创建kube-scheduler.conf配置文件</h3>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /opt/kubernetes/cfg/kube-scheduler.conf &lt;&lt; EOF
 KUBE_SCHEDULER_OPTS="--logtostderr=false \\
 --v=2 \\
 --log-dir=/opt/kubernetes/logs \\
@@ -985,7 +985,7 @@ KUBE_SCHEDULER_OPTS="--logtostderr=false \\
 --kubeconfig=/opt/kubernetes/cfg/kube-scheduler.kubeconfig \\
 --bind-address=127.0.0.1"
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>配置文件说明
+</code></pre></div><pre><code>配置文件说明
 --kubeconfig ：连接apiserver配置文件
 --leader-elect ：当该组件启动多个时,自动选举(HA)。
 </code></pre>
@@ -993,8 +993,8 @@ EOF
 <div class="custom-container tip"><p class="custom-container-title">注意事项</p>
 <p>在shell中执行直接执行下面命令</p>
 </div>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	mkdir ~/.kube
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>KUBE_CONFIG="/opt/kubernetes/cfg/kube-scheduler.kubeconfig"
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>	mkdir ~/.kube
+</code></pre></div><div class="language-text ext-text"><pre v-pre class="language-text"><code>KUBE_CONFIG="/opt/kubernetes/cfg/kube-scheduler.kubeconfig"
 KUBE_APISERVER="https://192.168.0.9:6443"
 
 kubectl config set-cluster kubernetes \
@@ -1015,8 +1015,8 @@ kubectl config set-context default \
   --kubeconfig=${KUBE_CONFIG}
 
 kubectl config use-context default --kubeconfig=${KUBE_CONFIG}
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-11-5-让systemd管理kube-scheduler" tabindex="-1"><a class="header-anchor" href="#_8-11-5-让systemd管理kube-scheduler" aria-hidden="true">#</a> 8.11.5.让systemd管理kube-scheduler</h3>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /usr/lib/systemd/system/kube-scheduler.service &lt;&lt; EOF
+</code></pre></div><h3 id="_8-11-5-让systemd管理kube-scheduler" tabindex="-1"><a class="header-anchor" href="#_8-11-5-让systemd管理kube-scheduler" aria-hidden="true">#</a> 8.11.5.让systemd管理kube-scheduler</h3>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /usr/lib/systemd/system/kube-scheduler.service &lt;&lt; EOF
 [Unit]
 Description=Kubernetes Scheduler
 Documentation=https://github.com/kubernetes/kubernetes
@@ -1029,29 +1029,29 @@ Restart=on-failure
 [Install]
 WantedBy=multi-user.target
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-11-6-启动并设置开机启动" tabindex="-1"><a class="header-anchor" href="#_8-11-6-启动并设置开机启动" aria-hidden="true">#</a> 8.11.6.启动并设置开机启动</h3>
+</code></pre></div><h3 id="_8-11-6-启动并设置开机启动" tabindex="-1"><a class="header-anchor" href="#_8-11-6-启动并设置开机启动" aria-hidden="true">#</a> 8.11.6.启动并设置开机启动</h3>
 <pre><code>刷新配置文件后启动kube-scheduler并设置为开机启动
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
 systemctl start kube-scheduler &amp;&amp;
 systemctl enable kube-scheduler
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>查看启动状态
+</code></pre></div><pre><code>查看启动状态
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl status kube-scheduler
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>启动故障排查
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl status kube-scheduler
+</code></pre></div><pre><code>启动故障排查
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat /var/log/messages|grep kube-scheduler|grep -i error
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_8-12-使用kubectl查看集群状态" tabindex="-1"><a class="header-anchor" href="#_8-12-使用kubectl查看集群状态" aria-hidden="true">#</a> 8.12.使用kubectl查看集群状态</h2>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat /var/log/messages|grep kube-scheduler|grep -i error
+</code></pre></div><h2 id="_8-12-使用kubectl查看集群状态" tabindex="-1"><a class="header-anchor" href="#_8-12-使用kubectl查看集群状态" aria-hidden="true">#</a> 8.12.使用kubectl查看集群状态</h2>
 <div class="custom-container tip"><p class="custom-container-title">注意事项</p>
 <p>8.10章节所有操作只在Master1节点操作，不需要在其他节点操作，因为kubectl是Master节点的专用组件，Worker Node不需要使用这个组件</p>
 </div>
 <h3 id="_8-12-1-生成所需证书" tabindex="-1"><a class="header-anchor" href="#_8-12-1-生成所需证书" aria-hidden="true">#</a> 8.12.1.生成所需证书</h3>
 <pre><code>切换工作目录
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd ~/TLS/k8s
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>使用自签CA签发kubectl连接集群的证书
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cd ~/TLS/k8s
+</code></pre></div><pre><code>使用自签CA签发kubectl连接集群的证书
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > admin-csr.json &lt;&lt;EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > admin-csr.json &lt;&lt;EOF
 {
     "CN": "admin",
     "hosts": [],
@@ -1070,12 +1070,12 @@ systemctl enable kube-scheduler
     ]
 }
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>生成证书
+</code></pre></div><pre><code>生成证书
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
 -config=ca-config.json -profile=kubernetes admin-csr.json | cfssljson -bare admin
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-12-2-在-kube文件夹中生成config文件" tabindex="-1"><a class="header-anchor" href="#_8-12-2-在-kube文件夹中生成config文件" aria-hidden="true">#</a> 8.12.2.在.kube文件夹中生成config文件</h3>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mkdir /root/.kube
+</code></pre></div><h3 id="_8-12-2-在-kube文件夹中生成config文件" tabindex="-1"><a class="header-anchor" href="#_8-12-2-在-kube文件夹中生成config文件" aria-hidden="true">#</a> 8.12.2.在.kube文件夹中生成config文件</h3>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>mkdir /root/.kube
 
 KUBE_CONFIG="/root/.kube/config"
 KUBE_APISERVER="https://192.168.0.9:6443"
@@ -1098,11 +1098,11 @@ kubectl config set-context default \
   --kubeconfig=${KUBE_CONFIG}
 
 kubectl config use-context default --kubeconfig=${KUBE_CONFIG}
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-12-3-通过kubectl工具查看集群组件" tabindex="-1"><a class="header-anchor" href="#_8-12-3-通过kubectl工具查看集群组件" aria-hidden="true">#</a> 8.12.3.通过kubectl工具查看集群组件</h3>
+</code></pre></div><h3 id="_8-12-3-通过kubectl工具查看集群组件" tabindex="-1"><a class="header-anchor" href="#_8-12-3-通过kubectl工具查看集群组件" aria-hidden="true">#</a> 8.12.3.通过kubectl工具查看集群组件</h3>
 <pre><code>命令
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get cs
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>Master1节点组件运行正常会显示如下结果
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get cs
+</code></pre></div><pre><code>Master1节点组件运行正常会显示如下结果
 NAME                 STATUS    MESSAGE             ERROR
 controller-manager   Healthy   ok
 scheduler            Healthy   ok
@@ -1113,10 +1113,10 @@ etcd-1               Healthy   {&quot;health&quot;:&quot;true&quot;}
 <h3 id="_8-12-4-授权kubelet-bootstrap用户允许请求证书" tabindex="-1"><a class="header-anchor" href="#_8-12-4-授权kubelet-bootstrap用户允许请求证书" aria-hidden="true">#</a> 8.12.4.授权kubelet-bootstrap用户允许请求证书</h3>
 <pre><code>创建授权用户kubelet-bootstrap
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl create clusterrolebinding kubelet-bootstrap \
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl create clusterrolebinding kubelet-bootstrap \
 --clusterrole=system:node-bootstrapper \
 --user=kubelet-bootstrap
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>上面如果不行用这个
+</code></pre></div><pre><code>上面如果不行用这个
 kubectl create clusterrolebinding kubelet-bootstrap \
 --clusterrole=system:node-bootstrapper --user=kubelet-bootstrap --group=system:bootstrappers
 
@@ -1135,13 +1135,13 @@ systemctl restart kubelet
 </div>
 <pre><code>将Master Node1节点的k8s-server软件包拷贝到所有Worker Node
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /opt/k8s/package/kubernetes/server/bin/
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cd /opt/k8s/package/kubernetes/server/bin/
 cp kubelet  kube-proxy /opt/kubernetes/bin/ &amp;&amp;
 scp kubelet  kube-proxy root@192.168.0.10:/opt/kubernetes/bin/ &amp;&amp;
 scp kubelet  kube-proxy root@192.168.0.11:/opt/kubernetes/bin/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-13-2-在master-node1部署kubelet" tabindex="-1"><a class="header-anchor" href="#_8-13-2-在master-node1部署kubelet" aria-hidden="true">#</a> 8.13.2.在Master Node1部署kubelet</h3>
+</code></pre></div><h3 id="_8-13-2-在master-node1部署kubelet" tabindex="-1"><a class="header-anchor" href="#_8-13-2-在master-node1部署kubelet" aria-hidden="true">#</a> 8.13.2.在Master Node1部署kubelet</h3>
 <h4 id="_8-13-2-1-创建kubelet配置文件" tabindex="-1"><a class="header-anchor" href="#_8-13-2-1-创建kubelet配置文件" aria-hidden="true">#</a> 8.13.2.1.创建kubelet配置文件</h4>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /opt/kubernetes/cfg/kubelet.conf &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /opt/kubernetes/cfg/kubelet.conf &lt;&lt; EOF
 KUBELET_OPTS="--logtostderr=false \\
 --v=2 \\
 --log-dir=/opt/kubernetes/logs \\
@@ -1153,7 +1153,7 @@ KUBELET_OPTS="--logtostderr=false \\
 --cert-dir=/opt/kubernetes/ssl \\
 --pod-infra-container-image=registry.cn-hangzhou.aliyuncs.com/google-containers/pause-amd64:3.0"
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>配置说明
+</code></pre></div><pre><code>配置说明
 --hostname-override ：显示名称,集群唯一(不可重复)。
 --network-plugin ：启用CNI。
 --kubeconfig ： 空路径,会自动生成,后面用于连接apiserver。
@@ -1163,7 +1163,7 @@ EOF
 --pod-infra-container-image ：管理Pod网络容器的镜像 init container
 </code></pre>
 <h4 id="_8-13-2-2-创建kubelet编排文件" tabindex="-1"><a class="header-anchor" href="#_8-13-2-2-创建kubelet编排文件" aria-hidden="true">#</a> 8.13.2.2.创建kubelet编排文件</h4>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /opt/kubernetes/cfg/kubelet-config.yml &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /opt/kubernetes/cfg/kubelet-config.yml &lt;&lt; EOF
 kind: KubeletConfiguration
 apiVersion: kubelet.config.k8s.io/v1beta1
 address: 0.0.0.0
@@ -1195,8 +1195,8 @@ evictionHard:
 maxOpenFiles: 1000000
 maxPods: 110
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="_8-13-2-3-生成kubelet初次加入集群引导kubeconfig文件" tabindex="-1"><a class="header-anchor" href="#_8-13-2-3-生成kubelet初次加入集群引导kubeconfig文件" aria-hidden="true">#</a> 8.13.2.3.生成kubelet初次加入集群引导kubeconfig文件</h4>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>KUBE_CONFIG="/opt/kubernetes/cfg/bootstrap.kubeconfig"
+</code></pre></div><h4 id="_8-13-2-3-生成kubelet初次加入集群引导kubeconfig文件" tabindex="-1"><a class="header-anchor" href="#_8-13-2-3-生成kubelet初次加入集群引导kubeconfig文件" aria-hidden="true">#</a> 8.13.2.3.生成kubelet初次加入集群引导kubeconfig文件</h4>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>KUBE_CONFIG="/opt/kubernetes/cfg/bootstrap.kubeconfig"
 KUBE_APISERVER="https://192.168.0.9:6443" # apiserver IP:PORT
 TOKEN="4136692876ad4b01bb9dd0988480ebba" # 与token.csv里保持一致  /opt/kubernetes/cfg/token.csv 
 
@@ -1216,8 +1216,8 @@ kubectl config set-context default \
   --kubeconfig=${KUBE_CONFIG}
 
 kubectl config use-context default --kubeconfig=${KUBE_CONFIG}
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="_8-13-2-4-systemd管理kubelet" tabindex="-1"><a class="header-anchor" href="#_8-13-2-4-systemd管理kubelet" aria-hidden="true">#</a> 8.13.2.4.systemd管理kubelet</h4>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /usr/lib/systemd/system/kubelet.service &lt;&lt; EOF
+</code></pre></div><h4 id="_8-13-2-4-systemd管理kubelet" tabindex="-1"><a class="header-anchor" href="#_8-13-2-4-systemd管理kubelet" aria-hidden="true">#</a> 8.13.2.4.systemd管理kubelet</h4>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /usr/lib/systemd/system/kubelet.service &lt;&lt; EOF
 [Unit]
 Description=Kubernetes Kubelet
 After=docker.service
@@ -1231,33 +1231,33 @@ LimitNOFILE=65536
 [Install]
 WantedBy=multi-user.target
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="_8-13-3-5-启动kubelet并设置开机启动" tabindex="-1"><a class="header-anchor" href="#_8-13-3-5-启动kubelet并设置开机启动" aria-hidden="true">#</a> 8.13.3.5.启动kubelet并设置开机启动</h4>
+</code></pre></div><h4 id="_8-13-3-5-启动kubelet并设置开机启动" tabindex="-1"><a class="header-anchor" href="#_8-13-3-5-启动kubelet并设置开机启动" aria-hidden="true">#</a> 8.13.3.5.启动kubelet并设置开机启动</h4>
 <pre><code>刷新配置文件后启动kubelet并设置开机启动
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
 systemctl start kubelet &amp;&amp;
 systemctl enable kubelet
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>查看启动状态
+</code></pre></div><pre><code>查看启动状态
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl status kubelet
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>启动故障排查
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl status kubelet
+</code></pre></div><pre><code>启动故障排查
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat /var/log/messages|grep kubelet
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h4 id="_8-13-2-6-允许kubelet证书申请并加入集群" tabindex="-1"><a class="header-anchor" href="#_8-13-2-6-允许kubelet证书申请并加入集群" aria-hidden="true">#</a> 8.13.2.6.允许kubelet证书申请并加入集群</h4>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat /var/log/messages|grep kubelet
+</code></pre></div><h4 id="_8-13-2-6-允许kubelet证书申请并加入集群" tabindex="-1"><a class="header-anchor" href="#_8-13-2-6-允许kubelet证书申请并加入集群" aria-hidden="true">#</a> 8.13.2.6.允许kubelet证书申请并加入集群</h4>
 <pre><code>查看kubelet证书签名请求
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get csr
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@binary-k8s-master1 bin]# kubectl get csr
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get csr
+</code></pre></div><pre><code>[root@binary-k8s-master1 bin]# kubectl get csr
 NAME                                                   AGE	CONDITIO	...
 node-csr-IiJqGnj7y-9pMOIaYb9rpYxtIaEuACOITLI-WpfdpDI   16s	Pending		...
 
 手动批准证书签名请求
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl certificate approve node-csr-IiJqGnj7y-9pMOIaYb9rpYxtIaEuACOITLI-WpfdpDI
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>再次使用命令查看申请是否通过
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl certificate approve node-csr-IiJqGnj7y-9pMOIaYb9rpYxtIaEuACOITLI-WpfdpDI
+</code></pre></div><pre><code>再次使用命令查看申请是否通过
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get csr
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@binary-k8s-master1 bin]# kubectl get csr
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get csr
+</code></pre></div><pre><code>[root@binary-k8s-master1 bin]# kubectl get csr
 NAME                                                   AGE	CONDITIO	...
 node-csr-IiJqGnj7y-9pMOIaYb9rpYxtIaEuACOITLI-WpfdpDI   16s	Approved	...
 
@@ -1269,8 +1269,8 @@ kubectl delete csr node-csr-IiJqGnj7y-9pMOIaYb9rpYxtIaEuACOITLI-WpfdpDI
 
 查看节点（如果上面步骤都没有错误这个步骤可以查看到Master节点）
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get nodes
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@binary-k8s-master1 bin]# kubectl get nodes
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get nodes
+</code></pre></div><pre><code>[root@binary-k8s-master1 bin]# kubectl get nodes
 NAME          STATUS     ROLES    AGE     VERSION
 binary-k8s-master1   NotReady   &lt;none&gt;   2m10s   v1.20.0
 
@@ -1279,14 +1279,14 @@ binary-k8s-master1   NotReady   &lt;none&gt;   2m10s   v1.20.0
 </code></pre>
 <h3 id="_8-13-3-部署kube-proxy" tabindex="-1"><a class="header-anchor" href="#_8-13-3-部署kube-proxy" aria-hidden="true">#</a> 8.13.3.部署kube-proxy</h3>
 <h4 id="_8-13-3-1-创建kube-proxy配置文件" tabindex="-1"><a class="header-anchor" href="#_8-13-3-1-创建kube-proxy配置文件" aria-hidden="true">#</a> 8.13.3.1.创建kube-proxy配置文件</h4>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /opt/kubernetes/cfg/kube-proxy.conf &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /opt/kubernetes/cfg/kube-proxy.conf &lt;&lt; EOF
 KUBE_PROXY_OPTS="--logtostderr=false \\
 --v=2 \\
 --log-dir=/opt/kubernetes/logs \\
 --config=/opt/kubernetes/cfg/kube-proxy-config.yml"
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="_8-13-3-2-配置参数文件" tabindex="-1"><a class="header-anchor" href="#_8-13-3-2-配置参数文件" aria-hidden="true">#</a> 8.13.3.2.配置参数文件</h4>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /opt/kubernetes/cfg/kube-proxy-config.yml &lt;&lt; EOF
+</code></pre></div><h4 id="_8-13-3-2-配置参数文件" tabindex="-1"><a class="header-anchor" href="#_8-13-3-2-配置参数文件" aria-hidden="true">#</a> 8.13.3.2.配置参数文件</h4>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /opt/kubernetes/cfg/kube-proxy-config.yml &lt;&lt; EOF
 kind: KubeProxyConfiguration
 apiVersion: kubeproxy.config.k8s.io/v1alpha1
 bindAddress: 0.0.0.0
@@ -1296,13 +1296,13 @@ clientConnection:
 hostnameOverride: binary-k8s-master1
 clusterCIDR: 10.244.0.0/16
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="_8-13-3-3-生成kube-proxy证书文件" tabindex="-1"><a class="header-anchor" href="#_8-13-3-3-生成kube-proxy证书文件" aria-hidden="true">#</a> 8.13.3.3.生成kube-proxy证书文件</h4>
+</code></pre></div><h4 id="_8-13-3-3-生成kube-proxy证书文件" tabindex="-1"><a class="header-anchor" href="#_8-13-3-3-生成kube-proxy证书文件" aria-hidden="true">#</a> 8.13.3.3.生成kube-proxy证书文件</h4>
 <pre><code>切换工作目录
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd ~/TLS/k8s
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>创建证书请求文件
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cd ~/TLS/k8s
+</code></pre></div><pre><code>创建证书请求文件
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > kube-proxy-csr.json &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > kube-proxy-csr.json &lt;&lt; EOF
 {
     "CN": "system:kube-proxy",
     "hosts": [],
@@ -1321,12 +1321,12 @@ EOF
    ]
 }
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>生成证书
+</code></pre></div><pre><code>生成证书
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
 -config=ca-config.json -profile=kubernetes kube-proxy-csr.json | cfssljson -bare kube-proxy
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="_8-13-3-4-生成kube-proxy-kubeconfig文件" tabindex="-1"><a class="header-anchor" href="#_8-13-3-4-生成kube-proxy-kubeconfig文件" aria-hidden="true">#</a> 8.13.3.4.生成kube-proxy.kubeconfig文件</h4>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>KUBE_CONFIG="/opt/kubernetes/cfg/kube-proxy.kubeconfig"
+</code></pre></div><h4 id="_8-13-3-4-生成kube-proxy-kubeconfig文件" tabindex="-1"><a class="header-anchor" href="#_8-13-3-4-生成kube-proxy-kubeconfig文件" aria-hidden="true">#</a> 8.13.3.4.生成kube-proxy.kubeconfig文件</h4>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>KUBE_CONFIG="/opt/kubernetes/cfg/kube-proxy.kubeconfig"
 KUBE_APISERVER="https://192.168.0.9:6443"
 
 kubectl config set-cluster kubernetes \
@@ -1347,8 +1347,8 @@ kubectl config set-context default \
   --kubeconfig=${KUBE_CONFIG}
 
 kubectl config use-context default --kubeconfig=${KUBE_CONFIG}
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="_8-13-3-5-systemd管理kube-proxy" tabindex="-1"><a class="header-anchor" href="#_8-13-3-5-systemd管理kube-proxy" aria-hidden="true">#</a> 8.13.3.5.systemd管理kube-proxy</h4>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /usr/lib/systemd/system/kube-proxy.service &lt;&lt; EOF
+</code></pre></div><h4 id="_8-13-3-5-systemd管理kube-proxy" tabindex="-1"><a class="header-anchor" href="#_8-13-3-5-systemd管理kube-proxy" aria-hidden="true">#</a> 8.13.3.5.systemd管理kube-proxy</h4>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /usr/lib/systemd/system/kube-proxy.service &lt;&lt; EOF
 [Unit]
 Description=Kubernetes Proxy
 After=network.target
@@ -1362,43 +1362,43 @@ LimitNOFILE=65536
 [Install]
 WantedBy=multi-user.target
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="_8-12-3-6-启动kube-proxy并设置开机自启" tabindex="-1"><a class="header-anchor" href="#_8-12-3-6-启动kube-proxy并设置开机自启" aria-hidden="true">#</a> 8.12.3.6.启动kube-proxy并设置开机自启</h4>
+</code></pre></div><h4 id="_8-12-3-6-启动kube-proxy并设置开机自启" tabindex="-1"><a class="header-anchor" href="#_8-12-3-6-启动kube-proxy并设置开机自启" aria-hidden="true">#</a> 8.12.3.6.启动kube-proxy并设置开机自启</h4>
 <pre><code>刷新配置文件后启动kube-proxy并设置开机启动
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
 systemctl start kube-proxy &amp;&amp;
 systemctl enable kube-proxy
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>启动状态查询
+</code></pre></div><pre><code>启动状态查询
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	systemctl status kube-proxy
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_8-13-4-部署网络组件-calico" tabindex="-1"><a class="header-anchor" href="#_8-13-4-部署网络组件-calico" aria-hidden="true">#</a> 8.13.4.部署网络组件(Calico)</h3>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>	systemctl status kube-proxy
+</code></pre></div><h3 id="_8-13-4-部署网络组件-calico" tabindex="-1"><a class="header-anchor" href="#_8-13-4-部署网络组件-calico" aria-hidden="true">#</a> 8.13.4.部署网络组件(Calico)</h3>
 <pre><code>Calico简介
 Calico是一个纯三层的数据中心网络方案，是目前Kubernetes主流的网络方案。
 
 切换目录
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /root/TLS/k8s
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>获取Calico.yaml文件
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cd /root/TLS/k8s
+</code></pre></div><pre><code>获取Calico.yaml文件
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>wget http://docs.projectcalico.org/v3.8/manifests/calico.yaml
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>备份calico.yaml并修改calico.yaml
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>wget http://docs.projectcalico.org/v3.8/manifests/calico.yaml
+</code></pre></div><pre><code>备份calico.yaml并修改calico.yaml
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cp calico.yaml calico.yaml.bak &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cp calico.yaml calico.yaml.bak &amp;&amp;
 sed -i 's/192.168.0.0/10.244.0.0/g' calico.yaml
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>查询修改结果
+</code></pre></div><pre><code>查询修改结果
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>grep "IPV4POOL_CIDR" calico.yaml  -A 1 \
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>grep "IPV4POOL_CIDR" calico.yaml  -A 1 \
 		- name: CALICO_IPV4POOL_CIDR	\
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>正常会显示线面值
+</code></pre></div><pre><code>正常会显示线面值
 value: &quot;10.244.0.0/16&quot;
 
 部署Calico
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl apply -f calico.yaml
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>等待8分钟左右后查看Calico的Pod运行状态（正常是STATUS是Running）
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl apply -f calico.yaml
+</code></pre></div><pre><code>等待8分钟左右后查看Calico的Pod运行状态（正常是STATUS是Running）
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get pods -n kube-system
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@binary-k8s-master1 k8s]# kubectl get pods -n kube-system
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get pods -n kube-system
+</code></pre></div><pre><code>[root@binary-k8s-master1 k8s]# kubectl get pods -n kube-system
 NAME                                      READY   STATUS    RESTARTS   AGE
 calico-kube-controllers-bcc6f659f-r28g7   1/1     Running   0          18m
 calico-node-dkjn6                         1/1     Running   6          18m
@@ -1409,8 +1409,8 @@ calico部署很慢，不过不用等8分钟，执行kubectl apply命令后稍等
 
 查看集群节点（正常是STATUS是Ready）
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get nodes
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@binary-k8s-master1 k8s]# kubectl get nodes
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get nodes
+</code></pre></div><pre><code>[root@binary-k8s-master1 k8s]# kubectl get nodes
 NAME          		  STATUS   ROLES    AGE   VERSION
 binary-k8s-master1    Ready    &lt;none&gt;   34m   v1.20.0
 </code></pre>
@@ -1419,7 +1419,7 @@ binary-k8s-master1    Ready    &lt;none&gt;   34m   v1.20.0
 
 创建配置文件
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > apiserver-to-kubelet-rbac.yaml &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > apiserver-to-kubelet-rbac.yaml &lt;&lt; EOF
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -1455,72 +1455,72 @@ subjects:
     kind: User
     name: kubernetes
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>应用配置文件
+</code></pre></div><pre><code>应用配置文件
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl apply -f apiserver-to-kubelet-rbac.yaml
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_8-14-增加worker-node" tabindex="-1"><a class="header-anchor" href="#_8-14-增加worker-node" aria-hidden="true">#</a> 8.14.增加Worker Node</h2>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl apply -f apiserver-to-kubelet-rbac.yaml
+</code></pre></div><h2 id="_8-14-增加worker-node" tabindex="-1"><a class="header-anchor" href="#_8-14-增加worker-node" aria-hidden="true">#</a> 8.14.增加Worker Node</h2>
 <h3 id="_8-14-1-在所有worker-node创建工作目录并拷贝二进制文件" tabindex="-1"><a class="header-anchor" href="#_8-14-1-在所有worker-node创建工作目录并拷贝二进制文件" aria-hidden="true">#</a> 8.14.1.在所有Worker Node创建工作目录并拷贝二进制文件</h3>
 <pre><code>在所有Worker Node1和Worker Node2中创建工作目录
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mkdir -p /opt/kubernetes/bin &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>mkdir -p /opt/kubernetes/bin &amp;&amp;
 mkdir -p /opt/kubernetes/cfg &amp;&amp;
 mkdir -p /opt/kubernetes/ssl &amp;&amp;
 mkdir -p /opt/kubernetes/logs
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-14-2拷贝master-node1上部署好的文件到worker-node" tabindex="-1"><a class="header-anchor" href="#_8-14-2拷贝master-node1上部署好的文件到worker-node" aria-hidden="true">#</a> 8.14.2拷贝Master Node1上部署好的文件到Worker Node</h3>
+</code></pre></div><h3 id="_8-14-2拷贝master-node1上部署好的文件到worker-node" tabindex="-1"><a class="header-anchor" href="#_8-14-2拷贝master-node1上部署好的文件到worker-node" aria-hidden="true">#</a> 8.14.2拷贝Master Node1上部署好的文件到Worker Node</h3>
 <pre><code>进入Master Node1，执行下面操作，镜相关文件拷贝到Worker Node1和Worker Node2
 拷贝到Worker Node1（192.168.0.10）
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>scp -r /opt/kubernetes root@192.168.0.10:/opt/ &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>scp -r /opt/kubernetes root@192.168.0.10:/opt/ &amp;&amp;
 scp -r /usr/lib/systemd/system/{kubelet,kube-proxy}.service \
 root@192.168.0.10:/usr/lib/systemd/system &amp;&amp;
 scp -r /opt/kubernetes/ssl/ca.pem root@192.168.0.10:/opt/kubernetes/ssl/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>拷贝到Worker Node2（192.168.0.11）
+</code></pre></div><pre><code>拷贝到Worker Node2（192.168.0.11）
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>scp -r /opt/kubernetes root@192.168.0.11:/opt/ &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>scp -r /opt/kubernetes root@192.168.0.11:/opt/ &amp;&amp;
 scp -r /usr/lib/systemd/system/{kubelet,kube-proxy}.service \
 root@192.168.0.11:/usr/lib/systemd/system &amp;&amp;
 scp -r /opt/kubernetes/ssl/ca.pem root@192.168.0.11:/opt/kubernetes/ssl/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-14-3-删除所有worker-node中kubelet证书和kubeconfig文件" tabindex="-1"><a class="header-anchor" href="#_8-14-3-删除所有worker-node中kubelet证书和kubeconfig文件" aria-hidden="true">#</a> 8.14.3.删除所有Worker Node中kubelet证书和kubeconfig文件</h3>
+</code></pre></div><h3 id="_8-14-3-删除所有worker-node中kubelet证书和kubeconfig文件" tabindex="-1"><a class="header-anchor" href="#_8-14-3-删除所有worker-node中kubelet证书和kubeconfig文件" aria-hidden="true">#</a> 8.14.3.删除所有Worker Node中kubelet证书和kubeconfig文件</h3>
 <pre><code>Worker Node1节点（192.168.0.10）
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>rm -f /opt/kubernetes/cfg/kubelet.kubeconfig &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>rm -f /opt/kubernetes/cfg/kubelet.kubeconfig &amp;&amp;
 rm -f /opt/kubernetes/ssl/kubelet*
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>Worker Node2节点（192.168.0.11）
+</code></pre></div><pre><code>Worker Node2节点（192.168.0.11）
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>rm -f /opt/kubernetes/cfg/kubelet.kubeconfig &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>rm -f /opt/kubernetes/cfg/kubelet.kubeconfig &amp;&amp;
 rm -f /opt/kubernetes/ssl/kubelet*
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>说明:
+</code></pre></div><pre><code>说明:
 这几个文件是证书申请审批后自动生成的,每个Node不同,必须删除
 </code></pre>
 <h3 id="_8-14-4-修改worker-node1和worker-node2主机名" tabindex="-1"><a class="header-anchor" href="#_8-14-4-修改worker-node1和worker-node2主机名" aria-hidden="true">#</a> 8.14.4. 修改Worker Node1和Worker Node2主机名</h3>
 <pre><code>Worker Node1（192.168.0.10）
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sed -i 's/--hostname-override=binary-k8s-master1/--hostname-override=binary-k8s-worker1/g' \
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>sed -i 's/--hostname-override=binary-k8s-master1/--hostname-override=binary-k8s-worker1/g' \
 /opt/kubernetes/cfg/kubelet.conf #修改--hostname-override的值为binary-k8s-worker1
 sed -i 's/hostnameOverride: binary-k8s-master1/hostnameOverride: binary-k8s-worker1/g' \
 /opt/kubernetes/cfg/kube-proxy-config.yml #修改hostnameOverride的值binary-k8s-worker1
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>Worker Node2（192.168.0.11）
+</code></pre></div><pre><code>Worker Node2（192.168.0.11）
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sed -i 's/--hostname-override=binary-k8s-master1/--hostname-override=binary-k8s-worker2/g' \
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>sed -i 's/--hostname-override=binary-k8s-master1/--hostname-override=binary-k8s-worker2/g' \
 /opt/kubernetes/cfg/kubelet.conf #修改--hostname-override的值为binary-k8s-worker2
 sed -i 's/hostnameOverride: binary-k8s-master1/hostnameOverride: binary-k8s-worker2/g' \
 /opt/kubernetes/cfg/kube-proxy-config.yml #修改hostnameOverride的值binary-k8s-worker2
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-14-5-启动worker-node1和worker-node2中kubelet并设置开机自启" tabindex="-1"><a class="header-anchor" href="#_8-14-5-启动worker-node1和worker-node2中kubelet并设置开机自启" aria-hidden="true">#</a> 8.14.5.启动Worker Node1和Worker Node2中kubelet并设置开机自启</h3>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
+</code></pre></div><h3 id="_8-14-5-启动worker-node1和worker-node2中kubelet并设置开机自启" tabindex="-1"><a class="header-anchor" href="#_8-14-5-启动worker-node1和worker-node2中kubelet并设置开机自启" aria-hidden="true">#</a> 8.14.5.启动Worker Node1和Worker Node2中kubelet并设置开机自启</h3>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
 systemctl start kubelet kube-proxy &amp;&amp;
 systemctl enable kubelet kube-proxy
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>查看启动状态
+</code></pre></div><pre><code>查看启动状态
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl status kubelet
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl status kube-proxy
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>启动故障解决
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl status kubelet
+</code></pre></div><div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl status kube-proxy
+</code></pre></div><pre><code>启动故障解决
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat /var/log/messages|grep kube-proxy
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_8-14-6-在master1上同意新的node-kubelet证书申请" tabindex="-1"><a class="header-anchor" href="#_8-14-6-在master1上同意新的node-kubelet证书申请" aria-hidden="true">#</a> 8.14.6.在Master1上同意新的Node kubelet证书申请</h3>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat /var/log/messages|grep kube-proxy
+</code></pre></div><h3 id="_8-14-6-在master1上同意新的node-kubelet证书申请" tabindex="-1"><a class="header-anchor" href="#_8-14-6-在master1上同意新的node-kubelet证书申请" aria-hidden="true">#</a> 8.14.6.在Master1上同意新的Node kubelet证书申请</h3>
 <pre><code>查看证书请求
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get csr
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@binary-k8s-master1 k8s]# kubectl get csr
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get csr
+</code></pre></div><pre><code>[root@binary-k8s-master1 k8s]# kubectl get csr
 
 NAME                                                    ... CONDITION         ...
 node-csr-IiJqGnj7y-9pMOIaYb9rpYxtIaEuACOITLI-WpfdpDI    ... Approved,Issued   ...
@@ -1529,15 +1529,15 @@ node-csr-vb-rAPL-grn0NxFGBs-_5pScCDkICmvHRnbhn_bRdsc    ... Pending           ..
 
 手动批准证书签名请求
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl certificate approve node-csr-TlSHYrzacOBQbJyQcfVwuArXPKRbjcoMESZykQ3Qr0w
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl certificate approve node-csr-vb-rAPL-grn0NxFGBs-_5pScCDkICmvHRnbhn_bRdsc
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看所有Node状态(要稍等会才会变成ready,会下载一些初始化镜像)
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl certificate approve node-csr-TlSHYrzacOBQbJyQcfVwuArXPKRbjcoMESZykQ3Qr0w
+</code></pre></div><div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl certificate approve node-csr-vb-rAPL-grn0NxFGBs-_5pScCDkICmvHRnbhn_bRdsc
+</code></pre></div><pre><code>查看所有Node状态(要稍等会才会变成ready,会下载一些初始化镜像)
 注意事项
 刚加入Worker Node1和Worker Node2时使用kubectl get nodes查看可能会出现Worker Node NotReady状态，等
 待大概三分钟左右再使用kubectl get nodes就可以看到所有节点状态都已经就绪了
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get nodes
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@binary-k8s-master1 ~]# kubectl get nodes
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get nodes
+</code></pre></div><pre><code>[root@binary-k8s-master1 ~]# kubectl get nodes
 NAME                  STATUS   ROLES    AGE   VERSION
 binary-k8s-master1    Ready    &lt;none&gt;   79s   v1.20.0
 binary-k8s-worker1    Ready    &lt;none&gt;   26m   v1.20.0
@@ -1550,12 +1550,12 @@ kubectl delete csr node-csr-Rd_0WEaOFSkRT7geRKfz__I1v6E-CQfJpYwMTDEK-mw
 <h3 id="_8-14-7-在master1上部署kubernetes-dashboard" tabindex="-1"><a class="header-anchor" href="#_8-14-7-在master1上部署kubernetes-dashboard" aria-hidden="true">#</a> 8.14.7.在Master1上部署kubernetes-dashboard</h3>
 <pre><code>切换目录并在该目录中下载kubernetes-dashboard安装所需要的yaml文件
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /opt/k8s/package &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cd /opt/k8s/package &amp;&amp;
 wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.4.0/aio/deploy/recommended.yaml
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>修改配置
+</code></pre></div><pre><code>修改配置
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim recommended.yaml
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>给名称为kubernetes-dashboard的Service中添加type: NodePort参数，大概在245行左右
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>vim recommended.yaml
+</code></pre></div><pre><code>给名称为kubernetes-dashboard的Service中添加type: NodePort参数，大概在245行左右
 kind: Service
 name: kubernetes-dashboard
 spec:
@@ -1563,12 +1563,12 @@ spec:
 
 安装kubernetes-dashboard
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl apply -f recommended.yaml
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看部署情况
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl apply -f recommended.yaml
+</code></pre></div><pre><code>查看部署情况
 注意事项，等待大约2分钟使用kubectl get pods,svc -n kubernetes-dashboard才能看到所有pods,svc状态正常
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get pods,svc -n kubernetes-dashboard
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@binary-k8s-master1 package]# kubectl get pods,svc -n kubernetes-dashboard
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get pods,svc -n kubernetes-dashboard
+</code></pre></div><pre><code>[root@binary-k8s-master1 package]# kubectl get pods,svc -n kubernetes-dashboard
 NAME                                             READY   STATUS    RESTARTS   AGE
 pod/dashboard-metrics-scraper-5b8896d7fc-jj8vp   1/1     Running   0          60m
 pod/kubernetes-dashboard-897c7599f-pdk9g         1/1     Running   0          60m
@@ -1579,16 +1579,16 @@ service/kubernetes-dashboard        NodePort    10.0.0.173       443:30441/TCP  
 
 创建dashboard-admin使用的service account并绑定默认cluster-admin管理员集群角色
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl create serviceaccount dashboard-admin -n kube-system
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl create serviceaccount dashboard-admin -n kube-system
 kubectl create clusterrolebinding dashboard-admin \
 	--clusterrole=cluster-admin --serviceaccount=kube-system:dashboard-admin
 kubectl describe secrets -n kube-system \
 $(kubectl -n kube-system get secret | awk '/dashboard-admin/{print $1}')
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>查询token
+</code></pre></div><pre><code>查询token
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl describe secrets -n kube-system \
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl describe secrets -n kube-system \
 $(kubectl -n kube-system get secret | awk '/dashboard-admin/{print $1}')
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>访问kubernetes-dashboard,输入刚才获得的token登录kubernetes-dashboard
+</code></pre></div><pre><code>访问kubernetes-dashboard,输入刚才获得的token登录kubernetes-dashboard
 https://192.168.0.9:30441/
 https://192.168.0.10:30441/
 https://192.168.0.11:30441/
@@ -1603,14 +1603,14 @@ CoreDNS主要用于集群内部Service名称解析。
 
 从kubernetes源码包中获取coredns.yaml
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /opt/k8s/package/kubernetes &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cd /opt/k8s/package/kubernetes &amp;&amp;
 mkdir  kubernetes-src &amp;&amp;
 tar fx kubernetes-src.tar.gz -C ./kubernetes-src &amp;&amp;
 cd kubernetes-src/cluster/addons/dns/coredns/ &amp;&amp;
 cp coredns.yaml.base coredns.yaml
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>修改coredns.yaml配置
+</code></pre></div><pre><code>修改coredns.yaml配置
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>CLUSTER_DNS_DOMAIN="cluster.local"
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>CLUSTER_DNS_DOMAIN="cluster.local"
 CLUSTER_DNS_SVC_IP="10.0.0.2"
 CLUSTER_DNS_LIMIT_MEMORY="170Mi"
 
@@ -1618,26 +1618,26 @@ sed -i -e "s@__DNS__DOMAIN__@${CLUSTER_DNS_DOMAIN}@" \
 		-e "s@__DNS__SERVER__@${CLUSTER_DNS_SVC_IP}@" \
 		-e "s@__DNS__MEMORY__LIMIT__@${CLUSTER_DNS_LIMIT_MEMORY}@" \
 		coredns.yaml
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>注意：CLUSTER_DNS_DOMAIN和CLUSTER_DNS_SVC_IP的值要和在node节点的kubelet-config.yaml/kubelet-
+</code></pre></div><pre><code>注意：CLUSTER_DNS_DOMAIN和CLUSTER_DNS_SVC_IP的值要和在node节点的kubelet-config.yaml/kubelet-
 config.yal中clusterDNS和clusterDomain的值保持一致
 
 修改coredns.yaml中coredns镜像仓库地址
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vim coredns.yaml
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>将135行k8s.gcr.io/coredns:1.6.7修改为registry.aliyuncs.com/google_containers/coredns:v1.8.6
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>vim coredns.yaml
+</code></pre></div><pre><code>将135行k8s.gcr.io/coredns:1.6.7修改为registry.aliyuncs.com/google_containers/coredns:v1.8.6
 
 创建coredns使用的service account并绑定默认cluster-admin管理员集群角色
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl create serviceaccount coredns -n kube-system
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl create serviceaccount coredns -n kube-system
 kubectl create clusterrolebinding coredns \
 	--clusterrole=cluster-admin --serviceaccount=kube-system:coredns
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>部署coredns
+</code></pre></div><pre><code>部署coredns
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl apply -f coredns.yaml
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看coredns的pod是否正常
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl apply -f coredns.yaml
+</code></pre></div><pre><code>查看coredns的pod是否正常
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get pods -n kube-system
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@k8s-master1 yaml]# kubectl get pods -n kube-system
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get pods -n kube-system
+</code></pre></div><pre><code>[root@k8s-master1 yaml]# kubectl get pods -n kube-system
 NAME                                      READY   STATUS    RESTARTS   AGE
 calico-kube-controllers-97769f7c7-zcz5d   1/1     Running   1          47h
 calico-node-5tnll                         1/1     Running   1          47h
@@ -1647,20 +1647,20 @@ coredns-6cc56c94bd-5hvfb                  1/1     Running   0          37s
 
 启动故障排查
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl logs PODNAME -n kube-system
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>给coredns增加副本，增强高可用性（也可以修改配置文件）
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl logs PODNAME -n kube-system
+</code></pre></div><pre><code>给coredns增加副本，增强高可用性（也可以修改配置文件）
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl scale deployment coredns --replicas=2 -n kube-system
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>创建 kubernetes用户
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl scale deployment coredns --replicas=2 -n kube-system
+</code></pre></div><pre><code>创建 kubernetes用户
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl create clusterrolebinding kube-apiserver:kubelet-apis \
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl create clusterrolebinding kube-apiserver:kubelet-apis \
 --clusterrole=system:kubelet-api-admin --user kubernetes
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>使用busybox测试解析是否正常
+</code></pre></div><pre><code>使用busybox测试解析是否正常
 
 部署busybox
 编写busybox编排文件
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > busybox.yaml &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > busybox.yaml &lt;&lt; EOF
 apiVersion: v1
 kind: Pod
 metadata:
@@ -1676,13 +1676,13 @@ spec:
     imagePullPolicy: IfNotPresent
   restartPolicy: Always
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>创建busybox
+</code></pre></div><pre><code>创建busybox
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl create -f busybox.yaml
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>进入busybox中
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl create -f busybox.yaml
+</code></pre></div><pre><code>进入busybox中
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl exec -it busybox -- sh
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>使用busybox测试coredns是否部署成功
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl exec -it busybox -- sh
+</code></pre></div><pre><code>使用busybox测试coredns是否部署成功
 If you don't see a command prompt, try pressing enter.
 / # ns
 nsenter   nslookup
@@ -1692,8 +1692,8 @@ Address 1: 10.0.0.2 kube-dns.kube-system.svc.cluster.local
 
 查看coredns一共部署了几个副本
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get deployments -n kube-system
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@binary-k8s-master2 ~]# kubectl get deployments -n kube-system
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get deployments -n kube-system
+</code></pre></div><pre><code>[root@binary-k8s-master2 ~]# kubectl get deployments -n kube-system
 NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
 calico-kube-controllers   1/1     1            1           168m
 coredns                   2/2     2            2           147m
@@ -1761,68 +1761,68 @@ Master Node1所有操作一致。所以我们只需将Master1所有K8s文件拷�
 <h3 id="_8-15-2-给master-node2安装docker" tabindex="-1"><a class="header-anchor" href="#_8-15-2-给master-node2安装docker" aria-hidden="true">#</a> 8.15.2.给Master Node2安装Docker</h3>
 <pre><code>进入Master Node1，将docker安装文件拷贝到Master Node2
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>scp /usr/bin/docker* root@192.168.0.12:/usr/bin &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>scp /usr/bin/docker* root@192.168.0.12:/usr/bin &amp;&amp;
 scp /usr/bin/runc root@192.168.0.12:/usr/bin &amp;&amp;
 scp /usr/bin/containerd* root@192.168.0.12:/usr/bin &amp;&amp;
 scp /usr/lib/systemd/system/docker.service \
 root@192.168.0.12:/usr/lib/systemd/system &amp;&amp;
 scp -r /etc/docker root@192.168.0.12:/etc
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>启动Mater Node2上的Docker并设置开机自启
+</code></pre></div><pre><code>启动Mater Node2上的Docker并设置开机自启
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp; systemctl start docker &amp;&amp; systemctl enable docker
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看启动状态
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp; systemctl start docker &amp;&amp; systemctl enable docker
+</code></pre></div><pre><code>查看启动状态
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>	systemctl status docker
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_8-15-5-给master-node2节点拷贝所有需要的证书" tabindex="-1"><a class="header-anchor" href="#_8-15-5-给master-node2节点拷贝所有需要的证书" aria-hidden="true">#</a> 8.15.5.给Master Node2节点拷贝所有需要的证书</h3>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>	systemctl status docker
+</code></pre></div><h3 id="_8-15-5-给master-node2节点拷贝所有需要的证书" tabindex="-1"><a class="header-anchor" href="#_8-15-5-给master-node2节点拷贝所有需要的证书" aria-hidden="true">#</a> 8.15.5.给Master Node2节点拷贝所有需要的证书</h3>
 <pre><code>在Master Node2上创建etcd证书目录
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mkdir -p /opt/etcd/ssl
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>在Master1上拷贝Master1上所有k8s文件和etcd证书到Master2
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>mkdir -p /opt/etcd/ssl
+</code></pre></div><pre><code>在Master1上拷贝Master1上所有k8s文件和etcd证书到Master2
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>scp -r /opt/kubernetes root@192.168.0.12:/opt &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>scp -r /opt/kubernetes root@192.168.0.12:/opt &amp;&amp;
 scp -r /opt/etcd/ssl root@192.168.0.12:/opt/etcd &amp;&amp;
 scp /usr/lib/systemd/system/kube* \
 root@192.168.0.12:/usr/lib/systemd/system &amp;&amp;
 scp /usr/bin/kubectl  root@192.168.0.12:/usr/bin &amp;&amp;
 scp -r ~/.kube root@192.168.0.12:~
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>在Master Node2上删除旧的证书（删除kubelet和kubeconfig文件）
+</code></pre></div><pre><code>在Master Node2上删除旧的证书（删除kubelet和kubeconfig文件）
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>rm -f /opt/kubernetes/cfg/kubelet.kubeconfig &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>rm -f /opt/kubernetes/cfg/kubelet.kubeconfig &amp;&amp;
 rm -f /opt/kubernetes/ssl/kubelet*
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>修改Master2修改配置文件和主机名
+</code></pre></div><pre><code>修改Master2修改配置文件和主机名
 修改apiserver、kubelet和kube-proxy配置文件为本地IP
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vi /opt/kubernetes/cfg/kube-apiserver.conf
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>...
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>vi /opt/kubernetes/cfg/kube-apiserver.conf
+</code></pre></div><pre><code>...
 --bind-address=192.168.0.12 \
 --advertise-address=192.168.0.12 \
 ...
 
 修改kube-controller-manager配置文件
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vi /opt/kubernetes/cfg/kube-controller-manager.kubeconfig
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>server: https://192.168.0.12:6443
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>vi /opt/kubernetes/cfg/kube-controller-manager.kubeconfig
+</code></pre></div><pre><code>server: https://192.168.0.12:6443
 
 修改kube-scheduler配置文件
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vi /opt/kubernetes/cfg/kube-scheduler.kubeconfig
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>server: https://192.168.0.12:6443
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>vi /opt/kubernetes/cfg/kube-scheduler.kubeconfig
+</code></pre></div><pre><code>server: https://192.168.0.12:6443
 修改kubelet配置文件
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vi /opt/kubernetes/cfg/kubelet.conf
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>--hostname-override=binary-k8s-master2
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>vi /opt/kubernetes/cfg/kubelet.conf
+</code></pre></div><pre><code>--hostname-override=binary-k8s-master2
 
 修改kube-proxy配置文件
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vi /opt/kubernetes/cfg/kube-proxy-config.yml
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>hostnameOverride: binary-k8s-master2
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>vi /opt/kubernetes/cfg/kube-proxy-config.yml
+</code></pre></div><pre><code>hostnameOverride: binary-k8s-master2
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>vi ~/.kube/config
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>...
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>vi ~/.kube/config
+</code></pre></div><pre><code>...
 server: https://192.168.0.12:6443
 </code></pre>
 <h3 id="_8-15-6-启动master所有服务并设置开机自启" tabindex="-1"><a class="header-anchor" href="#_8-15-6-启动master所有服务并设置开机自启" aria-hidden="true">#</a> 8.15.6.启动Master所有服务并设置开机自启</h3>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
 systemctl start kube-apiserver &amp;&amp;
 systemctl start kube-controller-manager &amp;&amp;
 systemctl start kube-scheduler &amp;&amp;
@@ -1832,13 +1832,13 @@ systemctl enable kube-controller-manager &amp;&amp;
 systemctl enable kube-scheduler &amp;&amp;
 systemctl enable kubelet &amp;&amp;
 systemctl enable kube-proxy
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-15-7-在master查看集群组件状态" tabindex="-1"><a class="header-anchor" href="#_8-15-7-在master查看集群组件状态" aria-hidden="true">#</a> 8.15.7.在Master查看集群组件状态</h3>
+</code></pre></div><h3 id="_8-15-7-在master查看集群组件状态" tabindex="-1"><a class="header-anchor" href="#_8-15-7-在master查看集群组件状态" aria-hidden="true">#</a> 8.15.7.在Master查看集群组件状态</h3>
 <pre><code>注意：如果上面操作无误则这一步就可以查看到集群中组件的运行状态了
 
 查看组件状态
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get cs
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@localhost ~]# kubectl get cs
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get cs
+</code></pre></div><pre><code>[root@localhost ~]# kubectl get cs
 Warning: v1 ComponentStatus is deprecated in v1.19+
 NAME                 STATUS    MESSAGE             ERROR
 controller-manager   Healthy   ok
@@ -1850,25 +1850,25 @@ etcd-0               Healthy   {&quot;health&quot;:&quot;true&quot;}
 <h3 id="_8-15-8-审批所有worker-node上的kubelet证书申请" tabindex="-1"><a class="header-anchor" href="#_8-15-8-审批所有worker-node上的kubelet证书申请" aria-hidden="true">#</a> 8.15.8.审批所有Worker  Node上的kubelet证书申请</h3>
 <pre><code>查看证书申请
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get csr
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@localhost ~]# kubectl get csr
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get csr
+</code></pre></div><pre><code>[root@localhost ~]# kubectl get csr
 NAME                                                   ... CONDITION ...
 node-csr-Pkp1fPd9NZApJVRqRFlIIjskZ_gL_qDmcSWGvSuN-VQ   ... Pending	 ...
 
 同意证书申请
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl certificate approve node-csr-Pkp1fPd9NZApJVRqRFlIIjskZ_gL_qDmcSWGvSuN-VQ
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>再次查看证书申请
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl certificate approve node-csr-Pkp1fPd9NZApJVRqRFlIIjskZ_gL_qDmcSWGvSuN-VQ
+</code></pre></div><pre><code>再次查看证书申请
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get csr
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@localhost ~]# kubectl get csr
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get csr
+</code></pre></div><pre><code>[root@localhost ~]# kubectl get csr
 NAME                                                  ... CONDITION 	  ...
 node-csr-Pkp1fPd9NZApJVRqRFlIIjskZ_gL_qDmcSWGvSuN-VQ  ... Approved,Issued ...
 
 查看节点加入状态没等到所有pods状态都已经变为Running，执行下一步操作
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get pods -n kube-system
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@binary-k8s-master1 ~]# kubectl get pods -n kube-system
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get pods -n kube-system
+</code></pre></div><pre><code>[root@binary-k8s-master1 ~]# kubectl get pods -n kube-system
 NAME                                      READY   STATUS     RESTARTS   AGE
 calico-kube-controllers-bcc6f659f-7mf9n   1/1     Running    1          141m
 calico-node-768sf                         1/1     Running    0          97m
@@ -1880,8 +1880,8 @@ coredns-7c878fc47b-sxvz2                  1/1     Running    0          76m
 
 查看Node
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get nodes
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>binary-k8s-master1   Ready    &lt;none&gt;   153m   v1.20.0
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get nodes
+</code></pre></div><pre><code>binary-k8s-master1   Ready    &lt;none&gt;   153m   v1.20.0
 binary-k8s-master2   Ready    &lt;none&gt;   17m    v1.20.0
 binary-k8s-worker1   Ready    &lt;none&gt;   142m   v1.20.0
 binary-k8s-worker2   Ready    &lt;none&gt;   141m   v1.20.0
@@ -1899,11 +1899,11 @@ kube-apiserver，架构与上面一样。
 <h3 id="_8-16-2-在两台master-node上安装软件" tabindex="-1"><a class="header-anchor" href="#_8-16-2-在两台master-node上安装软件" aria-hidden="true">#</a> 8.16.2.在两台Master Node上安装软件</h3>
 <pre><code>下载nginx和keepalived
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum install epel-release -y &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>yum install epel-release -y &amp;&amp;
 yum install nginx keepalived -y
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>Nginx配置文件（Master Node1和Master Node2相同）
+</code></pre></div><pre><code>Nginx配置文件（Master Node1和Master Node2相同）
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /etc/nginx/nginx.conf &lt;&lt; "EOF"
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /etc/nginx/nginx.conf &lt;&lt; "EOF"
 user nginx;
 worker_processes auto;
 error_log /var/log/nginx/error.log;
@@ -1957,9 +1957,9 @@ http {
     }
 }
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>Master Node1上的keepalived配置文件
+</code></pre></div><pre><code>Master Node1上的keepalived配置文件
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /etc/keepalived/keepalived.conf &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /etc/keepalived/keepalived.conf &lt;&lt; EOF
 global_defs {
    notification_email {
      acassen@firewall.loc
@@ -1995,9 +1995,9 @@ vrrp_instance VI_1 {
     }
 }
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>​
+</code></pre></div><p>​
 ​	Master Node2的keepalived配置文件</p>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /etc/keepalived/keepalived.conf &lt;&lt; EOF
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /etc/keepalived/keepalived.conf &lt;&lt; EOF
 global_defs {
    notification_email {
      acassen@firewall.loc
@@ -2032,13 +2032,13 @@ vrrp_instance VI_1 {
     }
 }
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>配置说明
+</code></pre></div><pre><code>配置说明
 ​vrrp_script：指定检查nginx工作状态脚本（根据nginx状态判断是否故障转移）
 ​virtual_ipaddress：虚拟IP（VIP）
 ​
 ​准备上述配置文件中检查nginx运行状态的脚本（Master Node1和Master Node2相同）
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat > /etc/keepalived/check_nginx.sh  &lt;&lt; "EOF"
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /etc/keepalived/check_nginx.sh  &lt;&lt; "EOF"
 #!/bin/bash
 count=$(ss -antp |grep 16443 |egrep -cv "grep|$$")
 
@@ -2050,7 +2050,7 @@ fi
 EOF
 
 chmod +x /etc/keepalived/check_nginx.sh
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>​	配置说明
+</code></pre></div><p>​	配置说明
 ​	keepalived根据脚本返回状态码（0为工作正常，非0不正常）判断是否故障转移。</p>
 <h3 id="_8-16-3-nginx增加steam模块" tabindex="-1"><a class="header-anchor" href="#_8-16-3-nginx增加steam模块" aria-hidden="true">#</a> 8.16.3.Nginx增加Steam模块</h3>
 <h4 id="_8-16-3-1-查看nginx版本模块" tabindex="-1"><a class="header-anchor" href="#_8-16-3-1-查看nginx版本模块" aria-hidden="true">#</a> 8.16.3.1.查看Nginx版本模块</h4>
@@ -2060,47 +2060,47 @@ chmod +x /etc/keepalived/check_nginx.sh
 <h4 id="_8-16-3-2-master1和master2安装stream模块" tabindex="-1"><a class="header-anchor" href="#_8-16-3-2-master1和master2安装stream模块" aria-hidden="true">#</a> 8.16.3.2.Master1和Master2安装Stream模块</h4>
 <pre><code>备份Master Node1和Master Node2上原来的Nginx文件
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mv /usr/sbin/nginx /usr/sbin/nginx.bak &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>mv /usr/sbin/nginx /usr/sbin/nginx.bak &amp;&amp;
 cp -r /etc/nginx{,.bak}
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>切换目录并在该目录中下载nginx（注意这里下载的nginx版本要和之前nginx -v查看的版本保持一致，这里我们之前已经下载
+</code></pre></div><pre><code>切换目录并在该目录中下载nginx（注意这里下载的nginx版本要和之前nginx -v查看的版本保持一致，这里我们之前已经下载
 好了，存放在Master Node1上，直接使用就可以了）
 
 在Master Node1上切换目录
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /opt/k8s/package/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>Master Node1编译环境准备
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cd /opt/k8s/package/
+</code></pre></div><pre><code>Master Node1编译环境准备
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum -y install libxml2 libxml2-dev libxslt-devel
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>yum -y install libxml2 libxml2-dev libxslt-devel
 yum -y install gd-devel
 yum -y install perl-devel perl-ExtUtils-Embed
 yum -y install GeoIP GeoIP-devel GeoIP-data
 yum -y install pcre-devel
 yum -y install openssl openssl-devel
 yum -y install gcc make
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>编译nginx，加上本次需新增的模块: --with-stream
+</code></pre></div><pre><code>编译nginx，加上本次需新增的模块: --with-stream
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>tar -xf nginx-1.20.1.tar.gz
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>tar -xf nginx-1.20.1.tar.gz
 cd nginx-1.20.1/
 ./configure --prefix=/usr/share/nginx --sbin-path=/usr/sbin/nginx \
 --modules-path=/usr/lib64/nginx/modules --conf-path=/etc/nginx/nginx.conf  --with-stream
 make
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>说明:
+</code></pre></div><pre><code>说明:
 make完成后不要继续输入“make install”，以免现在的nginx出现问题
 以上完成后，会在objs目录下生成一个nginx文件，先验证
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>./objs/nginx -t
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@binary-k8s-master1 nginx-1.20.1]# ./objs/nginx -t
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>./objs/nginx -t
+</code></pre></div><pre><code>[root@binary-k8s-master1 nginx-1.20.1]# ./objs/nginx -t
 nginx: [alert] could not open error log file: open() &quot;/usr/share/nginx/logs/error.log&quot; failed (2: No such file or directory)
 nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
 
 替换nginx到Master1/Master2
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cp ./objs/nginx /usr/sbin/ &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cp ./objs/nginx /usr/sbin/ &amp;&amp;
 scp objs/nginx root@192.168.0.12:/usr/sbin/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>修改nginx服务文件（Master Node1和Master Node2）
+</code></pre></div><pre><code>修改nginx服务文件（Master Node1和Master Node2）
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>rm -rf /usr/lib/systemd/system/nginx.service &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>rm -rf /usr/lib/systemd/system/nginx.service &amp;&amp;
 cat >> /usr/lib/systemd/system/nginx.service &lt;&lt; EOF
 [Unit]
 Description=The nginx HTTP and reverse proxy server
@@ -2117,15 +2117,15 @@ PrivateTmp=true
 [Install]
 WantedBy=multi-user.target
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-16-4-启动nginx、keepalived并设置开机自启-master1-master2" tabindex="-1"><a class="header-anchor" href="#_8-16-4-启动nginx、keepalived并设置开机自启-master1-master2" aria-hidden="true">#</a> 8.16.4.启动nginx、keepalived并设置开机自启(master1/master2)</h3>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
+</code></pre></div><h3 id="_8-16-4-启动nginx、keepalived并设置开机自启-master1-master2" tabindex="-1"><a class="header-anchor" href="#_8-16-4-启动nginx、keepalived并设置开机自启-master1-master2" aria-hidden="true">#</a> 8.16.4.启动nginx、keepalived并设置开机自启(master1/master2)</h3>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl daemon-reload &amp;&amp;
 systemctl start nginx keepalived &amp;&amp;
 systemctl enable nginx keepalived
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-16-5-查看keepalived工作状态" tabindex="-1"><a class="header-anchor" href="#_8-16-5-查看keepalived工作状态" aria-hidden="true">#</a> 8.16.5.查看keepalived工作状态</h3>
+</code></pre></div><h3 id="_8-16-5-查看keepalived工作状态" tabindex="-1"><a class="header-anchor" href="#_8-16-5-查看keepalived工作状态" aria-hidden="true">#</a> 8.16.5.查看keepalived工作状态</h3>
 <pre><code>查看Master1网卡详细信息
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>ip addr
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@binary-k8s-master1 ~]# ip addr
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>ip addr
+</code></pre></div><pre><code>[root@binary-k8s-master1 ~]# ip addr
 ...
 2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast 
 		  state UP group default qlen 1000
@@ -2140,8 +2140,8 @@ systemctl enable nginx keepalived
 
 查看Master2网卡详细信息
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>ip addr
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@binary-k8s-master1 ~]# ip addr
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>ip addr
+</code></pre></div><pre><code>[root@binary-k8s-master1 ~]# ip addr
 ...
 2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state
 		 UP group default qlen 1000
@@ -2166,11 +2166,11 @@ inet 192.168.242.55/24 scope global ens33，而Master2上的ens33网卡没有绑
 <h3 id="_8-16-6-nginx-keepalived高可用测试" tabindex="-1"><a class="header-anchor" href="#_8-16-6-nginx-keepalived高可用测试" aria-hidden="true">#</a> 8.16.6.Nginx+keepalived高可用测试</h3>
 <pre><code>在主节点Master Node1节点执行关闭nginx
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>pkill nginx
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看虚拟IP是否漂移到备节点服务器（Master Node2）
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>pkill nginx
+</code></pre></div><pre><code>查看虚拟IP是否漂移到备节点服务器（Master Node2）
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>ip addr
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@binary-k8s-master1 ~]# ip addr
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>ip addr
+</code></pre></div><pre><code>[root@binary-k8s-master1 ~]# ip addr
 ...
 2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast
 	state UP group default qlen 1000
@@ -2196,8 +2196,8 @@ systemctl start nginx
 <h3 id="_8-16-7-测试负载均衡器" tabindex="-1"><a class="header-anchor" href="#_8-16-7-测试负载均衡器" aria-hidden="true">#</a> 8.16.7.测试负载均衡器</h3>
 <pre><code>找K8s集群中任意一个节点，使用curl查看K8s版本测试，使用VIP访问
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>curl -k https://192.168.0.88:16443/version
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>Master Node1机器
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>curl -k https://192.168.0.88:16443/version
+</code></pre></div><pre><code>Master Node1机器
 [root@binary-k8s-master1 ~]# curl -k https://192.168.0.88:16443/version
 {
   &quot;major&quot;: &quot;1&quot;,
@@ -2259,8 +2259,8 @@ Worker Node2机器
 
 通过查看Nginx日志也可以看到转发apiserver IP：
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>tailf /var/log/nginx/k8s-access.log
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@binary-k8s-master1 ~]# tailf /var/log/nginx/k8s-access.log 
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>tailf /var/log/nginx/k8s-access.log
+</code></pre></div><pre><code>[root@binary-k8s-master1 ~]# tailf /var/log/nginx/k8s-access.log 
 192.168.242.55 192.168.0.9:6443 - [26/Jul/2022:01:28:51 -0400] 200 428
 192.168.211.128 192.168.0.9:6443 - [26/Jul/2022:01:28:58 -0400] 200 428
 192.168.95.192 192.168.0.12:6443 - [26/Jul/2022:01:30:12 -0400] 200 428
@@ -2280,12 +2280,12 @@ Master还是单点故障。因此接下来就是要改所有Worker Node（kubect
 这里除了Worker Node1和Worker Node2，Master Node1和Master Node2这两个节点也充当了Worker Node，所以所有的四个节点
 上都要执行下面的命令
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sed -i 's#192.168.0.9:6443#192.168.0.88:16443#' /opt/kubernetes/cfg/* &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>sed -i 's#192.168.0.9:6443#192.168.0.88:16443#' /opt/kubernetes/cfg/* &amp;&amp;
 systemctl restart kubelet kube-proxy
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>检查节点状态
+</code></pre></div><pre><code>检查节点状态
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get nodes
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@binary-k8s-master1 cfg]# kubectl get nodes
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get nodes
+</code></pre></div><pre><code>[root@binary-k8s-master1 cfg]# kubectl get nodes
 NAME                 STATUS   ROLES    AGE     VERSION
 binary-k8s-master1   Ready    &lt;none&gt;   5h13m   v1.20.0
 binary-k8s-master2   Ready    &lt;none&gt;   177m    v1.20.0
@@ -2314,32 +2314,32 @@ publish error: etcdserver: request timed out
 
 #进入 etcd 的数据存储目录进行备份 备份原有数据：
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cd /var/lib/etcd/default.etcd/member/ &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cd /var/lib/etcd/default.etcd/member/ &amp;&amp;
 cp * /data/bak/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>#删除这个目录下的所有数据文件
+</code></pre></div><pre><code>#删除这个目录下的所有数据文件
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>rm -rf /var/lib/etcd/default.etcd/member/*
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>#停止另外两台 etcd 节点，因为 etcd 节点启动时需要所有节点一起启动，启动成功后即可使用。
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>rm -rf /var/lib/etcd/default.etcd/member/*
+</code></pre></div><pre><code>#停止另外两台 etcd 节点，因为 etcd 节点启动时需要所有节点一起启动，启动成功后即可使用。
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl stop etcd &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl stop etcd &amp;&amp;
 systemctl restart etcd
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="_8-17-2-the-connection-to-the-server-localhost-8080-was-refused-did-you-specify-the-right-host-or-port" tabindex="-1"><a class="header-anchor" href="#_8-17-2-the-connection-to-the-server-localhost-8080-was-refused-did-you-specify-the-right-host-or-port" aria-hidden="true">#</a> 8.17.2 The connection to the server localhost:8080 was refused - did you specify the right host or port?</h3>
+</code></pre></div><h3 id="_8-17-2-the-connection-to-the-server-localhost-8080-was-refused-did-you-specify-the-right-host-or-port" tabindex="-1"><a class="header-anchor" href="#_8-17-2-the-connection-to-the-server-localhost-8080-was-refused-did-you-specify-the-right-host-or-port" aria-hidden="true">#</a> 8.17.2 The connection to the server localhost:8080 was refused - did you specify the right host or port?</h3>
 <pre><code>8.10.使用kubectl查看集群状态章节没有正确执行会报这个错
 </code></pre>
 <h2 id="_8-18-部署测试程序" tabindex="-1"><a class="header-anchor" href="#_8-18-部署测试程序" aria-hidden="true">#</a> 8.18.部署测试程序</h2>
 <pre><code>创建guestbook
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl create deployment guestbook --image=ibmcom/guestbook:v1
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查询pod运行状态，状态应该显示为Running表示pod运行成功
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl create deployment guestbook --image=ibmcom/guestbook:v1
+</code></pre></div><pre><code>查询pod运行状态，状态应该显示为Running表示pod运行成功
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get pods
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>对外暴露端口
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get pods
+</code></pre></div><pre><code>对外暴露端口
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl expose deployment guestbook --type=NodePort --port=3000
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查询端口映射
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl expose deployment guestbook --type=NodePort --port=3000
+</code></pre></div><pre><code>查询端口映射
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get service guestbook
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>NAME        TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get service guestbook
+</code></pre></div><pre><code>NAME        TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
 guestbook   NodePort   10.10.10.253   &lt;none&gt;        3000:31208/TCP   1m
 
 访问服务（主节点和两个工作节点都可访问到这个服务）

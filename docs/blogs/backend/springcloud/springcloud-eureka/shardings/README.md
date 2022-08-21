@@ -12,5 +12,7 @@ icon: navigate
 
     - <a class="breadcrumb-link" href="springcloud-eureka-chapter-0.博客内容介绍.html">博客内容介绍</a>
 
-    - <a class="breadcrumb-link" href="springcloud-eureka-chapter-1.安装Linux操作系统.html">1.安装Linux操作系统</a>
+    - <a class="breadcrumb-link" href="springcloud-eureka-chapter-1.微服务简介.html">1.微服务简介</a>
+
+    - <a class="breadcrumb-link" href="springcloud-eureka-chapter-2.使用Eureka作为注册中心.html">2.使用Eureka作为注册中心</a>
 

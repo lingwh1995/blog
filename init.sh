@@ -260,7 +260,7 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
         for((i=0;i<${#INCLUDE_CODE_PROJECT_NAME_ARR[@]};i++)); do
             #给md文档依赖的项目文件夹添加前缀，实际上就是重命名一下这个依赖的项目文件夹的名称
             mv $2/${INCLUDE_CODE_PROJECT_NAME_ARR[i]} $2/project_${INCLUDE_CODE_PROJECT_NAME_ARR[i]}
-           
+
             echo $2/$1'.md引用了'$2'下的'${INCLUDE_CODE_PROJECT_NAME_ARR[i]}'这个项目中的代码'
             sed -i '/^@import "\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"/a\```' $2/$1.md
             sed -i '/^@import "\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"/i\```' $2/$1.md
@@ -852,7 +852,7 @@ function generateBreadcrumbREADME {
         INCLUDE_CODE_PROJECT_NAME_STR=$4
         echo '引用的代码的项目名称字符串：'$INCLUDE_CODE_PROJECT_NAME_STR
         INCLUDE_CODE_PROJECT_NAME_ARR=(`echo $INCLUDE_CODE_PROJECT_NAME_STR | tr ',' ' '` )
-        
+
         #给md依赖的代码的项目的名称添加前缀project_
         if [ -n "$INCLUDE_CODE_PROJECT_NAME_STR" ]
         then
@@ -860,9 +860,9 @@ function generateBreadcrumbREADME {
                INCLUDE_CODE_PROJECT_NAME_ARR[j]=project_${INCLUDE_CODE_PROJECT_NAME_ARR[j]}
             done
         fi
-
-        IGNORE_FOLDER_LIST_ARR=(`echo $IGNORE_FOLDER_LIST_STR$INCLUDE_CODE_PROJECT_NAME_ARR | tr ' ' ' '` )
-        echo '要忽略的文件夹名称+引用的代码的项目名称字符串：'$IGNORE_FOLDER_LIST_STR$INCLUDE_CODE_PROJECT_NAME_ARR
+        IMAGE_FOLDER_NAME=' image'
+        IGNORE_FOLDER_LIST_ARR=(`echo $IGNORE_FOLDER_LIST_STR$INCLUDE_CODE_PROJECT_NAME_ARR` )
+        echo '要忽略的文件夹名称+引用的代码的项目名称字符串：'$IGNORE_FOLDER_LIST_STR$INCLUDE_CODE_PROJECT_NAME_ARR$IMAGE_FOLDER_NAME
         #获取当前需要过滤的文件列表
         IGNORE_FOLDER_LIST_STR=""
 

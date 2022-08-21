@@ -3,6 +3,7 @@ import { h } from "vue";
 import { defineClientConfig } from "@vuepress/client";
 import Badge from "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-components/lib/client/components/Badge";
 import FontIcon from "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-components/lib/client/components/FontIcon";
+import PDF from "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-components/lib/client/components/PDF";
 import BackToTop from "D:/repository/workspace/VSCode/PERSONAL/blog/node_modules/vuepress-plugin-components/lib/client/components/BackToTop";
 
 
@@ -10,6 +11,7 @@ export default defineClientConfig({
   enhance: ({ app }) => {
     app.component("Badge", Badge);
     app.component("FontIcon", FontIcon);
+    app.component("PDF", PDF);
     
   },
   setup: () => {

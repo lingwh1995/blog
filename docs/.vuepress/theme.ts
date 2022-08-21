@@ -156,7 +156,7 @@ export default hopeTheme({
      * StackBlitz 开启在MD文件中嵌入StackBlitz代码演示功能
      * YouTube 开启在MD文件中嵌入YouTube视频功能
      */
-    components: ["Badge","FontIcon"],
+    components: ["Badge","FontIcon","PDF"],
     mdEnhance: {
       //启用全部的md增强功能
       //enableAll: true,

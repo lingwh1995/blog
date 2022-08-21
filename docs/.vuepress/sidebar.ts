@@ -166,9 +166,14 @@ export default sidebar([
                       link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-0.博客内容介绍.md",
                    },
                   {
-                      text: "1.安装Linux操作系统",
+                      text: "1.微服务简介",
                       icon: "article",
-                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-1.安装Linux操作系统.md",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-1.微服务简介.md",
+                  },
+                  {
+                      text: "2.使用Eureka作为注册中心",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-2.使用Eureka作为注册中心.md",
                   },
               ]
           },
@@ -183,9 +188,14 @@ export default sidebar([
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#intro",
                   },
                   {
-                      text: "1.安装Linux操作系统",
+                      text: "1.微服务简介",
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#1.",
+                  },
+                  {
+                      text: "2.使用Eureka作为注册中心",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#2.",
                   },
               ]
           },

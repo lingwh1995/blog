@@ -30,7 +30,7 @@ export default defineUserConfig({
       level: [1,2,3,4,5]
     },
     code: {
-      lineNumbers: true,
+      lineNumbers: false,
     }
   },
   //自定义的vue组件的别名

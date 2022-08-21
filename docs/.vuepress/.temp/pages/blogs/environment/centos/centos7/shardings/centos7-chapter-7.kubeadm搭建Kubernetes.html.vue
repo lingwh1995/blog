@@ -45,15 +45,15 @@ hostnamectl set-hostname slave2
 <h2 id="_7-6-所有节点关闭selinux" tabindex="-1"><a class="header-anchor" href="#_7-6-所有节点关闭selinux" aria-hidden="true">#</a> 7.6.所有节点关闭SELinux</h2>
 <pre><code>暂时关闭
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>setenforce 0
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>永久关闭
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>setenforce 0
+</code></pre></div><pre><code>永久关闭
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' \
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' \
 /etc/sysconfig/selinux
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_7-7-所有节点关闭防火墙" tabindex="-1"><a class="header-anchor" href="#_7-7-所有节点关闭防火墙" aria-hidden="true">#</a> 7.7.所有节点关闭防火墙</h2>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl stop firewalld &amp;&amp;
+</code></pre></div><h2 id="_7-7-所有节点关闭防火墙" tabindex="-1"><a class="header-anchor" href="#_7-7-所有节点关闭防火墙" aria-hidden="true">#</a> 7.7.所有节点关闭防火墙</h2>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl stop firewalld &amp;&amp;
 systemctl disable firewalld
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_7-8-所有节点安装docker" tabindex="-1"><a class="header-anchor" href="#_7-8-所有节点安装docker" aria-hidden="true">#</a> 7.8.所有节点安装docker</h2>
+</code></pre></div><h2 id="_7-8-所有节点安装docker" tabindex="-1"><a class="header-anchor" href="#_7-8-所有节点安装docker" aria-hidden="true">#</a> 7.8.所有节点安装docker</h2>
 <pre><code>安装docker
 详细参考4.1&gt;.安装docker
 
@@ -68,7 +68,7 @@ systemctl daemon-reload &amp;&amp; systemctl restart docker
 <h2 id="_7-9-所有节点安装k8s所需组件" tabindex="-1"><a class="header-anchor" href="#_7-9-所有节点安装k8s所需组件" aria-hidden="true">#</a> 7.9.所有节点安装k8s所需组件</h2>
 <pre><code>添加k8s安装源
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>cat &lt;&lt;EOF > kubernetes.repo
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat &lt;&lt;EOF > kubernetes.repo
 [kubernetes]
 name=Kubernetes
 baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64
@@ -78,33 +78,33 @@ repo_gpgcheck=0
 gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg 
 https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
 EOF
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>使用k8s安装源
+</code></pre></div><pre><code>使用k8s安装源
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>mv kubernetes.repo /etc/yum.repos.d/
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>安装所需组件
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>mv kubernetes.repo /etc/yum.repos.d/
+</code></pre></div><pre><code>安装所需组件
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>yum install -y kubelet-1.22.4 kubectl-1.22.4 kubeadm-1.22.4
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看各组件版本
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>yum install -y kubelet-1.22.4 kubectl-1.22.4 kubeadm-1.22.4
+</code></pre></div><pre><code>查看各组件版本
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubelet --version
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl	--version
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubeadm --version
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_7-10-所有节点启动kubelet和docker" tabindex="-1"><a class="header-anchor" href="#_7-10-所有节点启动kubelet和docker" aria-hidden="true">#</a> 7.10.所有节点启动kubelet和docker</h2>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>systemctl enable kubelet &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubelet --version
+</code></pre></div><div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl	--version
+</code></pre></div><div class="language-text ext-text"><pre v-pre class="language-text"><code>kubeadm --version
+</code></pre></div><h2 id="_7-10-所有节点启动kubelet和docker" tabindex="-1"><a class="header-anchor" href="#_7-10-所有节点启动kubelet和docker" aria-hidden="true">#</a> 7.10.所有节点启动kubelet和docker</h2>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl enable kubelet &amp;&amp;
 systemctl start kubelet &amp;&amp;
 systemctl enable docker &amp;&amp;
 systemctl start docker
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_7-11-所有关闭swap" tabindex="-1"><a class="header-anchor" href="#_7-11-所有关闭swap" aria-hidden="true">#</a> 7.11.所有关闭swap</h2>
+</code></pre></div><h2 id="_7-11-所有关闭swap" tabindex="-1"><a class="header-anchor" href="#_7-11-所有关闭swap" aria-hidden="true">#</a> 7.11.所有关闭swap</h2>
 <pre><code>临时关闭swap分区
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>swapoff /mnt/swap
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>永久关闭swap分区
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>swapoff /mnt/swap
+</code></pre></div><pre><code>永久关闭swap分区
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>sed -ri 's/.*swap.*/#&amp;/' /etc/fstab &amp;&amp; systemctl reboot
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看swap分区是否关闭
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>sed -ri 's/.*swap.*/#&amp;/' /etc/fstab &amp;&amp; systemctl reboot
+</code></pre></div><pre><code>查看swap分区是否关闭
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>free -m
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_7-12-用kubeadm-初始化集群" tabindex="-1"><a class="header-anchor" href="#_7-12-用kubeadm-初始化集群" aria-hidden="true">#</a> 7.12.用kubeadm 初始化集群</h2>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>free -m
+</code></pre></div><h2 id="_7-12-用kubeadm-初始化集群" tabindex="-1"><a class="header-anchor" href="#_7-12-用kubeadm-初始化集群" aria-hidden="true">#</a> 7.12.用kubeadm 初始化集群</h2>
 <pre><code>特别注意
 只在Master节点操作
 
@@ -112,14 +112,14 @@ systemctl start docker
 
 初始化集群命令
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubeadm init \
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubeadm init \
 	--apiserver-advertise-address=192.168.0.6 \
 	--image-repository registry.aliyuncs.com/google_containers \
 	--kubernetes-version v1.22.4 \
 	--service-cidr=10.96.0.0/12 \
 	--pod-network-cidr=10.244.0.0/16 \
 	--ignore-preflight-errors=all
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><pre><code>命令说明：
+</code></pre></div><pre><code>命令说明：
 这个参数就是master主机的IP地址，例如我的Master主机的IP是：192.168.181.131
 --apiserver-advertise-address=192.168.181.131
 这个是镜像地址，由于国外地址无法访问，故使用的阿里云仓库地址：
@@ -162,21 +162,21 @@ chown $(id -u):$(id -g) $HOME/.kube/config
 <h2 id="_7-14-在master节点上查看集群" tabindex="-1"><a class="header-anchor" href="#_7-14-在master节点上查看集群" aria-hidden="true">#</a> 7.14.在master节点上查看集群</h2>
 <pre><code>mater节点和两个slave节点STATUS是NOTReady
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get nodes
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@master ~]# kubectl get nodes
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get nodes
+</code></pre></div><pre><code>[root@master ~]# kubectl get nodes
 NAME     STATUS     ROLES                  AGE     VERSION
 master   NotReady      control-plane,master   9m32s   v1.22.4
 slave1   NotReady   &lt;none&gt;                 5m51s   v1.22.4
 slave2   NotReady      &lt;none&gt;                 2m31s   v1.22.4
 </code></pre>
 <h2 id="_7-15-安装网络插件" tabindex="-1"><a class="header-anchor" href="#_7-15-安装网络插件" aria-hidden="true">#</a> 7.15.安装网络插件</h2>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl apply -f \
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl apply -f \
 	https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_7-16-在master上查看集群节点" tabindex="-1"><a class="header-anchor" href="#_7-16-在master上查看集群节点" aria-hidden="true">#</a> 7.16.在master上查看集群节点</h2>
+</code></pre></div><h2 id="_7-16-在master上查看集群节点" tabindex="-1"><a class="header-anchor" href="#_7-16-在master上查看集群节点" aria-hidden="true">#</a> 7.16.在master上查看集群节点</h2>
 <pre><code>再次执行命令查看集群命令，mater节点STATUS是Ready，两个slave节点STATUS是都是Ready
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get nodes
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>[root@master ~]# kubectl get nodes
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get nodes
+</code></pre></div><pre><code>[root@master ~]# kubectl get nodes
 NAME     STATUS     ROLES                  AGE     VERSION
 master   Ready      control-plane,master   9m32s   v1.22.4
 slave1   Ready   &lt;none&gt;                 5m51s   v1.22.4
@@ -188,43 +188,43 @@ slave2   Ready      &lt;none&gt;                 2m31s   v1.22.4
 <h2 id="_7-17-启动故障解决" tabindex="-1"><a class="header-anchor" href="#_7-17-启动故障解决" aria-hidden="true">#</a> 7.17.启动故障解决</h2>
 <pre><code>查看所有命名空间的所有的pod
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get pods -o wide --all-namespaces
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看启动失败的pod的日志，其中PODNAME为启动失败的pod的name
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get pods -o wide --all-namespaces
+</code></pre></div><pre><code>查看启动失败的pod的日志，其中PODNAME为启动失败的pod的name
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl -n kube-system logs PODNAME
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>重置kubeadm
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl -n kube-system logs PODNAME
+</code></pre></div><pre><code>重置kubeadm
 可使用kubeadm reset命令重启kubeadm，再从第9&gt;&gt;.步骤开始重新执行
 </code></pre>
 <h2 id="_7-18-基础命令" tabindex="-1"><a class="header-anchor" href="#_7-18-基础命令" aria-hidden="true">#</a> 7.18.基础命令</h2>
 <pre><code>查看kubeadm需要的组件的版本
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubeadm config images list
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看所有节点
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubeadm config images list
+</code></pre></div><pre><code>查看所有节点
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get nodes
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看pod
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get nodes
+</code></pre></div><pre><code>查看pod
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get pod
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看所有命名空间的所有pod
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get pod
+</code></pre></div><pre><code>查看所有命名空间的所有pod
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get pods -o wide --all-namespaces
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看pod日志
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get pods -o wide --all-namespaces
+</code></pre></div><pre><code>查看pod日志
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl describe pod
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="_7-19-部署测试程序" tabindex="-1"><a class="header-anchor" href="#_7-19-部署测试程序" aria-hidden="true">#</a> 7.19.部署测试程序</h2>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl describe pod
+</code></pre></div><h2 id="_7-19-部署测试程序" tabindex="-1"><a class="header-anchor" href="#_7-19-部署测试程序" aria-hidden="true">#</a> 7.19.部署测试程序</h2>
 <pre><code>开始运行 guestbook
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl create deployment guestbook --image=ibmcom/guestbook:v1
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查询pod运行状态，状态应该显示为Running表示pod运行成功
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl create deployment guestbook --image=ibmcom/guestbook:v1
+</code></pre></div><pre><code>查询pod运行状态，状态应该显示为Running表示pod运行成功
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get pods
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>对外暴露端口
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get pods
+</code></pre></div><pre><code>对外暴露端口
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl expose deployment guestbook --type=NodePort --port=3000
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查询端口映射
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl expose deployment guestbook --type=NodePort --port=3000
+</code></pre></div><pre><code>查询端口映射
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get service guestbook
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>NAME        TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get service guestbook
+</code></pre></div><pre><code>NAME        TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
 guestbook   NodePort   10.10.10.253   &lt;none&gt;        3000:31208/TCP   1m
 
 访问服务（主节点和两个工作节点都可访问到这个服务）
@@ -235,38 +235,38 @@ http://192.168.0.8:31208
 <h2 id="_7-20-可视化面板kuboard" tabindex="-1"><a class="header-anchor" href="#_7-20-可视化面板kuboard" aria-hidden="true">#</a> 7.20.可视化面板kuboard</h2>
 <pre><code>安装
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl apply -f https://addons.kuboard.cn/kuboard/kuboard-v3.yaml
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看是否安装成功，所有节点状态都是Ready表示安装成功
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl apply -f https://addons.kuboard.cn/kuboard/kuboard-v3.yaml
+</code></pre></div><pre><code>查看是否安装成功，所有节点状态都是Ready表示安装成功
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl get pods -n kuboard
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>登录kuboard-v3
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl get pods -n kuboard
+</code></pre></div><pre><code>登录kuboard-v3
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>http://192.168.0.6:30080
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>用户名/密码： admin/Kuboard123
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>http://192.168.0.6:30080
+</code></pre></div><pre><code>用户名/密码： admin/Kuboard123
 
 查看kuboard所有相关的pod是否成功运行,状态为RUNNING代表成功运行
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>watch kubectl get pods -n kuboard
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>查看启动日志
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>watch kubectl get pods -n kuboard
+</code></pre></div><pre><code>查看启动日志
 获取kuboard命名空间中相关pod的name
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>watch kubectl get pods -n kuboard
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>根据pod名称查看pod日志
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>watch kubectl get pods -n kuboard
+</code></pre></div><pre><code>根据pod名称查看pod日志
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl logs -n kuboard kuboard-v3-5fc46b5557-jlsrj
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>启动故障排查
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl logs -n kuboard kuboard-v3-5fc46b5557-jlsrj
+</code></pre></div><pre><code>启动故障排查
 查看docker中部署的kuboard相关容器是否都成功启动了，如果相关容器没有重新启动，可重启一下docker
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>docker ps
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>特别注意
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>docker ps
+</code></pre></div><pre><code>特别注意
 这个kuboard部分pod启动（就绪）的可能很慢，需要耐心等待，等待一定时间后再使用命令查看是否都启动成功了
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>watch kubectl get pods -n kuboard
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>卸载kuboard-v3
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>watch kubectl get pods -n kuboard
+</code></pre></div><pre><code>卸载kuboard-v3
 执行卸载命令
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>kubectl delete -f https://addons.kuboard.cn/kuboard/kuboard-v3.yaml
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><pre><code>清理遗留数据
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl delete -f https://addons.kuboard.cn/kuboard/kuboard-v3.yaml
+</code></pre></div><pre><code>清理遗留数据
 </code></pre>
-<div class="language-text ext-text line-numbers-mode"><pre v-pre class="language-text"><code>rm -rf /usr/share/kuboard
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div></div></template>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>rm -rf /usr/share/kuboard
+</code></pre></div></div></template>

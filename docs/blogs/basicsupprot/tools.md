@@ -10,6 +10,8 @@ icon: repair
 ---
 
 # 🍀网站目录
+# A
+## <a href="https://azure.microsoft.com/zh-cn/services/devops/pipelines/" target="_blank">Azure-持续集成平台</a>
 # C
 ## <a href="https://coding.net/" target="_blank">Coding-代码托管平台</a>
 ## <a href="https://coolbackgrounds.io/" target="_blank">Coolbackgrounds-使用CSS生成炫酷的背景图片</a>
@@ -24,6 +26,8 @@ icon: repair
 ## <a href="https://www.jsdelivr.com/" target="_blank">Jsdelivr-静态资源CDN</a>
 # N
 ## <a href="https://pic.netbian.com/" target="_blank">Netbian-彼岸图网</a>
+# P
+## <a href="https://www.processon.com/" target="_blank">Processon-在线流程图绘制</a>
 # R
 ## <a href="https://rutracker.org/" target="_blank">RuTracker-俄罗斯开放网络资源库</a>
 # T
