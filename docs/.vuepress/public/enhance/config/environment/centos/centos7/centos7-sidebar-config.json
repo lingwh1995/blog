@@ -33,19 +33,19 @@
                       link: "/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.md",
                   },
                   {
-                      text: "4.Centos搭建docker",
+                      text: "4.搭建docker技术栈",
                       icon: "article",
-                      link: "/blogs/environment/centos/centos7/shardings/centos7-chapter-4.Centos搭建docker.md",
+                      link: "/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.md",
                   },
                   {
-                      text: "5.Centos搭建Rancher",
+                      text: "5.搭建Rancher技术栈",
                       icon: "article",
-                      link: "/blogs/environment/centos/centos7/shardings/centos7-chapter-5.Centos搭建Rancher.md",
+                      link: "/blogs/environment/centos/centos7/shardings/centos7-chapter-5.搭建Rancher技术栈.md",
                   },
                   {
-                      text: "6.Centos搭建Minikube",
+                      text: "6.搭建Minikube",
                       icon: "article",
-                      link: "/blogs/environment/centos/centos7/shardings/centos7-chapter-6.Centos搭建Minikube.md",
+                      link: "/blogs/environment/centos/centos7/shardings/centos7-chapter-6.搭建Minikube.md",
                   },
                   {
                       text: "7.kubeadm搭建Kubernetes",
@@ -56,6 +56,21 @@
                       text: "8.二进制包搭建Kubernetes",
                       icon: "article",
                       link: "/blogs/environment/centos/centos7/shardings/centos7-chapter-8.二进制包搭建Kubernetes.md",
+                  },
+                  {
+                      text: "9.搭建持续集成环境",
+                      icon: "article",
+                      link: "/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.md",
+                  },
+                  {
+                      text: "10.搭建Mycat技术栈",
+                      icon: "article",
+                      link: "/blogs/environment/centos/centos7/shardings/centos7-chapter-10.搭建Mycat技术栈.md",
+                  },
+                  {
+                      text: "11.搭建常用私服环境",
+                      icon: "article",
+                      link: "/blogs/environment/centos/centos7/shardings/centos7-chapter-11.搭建常用私服环境.md",
                   },
               ]
           },
@@ -85,17 +100,17 @@
                       link: "/blogs/environment/centos/centos7/centos7.md#3.",
                   },
                   {
-                      text: "4.Centos搭建docker",
+                      text: "4.搭建docker技术栈",
                       icon: "article",
                       link: "/blogs/environment/centos/centos7/centos7.md#4.",
                   },
                   {
-                      text: "5.Centos搭建Rancher",
+                      text: "5.搭建Rancher技术栈",
                       icon: "article",
                       link: "/blogs/environment/centos/centos7/centos7.md#5.",
                   },
                   {
-                      text: "6.Centos搭建Minikube",
+                      text: "6.搭建Minikube",
                       icon: "article",
                       link: "/blogs/environment/centos/centos7/centos7.md#6.",
                   },
@@ -108,6 +123,21 @@
                       text: "8.二进制包搭建Kubernetes",
                       icon: "article",
                       link: "/blogs/environment/centos/centos7/centos7.md#8.",
+                  },
+                  {
+                      text: "9.搭建持续集成环境",
+                      icon: "article",
+                      link: "/blogs/environment/centos/centos7/centos7.md#9.",
+                  },
+                  {
+                      text: "10.搭建Mycat技术栈",
+                      icon: "article",
+                      link: "/blogs/environment/centos/centos7/centos7.md#10.",
+                  },
+                  {
+                      text: "11.搭建常用私服环境",
+                      icon: "article",
+                      link: "/blogs/environment/centos/centos7/centos7.md#11.",
                   },
               ]
           },

@@ -1,6 +1,6 @@
 ---
 title: 在Centos7上搭建开发环境-3.搭建基础开发环境
-description: 本章节涉及主要内容有：安装jdk,安装maven,安装mysql,安装nodejs,安装fastgithub,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：安装jdk,安装maven,安装mysql,安装nodejs,安装fastgithub,安装git,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -14,7 +14,7 @@ date: 2020-01-15
 head:
   - - meta
     - name: keywords
-      content: 本章节涉及主要内容有：安装jdk,安装maven,安装mysql,安装nodejs,安装fastgithub,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+      content: 本章节涉及主要内容有：安装jdk,安装maven,安装mysql,安装nodejs,安装fastgithub,安装git,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 3.搭建基础开发环境
@@ -298,5 +298,59 @@ wget -c https://github.com/tanghaibao/goatools/blob/main/data/association.txt
 ```
 git config --global http.proxy http://127.0.0.1:38457
 git config --global https.proxy http://127.0.0.1:38457
+```
+
+## 3.8.安装git
+
+### 3.8.1.安装默认版本git
+	卸载旧版本
+```
+yum -y remove git
+```
+	安装git
+```
+yum install -y git
+```
+	查看版本
+```
+git version
+```
+
+### 3.8.2.安装指定版本git
+	下载需要安装的版本号
+```
+wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.29.0.tar.gz
+```
+
+    安装需要的组件
+```
+yum -y install curl-devel expat-devel gettext-devel openssl-devel zlib-devel
+```
+
+    卸载Centos自带的git
+```
+yum -y remove git
+```
+
+    安装git
+```
+tar -zxf git-2.29.0.tar.gz &&
+cd git-2.29.0 &&
+make prefix=/usr/local/git all &&
+make prefix=/usr/local/git install
+```
+	添加环境变量
+```
+echo export PATH=$PATH:/usr/local/git/bin >> /etc/profile
+```
+
+	刷新环境变量
+```
+source /etc/profile
+```
+
+	查看版本
+```
+git version
 ```
 

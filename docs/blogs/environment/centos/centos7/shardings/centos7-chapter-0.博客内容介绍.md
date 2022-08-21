@@ -1,6 +1,6 @@
 ---
 title: 在Centos7上搭建开发环境-博客内容介绍
-description: 本篇博客涉及主要内容有：安装Linux操作系统,Linux操作系统初始设置,搭建基础开发环境,Centos搭建docker,Centos搭建Rancher,Centos搭建Minikube,kubeadm搭建Kubernetes,二进制包搭建Kubernetes,具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+description: 本篇博客涉及主要内容有：安装Linux操作系统,Linux操作系统初始设置,搭建基础开发环境,搭建docker技术栈,搭建Rancher技术栈,搭建Minikube,kubeadm搭建Kubernetes,二进制包搭建Kubernetes,搭建持续集成环境,搭建Mycat技术栈,搭建常用私服环境,具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -12,7 +12,7 @@ date: 2020-01-01
 head:
   - - meta
     - name: keywords
-      content: 安装Linux操作系统,Linux操作系统初始设置,搭建基础开发环境,Centos搭建docker,Centos搭建Rancher,Centos搭建Minikube,kubeadm搭建Kubernetes,二进制包搭建Kubernetes,
+      content: 安装Linux操作系统,Linux操作系统初始设置,搭建基础开发环境,搭建docker技术栈,搭建Rancher技术栈,搭建Minikube,kubeadm搭建Kubernetes,二进制包搭建Kubernetes,搭建持续集成环境,搭建Mycat技术栈,搭建常用私服环境,
 ---
 <Banner localtion="/banner/particles/particles.html"/>
 
@@ -22,11 +22,14 @@ head:
      1.安装Linux操作系统
      2.Linux操作系统初始设置
      3.搭建基础开发环境
-     4.Centos搭建docker
-     5.Centos搭建Rancher
-     6.Centos搭建Minikube
+     4.搭建docker技术栈
+     5.搭建Rancher技术栈
+     6.搭建Minikube
      7.kubeadm搭建Kubernetes
      8.二进制包搭建Kubernetes
+     9.搭建持续集成环境
+     10.搭建Mycat技术栈
+     11.搭建常用私服环境
 	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 ## 博客内容大纲
 

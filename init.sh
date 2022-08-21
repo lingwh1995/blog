@@ -64,6 +64,31 @@ function cloneDocumentsOriginalFromRemote() {
 
 
 :<< EOF
+    清理上一次enhance后产生的缓存内容
+    $1:$MD_FILE_NAME
+    $2:$MD_FILE_SOURCE_PATH
+EOF
+function beforeEnhance() {
+    echo '开始清理上一次enhance后产生的缓存内容............................................................'
+
+    #删除博客项目使用的文档原件相关文件
+    rm -rf $DOCS_PATH/$2
+    echo '执行了命令: rm -rf '$DOCS_PATH/$2
+    #创建博客项目存放使用的文档原件的目录
+    mkdir -p $DOCS_PATH/$2
+    echo '执行了命令: mkdir -p '$DOCS_PATH/$2
+    #将文档原件相关从文档原件本地仓库拷贝到博客项目中存放文件原件的位置
+    cp -r $LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/$2/* $DOCS_PATH/$2/
+    echo '执行了命令: cp -r '$LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME'/'$2'/* '$DOCS_PATH'/'$2'/'
+    #重命名文档原件,添加.original后缀名
+    mv $DOCS_PATH/$2/$1.md $DOCS_PATH/$2/$1.md.original
+    echo '执行了命令: mv '$DOCS_PATH/$2/$1'.md '$DOCS_PATH/$2/$1'.md.original'
+
+    echo '完成清理上一次enhance后产生的缓存内容............................................................'
+}
+
+
+:<< EOF
     给文档原件写入Frontmatter配置信息
     $1:$MD_FILE_NAME
     $2:$MD_FILE_SOURCE_PATH
@@ -224,14 +249,15 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     cat $2/$1.md.original >> $2/$1.md
     echo '根据文档原件生成创建一份新的'$1'.md文件'
 
-    #替换xxx.md中@import语法为@include语法，注意：当引用的项目名称不为空的时候才执行替换操作
-    #markdown-preview-enhanced插件@import语法示例：@import "springcloud-eureka/springcloud-api-commons/pom.xml"
-    #获取引用的代码的项目名称
-    INCLUDE_CODE_PROJECT_NAME_STR=`echo $5 | tr ',' ' '`
-    INCLUDE_CODE_PROJECT_NAME_ARR=( $INCLUDE_CODE_PROJECT_NAME_STR )
 
-    if [ $INCLUDE_CODE_PROJECT_NAME != "" ]
+    if [ -n "$5" ]
     then
+        echo 'includeCodeProjectName的值不为空............................................'
+        #替换xxx.md中@import语法为@include语法，注意：当引用的项目名称不为空的时候才执行替换操作
+        #markdown-preview-enhanced插件@import语法示例：@import "springcloud-eureka/springcloud-api-commons/pom.xml"
+        #获取引用的代码的项目名称
+        INCLUDE_CODE_PROJECT_NAME_STR=`echo $5 | tr ',' ' '`
+        INCLUDE_CODE_PROJECT_NAME_ARR=( $INCLUDE_CODE_PROJECT_NAME_STR )
         for((i=0;i<${#INCLUDE_CODE_PROJECT_NAME_ARR[@]};i++)); do
             echo $2/$1'.md引用了'$2'下的'${INCLUDE_CODE_PROJECT_NAME_ARR[i]}'这个项目中的代码'
             sed -i 's#^@import "\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"#@include(\1)#g' $2/$1.md
@@ -654,7 +680,6 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
         echo "---" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
         echo "" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
 
-
         echo '完成为'$1'.md生成的分片文件写入Frontmatter配置信息................................................'
 
         echo '开始为'$1'.md生成的分片文件写入正文内容................................................'
@@ -1018,32 +1043,9 @@ function generateBreadcrumbREADME {
 
 
 :<< EOF
-    清理上一次enhance后产生的缓存内容
-    $1:$MD_FILE_NAME
-    $2:$MD_FILE_SOURCE_PATH
-EOF
-function beforeEnhance() {
-    echo '开始清理上一次enhance后产生的缓存内容............................................................'
-
-    #删除博客项目使用的文档原件相关文件
-    rm -rf $DOCS_PATH/$2
-    echo '执行了命令: rm -rf '$DOCS_PATH/$2
-    #创建博客项目存放使用的文档原件的目录
-    mkdir -p $DOCS_PATH/$2
-    echo '执行了命令: mkdir -p '$DOCS_PATH/$2
-    #将文档原件相关从文档原件本地仓库拷贝到博客项目中存放文件原件的位置
-    cp -r $LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME/$2/* $DOCS_PATH/$2/
-    echo '执行了命令: cp -r '$LOCAL_DOCUMENTS_ORIGINAL_REPOSIROTY_NAME'/'$2'/* '$DOCS_PATH'/'$2'/'
-    #重命名文档原件,添加.original后缀名
-    mv $DOCS_PATH/$2/$1.md $DOCS_PATH/$2/$1.md.original
-    echo '执行了命令: mv '$DOCS_PATH/$2/$1'.md '$DOCS_PATH/$2/$1'.md.original'
-
-    echo '完成清理上一次enhance后产生的缓存内容............................................................'
-}
-
-
-:<< EOF
     语法检查
+    $1: $MD_FILE_NAME
+    $2: $MD_FILE_RELATIVE_PATH
 EOF
 function syntaxCheck() {
     #语法校验插件
@@ -1086,6 +1088,25 @@ function syntaxCheck() {
         echo '语法错误3结束：**************************************************************************************************'
         echo '完成执行语法检查............................................................'
     fi
+}
+
+
+:<< EOF
+    替换文本中引用的文字
+    $1: $MD_FILE_NAME
+    $2: $MD_FILE_RELATIVE_PATH
+EOF
+function replaceReferenceText() {
+    echo '开始执行替换'$1.md'中引用的文本............................................................'
+    #从bootstrap.ini中获取xxx.md的enhance状态
+    REFERENCE_TEXT_STR=( $( parseBootstrapIni markdown-$a referenceText) )
+    REFERENCE_TEXT_ARR=(`echo $REFERENCE_TEXT_STR | tr ',' ' '`)
+    for((i=1;i<${#REFERENCE_TEXT_ARR[@]};i++)); do
+        REFERENCE_TEXT_BEFORE=`echo ${REFERENCE_TEXT_ARR[i]} | cut -d'|' -f1`
+        REFERENCE_TEXT_AFTER=`echo ${REFERENCE_TEXT_ARR[i]} | cut -d'|' -f2`
+        sed -i 's/'"$REFERENCE_TEXT_BEFORE"'/'"$REFERENCE_TEXT_AFTER"'/g' $DOCS_PATH/$2/$1.md
+    done
+    echo '完成执行替换'$1.md'中引用的文本............................................................'
 }
 
 
@@ -1179,6 +1200,10 @@ function enhance() {
     generateBreadcrumbREADME $MD_FILE_NAME $MD_FILE_RELATIVE_PATH $MD_FILE_CHAPTER_SHARDINGS_FOLDER_NAME $3
     #--------------------------------------------------------------------------------------------------------------
 
+    #替换文本用引用的文本
+    #--------------------------------------------------------------------------------------------------------------
+    replaceReferenceText $MD_FILE_NAME $MD_FILE_RELATIVE_PATH
+    #--------------------------------------------------------------------------------------------------------------
 
     echo '完成增强'$2'目录下'$1'.md文件.............................................................................................................................'
 }
@@ -1344,6 +1369,7 @@ function mergeAllBreadcrumbREADMEShardings() {
     done
 }
 
+
 :<< EOF
     合并侧边栏配置json
 EOF
@@ -1410,7 +1436,6 @@ function init() {
     mergeAllBreadcrumbREADMEShardings
     #合并侧边栏配置json
     mergeSidebarJson
-
 }
 
 init

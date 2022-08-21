@@ -83,7 +83,7 @@ yum makecache && yum update
 ```
 
 ## 2.8.安装常用基础系统软件
-### 2.8.1.手动安装常用软件
+### 2.8.1.手动安装常用基础软件
 	安装vim
 ```
 yum -y install vim*
@@ -103,56 +103,6 @@ yum -y install wget
 ```
 yum -y install telnet
 yum -y install telnet-server
-```
-	git
-	卸载旧版本
-```
-yum -y remove git
-```
-	安装git
-```
-yum install -y git
-```
-	查看版本
-```
-git version
-```
-	指定版本git
-	下载需要安装的版本号
-```
-wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.29.0.tar.gz
-```
-    安装需要的组件
-```
-yum -y install curl-devel expat-devel gettext-devel openssl-devel zlib-devel
-```
-
-    卸载Centos自带的git
-```
-yum -y remove git
-```
-
-    安装git
-```
-tar -zxf git-2.29.0.tar.gz &&
-cd git-2.29.0 &&
-make prefix=/usr/local/git all &&
-make prefix=/usr/local/git install
-```
-	添加环境变量
-```
-vim /etc/profile
-```
-	export PATH=$PATH:/usr/local/git/bin
-
-	刷新环境变量
-```
-source /etc/profile
-```
-
-	查看版本
-```
-git version
 ```
 
 ### 2.8.2.使用脚本安装常用软件

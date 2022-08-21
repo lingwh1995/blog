@@ -28,7 +28,10 @@ head:
 
 # 8.二进制包搭建Kubernetes
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter8.md)
-
+<!--
+	参考网站
+	https://blog.csdn.net/qq_44078641/article/details/120049473
+-->
 ## 8.3.环境配置清单
 	操作系统									centos7
 	内核版本									3.10.0-1160.71.1.el7.x86_64
@@ -116,18 +119,25 @@ sed -ri 's/.*swap.*/#&/' /etc/fstab #永久关闭swap
 ```
 
 根据规划设置主机名
-
+	binary-k8s-master1(192.168.0.9)
 ```
-hostnamectl set-hostname binary-k8s-master1 && systemctl reboot #binary-k8s-master1（192.168.0.9）
+hostnamectl set-hostname binary-k8s-master1 &&
+systemctl reboot
 ```
+	binary-k8s-worker1(192.168.0.10)
 ```
-hostnamectl set-hostname binary-k8s-worker1  && systemctl reboot #binary-k8s-worker1 （192.168.0.10）
+hostnamectl set-hostname binary-k8s-worker1  &&
+systemctl reboot
 ```
+	binary-k8s-worker2(192.168.0.11)
 ```
-hostnamectl set-hostname binary-k8s-worker2  && systemctl reboot #binary-k8s-worker2 （192.168.0.11）
+hostnamectl set-hostname binary-k8s-worker2  &&
+systemctl reboot
 ```
+	binary-k8s-master2(192.168.0.12)
 ```
-hostnamectl set-hostname binary-k8s-master2 && systemctl reboot #binary-k8s-master2（192.168.0.12）
+hostnamectl set-hostname binary-k8s-master2 &&
+systemctl reboot
 ```
 
 	添加hosts
@@ -1766,6 +1776,10 @@ $(kubectl -n kube-system get secret | awk '/dashboard-admin/{print $1}')
 	https://192.168.0.11:30441/
 
 ### 8.14.8.在Master1上部署CoreDNS
+<!--
+	参考网站
+	https://blog.csdn.net/weixin_47402482/article/details/115057159
+-->
 	介绍
 	CoreDNS主要用于集群内部Service名称解析。
 
@@ -2570,3 +2584,5 @@ kubectl get service guestbook
 	http://192.168.0.6:31208
 	http://192.168.0.7:31208
 	http://192.168.0.8:31208
+
+

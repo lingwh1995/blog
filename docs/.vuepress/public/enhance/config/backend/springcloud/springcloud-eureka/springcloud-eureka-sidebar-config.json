@@ -1,0 +1,45 @@
+  {
+      // 必要的，分组的标题文字
+      text: "基于Eureka搭建Springcloud微服务",
+      // 可选的, 分组标题对应的图标
+      icon: "a-archivecatalogue-fill",
+      // 可选的, 设置分组是否可以折叠，默认值是 false
+      collapsable: true,
+      // 必要的，分组的子项目
+      children: [
+          {
+              text: "按照章节阅读",
+              icon: "list",
+              collapsable: true,
+              children:[
+                  {
+                      text: "博客内容介绍",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-0.博客内容介绍.md",
+                   },
+                  {
+                      text: "1.我是SpringCloud-Eureka",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-1.我是SpringCloud-Eureka.md",
+                  },
+              ]
+          },
+          {
+              text: "章节内容合集",
+              icon: "repo",
+              collapsable: true,
+              children:[
+                  {
+                      text: "博客内容介绍",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#intro",
+                  },
+                  {
+                      text: "1.我是SpringCloud-Eureka",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#1.",
+                  },
+              ]
+          },
+      ]
+  },

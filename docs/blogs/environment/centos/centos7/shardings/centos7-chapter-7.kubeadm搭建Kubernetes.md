@@ -1,6 +1,6 @@
 ---
 title: 在Centos7上搭建开发环境-7.kubeadm搭建Kubernetes
-description: 本章节涉及主要内容有：特别说明,所有节点设置对应主机名,所有节点修改hosts,所有节点关闭SELinux,所有节点关闭防火墙,所有节点安装docker,所有节点安装k8s所需组件,所有节点启动kubelet和docker,所有关闭swap,用kubeadm 初始化集群,其他节点连接到Master节点,在master节点上查看集群,安装网络插件,在master上查看集群节点,启动故障解决,基础命令,部署第一个程序到k8s中,可视化面板kuboard,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：特别说明,所有节点设置对应主机名,所有节点修改hosts,所有节点关闭SELinux,所有节点关闭防火墙,所有节点安装docker,所有节点安装k8s所需组件,所有节点启动kubelet和docker,所有关闭swap,用kubeadm 初始化集群,其他节点连接到Master节点,在master节点上查看集群,安装网络插件,在master上查看集群节点,启动故障解决,基础命令,部署测试程序,可视化面板kuboard,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -23,7 +23,7 @@ date: 2020-02-15
 head:
   - - meta
     - name: keywords
-      content: 本章节涉及主要内容有：特别说明,所有节点设置对应主机名,所有节点修改hosts,所有节点关闭SELinux,所有节点关闭防火墙,所有节点安装docker,所有节点安装k8s所需组件,所有节点启动kubelet和docker,所有关闭swap,用kubeadm 初始化集群,其他节点连接到Master节点,在master节点上查看集群,安装网络插件,在master上查看集群节点,启动故障解决,基础命令,部署第一个程序到k8s中,可视化面板kuboard,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+      content: 本章节涉及主要内容有：特别说明,所有节点设置对应主机名,所有节点修改hosts,所有节点关闭SELinux,所有节点关闭防火墙,所有节点安装docker,所有节点安装k8s所需组件,所有节点启动kubelet和docker,所有关闭swap,用kubeadm 初始化集群,其他节点连接到Master节点,在master节点上查看集群,安装网络插件,在master上查看集群节点,启动故障解决,基础命令,部署测试程序,可视化面板kuboard,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 7.kubeadm搭建Kubernetes
@@ -76,7 +76,7 @@ systemctl disable firewalld
 ## 7.9.所有节点安装k8s所需组件
 	添加k8s安装源
 ```
-<!-- cat <<EOF > kubernetes.repo -->
+cat <<EOF > kubernetes.repo
 [kubernetes]
 name=Kubernetes
 baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64
@@ -108,7 +108,7 @@ kubeadm --version
 
 ## 7.10.所有节点启动kubelet和docker
 ```
-systemctl enable kubelet && 
+systemctl enable kubelet &&
 systemctl start kubelet &&
 systemctl enable docker &&
 systemctl start docker
@@ -247,7 +247,7 @@ kubectl get pods -o wide --all-namespaces
 kubectl describe pod
 ```
 
-## 7.19.部署第一个程序到k8s中
+## 7.19.部署测试程序
 	开始运行 guestbook
 ```
 kubectl create deployment guestbook --image=ibmcom/guestbook:v1
@@ -313,7 +313,7 @@ watch kubectl get pods -n kuboard
 	卸载kuboard-v3
 	执行卸载命令
 ```
-	kubectl delete -f https://addons.kuboard.cn/kuboard/kuboard-v3.yaml
+kubectl delete -f https://addons.kuboard.cn/kuboard/kuboard-v3.yaml
 ```
 	清理遗留数据
 ```
