@@ -13,7 +13,7 @@
  9.搭建持续集成环境
  10.搭建Mycat技术栈
  11.搭建常用私服环境
-具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="博客内容大纲" tabindex="-1"><a class="header-anchor" href="#博客内容大纲" aria-hidden="true">#</a> 博客内容大纲</h2>
 <h3 id="简单版博客内容大纲" tabindex="-1"><a class="header-anchor" href="#简单版博客内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/centos7-outline2.html" target="_blank">简单版博客内容大纲</a></h3>
@@ -33,7 +33,7 @@
  1.2.Centos镜像下载
  1.3.安装前Vmaware相关设置
  1.4.安装时分区大小设置
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_1-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_1-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter1.html" target="_blank">1.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter1.html"/>
@@ -84,7 +84,7 @@ VMware NetworkAdepter VMnet8：Host用于与NAT虚拟网络进行通信的虚拟
  2.6.安装curl
  2.7.配置yml源
  2.8.安装常用基础系统软件
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_2-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_2-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter2.html" target="_blank">2.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter2.html"/>
@@ -178,7 +178,7 @@ yum -y install telnet-server
  3.6.安装nodejs
  3.7.安装fastgithub
  3.8.安装git
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_3-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_3-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter3.html" target="_blank">3.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter3.html"/>
@@ -439,7 +439,7 @@ make prefix=/usr/local/git install
  4.7.docker官方私服可视化
  4.8.制作docker镜像并上传到私服
  4.9.Docker中安装常用软件
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_4-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_4-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter4.html" target="_blank">4.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter4.html"/>
@@ -814,9 +814,8 @@ nexus和Maven中央仓库的关系，harbor除了存储和分发镜像外还具�
 <h4 id="_4-6-3-2-搭建docker-compose" tabindex="-1"><a class="header-anchor" href="#_4-6-3-2-搭建docker-compose" aria-hidden="true">#</a> 4.6.3.2.搭建docker-compose</h4>
 <pre><code>版本说明
 本次使用的docker-compose版本为2.6.1
-
-官方网址
 </code></pre>
+<p>11<a href="https://github.com/docker/compose/">官方网址</a></p>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>https://github.com/docker/compose/
 </code></pre></div><pre><code>创建运行文件夹-&gt;下载docker-compose-&gt;解压并重命名docker-compose-&gt;赋予运行权限并复制到/usr/local/bin/docker-compose
 </code></pre>
@@ -837,7 +836,7 @@ cp docker-compose-2.6-linux-x86_64 /usr/local/bin/docker-compose
 特别注意
 注意docker的版本,低版本的docker不能运行harbor2.5
 
-官方网址
+&lt;a href=&quot;https://github.com/goharbor/harbor&quot;&gt;官方网址&lt;/a&gt;
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>https://github.com/goharbor/harbor
 </code></pre></div><pre><code>创建存放下载文件夹-&gt;下载harbor-&gt;创建运行文件夹-&gt;解压到运行文件夹
@@ -1087,7 +1086,7 @@ max virtual memory areas vm.max_map_count [65530] is too low, increase to at lea
  5.1.章节内容概述
  5.2.章节内容大纲
 
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_5-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_5-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter5.html" target="_blank">5.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter5.html"/>
@@ -1121,7 +1120,7 @@ eureka:
  6.10.安装dashboard
  6.12.部署测试程序
  6.12.minikube常用命令
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_6-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_6-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter6.html" target="_blank">6.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter6.html"/>
@@ -1145,7 +1144,7 @@ Vmware Workstation -&gt;Centos 64右键菜单 —&gt; 设置-&gt; 处理器 -&gt
 <pre><code>简介
 kubectl 是一个用来跟 K8S 集群进行交互的命令行工具
 
-官方下载地址
+&lt;a href=&quot;https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl&quot;&gt;官方下载地址&lt;/a&gt;
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl
 </code></pre></div><pre><code>创建存放kubectl安装包文件夹-&gt;进入该文件夹-&gt;下载kubectl-&gt;赋予可运行权限,并放入/usr/local/bin/目录下
@@ -1160,7 +1159,7 @@ chmod +x ./kubectl &amp;&amp; cp ./kubectl /usr/local/bin/kubectl
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl version --client
 </code></pre></div><h2 id="_6-7-安装minikube" tabindex="-1"><a class="header-anchor" href="#_6-7-安装minikube" aria-hidden="true">#</a> 6.7.安装minikube</h2>
-<pre><code>官方网址
+<pre><code>&lt;a href=&quot;https://github.com/kubernetes/minikube/releases&quot;&gt;官方网址&lt;/a&gt;
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>https://github.com/kubernetes/minikube/releases
 </code></pre></div><pre><code>创建存放minikube安装包文件夹-&gt;进入该文件夹-&gt;下载minikube-&gt;赋予运行权限并复制到/usr/local/bin/minikube
@@ -1194,7 +1193,7 @@ chmod +x ./minikube-linux-amd64 &amp;&amp; cp ./minikube-linux-amd64 /usr/local/
 	--registry-mirror='https://ngviu28h.mirror.aliyuncs.com' \
 	--kubernetes-version=v1.23.8
 </code></pre></div><h3 id="_6-9-2-使用virtualbox作为虚拟化引擎-需要先安装virtualbox" tabindex="-1"><a class="header-anchor" href="#_6-9-2-使用virtualbox作为虚拟化引擎-需要先安装virtualbox" aria-hidden="true">#</a> 6.9.2.使用virtualbox作为虚拟化引擎(需要先安装Virtualbox)</h3>
-<pre><code>官方网站
+<pre><code>&lt;a href=&quot;https://www.virtualbox.org/wiki/Downloads&quot;&gt;官方网站&lt;/a&gt;
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>https://www.virtualbox.org/wiki/Downloads
 </code></pre></div><pre><code>下载Centos7版VirtualBox
@@ -1309,7 +1308,7 @@ http://192.168.0.4:7080
  7.18.基础命令
  7.19.部署测试程序
  7.20.可视化面板kuboard
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_7-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_7-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter7.html" target="_blank">7.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter7.html"/>
@@ -1578,7 +1577,7 @@ http://192.168.0.8:31208
  8.16.部署Nginx+Keepalived高可用负载均衡器
  8.17.部署常见问题
  8.18.部署测试程序
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_8-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_8-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter8.html" target="_blank">8.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter8.html"/>
@@ -3913,7 +3912,7 @@ http://192.168.0.8:31208
  9.2.章节内容大纲
  9.3.使用本地内网穿透搭建持续集成环境
  9.4.使用Coding内网穿透搭建持续集成环境
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_9-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_9-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter9.html" target="_blank">9.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter9.html"/>
@@ -4072,7 +4071,7 @@ DASHBOARD-&gt;系统管理-&gt;系统配置-&gt;Publish over SSH
  10.2.章节内容大纲
  10.3.安装myact1.6
  10.4.搭建mycat2
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_10-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_10-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter10.html" target="_blank">10.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter10.html"/>
@@ -4086,10 +4085,10 @@ DASHBOARD-&gt;系统管理-&gt;系统配置-&gt;Publish over SSH
 <pre><code>详细参考 3.搭建基础开发环境-&gt;3.3.安装jdk
 </code></pre>
 <h3 id="_10-3-3-搭建myact1-6" tabindex="-1"><a class="header-anchor" href="#_10-3-3-搭建myact1-6" aria-hidden="true">#</a> 10.3.3.搭建myact1.6</h3>
-<pre><code>官方网址	
-http://www.mycat.org.cn/
-
-下载mycat1.6
+<pre><code>&lt;a href=&quot;http://www.mycat.org.cn/&quot;&gt;官方网址&lt;/a&gt;
+</code></pre>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>http://www.mycat.org.cn/
+</code></pre></div><pre><code>下载mycat1.6
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>wget http://dl.mycat.org.cn/1.6.7.3/20190828135747/Mycat-server-1.6.7.3-release-20190828135747-linux.tar.gz
 </code></pre></div><pre><code>上传到 /opt/software/package
@@ -4237,7 +4236,7 @@ notepad++安装nppftp这个插件，连接到远程服务器之后自动可以�
  11.3.3.配置切换使用的源为私服的源
  11.3.4.重新生成测试机yum缓存配置
  11.3.5.使用yum私服来下载软件
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_11-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_11-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter11.html" target="_blank">11.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter11.html"/>

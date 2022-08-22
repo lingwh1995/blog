@@ -1,6 +1,6 @@
 ---
 title: 在Centos7上搭建开发环境-6.搭建Minikube
-description: 本章节涉及主要内容有：minikube介绍,版本说明,开启Vmware虚拟化,安装kubectl,安装minikube,使用阿里云加速docker hub,启动minikube(下面两种启动方式任选一种),安装dashboard,部署测试程序,minikube常用命令,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：minikube介绍,版本说明,开启Vmware虚拟化,安装kubectl,安装minikube,使用阿里云加速docker hub,启动minikube(下面两种启动方式任选一种),安装dashboard,部署测试程序,minikube常用命令,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -15,7 +15,7 @@ date: 2020-01-28
 head:
   - - meta
     - name: keywords
-      content: 本章节涉及主要内容有：minikube介绍,版本说明,开启Vmware虚拟化,安装kubectl,安装minikube,使用阿里云加速docker hub,启动minikube(下面两种启动方式任选一种),安装dashboard,部署测试程序,minikube常用命令,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+      content: 本章节涉及主要内容有：minikube介绍,版本说明,开启Vmware虚拟化,安装kubectl,安装minikube,使用阿里云加速docker hub,启动minikube(下面两种启动方式任选一种),安装dashboard,部署测试程序,minikube常用命令,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 6.搭建Minikube
@@ -41,7 +41,7 @@ grep -E --color 'vmx|svm' /proc/cpuinfo
 	简介
 	kubectl 是一个用来跟 K8S 集群进行交互的命令行工具
 
-	官方下载地址
+	<a href="https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl">官方下载地址</a>
 ```
 https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl
 ```
@@ -62,7 +62,7 @@ kubectl version --client
 ```
 
 ## 6.7.安装minikube
-	官方网址
+	<a href="https://github.com/kubernetes/minikube/releases">官方网址</a>
 ```
 https://github.com/kubernetes/minikube/releases
 ```
@@ -106,7 +106,7 @@ minikube start --driver=docker --force \
 
 ### 6.9.2.使用virtualbox作为虚拟化引擎(需要先安装Virtualbox)
 
-	官方网站
+	<a href="https://www.virtualbox.org/wiki/Downloads">官方网站</a>
 ```
 https://www.virtualbox.org/wiki/Downloads
 ```

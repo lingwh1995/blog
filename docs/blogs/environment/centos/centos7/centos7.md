@@ -1,6 +1,6 @@
 ---
 title: 在Centos7上搭建开发环境-章节内容合集
-description: 本章节涉及主要内容有：具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -962,13 +962,11 @@ rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka
 	版本说明
 	本次使用的docker-compose版本为2.6.1
 
-	官方网址
+11<a href="https://github.com/docker/compose/">官方网址</a>
 ```
 https://github.com/docker/compose/
-```   
+```
 
-	
-	
 	创建运行文件夹->下载docker-compose->解压并重命名docker-compose->赋予运行权限并复制到/usr/local/bin/docker-compose
 ```
 mkdir -p /opt/software/package &&
@@ -992,7 +990,7 @@ docker-compose --version
 	特别注意
 	注意docker的版本,低版本的docker不能运行harbor2.5
 
-	官方网址
+	<a href="https://github.com/goharbor/harbor">官方网址</a>
 ```
 https://github.com/goharbor/harbor
 ```
@@ -1336,7 +1334,7 @@ grep -E --color 'vmx|svm' /proc/cpuinfo
 	简介
 	kubectl 是一个用来跟 K8S 集群进行交互的命令行工具
 
-	官方下载地址
+	<a href="https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl">官方下载地址</a>
 ```
 https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl
 ```
@@ -1357,7 +1355,7 @@ kubectl version --client
 ```
 
 ## 6.7.安装minikube
-	官方网址
+	<a href="https://github.com/kubernetes/minikube/releases">官方网址</a>
 ```
 https://github.com/kubernetes/minikube/releases
 ```
@@ -1401,7 +1399,7 @@ minikube start --driver=docker --force \
 
 ### 6.9.2.使用virtualbox作为虚拟化引擎(需要先安装Virtualbox)
 
-	官方网站
+	<a href="https://www.virtualbox.org/wiki/Downloads">官方网站</a>
 ```
 https://www.virtualbox.org/wiki/Downloads
 ```
@@ -4548,15 +4546,17 @@ https://lingwh.coding.net/p/java/ci/agent/136295/list
 ### 10.3.2.搭建JDK
 	详细参考 3.搭建基础开发环境->3.3.安装jdk
 ### 10.3.3.搭建myact1.6
-	官方网址	
-	http://www.mycat.org.cn/
+	<a href="http://www.mycat.org.cn/">官方网址</a>
+```
+http://www.mycat.org.cn/
+```
 
 	下载mycat1.6
 ```
 wget http://dl.mycat.org.cn/1.6.7.3/20190828135747/Mycat-server-1.6.7.3-release-20190828135747-linux.tar.gz
 ```
 	上传到 /opt/software/package
-	
+
 	解压到/user/local/bin
 ```
 tar -zxvf Mycat-server-1.6.7.3-release-20190828135747-linux.tar.gz -C /usr/local/bin	

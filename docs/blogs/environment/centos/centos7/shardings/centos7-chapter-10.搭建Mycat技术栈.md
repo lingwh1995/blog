@@ -1,6 +1,6 @@
 ---
 title: 在Centos7上搭建开发环境-10.搭建Mycat技术栈
-description: 本章节涉及主要内容有：安装myact1,搭建mycat2,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：安装myact1,搭建mycat2,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -12,7 +12,7 @@ date: 2020-03-05
 head:
   - - meta
     - name: keywords
-      content: 本章节涉及主要内容有：安装myact1,搭建mycat2,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+      content: 本章节涉及主要内容有：安装myact1,搭建mycat2,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 10.搭建Mycat技术栈
@@ -26,15 +26,17 @@ head:
 ### 10.3.2.搭建JDK
 	详细参考 3.搭建基础开发环境->3.1.安装jdk
 ### 10.3.3.搭建myact1.6
-	官方网址	
-	http://www.mycat.org.cn/
+	<a href="http://www.mycat.org.cn/">官方网址</a>
+```
+http://www.mycat.org.cn/
+```
 
 	下载mycat1.6
 ```
 wget http://dl.mycat.org.cn/1.6.7.3/20190828135747/Mycat-server-1.6.7.3-release-20190828135747-linux.tar.gz
 ```
 	上传到 /opt/software/package
-	
+
 	解压到/user/local/bin
 ```
 tar -zxvf Mycat-server-1.6.7.3-release-20190828135747-linux.tar.gz -C /usr/local/bin	
