@@ -106,7 +106,7 @@ function writeFrontmatterForOriginal() {
 
     #抽取所有一级标题，以此为根据创建博客FRONTMATTER配置中description的值
     BLOG_FRONTMATTER_DESCRIPTION=`grep '^# [1-9][0-9]\?\.'  $2/$1.md | cut -d '.' -f2 | tr '\r\n' ','`
-    BLOG_FRONTMATTER_DESCRIPTION='本章节涉及主要内容有：'$BLOG_FRONTMATTER_DESCRIPTION'具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。'
+    BLOG_FRONTMATTER_DESCRIPTION='本章节涉及主要内容有：'$BLOG_FRONTMATTER_DESCRIPTION'具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。'
 
     echo "description: $BLOG_FRONTMATTER_DESCRIPTION" >> $2/$1.md
 
@@ -262,7 +262,7 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
             mv $2/${INCLUDE_CODE_PROJECT_NAME_ARR[i]} $2/project_${INCLUDE_CODE_PROJECT_NAME_ARR[i]}
 
             echo $2/$1'.md引用了'$2'下的'${INCLUDE_CODE_PROJECT_NAME_ARR[i]}'这个项目中的代码'
-            sed -i '/^@import "\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"/a\```' $2/$1.md
+            sed -i '/^@import "\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"/a\```java' $2/$1.md
             sed -i '/^@import "\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"/i\```' $2/$1.md
             sed -i 's#^@import "\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"#@include(project_\1)#g' $2/$1.md
         done
@@ -359,7 +359,7 @@ cat > $3/$1-guidance.md  << EOF
 ## 博客内容概述
     本篇博客涉及主要内容有：
 $BLOG_CONTENT_INTRO
-	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 ## 博客内容大纲
 
 ###	<a href="/$5/$4/$1-outline2.html" target="_blank">简单版博客内容大纲</a>
@@ -410,7 +410,7 @@ cat > $3/chapter/$1-guidance-chapter$i.md  << EOF
      $i.1.章节内容概述
      $i.2.章节内容大纲
 $CHAPTER_CONTENT_INTRO
-	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。
+	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 
 ## <a href="/$5/$4/chapter/$1-outline5-chapter$i.html" target="_blank">$i.2.章节内容大纲</a>
 
@@ -542,8 +542,8 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
     #获取description
     #抽取所有一级标题，以此为根据创建博客FRONTMATTER配置中description的值
     BLOG_FRONTMATTER_DESCRIPTION=`grep '^# [1-9][0-9]\?\.'  $2/$1.md | cut -d '.' -f2 | tr '\r\n' ','`
-    MD_FILE_ENSEMBLE_FRONTMATTER_DESCRIPTION='本篇博客涉及主要内容有：'$BLOG_FRONTMATTER_DESCRIPTION'具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。'
-    LOG_CONTENT_INTRO='本篇博客涉及主要内容有：'$BLOG_CONTENT_INTRO'具体每个章节中包含的内容可使通过下面博客内容大纲进行查看，博客内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。'
+    MD_FILE_ENSEMBLE_FRONTMATTER_DESCRIPTION='本篇博客涉及主要内容有：'$BLOG_FRONTMATTER_DESCRIPTION'具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。'
+    LOG_CONTENT_INTRO='本篇博客涉及主要内容有：'$BLOG_CONTENT_INTRO'具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。'
     #写入description
     echo "description: $MD_FILE_ENSEMBLE_FRONTMATTER_DESCRIPTION" >> $CHAPTER_0_FULL_PATH_NAME
 
@@ -634,7 +634,7 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
         #抽取当前一级标题下所有二级标题，合并起来作为章节内容概述的一部分
         CHAPTER_CONTENT_INTRO=`grep '^## '"$i"'[0-9]\?\.' $2/$1.md | cut -d '.' -f3 | tr '\r\n' ','`
         #拼接完整的章节描述
-        CHAPTER_CONTENT_INTRO='本章节涉及主要内容有：'$CHAPTER_CONTENT_INTRO'具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看，本章节内容中图片较少，主要以实用为主，所有代码均经过严格测试，可直接复制运行即可。'
+        CHAPTER_CONTENT_INTRO='本章节涉及主要内容有：'$CHAPTER_CONTENT_INTRO'具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。'
         #写入 具体章节的描述信息
         #获取具体章节的的md文件中的Frontmatter选项配置信息中description的属性的值
         echo "description: $CHAPTER_CONTENT_INTRO" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
