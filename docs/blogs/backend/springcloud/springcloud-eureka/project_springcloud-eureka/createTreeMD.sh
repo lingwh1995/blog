@@ -20,10 +20,10 @@ function createTreeMDForChildDir() {
     fileName=$item
     if [ -d $fileName ]
     then
-	#删除旧的tree.md文件
-	rm -rf $fileName/tree.md
-	#创建新的tree.md文件
-	tree $fileName > $fileName/tree.md
+        #删除旧的tree.md文件
+        rm -rf $fileName/tree.md
+        #创建新的tree.md文件
+        tree $fileName > $fileName/tree.md
     fi
     done
 }
@@ -32,7 +32,7 @@ function createTreeMDForCurrentDir(){
     #删除旧的tree.md文件
     rm -rf tree.md
     #创建新的tree.md文件
-    tree > tree.md
+    tree -I 'note|tree.md|createTreeMD.sh' > tree.md
 }
 #替换当前目录下tree.md第一行.为当为文件夹名称
 function replaceDotToBaseDirName(){

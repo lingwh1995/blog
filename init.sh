@@ -263,7 +263,11 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
 
             echo $2/$1'.md引用了'$2'下的'${INCLUDE_CODE_PROJECT_NAME_ARR[i]}'这个项目中的代码'
             #替换import语法为include语法，并添加代码块标识```
-            sed -i '/^@.*import.*"\.\/\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"/i\```java' $2/$1.md
+            sed -i '/^@.*import.*"\.\/\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.java\)"/i\```java' $2/$1.md
+            sed -i '/^@.*import.*"\.\/\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.xml\)"/i\```xml' $2/$1.md
+            sed -i '/^@.*import.*"\.\/\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.yml\)"/i\```yml' $2/$1.md
+            sed -i '/^@.*import.*"\.\/\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.yaml\)"/i\```yaml' $2/$1.md
+            sed -i '/^@.*import.*"\.\/\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.md\)"/i\```' $2/$1.md
             sed -i '/^@.*import.*"\.\/\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"/a\```' $2/$1.md
             sed -i 's#^\(.*\)@import "\(./\)\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"#\1@include(\2project_\3)#g' $2/$1.md
         done
