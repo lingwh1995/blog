@@ -20,7 +20,7 @@ export default hopeTheme({
   themeColor: {
     steelblue: "#336699",
     grey: "#1c1c1c",
-    darkblue: "#00008B", 
+    darkblue: "#00008B",
     orange: "#DE4815",
     darkcyan: "#008B8B",
     skyblue: "#2196f3",

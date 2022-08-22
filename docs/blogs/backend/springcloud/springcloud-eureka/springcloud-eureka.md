@@ -35,7 +35,9 @@ https://martinfowler.com/articles/microservices.html
 
 ## 1.6.CAP中占据情况
 	Eureka在CAP中占据AP
-<img src="./images/cap.png"  width="100%" height="800rem" />
+::: center
+<img src="./images/cap.png"  width="80%" height="650rem" />
+:::
 
 ## 1.7.微服务架构落地实现方案
 	微服务架构落地实现有很多种方案,本次介绍的方案技术栈如下:
@@ -86,6 +88,6 @@ https://spring.io/projects/spring-cloud-netflix
 	为了初步感受EUREKA,首先来搭建一个单节点版EUREKA注册中心
 ### 2.4.2.集群版EUREKA注册中心搭建
 
-```java
+```xml
 @include(./project_springcloud-eureka/pom.xml)
 ```
