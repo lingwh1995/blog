@@ -251,7 +251,7 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
 
     if [ -n "$5" ]
     then
-        echo 'includeCodeProjectName的值不为空............................................'
+        echo 'includeCodeProjectName的值: '$5'............................................'
         #替换xxx.md中@import语法为@include语法，注意：当引用的项目名称不为空的时候才执行替换操作
         #markdown-preview-enhanced插件@import语法示例：@import "springcloud-eureka/springcloud-api-commons/pom.xml"
         #获取引用的代码的项目名称
@@ -262,9 +262,10 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
             mv $2/${INCLUDE_CODE_PROJECT_NAME_ARR[i]} $2/project_${INCLUDE_CODE_PROJECT_NAME_ARR[i]}
 
             echo $2/$1'.md引用了'$2'下的'${INCLUDE_CODE_PROJECT_NAME_ARR[i]}'这个项目中的代码'
+            #替换import语法为include语法，并添加代码块标识```
             sed -i '/^@import "\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"/a\```java' $2/$1.md
             sed -i '/^@import "\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"/i\```' $2/$1.md
-            sed -i 's#^@import "\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"#@include(project_\1)#g' $2/$1.md
+            sed -i 's#^\(.*\)@import "\(./\)\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"#\1@include(\2project_\3)#g' $2/$1.md
         done
     fi
 
@@ -383,7 +384,7 @@ EOF
     for CATEGORY in ${ENSEMBLE_CATEGORY[@]}
     do
         sed -i '/category:/a\\  - '"$CATEGORY"'' $3/$1-guidance.md
-    done 
+    done
 
 
     echo '结束为'$1'.md生成guidance文件.............................................................'
@@ -522,10 +523,10 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
     mkdir $2/$3
 
     #将图片文件夹复制到shardings目录下
-    if [ -d $2/images ]
-    then
-        cp -r $2/images $2/$3/
-    fi
+    #if [ -d $2/images ]
+    #then
+       # cp -r $2/images $2/$3/
+    #fi
     echo '开始为'$1'.md生成内容介绍文件................................................'
 
     #创建第0章，第0章的内容就是整个博客内容的介绍
@@ -697,6 +698,9 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
         #根据行号将内容输出到文件
         sed -n ''"$CHAPTER_START_LINE_NUMBER"','"$CHAPTER_END_LINE_NUMBER"'p' $2/$1.md >> $2/$3/$1-chapter-$CHAPTER_NAME.md
         echo '完成为'$1'.md生成分片文件写入正文内容................................................'
+
+        #替换图片路径
+        sed -i 's#<img\(.*\)src=\"\./images/\(.*\)\"#<img\1src=\"\.\./images/\2\"#g' $2/$3/$1-chapter-$CHAPTER_NAME.md
     done
     echo '完成为'$1'.md的所有章节生成内容介绍文件.......................................'
 
@@ -981,7 +985,7 @@ function generateBreadcrumbREADME {
             sed -i 's/\.md"/\.html"/g' $CACHE_README_FILE_NAME_FULL_PATH_NAME
 
             CHAPTER_FOLDER_NAME_CN=( $( parseI18nIni breadcrumb $3) )
-            #配置导航页面中的shardings（存放章节分片的文件夹）为中文
+            #配置导航页面中的shardings(存放章节分片的文件夹)为中文
             #替换路径导航中的英文为中文
             sed -i 's/.*- '"$3"'/'"$CHAPTER_FOLDER_NAME_CN"'/g' $CACHE_README_FILE_NAME_FULL_PATH_NAME
             #替换页面中的英文为中文

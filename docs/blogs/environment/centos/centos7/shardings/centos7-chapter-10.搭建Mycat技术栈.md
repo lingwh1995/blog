@@ -23,10 +23,12 @@ head:
 	192.168.0.6 mycat1.6
 	192.168.0.7 mysql
 	192.168.0.8 mysql
+
 ### 10.3.2.搭建JDK
 	详细参考 3.搭建基础开发环境->3.1.安装jdk
+
 ### 10.3.3.搭建myact1.6
-	<a href="http://www.mycat.org.cn/">官方网址</a>
+	官方网址
 ```
 http://www.mycat.org.cn/
 ```

@@ -363,7 +363,7 @@ systemctl restart docker
 rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka/
 ```
 
-### 4.6.2.搭建docke官方私服（带有用户名和密码校验）	
+### 4.6.2.搭建docke官方私服(带有用户名和密码校验)
 	拉取仓库镜像
 ```
 docker pull registry
@@ -445,7 +445,7 @@ rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka
 	版本说明
 	本次使用的docker-compose版本为2.6.1
 
-	<a href="https://github.com/docker/compose/">官方网址</a>
+	官方网址
 ```
 https://github.com/docker/compose/
 ```
@@ -473,7 +473,7 @@ docker-compose --version
 	特别注意
 	注意docker的版本,低版本的docker不能运行harbor2.5
 
-	<a href="https://github.com/goharbor/harbor">官方网址</a>
+	官方网址
 ```
 https://github.com/goharbor/harbor
 ```

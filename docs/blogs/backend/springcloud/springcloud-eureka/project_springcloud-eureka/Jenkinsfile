@@ -13,15 +13,16 @@ pipeline {
       }
     }
 
-    stage('推送部署22') {
+    stage('推送部署GITEE') {
       steps {
-        echo '正在推送文件...'
-        echo '${GIT_COMMIT_MSG}'
+        echo '正在推送文件到GITEE...'
+        sh 'chmod +x ./createTreeMD.sh'
+        sh 'bash ./createTreeMD.sh'
         sh 'git fetch https://lingwh1995:${GITEE_TOKEN}@gitee.com/lingwh1995/springcloud-eureka.git'
         sh 'git push -f https://lingwh1995:${GITEE_TOKEN}@gitee.com/lingwh1995/springcloud-eureka.git HEAD:master'
         //sh 'git fetch https://lingwh1995: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@github.com/lingwh1995/springcloud-eureka.git'
         //sh 'git push -f https://lingwh1995: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@github.com/lingwh1995/springcloud-eureka.git HEAD:master'
-        echo '完成文件推送...'
+        echo '完成文件推送到GITEE...'
       }
     }
 

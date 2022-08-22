@@ -880,7 +880,7 @@ systemctl restart docker
 rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka/
 ```
 
-### 4.6.2.搭建docke官方私服（带有用户名和密码校验）	
+### 4.6.2.搭建docke官方私服(带有用户名和密码校验)
 	拉取仓库镜像
 ```
 docker pull registry
@@ -962,7 +962,7 @@ rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka
 	版本说明
 	本次使用的docker-compose版本为2.6.1
 
-11<a href="https://github.com/docker/compose/">官方网址</a>
+	官方网址
 ```
 https://github.com/docker/compose/
 ```
@@ -990,7 +990,7 @@ docker-compose --version
 	特别注意
 	注意docker的版本,低版本的docker不能运行harbor2.5
 
-	<a href="https://github.com/goharbor/harbor">官方网址</a>
+	官方网址
 ```
 https://github.com/goharbor/harbor
 ```
@@ -1334,7 +1334,7 @@ grep -E --color 'vmx|svm' /proc/cpuinfo
 	简介
 	kubectl 是一个用来跟 K8S 集群进行交互的命令行工具
 
-	<a href="https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl">官方下载地址</a>
+	官方下载地址
 ```
 https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl
 ```
@@ -1355,7 +1355,7 @@ kubectl version --client
 ```
 
 ## 6.7.安装minikube
-	<a href="https://github.com/kubernetes/minikube/releases">官方网址</a>
+	官方网址
 ```
 https://github.com/kubernetes/minikube/releases
 ```
@@ -1399,7 +1399,7 @@ minikube start --driver=docker --force \
 
 ### 6.9.2.使用virtualbox作为虚拟化引擎(需要先安装Virtualbox)
 
-	<a href="https://www.virtualbox.org/wiki/Downloads">官方网站</a>
+	官方网站
 ```
 https://www.virtualbox.org/wiki/Downloads
 ```
@@ -4543,10 +4543,12 @@ https://lingwh.coding.net/p/java/ci/agent/136295/list
 	192.168.0.6 mycat1.6
 	192.168.0.7 mysql
 	192.168.0.8 mysql
+
 ### 10.3.2.搭建JDK
 	详细参考 3.搭建基础开发环境->3.3.安装jdk
+
 ### 10.3.3.搭建myact1.6
-	<a href="http://www.mycat.org.cn/">官方网址</a>
+	官方网址
 ```
 http://www.mycat.org.cn/
 ```
