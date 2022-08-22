@@ -1,14 +1,14 @@
-springcloud-mointor-springboot-admin-server9003
+[01;34mspringcloud-mointor-springboot-admin-server9003[00m
 |-- pom.xml
-|-- src
-|   `-- main
-|       |-- java
-|       |   `-- org
-|       |       `-- openatom
+|-- [01;34msrc[00m
+|   `-- [01;34mmain[00m
+|       |-- [01;34mjava[00m
+|       |   `-- [01;34morg[00m
+|       |       `-- [01;34mopenatom[00m
 |       |           |-- MointorSpringBootAdmin9003.java
-|       |           `-- endpoint
+|       |           `-- [01;34mendpoint[00m
 |       |               `-- CoustomEndpoint.java
-|       `-- resources
+|       `-- [01;34mresources[00m
 |           `-- application.yml
 `-- tree.md
 

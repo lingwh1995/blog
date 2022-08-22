@@ -1,4 +1,4 @@
-script
+[01;34mscript[00m
 |-- Jenkinsfile
 `-- tree.md
 

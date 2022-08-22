@@ -1,13 +1,13 @@
-springcloud-mointor-hystrix-dashboard9001
+[01;34mspringcloud-mointor-hystrix-dashboard9001[00m
 |-- pom.xml
-|-- src
-|   `-- main
-|       |-- java
-|       |   `-- org
-|       |       `-- openatom
-|       |           `-- springcloud
+|-- [01;34msrc[00m
+|   `-- [01;34mmain[00m
+|       |-- [01;34mjava[00m
+|       |   `-- [01;34morg[00m
+|       |       `-- [01;34mopenatom[00m
+|       |           `-- [01;34mspringcloud[00m
 |       |               `-- MointorHystrixDashboard9001.java
-|       `-- resources
+|       `-- [01;34mresources[00m
 |           `-- application.yml
 `-- tree.md
 

@@ -25,12 +25,15 @@ https://martinfowler.com/articles/microservices.html
 	如需国内译版,请使用谷歌翻译插件翻译自行翻译
 
 ## 1.5.微服务架构图
+::: center
 <img src="../images/microservice_architecture.png"  width="100%" height="800rem" />
+:::
 
 ## 1.6.CAP中占据情况
 	Eureka在CAP中占据AP
-<img src="../images/cap.png"  width="100%" height="800rem" />
-
+::: center
+<img src="../images/cap.png"  width="80%" height="650rem" />
+:::
 ## 1.7.微服务架构落地实现方案
 	微服务架构落地实现有很多种方案,本次介绍的方案技术栈如下:
 	注册中心: EUREKA

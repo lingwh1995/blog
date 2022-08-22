@@ -9,12 +9,12 @@ export const pagesComponents = {
   "v-8daa1a0e": defineAsyncComponent(() => import(/* webpackChunkName: "v-8daa1a0e" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/index.html.vue")),
   // path: /blogs/backend/
   "v-00bf5692": defineAsyncComponent(() => import(/* webpackChunkName: "v-00bf5692" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/index.html.vue")),
-  // path: /blogs/environment/
-  "v-7cc98773": defineAsyncComponent(() => import(/* webpackChunkName: "v-7cc98773" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/index.html.vue")),
   // path: /blogs/basicsupprot/knowledge.html
   "v-2331478c": defineAsyncComponent(() => import(/* webpackChunkName: "v-2331478c" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/basicsupprot/knowledge.html.vue")),
   // path: /blogs/basicsupprot/tools.html
   "v-45f718cf": defineAsyncComponent(() => import(/* webpackChunkName: "v-45f718cf" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/basicsupprot/tools.html.vue")),
+  // path: /blogs/environment/
+  "v-7cc98773": defineAsyncComponent(() => import(/* webpackChunkName: "v-7cc98773" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/index.html.vue")),
   // path: /blogs/backend/springcloud/
   "v-9d7b0f0e": defineAsyncComponent(() => import(/* webpackChunkName: "v-9d7b0f0e" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/index.html.vue")),
   // path: /blogs/environment/centos/
@@ -115,10 +115,10 @@ export const pagesComponents = {
   "v-46e28a38": defineAsyncComponent(() => import(/* webpackChunkName: "v-46e28a38" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/tree.html.vue")),
   // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-seata-account8007/tree.html
   "v-1f2942c3": defineAsyncComponent(() => import(/* webpackChunkName: "v-1f2942c3" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-seata-account8007/tree.html.vue")),
-  // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/tree.html
-  "v-72b0dc52": defineAsyncComponent(() => import(/* webpackChunkName: "v-72b0dc52" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/tree.html.vue")),
   // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-seata-storage8008/tree.html
   "v-2e230d52": defineAsyncComponent(() => import(/* webpackChunkName: "v-2e230d52" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-seata-storage8008/tree.html.vue")),
+  // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/tree.html
+  "v-72b0dc52": defineAsyncComponent(() => import(/* webpackChunkName: "v-72b0dc52" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/tree.html.vue")),
   // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/tree.html
   "v-5b8c4498": defineAsyncComponent(() => import(/* webpackChunkName: "v-5b8c4498" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/tree.html.vue")),
   // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-register-center-cluster-node7002/tree.html

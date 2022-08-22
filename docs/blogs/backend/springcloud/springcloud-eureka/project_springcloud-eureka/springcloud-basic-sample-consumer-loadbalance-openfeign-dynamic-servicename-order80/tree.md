@@ -1,40 +1,40 @@
-springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80
-|-- docker
+[01;34mspringcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80[00m
+|-- [01;34mdocker[00m
 |   `-- Dockerfile
 |-- pom.xml
-|-- src
-|   `-- main
-|       |-- java
-|       |   `-- org
-|       |       `-- openatom
-|       |           `-- springcloud
+|-- [01;34msrc[00m
+|   `-- [01;34mmain[00m
+|       |-- [01;34mjava[00m
+|       |   `-- [01;34morg[00m
+|       |       `-- [01;34mopenatom[00m
+|       |           `-- [01;34mspringcloud[00m
 |       |               |-- OrderServiceConsumerLoadBalanceOpenFeignDynamicServiceName80.java
-|       |               |-- config
+|       |               |-- [01;34mconfig[00m
 |       |               |   |-- DynamicFeignClientFactory.java
 |       |               |   |-- FeignClientRequestInterceptor.java
 |       |               |   |-- OpenFeignConfig.java
 |       |               |   `-- VirtualIpConfig.java
-|       |               |-- controller
+|       |               |-- [01;34mcontroller[00m
 |       |               |   |-- OrderConsumerController.java
 |       |               |   |-- OrderConsumerControllerDynamicFeignClientFactory.java
 |       |               |   `-- SpringCloudServiceDiscoveryController.java
-|       |               `-- services
+|       |               `-- [01;34mservices[00m
 |       |                   |-- PaymentServiceOpenFeign.java
 |       |                   `-- PaymentServiceOpenFeignDynamicFeignClientFactory.java
-|       `-- resources
-|           |-- dev
+|       `-- [01;34mresources[00m
+|           |-- [01;34mdev[00m
 |           |   |-- application-dev.yml
 |           |   |-- application.yml
 |           |   `-- logback-custom.xml
-|           |-- prod
+|           |-- [01;34mprod[00m
 |           |   |-- application-prod.yml
 |           |   |-- application.yml
 |           |   `-- logback-custom.xml
-|           |-- rancher
+|           |-- [01;34mrancher[00m
 |           |   |-- application-rancher.yml
 |           |   |-- application.yml
 |           |   `-- logback-custom.xml
-|           `-- test
+|           `-- [01;34mtest[00m
 |               |-- application-test.yml
 |               |-- application.yml
 |               `-- logback-custom.xml

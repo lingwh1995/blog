@@ -271,8 +271,8 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
             sed -i '/^@.*import.*"\.\/\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"/a\```' $2/$1.md
             sed -i 's#^\(.*\)@import "\(./\)\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"#\1@include(\2project_\3)#g' $2/$1.md
             #添加图片居中效果
-            sed -i '#<img\(.*\)src=\"\./images/\(.*\)\"#i\::: center' $2/$1.md
-            sed -i '#<img\(.*\)src=\"\./images/\(.*\)\"#a\:::' $2/$1.md
+            sed -i '/<img.*src=".*".*\/>/i\::: center' $2/$1.md
+            sed -i '/<img.*src=".*".*\/>/a\:::' $2/$1.md
         done
     fi
 

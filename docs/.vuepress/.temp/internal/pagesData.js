@@ -7,12 +7,12 @@ export const pagesData = {
   "v-8daa1a0e": () => import(/* webpackChunkName: "v-8daa1a0e" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/index.html.js").then(({ data }) => data),
   // path: /blogs/backend/
   "v-00bf5692": () => import(/* webpackChunkName: "v-00bf5692" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/index.html.js").then(({ data }) => data),
-  // path: /blogs/environment/
-  "v-7cc98773": () => import(/* webpackChunkName: "v-7cc98773" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/index.html.js").then(({ data }) => data),
   // path: /blogs/basicsupprot/knowledge.html
   "v-2331478c": () => import(/* webpackChunkName: "v-2331478c" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/basicsupprot/knowledge.html.js").then(({ data }) => data),
   // path: /blogs/basicsupprot/tools.html
   "v-45f718cf": () => import(/* webpackChunkName: "v-45f718cf" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/basicsupprot/tools.html.js").then(({ data }) => data),
+  // path: /blogs/environment/
+  "v-7cc98773": () => import(/* webpackChunkName: "v-7cc98773" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/index.html.js").then(({ data }) => data),
   // path: /blogs/backend/springcloud/
   "v-9d7b0f0e": () => import(/* webpackChunkName: "v-9d7b0f0e" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/index.html.js").then(({ data }) => data),
   // path: /blogs/environment/centos/
@@ -113,10 +113,10 @@ export const pagesData = {
   "v-46e28a38": () => import(/* webpackChunkName: "v-46e28a38" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/tree.html.js").then(({ data }) => data),
   // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-seata-account8007/tree.html
   "v-1f2942c3": () => import(/* webpackChunkName: "v-1f2942c3" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-seata-account8007/tree.html.js").then(({ data }) => data),
-  // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/tree.html
-  "v-72b0dc52": () => import(/* webpackChunkName: "v-72b0dc52" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/tree.html.js").then(({ data }) => data),
   // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-seata-storage8008/tree.html
   "v-2e230d52": () => import(/* webpackChunkName: "v-2e230d52" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-seata-storage8008/tree.html.js").then(({ data }) => data),
+  // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/tree.html
+  "v-72b0dc52": () => import(/* webpackChunkName: "v-72b0dc52" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/tree.html.js").then(({ data }) => data),
   // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/tree.html
   "v-5b8c4498": () => import(/* webpackChunkName: "v-5b8c4498" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/tree.html.js").then(({ data }) => data),
   // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-register-center-cluster-node7002/tree.html

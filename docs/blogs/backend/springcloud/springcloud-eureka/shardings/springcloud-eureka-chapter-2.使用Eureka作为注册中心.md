@@ -30,7 +30,9 @@ https://spring.io/projects/spring-cloud-netflix
 ```
 
 	EUREKA架构图
+::: center
 <img src="../images/eureka_architecture.png"  width="80%" height="400rem" />
+:::
 
 	Eureka的基础组件
 	服务提供者(Service Provide): 服务提供方将自身服务注册到Eureka,从而使服务消费方能够找到
@@ -54,7 +56,6 @@ https://spring.io/projects/spring-cloud-netflix
 ```
 @include(./project_springcloud-eureka/tree.md)
 ```
-
 
 	为了初步感受EUREKA,首先来搭建一个单节点版EUREKA注册中心
 ### 2.4.2.集群版EUREKA注册中心搭建

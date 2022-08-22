@@ -1,32 +1,32 @@
-springcloud-consumer-seata-loadbalance-openfeign-configuration-order80
+[01;34mspringcloud-consumer-seata-loadbalance-openfeign-configuration-order80[00m
 |-- pom.xml
-|-- src
-|   `-- main
-|       |-- java
-|       |   `-- org
-|       |       `-- openatom
-|       |           `-- springcloud
+|-- [01;34msrc[00m
+|   `-- [01;34mmain[00m
+|       |-- [01;34mjava[00m
+|       |   `-- [01;34morg[00m
+|       |       `-- [01;34mopenatom[00m
+|       |           `-- [01;34mspringcloud[00m
 |       |               |-- OrderServiceConsumerSeatalLoadBalanceOpenFeignConfiguration80.java
-|       |               |-- config
+|       |               |-- [01;34mconfig[00m
 |       |               |   |-- DataSourceProxyConfig.java
 |       |               |   `-- FeignConfig.java
-|       |               |-- controller
+|       |               |-- [01;34mcontroller[00m
 |       |               |   `-- OrderController.java
-|       |               |-- dao
+|       |               |-- [01;34mdao[00m
 |       |               |   `-- OrderDao.java
-|       |               |-- listener
+|       |               |-- [01;34mlistener[00m
 |       |               |   |-- ApolloPropertiesChangedListener.java
 |       |               |   `-- AutomaticApolloWatcher.java
-|       |               `-- service
+|       |               `-- [01;34mservice[00m
 |       |                   |-- AccountService.java
 |       |                   |-- OrderService.java
 |       |                   |-- StorageService.java
-|       |                   `-- impl
+|       |                   `-- [01;34mimpl[00m
 |       |                       `-- OrderServiceImpl.java
-|       `-- resources
+|       `-- [01;34mresources[00m
 |           |-- apollo-env.properties
 |           |-- application.yml
-|           `-- mapper
+|           `-- [01;34mmapper[00m
 |               `-- OrderMapper.xml
 `-- tree.md
 
