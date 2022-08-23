@@ -4,7 +4,7 @@
       <iframe
         :src="localtion"
         width="100%"
-        height="600rm"
+        :height="height"
         frameborder="0"
         scrolling="No"
         leftmargin="0"
@@ -17,7 +17,7 @@
 <script>
 
 export default {
-  props:['localtion'],
+  props:['localtion','height'],
   data() {
     return {
       msg: "我是一个引入到MD中的Vue组件",

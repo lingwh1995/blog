@@ -372,12 +372,12 @@ $BLOG_CONTENT_INTRO
 
 ###	<a href="/$5/$4/$1-outline2.html" target="_blank">简单版博客内容大纲</a>
 <!--最深展示二级标题内容-->
-<Markmap localtion="/$5/$4/$1-outline2.html"/>
+<Markmap localtion="/$5/$4/$1-outline2.html" height="500rem"/>
 
 >
 <!--最深展示五级标题内容-->
 ###	<a href="/$5/$4/$1-outline3.html" target="_blank">详细版博客内容大纲</a>
-<Markmap localtion="/$5/$4/$1-outline3.html"/>
+<Markmap localtion="/$5/$4/$1-outline3.html" height="600rem"/>
 
 >
 
@@ -422,7 +422,7 @@ $CHAPTER_CONTENT_INTRO
 
 ## <a href="/$5/$4/chapter/$1-outline5-chapter$i.html" target="_blank">$i.2.章节内容大纲</a>
 
-<Markmap localtion="/$5/$4/chapter/$1-outline5-chapter$i.html"/>
+<Markmap localtion="/$5/$4/chapter/$1-outline5-chapter$i.html" height="500rem"/>
 
 
 EOF

@@ -9,12 +9,12 @@ export const pagesComponents = {
   "v-8daa1a0e": defineAsyncComponent(() => import(/* webpackChunkName: "v-8daa1a0e" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/index.html.vue")),
   // path: /blogs/backend/
   "v-00bf5692": defineAsyncComponent(() => import(/* webpackChunkName: "v-00bf5692" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/index.html.vue")),
-  // path: /blogs/environment/
-  "v-7cc98773": defineAsyncComponent(() => import(/* webpackChunkName: "v-7cc98773" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/index.html.vue")),
   // path: /blogs/basicsupprot/knowledge.html
   "v-2331478c": defineAsyncComponent(() => import(/* webpackChunkName: "v-2331478c" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/basicsupprot/knowledge.html.vue")),
   // path: /blogs/basicsupprot/tools.html
   "v-45f718cf": defineAsyncComponent(() => import(/* webpackChunkName: "v-45f718cf" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/basicsupprot/tools.html.vue")),
+  // path: /blogs/environment/
+  "v-7cc98773": defineAsyncComponent(() => import(/* webpackChunkName: "v-7cc98773" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/index.html.vue")),
   // path: /blogs/backend/springcloud/
   "v-9d7b0f0e": defineAsyncComponent(() => import(/* webpackChunkName: "v-9d7b0f0e" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/index.html.vue")),
   // path: /blogs/environment/centos/
@@ -35,8 +35,8 @@ export const pagesComponents = {
   "v-55680cba": defineAsyncComponent(() => import(/* webpackChunkName: "v-55680cba" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-0.博客内容介绍.html.vue")),
   // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-1.%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%AE%80%E4%BB%8B.html
   "v-c0f26340": defineAsyncComponent(() => import(/* webpackChunkName: "v-c0f26340" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-1.微服务简介.html.vue")),
-  // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-2.%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE.html
-  "v-692ae0be": defineAsyncComponent(() => import(/* webpackChunkName: "v-692ae0be" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-2.创建项目.html.vue")),
+  // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-2.%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%88%B6%E5%B7%A5%E7%A8%8B%E5%92%8C%E5%85%AC%E5%85%B1%E6%A8%A1%E5%9D%97.html
+  "v-7c6d9272": defineAsyncComponent(() => import(/* webpackChunkName: "v-7c6d9272" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-2.创建项目父工程和公共模块.html.vue")),
   // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-3.%E4%BD%BF%E7%94%A8Eureka%E4%BD%9C%E4%B8%BA%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83.html
   "v-c1040082": defineAsyncComponent(() => import(/* webpackChunkName: "v-c1040082" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-3.使用Eureka作为注册中心.html.vue")),
   // path: /blogs/environment/centos/centos7/shardings/centos7-chapter-0.%E5%8D%9A%E5%AE%A2%E5%86%85%E5%AE%B9%E4%BB%8B%E7%BB%8D.html
@@ -65,10 +65,10 @@ export const pagesComponents = {
   "v-181a1557": defineAsyncComponent(() => import(/* webpackChunkName: "v-181a1557" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html.vue")),
   // path: /blogs/environment/centos/centos7/shardings/
   "v-7f474614": defineAsyncComponent(() => import(/* webpackChunkName: "v-7f474614" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/shardings/index.html.vue")),
-  // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/note/tree.html
-  "v-11df7cd1": defineAsyncComponent(() => import(/* webpackChunkName: "v-11df7cd1" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/note/tree.html.vue")),
   // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/script/tree.html
   "v-e0b77cac": defineAsyncComponent(() => import(/* webpackChunkName: "v-e0b77cac" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/script/tree.html.vue")),
+  // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/note/tree.html
+  "v-11df7cd1": defineAsyncComponent(() => import(/* webpackChunkName: "v-11df7cd1" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/note/tree.html.vue")),
   // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-api-commons/tree.html
   "v-6aebd849": defineAsyncComponent(() => import(/* webpackChunkName: "v-6aebd849" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-api-commons/tree.html.vue")),
   // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/tree.html
@@ -79,10 +79,10 @@ export const pagesComponents = {
   "v-87b13a7e": defineAsyncComponent(() => import(/* webpackChunkName: "v-87b13a7e" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/tree.html.vue")),
   // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/tree.html
   "v-2fe48a17": defineAsyncComponent(() => import(/* webpackChunkName: "v-2fe48a17" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/tree.html.vue")),
-  // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/tree.html
-  "v-1ea43d7e": defineAsyncComponent(() => import(/* webpackChunkName: "v-1ea43d7e" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/tree.html.vue")),
   // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/tree.html
   "v-5e329c1a": defineAsyncComponent(() => import(/* webpackChunkName: "v-5e329c1a" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/tree.html.vue")),
+  // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/tree.html
+  "v-1ea43d7e": defineAsyncComponent(() => import(/* webpackChunkName: "v-1ea43d7e" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/tree.html.vue")),
   // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-consumer-loadbalance-default-order80/tree.html
   "v-7bc9d560": defineAsyncComponent(() => import(/* webpackChunkName: "v-7bc9d560" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-consumer-loadbalance-default-order80/tree.html.vue")),
   // path: /blogs/backend/springcloud/springcloud-eureka/project_springcloud-eureka/springcloud-consumer-loadbalance-openfeign-configuration-order80/tree.html

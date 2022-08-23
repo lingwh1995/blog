@@ -18,11 +18,11 @@
 <h2 id="博客内容大纲" tabindex="-1"><a class="header-anchor" href="#博客内容大纲" aria-hidden="true">#</a> 博客内容大纲</h2>
 <h3 id="简单版博客内容大纲" tabindex="-1"><a class="header-anchor" href="#简单版博客内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/centos7-outline2.html" target="_blank">简单版博客内容大纲</a></h3>
 <!--最深展示二级标题内容-->
-<Markmap localtion="/enhance/markmap/environment/centos/centos7/centos7-outline2.html"/>
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/centos7-outline2.html" height="500rem"/>
 <blockquote></blockquote>
 <!--最深展示五级标题内容-->
 <h3 id="详细版博客内容大纲" tabindex="-1"><a class="header-anchor" href="#详细版博客内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/centos7-outline3.html" target="_blank">详细版博客内容大纲</a></h3>
-<Markmap localtion="/enhance/markmap/environment/centos/centos7/centos7-outline3.html"/>
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/centos7-outline3.html" height="600rem"/>
 <blockquote></blockquote>
 <h1 id="1." tabindex="-1"><a class="header-anchor" href="#1." aria-hidden="true">#</a> 1.安装Linux操作系统</h1>
 <h2 id="_1-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_1-1-章节内容概述" aria-hidden="true">#</a> 1.1.章节内容概述</h2>
@@ -36,7 +36,7 @@
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_1-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_1-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter1.html" target="_blank">1.2.章节内容大纲</a></h2>
-<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter1.html"/>
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter1.html" height="500rem"/>
 <h2 id="_1-3-linux重要目录介绍" tabindex="-1"><a class="header-anchor" href="#_1-3-linux重要目录介绍" aria-hidden="true">#</a> 1.3.Linux重要目录介绍</h2>
 <pre><code>/usr → C:/Windows/ /*系统级的目录
 /usr/lib → C:/Windows/System32
@@ -87,7 +87,7 @@ VMware NetworkAdepter VMnet8：Host用于与NAT虚拟网络进行通信的虚拟
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_2-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_2-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter2.html" target="_blank">2.2.章节内容大纲</a></h2>
-<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter2.html"/>
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter2.html" height="500rem"/>
 <h2 id="_2-3-配置静态ip地址" tabindex="-1"><a class="header-anchor" href="#_2-3-配置静态ip地址" aria-hidden="true">#</a> 2.3.配置静态IP地址</h2>
 <pre><code>修改网络配置
 </code></pre>
@@ -181,7 +181,7 @@ yum -y install telnet-server
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_3-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_3-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter3.html" target="_blank">3.2.章节内容大纲</a></h2>
-<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter3.html"/>
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter3.html" height="500rem"/>
 <h2 id="_3-3-安装jdk" tabindex="-1"><a class="header-anchor" href="#_3-3-安装jdk" aria-hidden="true">#</a> 3.3.安装jdk</h2>
 <pre><code>查看当前安装的java版本
 </code></pre>
@@ -442,7 +442,7 @@ make prefix=/usr/local/git install
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_4-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_4-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter4.html" target="_blank">4.2.章节内容大纲</a></h2>
-<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter4.html"/>
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter4.html" height="500rem"/>
 <h2 id="_4-3-安装docker" tabindex="-1"><a class="header-anchor" href="#_4-3-安装docker" aria-hidden="true">#</a> 4.3.安装docker</h2>
 <h3 id="_4-3-1-在线安装docker" tabindex="-1"><a class="header-anchor" href="#_4-3-1-在线安装docker" aria-hidden="true">#</a> 4.3.1.在线安装docker</h3>
 <pre><code>以root身份更新yum，将yum包更新到最新
@@ -1090,7 +1090,7 @@ max virtual memory areas vm.max_map_count [65530] is too low, increase to at lea
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_5-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_5-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter5.html" target="_blank">5.2.章节内容大纲</a></h2>
-<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter5.html"/>
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter5.html" height="500rem"/>
 <pre><code>下载rancher
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>docker pull rancher/server
@@ -1124,7 +1124,7 @@ eureka:
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_6-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_6-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter6.html" target="_blank">6.2.章节内容大纲</a></h2>
-<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter6.html"/>
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter6.html" height="500rem"/>
 <h2 id="_6-3-minikube介绍" tabindex="-1"><a class="header-anchor" href="#_6-3-minikube介绍" aria-hidden="true">#</a> 6.3.minikube介绍</h2>
 <pre><code>Minikube这个工具支持在虚拟机上运行一套单节点的k8s集群
 </code></pre>
@@ -1312,7 +1312,7 @@ http://192.168.0.4:7080
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_7-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_7-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter7.html" target="_blank">7.2.章节内容大纲</a></h2>
-<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter7.html"/>
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter7.html" height="500rem"/>
 <h2 id="_7-3-特别说明" tabindex="-1"><a class="header-anchor" href="#_7-3-特别说明" aria-hidden="true">#</a> 7.3.特别说明</h2>
 <pre><code>使用kubeadm搭建Kubernetes
 </code></pre>
@@ -1581,7 +1581,7 @@ http://192.168.0.8:31208
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_8-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_8-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter8.html" target="_blank">8.2.章节内容大纲</a></h2>
-<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter8.html"/>
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter8.html" height="500rem"/>
 <!--
 	参考网站
 	https://blog.csdn.net/qq_44078641/article/details/120049473
@@ -3916,7 +3916,7 @@ http://192.168.0.8:31208
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_9-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_9-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter9.html" target="_blank">9.2.章节内容大纲</a></h2>
-<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter9.html"/>
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter9.html" height="500rem"/>
 <h2 id="_9-3-使用本地内网穿透搭建持续集成环境" tabindex="-1"><a class="header-anchor" href="#_9-3-使用本地内网穿透搭建持续集成环境" aria-hidden="true">#</a> 9.3.使用本地内网穿透搭建持续集成环境</h2>
 <h3 id="_9-3-1-持续集成环境组件列表" tabindex="-1"><a class="header-anchor" href="#_9-3-1-持续集成环境组件列表" aria-hidden="true">#</a> 9.3.1.持续集成环境组件列表</h3>
 <pre><code>Jenkins、git、maven、docker
@@ -4075,7 +4075,7 @@ DASHBOARD-&gt;系统管理-&gt;系统配置-&gt;Publish over SSH
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_10-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_10-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter10.html" target="_blank">10.2.章节内容大纲</a></h2>
-<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter10.html"/>
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter10.html" height="500rem"/>
 <h2 id="_10-3-安装myact1-6" tabindex="-1"><a class="header-anchor" href="#_10-3-安装myact1-6" aria-hidden="true">#</a> 10.3.安装myact1.6</h2>
 <h3 id="_10-3-1-服务器环境说明" tabindex="-1"><a class="header-anchor" href="#_10-3-1-服务器环境说明" aria-hidden="true">#</a> 10.3.1.服务器环境说明</h3>
 <pre><code>192.168.0.6 mycat1.6
@@ -4240,7 +4240,7 @@ notepad++安装nppftp这个插件，连接到远程服务器之后自动可以�
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_11-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_11-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter11.html" target="_blank">11.2.章节内容大纲</a></h2>
-<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter11.html"/>
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter11.html" height="500rem"/>
 <h2 id="_11-3-搭建yum私服" tabindex="-1"><a class="header-anchor" href="#_11-3-搭建yum私服" aria-hidden="true">#</a> 11.3.搭建yum私服</h2>
 <h2 id="_11-3-1-安装httpd" tabindex="-1"><a class="header-anchor" href="#_11-3-1-安装httpd" aria-hidden="true">#</a> 11.3.1.安装httpd</h2>
 <pre><code>配置阿里云源

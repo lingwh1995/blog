@@ -171,9 +171,9 @@ export default sidebar([
                       link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-1.微服务简介.md",
                   },
                   {
-                      text: "2.创建项目",
+                      text: "2.创建项目父工程和公共模块",
                       icon: "article",
-                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-2.创建项目.md",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-2.创建项目父工程和公共模块.md",
                   },
                   {
                       text: "3.使用Eureka作为注册中心",
@@ -198,7 +198,7 @@ export default sidebar([
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#1.",
                   },
                   {
-                      text: "2.创建项目",
+                      text: "2.创建项目父工程和公共模块",
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#2.",
                   },

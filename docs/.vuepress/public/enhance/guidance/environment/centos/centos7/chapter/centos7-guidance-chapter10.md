@@ -9,6 +9,6 @@
 
 ## <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter10.html" target="_blank">10.2.章节内容大纲</a>
 
-<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter10.html"/>
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter10.html" height="500rem"/>
 
 

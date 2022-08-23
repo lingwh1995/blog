@@ -20,5 +20,3 @@ springcloud-provider-sleuth_zipkin-cluster-node-payment8006
 |           |   •-- PaymentMapper.xml
 |           •-- application.yml
 •-- pom.xml
-
-12 directories, 9 files

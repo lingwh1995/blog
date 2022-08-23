@@ -1,5 +1,5 @@
 ---
-title: 基于Eureka搭建Springcloud微服务-2.创建项目
+title: 基于Eureka搭建Springcloud微服务-2.创建项目父工程和公共模块
 description: 本章节涉及主要内容有：创建项目父工程,创建项目依赖的公共模块,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
@@ -14,12 +14,12 @@ head:
       content: 本章节涉及主要内容有：创建项目父工程,创建项目依赖的公共模块,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 ---
 
-# 2.创建项目
+# 2.创建项目父工程和公共模块
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter2.md)
 ## 2.3.创建项目父工程
 	在idea中创建一个名为springcloud-eureka的maven工程,创建完成后打开该工程,删除src文件夹,编辑pom.xml文件,添加如下内容,pom.xml中配置主要包括两部分内容,第一是对子模块依赖的jar包和使用到的插件的版本的统一规定,第二是规定了四种不同的环境,分别是: 1.开发环境(dev) 2.测试环境(test) 3.生产环境(prod) 4.rancher测试专用环境(rancher),关于这四种环境的详细内容会在本博客的最后一部分进行详细解析说明,pom.xml内容如下:
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -267,14 +267,15 @@ head:
 
 ## 2.4.创建项目依赖的公共模块
 ### 2.4.1.模块目录结构
+    在下面的内容中,涉及到具体的文件(包括.java文件、.xml文件、.yml文件等)不会告知具体的路径,具体的路径请根据模块目录结构自行创建,
 ```
-@include(./project_springcloud-eureka/springcloud-api-commons/tree.md)
+@include(../project_springcloud-eureka/springcloud-api-commons/tree.md)
 ```
-
-### 2.4.2.创建公共模块
-	在springcloud-eureka中创建一个名为springcloud-api-commons的maven模块
-### 2.4.3.编辑公共模块pom.xml
+### 2.4.2.创建模块
+	在父工程(springcloud-eureka)中创建一个名为springcloud-api-commons的maven模块,这个模块中包含了一些公共的Java实体和一些公共的插件,后面的每个模块都要引入这个公共模块
+### 2.4.3.编写模块pom.xml
 ```xml
-@include(./project_springcloud-eureka/springcloud-api-commons/pom.xml)
+@include(../project_springcloud-eureka/springcloud-api-commons/pom.xml)
 ```
+### 2.4.3.编写实体类
 

@@ -10,5 +10,3 @@ springcloud-mointor-springboot-admin-server9003
 |       •-- resources
 |           •-- application.yml
 •-- pom.xml
-
-7 directories, 4 files

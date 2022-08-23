@@ -16,5 +16,3 @@ springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80
 |       •-- resources
 |           •-- application.yml
 •-- pom.xml
-
-10 directories, 7 files

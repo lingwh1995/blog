@@ -45,5 +45,3 @@ springcloud-basic-sample-provider-cluster-node-payment8009
 |               |-- application.yml
 |               •-- logback-custom.xml
 •-- pom.xml
-
-21 directories, 25 files

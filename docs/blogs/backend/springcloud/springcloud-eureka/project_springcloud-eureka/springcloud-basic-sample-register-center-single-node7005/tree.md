@@ -28,5 +28,3 @@ springcloud-basic-sample-register-center-single-node7005
 |               |-- application.yml
 |               •-- logback-custom.xml
 •-- pom.xml
-
-13 directories, 16 files

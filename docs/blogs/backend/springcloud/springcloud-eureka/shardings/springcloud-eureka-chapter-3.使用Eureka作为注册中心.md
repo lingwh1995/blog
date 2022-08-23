@@ -1,6 +1,6 @@
 ---
 title: 基于Eureka搭建Springcloud微服务-3.使用Eureka作为注册中心
-description: 本章节涉及主要内容有：Eureka注册中心简介,单节点版EUREKA注册中心搭建,集群版EUREKA注册中心搭建,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：Eureka注册中心简介,单节点版EUREKA注册中心搭建,集群(高可用)版EUREKA注册中心搭建,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -11,13 +11,13 @@ date:
 head:
   - - meta
     - name: keywords
-      content: 本章节涉及主要内容有：Eureka注册中心简介,单节点版EUREKA注册中心搭建,集群版EUREKA注册中心搭建,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+      content: 本章节涉及主要内容有：Eureka注册中心简介,单节点版EUREKA注册中心搭建,集群(高可用)版EUREKA注册中心搭建,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 3.使用Eureka作为注册中心
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter3.md)
 ## 3.3.Eureka注册中心简介
-	Eureka是Netflix公司开发的服务发现框架,Spring Cloud对它提供了支持,将它集成在了自己spring-cloud-netflix子项目中,用来实现Spring Cloud的服务发现功能,核心功能是为实现服务发现提供了基础支持。
+	Eureka是Netflix公司开发的服务发现框架,Spring Cloud对它提供了支持,将它集成在了自己spring-cloud-netflix子项目中,用来实现Spring Cloud的服务发现功能,核心功能是为实现服务发现提供了基础支持。本次我们将搭建一个单节点版的Eureka注册中心和一个集群(高可用)版的Eureka注册中心,用来实现服务发现功能。
 
 	官方网站(GITHUB)
 ```
@@ -52,9 +52,34 @@ https://spring.io/projects/spring-cloud-netflix
 	在默认的情况下,当Eureka客户端连续90秒(3个续约周期)没有向Eureka服务器发送服务续约,即心跳,Eureka 服务器会将该服务实例从服务注册列表删除,即服务剔除。
 
 ## 3.4.单节点版EUREKA注册中心搭建
-### 3.4.1.项目目录结构
-hello1
-你好
-
-	为了初步感受EUREKA,首先来搭建一个单节点版EUREKA注册中心
-## 3.5.集群版EUREKA注册中心搭建
+### 3.4.1.模块简介
+    本模块会搭建一个单节点版的Eureka注册中心
+### 3.4.2.模块目录结构
+    在下面的内容中,涉及到具体的文件(包括.java文件、.xml文件、.yml文件等)不会告知具体的路径,具体的路径请根据模块目录结构自行创建,
+```
+@include(../project_springcloud-eureka/springcloud-register-center-single-node7001/tree.md)
+```
+### 3.4.3.创建模块
+	在父工程(springcloud-eureka)中创建一个名为springcloud-register-center-single-node7001的maven模块
+### 3.4.4.编写模块pom.xml
+```xml
+@include(../project_springcloud-eureka/springcloud-register-center-single-node7001/pom.xml)
+```
+### 3.4.5.编写模块application.yml
+```yml
+@include(../project_springcloud-eureka/springcloud-register-center-single-node7001/src/main/resources/application.yml)
+```
+### 3.4.6.编写主启动类
+```java
+@include(../project_springcloud-eureka/springcloud-register-center-single-node7001/src/main/java/org.openatom.springcloud/RegisterCcenterSingleNode7001.java)
+```
+### 3.4.7.测试模块
+    编写完成后,等maven依赖导入成功,运行主启动类,在浏览器中访问
+```
+http://localhost:7001
+```
+    看到如下界面代表搭建成功
+::: center
+<img src="../images/eureka7001.png"  width="100%" height="800rem" />
+:::
+## 3.5.集群(高可用)版EUREKA注册中心搭建

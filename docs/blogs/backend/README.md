@@ -23,13 +23,15 @@ icon: navigate
 
                 - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/eureka_architecture.png">eureka_architecture.png</a>
 
+                - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/eureka7001.png">eureka7001.png</a>
+
                 - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/microservice_architecture.png">microservice_architecture.png</a>
 
                     - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings//springcloud-eureka-chapter-0.博客内容介绍.html">博客内容介绍</a>
 
                     - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings//springcloud-eureka-chapter-1.微服务简介.html">1.微服务简介</a>
 
-                    - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings//springcloud-eureka-chapter-2.创建项目.html">2.创建项目</a>
+                    - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings//springcloud-eureka-chapter-2.创建项目父工程和公共模块.html">2.创建项目父工程和公共模块</a>
 
                     - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings//springcloud-eureka-chapter-3.使用Eureka作为注册中心.html">3.使用Eureka作为注册中心</a>
 

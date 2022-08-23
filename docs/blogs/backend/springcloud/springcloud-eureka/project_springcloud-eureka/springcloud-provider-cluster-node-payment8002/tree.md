@@ -20,5 +20,3 @@ springcloud-provider-cluster-node-payment8002
 |           |   •-- PaymentMapper.xml
 |           •-- application.yml
 •-- pom.xml
-
-12 directories, 9 files

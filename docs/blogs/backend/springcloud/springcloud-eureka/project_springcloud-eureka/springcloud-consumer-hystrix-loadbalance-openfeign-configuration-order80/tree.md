@@ -18,5 +18,3 @@ springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80
 |       •-- resources
 |           •-- application.yml
 •-- pom.xml
-
-11 directories, 8 files

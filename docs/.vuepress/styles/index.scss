@@ -349,6 +349,16 @@ p, ul, ol {
         padding: 1rem;
         border-radius: 6px;
     }
+    html[data-theme=dark] .theme-hope-content pre {
+        background-color: #FFFFFF !important;
+        color: #000000;
+    }
+    html[data-theme=dark] .theme-hope-content pre[class*=language-] {
+        background-color: #FCFCFC !important;
+    }
+    html[data-theme=dark] .theme-hope-content pre[class*=language-] code{
+        color: #000000 !important;
+    }
     .theme-hope-content pre[class*=language-] {
         white-space: pre-wrap;
         word-wrap: break-word;
