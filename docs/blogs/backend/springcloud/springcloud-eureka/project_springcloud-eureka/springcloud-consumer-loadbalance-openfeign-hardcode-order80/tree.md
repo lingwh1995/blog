@@ -1,21 +1,20 @@
-[01;34mspringcloud-consumer-loadbalance-openfeign-hardcode-order80[00m
-|-- pom.xml
-|-- [01;34msrc[00m
-|   `-- [01;34mmain[00m
-|       |-- [01;34mjava[00m
-|       |   `-- [01;34morg[00m
-|       |       `-- [01;34mopenatom[00m
-|       |           `-- [01;34mspringcloud[00m
-|       |               |-- OrderServiceConsumerLoadBalanceOpenFeignHardcode80.java
-|       |               |-- [01;34mconfig[00m
-|       |               |   `-- OpenFeignConfig.java
-|       |               |-- [01;34mcontroller[00m
+springcloud-consumer-loadbalance-openfeign-hardcode-order80
+|-- src
+|   •-- main
+|       |-- java
+|       |   •-- org
+|       |       •-- openatom
+|       |           •-- springcloud
+|       |               |-- config
+|       |               |   •-- OpenFeignConfig.java
+|       |               |-- controller
 |       |               |   |-- OrderConsumerController.java
-|       |               |   `-- SpringCloudServiceDiscoveryController.java
-|       |               `-- [01;34mservices[00m
-|       |                   `-- PaymentServiceOpenFeign.java
-|       `-- [01;34mresources[00m
-|           `-- application.yml
-`-- tree.md
+|       |               |   •-- SpringCloudServiceDiscoveryController.java
+|       |               |-- services
+|       |               |   •-- PaymentServiceOpenFeign.java
+|       |               •-- OrderServiceConsumerLoadBalanceOpenFeignHardcode80.java
+|       •-- resources
+|           •-- application.yml
+•-- pom.xml
 
-10 directories, 8 files
+10 directories, 7 files

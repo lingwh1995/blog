@@ -708,6 +708,8 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
 
         #替换图片路径
         sed -i 's#<img\(.*\)src=\"\./images/\(.*\)\"#<img\1src=\"\.\./images/\2\"#g' $2/$3/$1-chapter-$CHAPTER_NAME.md
+        #替换引入的项目的路径
+        sed -i 's#@include(\./project_#@include(\.\./project_#g' $2/$3/$1-chapter-$CHAPTER_NAME.md
     done
     echo '完成为'$1'.md的所有章节生成内容介绍文件.......................................'
 

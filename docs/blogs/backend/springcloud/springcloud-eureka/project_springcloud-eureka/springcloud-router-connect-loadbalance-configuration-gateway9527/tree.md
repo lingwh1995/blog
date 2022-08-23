@@ -1,18 +1,17 @@
-[01;34mspringcloud-router-connect-loadbalance-configuration-gateway9527[00m
-|-- pom.xml
-|-- [01;34msrc[00m
-|   `-- [01;34mmain[00m
-|       |-- [01;34mjava[00m
-|       |   `-- [01;34mcom[00m
-|       |       `-- [01;34matguigu[00m
-|       |           `-- [01;34mspringcloud[00m
-|       |               |-- RouterConnectLoadbalanceConfigurationGateWay9527.java
-|       |               |-- [01;34mconfig[00m
-|       |               |   `-- GateWayConfig.java
-|       |               `-- [01;34mfilter[00m
-|       |                   `-- LoginFilter.java
-|       `-- [01;34mresources[00m
-|           `-- application.yml
-`-- tree.md
+springcloud-router-connect-loadbalance-configuration-gateway9527
+|-- src
+|   •-- main
+|       |-- java
+|       |   •-- com
+|       |       •-- atguigu
+|       |           •-- springcloud
+|       |               |-- config
+|       |               |   •-- GateWayConfig.java
+|       |               |-- filter
+|       |               |   •-- LoginFilter.java
+|       |               •-- RouterConnectLoadbalanceConfigurationGateWay9527.java
+|       •-- resources
+|           •-- application.yml
+•-- pom.xml
 
-9 directories, 6 files
+9 directories, 5 files

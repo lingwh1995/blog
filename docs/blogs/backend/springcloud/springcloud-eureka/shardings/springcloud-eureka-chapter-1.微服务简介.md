@@ -34,7 +34,8 @@ https://martinfowler.com/articles/microservices.html
 ::: center
 <img src="../images/cap.png"  width="80%" height="650rem" />
 :::
+
 ## 1.7.微服务架构落地实现方案
 	微服务架构落地实现有很多种方案,本次介绍的方案技术栈如下:
-	注册中心: EUREKA
+	注册中心: EUREKA 
 

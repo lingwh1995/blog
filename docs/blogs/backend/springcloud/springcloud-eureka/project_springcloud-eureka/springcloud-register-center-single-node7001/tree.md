@@ -1,12 +1,11 @@
-[01;34mspringcloud-register-center-single-node7001[00m
-|-- pom.xml
-|-- [01;34msrc[00m
-|   `-- [01;34mmain[00m
-|       |-- [01;34mjava[00m
-|       |   `-- [01;34morg.openatom.springcloud[00m
-|       |       `-- RegisterCcenterSingleNode7001.java
-|       `-- [01;34mresources[00m
-|           `-- application.yml
-`-- tree.md
+springcloud-register-center-single-node7001
+|-- src
+|   •-- main
+|       |-- java
+|       |   •-- org.openatom.springcloud
+|       |       •-- RegisterCcenterSingleNode7001.java
+|       •-- resources
+|           •-- application.yml
+•-- pom.xml
 
-5 directories, 4 files
+5 directories, 3 files

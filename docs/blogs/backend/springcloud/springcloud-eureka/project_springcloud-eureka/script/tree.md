@@ -1,5 +1,4 @@
-[01;34mscript[00m
-|-- Jenkinsfile
-`-- tree.md
+script
+•-- Jenkinsfile
 
-0 directories, 2 files
+0 directories, 1 file

@@ -1,6 +1,6 @@
 ---
-title: 基于Eureka搭建Springcloud微服务-2.使用Eureka作为注册中心
-description: 本章节涉及主要内容有：Eureka注册中心简介,单节点版EUREKA注册中心搭建,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+title: 基于Eureka搭建Springcloud微服务-3.使用Eureka作为注册中心
+description: 本章节涉及主要内容有：Eureka注册中心简介,单节点版EUREKA注册中心搭建,集群版EUREKA注册中心搭建,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -11,12 +11,12 @@ date:
 head:
   - - meta
     - name: keywords
-      content: 本章节涉及主要内容有：Eureka注册中心简介,单节点版EUREKA注册中心搭建,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+      content: 本章节涉及主要内容有：Eureka注册中心简介,单节点版EUREKA注册中心搭建,集群版EUREKA注册中心搭建,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 ---
 
-# 2.使用Eureka作为注册中心
-@include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter2.md)
-## 2.3.Eureka注册中心简介
+# 3.使用Eureka作为注册中心
+@include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter3.md)
+## 3.3.Eureka注册中心简介
 	Eureka是Netflix公司开发的服务发现框架,Spring Cloud对它提供了支持,将它集成在了自己spring-cloud-netflix子项目中,用来实现Spring Cloud的服务发现功能,核心功能是为实现服务发现提供了基础支持。
 
 	官方网站(GITHUB)
@@ -51,15 +51,10 @@ https://spring.io/projects/spring-cloud-netflix
 	服务剔除(Service Eviction)
 	在默认的情况下,当Eureka客户端连续90秒(3个续约周期)没有向Eureka服务器发送服务续约,即心跳,Eureka 服务器会将该服务实例从服务注册列表删除,即服务剔除。
 
-## 2.4.单节点版EUREKA注册中心搭建
-### 2.4.1.项目目录结构
-```
-@include(./project_springcloud-eureka/tree.md)
-```
+## 3.4.单节点版EUREKA注册中心搭建
+### 3.4.1.项目目录结构
+hello1
+你好
 
 	为了初步感受EUREKA,首先来搭建一个单节点版EUREKA注册中心
-### 2.4.2.集群版EUREKA注册中心搭建
-
-```xml
-@include(./project_springcloud-eureka/pom.xml)
-```
+## 3.5.集群版EUREKA注册中心搭建

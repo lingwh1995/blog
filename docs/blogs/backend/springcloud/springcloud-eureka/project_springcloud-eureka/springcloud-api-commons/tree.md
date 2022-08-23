@@ -1,19 +1,18 @@
-[01;34mspringcloud-api-commons[00m
-|-- pom.xml
-|-- [01;34msrc[00m
-|   `-- [01;34mmain[00m
-|       |-- [01;34mjava[00m
-|       |   `-- [01;34morg[00m
-|       |       `-- [01;34mopenatom[00m
-|       |           `-- [01;34mspringcloud[00m
-|       |               `-- [01;34mentities[00m
+springcloud-api-commons
+|-- src
+|   •-- main
+|       |-- java
+|       |   •-- org
+|       |       •-- openatom
+|       |           •-- springcloud
+|       |               •-- entities
 |       |                   |-- Account.java
 |       |                   |-- CommonResult.java
 |       |                   |-- Order.java
 |       |                   |-- Payment.java
-|       |                   `-- Storage.java
-|       `-- [01;34mresources[00m
-|           `-- application.yml
-`-- tree.md
+|       |                   •-- Storage.java
+|       •-- resources
+|           •-- application.yml
+•-- pom.xml
 
-8 directories, 8 files
+8 directories, 7 files

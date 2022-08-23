@@ -1,27 +1,26 @@
-[01;34mspringcloud-config-apollo-loadbalance-openfeign-configuration-order80[00m
-|-- pom.xml
-|-- [01;34msrc[00m
-|   `-- [01;34mmain[00m
-|       |-- [01;34mjava[00m
-|       |   `-- [01;34morg[00m
-|       |       `-- [01;34mopenatom[00m
-|       |           `-- [01;34mspringcloud[00m
-|       |               |-- OrderServiceConsumerApolloLoadBalanceOpenFeignConfiguration80.java
-|       |               |-- [01;34mconfig[00m
-|       |               |   `-- OpenFeignConfig.java
-|       |               |-- [01;34mcontroller[00m
+springcloud-config-apollo-loadbalance-openfeign-configuration-order80
+|-- src
+|   •-- main
+|       |-- java
+|       |   •-- org
+|       |       •-- openatom
+|       |           •-- springcloud
+|       |               |-- config
+|       |               |   •-- OpenFeignConfig.java
+|       |               |-- controller
 |       |               |   |-- ApolloConfigController.java
 |       |               |   |-- OrderConsumerController.java
 |       |               |   |-- RestartApplicationController.java
-|       |               |   `-- SpringCloudServiceDiscoveryController.java
-|       |               |-- [01;34mlistener[00m
+|       |               |   •-- SpringCloudServiceDiscoveryController.java
+|       |               |-- listener
 |       |               |   |-- ApolloPropertiesChangedListener.java
-|       |               |   `-- AutomaticApolloWatcher.java
-|       |               `-- [01;34mservices[00m
-|       |                   `-- PaymentServiceOpenFeign.java
-|       `-- [01;34mresources[00m
+|       |               |   •-- AutomaticApolloWatcher.java
+|       |               |-- services
+|       |               |   •-- PaymentServiceOpenFeign.java
+|       |               •-- OrderServiceConsumerApolloLoadBalanceOpenFeignConfiguration80.java
+|       •-- resources
 |           |-- apollo-env.properties
-|           `-- application.yml
-`-- tree.md
+|           •-- application.yml
+•-- pom.xml
 
-11 directories, 13 files
+11 directories, 12 files
