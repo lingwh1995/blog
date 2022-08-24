@@ -14,7 +14,9 @@ icon: navigate
 
     - <a class="breadcrumb-link" href="springcloud-eureka-chapter-1.微服务简介.html">1.微服务简介</a>
 
-    - <a class="breadcrumb-link" href="springcloud-eureka-chapter-2.创建项目父工程和公共模块.html">2.创建项目父工程和公共模块</a>
+    - <a class="breadcrumb-link" href="springcloud-eureka-chapter-2.搭建项目基础设施.html">2.搭建项目基础设施</a>
 
     - <a class="breadcrumb-link" href="springcloud-eureka-chapter-3.使用Eureka作为注册中心.html">3.使用Eureka作为注册中心</a>
+
+    - <a class="breadcrumb-link" href="springcloud-eureka-chapter-4.使用Eureka作为注册中心.html">4.使用Eureka作为注册中心</a>
 

@@ -1,5 +1,6 @@
 springcloud-eureka
-|   •-- Jenkinsfile
+|   |-- Jenkinsfile
+|   •-- payment.sql
 |-- springcloud-api-commons
 |   |-- src
 |   |   •-- main

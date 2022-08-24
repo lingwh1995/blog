@@ -26,13 +26,13 @@ https://martinfowler.com/articles/microservices.html
 
 ## 1.5.微服务架构图
 ::: center
-<img src="../images/microservice_architecture.png"  width="100%" height="800rem" />
+<img src="../images/microservice_architecture.png"  width="100%"/>
 :::
 
 ## 1.6.CAP中占据情况
 	Eureka在CAP中占据AP
 ::: center
-<img src="../images/cap.png"  width="80%" height="650rem" />
+<img src="../images/cap.png"  width="100%"/>
 :::
 
 ## 1.7.微服务架构落地实现方案

@@ -7,7 +7,8 @@ category:
   - springcloud
 star: false
 tag:
-date: 
+  - 微服务入门
+date: 2020-03-26
 head:
   - - meta
     - name: keywords
@@ -31,7 +32,7 @@ https://spring.io/projects/spring-cloud-netflix
 
 	EUREKA架构图
 ::: center
-<img src="../images/eureka_architecture.png"  width="80%" height="400rem" />
+<img src="../images/eureka_architecture.png"  width="80%"/>
 :::
 
 	Eureka的基础组件
@@ -52,34 +53,145 @@ https://spring.io/projects/spring-cloud-netflix
 	在默认的情况下,当Eureka客户端连续90秒(3个续约周期)没有向Eureka服务器发送服务续约,即心跳,Eureka 服务器会将该服务实例从服务注册列表删除,即服务剔除。
 
 ## 3.4.单节点版EUREKA注册中心搭建
-### 3.4.1.模块简介
-    本模块会搭建一个单节点版的Eureka注册中心
-### 3.4.2.模块目录结构
-    在下面的内容中,涉及到具体的文件(包括.java文件、.xml文件、.yml文件等)不会告知具体的路径,具体的路径请根据模块目录结构自行创建,
+### 3.4.1.章节内容简介
+    本章节会展示如何搭建一个单节点版的Eureka注册中心
+### 3.4.2.模块简介
+    单机版Eureka注册中心    
+### 3.4.3.模块目录结构
 ```
 @include(../project_springcloud-eureka/springcloud-register-center-single-node7001/tree.md)
 ```
-### 3.4.3.创建模块
-	在父工程(springcloud-eureka)中创建一个名为springcloud-register-center-single-node7001的maven模块
-### 3.4.4.编写模块pom.xml
+### 3.4.4.创建模块
+	在父工程(springcloud-eureka)中创建一个名为springcloud-register-center-single-node7001的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
+### 3.4.5.编写模块pom.xml
 ```xml
 @include(../project_springcloud-eureka/springcloud-register-center-single-node7001/pom.xml)
 ```
-### 3.4.5.编写模块application.yml
+### 3.4.6.编写模块application.yml
 ```yml
 @include(../project_springcloud-eureka/springcloud-register-center-single-node7001/src/main/resources/application.yml)
 ```
-### 3.4.6.编写主启动类
+### 3.4.7.编写模块主启动类
 ```java
 @include(../project_springcloud-eureka/springcloud-register-center-single-node7001/src/main/java/org.openatom.springcloud/RegisterCcenterSingleNode7001.java)
 ```
-### 3.4.7.测试模块
+### 3.4.8.测试模块
     编写完成后,等maven依赖导入成功,运行主启动类,在浏览器中访问
 ```
-http://localhost:7001
+http://localhost:7001/
 ```
     看到如下界面代表搭建成功
 ::: center
-<img src="../images/eureka7001.png"  width="100%" height="800rem" />
+<img src="../images/eureka7001.png"  width="100%"/>
 :::
+
 ## 3.5.集群(高可用)版EUREKA注册中心搭建
+### 3.5.1.章节内容简介
+    本章节会展示如何搭建一个集群(高可用)版的Eureka注册中心,共有三个节点,Eureka注册中心集群的原理是多个Eureka Server之间相互注册,从而组成一个集群。
+### 3.5.2.搭建Eureka集群中第一个节点
+    模块目录结构
+```
+@include(../project_springcloud-eureka/springcloud-register-center-cluster-node7002/tree.md)
+```
+    
+    创建模块
+	在父工程(springcloud-eureka)中创建一个名为springcloud-register-center-cluster-node7002的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
+
+    编写模块pom.xml
+```xml
+@include(../project_springcloud-eureka/springcloud-register-center-cluster-node7002/pom.xml)
+```
+
+    编写模块application.yml
+```yml
+@include(../project_springcloud-eureka/springcloud-register-center-cluster-node7002/src/main/resources/application.yml)
+```
+
+    编写模块主启动类
+```java
+@include(../project_springcloud-eureka/springcloud-register-center-cluster-node7002/src/main/java/org/openatom/springcloud/RegisterCcenterClusterNode7002.java)
+```
+
+### 3.5.3.搭建Eureka集群中第二个节点
+    模块目录结构
+```
+@include(../project_springcloud-eureka/springcloud-register-center-cluster-node7003/tree.md)
+```
+
+    创建模块
+	在父工程(springcloud-eureka)中创建一个名为springcloud-register-center-cluster-node7003的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
+
+    编写模块pom.xml
+```xml
+@include(../project_springcloud-eureka/springcloud-register-center-cluster-node7003/pom.xml)
+```
+    
+    编写模块application.yml
+```yml
+@include(../project_springcloud-eureka/springcloud-register-center-cluster-node7003/src/main/resources/application.yml)
+```
+
+    编写模块主启动类
+```java
+@include(../project_springcloud-eureka/springcloud-register-center-cluster-node7003/src/main/java/org/openatom/springcloud/RegisterCcenterClusterNode7003.java)
+```
+
+### 3.5.4.搭建Eureka集群中第三个节点
+    模块目录结构
+```
+@include(../project_springcloud-eureka/springcloud-register-center-cluster-node7004/tree.md)
+```
+
+    创建模块
+	在父工程(springcloud-eureka)中创建一个名为springcloud-register-center-cluster-node7004的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
+
+    编写模块pom.xml
+```xml
+@include(../project_springcloud-eureka/springcloud-register-center-cluster-node7004/pom.xml)
+```
+
+    编写模块application.yml
+```yml
+@include(../project_springcloud-eureka/springcloud-register-center-cluster-node7004/src/main/resources/application.yml)
+```
+
+    编写模块主启动类
+```java
+@include(../project_springcloud-eureka/springcloud-register-center-cluster-node7004/src/main/java/org/openatom/springcloud/RegisterCcenterClusterNode7004.java)
+```
+
+### 3.5.5.配置host
+    修改host文件,C:\Windows\System32\drivers\etc\host
+    添加如下内容:
+    127.0.0.1		eureka7002
+    127.0.0.1		eureka7003
+    127.0.0.1		eureka7004
+    
+### 3.5.6.测试集群模块
+    测试集群中的第一个节点(7002),浏览器访问
+```
+http://eureka7002:7002/
+```
+
+::: center
+<img src="../images/eureka7002.png"  width="100%"/>
+:::
+
+    测试集群中的第二个节点(7003),浏览器访问
+```
+http://eureka7003:7003/
+```
+::: center
+<img src="../images/eureka7003.png"  width="100%"/>
+:::
+
+    测试集群中的第三个节点(7004),浏览器访问
+```
+http://eureka7004:7004/
+```
+::: center
+<img src="../images/eureka7004.png"  width="100%"/>
+:::
+
+    可以看到,在每个节点和都和其他两个节点相互注册,这代表集群搭建成功
+

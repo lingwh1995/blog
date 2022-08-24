@@ -1,2 +1,3 @@
 script
-•-- Jenkinsfile
+|-- Jenkinsfile
+•-- payment.sql

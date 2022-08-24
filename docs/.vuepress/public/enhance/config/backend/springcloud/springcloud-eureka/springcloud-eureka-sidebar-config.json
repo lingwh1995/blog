@@ -23,14 +23,19 @@
                       link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-1.微服务简介.md",
                   },
                   {
-                      text: "2.创建项目父工程和公共模块",
+                      text: "2.搭建项目基础设施",
                       icon: "article",
-                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-2.创建项目父工程和公共模块.md",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-2.搭建项目基础设施.md",
                   },
                   {
                       text: "3.使用Eureka作为注册中心",
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-3.使用Eureka作为注册中心.md",
+                  },
+                  {
+                      text: "4.使用Eureka作为注册中心",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-4.使用Eureka作为注册中心.md",
                   },
               ]
           },
@@ -50,7 +55,7 @@
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#1.",
                   },
                   {
-                      text: "2.创建项目父工程和公共模块",
+                      text: "2.搭建项目基础设施",
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#2.",
                   },
@@ -58,6 +63,11 @@
                       text: "3.使用Eureka作为注册中心",
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#3.",
+                  },
+                  {
+                      text: "4.使用Eureka作为注册中心",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#4.",
                   },
               ]
           },

@@ -23,7 +23,15 @@ icon: navigate
 
                 - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/eureka_architecture.png">eureka_architecture.png</a>
 
+                - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/eureka_architecture1.png">eureka_architecture1.png</a>
+
                 - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/eureka7001.png">eureka7001.png</a>
+
+                - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/eureka7002.png">eureka7002.png</a>
+
+                - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/eureka7003.png">eureka7003.png</a>
+
+                - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/eureka7004.png">eureka7004.png</a>
 
                 - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/microservice_architecture.png">microservice_architecture.png</a>
 
@@ -31,8 +39,10 @@ icon: navigate
 
                     - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings//springcloud-eureka-chapter-1.微服务简介.html">1.微服务简介</a>
 
-                    - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings//springcloud-eureka-chapter-2.创建项目父工程和公共模块.html">2.创建项目父工程和公共模块</a>
+                    - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings//springcloud-eureka-chapter-2.搭建项目基础设施.html">2.搭建项目基础设施</a>
 
                     - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings//springcloud-eureka-chapter-3.使用Eureka作为注册中心.html">3.使用Eureka作为注册中心</a>
+
+                    - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings//springcloud-eureka-chapter-4.使用Eureka作为注册中心.html">4.使用Eureka作为注册中心</a>
 
             - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/springcloud-eureka.html#intro">章节内容合集</a>
