@@ -35,23 +35,23 @@ export default navbar([
         children: [
           {
             text: "springcloud-eureka",
-            icon: "cache",
-            link: "/blogs/backend/springcloud/springcloud-eureka.md",
+            icon: "cloud",
+            link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-0.博客内容介绍.md",
           },
           {
             text: "springcloud-zookeeper",
-            icon: "cache",
-            link: "/backend/springcloud/article/article6",
+            icon: "cloud",
+            link: "/blogs/backend/springcloud/springcloud-zookeeper/shardings/springcloud-zookeeper-chapter-0.博客内容介绍.md",
           },
           {
             text: "springcloud-consul",
-            icon: "cache",
-            link: "/backend/springcloud/article/article6",
+            icon: "cloud",
+            link: "/blogs/backend/springcloud/springcloud-consul/shardings/springcloud-consul-chapter-0.博客内容介绍.md",
           },
           {
             text: "springcloud-alibaba",
-            icon: "cache",
-            link: "/backend/springcloud/article/article6",
+            icon: "cloud",
+            link: "/blogs/backend/springcloud/springcloud-alibaba/shardings/springcloud-alibaba-chapter-0.博客内容介绍.md",
           }
         ],
       }
