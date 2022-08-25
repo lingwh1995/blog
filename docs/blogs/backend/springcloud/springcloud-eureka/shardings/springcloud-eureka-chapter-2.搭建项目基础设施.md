@@ -18,8 +18,12 @@ head:
 # 2.搭建项目基础设施
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter2.md)
 ## 2.3.创建项目父工程
-	在idea中创建一个名为springcloud-eureka的maven工程,创建完成后打开该工程,删除src文件夹,编辑pom.xml文件,添加如下内容,pom.xml中配置主要包括两部分内容,第一是对子模块依赖的jar包和使用到的插件的版本的统一规定,第二是规定了四种不同的环境,分别是: 1.开发环境(dev) 2.测试环境(test) 3.生产环境(prod) 4.rancher测试专用环境(rancher),关于这四种环境的详细内容会在本博客的最后一部分进行详细解析说明,pom.xml内容如下:
-
+### 2.3.1.创建父工程
+	在idea中创建一个名为springcloud-eureka的maven工程,创建完成后打开该工程,删除src文件夹
+### 2.3.2.编写父工程pom.xml
+    pom.xml中配置主要包括两部分内容,第一是对子模块依赖的jar包和使用到的插件的版本的统一规定,第二是规定了四种不同的环境,分别是: 1.开发环境(dev) 2.测试环境(test) 3.生产环境(prod) 4.rancher测试专用环境(rancher),关于这四种环境的详细内容会在本博客的最后一部分进行详细解析说明
+    
+    pom.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -277,7 +281,7 @@ head:
 ```xml
 @include(../project_springcloud-eureka/springcloud-api-commons/pom.xml)
 ```
-### 2.4.3.编写模块中实体类
+### 2.4.4.编写模块中实体类
     Payment.java
 ```java
 @include(../project_springcloud-eureka/springcloud-api-commons//src/main/java/org/openatom/springcloud/entities/Payment.java)
@@ -286,8 +290,8 @@ head:
 ## 2.5.准备项目需要的数据库
 ### 2.5.1.安装mysql数据库
     详细参考
-<a href="https://lingwh1995.github.io/blogs/environment/centos/centos7/shardings/centos7-chapter-3.%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html#_3-5-%E5%AE%89%E8%A3%85mysql">安装mysql</a>
-<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html#_3-5-%E5%AE%89%E8%A3%85mysql">安装mysql1</a>
+<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html#_3-5-%E5%AE%89%E8%A3%85mysql" target="_blank">安装mysql</a>
+<a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html#_3-5-%E5%AE%89%E8%A3%85mysql" target="_blank">安装mysql-pure</a>
 
 ### 2.5.2.创建项目需要的数据库
     导入数据库脚本

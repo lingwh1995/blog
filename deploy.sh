@@ -29,11 +29,11 @@ function executeInitScript() {
 }
 
 #获取纯模式启动状态
-PLUGIN_ENABLE_STATE=( $( parsePluginIni plugin-003 enable) )
+PURE_MODE_PLUGIN_ENABLE_STATE=( $( parsePluginIni plugin-003 enable) )
 
 #开启替换RepoLink组件为Pure组件
 function beforeBuildAndDeploy() {
-    if [ $PLUGIN_ENABLE_STATE == "true" ]
+    if [ $PURE_MODE_PLUGIN_ENABLE_STATE == "true" ]
     then
         #放开将RepoLink组件为Pure组件的注释
         sed -i 's#/\*\(.@theme-hope/module/navbar/components/RepoLink.*,\)\*/#\1#g' docs/.vuepress/config.ts
@@ -112,7 +112,7 @@ function deployNormalCI() {
 
 #在本地以 纯净模式发布
 function deployPureLocalhost() {
-    if [ $PLUGIN_ENABLE_STATE == "true" ]
+    if [ $PURE_MODE_PLUGIN_ENABLE_STATE == "true" ]
     then
         echo '开始执行以pure模式推送到github.................................................'
         #修改配置文件
@@ -143,7 +143,7 @@ function deployPureLocalhost() {
 
 #持续集成以 纯净模式发布
 function deployPureCI() {
-    if [ $PLUGIN_ENABLE_STATE == "true" ]
+    if [ $PURE_MODE_PLUGIN_ENABLE_STATE == "true" ]
     then
         echo '开始执行以pure模式推送到github.................................................'
         #修改配置文件
@@ -173,7 +173,7 @@ function deployPureCI() {
 }
 
 function afterBuildAndDeploy() {
-    if [ $PLUGIN_ENABLE_STATE == "true" ]
+    if [ $PURE_MODE_PLUGIN_ENABLE_STATE == "true" ]
     then
         #注释掉替换RepoLink组件为Pure组件的相关代码
         sed -i 's#\(.@theme-hope/module/navbar/components/RepoLink.*,\)#/*\1*/#g' docs/.vuepress/config.ts
