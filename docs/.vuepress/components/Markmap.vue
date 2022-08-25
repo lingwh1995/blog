@@ -9,6 +9,7 @@
         scrolling="No"
         leftmargin="0"
         topmargin="0"
+        style="background-color: #E3EAF2;border-radius:6px;"
       />
     </div>
 

@@ -345,9 +345,19 @@ p, ul, ol {
     margin: 0 0;
     border-radius: 6px;
 }
+.imgbg-customer {
+    background-color: #E3EAF2;
+    line-height: 100%;
+    font-size: 0rem;
+    padding: 3% 0rem !important;
+    border-radius: 6px;
+}
+.imgbg-customer img {
+    border-radius: 6px;
+}
 /*黑暗模式开始----------------------------------------------------------------------*/
 html[data-theme=dark] .theme-hope-content pre {
-    background-color: #F5DEB3 !important;
+    background-color: #F5F5FA !important;
     color: #000000;
 }
 html[data-theme=dark] .theme-hope-content pre[class*=language-] {
