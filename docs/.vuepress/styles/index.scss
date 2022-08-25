@@ -333,23 +333,32 @@ p, ul, ol {
     background: var(--theme-color);
 }
 /**博客正文上边距*/
+/*
 .theme-hope-content pre {
-    padding-top: 2rem;
+    //padding-top: 2rem;
+}*/
+.theme-hope-content pre, .theme-hope-content pre[class*=language-] {
+    margin: 0;
 }
-.theme-hope-content pre, .theme-hope-content pre[class*=language-] > code {
+/*
+.theme-hope-content pre[class*=language-] {
+    padding-bottom: 0;
+    padding-top: rem;
+}*/
+.theme-hope-content pre, .theme-hope-content pre[class*=language-] code {
     white-space: pre-wrap;
     word-wrap: break-word;
     background: #F5F5FA;
-    /*background: #F6F8FA;*/
     overflow: auto;
     margin: 0 0;
     border-radius: 6px;
 }
+
 .imgbg-customer {
     background-color: #E3EAF2;
     line-height: 100%;
     font-size: 0rem;
-    padding: 3% 0rem !important;
+    padding: 0 0 !important;
     border-radius: 6px;
 }
 .imgbg-customer img {

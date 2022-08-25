@@ -270,4 +270,8 @@ export default hopeTheme({
   activeHeaderLinks: true,
   //切换页面时的进度条
   nprogress: true,
+  //是否显示代码块的右上角中的语言类型
+  demo: true,
+  //是否开启代码高亮
+  prismjs: true
 });
