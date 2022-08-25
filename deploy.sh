@@ -28,6 +28,60 @@ function executeInitScript() {
     bash ./init.sh
 }
 
+#替换md文件中引用的超连接的值为纯模式中正确的href值
+function generateHrefValueForPure() {
+    #获取$ENHANCE_BOOT_PATH/中以boot-xxx.ini格式命名的文件总共有多少个,每个配置文件对应一个xxx.md文件
+    BOOT_FILE_COUNTS=`ls $ENHANCE_BOOT_PATH/ | grep '^boot-.*\.ini$' | wc -w`
+    echo '引导文件的总数目: '$BOOT_FILE_COUNTS
+
+    for((a=1;a<=$BOOT_FILE_COUNTS;a++))
+    do
+        #从bootstrap.ini中获取xxx.md的enhance状态
+        ENHANCE_STATE=( $( parseBootstrapIni markdown-$a enhance) )
+        #如果xxx.md启用了enhance功能,则继续执行下一步
+        if [ $ENHANCE_STATE == "true" ]
+        then
+            #获取xxx.md文件的名称
+            MD_FILE_NAME=( $( parseBootstrapIni markdown-$a fileName) )
+            #获取xx.md文件的相对路径
+            MD_FILE_RELATIVE_PATH=( $( parseBootstrapIni markdown-$a relativePath) )
+            #获取xxx.md文件引用的代码的项目名称
+            INCLUDE_CODE_PROJECT_NAME=( $( parseBootstrapIni markdown-$a includeCodeProjectName) )
+            #修改xxx.md中的href的值
+            sed -i 's#\(.*<a.*href="\).*/blogs#\1/pure/blogs#g' docs/blogs/$MD_FILE_RELATIVE_PATH/$MD_FILE_NAME.md
+            #修改所有章节分片中href的值
+            grep 'chapter' -rl docs/blogs/$MD_FILE_RELATIVE_PATH/shardings/*-chapter-*.md | xargs sed -i 's#\(.*<a.*href="\).*/blogs#\1/pure/blogs#g'
+        fi
+    done
+}
+
+#替换md文件中引用的超连接的值为正确的值
+function generateHrefValueForNormal() {
+    #获取$ENHANCE_BOOT_PATH/中以boot-xxx.ini格式命名的文件总共有多少个,每个配置文件对应一个xxx.md文件
+    BOOT_FILE_COUNTS=`ls $ENHANCE_BOOT_PATH/ | grep '^boot-.*\.ini$' | wc -w`
+    echo '引导文件的总数目: '$BOOT_FILE_COUNTS
+
+    for((a=1;a<=$BOOT_FILE_COUNTS;a++))
+    do
+        #从bootstrap.ini中获取xxx.md的enhance状态
+        ENHANCE_STATE=( $( parseBootstrapIni markdown-$a enhance) )
+        #如果xxx.md启用了enhance功能,则继续执行下一步
+        if [ $ENHANCE_STATE == "true" ]
+        then
+            #获取xxx.md文件的名称
+            MD_FILE_NAME=( $( parseBootstrapIni markdown-$a fileName) )
+            #获取xx.md文件的相对路径
+            MD_FILE_RELATIVE_PATH=( $( parseBootstrapIni markdown-$a relativePath) )
+            #获取xxx.md文件引用的代码的项目名称
+            INCLUDE_CODE_PROJECT_NAME=( $( parseBootstrapIni markdown-$a includeCodeProjectName) )
+            #修改xxx.md中的href的值
+            sed -i 's#\(.*<a.*href="\).*/blogs#\1/blogs#g' docs/blogs/$MD_FILE_RELATIVE_PATH/$MD_FILE_NAME.md
+            #修改所有章节分片中href的值
+            grep 'chapter' -rl docs/blogs/$MD_FILE_RELATIVE_PATH/shardings/*-chapter-*.md | xargs sed -i 's#\(.*<a.*href="\)/blogs#\1/blogs#g'
+        fi
+    done
+}
+
 #获取纯模式启动状态
 PURE_MODE_PLUGIN_ENABLE_STATE=( $( parsePluginIni plugin-003 enable) )
 
@@ -67,6 +121,9 @@ function deployNormalLocalhost() {
     sed -i 's/short_name: "此生挚爱万宝路的个人博客.*"/short_name: "此生挚爱万宝路的个人博客"/' docs/.vuepress/theme.ts
     echo '完成执行修改配置文件操作....................'
 
+    #替换所有的超链接
+    generateHrefValueForNormal
+    
     #执行构建操作
     echo '开始执行构建操作...........................'
     build
@@ -94,6 +151,9 @@ function deployNormalCI() {
     sed -i 's/name: "个人博客.*"/name: "个人博客"/' docs/.vuepress/theme.ts
     sed -i 's/short_name: "此生挚爱万宝路的个人博客.*"/short_name: "此生挚爱万宝路的个人博客"/' docs/.vuepress/theme.ts
     echo '完成执行修改配置文件操作....................'
+
+    #替换所有的超链接
+    generateHrefValueForNormal
 
     #执行构建操作
     echo '开始执行构建操作...........................'
@@ -125,6 +185,9 @@ function deployPureLocalhost() {
         sed -i 's/short_name: "此生挚爱万宝路的个人博客.*"/short_name: "此生挚爱万宝路的个人博客(纯模式)"/' docs/.vuepress/theme.ts
         echo '完成执行修改配置文件操作....................'
 
+        #替换所有的超链接
+        generateHrefValueForPure
+
         #执行构建操作
         echo '开始执行构建操作...........................'
         build
@@ -155,6 +218,9 @@ function deployPureCI() {
         sed -i 's/name: "个人博客.*"/name: "个人博客(纯模式)"/' docs/.vuepress/theme.ts
         sed -i 's/short_name: "此生挚爱万宝路的个人博客.*"/short_name: "此生挚爱万宝路的个人博客(纯模式)"/' docs/.vuepress/theme.ts
         echo '完成执行修改配置文件操作....................'
+
+        #替换所有的超链接
+        generateHrefValueForPure
 
         #执行构建操作
         echo '开始执行构建操作...........................'
