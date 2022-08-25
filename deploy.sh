@@ -77,7 +77,7 @@ function generateHrefValueForNormal() {
             #修改xxx.md中的href的值
             sed -i 's#\(.*<a.*href="\).*/blogs#\1/blogs#g' docs/blogs/$MD_FILE_RELATIVE_PATH/$MD_FILE_NAME.md
             #修改所有章节分片中href的值
-            grep 'chapter' -rl docs/blogs/$MD_FILE_RELATIVE_PATH/shardings/*-chapter-*.md | xargs sed -i 's#\(.*<a.*href="\)/blogs#\1/blogs#g'
+            grep 'chapter' -rl docs/blogs/$MD_FILE_RELATIVE_PATH/shardings/*-chapter-*.md | xargs sed -i 's#\(.*<a.*href="\).*/blogs#\1/blogs#g'
         fi
     done
 }
