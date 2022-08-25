@@ -1,6 +1,6 @@
 ---
 title: 基于Eureka搭建Springcloud微服务-博客内容介绍
-description: 本篇博客涉及主要内容有：微服务简介,搭建项目基础设施,使用Eureka作为注册中心,使用Eureka作为注册中心,具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+description: 本篇博客涉及主要内容有：微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -12,7 +12,7 @@ date: 2020-01-01
 head:
   - - meta
     - name: keywords
-      content: 微服务简介,搭建项目基础设施,使用Eureka作为注册中心,使用Eureka作为注册中心,
+      content: 微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,
 ---
 <Banner localtion="/banner/particles/particles.html"/>
 
@@ -22,7 +22,7 @@ head:
      1.微服务简介
      2.搭建项目基础设施
      3.使用Eureka作为注册中心
-     4.使用Eureka作为注册中心
+     4.搭建第一个微服务应用
 	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 ## 博客内容大纲
 

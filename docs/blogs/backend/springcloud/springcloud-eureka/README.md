@@ -19,8 +19,6 @@ icon: navigate
 
         - <a class="breadcrumb-link" href="shardings/eureka_architecture.png">eureka_architecture.png</a>
 
-        - <a class="breadcrumb-link" href="shardings/eureka_architecture1.png">eureka_architecture1.png</a>
-
         - <a class="breadcrumb-link" href="shardings/eureka7001.png">eureka7001.png</a>
 
         - <a class="breadcrumb-link" href="shardings/eureka7002.png">eureka7002.png</a>
@@ -39,6 +37,6 @@ icon: navigate
 
             - <a class="breadcrumb-link" href="shardings//springcloud-eureka-chapter-3.使用Eureka作为注册中心.html">3.使用Eureka作为注册中心</a>
 
-            - <a class="breadcrumb-link" href="shardings//springcloud-eureka-chapter-4.使用Eureka作为注册中心.html">4.使用Eureka作为注册中心</a>
+            - <a class="breadcrumb-link" href="shardings//springcloud-eureka-chapter-4.搭建第一个微服务应用.html">4.搭建第一个微服务应用</a>
 
     - <a class="breadcrumb-link" href="springcloud-eureka.html#intro">章节内容合集</a>

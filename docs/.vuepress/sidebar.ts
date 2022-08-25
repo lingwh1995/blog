@@ -181,9 +181,9 @@ export default sidebar([
                       link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-3.使用Eureka作为注册中心.md",
                   },
                   {
-                      text: "4.使用Eureka作为注册中心",
+                      text: "4.搭建第一个微服务应用",
                       icon: "article",
-                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-4.使用Eureka作为注册中心.md",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-4.搭建第一个微服务应用.md",
                   },
               ]
           },
@@ -213,7 +213,7 @@ export default sidebar([
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#3.",
                   },
                   {
-                      text: "4.使用Eureka作为注册中心",
+                      text: "4.搭建第一个微服务应用",
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#4.",
                   },

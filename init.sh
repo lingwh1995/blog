@@ -296,7 +296,11 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     #根据二级和三级目录大纲md文件创建对应的目录大纲html文件
     #--no-open：生成大纲后不打开，--no-toolbar：生成的目录大纲html文件不包含工具条
     markmap --no-open $2/$1-outline2.md -o $3/$1-outline2.html
+    #给$3/$1-outline2.html增加样式
+    sed -i '/height: 100vh;/a\  font-weight: 400;' $3/$1-outline2.html
     markmap --no-open $2/$1-outline3.md -o $3/$1-outline3.html
+    #给$3/$1-outline3.html增加样式
+    sed -i '/height: 100vh;/a\  font-weight: 400;' $3/$1-outline3.html
     echo '完成为'$1'.md生成二级和三级目录大纲markmap文件，并输出到指定文件夹中............'
 
     echo '开始删除'$1'.md生成的二级和三级目录大纲md文件......'
@@ -328,6 +332,8 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
         #根据二级和三级目录大纲md文件创建对应的目录大纲html文件
         #--no-open：生成大纲后不打开，--no-toolbar：生成的目录大纲html文件不包含工具条
         markmap --no-open $2/$1-outline$4-chapter$i.md  -o $3/chapter/$1-outline$4-chapter$i.html
+        #给$3/chapter/$1-outline$4-chapter$i.html加样式
+        sed -i '/height: 100vh;/a\  font-weight: 400;' $3/chapter/$1-outline$4-chapter$i.html
         echo '完成为'$1'.md第'$i'章节生成目录大纲markmap文件，markmap文件标题深度：'$4'............'
     done
 

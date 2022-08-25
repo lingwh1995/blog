@@ -25,6 +25,9 @@ function createTreeMDForChildDir() {
         #获取开始删除的行数
         START_LINE_NUMBER=$[$END_LINE_NUMBER-1]
         sed -i ''"$START_LINE_NUMBER"','"$END_LINE_NUMBER"'d' $fileName/tree.md
+        #删除md文本中最后一个字符，就是结尾符
+        head -c -1 $fileName/tree.md > $fileName/tree.md.bak
+        mv $fileName/tree.md.bak $fileName/tree.md
     fi
     done
 }
@@ -34,11 +37,6 @@ function createTreeMDForChildDir() {
 function createTreeMDForCurrentDir(){
     #创建新的tree.md文件
     tree -I 'note|tree.md|createTreeMD.sh|tree.md' --dirsfirst > tree.md
-}
-
-
-#替换当前目录下tree.md第一行.为当为文件夹名称
-function formatTreeMD(){
     #替换当前文件夹下tree.md文件的第一行的.为当前文件夹名称
     sed -i '1,/./c\'"$1"'' tree.md
     #替换`为•
@@ -48,6 +46,9 @@ function formatTreeMD(){
     #获取开始删除的行数
     START_LINE_NUMBER=$[$END_LINE_NUMBER-1]
     sed -i ''"$START_LINE_NUMBER"','"$END_LINE_NUMBER"'d' tree.md
+    #删除md文本中最后一个字符，就是结尾符
+    head -c -1 tree.md > tree.md.bak
+    mv tree.md.bak tree.md
 }
 
 
@@ -62,8 +63,7 @@ function afterCreateTreeMD() {
 function createTreeMD(){
     beforeCreateTreeMD
     createTreeMDForChildDir
-    createTreeMDForCurrentDir
-    formatTreeMD $1
+    createTreeMDForCurrentDir $1
     afterCreateTreeMD
 }
 

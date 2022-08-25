@@ -32,6 +32,8 @@ https://spring.io/projects/spring-cloud-netflix
 
 	EUREKA架构图
 ::: center
+<div class="imgbg-customer">
+</div>
 <img src="../images/eureka_architecture.png"  width="80%"/>
 :::
 
@@ -56,7 +58,7 @@ https://spring.io/projects/spring-cloud-netflix
 ### 3.4.1.章节内容简介
     本章节会展示如何搭建一个单节点版的Eureka注册中心
 ### 3.4.2.模块简介
-    单机版Eureka注册中心    
+    单机版Eureka注册中心,启动端口: 7001
 ### 3.4.3.模块目录结构
 ```
 @include(../project_springcloud-eureka/springcloud-register-center-single-node7001/tree.md)
@@ -73,7 +75,7 @@ https://spring.io/projects/spring-cloud-netflix
 ```
 ### 3.4.7.编写模块主启动类
 ```java
-@include(../project_springcloud-eureka/springcloud-register-center-single-node7001/src/main/java/org.openatom.springcloud/RegisterCcenterSingleNode7001.java)
+@include(../project_springcloud-eureka/springcloud-register-center-single-node7001/src/main/java/org/openatom/springcloud/RegisterCcenterSingleNode7001.java)
 ```
 ### 3.4.8.测试模块
     编写完成后,等maven依赖导入成功,运行主启动类,在浏览器中访问
@@ -82,6 +84,8 @@ http://localhost:7001/
 ```
     看到如下界面代表搭建成功
 ::: center
+<div class="imgbg-customer">
+</div>
 <img src="../images/eureka7001.png"  width="100%"/>
 :::
 
@@ -89,6 +93,9 @@ http://localhost:7001/
 ### 3.5.1.章节内容简介
     本章节会展示如何搭建一个集群(高可用)版的Eureka注册中心,共有三个节点,Eureka注册中心集群的原理是多个Eureka Server之间相互注册,从而组成一个集群。
 ### 3.5.2.搭建Eureka集群中第一个节点
+    模块简介
+    集群(高可用)版Eureka注册中心中第一个节点,启动端口: 7002
+    
     模块目录结构
 ```
 @include(../project_springcloud-eureka/springcloud-register-center-cluster-node7002/tree.md)
@@ -113,6 +120,9 @@ http://localhost:7001/
 ```
 
 ### 3.5.3.搭建Eureka集群中第二个节点
+    模块简介
+    集群(高可用)版Eureka注册中心中第二个节点,启动端口: 7003
+
     模块目录结构
 ```
 @include(../project_springcloud-eureka/springcloud-register-center-cluster-node7003/tree.md)
@@ -137,6 +147,9 @@ http://localhost:7001/
 ```
 
 ### 3.5.4.搭建Eureka集群中第三个节点
+    模块简介
+    集群(高可用)版Eureka注册中心中第三个节点,启动端口: 7004
+
     模块目录结构
 ```
 @include(../project_springcloud-eureka/springcloud-register-center-cluster-node7004/tree.md)
@@ -174,6 +187,8 @@ http://eureka7002:7002/
 ```
 
 ::: center
+<div class="imgbg-customer">
+</div>
 <img src="../images/eureka7002.png"  width="100%"/>
 :::
 
@@ -182,6 +197,8 @@ http://eureka7002:7002/
 http://eureka7003:7003/
 ```
 ::: center
+<div class="imgbg-customer">
+</div>
 <img src="../images/eureka7003.png"  width="100%"/>
 :::
 
@@ -190,6 +207,8 @@ http://eureka7003:7003/
 http://eureka7004:7004/
 ```
 ::: center
+<div class="imgbg-customer">
+</div>
 <img src="../images/eureka7004.png"  width="100%"/>
 :::
 

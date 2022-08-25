@@ -17,7 +17,7 @@ icon: linux
 head:
   - - meta
     - name: keywords
-      content: 微服务简介,搭建项目基础设施,使用Eureka作为注册中心,使用Eureka作为注册中心,
+      content: 微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,
 ---
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/springcloud-eureka-guidance.md)
 
@@ -32,17 +32,17 @@ https://martinfowler.com/articles/microservices.html
 
 ## 1.5.微服务架构图
 ::: center
-<div class="imgbg-customer">   
-<img src="./images/cap.png"  width="50%"/>
+<div class="imgbg-customer">
 </div>
+<img src="./images/microservice_architecture.png"  width="100%"/>
 :::
 
 ## 1.6.CAP中占据情况
 	Eureka在CAP中占据AP
 ::: center
 <div class="imgbg-customer">
-<img src="./images/cap.png"  width="50%"/>
 </div>
+<img src="./images/cap.png"  width="100%"/>
 :::
 
 ## 1.7.微服务架构落地实现方案
@@ -320,8 +320,8 @@ https://martinfowler.com/articles/microservices.html
 ## 2.5.准备项目需要的数据库
 ### 2.5.1.安装mysql数据库
     详细参考
-    环境搭建->centos->在Centos7上搭建开发环境->按照章节阅读/章节内容合集->3.搭建基础开发环境->3.5.安装mysql
 <a href="https://lingwh1995.github.io/blogs/environment/centos/centos7/shardings/centos7-chapter-3.%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html#_3-5-%E5%AE%89%E8%A3%85mysql">安装mysql</a>
+<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html#_3-5-%E5%AE%89%E8%A3%85mysql">安装mysql1</a>
 
 ### 2.5.2.创建项目需要的数据库
     导入数据库脚本
@@ -346,6 +346,8 @@ https://spring.io/projects/spring-cloud-netflix
 
 	EUREKA架构图
 ::: center
+<div class="imgbg-customer">
+</div>
 <img src="./images/eureka_architecture.png"  width="80%"/>
 :::
 
@@ -370,7 +372,7 @@ https://spring.io/projects/spring-cloud-netflix
 ### 3.4.1.章节内容简介
     本章节会展示如何搭建一个单节点版的Eureka注册中心
 ### 3.4.2.模块简介
-    单机版Eureka注册中心    
+    单机版Eureka注册中心,启动端口: 7001
 ### 3.4.3.模块目录结构
 ```
 @include(./project_springcloud-eureka/springcloud-register-center-single-node7001/tree.md)
@@ -387,7 +389,7 @@ https://spring.io/projects/spring-cloud-netflix
 ```
 ### 3.4.7.编写模块主启动类
 ```java
-@include(./project_springcloud-eureka/springcloud-register-center-single-node7001/src/main/java/org.openatom.springcloud/RegisterCcenterSingleNode7001.java)
+@include(./project_springcloud-eureka/springcloud-register-center-single-node7001/src/main/java/org/openatom/springcloud/RegisterCcenterSingleNode7001.java)
 ```
 ### 3.4.8.测试模块
     编写完成后,等maven依赖导入成功,运行主启动类,在浏览器中访问
@@ -396,6 +398,8 @@ http://localhost:7001/
 ```
     看到如下界面代表搭建成功
 ::: center
+<div class="imgbg-customer">
+</div>
 <img src="./images/eureka7001.png"  width="100%"/>
 :::
 
@@ -403,6 +407,9 @@ http://localhost:7001/
 ### 3.5.1.章节内容简介
     本章节会展示如何搭建一个集群(高可用)版的Eureka注册中心,共有三个节点,Eureka注册中心集群的原理是多个Eureka Server之间相互注册,从而组成一个集群。
 ### 3.5.2.搭建Eureka集群中第一个节点
+    模块简介
+    集群(高可用)版Eureka注册中心中第一个节点,启动端口: 7002
+    
     模块目录结构
 ```
 @include(./project_springcloud-eureka/springcloud-register-center-cluster-node7002/tree.md)
@@ -427,6 +434,9 @@ http://localhost:7001/
 ```
 
 ### 3.5.3.搭建Eureka集群中第二个节点
+    模块简介
+    集群(高可用)版Eureka注册中心中第二个节点,启动端口: 7003
+
     模块目录结构
 ```
 @include(./project_springcloud-eureka/springcloud-register-center-cluster-node7003/tree.md)
@@ -451,6 +461,9 @@ http://localhost:7001/
 ```
 
 ### 3.5.4.搭建Eureka集群中第三个节点
+    模块简介
+    集群(高可用)版Eureka注册中心中第三个节点,启动端口: 7004
+
     模块目录结构
 ```
 @include(./project_springcloud-eureka/springcloud-register-center-cluster-node7004/tree.md)
@@ -488,6 +501,8 @@ http://eureka7002:7002/
 ```
 
 ::: center
+<div class="imgbg-customer">
+</div>
 <img src="./images/eureka7002.png"  width="100%"/>
 :::
 
@@ -496,6 +511,8 @@ http://eureka7002:7002/
 http://eureka7003:7003/
 ```
 ::: center
+<div class="imgbg-customer">
+</div>
 <img src="./images/eureka7003.png"  width="100%"/>
 :::
 
@@ -504,10 +521,124 @@ http://eureka7003:7003/
 http://eureka7004:7004/
 ```
 ::: center
+<div class="imgbg-customer">
+</div>
 <img src="./images/eureka7004.png"  width="100%"/>
 :::
 
     可以看到,在每个节点和都和其他两个节点相互注册,这代表集群搭建成功
 
-# 4.使用Eureka作为注册中心 {#4.}
+# 4.搭建第一个微服务应用 {#4.}
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter4.md)
+## 4.3.第一个微服务应用简介
+    第一个微服务应用由四部分组成,分别是注册中心(单节点)、服务消费者(单节点)、服务提供者(两个节点)、运行所需要的数据库环境,这里的注册中心使用单节点版注册中心,如果需要使用集群版注册中心,只需要在application.yml将defaultZone的配置切换为集群版配置即可,服务提供者第一个节点和第二个节点是除了端口和模块名称之外其他所有代码均是相同的,之所以要创建两个相同的模块是为了模拟生产环境中一个服务部署在多个节点的情况,这里为了查看日志方便,直接创建了两个相同的服务提供者模块。
+## 4.4.搭建服务提供者第一个节点
+### 4.4.1.模块简介
+    服务提供者第一个节点,启动端口: 8001
+### 4.4.2.模块目录结构
+```
+@include(./project_springcloud-eureka/springcloud-provider-cluster-node-payment8001/tree.md)
+```
+### 4.4.3.创建模块
+	在父工程(springcloud-eureka)中创建一个名为springcloud-provider-cluster-node-payment8001的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
+### 4.4.4.编写模块pom.xml
+```xml
+@include(./project_springcloud-eureka/springcloud-provider-cluster-node-payment8001/pom.xml)
+```
+### 4.4.5.编写模块application.yml
+```yml
+@include(./project_springcloud-eureka/springcloud-provider-cluster-node-payment8001/src/main/resources/application.yml)
+```
+### 4.4.6.编写模块Mybatis配置文件
+```xml
+@include(./project_springcloud-eureka/springcloud-provider-cluster-node-payment8001/src/main/resources/mapper/PaymentMapper.xml)
+```
+### 4.4.7.编写模块dao
+```java
+@include(./project_springcloud-eureka/springcloud-provider-cluster-node-payment8001/src/main/java//org/openatom/springcloud/dao/PaymentDao.java)
+```
+### 4.4.8.编写模块service
+```java
+@include(./project_springcloud-eureka/springcloud-provider-cluster-node-payment8001/src/main/java//org/openatom/springcloud/service/PaymentService.java)
+```
+### 4.4.9.编写模块service实现类
+```java
+@include(./project_springcloud-eureka/springcloud-provider-cluster-node-payment8001/src/main/java//org/openatom/springcloud/service/impl/PaymentServiceImpl.java)
+```
+### 4.4.10.编写模块controller
+```java
+@include(./project_springcloud-eureka/springcloud-provider-cluster-node-payment8001/src/main/java//org/openatom/springcloud/controller/PaymentController.java)
+```
+### 4.4.11.编写模块主启动类
+```java
+@include(./project_springcloud-eureka/springcloud-provider-cluster-node-payment8001/src/main/java//org/openatom/springcloud/PaymentServiceProviderClusterNode8001.java)
+```
+
+## 4.5.搭建服务提供者第二个节点
+### 4.5.1.模块简介
+    服务提供者第二个节点,启动端口: 8002
+### 4.5.2.模块目录结构
+```
+@include(./project_springcloud-eureka/springcloud-provider-cluster-node-payment8002/tree.md)
+```
+### 4.5.3.创建模块
+	在父工程(springcloud-eureka)中创建一个名为springcloud-provider-cluster-node-payment8002的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
+### 4.5.4.编写模块pom.xml
+```xml
+@include(./project_springcloud-eureka/springcloud-provider-cluster-node-payment8002/pom.xml)
+```
+### 4.5.5.编写模块application.yml
+```yml
+@include(./project_springcloud-eureka/springcloud-provider-cluster-node-payment8002/src/main/resources/application.yml)
+```
+### 4.5.6.编写模块Mybatis配置文件
+```xml
+@include(./project_springcloud-eureka/springcloud-provider-cluster-node-payment8002/src/main/resources/mapper/PaymentMapper.xml)
+```
+### 4.5.7.编写模块dao
+```java
+@include(./project_springcloud-eureka/springcloud-provider-cluster-node-payment8002/src/main/java//org/openatom/springcloud/dao/PaymentDao.java)
+```
+### 4.5.8.编写模块service
+```java
+@include(./project_springcloud-eureka/springcloud-provider-cluster-node-payment8002/src/main/java//org/openatom/springcloud/service/PaymentService.java)
+```
+### 4.5.9.编写模块service实现类
+```java
+@include(./project_springcloud-eureka/springcloud-provider-cluster-node-payment8002/src/main/java//org/openatom/springcloud/service/impl/PaymentServiceImpl.java)
+```
+### 4.5.10.编写模块controller
+```java
+@include(./project_springcloud-eureka/springcloud-provider-cluster-node-payment8002/src/main/java//org/openatom/springcloud/controller/PaymentController.java)
+```
+### 4.5.11.编写模块主启动类
+```java
+@include(./project_springcloud-eureka/springcloud-provider-cluster-node-payment8002/src/main/java//org/openatom/springcloud/PaymentServiceProviderClusterNode8002.java)
+```
+
+## 4.6.搭建服务消费者
+### 4.6.1.模块简介
+    服务消费者,启动端口: 80
+### 4.6.2.模块目录结构
+### 4.6.3.创建模块
+	在父工程(springcloud-eureka)中创建一个名为springcloud-consumer-loadbalance-default-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
+### 4.6.4.编写模块pom.xml
+```xml
+@include(./project_springcloud-eureka/springcloud-consumer-loadbalance-default-order80/pom.xml)
+```
+### 4.6.5.编写模块application.yml
+```yml
+@include(./project_springcloud-eureka/springcloud-consumer-loadbalance-default-order80/src/main/resources/application.yml)
+```
+### 4.6.6.编写模块config
+```java
+@include(./project_springcloud-eureka/springcloud-consumer-loadbalance-default-order80/src/main/java/org/openatom/springcloud/config/ApplicationContextConfig.java)
+```
+### 4.6.7.编写模块controller
+```java
+@include(./project_springcloud-eureka/springcloud-consumer-loadbalance-default-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java)
+```
+### 4.6.8.编写模块主启动类
+```java
+@include(./project_springcloud-eureka/springcloud-consumer-loadbalance-default-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceDefault80.java)
+```
