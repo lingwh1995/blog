@@ -115,15 +115,6 @@ p, ul, ol {
         font-size: 1.1rem;
         font-weight: 500;
     }
-    .theme-hope-content pre, .theme-hope-content pre[class*=language-] {
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        background: #F6F8FA;
-        overflow: auto;
-        margin: 0 0;
-        padding: 1rem;
-        border-radius: 6px;
-    }
     .theme-container .sidebar-links .sidebar-sub-headers {
         display: none;
     }
@@ -188,15 +179,6 @@ p, ul, ol {
     .theme-hope-content {
         font-size: 1.1rem;
         font-weight: 500;
-    }
-    .theme-hope-content pre, .theme-hope-content pre[class*=language-] {
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        background: #F6F8FA;
-        overflow: auto;
-        margin: 0 0;
-        padding: 1rem;
-        border-radius: 6px;
     }
     /**设置移动端隐藏按照章节查看中二级包括二级以上的侧边栏*/
     .theme-container .sidebar-links .sidebar-sub-headers {
@@ -263,15 +245,6 @@ p, ul, ol {
     .theme-hope-content {
         font-size: 1.3rem;
         font-weight: 500;
-    }
-    .theme-hope-content pre, .theme-hope-content pre[class*=language-] {
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        background: #F6F8FA;
-        overflow: auto;
-        margin: 0 0;
-        padding: 1rem;
-        border-radius: 6px;
     }
     /**设置移动端隐藏按照章节查看中二级包括二级以上的侧边栏*/
     .sidebar .sidebar-links .sidebar-sub-headers {
@@ -340,60 +313,49 @@ p, ul, ol {
         font-size: 1.4rem;
         font-weight: 500;
     }
-    .theme-hope-content pre, .theme-hope-content pre[class*=language-] {
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        background: #F5F5FA;
-        overflow: auto;
-        margin: 0 0;
-        padding: 1rem;
-        border-radius: 6px;
-    }
-    html[data-theme=dark] .theme-hope-content pre {
-        background-color: #FFFFFF !important;
-        color: #000000;
-    }
-    html[data-theme=dark] .theme-hope-content pre[class*=language-] {
-        background-color: #E3E8F0 !important;
-    }
-    html[data-theme=dark] .theme-hope-content pre[class*=language-] code{
-        color: #000000 !important;
-    }
-    .theme-hope-content pre[class*=language-] {
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        background: #F5F5FA;
-        overflow: auto;
-        margin: 0 0;
-        padding: 1rem;
-        border-radius: 6px;
-        max-height: 50rem;
-        overflow-y: auto;
-    }
-    .theme-hope-content pre {
-        padding-top: 2rem;
-    }
-    // /*代码块背景色*/
-    // div[class*=language-] {
-    //     position: relative;
-    //     border-radius: 6px;
-    //     background: #C7EDCC;
-    //     transition: background-color var(--color-transition);
-    // }
-    /*按钮背景色*/
-    .copy-code-button {
-        border-width: 0;
-        background-color: transparent;
-        cursor: pointer;
-        width: 32px;
-        height: 32px;
-        padding: 7px 8px;
-        border-radius: 50%;
-        background: var(--theme-color);
-        color: #fff;
-        outline: none;
-    }
-    .copy-code-button:hover {
-        background: var(--theme-color);
-    }
 }
+
+/*按钮背景色*/
+.copy-code-button {
+    border-width: 0;
+    background-color: transparent;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    padding: 7px 8px;
+    border-radius: 50%;
+    background: var(--theme-color);
+    color: #fff;
+    outline: none;
+}
+/**按钮hover效果*/
+.copy-code-button:hover {
+    background: var(--theme-color);
+}
+/**博客正文上边距*/
+.theme-hope-content pre {
+    padding-top: 2rem;
+}
+.theme-hope-content pre, .theme-hope-content pre[class*=language-] > code {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background: #F5F5FA;
+    /*background: #F6F8FA;*/
+    overflow: auto;
+    margin: 0 0;
+    padding: 1rem;
+    border-radius: 6px;
+}
+/*黑暗模式开始----------------------------------------------------------------------*/
+html[data-theme=dark] .theme-hope-content pre {
+    background-color: #FFFFFF !important;
+    color: #000000;
+}
+html[data-theme=dark] .theme-hope-content pre[class*=language-] {
+    background-color: #E3E8F0 !important;
+}
+html[data-theme=dark] .theme-hope-content pre[class*=language-] code{
+    color: #000000 !important;
+    text-shadow: 0 0px rgb(0 0 0 / 0%);
+}
+/*黑暗模式结束----------------------------------------------------------------------*/
