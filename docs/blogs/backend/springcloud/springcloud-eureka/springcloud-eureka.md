@@ -337,7 +337,7 @@ https://martinfowler.com/articles/microservices.html
 ## 3.3.Eureka注册中心简介
 	Eureka是Netflix公司开发的服务发现框架,Spring Cloud对它提供了支持,将它集成在了自己spring-cloud-netflix子项目中,用来实现Spring Cloud的服务发现功能,核心功能是为实现服务发现提供了基础支持。本次我们将搭建一个单节点版的Eureka注册中心和一个集群(高可用)版的Eureka注册中心,用来实现服务发现功能。
 
-	官方网站(GITHUB)
+<a href="https://github.com/Netflix/eureka" target="_blank">官方网站(GITHUB)</a>
 ```
 https://github.com/Netflix/eureka
 ```
@@ -644,4 +644,11 @@ http://eureka7004:7004/
 ### 4.6.8.编写模块主启动类
 ```java
 @include(./project_springcloud-eureka/springcloud-consumer-loadbalance-default-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceDefault80.java)
+```
+```mermaid
+flowchart LR
+    准备好数据库环境-->启动Eureka注册中心
+    启动Eureka注册中心-->启动服务提供者第一个节点
+    启动服务提供者第一个节点-->启动服务提供者第二个节点
+    启动服务提供者第二个节点-->启动服务消费者
 ```

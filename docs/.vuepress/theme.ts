@@ -191,6 +191,8 @@ export default hopeTheme({
       tasklist: true,
       //启用懒加载md中的图片
       lazyLoad: false,
+      //开启md支持mermaid画图功能
+      mermaid: true,
     },
     /**
     * 版权保护
