@@ -47,4 +47,6 @@ icon: navigate
 
             - <a class="breadcrumb-link" href="shardings//springcloud-eureka-chapter-6.使用OpenFeign实现客户端负载均衡.html">6.使用OpenFeign实现客户端负载均衡</a>
 
+            - <a class="breadcrumb-link" href="shardings//springcloud-eureka-chapter-7.使用Hystrix实现服务降级和熔断.html">7.使用Hystrix实现服务降级和熔断</a>
+
     - <a class="breadcrumb-link" href="springcloud-eureka.html#intro">章节内容合集</a>

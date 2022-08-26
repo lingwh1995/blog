@@ -47,6 +47,11 @@
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-6.使用OpenFeign实现客户端负载均衡.md",
                   },
+                  {
+                      text: "7.使用Hystrix实现服务降级和熔断",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-7.使用Hystrix实现服务降级和熔断.md",
+                  },
               ]
           },
           {
@@ -88,6 +93,11 @@
                       text: "6.使用OpenFeign实现客户端负载均衡",
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#6.",
+                  },
+                  {
+                      text: "7.使用Hystrix实现服务降级和熔断",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#7.",
                   },
               ]
           },
