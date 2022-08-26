@@ -10,8 +10,7 @@ springcloud-basic-sample-provider-cluster-node-payment8009
 |       |               |-- config
 |       |               |   •-- VirtualIpConfig.java
 |       |               |-- controller
-|       |               |   |-- PaymentController.java
-|       |               |   •-- SpringCloudServiceDiscoveryController.java
+|       |               |   •-- PaymentController.java
 |       |               |-- dao
 |       |               |   •-- PaymentDao.java
 |       |               |-- service

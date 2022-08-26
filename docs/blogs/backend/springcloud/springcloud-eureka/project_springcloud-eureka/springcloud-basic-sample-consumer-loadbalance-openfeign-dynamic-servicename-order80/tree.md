@@ -14,8 +14,7 @@ springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-orde
 |       |               |   •-- VirtualIpConfig.java
 |       |               |-- controller
 |       |               |   |-- OrderConsumerController.java
-|       |               |   |-- OrderConsumerControllerDynamicFeignClientFactory.java
-|       |               |   •-- SpringCloudServiceDiscoveryController.java
+|       |               |   •-- OrderConsumerControllerDynamicFeignClientFactory.java
 |       |               |-- services
 |       |               |   |-- PaymentServiceOpenFeign.java
 |       |               |   •-- PaymentServiceOpenFeignDynamicFeignClientFactory.java

@@ -786,7 +786,7 @@ function generateSidebarConfigForAllAndSetAnchorForOriginal() {
     for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
     do
         #获取章节名称
-        CHAPTER_NAME=`grep -n '^# '"$i"'\.' $2/$1.md | cut -d ' ' -f2-`
+        CHAPTER_NAME=`grep -n '^# '"$i"'\.' $2/$1.md | cut -d ' ' -f 2`
         echo '章节名称：'$CHAPTER_NAME
 
         echo "                  {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME 

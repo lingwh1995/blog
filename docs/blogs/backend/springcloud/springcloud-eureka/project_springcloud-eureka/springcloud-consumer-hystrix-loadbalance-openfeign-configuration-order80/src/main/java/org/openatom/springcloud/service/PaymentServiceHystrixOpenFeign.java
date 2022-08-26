@@ -1,8 +1,8 @@
-package org.openatom.springcloud.services;
+package org.openatom.springcloud.service;
 
 import org.openatom.springcloud.entities.CommonResult;
 import org.openatom.springcloud.entities.Payment;
-import org.openatom.springcloud.services.impl.PaymentServiceHystrixOpenFeignImpl;
+import org.openatom.springcloud.service.impl.PaymentServiceHystrixOpenFeignImpl;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;

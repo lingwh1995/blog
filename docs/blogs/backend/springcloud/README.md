@@ -29,11 +29,23 @@ icon: navigate
 
             - <a class="breadcrumb-link" href="springcloud-eureka/shardings/eureka7004.png">eureka7004.png</a>
 
+            - <a class="breadcrumb-link" href="springcloud-eureka/shardings/hystrix_dashboard.png">hystrix_dashboard.png</a>
+
+            - <a class="breadcrumb-link" href="springcloud-eureka/shardings/hystrix_dashboard_mointor_consumer.png">hystrix_dashboard_mointor_consumer.png</a>
+
+            - <a class="breadcrumb-link" href="springcloud-eureka/shardings/hystrix_dashboard_mointor_provider8003.png">hystrix_dashboard_mointor_provider8003.png</a>
+
+            - <a class="breadcrumb-link" href="springcloud-eureka/shardings/hystrix_dashboard_mointor_provider8004.png">hystrix_dashboard_mointor_provider8004.png</a>
+
             - <a class="breadcrumb-link" href="springcloud-eureka/shardings/idea设置热部署-1.png">idea设置热部署-1.png</a>
 
             - <a class="breadcrumb-link" href="springcloud-eureka/shardings/idea设置热部署-2.png">idea设置热部署-2.png</a>
 
             - <a class="breadcrumb-link" href="springcloud-eureka/shardings/microservice_architecture.png">microservice_architecture.png</a>
+
+            - <a class="breadcrumb-link" href="springcloud-eureka/shardings/turbine.png">turbine.png</a>
+
+            - <a class="breadcrumb-link" href="springcloud-eureka/shardings/turbine_mointor_provider_allnode.png">turbine_mointor_provider_allnode.png</a>
 
                 - <a class="breadcrumb-link" href="springcloud-eureka/shardings//springcloud-eureka-chapter-0.博客内容介绍.html">博客内容介绍</a>
 
@@ -50,5 +62,7 @@ icon: navigate
                 - <a class="breadcrumb-link" href="springcloud-eureka/shardings//springcloud-eureka-chapter-6.使用OpenFeign实现客户端负载均衡.html">6.使用OpenFeign实现客户端负载均衡</a>
 
                 - <a class="breadcrumb-link" href="springcloud-eureka/shardings//springcloud-eureka-chapter-7.使用Hystrix实现服务降级和熔断.html">7.使用Hystrix实现服务降级和熔断</a>
+
+                - <a class="breadcrumb-link" href="springcloud-eureka/shardings//springcloud-eureka-chapter-8.使用Hystrix.html">8.使用Hystrix</a>
 
         - <a class="breadcrumb-link" href="springcloud-eureka/springcloud-eureka.html#intro">章节内容合集</a>

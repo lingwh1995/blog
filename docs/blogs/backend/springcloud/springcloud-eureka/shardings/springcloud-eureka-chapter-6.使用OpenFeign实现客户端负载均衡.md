@@ -71,19 +71,19 @@ flowchart LR
 ```
 http://localhost/consumer/payment/get/1
 ```
-    第一次访问
+    第一次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
 ```
-    第二次访问
+    第二次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```
-    第三次访问
+    第三次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```
-    第四次访问
+    第四次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
 ```
@@ -91,7 +91,7 @@ http://localhost/consumer/payment/get/1
 
 ### 6.4.11.注意事项
     OpenFeign和RestTemplate
-    容器中注入不用注入RestTemplate,OpenFeign已经在底层对RestTemplate做了封装
+    使用OpenFeign实现远程调用时,容器中注入不用注入RestTemplate,OpenFeign已经在底层对RestTemplate做了封装
 
     在application.yml中配置开启OpenFeign增强日志
 ```yml
@@ -147,19 +147,19 @@ flowchart LR
 ```
 http://localhost/consumer/payment/get/1
 ```
-    第一次访问
+    第一次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
 ```
-    第二次访问
+    第二次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```
-    第三次访问
+    第三次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```
-    第四次访问
+    第四次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
 ```

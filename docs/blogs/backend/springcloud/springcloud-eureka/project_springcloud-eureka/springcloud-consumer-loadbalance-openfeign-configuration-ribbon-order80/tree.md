@@ -8,8 +8,7 @@ springcloud-consumer-loadbalance-openfeign-configuration-ribbon-order80
 |       |               |-- config
 |       |               |   •-- OpenFeignConfig.java
 |       |               |-- controller
-|       |               |   |-- OrderConsumerController.java
-|       |               |   •-- SpringCloudServiceDiscoveryController.java
+|       |               |   •-- OrderConsumerController.java
 |       |               |-- service
 |       |               |   •-- PaymentServiceOpenFeign.java
 |       |               •-- OrderServiceConsumerLoadBalanceOpenFeignConfigurationRibbon80.java

@@ -7,6 +7,7 @@
      7.4.搭建服务提供者第一个节点
      7.5.搭建服务提供者第二个节点
      7.6.搭建服务消费者
+     7.7.测试服务降级和服务熔断
 	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 
 ## <a href="/enhance/markmap/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-outline5-chapter7.html" target="_blank">7.2.章节内容大纲</a>

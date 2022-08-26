@@ -17,7 +17,7 @@ icon: linux
 head:
   - - meta
     - name: keywords
-      content: 微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,使用Ribbon实现客户端负载均衡,使用OpenFeign实现客户端负载均衡,使用Hystrix实现服务降级和熔断,
+      content: 微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,使用Ribbon实现客户端负载均衡,使用OpenFeign实现客户端负载均衡,使用Hystrix实现服务降级和熔断,使用Hystrix DashBoard和Turbine对服务进行监控,
 ---
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/springcloud-eureka-guidance.md)
 
@@ -336,7 +336,7 @@ https://gitee.com/lingwh1995/springcloud-eureka.git
 @include(./project_springcloud-eureka/script/payment.sql)
 ```
 
-### 2.5.3.配置使用springboot热部署
+## 2.6.配置使用热部署
     在公共模块的pom.xml中添加热部署依赖和相关配置(上一步已经添加进去了,这里只是展示热部署部分的代码),将热部署相关插件和配置放在公共模块的好处是,其他的模块引用公共模块的时候就已经引入了热部署相关插件和配置,无需额外引入
 ```xml
     <dependencies>
@@ -696,7 +696,7 @@ http://eureka7004:7004/
 @include(./project_springcloud-eureka/springcloud-consumer-loadbalance-default-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceDefault80.java)
 ```
 
-## 4.7.运行第一个微服务应用
+## 4.7.启动并测试第一个微服务应用
 ### 4.7.1.启动第一个微服务应用
 ```mermaid
 flowchart LR
@@ -710,19 +710,19 @@ flowchart LR
 ```
 http://localhost/consumer/payment/get/1
 ```
-    第一次访问
+    第一次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
 ```
-    第二次访问
+    第二次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```
-    第三次访问
+    第三次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
 ```
-    第四次访问
+    第四次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```
@@ -810,19 +810,19 @@ flowchart LR
 ```
 http://localhost/consumer/payment/get/1
 ```
-    第一次访问
+    第一次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
 ```
-    第二次访问
+    第二次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```
-    第三次访问
+    第二次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```
-    第四次访问
+    第四次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
 ```
@@ -900,19 +900,19 @@ flowchart LR
 ```
 http://localhost/consumer/payment/get/1
 ```
-    第一次访问
+    第一次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
 ```
-    第二次访问
+    第二次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```
-    第三次访问
+    第三次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```
-    第四次访问
+    第四次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
 ```
@@ -965,19 +965,19 @@ flowchart LR
 ```
 http://localhost/consumer/payment/get/1
 ```
-    第一次访问
+    第一次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
 ```
-    第二次访问
+    第二次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```
-    第三次访问
+    第三次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```
-    第四次访问
+    第四次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
 ```
@@ -1030,19 +1030,19 @@ flowchart LR
 ```
 http://localhost/consumer/payment/get/1
 ```
-    第一次访问
+    第一次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
 ```
-    第二次访问
+    第二次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```
-    第三次访问
+    第三次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```
-    第四次访问
+    第四次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
 ```
@@ -1105,19 +1105,19 @@ flowchart LR
 ```
 http://localhost/consumer/payment/get/1
 ```
-    第一次访问
+    第一次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
 ```
-    第二次访问
+    第二次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```
-    第三次访问
+    第三次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```
-    第四次访问
+    第四次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
 ```
@@ -1125,7 +1125,7 @@ http://localhost/consumer/payment/get/1
 
 ### 6.4.11.注意事项
     OpenFeign和RestTemplate
-    容器中注入不用注入RestTemplate,OpenFeign已经在底层对RestTemplate做了封装
+    使用OpenFeign实现远程调用时,容器中注入不用注入RestTemplate,OpenFeign已经在底层对RestTemplate做了封装
 
     在application.yml中配置开启OpenFeign增强日志
 ```yml
@@ -1181,19 +1181,19 @@ flowchart LR
 ```
 http://localhost/consumer/payment/get/1
 ```
-    第一次访问
+    第一次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
 ```
-    第二次访问
+    第二次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```
-    第三次访问
+    第三次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```
-    第四次访问
+    第四次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
 ```
@@ -1266,7 +1266,27 @@ https://github.com/Netflix/Hystrix
 ```
 ### 7.4.11.编写模块主启动类
 ```java
-@include(./project_springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8003/src/main/java//org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8003.java)
+package org.openatom.springcloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+
+/**
+ * 支付接口提供者
+ *  使用Eureka作为注册中心
+ */
+@EnableEurekaClient
+@SpringBootApplication
+@EnableCircuitBreaker//服务提供方端启用Hystrix
+public class PaymentServiceProviderHystrixClusterNode8003 {
+
+    public static void main(String[] args) {
+        SpringApplication.run(PaymentServiceProviderHystrixClusterNode8003.class, args);
+    }
+
+}
 ```
 
 ## 7.5.搭建服务提供者第二个节点
@@ -1308,7 +1328,27 @@ https://github.com/Netflix/Hystrix
 ```
 ### 7.5.11.编写模块主启动类
 ```java
-@include(./project_springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/src/main/java//org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8004.java)
+package org.openatom.springcloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+
+/**
+ * 支付接口提供者
+ *  使用Eureka作为注册中心
+ */
+@EnableEurekaClient
+@SpringBootApplication
+@EnableCircuitBreaker//服务提供方端启用Hystrix
+public class PaymentServiceProviderHystrixClusterNode8004 {
+
+    public static void main(String[] args) {
+        SpringApplication.run(PaymentServiceProviderHystrixClusterNode8004.class, args);
+    }
+
+}
 ```
 
 ## 7.6.搭建服务消费者
@@ -1346,5 +1386,491 @@ https://github.com/Netflix/Hystrix
 ```
 ### 7.6.10.编写模块主启动类
 ```java
-@include(./project_springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.java)
+package org.openatom.springcloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+
+
+@EnableEurekaClient
+@SpringBootApplication
+@EnableFeignClients
+@EnableHystrix //消费者端启用Hystrix
+public class OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80 {
+    public static void main(String[] args) {
+        SpringApplication.run(OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.class, args);
+    }
+    
+}
 ```
+## 7.7.测试服务降级和服务熔断
+    启动相关服务
+```mermaid
+flowchart LR
+    准备好数据库环境-->启动Eureka注册中心
+    启动Eureka注册中心-->启动服务提供者8003节点
+    启动服务提供者8003节点-->启动服务提供者8004节点
+    启动服务提供者8004节点-->启动当前模块服务消费者
+```
+
+    测试未做降级和熔断的服务
+```
+http://localhost/consumer/payment/ok/get/1
+```
+    第一次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
+```
+    第二次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
+```
+    第三次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
+```
+    第四次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
+```
+    可以看到四次访问返回的结果中,四次返回结果是没有规律的,因为采用的MyRoundRobinRule(自定义策略,这个策略的效果也是随机调用),实际返回结果可能不是上面的情况,但是一定是随机进行服务调用的
+
+    测试在服务提供方对服务进行降级
+    在浏览器中访问
+```
+http://localhost/consumer/payment/degradation_in_provider/get/1
+```
+    返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8003","data":{"id":1,"serial":"服务提供方:服务降级成功"}}
+```
+    具体降级过程,请根据访问地址追踪代码,查看具体降级是如何处理的,代码中有详细的注释
+
+    测试在服务消费方对服务进行降级
+    在浏览器中访问
+```
+http://localhost/consumer/payment/degradation_in_consumer/get/1
+```
+    返回结果
+```json
+{"code":10000,"message":"我是服务消费方","data":{"id":1,"serial":"服务消费方:降级成功"}}
+```
+    具体降级过程,请根据访问地址追踪代码,查看具体降级是如何处理的,代码中有详细的注释
+
+    测试全局范围内默认的降级回调方法(这种处理方式可以应用于服务提供方和服务消费方,这里演示的是在服务消费端进行处理)
+    在浏览器中访问
+```
+http://localhost:/consumer/payment/degradation_in_consumer_default/get/1
+```
+    返回结果
+```json
+{"code":10000,"message":"我是服务消费方","data":{"id":null,"serial":"服务消费方:全局范围内默认的降级回调方法...."}}
+```
+    具体降级过程,请根据访问地址追踪代码,查看具体降级是如何处理的,代码中有详细的注释
+    
+    测试在服务提供方Service层实现服务降级
+    本次测试较为特殊,首先关闭服务提供者8003和服务提供者8004,模拟服务提供者8003和服务提供者8004发生了宕机
+    在浏览器中访问
+```
+http://localhost:/consumer/payment/degradation_in_consumer_service/get/1
+```
+    返回结果
+```json
+{"code":10000,"message":"发生了错误","data":{"id":null,"serial":"服务消费端:服务提供者宕机了,在服务消费方中Service层对这个服务进行服务降级处理...."}}
+```
+    具体降级过程,请根据访问地址追踪代码,查看具体降级是如何处理的,代码中有详细的注释
+
+    测试在服务提供方实现服务熔断
+    模拟发生异常熔断服务,路径1:
+```
+http://localhost/consumer/payment/circuitbreaker/get/-1
+```
+    模拟不发生异常让服务自动恢复,路径2:
+```
+http://localhost/consumer/payment/circuitbreaker/get/1
+```
+    测试方式:先多次访问路径1，将服务熔断,再多次访问路径2,刚开始访问依然返回的是异常信息,多次访问后可以看到服务恢复正常
+
+    服务熔断(下游服务发生了异常)->断路器半开(放开一定的访问流量,探测一下服务是否恢复正常)->断路器全开(放开全部访问流量)->服务恢复正常
+
+# 8.使用Hystrix DashBoard和Turbine对服务进行监控 {#8.}
+@include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter8.md)
+## 8.3.使用Hystrix DashBoard对服务单个节点进行监控
+### 8.3.1.Hystrix DashBoard简介
+    Hystrix Dashboard是Spring Cloud的仪表盘组件,可以查看Hystrix实例的执行情况,支持查看单个实例和查看集群实例,但是需要结合spring-boot-actuator一起使用。Hystrix Dashboard主要用来实时监控Hystrix的各项指标信息。Hystrix Dashboard可以有效地反映出每个Hystrix实例的运行情况，帮助我们快速发现系统中的问题，从而采取对应措施。
+### 8.3.2.模块简介
+    Hystrix DashBoard,启动端口: 9001
+### 8.3.3.模块目录结构
+```
+@include(./project_springcloud-eureka/springcloud-mointor-hystrix-dashboard9001/tree.md)
+```
+### 8.3.4.创建模块
+	在父工程(springcloud-eureka)中创建一个名为springcloud-mointor-hystrix-dashboard9001的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
+### 8.3.5.编写模块pom.xml
+```xml
+@include(./project_springcloud-eureka/springcloud-mointor-hystrix-dashboard9001/pom.xml)
+```
+### 8.3.6.编写模块application.yml
+```yml
+@include(./project_springcloud-eureka/springcloud-mointor-hystrix-dashboard9001/src/main/resources/application.yml)
+```
+### 8.3.7.编写模块主启动类
+```java
+@include(./project_springcloud-eureka/springcloud-mointor-hystrix-dashboard9001/src/main/java/org/openatom/springcloud/MointorHystrixDashboard9001.java)
+```
+### 8.3.8.修改服务提供者8003主启动类
+    使用Hystrix Dashboard监控服务,被监控的服务提供者和服务消费者必须满足以下条件
+    pom.xml中引入如下依赖
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+</dependency>
+```
+    在主启动类中注册ServletRegistrationBean这个Bean
+```
+@Bean
+public ServletRegistrationBean getServlet() {
+    HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
+    ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
+    registrationBean.setLoadOnStartup(1);
+    registrationBean.addUrlMappings("/hystrix.stream");
+    registrationBean.setName("HystrixMetricsStreamServlet");
+    return registrationBean;
+}
+```
+
+    修改后的主启动类如下
+```java
+@include(./project_springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8003/src/main/java/org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8003.java)
+```
+
+### 8.3.9.修改服务提供者8004主启动类
+    使用Hystrix Dashboard监控服务,被监控的服务提供者和服务消费者必须满足以下条件
+    pom.xml中引入如下依赖
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+</dependency>
+```
+    在主启动类中注册ServletRegistrationBean这个Bean
+```
+@Bean
+public ServletRegistrationBean getServlet() {
+    HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
+    ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
+    registrationBean.setLoadOnStartup(1);
+    registrationBean.addUrlMappings("/hystrix.stream");
+    registrationBean.setName("HystrixMetricsStreamServlet");
+    return registrationBean;
+}
+```
+
+    修改后的主启动类如下
+```java
+@include(./project_springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/src/main/java/org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8004.java)
+```
+
+### 8.3.10.修改服务消费者80主启动类
+    使用Hystrix Dashboard监控服务,被监控的服务提供者和服务消费者必须满足以下条件
+    pom.xml中引入如下依赖
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+</dependency>
+```
+    在主启动类中注册ServletRegistrationBean这个Bean
+```
+@Bean
+public ServletRegistrationBean getServlet() {
+    HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
+    ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
+    registrationBean.setLoadOnStartup(1);
+    registrationBean.addUrlMappings("/hystrix.stream");
+    registrationBean.setName("HystrixMetricsStreamServlet");
+    return registrationBean;
+}
+```
+
+    修改后的主启动类如下
+```java
+@include(./project_springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/controller/OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.java)
+```
+
+### 8.3.11.测试模块
+    启动相关服务
+```mermaid
+flowchart LR
+    准备好数据库环境-->启动Eureka注册中心
+    启动Eureka注册中心-->启动服务提供者8003节点
+    启动服务提供者8003节点-->启动服务提供者8004节点
+    启动服务提供者8004节点-->启动使用了Hystrix功能的服务消费者
+    启动使用了Hystrix功能的服务消费者-->启动Hystrix_Dashboard监控模块
+```
+    注意事项
+    Hystrix DashBoard只能监控设置了服务降级或服务熔断的方法,未设置降级或者熔断的方法是无法监控到的,也是说未设置降级和熔断的方法调用后是不会和Hystrix DashBoard产生任何关系的
+
+    测试使用Hystrix DashBoard对单个服务进行监控
+访问Hystrix DashBoard
+```
+http://localhost:9001/hystrix
+```
+::: center
+<div class="imgbg-customer">
+</div>
+<img src="./images/hystrix_dashboard.png"  width="100%"/>
+:::
+
+    监控服务消费端
+```mermaid
+flowchart LR
+    访问Hystrix DashBoard-->填写http://localhost/hystrix.stream
+    填写http://localhost/hystrix.stream-->点击Monitor Stream
+    点击Monitor Stream-->访问服务消费端任何一个服务
+```
+    Hystrix DashBoard参数
+```
+http://localhost/hystrix.stream
+```
+    示例服务URL
+```
+http://localhost/consumer/payment/circuitbreaker/get/1
+```
+    可以看到界面自动统计出了消费端某个服务的访问情况
+::: center
+<div class="imgbg-customer">
+</div>
+<img src="./images/hystrix_dashboard_mointor_consumer.png"  width="100%"/>
+:::
+
+    监控服务提供端8003
+```mermaid
+flowchart LR
+    访问Hystrix DashBoard-->填写http://localhost:8003/hystrix.stream
+    填写http://localhost:8003/hystrix.stream-->点击Monitor Stream
+    点击Monitor Stream-->访问服务提供端8003任何一个服务
+```
+    Hystrix DashBoard参数
+```
+http://localhost:8003/hystrix.stream
+```
+    示例服务URL(访问这个服务消费端的服务,会自动调用服务提供端8003的服务,不是每次都调用,每次在8003和8004随机选择一个节点进行调用)
+```
+http://localhost/consumer/payment/circuitbreaker/get/1
+```
+    可以看到界面自动统计出了提供端8003某个服务的访问情况
+::: center
+<div class="imgbg-customer">
+</div>
+<img src="./images/hystrix_dashboard_mointor_provider8003.png"  width="100%"/>
+:::
+
+    监控服务提供端8004
+```mermaid
+flowchart LR󠀠󠀠
+    访问Hystrix_󠀠󠀠DashBoard-->填写http://localhost:8004/hystrix.stream
+    填写http://localhost:8004/hystrix.stream-->点击Monitor_Stream
+    点击Monitor_Stream-->访问服务提供端8004任何一个服务
+```
+    Hystrix DashBoard参数
+```
+http://localhost:8004/hystrix.stream
+```
+    示例服务URL(访问这个服务消费端的服务,会自动调用服务提供端8003的服务,不是每次都调用,每次在8003和8004随机选择一个节点进行调用)
+```
+http://localhost/consumer/payment/circuitbreaker/get/1
+```
+    可以看到界面自动统计出了提供端8004某个服务的访问情况
+::: center
+<div class="imgbg-customer">
+</div>
+<img src="./images/hystrix_dashboard_mointor_provider8004.png"  width="100%"/>
+:::
+
+## 8.4.使用Turbine汇聚服务提供端多个节点访问统计数据
+### 8.4.1.Turbine简介
+    Turbine是聚合服务器发送事件流数据的一个工具,Hystrix DashBoard的监控中,只能监控单个节点,实际生产中都为集群,每个服务都会部署在多个节点上,因此可以通过Turbine来监控集群服务,将Hystrix DashBoard收集到的服务访问统计数据汇集在一起并以图形化界面展示出来。
+### 8.4.2.模块简介
+    使用Turbine汇聚Hystrix DashBoard监控到的所有节点访问统计数据,启动端口: 9002
+### 8.4.3.模块目录结构
+```
+@include(./project_springcloud-eureka/springcloud-mointor-hystrix-dashboard-turbine9002/tree.md)
+```
+### 8.4.4.创建模块
+	在父工程(springcloud-eureka)中创建一个名为springcloud-mointor-hystrix-dashboard-turbine9002的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
+### 8.4.5.编写模块pom.xml
+```xml
+@include(./project_springcloud-eureka/springcloud-mointor-hystrix-dashboard-turbine9002/pom.xml)
+```
+### 8.4.6.编写模块application.yml
+```yml
+@include(./project_springcloud-eureka/springcloud-mointor-hystrix-dashboard-turbine9002/src/main/resources/application.yml)
+```
+### 8.4.7.编写模块主启动类
+```java
+@include(./project_springcloud-eureka/springcloud-mointor-hystrix-dashboard-turbine9002/src/main/java/org/openatom/springcloud/MointorHystrixDashboardTurbine9002.java)
+```
+### 8.4.8.修改服务提供者8003主启动类
+    使用Turbine聚合Hystrix Dashboard监控数据,被监控的服务提供者和服务消费者必须满足以下条件
+    pom.xml中引入如下依赖
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+</dependency>
+```
+    在主启动类中注册ServletRegistrationBean这个Bean
+```
+@Bean
+public ServletRegistrationBean getServlet() {
+    HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
+    ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
+    registrationBean.setLoadOnStartup(1);
+    registrationBean.addUrlMappings("/hystrix.stream");
+    registrationBean.setName("HystrixMetricsStreamServlet");
+    return registrationBean;
+}
+```
+
+    修改后的主启动类如下
+```java
+@include(./project_springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8003/src/main/java/org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8003.java)
+```
+
+### 8.4.9.修改服务提供者8004主启动类
+    使用Turbine聚合Hystrix Dashboard监控数据,被监控的服务提供者和服务消费者必须满足以下条件
+    pom.xml中引入如下依赖
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+</dependency>
+```
+    在主启动类中注册ServletRegistrationBean这个Bean
+```
+@Bean
+public ServletRegistrationBean getServlet() {
+    HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
+    ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
+    registrationBean.setLoadOnStartup(1);
+    registrationBean.addUrlMappings("/hystrix.stream");
+    registrationBean.setName("HystrixMetricsStreamServlet");
+    return registrationBean;
+}
+```
+
+    修改后的主启动类如下
+```java
+@include(./project_springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/src/main/java/org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8004.java)
+```
+
+### 8.4.10.修改服务消费端80主启动类
+    使用Turbine聚合Hystrix Dashboard监控数据,被监控的服务提供者和服务消费者必须满足以下条件
+    pom.xml中引入如下依赖
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+</dependency>
+```
+    在主启动类中注册ServletRegistrationBean这个Bean
+```
+@Bean
+public ServletRegistrationBean getServlet() {
+    HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
+    ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
+    registrationBean.setLoadOnStartup(1);
+    registrationBean.addUrlMappings("/hystrix.stream");
+    registrationBean.setName("HystrixMetricsStreamServlet");
+    return registrationBean;
+}
+```
+
+    修改后的主启动类如下
+```java
+@include(./project_springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/controller/OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.java)
+```
+
+### 8.4.11.测试模块
+    启动相关服务
+```mermaid
+flowchart LR
+    准备好数据库环境-->启动Eureka注册中心
+    启动Eureka注册中心-->启动服务提供者8003节点
+    启动服务提供者8003节点-->启动服务提供者8004节点
+    启动服务提供者8004节点-->启动使用了Hystrix功能的服务消费者
+    启动使用了Hystrix功能的服务消费者-->启动Tunbine监控模块
+```
+    注意事项
+    Hystrix DashBoard只能监控设置了服务降级或服务熔断的方法,未设置降级或者熔断的方法是无法监控到的,也是说未设置降级和熔断的方法调用后是不会和Hystrix DashBoard产生任何关系的,因为Tunbine是汇聚来自Hystrix DashBoard的数据,所以Tunbine也只能汇聚Hystrix DashBoard可以监控到的数据
+    集成了Turbine的项目修改后需要手动重启,目前发现热加载会报错
+    
+    测试使用Turbine汇聚服务提供端多个节点访问统计数据
+    访问Turbine(Turbine主页面和Hystrix DashBoard主界面是相同的,只是填写的参数不同)
+```
+http://localhost:9002/hystrix
+```
+::: center
+<div class="imgbg-customer">
+</div>
+<img src="./images/turbine.png"  width="100%"/>
+:::
+
+    使用Turbine汇聚服务提供端多个节点访问统计数据(汇聚Hystrix DashBoard监控到的服务提供端8003节点的数据和服务提供端8004节点的数据)
+```mermaid
+flowchart LR
+    访问Turbine-->填写http://localhost:9002/turbine.stream
+    填写http://localhost:9002/turbine.stream-->点击Monitor_Stream
+    点击Monitor_Stream-->访问服务消费端任何一个服务
+```
+    Turbine参数
+```
+http://localhost:9002/turbine.stream
+```
+    示例服务URL(访问这个服务消费端的服务,会自动随机调用服务提供端服务,每次在服务提供端8003节点和服务提供端8004节点随机选择一个节点进行调用)
+```
+http://localhost/consumer/payment/circuitbreaker/get/1
+```
+    可以看到界面一次性自动统计出了服务提供端8003节点和服务提供端8004节点访问统计数据
+::: center
+<div class="imgbg-customer">
+</div>
+<img src="./images/turbine_mointor_provider_allnode.png"  width="100%"/>
+:::
+
+    使用Turbine前
+    连续访问http://localhost/consumer/payment/circuitbreaker/get/1这个测试URL 10次,监控服务提供端8003节点的Hystrix DashBoard中可以统计到的访问次数为3,监控服务提供端8004节点的Hystrix DashBoard中统计到的访问次数值为7,因为服务消费端会随机选择一个节点进行调用,把服务提供端8003节点和服务提供端8004节点中统计到的访问次数的值加起来一定是10
+
+    使用Turbine后
+    连续访问http://localhost/consumer/payment/circuitbreaker/get/1这个测试URL 10次,Turbine中统计到的访问次数的值直接就是10
+
+    

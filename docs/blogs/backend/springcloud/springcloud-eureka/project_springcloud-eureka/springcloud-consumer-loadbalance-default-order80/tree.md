@@ -8,8 +8,7 @@ springcloud-consumer-loadbalance-default-order80
 |       |               |-- config
 |       |               |   •-- ApplicationContextConfig.java
 |       |               |-- controller
-|       |               |   |-- OrderConsumerController.java
-|       |               |   •-- SpringCloudServiceDiscoveryController.java
+|       |               |   •-- OrderConsumerController.java
 |       |               •-- OrderServiceConsumerLoadBalanceDefault80.java
 |       •-- resources
 |           •-- application.yml

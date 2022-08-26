@@ -10,8 +10,7 @@ springcloud-config-apollo-loadbalance-openfeign-configuration-order80
 |       |               |-- controller
 |       |               |   |-- ApolloConfigController.java
 |       |               |   |-- OrderConsumerController.java
-|       |               |   |-- RestartApplicationController.java
-|       |               |   •-- SpringCloudServiceDiscoveryController.java
+|       |               |   •-- RestartApplicationController.java
 |       |               |-- listener
 |       |               |   |-- ApolloPropertiesChangedListener.java
 |       |               |   •-- AutomaticApolloWatcher.java

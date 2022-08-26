@@ -55,6 +55,11 @@ export default sidebar([
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-7.使用Hystrix实现服务降级和熔断.md",
                   },
+                  {
+                      text: "8.使用Hystrix DashBoard和Turbine对服务进行监控",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-8.使用Hystrix DashBoard和Turbine对服务进行监控.md",
+                  },
               ]
           },
           {
@@ -101,6 +106,11 @@ export default sidebar([
                       text: "7.使用Hystrix实现服务降级和熔断",
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#7.",
+                  },
+                  {
+                      text: "8.使用Hystrix",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#8.",
                   },
               ]
           },

@@ -6,8 +6,7 @@ springcloud-provider-sleuth_zipkin-cluster-node-payment8006
 |       |       •-- openatom
 |       |           •-- springcloud
 |       |               |-- controller
-|       |               |   |-- PaymentController.java
-|       |               |   •-- SpringCloudServiceDiscoveryController.java
+|       |               |   •-- PaymentController.java
 |       |               |-- dao
 |       |               |   •-- PaymentDao.java
 |       |               |-- service

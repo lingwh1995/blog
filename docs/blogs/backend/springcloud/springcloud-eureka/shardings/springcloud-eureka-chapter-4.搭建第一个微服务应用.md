@@ -1,6 +1,6 @@
 ---
 title: 基于Eureka搭建Springcloud微服务-4.搭建第一个微服务应用
-description: 本章节涉及主要内容有：第一个微服务应用简介,搭建服务提供者第一个节点,搭建服务提供者第二个节点,搭建服务消费者,运行第一个微服务应用,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：第一个微服务应用简介,搭建服务提供者第一个节点,搭建服务提供者第二个节点,搭建服务消费者,启动并测试第一个微服务应用,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -11,7 +11,7 @@ date:
 head:
   - - meta
     - name: keywords
-      content: 本章节涉及主要内容有：第一个微服务应用简介,搭建服务提供者第一个节点,搭建服务提供者第二个节点,搭建服务消费者,运行第一个微服务应用,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+      content: 本章节涉及主要内容有：第一个微服务应用简介,搭建服务提供者第一个节点,搭建服务提供者第二个节点,搭建服务消费者,启动并测试第一个微服务应用,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 4.搭建第一个微服务应用
@@ -130,7 +130,7 @@ head:
 @include(../project_springcloud-eureka/springcloud-consumer-loadbalance-default-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceDefault80.java)
 ```
 
-## 4.7.运行第一个微服务应用
+## 4.7.启动并测试第一个微服务应用
 ### 4.7.1.启动第一个微服务应用
 ```mermaid
 flowchart LR
@@ -144,19 +144,19 @@ flowchart LR
 ```
 http://localhost/consumer/payment/get/1
 ```
-    第一次访问
+    第一次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
 ```
-    第二次访问
+    第二次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```
-    第三次访问
+    第三次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
 ```
-    第四次访问
+    第四次访问返回结果
 ```json
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```

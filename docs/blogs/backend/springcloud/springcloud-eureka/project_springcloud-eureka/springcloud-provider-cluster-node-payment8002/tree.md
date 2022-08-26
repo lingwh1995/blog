@@ -6,8 +6,7 @@ springcloud-provider-cluster-node-payment8002
 |       |       •-- openatom
 |       |           •-- springcloud
 |       |               |-- controller
-|       |               |   |-- PaymentController.java
-|       |               |   •-- SpringCloudServiceDiscoveryController.java
+|       |               |   •-- PaymentController.java
 |       |               |-- dao
 |       |               |   •-- PaymentDao.java
 |       |               |-- service

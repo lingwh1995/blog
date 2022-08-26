@@ -10,8 +10,7 @@ springcloud-consumer-loadbalance-ribbon-hardcode-order80
 |       |               |-- config
 |       |               |   •-- ApplicationContextConfig.java
 |       |               |-- controller
-|       |               |   |-- OrderConsumerController.java
-|       |               |   •-- SpringCloudServiceDiscoveryController.java
+|       |               |   •-- OrderConsumerController.java
 |       |               •-- OrderServiceConsumerLoadBalanceRibbonHardcode80.java
 |       •-- resources
 |           •-- application.yml

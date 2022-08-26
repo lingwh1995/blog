@@ -17,7 +17,7 @@ function createTreeMDForChildDir() {
     if [ -d $fileName ]
     then
         #创建新的tree.md文件
-        tree $fileName -I 'tree.md' --dirsfirst > $fileName/tree.md
+        tree $fileName -I 'tree.md|SpringCloudServiceDiscoveryController.java' --dirsfirst > $fileName/tree.md
         #替换`为•
         sed -i 's/`/•/g' $fileName/tree.md
         #获取结束删除的行数

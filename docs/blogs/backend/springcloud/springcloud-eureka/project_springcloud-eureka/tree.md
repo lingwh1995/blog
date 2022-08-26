@@ -217,7 +217,7 @@ springcloud-eureka
 |   |       |               |-- controller
 |   |       |               |   |-- OrderConsumerHystrixController.java
 |   |       |               |   •-- SpringCloudServiceDiscoveryController.java
-|   |       |               |-- services
+|   |       |               |-- service
 |   |       |               |   |-- impl
 |   |       |               |   |   •-- PaymentServiceHystrixOpenFeignImpl.java
 |   |       |               |   •-- PaymentServiceHystrixOpenFeign.java

@@ -1,6 +1,6 @@
 ---
 title: 基于Eureka搭建Springcloud微服务-7.使用Hystrix实现服务降级和熔断
-description: 本章节涉及主要内容有：Hystrix简介,搭建服务提供者第一个节点,搭建服务提供者第二个节点,搭建服务消费者,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：Hystrix简介,搭建服务提供者第一个节点,搭建服务提供者第二个节点,搭建服务消费者,测试服务降级和服务熔断,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -11,7 +11,7 @@ date:
 head:
   - - meta
     - name: keywords
-      content: 本章节涉及主要内容有：Hystrix简介,搭建服务提供者第一个节点,搭建服务提供者第二个节点,搭建服务消费者,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+      content: 本章节涉及主要内容有：Hystrix简介,搭建服务提供者第一个节点,搭建服务提供者第二个节点,搭建服务消费者,测试服务降级和服务熔断,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 7.使用Hystrix实现服务降级和熔断
@@ -71,7 +71,27 @@ https://github.com/Netflix/Hystrix
 ```
 ### 7.4.11.编写模块主启动类
 ```java
-@include(../project_springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8003/src/main/java//org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8003.java)
+package org.openatom.springcloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+
+/**
+ * 支付接口提供者
+ *  使用Eureka作为注册中心
+ */
+@EnableEurekaClient
+@SpringBootApplication
+@EnableCircuitBreaker//服务提供方端启用Hystrix
+public class PaymentServiceProviderHystrixClusterNode8003 {
+
+    public static void main(String[] args) {
+        SpringApplication.run(PaymentServiceProviderHystrixClusterNode8003.class, args);
+    }
+
+}
 ```
 
 ## 7.5.搭建服务提供者第二个节点
@@ -113,7 +133,27 @@ https://github.com/Netflix/Hystrix
 ```
 ### 7.5.11.编写模块主启动类
 ```java
-@include(../project_springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/src/main/java//org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8004.java)
+package org.openatom.springcloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+
+/**
+ * 支付接口提供者
+ *  使用Eureka作为注册中心
+ */
+@EnableEurekaClient
+@SpringBootApplication
+@EnableCircuitBreaker//服务提供方端启用Hystrix
+public class PaymentServiceProviderHystrixClusterNode8004 {
+
+    public static void main(String[] args) {
+        SpringApplication.run(PaymentServiceProviderHystrixClusterNode8004.class, args);
+    }
+
+}
 ```
 
 ## 7.6.搭建服务消费者
@@ -151,5 +191,113 @@ https://github.com/Netflix/Hystrix
 ```
 ### 7.6.10.编写模块主启动类
 ```java
-@include(../project_springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.java)
+package org.openatom.springcloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+
+
+@EnableEurekaClient
+@SpringBootApplication
+@EnableFeignClients
+@EnableHystrix //消费者端启用Hystrix
+public class OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80 {
+    public static void main(String[] args) {
+        SpringApplication.run(OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.class, args);
+    }
+    
+}
 ```
+## 7.7.测试服务降级和服务熔断
+    启动相关服务
+```mermaid
+flowchart LR
+    准备好数据库环境-->启动Eureka注册中心
+    启动Eureka注册中心-->启动服务提供者8003节点
+    启动服务提供者8003节点-->启动服务提供者8004节点
+    启动服务提供者8004节点-->启动当前模块服务消费者
+```
+
+    测试未做降级和熔断的服务
+```
+http://localhost/consumer/payment/ok/get/1
+```
+    第一次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
+```
+    第二次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
+```
+    第三次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
+```
+    第四次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
+```
+    可以看到四次访问返回的结果中,四次返回结果是没有规律的,因为采用的MyRoundRobinRule(自定义策略,这个策略的效果也是随机调用),实际返回结果可能不是上面的情况,但是一定是随机进行服务调用的
+
+    测试在服务提供方对服务进行降级
+    在浏览器中访问
+```
+http://localhost/consumer/payment/degradation_in_provider/get/1
+```
+    返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8003","data":{"id":1,"serial":"服务提供方:服务降级成功"}}
+```
+    具体降级过程,请根据访问地址追踪代码,查看具体降级是如何处理的,代码中有详细的注释
+
+    测试在服务消费方对服务进行降级
+    在浏览器中访问
+```
+http://localhost/consumer/payment/degradation_in_consumer/get/1
+```
+    返回结果
+```json
+{"code":10000,"message":"我是服务消费方","data":{"id":1,"serial":"服务消费方:降级成功"}}
+```
+    具体降级过程,请根据访问地址追踪代码,查看具体降级是如何处理的,代码中有详细的注释
+
+    测试全局范围内默认的降级回调方法(这种处理方式可以应用于服务提供方和服务消费方,这里演示的是在服务消费端进行处理)
+    在浏览器中访问
+```
+http://localhost:/consumer/payment/degradation_in_consumer_default/get/1
+```
+    返回结果
+```json
+{"code":10000,"message":"我是服务消费方","data":{"id":null,"serial":"服务消费方:全局范围内默认的降级回调方法...."}}
+```
+    具体降级过程,请根据访问地址追踪代码,查看具体降级是如何处理的,代码中有详细的注释
+    
+    测试在服务提供方Service层实现服务降级
+    本次测试较为特殊,首先关闭服务提供者8003和服务提供者8004,模拟服务提供者8003和服务提供者8004发生了宕机
+    在浏览器中访问
+```
+http://localhost:/consumer/payment/degradation_in_consumer_service/get/1
+```
+    返回结果
+```json
+{"code":10000,"message":"发生了错误","data":{"id":null,"serial":"服务消费端:服务提供者宕机了,在服务消费方中Service层对这个服务进行服务降级处理...."}}
+```
+    具体降级过程,请根据访问地址追踪代码,查看具体降级是如何处理的,代码中有详细的注释
+
+    测试在服务提供方实现服务熔断
+    模拟发生异常熔断服务,路径1:
+```
+http://localhost/consumer/payment/circuitbreaker/get/-1
+```
+    模拟不发生异常让服务自动恢复,路径2:
+```
+http://localhost/consumer/payment/circuitbreaker/get/1
+```
+    测试方式:先多次访问路径1，将服务熔断,再多次访问路径2,刚开始访问依然返回的是异常信息,多次访问后可以看到服务恢复正常
+
+    服务熔断(下游服务发生了异常)->断路器半开(放开一定的访问流量,探测一下服务是否恢复正常)->断路器全开(放开全部访问流量)->服务恢复正常
+

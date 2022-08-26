@@ -26,3 +26,5 @@ icon: navigate
 
     - <a class="breadcrumb-link" href="springcloud-eureka-chapter-7.使用Hystrix实现服务降级和熔断.html">7.使用Hystrix实现服务降级和熔断</a>
 
+    - <a class="breadcrumb-link" href="springcloud-eureka-chapter-8.使用Hystrix.html">8.使用Hystrix</a>
+

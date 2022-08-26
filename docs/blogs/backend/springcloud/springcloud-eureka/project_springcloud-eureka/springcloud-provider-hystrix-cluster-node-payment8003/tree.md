@@ -6,8 +6,7 @@ springcloud-provider-hystrix-cluster-node-payment8003
 |       |       •-- openatom
 |       |           •-- springcloud
 |       |               |-- controller
-|       |               |   |-- PaymentHystrixController.java
-|       |               |   •-- SpringCloudServiceDiscoveryController.java
+|       |               |   •-- PaymentHystrixController.java
 |       |               |-- dao
 |       |               |   •-- PaymentHystrixDao.java
 |       |               |-- service
