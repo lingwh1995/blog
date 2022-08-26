@@ -33,10 +33,10 @@
         <module>springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80</module>
         <!--EUREKA版服务消费者:1.使用Ribbon的自定义负载均衡算法实现负载均衡 2.yml文件配置方式实现负载均衡算法替换-->
         <module>springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80</module>
-        <!--Eureka版服务消费者:1.使用OpenFeign实现负载均衡 2.YML配置方式实现负载均衡-->
-        <module>springcloud-consumer-loadbalance-openfeign-configuration-order80</module>
-        <!--Eureka版服务消费者:1.使用OpenFeign实现负载均衡 2.Java硬编码方式实现负载均衡算法替换-->
-        <module>springcloud-consumer-loadbalance-openfeign-hardcode-order80</module>
+        <!--Eureka版服务消费者:1.使用OpenFeign实现负载均衡 2.YML配置方式实现负载均衡 3.通过对Ribbon的配置实现对OpenFeign的配置-->
+        <module>springcloud-consumer-loadbalance-openfeign-configuration-ribbon-order80</module>
+        <!--Eureka版服务消费者:1.使用OpenFeign实现负载均衡 2.YML配置方式实现负载均衡 3.直接对OpenFeign进行配置-->
+        <module>springcloud-consumer-loadbalance-openfeign-configuration-openfeign-order80</module>
         <!--Eureka版服务消费者:1.使用OpenFeign实现负载均衡 2.Java硬编码方式实现负载均衡算法替换 3.加入了Hystrix-->
         <module>springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80</module>
         <!--Eureka版服务消费者:1.使用OpenFeign实现负载均衡 2.使用了Apollo配置中心 -->

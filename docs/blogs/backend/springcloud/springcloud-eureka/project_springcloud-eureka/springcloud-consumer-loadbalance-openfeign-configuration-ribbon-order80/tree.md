@@ -1,4 +1,4 @@
-springcloud-consumer-loadbalance-openfeign-hardcode-order80
+springcloud-consumer-loadbalance-openfeign-configuration-ribbon-order80
 |-- src
 |   •-- main
 |       |-- java
@@ -10,9 +10,9 @@ springcloud-consumer-loadbalance-openfeign-hardcode-order80
 |       |               |-- controller
 |       |               |   |-- OrderConsumerController.java
 |       |               |   •-- SpringCloudServiceDiscoveryController.java
-|       |               |-- services
+|       |               |-- service
 |       |               |   •-- PaymentServiceOpenFeign.java
-|       |               •-- OrderServiceConsumerLoadBalanceOpenFeignHardcode80.java
+|       |               •-- OrderServiceConsumerLoadBalanceOpenFeignConfigurationRibbon80.java
 |       •-- resources
 |           •-- application.yml
 •-- pom.xml

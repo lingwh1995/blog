@@ -241,7 +241,7 @@ springcloud-eureka
 |   |       •-- resources
 |   |           •-- application.yml
 |   •-- pom.xml
-|-- springcloud-consumer-loadbalance-openfeign-configuration-order80
+|-- springcloud-consumer-loadbalance-openfeign-configuration-openfeign-order80
 |   |-- src
 |   |   •-- main
 |   |       |-- java
@@ -253,13 +253,13 @@ springcloud-eureka
 |   |       |               |-- controller
 |   |       |               |   |-- OrderConsumerController.java
 |   |       |               |   •-- SpringCloudServiceDiscoveryController.java
-|   |       |               |-- services
+|   |       |               |-- service
 |   |       |               |   •-- PaymentServiceOpenFeign.java
-|   |       |               •-- OrderServiceConsumerLoadBalanceOpenFeignConfiguration80.java
+|   |       |               •-- OrderServiceConsumerLoadBalanceOpenFeignConfigurationOpenfeign80.java
 |   |       •-- resources
 |   |           •-- application.yml
 |   •-- pom.xml
-|-- springcloud-consumer-loadbalance-openfeign-hardcode-order80
+|-- springcloud-consumer-loadbalance-openfeign-configuration-ribbon-order80
 |   |-- src
 |   |   •-- main
 |   |       |-- java
@@ -271,9 +271,9 @@ springcloud-eureka
 |   |       |               |-- controller
 |   |       |               |   |-- OrderConsumerController.java
 |   |       |               |   •-- SpringCloudServiceDiscoveryController.java
-|   |       |               |-- services
+|   |       |               |-- service
 |   |       |               |   •-- PaymentServiceOpenFeign.java
-|   |       |               •-- OrderServiceConsumerLoadBalanceOpenFeignHardcode80.java
+|   |       |               •-- OrderServiceConsumerLoadBalanceOpenFeignConfigurationRibbon80.java
 |   |       •-- resources
 |   |           •-- application.yml
 |   •-- pom.xml

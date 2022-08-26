@@ -25,8 +25,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableEurekaClient //添加@EnableEurekaClient好像没什么用,但是还是加上
 @SpringBootApplication
 @EnableFeignClients
-public class OrderServiceConsumerLoadBalanceOpenFeignHardcode80 {
+public class OrderServiceConsumerLoadBalanceOpenFeignConfigurationRibbon80 {
     public static void main(String[] args) {
-        SpringApplication.run(OrderServiceConsumerLoadBalanceOpenFeignHardcode80.class, args);
+        SpringApplication.run(OrderServiceConsumerLoadBalanceOpenFeignConfigurationRibbon80.class, args);
     }
 }

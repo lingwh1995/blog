@@ -43,6 +43,8 @@ icon: navigate
 
             - <a class="breadcrumb-link" href="shardings//springcloud-eureka-chapter-4.搭建第一个微服务应用.html">4.搭建第一个微服务应用</a>
 
-            - <a class="breadcrumb-link" href="shardings//springcloud-eureka-chapter-5.使用Ribbon实现负载均衡.html">5.使用Ribbon实现负载均衡</a>
+            - <a class="breadcrumb-link" href="shardings//springcloud-eureka-chapter-5.使用Ribbon实现客户端负载均衡.html">5.使用Ribbon实现客户端负载均衡</a>
+
+            - <a class="breadcrumb-link" href="shardings//springcloud-eureka-chapter-6.使用OpenFeign实现客户端负载均衡.html">6.使用OpenFeign实现客户端负载均衡</a>
 
     - <a class="breadcrumb-link" href="springcloud-eureka.html#intro">章节内容合集</a>

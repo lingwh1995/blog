@@ -1,15 +1,12 @@
 package org.openatom.springcloud.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.openatom.springcloud.services.PaymentServiceOpenFeign;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
+import org.openatom.springcloud.entities.CommonResult;
+import org.openatom.springcloud.entities.Payment;
+import org.openatom.springcloud.service.PaymentServiceOpenFeign;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-import org.openatom.springcloud.entities.CommonResult;
-import org.openatom.springcloud.entities.Payment;
 
 import javax.annotation.Resource;
 
@@ -30,7 +27,7 @@ public class OrderConsumerController {
     }
 
     @GetMapping("/consumer/payment/get/{id}")
-    public CommonResult<Payment> getPayment(@PathVariable("id") Long id) {
+    public CommonResult<Payment> getPaymentById(@PathVariable("id") Long id) {
         return paymentServiceOpenFeign.getPaymentById(id);
     }
 

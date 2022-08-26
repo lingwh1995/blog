@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 自定义Ribbon负载均衡规则
+ * 自定义Ribbon负载均衡规则,这个MySelfRule编写后在主启动类使用
  */
 @Configuration
 public class MySelfRule {

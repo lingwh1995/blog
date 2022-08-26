@@ -9,6 +9,10 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * 这个自定义的负载均衡算法编写好之后配置在application.yml中
+ */
+
 @Component
 public class MyRoundRobinRule extends AbstractLoadBalancerRule {
     public MyRoundRobinRule() {
