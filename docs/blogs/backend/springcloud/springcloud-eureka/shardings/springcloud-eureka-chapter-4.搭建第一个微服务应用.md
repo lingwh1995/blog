@@ -1,6 +1,6 @@
 ---
 title: 基于Eureka搭建Springcloud微服务-4.搭建第一个微服务应用
-description: 本章节涉及主要内容有：第一个微服务应用简介,搭建服务提供者第一个节点,搭建服务提供者第二个节点,搭建服务消费者,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：第一个微服务应用简介,搭建服务提供者第一个节点,搭建服务提供者第二个节点,搭建服务消费者,运行第一个微服务应用,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -11,7 +11,7 @@ date:
 head:
   - - meta
     - name: keywords
-      content: 本章节涉及主要内容有：第一个微服务应用简介,搭建服务提供者第一个节点,搭建服务提供者第二个节点,搭建服务消费者,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+      content: 本章节涉及主要内容有：第一个微服务应用简介,搭建服务提供者第一个节点,搭建服务提供者第二个节点,搭建服务消费者,运行第一个微服务应用,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 4.搭建第一个微服务应用
@@ -104,8 +104,9 @@ head:
 
 ## 4.6.搭建服务消费者
 ### 4.6.1.模块简介
-    服务消费者,启动端口: 80
+    基于SpringCloud官方默认组件实现的服务消费者,启动端口: 80
 ### 4.6.2.模块目录结构
+    @include(../project_springcloud-eureka/springcloud-consumer-loadbalance-default-order80/tree.md)
 ### 4.6.3.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-consumer-loadbalance-default-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 4.6.4.编写模块pom.xml
@@ -128,3 +129,36 @@ head:
 ```java
 @include(../project_springcloud-eureka/springcloud-consumer-loadbalance-default-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceDefault80.java)
 ```
+
+## 4.7.运行第一个微服务应用
+### 4.7.1.启动第一个微服务应用
+```mermaid
+flowchart LR
+    准备好数据库环境-->启动Eureka注册中心
+    启动Eureka注册中心-->启动服务提供者第一个节点
+    启动服务提供者第一个节点-->启动服务提供者第二个节点
+    启动服务提供者第二个节点-->启动服务消费者
+```
+### 4.7.2.测试第一个微服务应用
+    在浏览器中访问
+```
+http://localhost/consumer/payment/get/1
+```
+    第一次访问
+```json
+{"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
+```
+    第二次访问
+```json
+{"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
+```
+    第三次访问
+```json
+{"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
+```
+    第四次访问
+```json
+{"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
+```
+    可以看到四次访问返回的结果中,第一次和第三次是相同的,第二次和第四次是相同的,之所以会出现这样的结果,是因为上面编写RestTemplate时使用了默认的配置,默认的配置使用负载均衡策略是轮询策略,所以接连访问该服务四次会出现上面的情况。
+

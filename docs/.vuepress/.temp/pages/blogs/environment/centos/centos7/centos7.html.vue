@@ -329,7 +329,7 @@ systemctl enable mysqld.service
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>ALTER USER USER() IDENTIFIED BY 'Mysql123456_';
 FLUSH PRIVILEGES;
-</code></pre></div><pre><code>扩展或者添加远程用户权限:
+</code></pre></div><pre><code>扩展或者添加远程用户权限
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>use mysql;
 update user set host='%' where user='root';
@@ -814,9 +814,8 @@ nexus和Maven中央仓库的关系，harbor除了存储和分发镜像外还具�
 <h4 id="_4-6-3-2-搭建docker-compose" tabindex="-1"><a class="header-anchor" href="#_4-6-3-2-搭建docker-compose" aria-hidden="true">#</a> 4.6.3.2.搭建docker-compose</h4>
 <pre><code>版本说明
 本次使用的docker-compose版本为2.6.1
-
-官方网址
 </code></pre>
+<p><a href="https://github.com/docker/compose/" target="_blank">官方网址</a></p>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>https://github.com/docker/compose/
 </code></pre></div><pre><code>创建运行文件夹-&gt;下载docker-compose-&gt;解压并重命名docker-compose-&gt;赋予运行权限并复制到/usr/local/bin/docker-compose
 </code></pre>
@@ -836,9 +835,8 @@ cp docker-compose-2.6-linux-x86_64 /usr/local/bin/docker-compose
 
 特别注意
 注意docker的版本,低版本的docker不能运行harbor2.5
-
-官方网址
 </code></pre>
+<p><a href="https://github.com/goharbor/harbor" target="_blank">官方网址</a></p>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>https://github.com/goharbor/harbor
 </code></pre></div><pre><code>创建存放下载文件夹-&gt;下载harbor-&gt;创建运行文件夹-&gt;解压到运行文件夹
 </code></pre>
@@ -1144,9 +1142,8 @@ Vmware Workstation -&gt;Centos 64右键菜单 —&gt; 设置-&gt; 处理器 -&gt
 <h2 id="_6-6-安装kubectl" tabindex="-1"><a class="header-anchor" href="#_6-6-安装kubectl" aria-hidden="true">#</a> 6.6.安装kubectl</h2>
 <pre><code>简介
 kubectl 是一个用来跟 K8S 集群进行交互的命令行工具
-
-官方下载地址
 </code></pre>
+<p><a href="https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl" target="_blank">官方下载地址</a></p>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl
 </code></pre></div><pre><code>创建存放kubectl安装包文件夹-&gt;进入该文件夹-&gt;下载kubectl-&gt;赋予可运行权限,并放入/usr/local/bin/目录下
 </code></pre>
@@ -1160,8 +1157,7 @@ chmod +x ./kubectl &amp;&amp; cp ./kubectl /usr/local/bin/kubectl
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>kubectl version --client
 </code></pre></div><h2 id="_6-7-安装minikube" tabindex="-1"><a class="header-anchor" href="#_6-7-安装minikube" aria-hidden="true">#</a> 6.7.安装minikube</h2>
-<pre><code>官方网址
-</code></pre>
+<p><a href="https://github.com/kubernetes/minikube/releases" target="_blank">官方网址</a></p>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>https://github.com/kubernetes/minikube/releases
 </code></pre></div><pre><code>创建存放minikube安装包文件夹-&gt;进入该文件夹-&gt;下载minikube-&gt;赋予运行权限并复制到/usr/local/bin/minikube
 </code></pre>
@@ -1194,8 +1190,7 @@ chmod +x ./minikube-linux-amd64 &amp;&amp; cp ./minikube-linux-amd64 /usr/local/
 	--registry-mirror='https://ngviu28h.mirror.aliyuncs.com' \
 	--kubernetes-version=v1.23.8
 </code></pre></div><h3 id="_6-9-2-使用virtualbox作为虚拟化引擎-需要先安装virtualbox" tabindex="-1"><a class="header-anchor" href="#_6-9-2-使用virtualbox作为虚拟化引擎-需要先安装virtualbox" aria-hidden="true">#</a> 6.9.2.使用virtualbox作为虚拟化引擎(需要先安装Virtualbox)</h3>
-<pre><code>官方网站
-</code></pre>
+<p><a href="https://www.virtualbox.org/wiki/Downloads" target="_blank">官方网站</a></p>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>https://www.virtualbox.org/wiki/Downloads
 </code></pre></div><pre><code>下载Centos7版VirtualBox
 </code></pre>
@@ -4086,8 +4081,7 @@ DASHBOARD-&gt;系统管理-&gt;系统配置-&gt;Publish over SSH
 <pre><code>详细参考 3.搭建基础开发环境-&gt;3.3.安装jdk
 </code></pre>
 <h3 id="_10-3-3-搭建myact1-6" tabindex="-1"><a class="header-anchor" href="#_10-3-3-搭建myact1-6" aria-hidden="true">#</a> 10.3.3.搭建myact1.6</h3>
-<pre><code>官方网址
-</code></pre>
+<p><a href="http://www.mycat.org.cn/" target="_blank">官方网址</a></p>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>http://www.mycat.org.cn/
 </code></pre></div><pre><code>下载mycat1.6
 </code></pre>

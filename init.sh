@@ -1344,7 +1344,7 @@ EOF
     PATH_SUFIX=""
     for((i=1;i<=$MERGE_DEPTH;i++)); do
         PATHS_PART=`echo $2 | cut -d '/' -f$i`
-        PATH_SUFIX=$PATH_SUFIX$PATHS_PART/
+        PATH_SUFIX=$PATH_SUFIX$PATHS_PART
         COMPLETE_PATH=$DOCS_PATH/$PATH_SUFIX
         echo '当前处理路径：'$COMPLETE_PATH
         START_LINE_NUMBER=`grep -n '^---$' $COMPLETE_PATH/README-$1.md | tail -1 | cut  -d ':' -f1`

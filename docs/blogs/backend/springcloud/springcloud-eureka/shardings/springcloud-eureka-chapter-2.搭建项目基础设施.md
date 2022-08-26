@@ -290,12 +290,56 @@ head:
 ## 2.5.准备项目需要的数据库
 ### 2.5.1.安装mysql数据库
     详细参考
-<a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html#_3-5-%E5%AE%89%E8%A3%85mysql" target="_blank">安装mysql</a>
-<a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html#_3-5-%E5%AE%89%E8%A3%85mysql" target="_blank">安装mysql-pure</a>
+<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html#_3-5-%E5%AE%89%E8%A3%85mysql" target="_blank">安装mysql</a>
 
 ### 2.5.2.创建项目需要的数据库
-    导入数据库脚本
+    导入数据库脚本(application.yml中数据库配置和mysql部署机器信息保持一致)
 ```sql
 @include(../project_springcloud-eureka/script/payment.sql)
 ```
+
+### 2.5.3.配置使用springboot热部署
+    在公共模块的pom.xml中添加热部署依赖和相关配置(上一步已经添加进去了,这里只是展示热部署部分的代码),将热部署相关插件和配置放在公共模块的好处是,其他的模块引用公共模块的时候就已经引入了热部署相关插件和配置,无需额外引入
+```xml
+    <dependencies>
+        <!--热部署插件-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <!--是否依赖传递:true,依赖不传递,false:依赖传递,这是maven的特性-->
+            <optional>false</optional>
+        </dependency>
+    </dependencies>
+
+    <!--热部署需要加这个-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                    <addResources>true</addResources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+```
+    更改idea设置
+::: center
+<div class="imgbg-customer">
+</div>
+<img src="../images/idea设置热部署-1.png"  width="100%"/>
+:::
+::: center
+<div class="imgbg-customer">
+</div>
+<img src="../images/idea设置热部署-2.png"  width="100%"/>
+:::
+
+    热部署注意事项
+    开发阶段开启热部署,发布阶段一定要关闭热部署
+    开启热部署功能:spring.devtools.restart.enabled: true
+    关闭热部署功能:spring.devtools.restart.enabled: false
 

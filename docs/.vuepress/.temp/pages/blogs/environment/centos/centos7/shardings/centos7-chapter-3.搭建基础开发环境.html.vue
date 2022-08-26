@@ -160,7 +160,7 @@ systemctl enable mysqld.service
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>ALTER USER USER() IDENTIFIED BY 'Mysql123456_';
 FLUSH PRIVILEGES;
-</code></pre></div><pre><code>扩展或者添加远程用户权限:
+</code></pre></div><pre><code>扩展或者添加远程用户权限
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>use mysql;
 update user set host='%' where user='root';

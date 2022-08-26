@@ -18,14 +18,14 @@ head:
 # 3.使用Eureka作为注册中心
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter3.md)
 ## 3.3.Eureka注册中心简介
-	Eureka是Netflix公司开发的服务发现框架,Spring Cloud对它提供了支持,将它集成在了自己spring-cloud-netflix子项目中,用来实现Spring Cloud的服务发现功能,核心功能是为实现服务发现提供了基础支持。本次我们将搭建一个单节点版的Eureka注册中心和一个集群(高可用)版的Eureka注册中心,用来实现服务发现功能。
+	Eureka是Netflix公司开发的服务发现框架,Spring Cloud对它提供了支持,将它集成在了自己spring-cloud-netflix子项目中,用来实现Spring Cloud的服务发现功能,核心功能是为实现服务发现提供了基础支持。本次将搭建一个单节点版的Eureka注册中心和一个集群(高可用)版的Eureka注册中心,用来实现服务发现功能。
 
-	官方网站(GITHUB)
+<a href="https://github.com/Netflix/eureka" target="_blank">官方网站(GITHUB)</a>
 ```
 https://github.com/Netflix/eureka
 ```
 
-	官方网站(SPRING.IO)
+<a href="https://spring.io/projects/spring-cloud-netflix" target="_blank">官方网站(SPRING.IO)</a>
 ```
 https://spring.io/projects/spring-cloud-netflix
 ```
@@ -58,7 +58,7 @@ https://spring.io/projects/spring-cloud-netflix
 ### 3.4.1.章节内容简介
     本章节会展示如何搭建一个单节点版的Eureka注册中心
 ### 3.4.2.模块简介
-    单机版Eureka注册中心,启动端口: 7001
+    单节点版Eureka注册中心,启动端口: 7001
 ### 3.4.3.模块目录结构
 ```
 @include(../project_springcloud-eureka/springcloud-register-center-single-node7001/tree.md)

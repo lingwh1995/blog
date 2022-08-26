@@ -185,6 +185,11 @@ export default sidebar([
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-4.搭建第一个微服务应用.md",
                   },
+                  {
+                      text: "5.使用Ribbon实现负载均衡",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-5.使用Ribbon实现负载均衡.md",
+                  },
               ]
           },
           {
@@ -216,6 +221,11 @@ export default sidebar([
                       text: "4.搭建第一个微服务应用",
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#4.",
+                  },
+                  {
+                      text: "5.使用Ribbon实现负载均衡",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#5.",
                   },
               ]
           },

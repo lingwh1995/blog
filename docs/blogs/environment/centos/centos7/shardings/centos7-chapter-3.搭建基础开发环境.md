@@ -205,7 +205,7 @@ mysql -uroot -p'%)4(26e++jaK'
 ALTER USER USER() IDENTIFIED BY 'Mysql123456_';
 FLUSH PRIVILEGES;
 ```
-	扩展或者添加远程用户权限:
+	扩展或者添加远程用户权限
 ```
 use mysql;
 update user set host='%' where user='root';

@@ -41,7 +41,7 @@ grep -E --color 'vmx|svm' /proc/cpuinfo
 	简介
 	kubectl 是一个用来跟 K8S 集群进行交互的命令行工具
 
-	官方下载地址
+<a href="https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl" target="_blank">官方下载地址</a>
 ```
 https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl
 ```
@@ -62,7 +62,7 @@ kubectl version --client
 ```
 
 ## 6.7.安装minikube
-	官方网址
+<a href="https://github.com/kubernetes/minikube/releases" target="_blank">官方网址</a>
 ```
 https://github.com/kubernetes/minikube/releases
 ```
@@ -106,7 +106,7 @@ minikube start --driver=docker --force \
 
 ### 6.9.2.使用virtualbox作为虚拟化引擎(需要先安装Virtualbox)
 
-	官方网站
+<a href="https://www.virtualbox.org/wiki/Downloads" target="_blank">官方网站</a>
 ```
 https://www.virtualbox.org/wiki/Downloads
 ```

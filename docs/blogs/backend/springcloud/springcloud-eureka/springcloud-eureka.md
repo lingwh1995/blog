@@ -17,17 +17,17 @@ icon: linux
 head:
   - - meta
     - name: keywords
-      content: 微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,
+      content: 微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,使用Ribbon实现负载均衡,
 ---
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/springcloud-eureka-guidance.md)
 
 # 1.微服务简介 {#1.}
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter1.md)
-## 1.3.Martin Fowler微服务论文英文原版
+## <a href="https://martinfowler.com/articles/microservices.html" target="_blank">1.1.Martin Fowler微服务论文英文原版</a>
 ```
 https://martinfowler.com/articles/microservices.html
 ```
-## 1.4.Martin Fowler微服务论文国内译版
+## <a href="https://martinfowler.com/articles/microservices.html" target="_blank">1.2.Martin Fowler微服务论文国内译版</a>
 	如需国内译版,请使用谷歌翻译插件翻译自行翻译
 
 ## 1.5.微服务架构图
@@ -48,6 +48,10 @@ https://martinfowler.com/articles/microservices.html
 ## 1.7.微服务架构落地实现方案
 	微服务架构落地实现有很多种方案,本次介绍的方案技术栈如下:
 	注册中心: EUREKA 
+## <a href="https://gitee.com/lingwh1995/springcloud-eureka.git">1.6.项目源代码</a>
+```
+https://gitee.com/lingwh1995/springcloud-eureka.git
+```
 
 # 2.搭建项目基础设施 {#2.}
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter2.md)
@@ -327,22 +331,67 @@ https://martinfowler.com/articles/microservices.html
 <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html#_3-5-%E5%AE%89%E8%A3%85mysql" target="_blank">安装mysql</a>
 
 ### 2.5.2.创建项目需要的数据库
-    导入数据库脚本
+    导入数据库脚本(application.yml中数据库配置和mysql部署机器信息保持一致)
 ```sql
 @include(./project_springcloud-eureka/script/payment.sql)
 ```
 
+### 2.5.3.配置使用springboot热部署
+    在公共模块的pom.xml中添加热部署依赖和相关配置(上一步已经添加进去了,这里只是展示热部署部分的代码),将热部署相关插件和配置放在公共模块的好处是,其他的模块引用公共模块的时候就已经引入了热部署相关插件和配置,无需额外引入
+```xml
+    <dependencies>
+        <!--热部署插件-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <!--是否依赖传递:true,依赖不传递,false:依赖传递,这是maven的特性-->
+            <optional>false</optional>
+        </dependency>
+    </dependencies>
+
+    <!--热部署需要加这个-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                    <addResources>true</addResources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+```
+    更改idea设置
+::: center
+<div class="imgbg-customer">
+</div>
+<img src="./images/idea设置热部署-1.png"  width="100%"/>
+:::
+::: center
+<div class="imgbg-customer">
+</div>
+<img src="./images/idea设置热部署-2.png"  width="100%"/>
+:::
+
+    热部署注意事项
+    开发阶段开启热部署,发布阶段一定要关闭热部署
+    开启热部署功能:spring.devtools.restart.enabled: true
+    关闭热部署功能:spring.devtools.restart.enabled: false
+
 # 3.使用Eureka作为注册中心 {#3.}
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter3.md)
 ## 3.3.Eureka注册中心简介
-	Eureka是Netflix公司开发的服务发现框架,Spring Cloud对它提供了支持,将它集成在了自己spring-cloud-netflix子项目中,用来实现Spring Cloud的服务发现功能,核心功能是为实现服务发现提供了基础支持。本次我们将搭建一个单节点版的Eureka注册中心和一个集群(高可用)版的Eureka注册中心,用来实现服务发现功能。
+	Eureka是Netflix公司开发的服务发现框架,Spring Cloud对它提供了支持,将它集成在了自己spring-cloud-netflix子项目中,用来实现Spring Cloud的服务发现功能,核心功能是为实现服务发现提供了基础支持。本次将搭建一个单节点版的Eureka注册中心和一个集群(高可用)版的Eureka注册中心,用来实现服务发现功能。
 
 <a href="https://github.com/Netflix/eureka" target="_blank">官方网站(GITHUB)</a>
 ```
 https://github.com/Netflix/eureka
 ```
 
-	官方网站(SPRING.IO)
+<a href="https://spring.io/projects/spring-cloud-netflix" target="_blank">官方网站(SPRING.IO)</a>
 ```
 https://spring.io/projects/spring-cloud-netflix
 ```
@@ -375,7 +424,7 @@ https://spring.io/projects/spring-cloud-netflix
 ### 3.4.1.章节内容简介
     本章节会展示如何搭建一个单节点版的Eureka注册中心
 ### 3.4.2.模块简介
-    单机版Eureka注册中心,启动端口: 7001
+    单节点版Eureka注册中心,启动端口: 7001
 ### 3.4.3.模块目录结构
 ```
 @include(./project_springcloud-eureka/springcloud-register-center-single-node7001/tree.md)
@@ -621,8 +670,9 @@ http://eureka7004:7004/
 
 ## 4.6.搭建服务消费者
 ### 4.6.1.模块简介
-    服务消费者,启动端口: 80
+    基于SpringCloud官方默认组件实现的服务消费者,启动端口: 80
 ### 4.6.2.模块目录结构
+    @include(./project_springcloud-eureka/springcloud-consumer-loadbalance-default-order80/tree.md)
 ### 4.6.3.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-consumer-loadbalance-default-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 4.6.4.编写模块pom.xml
@@ -645,6 +695,9 @@ http://eureka7004:7004/
 ```java
 @include(./project_springcloud-eureka/springcloud-consumer-loadbalance-default-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceDefault80.java)
 ```
+
+## 4.7.运行第一个微服务应用
+### 4.7.1.启动第一个微服务应用
 ```mermaid
 flowchart LR
     准备好数据库环境-->启动Eureka注册中心
@@ -652,3 +705,146 @@ flowchart LR
     启动服务提供者第一个节点-->启动服务提供者第二个节点
     启动服务提供者第二个节点-->启动服务消费者
 ```
+### 4.7.2.测试第一个微服务应用
+    在浏览器中访问
+```
+http://localhost/consumer/payment/get/1
+```
+    第一次访问
+```json
+{"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
+```
+    第二次访问
+```json
+{"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
+```
+    第三次访问
+```json
+{"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
+```
+    第四次访问
+```json
+{"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
+```
+    可以看到四次访问返回的结果中,第一次和第三次是相同的,第二次和第四次是相同的,之所以会出现这样的结果,是因为上面编写RestTemplate时使用了默认的配置,默认的配置使用负载均衡策略是轮询策略,所以接连访问该服务四次会出现上面的情况。
+
+# 5.使用Ribbon实现负载均衡 {#5.}
+@include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter5.md)
+
+## 5.3.Ribbon简介
+    Ribbon是Netflix发布的开源项目，主要功能是提供客户端的软件负载均衡算法，将Netflix的中间层服务连接在一起。Ribbon客户端组件提供一系列完善的配置项如连接超时，重试等。简单的说，就是在配置文件中列出Load Balancer（简称LB）后面所有的机器，Ribbon会自动的帮助你基于某种规则（如简单轮询，随即连接等）去连接这些机器,也可以使用Ribbon实现自定义的负载均衡算法。
+
+## <a href="https://github.com/Netflix/ribbon">5.2.官方网址</a>
+```
+https://github.com/Netflix/ribbon
+```
+
+## 5.5.硬编码配置方式使用Ribbon实现负载均衡(使用Ribbon自带的负载均衡策略)
+### 5.5.1.模块简介
+    基于Ribbon官方组件以硬编码配置方式实现的服务消费者,启动端口: 80
+### 5.5.2.模块目录结构
+```
+@include(./project_springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/tree.md)
+```
+### 5.5.3.创建模块
+	在父工程(springcloud-eureka)中创建一个名为springcloud-consumer-loadbalance-ribbon-hardcode-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
+### 5.5.4.编写模块pom.xml
+```xml
+@include(./project_springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/pom.xml)
+```
+### 5.5.5.编写模块application.yml
+```yml
+@include(./project_springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/src/main/resources/application.yml)
+```
+### 5.5.6.编写模块config
+```java
+@include(./project_springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/src/main/java/org/openatom/springcloud/config/ApplicationContextConfig.java)
+```
+### 5.5.7.编写模块controller
+```java
+@include(./project_springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java)
+```
+### 5.5.8.编写负载均衡规则配置类
+```java
+@include(./project_springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/src/main/java/org/openatom/myrule/MySelfRule.java)
+```
+    这里使用return new RandomRule();,这代表使用的负载均衡算法是RandomRule,Ribbon默认提供了七种负载均衡的算法策略,具体使用哪一种,请根据实际需求灵活选择,这里提供关于七种负载均衡算法的介绍
+
+- [x] RoundRobinRule(轮询策略,轮询是Ribbon默认使用的负载均衡算法)
+    第一次到A,第二次就到B,第三次又到A,第四次又到B......
+    具体实现是一个负载均衡算法: 第N次请求 % 服务器集群的总数 = 实际调用服务器位置的下标
+
+- [x] RandomRule(随机策略)
+    从服务提供者的列表中随机选择一个服务实例进行调用
+- [x] RetryRule(轮询重试策略)
+    按照轮询策略来获取服务,如果获取的服务实例为null或已经失效,则在指定的时间之内不断地进行重试来获取服务,如果超过指定时间依然没获取到服务实例则返回null。
+- [x] WeightedResponseTimeRule(响应速度决定权重策略)
+    根据每个服务提供者的响应时间分配一个权重,响应时间越长,权重越小,被选中的可能性也就越低。它的实现原理是,刚开始使用轮询策略并开启一个计时器,每一段时间收集一次所有服务提供者的平均响应时间,然后再给每个服务提供者附上一个权重,权重越高被选中的概率也越大。
+- [x] BestAvailableRule(最优可用策略)
+    判断最优其实用的是并发连接数。选择并发连接数较小的server发送请求。
+- [x] AvailabilityFilteringRule(可用性敏感策略)
+    先过滤掉非健康的服务实例，然后再选择连接数较小的服务实例。
+- [x] ZoneAvoidanceRule(区域内可用性能最优策略)
+    基于AvailabilityFilteringRule基础上做的,首先判断一个zone的运行性能是否可用.剔除不可用的区域zone的所有server,然后再利用AvailabilityPredicate过滤并发连接过多的server。
+
+### 5.5.9.编写模块主启动类
+```java
+@include(./project_springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceRibbonHardcode80.java)
+```
+
+## 5.6.声明式配置方式使用Ribbon实现负载均衡(使用Ribbon自带的负载均衡策略)
+### 5.6.1.模块简介
+    基于Ribbon官方组件以声明式配置方式实现的服务消费者,启动端口: 80
+### 5.6.2.模块目录结构
+```
+@include(./project_springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/tree.md)
+```
+### 5.6.3.创建模块
+	在父工程(springcloud-eureka)中创建一个名为springcloud-consumer-loadbalance-ribbon-configuration-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
+### 5.6.4.编写模块pom.xml
+```xml
+@include(./project_springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/pom.xml)
+```
+### 5.6.5.编写模块application.yml
+```yml
+@include(./project_springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/src/main/resources/application.yml)
+```
+
+    yml中关于Ribbon负载均衡策略的配置
+    SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER:
+    ribbon:
+        NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule 
+    这里使用com.netflix.loadbalancer.RandomRule ,这代表使用的负载均衡算法是RandomRule,Ribbon默认提供了七种负载均衡的算法策略,具体使用哪一种,请根据实际需求灵活选择,这里提供关于七种负载均衡算法的介绍
+
+- [x] RoundRobinRule(轮询策略,轮询是Ribbon默认使用的负载均衡算法)
+    第一次到A,第二次就到B,第三次又到A,第四次又到B......
+    具体实现是一个负载均衡算法: 第N次请求 % 服务器集群的总数 = 实际调用服务器位置的下标
+
+- [x] RandomRule(随机策略)
+    从服务提供者的列表中随机选择一个服务实例进行调用
+- [x] RetryRule(轮询重试策略)
+    按照轮询策略来获取服务,如果获取的服务实例为null或已经失效,则在指定的时间之内不断地进行重试来获取服务,如果超过指定时间依然没获取到服务实例则返回null。
+- [x] WeightedResponseTimeRule(响应速度决定权重策略)
+    根据每个服务提供者的响应时间分配一个权重,响应时间越长,权重越小,被选中的可能性也就越低。它的实现原理是,刚开始使用轮询策略并开启一个计时器,每一段时间收集一次所有服务提供者的平均响应时间,然后再给每个服务提供者附上一个权重,权重越高被选中的概率也越大。
+- [x] BestAvailableRule(最优可用策略)
+    判断最优其实用的是并发连接数。选择并发连接数较小的server发送请求。
+- [x] AvailabilityFilteringRule(可用性敏感策略)
+    先过滤掉非健康的服务实例，然后再选择连接数较小的服务实例。
+- [x] ZoneAvoidanceRule(区域内可用性能最优策略)
+    基于AvailabilityFilteringRule基础上做的,首先判断一个zone的运行性能是否可用.剔除不可用的区域zone的所有server,然后再利用AvailabilityPredicate过滤并发连接过多的server。
+
+### 5.6.6.编写模块config
+```java
+@include(./project_springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/src/main/java/org/openatom/springcloud/config/ApplicationContextConfig.java)
+```
+### 5.6.7.编写模块controller
+```java
+@include(./project_springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java)
+```
+### 5.6.8.编写模块主启动类
+```java
+@include(./project_springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceRibbonConfiguration80.java)
+```
+
+## 5.7.硬编码配置方式使用Ribbon实现负载均衡(使用自定义的Ribbon负载均衡策略)
+## 5.8.声明式配置方式使用Ribbon实现负载均衡(使用自定义的Ribbon负载均衡策略)

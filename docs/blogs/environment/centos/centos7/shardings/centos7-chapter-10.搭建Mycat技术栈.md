@@ -28,7 +28,7 @@ head:
 	详细参考 3.搭建基础开发环境->3.1.安装jdk
 
 ### 10.3.3.搭建myact1.6
-	官方网址
+<a href="http://www.mycat.org.cn/" target="_blank">官方网址</a>
 ```
 http://www.mycat.org.cn/
 ```

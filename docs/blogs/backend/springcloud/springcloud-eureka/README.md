@@ -27,6 +27,10 @@ icon: navigate
 
         - <a class="breadcrumb-link" href="shardings/eureka7004.png">eureka7004.png</a>
 
+        - <a class="breadcrumb-link" href="shardings/idea设置热部署-1.png">idea设置热部署-1.png</a>
+
+        - <a class="breadcrumb-link" href="shardings/idea设置热部署-2.png">idea设置热部署-2.png</a>
+
         - <a class="breadcrumb-link" href="shardings/microservice_architecture.png">microservice_architecture.png</a>
 
             - <a class="breadcrumb-link" href="shardings//springcloud-eureka-chapter-0.博客内容介绍.html">博客内容介绍</a>
@@ -38,5 +42,7 @@ icon: navigate
             - <a class="breadcrumb-link" href="shardings//springcloud-eureka-chapter-3.使用Eureka作为注册中心.html">3.使用Eureka作为注册中心</a>
 
             - <a class="breadcrumb-link" href="shardings//springcloud-eureka-chapter-4.搭建第一个微服务应用.html">4.搭建第一个微服务应用</a>
+
+            - <a class="breadcrumb-link" href="shardings//springcloud-eureka-chapter-5.使用Ribbon实现负载均衡.html">5.使用Ribbon实现负载均衡</a>
 
     - <a class="breadcrumb-link" href="springcloud-eureka.html#intro">章节内容合集</a>
