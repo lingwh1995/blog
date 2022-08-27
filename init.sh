@@ -1400,7 +1400,6 @@ EOF
     针对所有的md文件执行合并BreadcrumbREADME碎片
 EOF
 function mergeAllBreadcrumbREADMEShardings() {
-
     #获取$ENHANCE_BOOT_PATH/中以boot-xxx.ini格式命名的文件总共有多少个,每个配置文件对应一个xxx.md文件
     BOOT_FILE_COUNTS=`ls $ENHANCE_BOOT_PATH/ | grep '^boot-.*\.ini$' | wc -w`
     echo '引导文件的总数目: '$BOOT_FILE_COUNTS

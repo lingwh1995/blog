@@ -2274,6 +2274,7 @@ https://github.com/openzipkin/zipkin
 
 ## 10.7.搭建Zipkin
 <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html#_3-5-%E5%AE%89%E8%A3%85mysql" target="_blank">安装mysql</a>
+
 ## 10.8.测试Zipkin+Sleuth实现调用链路追踪
 
 # 11.使用Apollo配置中心统一存放配置 {#11.}
