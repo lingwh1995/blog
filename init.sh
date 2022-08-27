@@ -258,19 +258,16 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
         INCLUDE_CODE_PROJECT_NAME_STR=`echo $5 | tr ',' ' '`
         INCLUDE_CODE_PROJECT_NAME_ARR=( $INCLUDE_CODE_PROJECT_NAME_STR )
         for((i=0;i<${#INCLUDE_CODE_PROJECT_NAME_ARR[@]};i++)); do
-            #给md文档依赖的项目文件夹添加前缀，实际上就是重命名一下这个依赖的项目文件夹的名称
-            mv $2/${INCLUDE_CODE_PROJECT_NAME_ARR[i]} $2/project_${INCLUDE_CODE_PROJECT_NAME_ARR[i]}
-
             echo $2/$1'.md引用了'$2'下的'${INCLUDE_CODE_PROJECT_NAME_ARR[i]}'这个项目中的代码'
             #替换import语法为include语法，并添加代码块标识```
-            sed -i '/^@.*import.*"\.\/\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.java\)"/i\```java' $2/$1.md
-            sed -i '/^@.*import.*"\.\/\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.xml\)"/i\```xml' $2/$1.md
-            sed -i '/^@.*import.*"\.\/\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.yml\)"/i\```yml' $2/$1.md
-            sed -i '/^@.*import.*"\.\/\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.yaml\)"/i\```yaml' $2/$1.md
-            sed -i '/^@.*import.*"\.\/\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.md\)"/i\```' $2/$1.md
-            sed -i '/^@.*import.*"\.\/\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.sql\)"/i\```sql' $2/$1.md
-            sed -i '/^@.*import.*"\.\/\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"/a\```' $2/$1.md
-            sed -i 's#^\(.*\)@import "\(./\)\('"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"#\1@include(\2project_\3)#g' $2/$1.md
+            sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.java"/i\```java' $2/$1.md
+            sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.xml"/i\```xml' $2/$1.md
+            sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.yml"/i\```yml' $2/$1.md
+            sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.yaml"/i\```yaml' $2/$1.md
+            sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.md"/i\```md' $2/$1.md
+            sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.sql"/i\```sql' $2/$1.md
+            sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*"/a\```' $2/$1.md
+            sed -i 's#^\(.*\)@import "\(\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"#\1@include(\2)#g' $2/$1.md
             #添加图片居中效果
             sed -i '/<img.*src=".*".*\/>/i\::: center' $2/$1.md
             sed -i '/<img.*src=".*".*\/>/i\<div class="imgbg-customer">' $2/$1.md
