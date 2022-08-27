@@ -17,7 +17,7 @@ icon: linux
 head:
   - - meta
     - name: keywords
-      content: 微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,使用Ribbon实现客户端负载均衡,使用OpenFeign实现客户端负载均衡,使用Hystrix实现服务降级和熔断,使用Hystrix DashBoard和Turbine对服务进行监控,
+      content: 微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,使用Ribbon实现客户端负载均衡,使用OpenFeign实现客户端负载均衡,使用Hystrix实现服务降级和熔断,使用Hystrix_DashBoard和Turbine对服务进行监控,
 ---
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/springcloud-eureka-guidance.md)
 
@@ -1496,7 +1496,7 @@ http://localhost/consumer/payment/circuitbreaker/get/1
 
     服务熔断(下游服务发生了异常)->断路器半开(放开一定的访问流量,探测一下服务是否恢复正常)->断路器全开(放开全部访问流量)->服务恢复正常
 
-# 8.使用Hystrix DashBoard和Turbine对服务进行监控 {#8.}
+# 8.使用Hystrix_DashBoard和Turbine对服务进行监控 {#8.}
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter8.md)
 ## 8.3.使用Hystrix DashBoard对服务单个节点进行监控
 ### 8.3.1.Hystrix DashBoard简介
@@ -1611,7 +1611,7 @@ public ServletRegistrationBean getServlet() {
 
     修改后的主启动类如下
 ```java
-@include(./project_springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/controller/OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.java)
+@include(./project_springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.java)
 ```
 
 ### 8.3.11.测试模块
@@ -1641,9 +1641,9 @@ http://localhost:9001/hystrix
     监控服务消费端
 ```mermaid
 flowchart LR
-    访问Hystrix DashBoard-->填写http://localhost/hystrix.stream
-    填写http://localhost/hystrix.stream-->点击Monitor Stream
-    点击Monitor Stream-->访问服务消费端任何一个服务
+    访问Hystrix_DashBoard-->填写http://localhost/hystrix.stream
+    填写http://localhost/hystrix.stream-->点击Monitor_Stream
+    点击Monitor_Stream-->访问服务消费端任何一个服务
 ```
     Hystrix DashBoard参数
 ```
@@ -1663,9 +1663,9 @@ http://localhost/consumer/payment/circuitbreaker/get/1
     监控服务提供端8003
 ```mermaid
 flowchart LR
-    访问Hystrix DashBoard-->填写http://localhost:8003/hystrix.stream
-    填写http://localhost:8003/hystrix.stream-->点击Monitor Stream
-    点击Monitor Stream-->访问服务提供端8003任何一个服务
+    访问Hystrix_DashBoard-->填写http://localhost:8003/hystrix.stream
+    填写http://localhost:8003/hystrix.stream-->点击Monitor_Stream
+    点击Monitor_Stream-->访问服务提供端8003任何一个服务
 ```
     Hystrix DashBoard参数
 ```
@@ -1684,10 +1684,10 @@ http://localhost/consumer/payment/circuitbreaker/get/1
 
     监控服务提供端8004
 ```mermaid
-flowchart LR󠀠󠀠
-    访问Hystrix_󠀠󠀠DashBoard-->填写http://localhost:8004/hystrix.stream
+flowchart LR
+    访问Hystrix_DashBoard-->填写http://localhost:8004/hystrix.stream
     填写http://localhost:8004/hystrix.stream-->点击Monitor_Stream
-    点击Monitor_Stream-->访问服务提供端8004任何一个服务
+    点击Monitor_Stream-->访问服务提供端8003任何一个服务
 ```
     Hystrix DashBoard参数
 ```
@@ -1816,10 +1816,8 @@ public ServletRegistrationBean getServlet() {
 ```
 
     修改后的主启动类如下
-```java
-@include(./project_springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/controller/OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.java)
-```
-
+@import "./springcloud-eureka/
+springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.java"
 ### 8.4.11.测试模块
     启动相关服务
 ```mermaid

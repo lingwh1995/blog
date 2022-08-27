@@ -1,6 +1,6 @@
 ---
 title: 基于Eureka搭建Springcloud微服务-博客内容介绍
-description: 本篇博客涉及主要内容有：微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,使用Ribbon实现客户端负载均衡,使用OpenFeign实现客户端负载均衡,使用Hystrix实现服务降级和熔断,使用Hystrix DashBoard和Turbine对服务进行监控,具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+description: 本篇博客涉及主要内容有：微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,使用Ribbon实现客户端负载均衡,使用OpenFeign实现客户端负载均衡,使用Hystrix实现服务降级和熔断,使用Hystrix_DashBoard和Turbine对服务进行监控,具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -12,7 +12,7 @@ date: 2020-01-01
 head:
   - - meta
     - name: keywords
-      content: 微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,使用Ribbon实现客户端负载均衡,使用OpenFeign实现客户端负载均衡,使用Hystrix实现服务降级和熔断,使用Hystrix DashBoard和Turbine对服务进行监控,
+      content: 微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,使用Ribbon实现客户端负载均衡,使用OpenFeign实现客户端负载均衡,使用Hystrix实现服务降级和熔断,使用Hystrix_DashBoard和Turbine对服务进行监控,
 ---
 <Banner localtion="/banner/particles/particles.html"/>
 
@@ -26,7 +26,7 @@ head:
      5.使用Ribbon实现客户端负载均衡
      6.使用OpenFeign实现客户端负载均衡
      7.使用Hystrix实现服务降级和熔断
-     8.使用Hystrix DashBoard和Turbine对服务进行监控
+     8.使用Hystrix_DashBoard和Turbine对服务进行监控
 	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 ## 博客内容大纲
 

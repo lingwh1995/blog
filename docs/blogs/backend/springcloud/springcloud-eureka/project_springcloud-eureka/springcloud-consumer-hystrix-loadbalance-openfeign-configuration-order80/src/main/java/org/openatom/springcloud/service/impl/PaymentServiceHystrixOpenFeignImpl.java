@@ -30,7 +30,7 @@ public class PaymentServiceHystrixOpenFeignImpl implements PaymentServiceHystrix
      */
     @Override
     public CommonResult<Payment> getPaymentByIdUseHystrixDegradation(Long id) {
-        Payment payment = new Payment(null,"消费端:Hystrix在Service层对所有服务进行服务降级....");
+        Payment payment = new Payment(null,"服务消费端:服务提供者宕机了,在服务消费方中Service层对这个服务进行服务降级处理....");
         return new CommonResult(10000,"发生了错误",payment);
     }
 

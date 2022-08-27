@@ -65,6 +65,6 @@ icon: navigate
 
                     - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings//springcloud-eureka-chapter-7.使用Hystrix实现服务降级和熔断.html">7.使用Hystrix实现服务降级和熔断</a>
 
-                    - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings//springcloud-eureka-chapter-8.使用Hystrix.html">8.使用Hystrix</a>
+                    - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings//springcloud-eureka-chapter-8.使用Hystrix_DashBoard和Turbine对服务进行监控.html">8.使用Hystrix_DashBoard和Turbine对服务进行监控</a>
 
             - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/springcloud-eureka.html#intro">章节内容合集</a>
