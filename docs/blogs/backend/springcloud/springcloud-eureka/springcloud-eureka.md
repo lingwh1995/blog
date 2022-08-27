@@ -33,16 +33,16 @@ https://martinfowler.com/articles/microservices.html
 ## 1.5.微服务架构图
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="./images/microservice_architecture.png"  width="100%"/>
+</div>
 :::
 
 ## 1.6.CAP中占据情况
 	Eureka在CAP中占据AP
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="./images/cap.png"  width="100%"/>
+</div>
 :::
 
 ## 1.7.微服务架构落地实现方案
@@ -367,13 +367,13 @@ https://gitee.com/lingwh1995/springcloud-eureka.git
     更改idea设置
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="./images/idea设置热部署-1.png"  width="100%"/>
+</div>
 :::
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="./images/idea设置热部署-2.png"  width="100%"/>
+</div>
 :::
 
     热部署注意事项
@@ -399,8 +399,8 @@ https://spring.io/projects/spring-cloud-netflix
 	EUREKA架构图
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="./images/eureka_architecture.png"  width="80%"/>
+</div>
 :::
 
 	Eureka的基础组件
@@ -451,8 +451,8 @@ http://localhost:7001/
     看到如下界面代表搭建成功
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="./images/eureka7001.png"  width="100%"/>
+</div>
 :::
 
 ## 3.5.集群(高可用)版EUREKA注册中心搭建
@@ -554,8 +554,8 @@ http://eureka7002:7002/
 
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="./images/eureka7002.png"  width="100%"/>
+</div>
 :::
 
     测试集群中的第二个节点(7003),浏览器访问
@@ -564,8 +564,8 @@ http://eureka7003:7003/
 ```
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="./images/eureka7003.png"  width="100%"/>
+</div>
 :::
 
     测试集群中的第三个节点(7004),浏览器访问
@@ -574,8 +574,8 @@ http://eureka7004:7004/
 ```
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="./images/eureka7004.png"  width="100%"/>
+</div>
 :::
 
     可以看到,在每个节点和都和其他两个节点相互注册,这代表集群搭建成功
@@ -1634,8 +1634,8 @@ http://localhost:9001/hystrix
 ```
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="./images/hystrix_dashboard.png"  width="100%"/>
+</div>
 :::
 
     监控服务消费端
@@ -1656,8 +1656,8 @@ http://localhost/consumer/payment/circuitbreaker/get/1
     可以看到界面自动统计出了消费端某个服务的访问情况
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="./images/hystrix_dashboard_mointor_consumer.png"  width="100%"/>
+</div>
 :::
 
     监控服务提供端8003
@@ -1678,8 +1678,8 @@ http://localhost/consumer/payment/circuitbreaker/get/1
     可以看到界面自动统计出了提供端8003某个服务的访问情况
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="./images/hystrix_dashboard_mointor_provider8003.png"  width="100%"/>
+</div>
 :::
 
     监控服务提供端8004
@@ -1700,8 +1700,8 @@ http://localhost/consumer/payment/circuitbreaker/get/1
     可以看到界面自动统计出了提供端8004某个服务的访问情况
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="./images/hystrix_dashboard_mointor_provider8004.png"  width="100%"/>
+</div>
 :::
 
 ## 8.4.使用Turbine汇聚服务提供端多个节点访问统计数据
@@ -1841,8 +1841,8 @@ http://localhost:9002/hystrix
 ```
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="./images/turbine.png"  width="100%"/>
+</div>
 :::
 
     使用Turbine汇聚服务提供端多个节点访问统计数据(汇聚Hystrix DashBoard监控到的服务提供端8003节点的数据和服务提供端8004节点的数据)
@@ -1863,8 +1863,8 @@ http://localhost/consumer/payment/circuitbreaker/get/1
     可以看到界面一次性自动统计出了服务提供端8003节点和服务提供端8004节点访问统计数据
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="./images/turbine_mointor_provider_allnode.png"  width="100%"/>
+</div>
 :::
 
     使用Turbine前
@@ -2030,7 +2030,7 @@ http://localhost:9527/consumer/payment/ok/get/1?uname=zhangsan
 ```
 ### 9.6.6.编写config
 ```java
-@include(./project_springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/src/main/java/org/openatom/springcloud/GateWayConfig.java)
+@include(./project_springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/src/main/java/org/openatom/springcloud/config/GateWayConfig.java)
 ```
 ### 9.6.7.编写鉴权LoginFilter
 ```java
@@ -2092,7 +2092,7 @@ http://localhost:9527/consumer/payment/ok/get/1?uname=zhangsan
 ```
 ### 9.7.6.编写config
 ```java
-@include(./project_springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/src/main/java/org/openatom/springcloud/GateWayConfig.java)
+@include(./project_springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/src/main/java/org/openatom/springcloud/config/GateWayConfig.java)
 ```
 ### 9.7.7.编写鉴权LoginFilter
 ```java
@@ -2307,8 +2307,8 @@ flowchart LR
 ```
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="./images/zipkin.png" width="100%"/>
+</div>
 :::
 
     通过上图的链路追踪可以清晰的查看到两个服务调用花费的时间情况

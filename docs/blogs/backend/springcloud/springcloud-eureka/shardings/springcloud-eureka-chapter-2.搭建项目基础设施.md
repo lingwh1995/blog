@@ -329,13 +329,13 @@ head:
     更改idea设置
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="../images/idea设置热部署-1.png"  width="100%"/>
+</div>
 :::
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="../images/idea设置热部署-2.png"  width="100%"/>
+</div>
 :::
 
     热部署注意事项

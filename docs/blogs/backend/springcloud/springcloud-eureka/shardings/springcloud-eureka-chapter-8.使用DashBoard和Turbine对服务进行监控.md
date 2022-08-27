@@ -152,8 +152,8 @@ http://localhost:9001/hystrix
 ```
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="../images/hystrix_dashboard.png"  width="100%"/>
+</div>
 :::
 
     监控服务消费端
@@ -174,8 +174,8 @@ http://localhost/consumer/payment/circuitbreaker/get/1
     可以看到界面自动统计出了消费端某个服务的访问情况
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="../images/hystrix_dashboard_mointor_consumer.png"  width="100%"/>
+</div>
 :::
 
     监控服务提供端8003
@@ -196,8 +196,8 @@ http://localhost/consumer/payment/circuitbreaker/get/1
     可以看到界面自动统计出了提供端8003某个服务的访问情况
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="../images/hystrix_dashboard_mointor_provider8003.png"  width="100%"/>
+</div>
 :::
 
     监控服务提供端8004
@@ -218,8 +218,8 @@ http://localhost/consumer/payment/circuitbreaker/get/1
     可以看到界面自动统计出了提供端8004某个服务的访问情况
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="../images/hystrix_dashboard_mointor_provider8004.png"  width="100%"/>
+</div>
 :::
 
 ## 8.4.使用Turbine汇聚服务提供端多个节点访问统计数据
@@ -359,8 +359,8 @@ http://localhost:9002/hystrix
 ```
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="../images/turbine.png"  width="100%"/>
+</div>
 :::
 
     使用Turbine汇聚服务提供端多个节点访问统计数据(汇聚Hystrix DashBoard监控到的服务提供端8003节点的数据和服务提供端8004节点的数据)
@@ -381,8 +381,8 @@ http://localhost/consumer/payment/circuitbreaker/get/1
     可以看到界面一次性自动统计出了服务提供端8003节点和服务提供端8004节点访问统计数据
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="../images/turbine_mointor_provider_allnode.png"  width="100%"/>
+</div>
 :::
 
     使用Turbine前

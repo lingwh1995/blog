@@ -274,8 +274,8 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
             #添加图片居中效果
             sed -i '/<img.*src=".*".*\/>/i\::: center' $2/$1.md
             sed -i '/<img.*src=".*".*\/>/i\<div class="imgbg-customer">' $2/$1.md
-            sed -i '/<img.*src=".*".*\/>/i\</div>' $2/$1.md
             sed -i '/<img.*src=".*".*\/>/a\:::' $2/$1.md
+            sed -i '/<img.*src=".*".*\/>/a\</div>' $2/$1.md
         done
     fi
 

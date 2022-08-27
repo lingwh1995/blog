@@ -171,7 +171,7 @@ http://localhost:9527/consumer/payment/ok/get/1?uname=zhangsan
 ```
 ### 9.6.6.编写config
 ```java
-@include(../project_springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/src/main/java/org/openatom/springcloud/GateWayConfig.java)
+@include(../project_springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/src/main/java/org/openatom/springcloud/config/GateWayConfig.java)
 ```
 ### 9.6.7.编写鉴权LoginFilter
 ```java
@@ -233,7 +233,7 @@ http://localhost:9527/consumer/payment/ok/get/1?uname=zhangsan
 ```
 ### 9.7.6.编写config
 ```java
-@include(../project_springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/src/main/java/org/openatom/springcloud/GateWayConfig.java)
+@include(../project_springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/src/main/java/org/openatom/springcloud/config/GateWayConfig.java)
 ```
 ### 9.7.7.编写鉴权LoginFilter
 ```java

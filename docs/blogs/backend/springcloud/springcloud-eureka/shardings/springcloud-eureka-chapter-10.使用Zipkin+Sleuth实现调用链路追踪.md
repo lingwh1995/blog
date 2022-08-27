@@ -186,8 +186,8 @@ flowchart LR
 ```
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="../images/zipkin.png" width="100%"/>
+</div>
 :::
 
     通过上图的链路追踪可以清晰的查看到两个服务调用花费的时间情况

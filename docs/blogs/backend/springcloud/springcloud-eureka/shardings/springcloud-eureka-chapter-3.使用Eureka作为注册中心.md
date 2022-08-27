@@ -33,8 +33,8 @@ https://spring.io/projects/spring-cloud-netflix
 	EUREKA架构图
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="../images/eureka_architecture.png"  width="80%"/>
+</div>
 :::
 
 	Eureka的基础组件
@@ -85,8 +85,8 @@ http://localhost:7001/
     看到如下界面代表搭建成功
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="../images/eureka7001.png"  width="100%"/>
+</div>
 :::
 
 ## 3.5.集群(高可用)版EUREKA注册中心搭建
@@ -188,8 +188,8 @@ http://eureka7002:7002/
 
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="../images/eureka7002.png"  width="100%"/>
+</div>
 :::
 
     测试集群中的第二个节点(7003),浏览器访问
@@ -198,8 +198,8 @@ http://eureka7003:7003/
 ```
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="../images/eureka7003.png"  width="100%"/>
+</div>
 :::
 
     测试集群中的第三个节点(7004),浏览器访问
@@ -208,8 +208,8 @@ http://eureka7004:7004/
 ```
 ::: center
 <div class="imgbg-customer">
-</div>
 <img src="../images/eureka7004.png"  width="100%"/>
+</div>
 :::
 
     可以看到,在每个节点和都和其他两个节点相互注册,这代表集群搭建成功
