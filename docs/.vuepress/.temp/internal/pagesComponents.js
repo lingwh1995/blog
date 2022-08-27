@@ -19,6 +19,8 @@ export const pagesComponents = {
   "v-9d7b0f0e": defineAsyncComponent(() => import(/* webpackChunkName: "v-9d7b0f0e" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/index.html.vue")),
   // path: /blogs/environment/centos/
   "v-60e2b560": defineAsyncComponent(() => import(/* webpackChunkName: "v-60e2b560" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/index.html.vue")),
+  // path: /blogs/environment/windows/
+  "v-1295127f": defineAsyncComponent(() => import(/* webpackChunkName: "v-1295127f" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/index.html.vue")),
   // path: /blogs/backend/springcloud/springcloud-eureka/
   "v-266c7238": defineAsyncComponent(() => import(/* webpackChunkName: "v-266c7238" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/index.html.vue")),
   // path: /blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.html
@@ -27,6 +29,10 @@ export const pagesComponents = {
   "v-47b2c842": defineAsyncComponent(() => import(/* webpackChunkName: "v-47b2c842" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/centos7.html.vue")),
   // path: /blogs/environment/centos/centos7/
   "v-c09c1298": defineAsyncComponent(() => import(/* webpackChunkName: "v-c09c1298" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/index.html.vue")),
+  // path: /blogs/environment/windows/windows-server2016/
+  "v-01291920": defineAsyncComponent(() => import(/* webpackChunkName: "v-01291920" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/windows-server2016/index.html.vue")),
+  // path: /blogs/environment/windows/windows-server2016/windows-server2016.html
+  "v-181a8d89": defineAsyncComponent(() => import(/* webpackChunkName: "v-181a8d89" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/windows-server2016/windows-server2016.html.vue")),
   // path: /blogs/backend/springcloud/springcloud-eureka/shardings/
   "v-0d502c98": defineAsyncComponent(() => import(/* webpackChunkName: "v-0d502c98" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/index.html.vue")),
   // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-0.%E5%8D%9A%E5%AE%A2%E5%86%85%E5%AE%B9%E4%BB%8B%E7%BB%8D.html
@@ -81,6 +87,34 @@ export const pagesComponents = {
   "v-181a1557": defineAsyncComponent(() => import(/* webpackChunkName: "v-181a1557" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html.vue")),
   // path: /blogs/environment/centos/centos7/shardings/
   "v-7f474614": defineAsyncComponent(() => import(/* webpackChunkName: "v-7f474614" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/shardings/index.html.vue")),
+  // path: /blogs/environment/windows/windows-server2016/shardings/
+  "v-2f915d00": defineAsyncComponent(() => import(/* webpackChunkName: "v-2f915d00" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/windows-server2016/shardings/index.html.vue")),
+  // path: /blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-0.%E5%8D%9A%E5%AE%A2%E5%86%85%E5%AE%B9%E4%BB%8B%E7%BB%8D.html
+  "v-00cd2bb4": defineAsyncComponent(() => import(/* webpackChunkName: "v-00cd2bb4" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-0.博客内容介绍.html.vue")),
+  // path: /blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-1.%E5%AE%89%E8%A3%85Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html
+  "v-e305b704": defineAsyncComponent(() => import(/* webpackChunkName: "v-e305b704" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-1.安装Linux操作系统.html.vue")),
+  // path: /blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-10.%E6%90%AD%E5%BB%BAMycat%E6%8A%80%E6%9C%AF%E6%A0%88.html
+  "v-671e0b78": defineAsyncComponent(() => import(/* webpackChunkName: "v-671e0b78" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-10.搭建Mycat技术栈.html.vue")),
+  // path: /blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-11.%E6%90%AD%E5%BB%BA%E5%B8%B8%E7%94%A8%E7%A7%81%E6%9C%8D%E7%8E%AF%E5%A2%83.html
+  "v-e8edfe6c": defineAsyncComponent(() => import(/* webpackChunkName: "v-e8edfe6c" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-11.搭建常用私服环境.html.vue")),
+  // path: /blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-12.%E6%90%AD%E5%BB%BASpringCloud%E6%8A%80%E6%9C%AF%E6%A0%88%E6%89%80%E9%9C%80%E7%BB%84%E4%BB%B6.html
+  "v-70778935": defineAsyncComponent(() => import(/* webpackChunkName: "v-70778935" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-12.搭建SpringCloud技术栈所需组件.html.vue")),
+  // path: /blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-2.Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E8%AE%BE%E7%BD%AE.html
+  "v-58467441": defineAsyncComponent(() => import(/* webpackChunkName: "v-58467441" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-2.Linux操作系统初始设置.html.vue")),
+  // path: /blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-3.%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html
+  "v-54f937d8": defineAsyncComponent(() => import(/* webpackChunkName: "v-54f937d8" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-3.搭建基础开发环境.html.vue")),
+  // path: /blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-4.%E6%90%AD%E5%BB%BAdocker%E6%8A%80%E6%9C%AF%E6%A0%88.html
+  "v-2b12e707": defineAsyncComponent(() => import(/* webpackChunkName: "v-2b12e707" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-4.搭建docker技术栈.html.vue")),
+  // path: /blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-5.%E6%90%AD%E5%BB%BARancher%E6%8A%80%E6%9C%AF%E6%A0%88.html
+  "v-67b69107": defineAsyncComponent(() => import(/* webpackChunkName: "v-67b69107" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-5.搭建Rancher技术栈.html.vue")),
+  // path: /blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-6.%E6%90%AD%E5%BB%BAMinikube.html
+  "v-04f327e4": defineAsyncComponent(() => import(/* webpackChunkName: "v-04f327e4" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-6.搭建Minikube.html.vue")),
+  // path: /blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-7.kubeadm%E6%90%AD%E5%BB%BAKubernetes.html
+  "v-4efac378": defineAsyncComponent(() => import(/* webpackChunkName: "v-4efac378" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-7.kubeadm搭建Kubernetes.html.vue")),
+  // path: /blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-8.%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8C%85%E6%90%AD%E5%BB%BAKubernetes.html
+  "v-3e965173": defineAsyncComponent(() => import(/* webpackChunkName: "v-3e965173" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-8.二进制包搭建Kubernetes.html.vue")),
+  // path: /blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-9.%E6%90%AD%E5%BB%BA%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90%E7%8E%AF%E5%A2%83.html
+  "v-20c05870": defineAsyncComponent(() => import(/* webpackChunkName: "v-20c05870" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-9.搭建持续集成环境.html.vue")),
   // path: /404.html
   "v-3706649a": defineAsyncComponent(() => import(/* webpackChunkName: "v-3706649a" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/404.html.vue")),
   // path: /category/
