@@ -125,8 +125,13 @@ export default navbar([
       },
       {
         text: "windows",
-        icon: "windows",
-        link: "/blogs/environment/windows/windows.md",
+        children: [
+          {
+            text: "windows server2016",
+            icon: "windows",
+            link: "/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-0.博客内容介绍.md",
+          },
+        ],
       }
     ],
   },
