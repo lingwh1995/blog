@@ -2,7 +2,7 @@ springcloud-router-connect-loadbalance-configuration-gateway9527
 |-- src
 |   •-- main
 |       |-- java
-|       |   •-- com
+|       |   •-- org
 |       |       •-- openatom
 |       |           •-- springcloud
 |       |               |-- config

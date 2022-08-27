@@ -10,7 +10,7 @@
      5.使用Ribbon实现客户端负载均衡
      6.使用OpenFeign实现客户端负载均衡
      7.使用Hystrix实现服务降级和熔断
-     8.使用Hystrix_DashBoard和Turbine对服务进行监控
+     8.使用DashBoard和Turbine对服务进行监控
      9.使用GateWay实现网关功能
      10.使用Zipkin+Sleuth实现调用链路追踪
      11.使用Apollo配置中心统一存放配置

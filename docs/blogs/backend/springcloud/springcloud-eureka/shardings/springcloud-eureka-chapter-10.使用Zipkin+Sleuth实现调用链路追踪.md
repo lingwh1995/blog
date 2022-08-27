@@ -153,6 +153,42 @@ https://github.com/openzipkin/zipkin
 ```
 
 ## 10.7.搭建Zipkin
-<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html#_3-5-%E5%AE%89%E8%A3%85mysql" target="_blank">安装mysql</a>
+    详细参考
+<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-12.搭建SpringCloud技术栈所需组件.html#_12-3-搭建zipkin" target="_blank">搭建Zipkin</a>
+
 ## 10.8.测试Zipkin+Sleuth实现调用链路追踪
+    启动相关服务    
+```mermaid
+flowchart LR
+    准备好数据库环境-->启动Eureka注册中心
+    启动Eureka注册中心-->启动服务提供者8005节点
+    启动服务提供者8005节点-->启动服务提供者8006节点
+    启动服务提供者8006节点-->启动使用了Sleuth功能的服务消费者
+    启动使用了Sleuth功能的服务消费者-->启动Zipkin
+```
+
+    在浏览器中访问下面两个URL
+```
+http://localhost/consumer/payment/get/1
+```
+```
+http://localhost/consumer/payment/timeout/get/1
+```
+    查看调用链路       
+```
+http://192.168.0.5:9411/zipkin/
+```
+```mermaid
+flowchart LR
+    点击红色加号-->选择serviceName
+    选择serviceName-->弹出框选择服务消费端
+    弹出框选择服务消费端-->点击RUN_QUERY
+```
+::: center
+<div class="imgbg-customer">
+</div>
+<img src="../images/zipkin.png" width="100%"/>
+:::
+
+    通过上图的链路追踪可以清晰的查看到两个服务调用花费的时间情况
 

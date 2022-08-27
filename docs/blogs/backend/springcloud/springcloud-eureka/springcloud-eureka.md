@@ -17,7 +17,7 @@ icon: linux
 head:
   - - meta
     - name: keywords
-      content: 微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,使用Ribbon实现客户端负载均衡,使用OpenFeign实现客户端负载均衡,使用Hystrix实现服务降级和熔断,使用Hystrix_DashBoard和Turbine对服务进行监控,使用GateWay实现网关功能,使用Zipkin+Sleuth实现调用链路追踪,使用Apollo配置中心统一存放配置,
+      content: 微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,使用Ribbon实现客户端负载均衡,使用OpenFeign实现客户端负载均衡,使用Hystrix实现服务降级和熔断,使用DashBoard和Turbine对服务进行监控,使用GateWay实现网关功能,使用Zipkin+Sleuth实现调用链路追踪,使用Apollo配置中心统一存放配置,
 ---
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/springcloud-eureka-guidance.md)
 
@@ -328,7 +328,7 @@ https://gitee.com/lingwh1995/springcloud-eureka.git
 ## 2.5.准备项目需要的数据库
 ### 2.5.1.安装mysql数据库
     详细参考
-<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html#_3-5-%E5%AE%89%E8%A3%85mysql" target="_blank">安装mysql</a>
+<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql</a>
 
 ### 2.5.2.创建项目需要的数据库
     导入数据库脚本(application.yml中数据库配置和mysql部署机器信息保持一致)
@@ -1496,7 +1496,7 @@ http://localhost/consumer/payment/circuitbreaker/get/1
 
     服务熔断(下游服务发生了异常)->断路器半开(放开一定的访问流量,探测一下服务是否恢复正常)->断路器全开(放开全部访问流量)->服务恢复正常
 
-# 8.使用Hystrix_DashBoard和Turbine对服务进行监控 {#8.}
+# 8.使用DashBoard和Turbine对服务进行监控 {#8.}
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter8.md)
 ## 8.3.使用Hystrix DashBoard对服务单个节点进行监控
 ### 8.3.1.Hystrix DashBoard简介
@@ -1909,16 +1909,17 @@ https://spring.io/projects/spring-cloud-gateway/
 ```
 ### 9.4.6.编写模块config
 ```java
-@include(./project_springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/java/com/openatom/springcloud/config/GateWayConfig.java)
+@include(./project_springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/java/org/openatom/springcloud/config/GateWayConfig.java)
 ```
 ### 9.4.7.编写鉴权LoginFilter
 ```java
-@include(./project_springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/java/com/openatom/springcloud/filter/LoginFilter.java)
+@include(./project_springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/java/org/openatom/springcloud/filter/LoginFilter.java)
 ```
 ### 9.4.8.编写模块主启动类
 ```java
 @include(./project_springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/java/org/openatom/springcloud/RouterConnectDirectHardcodeGateWay9527.java)
 ```
+
 ### 9.4.7.测试模块
     启动相关服务
 ```mermaid
@@ -1971,7 +1972,7 @@ http://localhost:9527/consumer/payment/ok/get/1?uname=zhangsan
 ```
 ### 9.5.6.编写鉴权LoginFilter
 ```java
-@include(./project_springcloud-eureka/springcloud-router-connect-direct-configuration-gateway9527/src/main/java/com/openatom/springcloud/filter/LoginFilter.java)
+@include(./project_springcloud-eureka/springcloud-router-connect-direct-configuration-gateway9527/src/main/java/org/openatom/springcloud/filter/LoginFilter.java)
 ```
 ### 9.5.7.编写模块主启动类
 ```java
@@ -2033,7 +2034,7 @@ http://localhost:9527/consumer/payment/ok/get/1?uname=zhangsan
 ```
 ### 9.6.7.编写鉴权LoginFilter
 ```java
-@include(./project_springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/src/main/java/com/openatom/springcloud/filter/LoginFilter.java)
+@include(./project_springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/src/main/java/org/openatom/springcloud/filter/LoginFilter.java)
 ```
 ### 9.6.8.编写模块主启动类
 ```java
@@ -2095,7 +2096,7 @@ http://localhost:9527/consumer/payment/ok/get/1?uname=zhangsan
 ```
 ### 9.7.7.编写鉴权LoginFilter
 ```java
-@include(./project_springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/src/main/java/com/openatom/springcloud/filter/LoginFilter.java)
+@include(./project_springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/src/main/java/org/openatom/springcloud/filter/LoginFilter.java)
 ```
 ### 9.7.8.编写模块主启动类
 ```java
@@ -2273,9 +2274,44 @@ https://github.com/openzipkin/zipkin
 ```
 
 ## 10.7.搭建Zipkin
-<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html#_3-5-%E5%AE%89%E8%A3%85mysql" target="_blank">安装mysql</a>
+    详细参考
+<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-12.搭建SpringCloud技术栈所需组件.html#_12-3-搭建zipkin" target="_blank">搭建Zipkin</a>
 
 ## 10.8.测试Zipkin+Sleuth实现调用链路追踪
+    启动相关服务    
+```mermaid
+flowchart LR
+    准备好数据库环境-->启动Eureka注册中心
+    启动Eureka注册中心-->启动服务提供者8005节点
+    启动服务提供者8005节点-->启动服务提供者8006节点
+    启动服务提供者8006节点-->启动使用了Sleuth功能的服务消费者
+    启动使用了Sleuth功能的服务消费者-->启动Zipkin
+```
+
+    在浏览器中访问下面两个URL
+```
+http://localhost/consumer/payment/get/1
+```
+```
+http://localhost/consumer/payment/timeout/get/1
+```
+    查看调用链路       
+```
+http://192.168.0.5:9411/zipkin/
+```
+```mermaid
+flowchart LR
+    点击红色加号-->选择serviceName
+    选择serviceName-->弹出框选择服务消费端
+    弹出框选择服务消费端-->点击RUN_QUERY
+```
+::: center
+<div class="imgbg-customer">
+</div>
+<img src="./images/zipkin.png" width="100%"/>
+:::
+
+    通过上图的链路追踪可以清晰的查看到两个服务调用花费的时间情况
 
 # 11.使用Apollo配置中心统一存放配置 {#11.}
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter11.md)

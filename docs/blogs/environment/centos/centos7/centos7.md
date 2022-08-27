@@ -4895,7 +4895,11 @@ curl -fL -u springcloud-1661567629477:e7770fbb167089a0ca2df33f8c03fa548c83b4c1 \
 mv zipkin-server-2.23.9-exec.jar zipkin.jar &&
 chmod +x zipkin.jar
 ```
-
+	开放端口
+```
+firewall-cmd --zone=public --add-port=9411/tcp --permanent &&
+firewall-cmd --reload 
+```
 	启动zipkin
 ```
 java -jar zipkin.jar

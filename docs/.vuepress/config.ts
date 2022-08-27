@@ -46,5 +46,7 @@ export default defineUserConfig({
   },
   //开启PWA时将这个值设置为false
   shouldPrefetch: false,
+  //过滤哪些文件夹中的md文件不需要被识别为文章
+  pagePatterns: ['**/*.md', '!.vuepress', '!node_modules', '!**/tree.md']
 });
 

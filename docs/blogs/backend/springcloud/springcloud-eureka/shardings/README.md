@@ -30,7 +30,7 @@ icon: navigate
 
     - <a class="breadcrumb-link" href="springcloud-eureka-chapter-7.使用Hystrix实现服务降级和熔断.html">7.使用Hystrix实现服务降级和熔断</a>
 
-    - <a class="breadcrumb-link" href="springcloud-eureka-chapter-8.使用Hystrix_DashBoard和Turbine对服务进行监控.html">8.使用Hystrix_DashBoard和Turbine对服务进行监控</a>
+    - <a class="breadcrumb-link" href="springcloud-eureka-chapter-8.使用DashBoard和Turbine对服务进行监控.html">8.使用DashBoard和Turbine对服务进行监控</a>
 
     - <a class="breadcrumb-link" href="springcloud-eureka-chapter-9.使用GateWay实现网关功能.html">9.使用GateWay实现网关功能</a>
 

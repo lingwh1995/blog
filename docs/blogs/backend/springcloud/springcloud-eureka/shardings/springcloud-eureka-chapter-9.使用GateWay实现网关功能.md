@@ -50,16 +50,17 @@ https://spring.io/projects/spring-cloud-gateway/
 ```
 ### 9.4.6.编写模块config
 ```java
-@include(../project_springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/java/com/openatom/springcloud/config/GateWayConfig.java)
+@include(../project_springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/java/org/openatom/springcloud/config/GateWayConfig.java)
 ```
 ### 9.4.7.编写鉴权LoginFilter
 ```java
-@include(../project_springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/java/com/openatom/springcloud/filter/LoginFilter.java)
+@include(../project_springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/java/org/openatom/springcloud/filter/LoginFilter.java)
 ```
 ### 9.4.8.编写模块主启动类
 ```java
 @include(../project_springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/java/org/openatom/springcloud/RouterConnectDirectHardcodeGateWay9527.java)
 ```
+
 ### 9.4.7.测试模块
     启动相关服务
 ```mermaid
@@ -112,7 +113,7 @@ http://localhost:9527/consumer/payment/ok/get/1?uname=zhangsan
 ```
 ### 9.5.6.编写鉴权LoginFilter
 ```java
-@include(../project_springcloud-eureka/springcloud-router-connect-direct-configuration-gateway9527/src/main/java/com/openatom/springcloud/filter/LoginFilter.java)
+@include(../project_springcloud-eureka/springcloud-router-connect-direct-configuration-gateway9527/src/main/java/org/openatom/springcloud/filter/LoginFilter.java)
 ```
 ### 9.5.7.编写模块主启动类
 ```java
@@ -174,7 +175,7 @@ http://localhost:9527/consumer/payment/ok/get/1?uname=zhangsan
 ```
 ### 9.6.7.编写鉴权LoginFilter
 ```java
-@include(../project_springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/src/main/java/com/openatom/springcloud/filter/LoginFilter.java)
+@include(../project_springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/src/main/java/org/openatom/springcloud/filter/LoginFilter.java)
 ```
 ### 9.6.8.编写模块主启动类
 ```java
@@ -236,7 +237,7 @@ http://localhost:9527/consumer/payment/ok/get/1?uname=zhangsan
 ```
 ### 9.7.7.编写鉴权LoginFilter
 ```java
-@include(../project_springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/src/main/java/com/openatom/springcloud/filter/LoginFilter.java)
+@include(../project_springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/src/main/java/org/openatom/springcloud/filter/LoginFilter.java)
 ```
 ### 9.7.8.编写模块主启动类
 ```java

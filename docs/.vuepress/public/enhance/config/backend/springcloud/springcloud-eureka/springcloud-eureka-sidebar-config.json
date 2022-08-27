@@ -53,9 +53,9 @@
                       link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-7.使用Hystrix实现服务降级和熔断.md",
                   },
                   {
-                      text: "8.使用Hystrix_DashBoard和Turbine对服务进行监控",
+                      text: "8.使用DashBoard和Turbine对服务进行监控",
                       icon: "article",
-                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-8.使用Hystrix_DashBoard和Turbine对服务进行监控.md",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-8.使用DashBoard和Turbine对服务进行监控.md",
                   },
                   {
                       text: "9.使用GateWay实现网关功能",
@@ -120,7 +120,7 @@
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#7.",
                   },
                   {
-                      text: "8.使用Hystrix_DashBoard和Turbine对服务进行监控",
+                      text: "8.使用DashBoard和Turbine对服务进行监控",
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#8.",
                   },

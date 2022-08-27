@@ -661,7 +661,7 @@ springcloud-eureka
 |   |-- src
 |   |   •-- main
 |   |       |-- java
-|   |       |   •-- com
+|   |       |   •-- org
 |   |       |       •-- openatom
 |   |       |           •-- springcloud
 |   |       |               |-- filter
@@ -674,7 +674,7 @@ springcloud-eureka
 |   |-- src
 |   |   •-- main
 |   |       |-- java
-|   |       |   •-- com
+|   |       |   •-- org
 |   |       |       •-- openatom
 |   |       |           •-- springcloud
 |   |       |               |-- config
@@ -689,7 +689,7 @@ springcloud-eureka
 |   |-- src
 |   |   •-- main
 |   |       |-- java
-|   |       |   •-- com
+|   |       |   •-- org
 |   |       |       •-- openatom
 |   |       |           •-- springcloud
 |   |       |               |-- config
@@ -704,7 +704,7 @@ springcloud-eureka
 |   |-- src
 |   |   •-- main
 |   |       |-- java
-|   |       |   •-- com
+|   |       |   •-- org
 |   |       |       •-- openatom
 |   |       |           •-- springcloud
 |   |       |               |-- config

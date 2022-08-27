@@ -47,6 +47,8 @@ icon: navigate
 
             - <a class="breadcrumb-link" href="springcloud-eureka/shardings/turbine_mointor_provider_allnode.png">turbine_mointor_provider_allnode.png</a>
 
+            - <a class="breadcrumb-link" href="springcloud-eureka/shardings/zipkin.png">zipkin.png</a>
+
                 - <a class="breadcrumb-link" href="springcloud-eureka/shardings//springcloud-eureka-chapter-0.博客内容介绍.html">博客内容介绍</a>
 
                 - <a class="breadcrumb-link" href="springcloud-eureka/shardings//springcloud-eureka-chapter-1.微服务简介.html">1.微服务简介</a>
@@ -67,7 +69,7 @@ icon: navigate
 
                 - <a class="breadcrumb-link" href="springcloud-eureka/shardings//springcloud-eureka-chapter-7.使用Hystrix实现服务降级和熔断.html">7.使用Hystrix实现服务降级和熔断</a>
 
-                - <a class="breadcrumb-link" href="springcloud-eureka/shardings//springcloud-eureka-chapter-8.使用Hystrix_DashBoard和Turbine对服务进行监控.html">8.使用Hystrix_DashBoard和Turbine对服务进行监控</a>
+                - <a class="breadcrumb-link" href="springcloud-eureka/shardings//springcloud-eureka-chapter-8.使用DashBoard和Turbine对服务进行监控.html">8.使用DashBoard和Turbine对服务进行监控</a>
 
                 - <a class="breadcrumb-link" href="springcloud-eureka/shardings//springcloud-eureka-chapter-9.使用GateWay实现网关功能.html">9.使用GateWay实现网关功能</a>
 

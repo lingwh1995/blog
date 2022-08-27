@@ -13,6 +13,7 @@
  9.搭建持续集成环境
  10.搭建Mycat技术栈
  11.搭建常用私服环境
+ 12.搭建SpringCloud技术栈所需组件
 具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="博客内容大纲" tabindex="-1"><a class="header-anchor" href="#博客内容大纲" aria-hidden="true">#</a> 博客内容大纲</h2>
@@ -4338,4 +4339,34 @@ yum makecache
 </code></pre></div><h2 id="_11-3-5-使用yum私服来下载软件" tabindex="-1"><a class="header-anchor" href="#_11-3-5-使用yum私服来下载软件" aria-hidden="true">#</a> 11.3.5.使用yum私服来下载软件</h2>
 <pre><code>在测试机上使用yum install xxx来安装包
 </code></pre>
-</div></template>
+<h1 id="12." tabindex="-1"><a class="header-anchor" href="#12." aria-hidden="true">#</a> 12.搭建SpringCloud技术栈所需组件</h1>
+<h2 id="_12-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_12-1-章节内容概述" aria-hidden="true">#</a> 12.1.章节内容概述</h2>
+<pre><code>本章节涉及主要内容有：
+ 12.1.章节内容概述
+ 12.2.章节内容大纲
+ 12.3.搭建Zipkin
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+</code></pre>
+<h2 id="_12-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_12-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter12.html" target="_blank">12.2.章节内容大纲</a></h2>
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter12.html" height="500rem"/>
+<h2 id="_12-3-搭建zipkin" tabindex="-1"><a class="header-anchor" href="#_12-3-搭建zipkin" aria-hidden="true">#</a> 12.3.搭建Zipkin</h2>
+<pre><code>安装jdk	
+详细参考 3.搭建基础开发环境-&gt;3.3.安装jdk
+
+创建存放安装包的目录-&gt;进入该目录-&gt;下载zipkin-&gt;重命名-&gt;赋予运行权限
+</code></pre>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>mkdir -p /opt/software/springcloud/zipkin &amp;&amp;
+cd /opt/software/springcloud/zipkin &amp;&amp;
+curl -fL -u springcloud-1661567629477:e7770fbb167089a0ca2df33f8c03fa548c83b4c1 \
+"https://lingwh-generic.pkg.coding.net/coding-drive/springcloud/zipkin-server-2.23.9-exec.jar?version=latest" \
+-o zipkin-server-2.23.9-exec.jar &amp;&amp;
+mv zipkin-server-2.23.9-exec.jar zipkin.jar &amp;&amp;
+chmod +x zipkin.jar
+</code></pre></div><pre><code>开放端口
+</code></pre>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>firewall-cmd --zone=public --add-port=9411/tcp --permanent &amp;&amp;
+firewall-cmd --reload 
+</code></pre></div><pre><code>启动zipkin
+</code></pre>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>java -jar zipkin.jar
+</code></pre></div></div></template>
