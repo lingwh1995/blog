@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 @EnableEurekaClient  //添加@EnableEurekaClient好像没什么用,但是还是加上
 @SpringBootApplication
 @EnableFeignClients
-@EnableHystrix //消费者端启用Hystrix
+@EnableHystrix //消费端启用Hystrix
 public class OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80 {
     public static void main(String[] args) {
         SpringApplication.run(OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.class, args);

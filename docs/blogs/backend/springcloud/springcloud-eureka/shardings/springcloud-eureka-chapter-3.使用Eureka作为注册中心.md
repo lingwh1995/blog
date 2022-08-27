@@ -38,8 +38,8 @@ https://spring.io/projects/spring-cloud-netflix
 :::
 
 	Eureka的基础组件
-	服务提供者(Service Provide): 服务提供方将自身服务注册到Eureka,从而使服务消费方能够找到
-	服务消费者(Service Consumer): 服务消费方从Eureka获取注册服务列表,从而能够消费服务
+	服务提供者(Service Provide): 服务提供端将自身服务注册到Eureka,从而使服务消费端能够找到
+	服务消费者(Service Consumer): 服务消费端从Eureka获取注册服务列表,从而能够消费服务
 	服务中介(Eureka Server): 是服务提供者和服务消费者之间的桥梁，服务提供者可以把自己注册到服务中介那里，而服务消费者如需要消费一些服务(使用一些功能)就可以在服务中介中寻找注册在服务中介的服务提供者。
 
 	Eureka的提供了哪些功能?
@@ -78,7 +78,7 @@ https://spring.io/projects/spring-cloud-netflix
 @include(../project_springcloud-eureka/springcloud-register-center-single-node7001/src/main/java/org/openatom/springcloud/RegisterCcenterSingleNode7001.java)
 ```
 ### 3.4.8.测试模块
-    编写完成后,等maven依赖导入成功,运行主启动类,在浏览器中访问
+    在浏览器中访问
 ```
 http://localhost:7001/
 ```

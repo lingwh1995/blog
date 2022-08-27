@@ -23,38 +23,38 @@
         <!--集群版EUREKA注册中心:7003节点-->
         <module>springcloud-register-center-cluster-node7004</module>
 
-        <!--EUREKA版服务消费者:使用SpringCloud自带组件实现负载均衡-->
+        <!--EUREKA版服务消费端:使用SpringCloud自带组件实现负载均衡-->
         <module>springcloud-consumer-loadbalance-default-order80</module>
-        <!--EUREKA版服务消费者:1.使用Ribbon实现负载均衡 2.Java硬编码方式实现负载均衡算法替换-->
+        <!--EUREKA版服务消费端:1.使用Ribbon实现负载均衡 2.Java硬编码方式实现负载均衡算法替换-->
         <module>springcloud-consumer-loadbalance-ribbon-hardcode-order80</module>
-        <!--EUREKA版服务消费者:1.使用Ribbon实现负载均衡 2.yml文件配置方式实现负载均衡算法替换-->
+        <!--EUREKA版服务消费端:1.使用Ribbon实现负载均衡 2.yml文件配置方式实现负载均衡算法替换-->
         <module>springcloud-consumer-loadbalance-ribbon-configuration-order80</module>
-        <!--EUREKA版服务消费者:1.使用Ribbon的自定义负载均衡算法实现负载均衡 2.Java硬编码方式实现负载均衡算法替换-->
+        <!--EUREKA版服务消费端:1.使用Ribbon的自定义负载均衡算法实现负载均衡 2.Java硬编码方式实现负载均衡算法替换-->
         <module>springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80</module>
-        <!--EUREKA版服务消费者:1.使用Ribbon的自定义负载均衡算法实现负载均衡 2.yml文件配置方式实现负载均衡算法替换-->
+        <!--EUREKA版服务消费端:1.使用Ribbon的自定义负载均衡算法实现负载均衡 2.yml文件配置方式实现负载均衡算法替换-->
         <module>springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80</module>
-        <!--Eureka版服务消费者:1.使用OpenFeign实现负载均衡 2.YML配置方式实现负载均衡 3.通过对Ribbon的配置实现对OpenFeign的配置-->
+        <!--Eureka版服务消费端:1.使用OpenFeign实现负载均衡 2.YML配置方式实现负载均衡 3.通过对Ribbon的配置实现对OpenFeign的配置-->
         <module>springcloud-consumer-loadbalance-openfeign-configuration-ribbon-order80</module>
-        <!--Eureka版服务消费者:1.使用OpenFeign实现负载均衡 2.YML配置方式实现负载均衡 3.直接对OpenFeign进行配置-->
+        <!--Eureka版服务消费端:1.使用OpenFeign实现负载均衡 2.YML配置方式实现负载均衡 3.直接对OpenFeign进行配置-->
         <module>springcloud-consumer-loadbalance-openfeign-configuration-openfeign-order80</module>
-        <!--Eureka版服务消费者:1.使用OpenFeign实现负载均衡 2.Java硬编码方式实现负载均衡算法替换 3.加入了Hystrix-->
+        <!--Eureka版服务消费端:1.使用OpenFeign实现负载均衡 2.Java硬编码方式实现负载均衡算法替换 3.加入了Hystrix-->
         <module>springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80</module>
-        <!--Eureka版服务消费者:1.使用OpenFeign实现负载均衡 2.使用了Apollo配置中心 -->
+        <!--Eureka版服务消费端:1.使用OpenFeign实现负载均衡 2.使用了Apollo配置中心 -->
         <module>springcloud-config-apollo-loadbalance-openfeign-configuration-order80</module>
-        <!--Eureka版服务消费者:1.使用SpringCloud默认负载均衡 2.使用了Sleuth和Zipkin -->
+        <!--Eureka版服务消费端:1.使用SpringCloud默认负载均衡 2.使用了Sleuth和Zipkin -->
         <module>springcloud-consumer-sleuth_zipkin-loadbalance-default-order80</module>
 
-        <!--EUREKA版服务提供者集群:服务提供者节点1-8001-->
+        <!--EUREKA版服务提供端集群:服务提供端节点1-8001-->
         <module>springcloud-provider-cluster-node-payment8001</module>
-        <!--EUREKA版服务提供者集群:服务提供者节点2-8002-->
+        <!--EUREKA版服务提供端集群:服务提供端节点2-8002-->
         <module>springcloud-provider-cluster-node-payment8002</module>
-        <!--EUREKA版服务提供者集群:服务提供者节点1(带有熔断机制)-8003-->
+        <!--EUREKA版服务提供端集群:服务提供端节点1(带有熔断机制)-8003-->
         <module>springcloud-provider-hystrix-cluster-node-payment8003</module>
-        <!--EUREKA版服务提供者集群:服务提供者节点2(带有熔断机制)-8004-->
+        <!--EUREKA版服务提供端集群:服务提供端节点2(带有熔断机制)-8004-->
         <module>springcloud-provider-hystrix-cluster-node-payment8004</module>
-        <!--EUREKA版服务提供者集群:服务提供者节点1-8005:1.默认负载均衡模式 2.使用了Sleuth和Zipkin-->
+        <!--EUREKA版服务提供端集群:服务提供端节点1-8005:1.默认负载均衡模式 2.使用了Sleuth和Zipkin-->
         <module>springcloud-provider-sleuth_zipkin-cluster-node-payment8005</module>
-        <!--EUREKA版服务提供者集群:服务提供者节点1-8006:1.默认负载均衡模式 2.使用了Sleuth和Zipkin-->
+        <!--EUREKA版服务提供端集群:服务提供端节点1-8006:1.默认负载均衡模式 2.使用了Sleuth和Zipkin-->
         <module>springcloud-provider-sleuth_zipkin-cluster-node-payment8006</module>
 
         <!--SpringCloud服务降级、服务熔断监控:监控单节点版-->

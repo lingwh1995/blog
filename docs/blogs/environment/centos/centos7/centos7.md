@@ -45,7 +45,7 @@ icon: linux
 head:
   - - meta
     - name: keywords
-      content: 安装Linux操作系统,Linux操作系统初始设置,搭建基础开发环境,搭建docker技术栈,搭建Rancher技术栈,搭建Minikube,kubeadm搭建Kubernetes,二进制包搭建Kubernetes,搭建持续集成环境,搭建Mycat技术栈,搭建常用私服环境,
+      content: 安装Linux操作系统,Linux操作系统初始设置,搭建基础开发环境,搭建docker技术栈,搭建Rancher技术栈,搭建Minikube,kubeadm搭建Kubernetes,二进制包搭建Kubernetes,搭建持续集成环境,搭建Mycat技术栈,搭建常用私服环境,搭建SpringCloud技术栈所需组件,
 ---
 @include(@src/public/enhance/guidance/environment/centos/centos7/centos7-guidance.md)
 
@@ -4878,3 +4878,25 @@ yum makecache
 
 ## 11.3.5.使用yum私服来下载软件
 	在测试机上使用yum install xxx来安装包
+
+# 12.搭建SpringCloud技术栈所需组件 {#12.}
+@include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter12.md)
+## 12.3.搭建Zipkin
+	安装jdk	
+	详细参考 3.搭建基础开发环境->3.3.安装jdk
+
+	创建存放安装包的目录->进入该目录->下载zipkin->重命名->赋予运行权限
+```
+mkdir -p /opt/software/springcloud/zipkin &&
+cd /opt/software/springcloud/zipkin &&
+curl -fL -u springcloud-1661567629477:e7770fbb167089a0ca2df33f8c03fa548c83b4c1 \
+"https://lingwh-generic.pkg.coding.net/coding-drive/springcloud/zipkin-server-2.23.9-exec.jar?version=latest" \
+-o zipkin-server-2.23.9-exec.jar &&
+mv zipkin-server-2.23.9-exec.jar zipkin.jar &&
+chmod +x zipkin.jar
+```
+
+	启动zipkin
+```
+java -jar zipkin.jar
+```

@@ -25,7 +25,7 @@ public class OrderConsumerController {
     @Value("${service.provider.url}")
     private String SERVICE_PROVIDER_URL;
 
-    //从配置文件中动态获服务提供方名称
+    //从配置文件中动态获服务提供端名称
     @Value("${service.provider.name}")
     private String SERVICE_PROVIDER_NAME;
 

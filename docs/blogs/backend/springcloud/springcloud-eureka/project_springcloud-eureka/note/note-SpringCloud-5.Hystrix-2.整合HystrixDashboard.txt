@@ -45,7 +45,7 @@ Hystrix DashBoard搭建
             }
     2>.被监控的项目
         1>>.pom中添加配置
-             #Eureka依赖/8001项目(基础的服务提供方)/8002项目(基础的服务提供方)依赖 + hystrix相关依赖
+             #Eureka依赖/8001项目(基础的服务提供端)/8002项目(基础的服务提供端)依赖 + hystrix相关依赖
               <dependencies>
                  <dependency>
                      <groupId>org.springframework.boot</groupId>
@@ -88,7 +88,7 @@ Hystrix DashBoard搭建
          2>>.写主启动类并给容器中注册Servlet
             @EnableDiscoveryClient
             @SpringBootApplication
-            @EnableCircuitBreaker//服务提供方端启用Hystrix
+            @EnableCircuitBreaker//服务提供端启用Hystrix
             public class PaymentServiceProviderHystrixClusterNode8003 {
 
                 public static void main(String[] args) {

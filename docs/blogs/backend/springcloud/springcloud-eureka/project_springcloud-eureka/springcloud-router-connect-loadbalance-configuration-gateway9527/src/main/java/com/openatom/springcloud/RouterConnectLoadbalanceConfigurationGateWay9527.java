@@ -1,4 +1,4 @@
-package com.atguigu.springcloud;
+package com.openatom.springcloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

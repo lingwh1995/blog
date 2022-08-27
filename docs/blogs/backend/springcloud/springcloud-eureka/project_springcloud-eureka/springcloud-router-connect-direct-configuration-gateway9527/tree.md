@@ -3,7 +3,7 @@ springcloud-router-connect-direct-configuration-gateway9527
 |   •-- main
 |       |-- java
 |       |   •-- com
-|       |       •-- atguigu
+|       |       •-- openatom
 |       |           •-- springcloud
 |       |               |-- filter
 |       |               |   •-- LoginFilter.java

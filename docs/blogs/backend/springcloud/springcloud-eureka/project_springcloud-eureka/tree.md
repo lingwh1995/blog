@@ -662,7 +662,7 @@ springcloud-eureka
 |   |   •-- main
 |   |       |-- java
 |   |       |   •-- com
-|   |       |       •-- atguigu
+|   |       |       •-- openatom
 |   |       |           •-- springcloud
 |   |       |               |-- filter
 |   |       |               |   •-- LoginFilter.java
@@ -675,7 +675,7 @@ springcloud-eureka
 |   |   •-- main
 |   |       |-- java
 |   |       |   •-- com
-|   |       |       •-- atguigu
+|   |       |       •-- openatom
 |   |       |           •-- springcloud
 |   |       |               |-- config
 |   |       |               |   •-- GateWayConfig.java
@@ -690,7 +690,7 @@ springcloud-eureka
 |   |   •-- main
 |   |       |-- java
 |   |       |   •-- com
-|   |       |       •-- atguigu
+|   |       |       •-- openatom
 |   |       |           •-- springcloud
 |   |       |               |-- config
 |   |       |               |   •-- GateWayConfig.java
@@ -705,7 +705,7 @@ springcloud-eureka
 |   |   •-- main
 |   |       |-- java
 |   |       |   •-- com
-|   |       |       •-- atguigu
+|   |       |       •-- openatom
 |   |       |           •-- springcloud
 |   |       |               |-- config
 |   |       |               |   •-- GateWayConfig.java

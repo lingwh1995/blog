@@ -77,7 +77,7 @@ public class PaymentHystrixController {
     }
 
     /**
-     * 测试服务提供方服务降级
+     * 测试服务提供端服务降级
      * 访问路径:http://localhost:8003/provider/payment/degradation_in_provider/get/1
      * 当大量线程访问这个接口的时候,服务调用者访问上面的接口getPaymentById()也会受到影响,因为Tomcat的线程池中的处理线程都被访问当前
      *      接口的多个请求占据了,导致访问本微服务中的其他接口地址也会变得卡顿,使用Hystrix的在消费端对本微服务中的这个接口进行降级

@@ -66,11 +66,11 @@ public class PaymentHystrixServiceImpl implements PaymentHystrixService {
      * @return
      */
     public Payment getPaymentByIdUseHystrixDegradationFallback(Long id) {
-        return new Payment(id,"服务提供方:服务降级成功");
+        return new Payment(id,"服务提供端:服务降级成功");
     }
 
     /**
-     * 当下游服务(服务提供方)发生故障时对服务下游服务(服务提供方)进行降级
+     * 当下游服务(服务提供端)发生故障时对服务下游服务(服务提供端)进行降级
      *  10内请求失败,失败率为60%时熔断服务
      * @param id
      * @return
@@ -96,6 +96,6 @@ public class PaymentHystrixServiceImpl implements PaymentHystrixService {
      * @return
      */
     public Payment getPaymentByIdUseHystrixCircuitBreakerFallback(Long id) {
-        return new Payment(id,"服务提供方:测试服务熔断成功");
+        return new Payment(id,"服务提供端:测试服务熔断成功");
     }
 }

@@ -3,7 +3,7 @@ springcloud-router-connect-loadbalance-hardcode-gateway9527
 |   •-- main
 |       |-- java
 |       |   •-- com
-|       |       •-- atguigu
+|       |       •-- openatom
 |       |           •-- springcloud
 |       |               |-- config
 |       |               |   •-- GateWayConfig.java

@@ -23,6 +23,8 @@ icon: navigate
 
             - <a class="breadcrumb-link" href="centos7/shardings/centos7-chapter-11.搭建常用私服环境.html">11.搭建常用私服环境</a>
 
+            - <a class="breadcrumb-link" href="centos7/shardings/centos7-chapter-12.搭建SpringCloud技术栈所需组件.html">12.搭建SpringCloud技术栈所需组件</a>
+
             - <a class="breadcrumb-link" href="centos7/shardings/centos7-chapter-2.Linux操作系统初始设置.html">2.Linux操作系统初始设置</a>
 
             - <a class="breadcrumb-link" href="centos7/shardings/centos7-chapter-3.搭建基础开发环境.html">3.搭建基础开发环境</a>

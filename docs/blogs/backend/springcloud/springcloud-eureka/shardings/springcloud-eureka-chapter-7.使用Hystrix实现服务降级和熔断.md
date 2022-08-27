@@ -1,6 +1,6 @@
 ---
 title: 基于Eureka搭建Springcloud微服务-7.使用Hystrix实现服务降级和熔断
-description: 本章节涉及主要内容有：Hystrix简介,搭建服务提供者第一个节点,搭建服务提供者第二个节点,搭建服务消费者,测试服务降级和服务熔断,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：Hystrix简介,搭建服务提供者第一个节点(Hystrix),搭建服务提供者第二个节点(Hystrix),搭建服务消费者(Hystrix),测试服务降级和服务熔断(Hystrix),具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -11,7 +11,7 @@ date:
 head:
   - - meta
     - name: keywords
-      content: 本章节涉及主要内容有：Hystrix简介,搭建服务提供者第一个节点,搭建服务提供者第二个节点,搭建服务消费者,测试服务降级和服务熔断,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+      content: 本章节涉及主要内容有：Hystrix简介,搭建服务提供者第一个节点(Hystrix),搭建服务提供者第二个节点(Hystrix),搭建服务消费者(Hystrix),测试服务降级和服务熔断(Hystrix),具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 7.使用Hystrix实现服务降级和熔断
@@ -22,17 +22,17 @@ head:
     当服务调用发生异常时，快速返回一个事先设置好的值,针对系统全局稳定性考虑,消费端和服务端都可以做
 
     服务熔断
-    当调用服务发生多次异常时服务会会熔断,如数据库连接故障,当故障修复时服务又会恢复到正常状态,针对服务提供方稳定性考虑
+    当调用服务发生多次异常时服务会会熔断,如数据库连接故障,当故障修复时服务又会恢复到正常状态,针对服务提供端稳定性考虑
     
     服务限流
     对访问的流量进行限制
     
-<a href="https://github.com/Netflix/Hystrix">官方网站</a>
+<a href="https://github.com/Netflix/Hystrix"  target="_blank">官方网站</a>
 ```
 https://github.com/Netflix/Hystrix
 ```
 
-## 7.4.搭建服务提供者第一个节点
+## 7.4.搭建服务提供者第一个节点(Hystrix)
 ### 7.4.1.模块简介
     具有服务熔断和服务降级功能的服务提供者的第一个节点,启动端口: 8003
 ### 7.4.2.模块目录结构
@@ -84,7 +84,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  */
 @EnableEurekaClient
 @SpringBootApplication
-@EnableCircuitBreaker//服务提供方端启用Hystrix
+@EnableCircuitBreaker//服务提供端启用Hystrix
 public class PaymentServiceProviderHystrixClusterNode8003 {
 
     public static void main(String[] args) {
@@ -94,7 +94,7 @@ public class PaymentServiceProviderHystrixClusterNode8003 {
 }
 ```
 
-## 7.5.搭建服务提供者第二个节点
+## 7.5.搭建服务提供者第二个节点(Hystrix)
 ### 7.5.1.模块简介
     具有服务熔断和服务降级功能的服务提供者的第二个节点,启动端口: 8004
 ### 7.5.2.模块目录结构
@@ -146,7 +146,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  */
 @EnableEurekaClient
 @SpringBootApplication
-@EnableCircuitBreaker//服务提供方端启用Hystrix
+@EnableCircuitBreaker//服务提供端启用Hystrix
 public class PaymentServiceProviderHystrixClusterNode8004 {
 
     public static void main(String[] args) {
@@ -156,7 +156,7 @@ public class PaymentServiceProviderHystrixClusterNode8004 {
 }
 ```
 
-## 7.6.搭建服务消费者
+## 7.6.搭建服务消费者(Hystrix)
 ### 7.6.1.模块简介
     具有服务熔断和服务降级功能的服务消费者,启动端口: 80
 ### 7.6.2.模块目录结构
@@ -211,7 +211,7 @@ public class OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80 {
     
 }
 ```
-## 7.7.测试服务降级和服务熔断
+## 7.7.测试服务降级和服务熔断(Hystrix)
     启动相关服务
 ```mermaid
 flowchart LR
@@ -243,40 +243,40 @@ http://localhost/consumer/payment/ok/get/1
 ```
     可以看到四次访问返回的结果中,四次返回结果是没有规律的,因为采用的MyRoundRobinRule(自定义策略,这个策略的效果也是随机调用),实际返回结果可能不是上面的情况,但是一定是随机进行服务调用的
 
-    测试在服务提供方对服务进行降级
+    测试在服务提供端对服务进行降级
     在浏览器中访问
 ```
 http://localhost/consumer/payment/degradation_in_provider/get/1
 ```
     返回结果
 ```json
-{"code":200,"message":"查询成功,serverPort:  8003","data":{"id":1,"serial":"服务提供方:服务降级成功"}}
+{"code":200,"message":"查询成功,serverPort:  8003","data":{"id":1,"serial":"服务提供端:服务降级成功"}}
 ```
     具体降级过程,请根据访问地址追踪代码,查看具体降级是如何处理的,代码中有详细的注释
 
-    测试在服务消费方对服务进行降级
+    测试在服务消费端对服务进行降级
     在浏览器中访问
 ```
 http://localhost/consumer/payment/degradation_in_consumer/get/1
 ```
     返回结果
 ```json
-{"code":10000,"message":"我是服务消费方","data":{"id":1,"serial":"服务消费方:降级成功"}}
+{"code":10000,"message":"我是服务消费端","data":{"id":1,"serial":"服务消费端:降级成功"}}
 ```
     具体降级过程,请根据访问地址追踪代码,查看具体降级是如何处理的,代码中有详细的注释
 
-    测试全局范围内默认的降级回调方法(这种处理方式可以应用于服务提供方和服务消费方,这里演示的是在服务消费端进行处理)
+    测试全局范围内默认的降级回调方法(这种处理方式可以应用于服务提供端和服务消费端,这里演示的是在服务消费端进行处理)
     在浏览器中访问
 ```
 http://localhost:/consumer/payment/degradation_in_consumer_default/get/1
 ```
     返回结果
 ```json
-{"code":10000,"message":"我是服务消费方","data":{"id":null,"serial":"服务消费方:全局范围内默认的降级回调方法...."}}
+{"code":10000,"message":"我是服务消费端 ","data":{"id":null,"serial":"服务消费端:全局范围内默认的降级回调方法...."}}
 ```
     具体降级过程,请根据访问地址追踪代码,查看具体降级是如何处理的,代码中有详细的注释
     
-    测试在服务提供方Service层实现服务降级
+    测试在服务提供端Service层实现服务降级
     本次测试较为特殊,首先关闭服务提供者8003和服务提供者8004,模拟服务提供者8003和服务提供者8004发生了宕机
     在浏览器中访问
 ```
@@ -284,11 +284,11 @@ http://localhost:/consumer/payment/degradation_in_consumer_service/get/1
 ```
     返回结果
 ```json
-{"code":10000,"message":"发生了错误","data":{"id":null,"serial":"服务消费端:服务提供者宕机了,在服务消费方中Service层对这个服务进行服务降级处理...."}}
+{"code":10000,"message":"发生了错误","data":{"id":null,"serial":"服务消费端:服务提供者宕机了,在服务消费端中Service层对这个服务进行服务降级处理...."}}
 ```
     具体降级过程,请根据访问地址追踪代码,查看具体降级是如何处理的,代码中有详细的注释
 
-    测试在服务提供方实现服务熔断
+    测试在服务提供端实现服务熔断
     模拟发生异常熔断服务,路径1:
 ```
 http://localhost/consumer/payment/circuitbreaker/get/-1

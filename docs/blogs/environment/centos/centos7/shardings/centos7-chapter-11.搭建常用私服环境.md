@@ -152,3 +152,4 @@ yum makecache
 
 ## 11.3.5.使用yum私服来下载软件
 	在测试机上使用yum install xxx来安装包
+

@@ -57,6 +57,21 @@
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-8.使用Hystrix_DashBoard和Turbine对服务进行监控.md",
                   },
+                  {
+                      text: "9.使用GateWay实现网关功能",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-9.使用GateWay实现网关功能.md",
+                  },
+                  {
+                      text: "10.使用Zipkin+Sleuth实现调用链路追踪",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-10.使用Zipkin+Sleuth实现调用链路追踪.md",
+                  },
+                  {
+                      text: "11.使用Apollo配置中心统一存放配置",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-11.使用Apollo配置中心统一存放配置.md",
+                  },
               ]
           },
           {
@@ -108,6 +123,21 @@
                       text: "8.使用Hystrix_DashBoard和Turbine对服务进行监控",
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#8.",
+                  },
+                  {
+                      text: "9.使用GateWay实现网关功能",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#9.",
+                  },
+                  {
+                      text: "10.使用Zipkin+Sleuth实现调用链路追踪",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#10.",
+                  },
+                  {
+                      text: "11.使用Apollo配置中心统一存放配置",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#11.",
                   },
               ]
           },

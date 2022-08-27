@@ -8,7 +8,7 @@ import org.springframework.cloud.netflix.ribbon.RibbonClient;
 
 /**
  * 使用Ribbon实现负载均衡:Java硬编码方式
- *      缺点:不能在配置文件中动态修改服务提供方名称
+ *      缺点:不能在配置文件中动态修改服务提供端名称
  */
 @SpringBootApplication
 @EnableEurekaClient

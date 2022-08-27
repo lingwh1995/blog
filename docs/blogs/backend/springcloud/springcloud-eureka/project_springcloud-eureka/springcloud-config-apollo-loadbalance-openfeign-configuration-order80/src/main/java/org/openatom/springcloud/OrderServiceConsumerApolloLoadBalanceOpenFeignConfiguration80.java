@@ -26,7 +26,7 @@ import java.util.Properties;
  *      2022-06-01 03:51:37.176 DEBUG 16792 --- [p-nio-80-exec-1] o.o.s.services.PaymentServiceOpenFeign   : [PaymentServiceOpenFeign#getPaymentById] <--- END HTTP (94-byte body)
  */
 /**
- * 支付接口提供者
+ * 支付接口提供端
  * 使用Eureka作为注册中心+使用Apollo作为注册中心
  * 运行时要添加如下VM Options:
  *      获取DEV环境数据:

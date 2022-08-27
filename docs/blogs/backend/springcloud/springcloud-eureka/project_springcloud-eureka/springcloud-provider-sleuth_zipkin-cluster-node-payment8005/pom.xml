@@ -81,6 +81,8 @@
                 <includes>
                     <!--不区分环境:直接加载application.yml配置文件-->
                     <include>application.yml</include>
+                    <!--不区分环境:直接加载mapper下*.xml配置文件-->
+                    <include>mapper/*.xml</include>
                 </includes>
             </resource>
         </resources>

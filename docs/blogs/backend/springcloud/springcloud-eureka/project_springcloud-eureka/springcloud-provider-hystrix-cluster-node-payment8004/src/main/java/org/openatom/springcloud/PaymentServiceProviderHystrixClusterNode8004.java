@@ -9,12 +9,12 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 
 /**
- * 支付接口提供者
+ * 支付接口提供端
  *  使用Eureka作为注册中心
  */
 @EnableEurekaClient
 @SpringBootApplication
-@EnableCircuitBreaker//服务提供方端启用Hystrix
+@EnableCircuitBreaker//服务提供端启用Hystrix
 public class PaymentServiceProviderHystrixClusterNode8004 {
 
     public static void main(String[] args) {

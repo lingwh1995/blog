@@ -17,7 +17,7 @@ icon: linux
 head:
   - - meta
     - name: keywords
-      content: 微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,使用Ribbon实现客户端负载均衡,使用OpenFeign实现客户端负载均衡,使用Hystrix实现服务降级和熔断,使用Hystrix_DashBoard和Turbine对服务进行监控,
+      content: 微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,使用Ribbon实现客户端负载均衡,使用OpenFeign实现客户端负载均衡,使用Hystrix实现服务降级和熔断,使用Hystrix_DashBoard和Turbine对服务进行监控,使用GateWay实现网关功能,使用Zipkin+Sleuth实现调用链路追踪,使用Apollo配置中心统一存放配置,
 ---
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/springcloud-eureka-guidance.md)
 
@@ -48,7 +48,7 @@ https://martinfowler.com/articles/microservices.html
 ## 1.7.微服务架构落地实现方案
 	微服务架构落地实现有很多种方案,本次介绍的方案技术栈如下:
 	注册中心: EUREKA 
-## <a href="https://gitee.com/lingwh1995/springcloud-eureka.git">1.6.项目源代码</a>
+## <a href="https://gitee.com/lingwh1995/springcloud-eureka.git"  target="_blank">1.6.项目源代码</a>
 ```
 https://gitee.com/lingwh1995/springcloud-eureka.git
 ```
@@ -404,8 +404,8 @@ https://spring.io/projects/spring-cloud-netflix
 :::
 
 	Eureka的基础组件
-	服务提供者(Service Provide): 服务提供方将自身服务注册到Eureka,从而使服务消费方能够找到
-	服务消费者(Service Consumer): 服务消费方从Eureka获取注册服务列表,从而能够消费服务
+	服务提供者(Service Provide): 服务提供端将自身服务注册到Eureka,从而使服务消费端能够找到
+	服务消费者(Service Consumer): 服务消费端从Eureka获取注册服务列表,从而能够消费服务
 	服务中介(Eureka Server): 是服务提供者和服务消费者之间的桥梁，服务提供者可以把自己注册到服务中介那里，而服务消费者如需要消费一些服务(使用一些功能)就可以在服务中介中寻找注册在服务中介的服务提供者。
 
 	Eureka的提供了哪些功能?
@@ -444,7 +444,7 @@ https://spring.io/projects/spring-cloud-netflix
 @include(./project_springcloud-eureka/springcloud-register-center-single-node7001/src/main/java/org/openatom/springcloud/RegisterCcenterSingleNode7001.java)
 ```
 ### 3.4.8.测试模块
-    编写完成后,等maven依赖导入成功,运行主启动类,在浏览器中访问
+    在浏览器中访问
 ```
 http://localhost:7001/
 ```
@@ -1053,7 +1053,7 @@ http://localhost/consumer/payment/get/1
 ## 6.3.OpenFeign简介
     Feign是SpringCloud组件中一个轻量级RESTful的HTTP服务客户端,Feign内置了Ribbon,用来做客户端负载均衡,去调用服务注册中心的服务。Feign的使用方式是: 使用Feign的注解定义接口,调用这个接口,就可以调用服务注册中心的服务。OpenFeign是SpringCloud在Feign的基础上支持了SpringMVC的注解,如@RequestMapping等。OpenFeign的@FeignClient可以解析SpringMVC的@RequestMapping注解下的接口,并通过动态代理的方式产生实现类,实现类中做负载均衡并调用其他服务。核心作用是为HTTP形式的Rest API提供了非常简洁高效的RPC调用方式,可以让编写远程调用代码就像编写本地Service一样简单。
 
-<a href="https://docs.spring.io/spring-cloud-openfeign/docs/2.2.10.BUILD-SNAPSHOT/reference/html/">官方网址(Spring.IO)</a>
+<a href="https://docs.spring.io/spring-cloud-openfeign/docs/2.2.10.BUILD-SNAPSHOT/reference/html/"  target="_blank">官方网址(SPRING.IO)</a>
 ```
 https://docs.spring.io/spring-cloud-openfeign/docs/2.2.10.BUILD-SNAPSHOT/reference/html/
 ```
@@ -1217,17 +1217,17 @@ logging: #OpenFeign增强日志配置
     当服务调用发生异常时，快速返回一个事先设置好的值,针对系统全局稳定性考虑,消费端和服务端都可以做
 
     服务熔断
-    当调用服务发生多次异常时服务会会熔断,如数据库连接故障,当故障修复时服务又会恢复到正常状态,针对服务提供方稳定性考虑
+    当调用服务发生多次异常时服务会会熔断,如数据库连接故障,当故障修复时服务又会恢复到正常状态,针对服务提供端稳定性考虑
     
     服务限流
     对访问的流量进行限制
     
-<a href="https://github.com/Netflix/Hystrix">官方网站</a>
+<a href="https://github.com/Netflix/Hystrix"  target="_blank">官方网站</a>
 ```
 https://github.com/Netflix/Hystrix
 ```
 
-## 7.4.搭建服务提供者第一个节点
+## 7.4.搭建服务提供者第一个节点(Hystrix)
 ### 7.4.1.模块简介
     具有服务熔断和服务降级功能的服务提供者的第一个节点,启动端口: 8003
 ### 7.4.2.模块目录结构
@@ -1279,7 +1279,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  */
 @EnableEurekaClient
 @SpringBootApplication
-@EnableCircuitBreaker//服务提供方端启用Hystrix
+@EnableCircuitBreaker//服务提供端启用Hystrix
 public class PaymentServiceProviderHystrixClusterNode8003 {
 
     public static void main(String[] args) {
@@ -1289,7 +1289,7 @@ public class PaymentServiceProviderHystrixClusterNode8003 {
 }
 ```
 
-## 7.5.搭建服务提供者第二个节点
+## 7.5.搭建服务提供者第二个节点(Hystrix)
 ### 7.5.1.模块简介
     具有服务熔断和服务降级功能的服务提供者的第二个节点,启动端口: 8004
 ### 7.5.2.模块目录结构
@@ -1341,7 +1341,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  */
 @EnableEurekaClient
 @SpringBootApplication
-@EnableCircuitBreaker//服务提供方端启用Hystrix
+@EnableCircuitBreaker//服务提供端启用Hystrix
 public class PaymentServiceProviderHystrixClusterNode8004 {
 
     public static void main(String[] args) {
@@ -1351,7 +1351,7 @@ public class PaymentServiceProviderHystrixClusterNode8004 {
 }
 ```
 
-## 7.6.搭建服务消费者
+## 7.6.搭建服务消费者(Hystrix)
 ### 7.6.1.模块简介
     具有服务熔断和服务降级功能的服务消费者,启动端口: 80
 ### 7.6.2.模块目录结构
@@ -1406,7 +1406,7 @@ public class OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80 {
     
 }
 ```
-## 7.7.测试服务降级和服务熔断
+## 7.7.测试服务降级和服务熔断(Hystrix)
     启动相关服务
 ```mermaid
 flowchart LR
@@ -1438,40 +1438,40 @@ http://localhost/consumer/payment/ok/get/1
 ```
     可以看到四次访问返回的结果中,四次返回结果是没有规律的,因为采用的MyRoundRobinRule(自定义策略,这个策略的效果也是随机调用),实际返回结果可能不是上面的情况,但是一定是随机进行服务调用的
 
-    测试在服务提供方对服务进行降级
+    测试在服务提供端对服务进行降级
     在浏览器中访问
 ```
 http://localhost/consumer/payment/degradation_in_provider/get/1
 ```
     返回结果
 ```json
-{"code":200,"message":"查询成功,serverPort:  8003","data":{"id":1,"serial":"服务提供方:服务降级成功"}}
+{"code":200,"message":"查询成功,serverPort:  8003","data":{"id":1,"serial":"服务提供端:服务降级成功"}}
 ```
     具体降级过程,请根据访问地址追踪代码,查看具体降级是如何处理的,代码中有详细的注释
 
-    测试在服务消费方对服务进行降级
+    测试在服务消费端对服务进行降级
     在浏览器中访问
 ```
 http://localhost/consumer/payment/degradation_in_consumer/get/1
 ```
     返回结果
 ```json
-{"code":10000,"message":"我是服务消费方","data":{"id":1,"serial":"服务消费方:降级成功"}}
+{"code":10000,"message":"我是服务消费端","data":{"id":1,"serial":"服务消费端:降级成功"}}
 ```
     具体降级过程,请根据访问地址追踪代码,查看具体降级是如何处理的,代码中有详细的注释
 
-    测试全局范围内默认的降级回调方法(这种处理方式可以应用于服务提供方和服务消费方,这里演示的是在服务消费端进行处理)
+    测试全局范围内默认的降级回调方法(这种处理方式可以应用于服务提供端和服务消费端,这里演示的是在服务消费端进行处理)
     在浏览器中访问
 ```
 http://localhost:/consumer/payment/degradation_in_consumer_default/get/1
 ```
     返回结果
 ```json
-{"code":10000,"message":"我是服务消费方","data":{"id":null,"serial":"服务消费方:全局范围内默认的降级回调方法...."}}
+{"code":10000,"message":"我是服务消费端 ","data":{"id":null,"serial":"服务消费端:全局范围内默认的降级回调方法...."}}
 ```
     具体降级过程,请根据访问地址追踪代码,查看具体降级是如何处理的,代码中有详细的注释
     
-    测试在服务提供方Service层实现服务降级
+    测试在服务提供端Service层实现服务降级
     本次测试较为特殊,首先关闭服务提供者8003和服务提供者8004,模拟服务提供者8003和服务提供者8004发生了宕机
     在浏览器中访问
 ```
@@ -1479,11 +1479,11 @@ http://localhost:/consumer/payment/degradation_in_consumer_service/get/1
 ```
     返回结果
 ```json
-{"code":10000,"message":"发生了错误","data":{"id":null,"serial":"服务消费端:服务提供者宕机了,在服务消费方中Service层对这个服务进行服务降级处理...."}}
+{"code":10000,"message":"发生了错误","data":{"id":null,"serial":"服务消费端:服务提供者宕机了,在服务消费端中Service层对这个服务进行服务降级处理...."}}
 ```
     具体降级过程,请根据访问地址追踪代码,查看具体降级是如何处理的,代码中有详细的注释
 
-    测试在服务提供方实现服务熔断
+    测试在服务提供端实现服务熔断
     模拟发生异常熔断服务,路径1:
 ```
 http://localhost/consumer/payment/circuitbreaker/get/-1
@@ -1816,8 +1816,10 @@ public ServletRegistrationBean getServlet() {
 ```
 
     修改后的主启动类如下
-@import "./springcloud-eureka/
-springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.java"
+```java
+@include(./project_springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.java)
+```
+
 ### 8.4.11.测试模块
     启动相关服务
 ```mermaid
@@ -1871,4 +1873,408 @@ http://localhost/consumer/payment/circuitbreaker/get/1
     使用Turbine后
     连续访问http://localhost/consumer/payment/circuitbreaker/get/1这个测试URL 10次,Turbine中统计到的访问次数的值直接就是10
 
+# 9.使用GateWay实现网关功能 {#9.}
+@include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter9.md)
+## 9.3.GateWay简介
+    Gateway全称SpringCloud Gateway,它旨在为微服务架构提供一种简单有效的统一的API路由管理方式。作为Spring Cloud生态系统中的网关,目标是替代Zuul,为了提升网关的性能,SpringCloud Gateway是基于WebFlux框架实现的,而WebFlux框架底层则使用了高性能的Reactor模式通信框架Netty。主要功能包含认证、鉴权、路由转发、安全策略、防刷、流量控制、监控日志等。
+    为什么要使用SpringCloud Gateway?
+    以鉴权为例,一个大的应用由很多服务组成,不可能为每一个服务都加上鉴权的代码,这样仅是鉴权部分的代码维护工作就是非常庞大的工作量,同时如果为所有的微服务都加上鉴权代码,这样会破坏REST服务的无状态特征,有一个思路是把鉴权的代码写在一个公共的模块,所有的模块都引入这个模块,但是这样仅仅是实现了鉴权操作,所以最好的处理方案是把认证、鉴权、路由转发、安全策略、防刷、流量控制、监控日志等功能都放在网关中实现,网关在进行请求转发的同时还实现一个负载均衡的效果,服务消费端在调用服务提供端的时候可以调用同一个服务提供端的不同节点,进而实现负载均衡,而网关可以在进行请求转发的时候将请求转发到多个服务消费端,实现服务消费端的负载均衡调用。
+
+<a href="https://github.com/spring-cloud/spring-cloud-gateway" target="_blank">官方网站(SPRING.IO)</a>
+```
+https://github.com/spring-cloud/spring-cloud-gateway
+```
+
+<a href="https://spring.io/projects/spring-cloud-gateway/" target="_blank">官方网站(SPRING.IO)</a>
+```
+https://spring.io/projects/spring-cloud-gateway/
+```
+
+## 9.4.硬编码配置方式使用GateWay(非负载均衡模式)
+### 9.4.1.模块简介
+    使用SpringCloud Gateway实现网关功能,配置方式为硬编码配置,实现了简单的请求转发功能,即请求经过网关之后会转发到单个服务消费者的单个节点,没有实现在请求转发的同时做负载均衡处理,启动端口: 9527
+### 9.4.2.模块目录结构
+```
+@include(./project_springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/tree.md)
+```
+### 9.4.3.创建模块
+	在父工程(springcloud-eureka)中创建一个名为springcloud-router-connect-direct-hardcode-gateway9527的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
+### 9.4.4.编写模块pom.xml
+```xml
+@include(./project_springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/pom.xml)
+```
+### 9.4.5.编写模块application.yml
+```yml
+@include(./project_springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/resources/application.yml)
+```
+### 9.4.6.编写模块config
+```java
+@include(./project_springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/java/com/openatom/springcloud/config/GateWayConfig.java)
+```
+### 9.4.7.编写鉴权LoginFilter
+```java
+@include(./project_springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/java/com/openatom/springcloud/filter/LoginFilter.java)
+```
+### 9.4.8.编写模块主启动类
+```java
+@include(./project_springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/java/org/openatom/springcloud/RouterConnectDirectHardcodeGateWay9527.java)
+```
+### 9.4.7.测试模块
+    启动相关服务
+```mermaid
+flowchart LR
+    准备好数据库环境-->启动Eureka注册中心
+    启动Eureka注册中心-->启动服务提供者8003节点
+    启动服务提供者8003节点-->启动服务提供者8004节点
+    启动服务提供者8004节点-->启动使用了Hystrix功能的服务消费者
+    启动使用了Hystrix功能的服务消费者-->启动当前GateWay模块
+```
+
+    在浏览器中访问
+```
+http://localhost:9527/consumer/payment/ok/get/1?uname=zhangsan
+```
+    第一次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
+```
+    第二次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
+```
+    第三次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
+```
+    第四次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
+```
+    可以看到四次访问返回的结果中,第一次和第三次是相同的,第二次和第四次是相同的,之所以会出现这样的结果,是因为上面编写RestTemplate时使用了默认的配置,默认的配置使用负载均衡策略是轮询策略,所以接连访问该服务四次会出现上面的情况。但是要注意,这里并没有直接访问服务消费者,而是访问了网关,这些返回的数据是服务消费端返回给网关,网关返回给浏览器的。
+
+## 9.5.声明式配置方式使用GateWay(非负载均衡模式)
+### 9.5.1.模块简介
+    使用SpringCloud Gateway实现网关功能,配置方式为声明式配置,实现了简单的请求转发功能,即请求经过网关之后会转发到单个服务消费者的单个节点,没有实现在请求转发的同时做负载均衡处理,启动端口: 9527
+### 9.5.2.模块目录结构
+```
+@include(./project_springcloud-eureka/springcloud-router-connect-direct-configuration-gateway9527/tree.md)
+```
+### 9.5.3.创建模块
+	在父工程(springcloud-eureka)中创建一个名为springcloud-router-connect-direct-configuration-gateway9527的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
+### 9.5.4.编写模块pom.xml
+```xml
+@include(./project_springcloud-eureka/springcloud-router-connect-direct-configuration-gateway9527/pom.xml)
+```
+### 9.5.5.编写模块application.yml
+```yml
+@include(./project_springcloud-eureka/springcloud-router-connect-direct-configuration-gateway9527/src/main/resources/application.yml)
+```
+### 9.5.6.编写鉴权LoginFilter
+```java
+@include(./project_springcloud-eureka/springcloud-router-connect-direct-configuration-gateway9527/src/main/java/com/openatom/springcloud/filter/LoginFilter.java)
+```
+### 9.5.7.编写模块主启动类
+```java
+@include(./project_springcloud-eureka/springcloud-router-connect-direct-configuration-gateway9527/src/main/java/org/openatom/springcloud/RouterConnectDirectConfigurationGateWay9527.java)
+```
+### 9.5.8.测试模块
+    启动相关服务
+```mermaid
+flowchart LR
+    准备好数据库环境-->启动Eureka注册中心
+    启动Eureka注册中心-->启动服务提供者8003节点
+    启动服务提供者8003节点-->启动服务提供者8004节点
+    启动服务提供者8004节点-->启动使用了Hystrix功能的服务消费者
+    启动使用了Hystrix功能的服务消费者-->启动当前GateWay模块
+```
+
+    在浏览器中访问
+```
+http://localhost:9527/consumer/payment/ok/get/1?uname=zhangsan
+```
+    第一次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
+```
+    第二次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
+```
+    第三次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
+```
+    第四次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
+```
+    可以看到四次访问返回的结果中,第一次和第三次是相同的,第二次和第四次是相同的,之所以会出现这样的结果,是因为上面编写RestTemplate时使用了默认的配置,默认的配置使用负载均衡策略是轮询策略,所以接连访问该服务四次会出现上面的情况。但是要注意,这里并没有直接访问服务消费者,而是访问了网关,这些返回的数据是服务消费端返回给网关网关返回给浏览器的。
     
+## 9.6.硬编码配置方式使用GateWay(负载均衡模式)
+### 9.6.1.模块简介
+    使用SpringCloud Gateway实现网关功能,配置方式为硬编码配置,实现了简单的请求转发功能,即请求经过网关之后会转发到单个服务消费者的单个节点,实现了在请求转发的同时做负载均衡处理,启动端口: 9527
+### 9.6.2.模块目录结构
+```
+@include(./project_springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/tree.md)
+```
+### 9.6.3.创建模块
+	在父工程(springcloud-eureka)中创建一个名为springcloud-router-connect-loadbalance-hardcode-gateway9527的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
+### 9.6.4.编写模块pom.xml
+```xml
+@include(./project_springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/pom.xml)
+```
+### 9.6.5.编写模块application.yml
+```yml
+@include(./project_springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/src/main/resources/application.yml)
+```
+### 9.6.6.编写config
+```java
+@include(./project_springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/src/main/java/org/openatom/springcloud/GateWayConfig.java)
+```
+### 9.6.7.编写鉴权LoginFilter
+```java
+@include(./project_springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/src/main/java/com/openatom/springcloud/filter/LoginFilter.java)
+```
+### 9.6.8.编写模块主启动类
+```java
+@include(./project_springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/src/main/java/org/openatom/springcloud/RouterConnectLoadbalanceHardcodeGateWay9527.java)
+```
+### 9.6.9.测试模块
+    启动相关服务
+```mermaid
+flowchart LR
+    准备好数据库环境-->启动Eureka注册中心
+    启动Eureka注册中心-->启动服务提供者8003节点
+    启动服务提供者8003节点-->启动服务提供者8004节点
+    启动服务提供者8004节点-->启动使用了Hystrix功能的服务消费者
+    启动使用了Hystrix功能的服务消费者-->启动当前GateWay模块
+```
+
+    在浏览器中访问
+```
+http://localhost:9527/consumer/payment/ok/get/1?uname=zhangsan
+```
+    第一次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
+```
+    第二次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
+```
+    第三次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
+```
+    第四次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
+```
+    可以看到四次访问返回的结果中,第一次和第三次是相同的,第二次和第四次是相同的,之所以会出现这样的结果,是因为上面编写RestTemplate时使用了默认的配置,默认的配置使用负载均衡策略是轮询策略,所以接连访问该服务四次会出现上面的情况。但是要注意,这里并没有直接访问服务消费者,而是访问了网关,这些返回的数据是服务消费端返回给网关网关返回给浏览器的。
+
+## 9.7.声明式配置方式使用GateWay(负载均衡模式)
+### 9.7.1.模块简介
+    使用SpringCloud Gateway实现网关功能,配置方式为声明式配置,实现了简单的请求转发功能,即请求经过网关之后会转发到单个服务消费者的单个节点,实现了在请求转发的同时做负载均衡处理,启动端口: 9527
+### 9.7.2.模块目录结构
+```
+@include(./project_springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/tree.md)
+```
+### 9.7.3.创建模块
+	在父工程(springcloud-eureka)中创建一个名为springcloud-router-connect-loadbalance-configuration-gateway9527的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
+### 9.7.4.编写模块pom.xml
+```xml
+@include(./project_springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/pom.xml)
+```
+### 9.7.5.编写模块application.yml
+```yml
+@include(./project_springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/src/main/resources/application.yml)
+```
+### 9.7.6.编写config
+```java
+@include(./project_springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/src/main/java/org/openatom/springcloud/GateWayConfig.java)
+```
+### 9.7.7.编写鉴权LoginFilter
+```java
+@include(./project_springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/src/main/java/com/openatom/springcloud/filter/LoginFilter.java)
+```
+### 9.7.8.编写模块主启动类
+```java
+@include(./project_springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/src/main/java/org/openatom/springcloud/RouterConnectLoadbalanceConfigurationGateWay9527.java)
+```
+### 9.7.9.测试模块
+    启动相关服务
+```mermaid
+flowchart LR
+    准备好数据库环境-->启动Eureka注册中心
+    启动Eureka注册中心-->启动服务提供者8003节点
+    启动服务提供者8003节点-->启动服务提供者8004节点
+    启动服务提供者8004节点-->启动使用了Hystrix功能的服务消费者
+    启动使用了Hystrix功能的服务消费者-->启动当前GateWay模块
+```
+
+    在浏览器中访问
+```
+http://localhost:9527/consumer/payment/ok/get/1?uname=zhangsan
+```
+    第一次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
+```
+    第二次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
+```
+    第三次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8001","data":{"id":1,"serial":"15646546546"}}
+```
+    第四次访问返回结果
+```json
+{"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
+```
+    可以看到四次访问返回的结果中,第一次和第三次是相同的,第二次和第四次是相同的,之所以会出现这样的结果,是因为上面编写RestTemplate时使用了默认的配置,默认的配置使用负载均衡策略是轮询策略,所以接连访问该服务四次会出现上面的情况。但是要注意,这里并没有直接访问服务消费者,而是访问了网关,这些返回的数据是服务消费端返回给网关网关返回给浏览器的。
+
+# 10.使用Zipkin+Sleuth实现调用链路追踪 {#10.}
+@include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter10.md)
+## 10.3.Zipkin、Sleuth简介
+    Sleuth简介
+    Sleuth可以解决分布式系统的追踪问题。
+<a href="https://github.com/spring-cloud/spring-cloud-sleuth" target="_blank">官方网址(GITHUB)</a>
+```
+https://github.com/spring-cloud/spring-cloud-sleuth
+```
+<a href="https://spring.io/projects/spring-cloud-sleuth" target="_blank">官方网站(SPRING.IO)</a>
+```
+https://spring.io/projects/spring-cloud-sleuth
+```
+    Zipkin简介
+    Zipkin是Twitter的一个开源项目,基于 Google Dapper实现。可以使用它来收集各个服务器上请求链路的跟踪数据,并通过它提供的REST API接口来辅助我们查询跟踪数据以实现对分布式系统的监控程序,从而及时地发现系统中出现的延迟升高问题并找出系统性能瓶颈的根源。除了面向开发的API接口之外,它也提供了方便的UI组件帮助我们直观的搜索跟踪信息和分析请求链路明细,比如: 可以查询某段时间内各用户请求的处理时间等。
+<a href="https://zipkin.io/" target="_blank">官方网址</a>
+```
+https://zipkin.io/
+```
+<a href="https://github.com/openzipkin/zipkin" target="_blank">官方网址(GITHUB)</a>
+```
+https://github.com/openzipkin/zipkin
+```
+    
+## 10.4.搭建服务提供者第一个节点(Sleuth)
+### 10.4.1.模块简介
+    具有调用链路追踪功能的服务提供者的第一个节点,启动端口: 8005
+### 10.4.2.模块目录结构
+```
+@include(./project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/tree.md)
+```
+### 10.4.3.创建模块
+	在父工程(springcloud-eureka)中创建一个名为springcloud-provider-sleuth_zipkin-cluster-node-payment8005的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
+### 10.4.4.编写模块pom.xml
+```xml
+@include(./project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/pom.xml)
+```
+### 10.4.5.编写模块application.yml
+```yml
+@include(./project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/src/main/resources/application.yml)
+```
+### 10.4.6.编写模块Mybatis配置文件
+```xml
+@include(./project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/src/main/resources/mapper/PaymentMapper.xml)
+```
+### 10.4.7.编写模块dao
+```java
+@include(./project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/src/main/java/org/openatom/springcloud/dao/PaymentDao.java)
+```
+### 10.4.8.编写模块service
+```java
+@include(./project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/src/main/java/org/openatom/springcloud/service/PaymentService.java)
+```
+### 10.4.9.编写模块service实现类
+```java
+@include(./project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/src/main/java/org/openatom/springcloud/service/impl/PaymentServiceImpl.java)
+```
+### 10.4.10.编写模块controller
+```java
+@include(./project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/src/main/java/org/openatom/springcloud/controller/PaymentController.java)
+```
+### 10.4.11.编写模块主启动类
+```java
+@include(./project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/src/main/java/org/openatom/springcloud/PaymentServiceProviderSleuthAndZipkinClusterNode8005.java)
+```
+
+## 10.5.搭建服务提供者第二个节点(Sleuth)
+### 10.5.1.模块简介
+    具有调用链路追踪功能的服务提供者的第二个节点,启动端口: 8006
+### 10.5.2.模块目录结构
+```
+@include(./project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/tree.md)
+```
+### 10.5.3.创建模块
+	在父工程(springcloud-eureka)中创建一个名为springcloud-provider-sleuth_zipkin-cluster-node-payment8006的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
+### 10.5.4.编写模块pom.xml
+```xml
+@include(./project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/pom.xml)
+```
+### 10.5.5.编写模块application.yml
+```yml
+@include(./project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/src/main/resources/application.yml)
+```
+### 10.5.6.编写模块Mybatis配置文件
+```xml
+@include(./project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/src/main/resources/mapper/PaymentMapper.xml)
+```
+### 10.5.7.编写模块dao
+```java
+@include(./project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/src/main/java/org/openatom/springcloud/dao/PaymentDao.java)
+```
+### 10.5.8.编写模块service
+```java
+@include(./project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/src/main/java/org/openatom/springcloud/service/PaymentService.java)
+```
+### 10.5.9.编写模块service实现类
+```java
+@include(./project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/src/main/java/org/openatom/springcloud/service/impl/PaymentServiceImpl.java)
+```
+### 10.5.10.编写模块controller
+```java
+@include(./project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/src/main/java/org/openatom/springcloud/controller/PaymentController.java)
+```
+### 10.5.11.编写模块主启动类
+```java
+@include(./project_springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/src/main/java/org/openatom/springcloud/PaymentServiceProviderSleuthAndZipkinClusterNode8006.java)
+```
+
+## 10.6.搭建服务消费者
+### 10.6.1.模块简介
+    具有调用链路追踪功能的服务消费者,启动端口: 80
+### 10.6.2.模块目录结构
+```
+@include(./project_springcloud-eureka/springcloud-consumer-sleuth_zipkin-loadbalance-default-order80/tree.md)
+```
+### 10.6.3.创建模块
+	在父工程(springcloud-eureka)中创建一个名为springcloud-consumer-sleuth_zipkin-loadbalance-default-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
+### 10.6.4.编写模块pom.xml
+```xml
+@include(./project_springcloud-eureka/springcloud-consumer-sleuth_zipkin-loadbalance-default-order80/pom.xml)
+```
+### 10.6.5.编写模块application.yml
+```yml
+@include(./project_springcloud-eureka/springcloud-consumer-sleuth_zipkin-loadbalance-default-order80/src/main/resources/application.yml)
+```
+### 10.6.6.编写模块config
+```java
+@include(./project_springcloud-eureka/springcloud-consumer-sleuth_zipkin-loadbalance-default-order80/src/main/java/org/openatom/springcloud/config/ApplicationContextConfig.java)
+```
+### 10.6.7.编写模块controller
+```java
+@include(./project_springcloud-eureka/springcloud-consumer-sleuth_zipkin-loadbalance-default-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java)
+```
+### 10.6.8.编写模块主启动类
+```java
+@include(./project_springcloud-eureka/springcloud-consumer-sleuth_zipkin-loadbalance-default-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerSleuthAndZipkinLoadBalanceDefault80.java)
+```
+
+## 10.7.搭建Zipkin
+<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html#_3-5-%E5%AE%89%E8%A3%85mysql" target="_blank">安装mysql</a>
+## 10.8.测试Zipkin+Sleuth实现调用链路追踪
+
+# 11.使用Apollo配置中心统一存放配置 {#11.}
+@include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter11.md)

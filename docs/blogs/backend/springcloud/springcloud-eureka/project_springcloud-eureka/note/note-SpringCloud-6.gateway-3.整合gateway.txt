@@ -27,7 +27,7 @@ SpringCloud整合网关gateway实现路由转发、权限鉴定、限流、身�
             eureka:
               instance:
                 hostname: ${spring.application.name}
-              client: #服务提供者provider注册进eureka服务列表内
+              client: #服务提供端provider注册进eureka服务列表内
                 service-url:
                   register-with-eureka: true
                   fetch-registry: true
@@ -85,7 +85,7 @@ SpringCloud整合网关gateway实现路由转发、权限鉴定、限流、身�
             eureka:
               instance:
                 hostname: ${spring.application.name}
-              client: #服务提供者provider注册进eureka服务列表内
+              client: #服务提供端provider注册进eureka服务列表内
                 service-url:
                   register-with-eureka: true
                   fetch-registry: true
@@ -158,7 +158,7 @@ SpringCloud整合网关gateway实现路由转发、权限鉴定、限流、身�
             eureka:
               instance:
                 hostname: ${spring.application.name}
-              client: #服务提供者provider注册进eureka服务列表内
+              client: #服务提供端provider注册进eureka服务列表内
                 service-url:
                   register-with-eureka: true
                   fetch-registry: true
@@ -221,7 +221,7 @@ SpringCloud整合网关gateway实现路由转发、权限鉴定、限流、身�
             eureka:
               instance:
                 hostname: ${spring.application.name}
-              client: #服务提供者provider注册进eureka服务列表内
+              client: #服务提供端provider注册进eureka服务列表内
                 service-url:
                   register-with-eureka: true
                   fetch-registry: true
