@@ -220,7 +220,6 @@ EOF
     $2:$MD_FILE_SOURCE_PATH
     $3:$MD_FILE_MARKMAP_TARGET_PATH
     $4:$MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH
-    $5:$INCLUDE_CODE_PROJECT_NAME
 EOF
 function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     echo '为文档原件和文档原件的的所有章节分片生成二级和三级目录大纲,并将这个目录大纲转换为markmap文件..........'
@@ -249,32 +248,26 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     cat $2/$1.md.original >> $2/$1.md
     echo '根据文档原件生成创建一份新的'$1'.md文件'
 
-    if [ -n "$5" ]
-    then
-        echo 'includeCodeProjectName的值: '$5'............................................'
-        #替换xxx.md中@import语法为@include语法，注意：当引用的项目名称不为空的时候才执行替换操作
-        #markdown-preview-enhanced插件@import语法示例：@import "springcloud-eureka/springcloud-api-commons/pom.xml"
-        #获取引用的代码的项目名称
-        INCLUDE_CODE_PROJECT_NAME_STR=`echo $5 | tr ',' ' '`
-        INCLUDE_CODE_PROJECT_NAME_ARR=( $INCLUDE_CODE_PROJECT_NAME_STR )
-        for((i=0;i<${#INCLUDE_CODE_PROJECT_NAME_ARR[@]};i++)); do
-            echo $2/$1'.md引用了'$2'下的'${INCLUDE_CODE_PROJECT_NAME_ARR[i]}'这个项目中的代码'
-            #替换import语法为include语法，并添加代码块标识```
-            sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.java"/i\```java' $2/$1.md
-            sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.xml"/i\```xml' $2/$1.md
-            sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.yml"/i\```yml' $2/$1.md
-            sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.yaml"/i\```yaml' $2/$1.md
-            sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.md"/i\```md' $2/$1.md
-            sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.sql"/i\```sql' $2/$1.md
-            sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*"/a\```' $2/$1.md
-            sed -i 's#^\(.*\)@import "\(\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"#\1@include(\2)#g' $2/$1.md
-            #添加图片居中效果
-            sed -i '/<img.*src=".*".*\/>/i\::: center' $2/$1.md
-            sed -i '/<img.*src=".*".*\/>/i\<div class="imgbg-customer">' $2/$1.md
-            sed -i '/<img.*src=".*".*\/>/a\:::' $2/$1.md
-            sed -i '/<img.*src=".*".*\/>/a\</div>' $2/$1.md
-        done
-    fi
+    #获取引用的代码的项目名称
+    INCLUDE_CODE_PROJECT_NAME_STR=`ls $2/projects/ | tr '\r\n' ' '`
+    INCLUDE_CODE_PROJECT_NAME_ARR=( $INCLUDE_CODE_PROJECT_NAME_STR )
+    for((i=0;i<${#INCLUDE_CODE_PROJECT_NAME_ARR[@]};i++)); do
+        echo $2/$1'.md引用了'$2'下的'${INCLUDE_CODE_PROJECT_NAME_ARR[i]}'这个项目中的代码'
+        #替换import语法为include语法，并添加代码块标识```
+        sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.java"/i\```java' $2/$1.md
+        sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.xml"/i\```xml' $2/$1.md
+        sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.yml"/i\```yml' $2/$1.md
+        sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.yaml"/i\```yaml' $2/$1.md
+        sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.md"/i\```md' $2/$1.md
+        sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.sql"/i\```sql' $2/$1.md
+        sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*"/a\```' $2/$1.md
+        sed -i 's#^\(.*\)@import "\(\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"#\1@include(\2)#g' $2/$1.md
+        #添加图片居中效果
+        sed -i '/<img.*src=".*".*\/>/i\::: center' $2/$1.md
+        sed -i '/<img.*src=".*".*\/>/i\<div class="imgbg-customer">' $2/$1.md
+        sed -i '/<img.*src=".*".*\/>/a\:::' $2/$1.md
+        sed -i '/<img.*src=".*".*\/>/a\</div>' $2/$1.md
+    done
 
     echo '开始为'$1'.md生成二级和三级目录大纲md文件......'
     #生成二级目录大纲md文件
@@ -715,7 +708,7 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
         #替换图片路径
         sed -i 's#<img\(.*\)src=\"\./images/\(.*\)\"#<img\1src=\"\.\./images/\2\"#g' $2/$3/$1-chapter-$CHAPTER_NAME.md
         #替换引入的项目的路径
-        sed -i 's#@include(\./project_#@include(\.\./project_#g' $2/$3/$1-chapter-$CHAPTER_NAME.md
+        sed -i 's#@include(\./projects/#@include(\.\./projects/#g' $2/$3/$1-chapter-$CHAPTER_NAME.md
     done
     echo '完成为'$1'.md的所有章节生成内容介绍文件.......................................'
 
@@ -734,7 +727,6 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
     章节中ID格式 {#centos7_1-5-c}
 EOF
 function generateSidebarConfigForAllAndSetAnchorForOriginal() {
-
     echo '开始为'$1'.为md文件和md文件拆分的所有章节md文件生成侧边栏配置........................................................................'
 
     #获取一级标题总数
@@ -842,10 +834,8 @@ function generateSidebarConfigForAllAndSetAnchorForOriginal() {
     $1:$MD_FILE_NAME
     $2:$MD_FILE_RELATIVE_PATH
     $3:$MD_FILE_CHAPTER_SHARDINGS_FOLDER_NAME
-    $4:$INCLUDE_CODE_PROJECT_NAME
 EOF
 function generateBreadcrumbREADME {
-
     echo '开始为'$2'目录下'$1'.md文件及其分片创建breadcrumb使用的README.md.................................................................................'
 
     echo '路径数组字符串：'$2/$3
@@ -871,43 +861,21 @@ function generateBreadcrumbREADME {
         CURRENT_CATALOG_FOLDER_NAME_RELATIVE_PATH=$DOCS_PATH/$CURRENT_CATALOG_FOLDER_NAME
         echo '当前导航栏分类的文件夹相对位置：'$CURRENT_CATALOG_FOLDER_NAME_RELATIVE_PATH
 
-        IGNORE_FOLDER_LIST_STR=`ls $CURRENT_CATALOG_FOLDER_NAME_RELATIVE_PATH -I $CURRENT_CATALOG_CHILD_FOLDER_NAME -I README*.md `
+        IGNORE_FOLDER_LIST_STR=`ls $CURRENT_CATALOG_FOLDER_NAME_RELATIVE_PATH -I $CURRENT_CATALOG_CHILD_FOLDER_NAME -I README*.md`
         echo '要忽略的文件夹字符串：'$IGNORE_FOLDER_LIST_STR
 
-        #获取当前项目依赖的java代码的项目名称，并忽略掉
-        INCLUDE_CODE_PROJECT_NAME_STR=$4
-        echo '引用的代码的项目名称字符串：'$INCLUDE_CODE_PROJECT_NAME_STR
-        INCLUDE_CODE_PROJECT_NAME_ARR=(`echo $INCLUDE_CODE_PROJECT_NAME_STR | tr ',' ' '` )
-
-        #给md依赖的代码的项目的名称添加前缀project_
-        if [ -n "$INCLUDE_CODE_PROJECT_NAME_STR" ]
-        then
-            for(( j=0;j<${#INCLUDE_CODE_PROJECT_NAME_ARR[@]};j++)) do
-               INCLUDE_CODE_PROJECT_NAME_ARR[j]=project_${INCLUDE_CODE_PROJECT_NAME_ARR[j]}
-            done
-        fi
-        IMAGE_FOLDER_NAME=' image'
-        IGNORE_FOLDER_LIST_ARR=(`echo $IGNORE_FOLDER_LIST_STR$INCLUDE_CODE_PROJECT_NAME_ARR` )
-        echo '要忽略的文件夹名称+引用的代码的项目名称字符串：'$IGNORE_FOLDER_LIST_STR$INCLUDE_CODE_PROJECT_NAME_ARR$IMAGE_FOLDER_NAME
+        IGNORE_FOLDER_LIST_ARR=(`echo $IGNORE_FOLDER_LIST_STR` )
         #获取当前需要过滤的文件列表
         IGNORE_FOLDER_LIST_STR=""
-
         for(( j=0;j<${#IGNORE_FOLDER_LIST_ARR[@]};j++)) do
             echo '要忽略的文件夹名称数组中第'$j'个文件夹的名称是：'${IGNORE_FOLDER_LIST_ARR[j]}
             IGNORE_FOLDER_LIST_STR=$IGNORE_FOLDER_LIST_STR'-I '${IGNORE_FOLDER_LIST_ARR[j]}' '
         done
-        echo '要忽略文件名字符串：'$IGNORE_FOLDER_LIST_STR
-
-        #如果i值大于等于1，说明处理的不是第一层目录了，不需要再添加额外的文件名过滤了，否则章节标题中如果有被过滤的文字，生成导航README.md将不会包含这个章节
-        #if [ $i -ge 1 ]
-        #then
-        #    IGNORE_FOLDER_LIST_STR=""
-        #fi
 
         #行号数组
-        PATHS_LINENUMBER_STR=`ls -lR $CURRENT_REALTIVE_PATH -I README*.md -I *.original -I *.md.* $IGNORE_FOLDER_LIST_STR | grep -n $DOCS_PATH  | cut -d: -f1 | sed 's/ /,/g' | tr '\r\n' ' ' `
+        PATHS_LINENUMBER_STR=`ls -lrtR $CURRENT_REALTIVE_PATH -I README*.md -I *.original -I *.md.* -I projects -I image $IGNORE_FOLDER_LIST_STR | grep -n $DOCS_PATH  | cut -d: -f1 | sed 's/ /,/g' | tr '\r\n' ' ' `
         #查询行号数组语句
-        echo 'ls -lR '"$CURRENT_REALTIVE_PATH "'-I README*.md -I *.original -I *.md.* '"$IGNORE_FOLDER_LIST_STR"''
+        echo 'ls -lrtR '"$CURRENT_REALTIVE_PATH "'-I README*.md -I *.original -I *.md.* '"$IGNORE_FOLDER_LIST_STR"''
 
         echo '行号数组字符串：'$PATHS_LINENUMBER_STR
         PATHS_LINENUMBER_ARR=( $PATHS_LINENUMBER_STR )
@@ -956,16 +924,16 @@ function generateBreadcrumbREADME {
 
             echo '截取结束行数' $END_LINENUMBER
             #将递归查询当前目录中所有文件的结果根据目录层级切割成不同的分片
-            ls -lR $CURRENT_REALTIVE_PATH -I README*.md -I *.original -I *.md.* $IGNORE_FOLDER_LIST_STR | \
+            ls -lrtR $CURRENT_REALTIVE_PATH -I README*.md -I *.original -I *.md.* -I projects -I images $IGNORE_FOLDER_LIST_STR | \
             sed -n ''"$START_LINENUMBER"','"$END_LINENUMBER"'p' >> $CACHE_README_FILE_NAME_FULL_PATH_NAME
 
             echo '--------------------------------------------------------------------'
             echo '当前操作文件名称：'$1.md
             echo '当前操作目录：（相对路径）' $CURRENT_REALTIVE_PATH
-            echo "查询文件目录语句："ls -lR $CURRENT_REALTIVE_PATH -I README*.md -I *.original -I *.md.* $IGNORE_FOLDER_LIST_STR
+            echo "查询文件目录语句："ls -lR $CURRENT_REALTIVE_PATH -I README*.md -I *.original -I *.md.* -I projects -I images $IGNORE_FOLDER_LIST_STR
             echo '截取内容：'
             echo '------------'
-            ls -lR $CURRENT_REALTIVE_PATH -I README*.md -I *.original -I *.md.* $IGNORE_FOLDER_LIST_STR | \
+            ls -lrtR $CURRENT_REALTIVE_PATH -I README*.md -I *.original -I *.md.* -I projects -I images $IGNORE_FOLDER_LIST_STR | \
             sed -n ''"$START_LINENUMBER"','"$END_LINENUMBER"'p'
             echo '------------'
             echo '输出文件全路径名：'$CACHE_README_FILE_NAME_FULL_PATH_NAME
@@ -1101,8 +1069,6 @@ function syntaxCheck() {
         done
         echo '语法错误1结束：**************************************************************************************************'
 
-        echo ''
-
         LINE_NUMBER_STR2=`cat $DOCS_PATH/$2/$1.md.original | grep -n '^\`\`\`\`$' | cut -d':' -f1 | tr '\r\n' ' '`
         LINE_NUMBER_ARR2=( $LINE_NUMBER_STR2 )
         echo '语法错误2开始：**************************************************************************************************'
@@ -1113,7 +1079,6 @@ function syntaxCheck() {
         echo '语法错误2结束：**************************************************************************************************'
         echo '完成执行语法检查............................................................'
 
-        echo ''
 
         LINE_NUMBER_STR3=`cat $DOCS_PATH/$2/$1.md.original | grep -n '^\`\`\`\`\`$' | cut -d':' -f1 | tr '\r\n' ' '`
         LINE_NUMBER_ARR3=( $LINE_NUMBER_STR3 )
@@ -1161,7 +1126,6 @@ function replaceReferenceText() {
     门面模式，统一封装上面的方法，对外提供一个调用接口即可
     $1: $MD_FILE_NAME
     $2: $MD_FILE_RELATIVE_PATH
-    $3: 配置文件后缀名称
 EOF
 function enhance() {
     echo '开始增强'$2'目录下'$1'.md文件.............................................................................................................................'
@@ -1189,7 +1153,7 @@ function enhance() {
     # 为所有章节生成的markmap文件展示的标题层级深度
     MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH=5
     #根据xxx.md文件标题生成博客大纲->将博客大纲转换为markmap文件
-    generateOutLineAndTransformOutLineToMarkmapForOriginal $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_MARKMAP_TARGET_PATH $MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH $3
+    generateOutLineAndTransformOutLineToMarkmapForOriginal $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_MARKMAP_TARGET_PATH $MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH
     #--------------------------------------------------------------------------------------------------------------
 
 
@@ -1243,7 +1207,7 @@ function enhance() {
     #生成breadcrumb使用的README.md
     #--------------------------------------------------------------------------------------------------------------
     #shardings文件所在的相对路径
-    generateBreadcrumbREADME $MD_FILE_NAME $MD_FILE_RELATIVE_PATH $MD_FILE_CHAPTER_SHARDINGS_FOLDER_NAME $3
+    generateBreadcrumbREADME $MD_FILE_NAME $MD_FILE_RELATIVE_PATH $MD_FILE_CHAPTER_SHARDINGS_FOLDER_NAME
     #--------------------------------------------------------------------------------------------------------------
 
     #替换文本用引用的文本
@@ -1298,14 +1262,12 @@ function enhanceAll() {
             MD_FILE_NAME=( $( parseBootstrapIni markdown-$a fileName) )
             #获取xx.md文件的相对路径
             MD_FILE_RELATIVE_PATH=( $( parseBootstrapIni markdown-$a relativePath) )
-            #获取xxx.md文件引用的代码的项目名称
-            INCLUDE_CODE_PROJECT_NAME=( $( parseBootstrapIni markdown-$a includeCodeProjectName) )
 
             #增强之前的前置操作
             beforeEnhance $MD_FILE_NAME $MD_FILE_RELATIVE_PATH
 
             #进行增强处理
-            enhance $MD_FILE_NAME $MD_FILE_RELATIVE_PATH $INCLUDE_CODE_PROJECT_NAME
+            enhance $MD_FILE_NAME $MD_FILE_RELATIVE_PATH
 
             #增强之后的后置操作
             afterEnhance $MD_FILE_NAME $MD_FILE_RELATIVE_PATH

@@ -1,0 +1,6 @@
+1.下载工程,并在本地安装所有用到的依赖
+2..执行apollo/scripts/build.bat
+3.在下面三个位置找到编译好的jar包
+apollo-adminservice/target
+apollo-configservice/target
+apollo-portal/target

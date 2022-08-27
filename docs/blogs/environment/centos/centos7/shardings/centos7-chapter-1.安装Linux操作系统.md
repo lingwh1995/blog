@@ -1,6 +1,6 @@
 ---
 title: 在Centos7上搭建开发环境-1.安装Linux操作系统
-description: 本章节涉及主要内容有：Linux重要目录介绍,Centos镜像下载,安装前Vmaware相关设置,安装时分区大小设置,安装myact1,搭建mycat2,搭建yum私服,1,2,3,4,5,搭建Zipkin,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：Linux重要目录介绍,Centos镜像下载,安装前Vmaware相关设置,安装时分区大小设置,安装myact1,搭建mycat2,搭建yum私服,1,2,3,4,5,搭建Zipkin,搭建Apollo配置中心,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -13,7 +13,7 @@ date: 2020-01-05
 head:
   - - meta
     - name: keywords
-      content: 本章节涉及主要内容有：Linux重要目录介绍,Centos镜像下载,安装前Vmaware相关设置,安装时分区大小设置,安装myact1,搭建mycat2,搭建yum私服,1,2,3,4,5,搭建Zipkin,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+      content: 本章节涉及主要内容有：Linux重要目录介绍,Centos镜像下载,安装前Vmaware相关设置,安装时分区大小设置,安装myact1,搭建mycat2,搭建yum私服,1,2,3,4,5,搭建Zipkin,搭建Apollo配置中心,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 1.安装Linux操作系统
@@ -32,7 +32,7 @@ head:
 	/tmp 用于存放各种临时文件，是公用的临时文件存储点。
 	/var 存放临时文件，如各种服务的日志文件。
 
-## 1.2.Centos镜像下载
+## 1.4.Centos镜像下载
 	如果是学习环境，建议安装centos mini版镜像，生产环境可以安装完整版本
 
     下载地址

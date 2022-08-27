@@ -1,0 +1,35 @@
+1.下载工程,并在本地安装所有用到的依赖
+2.修改apollo/scripts/flyway/flyway-configdb.properties和apollo/scripts/flyway/flyway-portaldb.properties中的数据库连接信息
+3.在apollo文件夹下执行如下两个命令；目的是使用flyway脚本自动创建好数据库环境
+	mvn -N -Pconfigdb flyway:migrate
+	mvn -N -Pportaldb flyway:migrate
+4.执行apollo/scripts/build.bat,执行完成后可以得到下面三个jar包(最好是重命名以下)
+	apollo/apollo-adminservice/target/apollo-adminservice-2.0.1-SNAPSHOT.jar -> apollo-adminservice-2.0.1.jar
+	apollo/apollo-configservice/target/apollo-configservice-2.0.1-SNAPSHOT.jar	-> apollo-configservice-2.0.1.jar
+	apollo/apollo-portal/target/apollo-portal-2.0.1-SNAPSHOT.jar -> apollo-portal-2.0.1.jar
+5.创建启动文件夹
+	1>.创建名称为Apollo2.0.1_built_in_eureka_dev的文件夹(版本号以实际为准)
+	2>.把三个jar包放入文件夹中
+	3>.创建一个logs文件夹,里面存放日志文件,日志文件名称分别是apollo-configservice.log、apollo-adminservice.log、apollo-portal.log
+	    注意:不用创建这三个文件,程序运行会自动创建这三个文件
+	4>.编写一次启动三个jar的bat脚本
+	
+        set url="192.168.0.2:3306"
+        set username="root"
+        set password="123456"
+
+        set dev_meta="http://localhost:8080/"
+        set portal_port="8070"
+
+        #启动configService
+        start "configService" java -Dapollo_profile=github  -Dspring.datasource.url=jdbc:mysql://%url%/ApolloConfigDB?characterEncoding=utf8 -Dspring.datasource.username=%username% -Dspring.datasource.password=%password% -Dlogging.file.name=.\logs\apollo-configservice.log -jar .\apollo-configservice-2.0.1.jar
+        #启动adminService
+        start "adminService" java -Dapollo_profile=github   -Dspring.datasource.url=jdbc:mysql://%url%/ApolloConfigDB?characterEncoding=utf8 -Dspring.datasource.username=%username% -Dspring.datasource.password=%password% -Dlogging.file.name=.\logs\apollo-adminservice.log -jar .\apollo-adminservice-2.0.1.jar
+        #启动portal
+        start "portal" java -Dapollo_profile=github,auth -Ddev_meta=%dev_meta% -Dserver.port=%portal_port% -Dspring.datasource.url=jdbc:mysql://%url%/ApolloPortalDB?characterEncoding=utf8 -Dspring.datasource.username=%username% -Dspring.datasource.password=%password% -Dlogging.file.name=.\logs\apollo-portal.log -jar .\apollo-portal-2.0.1.jar
+
+6.访问地址
+	Eureka注册中心: http://localhost:8080/
+	Apollo配置中心: http://localhost:8070/
+	    登录用户名/密码: apollo/admin
+

@@ -18,26 +18,26 @@ head:
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter8.md)
 ## 8.3.使用Hystrix DashBoard对服务单个节点进行监控
 ### 8.3.1.Hystrix DashBoard简介
-    Hystrix Dashboard是Spring Cloud的仪表盘组件,可以查看Hystrix实例的执行情况,支持查看单个实例和查看集群实例,但是需要结合spring-boot-actuator一起使用。Hystrix Dashboard主要用来实时监控Hystrix的各项指标信息。Hystrix Dashboard可以有效地反映出每个Hystrix实例的运行情况，帮助我们快速发现系统中的问题，从而采取对应措施。
+    DashBoard全称Hystrix Dashboard,是Spring Cloud的仪表盘组件,可以查看Hystrix实例的执行情况,支持查看单个实例和查看集群实例,但是需要结合spring-boot-actuator一起使用。Hystrix Dashboard主要用来实时监控Hystrix的各项指标信息。Hystrix Dashboard可以有效地反映出每个Hystrix实例的运行情况，帮助我们快速发现系统中的问题，从而采取对应措施。
 ### 8.3.2.模块简介
     Hystrix DashBoard,启动端口: 9001
 ### 8.3.3.模块目录结构
-```
-@include(../project_springcloud-eureka/springcloud-mointor-hystrix-dashboard9001/tree.md)
+```md
+@include(../projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard9001/tree.md)
 ```
 ### 8.3.4.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-mointor-hystrix-dashboard9001的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 8.3.5.编写模块pom.xml
 ```xml
-@include(../project_springcloud-eureka/springcloud-mointor-hystrix-dashboard9001/pom.xml)
+@include(../projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard9001/pom.xml)
 ```
 ### 8.3.6.编写模块application.yml
 ```yml
-@include(../project_springcloud-eureka/springcloud-mointor-hystrix-dashboard9001/src/main/resources/application.yml)
+@include(../projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard9001/src/main/resources/application.yml)
 ```
 ### 8.3.7.编写模块主启动类
 ```java
-@include(../project_springcloud-eureka/springcloud-mointor-hystrix-dashboard9001/src/main/java/org/openatom/springcloud/MointorHystrixDashboard9001.java)
+@include(../projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard9001/src/main/java/org/openatom/springcloud/MointorHystrixDashboard9001.java)
 ```
 ### 8.3.8.修改服务提供者8003主启动类
     使用Hystrix Dashboard监控服务,被监控的服务提供者和服务消费者必须满足以下条件
@@ -67,7 +67,7 @@ public ServletRegistrationBean getServlet() {
 
     修改后的主启动类如下
 ```java
-@include(../project_springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8003/src/main/java/org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8003.java)
+@include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8003/src/main/java/org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8003.java)
 ```
 
 ### 8.3.9.修改服务提供者8004主启动类
@@ -98,7 +98,7 @@ public ServletRegistrationBean getServlet() {
 
     修改后的主启动类如下
 ```java
-@include(../project_springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/src/main/java/org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8004.java)
+@include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/src/main/java/org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8004.java)
 ```
 
 ### 8.3.10.修改服务消费者80主启动类
@@ -129,7 +129,7 @@ public ServletRegistrationBean getServlet() {
 
     修改后的主启动类如下
 ```java
-@include(../project_springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.java)
+@include(../projects/springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.java)
 ```
 
 ### 8.3.11.测试模块
@@ -228,22 +228,22 @@ http://localhost/consumer/payment/circuitbreaker/get/1
 ### 8.4.2.模块简介
     使用Turbine汇聚Hystrix DashBoard监控到的所有节点访问统计数据,启动端口: 9002
 ### 8.4.3.模块目录结构
-```
-@include(../project_springcloud-eureka/springcloud-mointor-hystrix-dashboard-turbine9002/tree.md)
+```md
+@include(../projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard-turbine9002/tree.md)
 ```
 ### 8.4.4.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-mointor-hystrix-dashboard-turbine9002的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 8.4.5.编写模块pom.xml
 ```xml
-@include(../project_springcloud-eureka/springcloud-mointor-hystrix-dashboard-turbine9002/pom.xml)
+@include(../projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard-turbine9002/pom.xml)
 ```
 ### 8.4.6.编写模块application.yml
 ```yml
-@include(../project_springcloud-eureka/springcloud-mointor-hystrix-dashboard-turbine9002/src/main/resources/application.yml)
+@include(../projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard-turbine9002/src/main/resources/application.yml)
 ```
 ### 8.4.7.编写模块主启动类
 ```java
-@include(../project_springcloud-eureka/springcloud-mointor-hystrix-dashboard-turbine9002/src/main/java/org/openatom/springcloud/MointorHystrixDashboardTurbine9002.java)
+@include(../projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard-turbine9002/src/main/java/org/openatom/springcloud/MointorHystrixDashboardTurbine9002.java)
 ```
 ### 8.4.8.修改服务提供者8003主启动类
     使用Turbine聚合Hystrix Dashboard监控数据,被监控的服务提供者和服务消费者必须满足以下条件
@@ -273,7 +273,7 @@ public ServletRegistrationBean getServlet() {
 
     修改后的主启动类如下
 ```java
-@include(../project_springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8003/src/main/java/org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8003.java)
+@include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8003/src/main/java/org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8003.java)
 ```
 
 ### 8.4.9.修改服务提供者8004主启动类
@@ -304,7 +304,7 @@ public ServletRegistrationBean getServlet() {
 
     修改后的主启动类如下
 ```java
-@include(../project_springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/src/main/java/org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8004.java)
+@include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/src/main/java/org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8004.java)
 ```
 
 ### 8.4.10.修改服务消费端80主启动类
@@ -335,7 +335,7 @@ public ServletRegistrationBean getServlet() {
 
     修改后的主启动类如下
 ```java
-@include(../project_springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.java)
+@include(../projects/springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.java)
 ```
 
 ### 8.4.11.测试模块

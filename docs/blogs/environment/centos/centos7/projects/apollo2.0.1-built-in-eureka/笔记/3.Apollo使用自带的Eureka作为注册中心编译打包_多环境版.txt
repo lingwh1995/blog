@@ -1,0 +1,91 @@
+1.下载工程,并在本地安装所有用到的依赖
+2.准备数据库环境
+	说明:dev和pro环境的configService、adminService用到的数据库需要分别部署,dev和pro环境的protal可以连接到同一套数据库
+	1>.在192.168.0.2上搭建Mysql数据库相关操作:
+		1>>.下载工程,并在本地安装所有用到的依赖
+		2>>.修改apollo/scripts/flyway/flyway-configdb.properties和apollo/scripts/flyway/flyway-portaldb.properties中数据库连接信息修改为192.168.0.2相关配置
+		3>>.修改apollo/scripts/build.bat中的数据库联连接信息
+		4>>.在apollo文件夹下执行如下两个命令；目的是使用flyway脚本自动创建好数据库环境
+			 mvn -N -Pconfigdb flyway:migrate
+			 mvn -N -Pportaldb flyway:migrate
+	2>.在192.168.0.3上搭建Mysql数据库相关操作(或者直接克隆虚拟机后修改mac地址后删除多余的数据库也可以快速建立数据库环境):
+		1>.修改apollo/scripts/flyway/flyway-configdb.properties中数据库连接信息修改为192.168.0.3相关配置
+		2>.在apollo文件夹下执行如下命令:
+			 mvn -N -Pconfigdb flyway:migrate
+    3>.更新数据库数据
+        192.168.0.2:(使用Apollo内置的Eureka一般不用执行这个操作,默认就是8080Eureka服务器)
+            UPDATE apolloconfigdb.ServerConfig SET `Value` = "http://localhost:8080/eureka/" WHERE `key` = "eureka.service.url";
+        192.168.0.3:
+            UPDATE apolloconfigdb.ServerConfig SET `Value` = "http://localhost:8081/eureka/" WHERE `key` = "eureka.service.url";
+4.执行apollo/scripts/build.bat,执行完成后可以得到下面三个jar包(最好是重命名以下)
+	apollo/apollo-adminservice/target/apollo-adminservice-2.0.1-SNAPSHOT.jar->复制一份分别命名为
+	    apollo-adminservice-2.0.1-dev.jar
+	    apollo-adminservice-2.0.1-pro.jar
+	apollo/apollo-configservice/target/apollo-configservice-2.0.1-SNAPSHOT.jar->->复制一份分别命名为
+	    apollo-configservice-2.0.1-dev.jar
+	    apollo-configservice-2.0.1-pro.jar
+	apollo/apollo-portal/target/apollo-portal-2.0.1-SNAPSHOT.jar -> apollo-portal-2.0.1.jar
+	注意:操作完成后共得到5个jar
+5.创建运行文件夹
+	>.创建名称为Apollo2.0.1_eureka_built_in_pro的文件夹(版本号以实际为准)
+	2>.把五个jar包放入文件夹中
+	3>.创建一个logs文件夹,里面存放日志文件,日志文件名称分别是
+	    apollo-configservice-dev.log、apollo-configservice-pro.log、
+	    apollo-adminservice-dev.log、apollo-adminservice-pro.log、
+	    apollo-portal.log
+	4>.编写一次启动五个jar的bat脚本
+       rem dev环境数据库连接信息
+       set url_dev="192.168.0.2:3306"
+       set username_dev="root"
+       set password_dev="123456"
+       rem dev环境meta地址
+       set meta_dev="http://localhost:8080/"
+
+       rem pro环境数据库连接信息
+       set url_pro="192.168.0.3:3306"
+       set username_pro="root"
+       set password_pro="123456"
+       rem pro环境adminService访问端口
+       set adminService_port_pro="8091"
+       rem pro环境configService访问端口
+       set configService_port_pro="8081"
+       rem pro环境meta地址
+       set meta_pro="http://localhost:8081/"
+
+       rem portal端口
+       set portal_port="8070"
+
+       rem 启动dev环境configService
+       start "configService-dev" java -Dapollo_profile=github -Dspring.datasource.url=jdbc:mysql://%url_dev%/ApolloConfigDB?characterEncoding=utf8 -Dspring.datasource.username=%username_dev% -Dspring.datasource.password=%password_dev% -Dlogging.file.name=.\logs\apollo-configservice-dev.log -jar .\apollo-configservice-2.0.1-dev.jar
+       rem 启动dev环境adminService
+       start "adminService-dev" java -Dapollo_profile=github  -Dspring.datasource.url=jdbc:mysql://%url_dev%/ApolloConfigDB?characterEncoding=utf8 -Dspring.datasource.username=%username_dev% -Dspring.datasource.password=%password_dev% -Dlogging.file.name=.\logs\apollo-adminservice-dev.log -jar .\apollo-adminservice-2.0.1-dev.jar
+       rem 启动pro环境configService
+       start "configService-pro" java -Dapollo_profile=github -DServer.port=%configService_port_pro% -Dspring.datasource.url=jdbc:mysql://%url_pro%/ApolloConfigDB?characterEncoding=utf8 -Dspring.datasource.username=%username_pro% -Dspring.datasource.password=%password_pro% -Dlogging.file.name=.\logs\apollo-configservice-pro.log -jar .\apollo-configservice-2.0.1-pro.jar
+       rem 启动pro环境adminService
+       start "adminService-pro" java -Dapollo_profile=github  -DServer.port=%adminService_port_pro%  -Dspring.datasource.url=jdbc:mysql://%url_pro%/ApolloConfigDB?characterEncoding=utf8 -Dspring.datasource.username=%username_pro% -Dspring.datasource.password=%password_pro% -Dlogging.file.name=.\logs\apollo-adminservice-pro.log -jar .\apollo-adminservice-2.0.1-pro.jar
+       rem 启动portal
+       start "ApolloPortal" java -Dapollo_profile=github,auth -Ddev_meta=%meta_dev% -Dpro_meta=%meta_pro% -Dserver.port=%portal_port% -Dspring.datasource.url=jdbc:mysql://%url_dev%/ApolloPortalDB?characterEncoding=utf8 -Dspring.datasource.username=%username_dev% -Dspring.datasource.password=%password_dev% -Dlogging.file.name=.\logs\apollo-portal.log -jar .\apollo-portal-2.0.1.jar
+
+6.添加系统参数
+    访问http://localhost:8070/,进入Apollo配置界面
+    	1>.登录用户名/密码:	apollo/admin
+    	2>.管理员工具->系统参数->输入key值/Value值:
+    		添加新部门:	[{"orgId":"TEST1","orgName":"样例部门1"},{"orgId":"TEST2","orgName":"样例部门2"},{"orgId":"micro_service","orgName":"微服务部门"}]
+    		创建多环境:
+    		    key:    apollo.portal.envs
+    		    value:  dev,pro
+7.访问地址
+	Eureka注册中心1: http://localhost:8080/
+	Eureka注册中心2: http://localhost:8081/
+	Apollo配置中心: http://localhost:8070/
+	    登录用户名/密码: apollo/admin
+8.特別注意事项
+    1.dev环境和pro环境需要不同的数据库地址,
+        即需要两套Mysql环境,第一套中有apolloconfigdb、apolloportaldb两个库,第二套 环境中只有apolloconfigdb这个库
+    2.启动dev环境和pro环境时,不要再运行参数中覆盖eureka的service-url,要修改数据库中的数据,因为这个配置是从数据库中获取的
+        192.168.0.2:(使用Apollo内置的Eureka一般不用执行这个操作,默认就是8080Eureka服务器)
+            UPDATE apolloconfigdb.ServerConfig SET `Value` = "http://localhost:8080/eureka/" WHERE `key` = "eureka.service.url";
+        192.168.0.3:
+            UPDATE apolloconfigdb.ServerConfig SET `Value` = "http://localhost:8081/eureka/" WHERE `key` = "eureka.service.url";
+      当数据库中没有这个参数时,使用启动时参数修改才有效
+    3.如果启动后多环境现实不正常,直接重启下Portal,再刷新页面即可

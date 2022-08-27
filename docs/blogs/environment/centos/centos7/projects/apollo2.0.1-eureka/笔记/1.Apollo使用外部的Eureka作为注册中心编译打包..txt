@@ -1,0 +1,84 @@
+1.下载工程,并在本地安装所有用到的依赖
+2.数据库创建好之后在ApolloConfigDB库中执行:将Apollo自带的Eureka的地址换成外部Eureka的地址
+	UPDATE apolloconfigdb.ServerConfig SET `Value` = "http://localhost:7001/eureka/" WHERE `key` = "eureka.service.url";
+3.改造apollo-configservice
+	1>.修改apollo-configservice/src/main/resources/application.yml
+		添加下面配置,控制程序 关闭使用@EnableEurekaServer注解,开启使用@EnableEurekaClient注解
+		apollo:
+		  eureka:
+			server:
+			  enabled: false
+			client:
+			  enable: true
+	2>.创建启动EurekaClient的配置类: 
+		路径:	
+			apollo-configservice/src/main/java/com/ctrip/framework/apollo/configservice/ConfigServerEurekaClientConfigure.java	  
+		代码:
+			@Configuration
+			@EnableEurekaClient
+			@ConditionalOnProperty(name = "apollo.eureka.client.enabled", havingValue = "true", matchIfMissing = true)
+			public class ConfigServerEurekaClientConfigure {
+			}	
+	3>.给pom中添加eureka-client相关依赖,注意版本设置为和外部使用的Eureka一致的版本
+	    <dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<version>2.2.1.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.sun.jersey</groupId>
+					<artifactId>jersey-client</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jersey</groupId>
+					<artifactId>jersey-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jersey.contribs</groupId>
+					<artifactId>jersey-apache-client4</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+4.改造apollo-adminservice
+	1>.修改apollo-configservice/src/main/resources/application.yml
+		添加下面配置,控制程序 关闭使用@EnableEurekaServer注解,开启使用@EnableEurekaClient注解
+		apollo:
+		  eureka:
+			server:
+			  enabled: false
+			client:
+			  enable: true
+	2>.创建启动EurekaClient的配置类: 
+		路径:	
+			apollo-adminservice/src/main/java/com/ctrip/framework/apollo/adminservice/ConfigServerEurekaClientConfigure.java	  
+		代码:
+			@Configuration
+			@EnableEurekaClient
+			@ConditionalOnProperty(name = "apollo.eureka.client.enabled", havingValue = "true", matchIfMissing = true)
+			public class ConfigServerEurekaClientConfigure {
+			}	
+	3>.给pom中添加eureka-client相关依赖,注意版本设置为和外部使用的Eureka一致的版本
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<version>2.2.1.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.sun.jersey</groupId>
+					<artifactId>jersey-client</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jersey</groupId>
+					<artifactId>jersey-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jersey.contribs</groupId>
+					<artifactId>jersey-apache-client4</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+5.执行apollo/scripts/build.bat
+6.在下面三个位置找到编译好的jar包
+    apollo-adminservice/target
+    apollo-configservice/target
+    apollo-portal/target

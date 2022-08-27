@@ -31,7 +31,7 @@
  1.1.章节内容概述
  1.2.章节内容大纲
  1.3.Linux重要目录介绍
- 1.2.Centos镜像下载
+ 1.4.Centos镜像下载
  1.3.安装前Vmaware相关设置
  1.4.安装时分区大小设置
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
@@ -51,7 +51,7 @@
 /tmp 用于存放各种临时文件，是公用的临时文件存储点。
 /var 存放临时文件，如各种服务的日志文件。
 </code></pre>
-<h2 id="_1-2-centos镜像下载" tabindex="-1"><a class="header-anchor" href="#_1-2-centos镜像下载" aria-hidden="true">#</a> 1.2.Centos镜像下载</h2>
+<h2 id="_1-4-centos镜像下载" tabindex="-1"><a class="header-anchor" href="#_1-4-centos镜像下载" aria-hidden="true">#</a> 1.4.Centos镜像下载</h2>
 <pre><code>如果是学习环境，建议安装centos mini版镜像，生产环境可以安装完整版本
 
 下载地址
@@ -4345,6 +4345,7 @@ yum makecache
  12.1.章节内容概述
  12.2.章节内容大纲
  12.3.搭建Zipkin
+ 12.4.搭建Apollo配置中心
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_12-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_12-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter12.html" target="_blank">12.2.章节内容大纲</a></h2>
@@ -4369,4 +4370,16 @@ firewall-cmd --reload
 </code></pre></div><pre><code>启动zipkin
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>java -jar zipkin.jar
-</code></pre></div></div></template>
+</code></pre></div><h2 id="_12-4-搭建apollo配置中心" tabindex="-1"><a class="header-anchor" href="#_12-4-搭建apollo配置中心" aria-hidden="true">#</a> 12.4.搭建Apollo配置中心</h2>
+<h3 id="_12-4-1-apollo配置中心简介" tabindex="-1"><a class="header-anchor" href="#_12-4-1-apollo配置中心简介" aria-hidden="true">#</a> 12.4.1.Apollo配置中心简介</h3>
+<pre><code>Apollo(阿波罗)是一款可靠的分布式配置管理中心，诞生于携程框架研发部，能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性，适用于微服务配置管理场景。
+</code></pre>
+<p><a href="https://www.apolloconfig.com">官方网址</a></p>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>https://www.apolloconfig.com
+</code></pre></div><p><a href="https://github.com/apolloconfig">官网网址(GITHUB)</a></p>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>https://github.com/apolloconfig
+</code></pre></div><h3 id="_12-4-2-基于apollo内置的eureka搭建apollo配置中心" tabindex="-1"><a class="header-anchor" href="#_12-4-2-基于apollo内置的eureka搭建apollo配置中心" aria-hidden="true">#</a> 12.4.2.基于Apollo内置的Eureka搭建Apollo配置中心</h3>
+<h3 id="_12-4-3-基于独立部署的eureka搭建apollo配置中心" tabindex="-1"><a class="header-anchor" href="#_12-4-3-基于独立部署的eureka搭建apollo配置中心" aria-hidden="true">#</a> 12.4.3.基于独立部署的Eureka搭建Apollo配置中心</h3>
+<h3 id="_12-4-4-基于zookeeper搭建apollo配置中心" tabindex="-1"><a class="header-anchor" href="#_12-4-4-基于zookeeper搭建apollo配置中心" aria-hidden="true">#</a> 12.4.4.基于Zookeeper搭建Apollo配置中心</h3>
+<h3 id="_12-4-5-基于consul搭建apollo配置中心" tabindex="-1"><a class="header-anchor" href="#_12-4-5-基于consul搭建apollo配置中心" aria-hidden="true">#</a> 12.4.5.基于Consul搭建Apollo配置中心</h3>
+</div></template>

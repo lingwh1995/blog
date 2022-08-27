@@ -272,19 +272,19 @@ head:
 
 ## 2.4.创建项目依赖的公共模块
 ### 2.4.1.模块目录结构
-```
-@include(../project_springcloud-eureka/springcloud-api-commons/tree.md)
+```md
+@include(../projects/springcloud-eureka/springcloud-api-commons/tree.md)
 ```
 ### 2.4.2.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-api-commons的maven模块,这个模块中包含了一些公共的Java实体和一些公共的插件,后面的每个模块都要引入这个公共模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 2.4.3.编写模块pom.xml
 ```xml
-@include(../project_springcloud-eureka/springcloud-api-commons/pom.xml)
+@include(../projects/springcloud-eureka/springcloud-api-commons/pom.xml)
 ```
 ### 2.4.4.编写模块中实体类
     Payment.java
 ```java
-@include(../project_springcloud-eureka/springcloud-api-commons//src/main/java/org/openatom/springcloud/entities/Payment.java)
+@include(../projects/springcloud-eureka/springcloud-api-commons//src/main/java/org/openatom/springcloud/entities/Payment.java)
 ```
 
 ## 2.5.准备项目需要的数据库
@@ -295,7 +295,7 @@ head:
 ### 2.5.2.创建项目需要的数据库
     导入数据库脚本(application.yml中数据库配置和mysql部署机器信息保持一致)
 ```sql
-@include(../project_springcloud-eureka/script/payment.sql)
+@include(../projects/springcloud-eureka/script/payment.sql)
 ```
 
 ## 2.6.配置使用热部署
