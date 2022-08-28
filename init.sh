@@ -260,6 +260,7 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
         sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.yaml"/i\```yaml' $2/$1.md
         sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.md"/i\```md' $2/$1.md
         sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.sql"/i\```sql' $2/$1.md
+        sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\.properties"/i\```sql' $2/$1.md
         sed -i '/^@.*import.*"\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*"/a\```' $2/$1.md
         sed -i 's#^\(.*\)@import "\(\.\/projects\/'"${INCLUDE_CODE_PROJECT_NAME_ARR[i]}"'.*\)"#\1@include(\2)#g' $2/$1.md
         #添加图片居中效果
