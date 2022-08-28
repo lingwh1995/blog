@@ -706,11 +706,6 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
         echo '完成为'$1'.md生成分片文件写入正文内容................................................'
 
         echo '开始为'$1'.md生成的分片文件二级标题、三级标题和四级标题添加锚点使用的id................................................'
-        #给所有二级标题后面添加锚点使用的id
-        #sed -i 's/\(^## '"$i"'\.\([1-9][0-9]\?\).*\)/\1 {#say-'"$i"'-\2}/g' $2/$3/$1-chapter-$CHAPTER_NAME.md
-        #sed -i 's/\(^## '"$i"'\.\([1-9][0-9]\?\).*\)/\1 \{#say-hello-world\}/g' $2/$3/$1-chapter-$CHAPTER_NAME.md
-        #sed -i 's/\(^### '"$i"'\.\([1-9][0-9]\?\)\.\([1-9][0-9]\?\)\..*\)/\1 \{#_'"$i"'-\2-\3-anchor\}/g' $2/$3/$1-chapter-$CHAPTER_NAME.md
-        #sed -i 's/\(^#### '"$i"'\.\([1-9][0-9]\?\)\.\([1-9][0-9]\?\)\.\([1-9][0-9]\?\)\..*\)/\1 \{#_'"$i"'-\2-\3-\4-anchor\}/g' $2/$3/$1-chapter-$CHAPTER_NAME.md
         #写入锚点跳跃组件
         echo '' >> $2/$3/$1-chapter-$CHAPTER_NAME.md
         echo '<ScrollIntoPageView/>' >> $2/$3/$1-chapter-$CHAPTER_NAME.md
