@@ -19,7 +19,7 @@ head:
 # 2.Linux操作系统初始设置
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter2.md)
 
-## 2.3.配置静态IP地址 {#2_3_}
+## 2.3.配置静态IP地址 {#_2_3_}
 
 	修改网络配置
 ```
@@ -41,7 +41,7 @@ vi /etc/sysconfig/network-scripts/ifcfg-ens32(最后一个为网卡名称)
 systemctl restart network
 ```
 
-## 2.4.解决远程连接无法连接的问题 {#2_4_}
+## 2.4.解决远程连接无法连接的问题 {#_2_4_}
 	修改sshd配置文件
 	说明：sshd_config里面的UseDNS=no【原本为yes】
 ```
@@ -52,19 +52,19 @@ vim /etc/ssh/sshd_config
 systemctl restart sshd.service
 ```
 
-## 2.5.设置系统环境变量 {#2_5_}
+## 2.5.设置系统环境变量 {#_2_5_}
 ```
 echo "export LC_ALL=en_US.UTF-8"  >>  /etc/profile &&
 source /etc/profile
 ```
 
-## 2.6.安装curl {#2_6_}
+## 2.6.安装curl {#_2_6_}
 	后面的操作需要curl，所以首先安装curl
 ```
 yum -y install curl
 ```
 
-## 2.7.配置yml源 {#2_7_}
+## 2.7.配置yml源 {#_2_7_}
 	下载阿里源，并上传到/opt/software/package
 ```
 curl http://mirrors.aliyun.com/repo/Centos-7.repo -o Centos-7.repo
@@ -82,8 +82,8 @@ cp /opt/software/package/Centos-7.repo /CentOS-Base.repo
 yum makecache && yum update
 ```
 
-## 2.8.安装常用基础系统软件 {#2_8_}
-### 2.8.1.手动安装常用基础软件 {#2_8_1_}
+## 2.8.安装常用基础系统软件 {#_2_8_}
+### 2.8.1.手动安装常用基础软件 {#_2_8_1_}
 	安装vim
 ```
 yum -y install vim*
@@ -105,7 +105,7 @@ yum -y install telnet
 yum -y install telnet-server
 ```
 
-### 2.8.2.使用脚本安装常用软件 {#2_8_2_}
+### 2.8.2.使用脚本安装常用软件 {#_2_8_2_}
 	脚本介绍
 	这个脚本中包含了centos设置yum源并且安装了一些的常用软件，如vim、git、wget、curl、等，会定时更新
 

@@ -124,9 +124,9 @@ https://github.com/apolloconfig
 https://gitee.com/lingwh1995/apollo2.0.1-built-in-eureka.git
 ```	
 ##### 2.2.2.1.2.修改数据库连接信息
-	修改apollo/scripts/flyway/flyway-configdb.properties和apollo/scripts/flyway/flyway-portaldb.properties中的数据库连接信息
+	修改apollo2.0.1-built-in-eureka/scripts/flyway/flyway-configdb.properties和apollo/scripts/flyway/flyway-portaldb.properties中的数据库连接信息
 ##### 2.2.2.1.3.使用flyway脚本自动创建好数据库环境
-	在apollo文件夹下执行如下两个命令；目的是使用flyway脚本自动创建好数据库环境
+	在apollo2.0.1-built-in-eureka文件夹下执行如下两个命令；目的是使用flyway脚本自动创建好数据库环境
 ```	
 mvn -N -Pconfigdb flyway:migrate
 ```
@@ -134,10 +134,10 @@ mvn -N -Pconfigdb flyway:migrate
 mvn -N -Pportaldb flyway:migrate
 ```
 ##### 2.2.2.1.4.获得jar包
-	执行apollo/scripts/build.bat,执行完成后可以得到下面三个jar包(最好是重命名一下)
-	apollo/apollo-adminservice/target/apollo-adminservice-2.0.1-SNAPSHOT.jar -> apollo-adminservice-2.0.1.jar
-	apollo/apollo-configservice/target/apollo-configservice-2.0.1-SNAPSHOT.jar	-> apollo-configservice-2.0.1.jar
-	apollo/apollo-portal/target/apollo-portal-2.0.1-SNAPSHOT.jar -> apollo-portal-2.0.1.jar
+	执行apollo2.0.1-built-in-eureka/scripts/build.bat,执行完成后可以得到下面三个jar包(最好是重命名一下)
+	apollo2.0.1-built-in-eureka/apollo-adminservice/target/apollo-adminservice-2.0.1-SNAPSHOT.jar -> apollo-adminservice-2.0.1.jar
+	apollo2.0.1-built-in-eureka/apollo-configservice/target/apollo-configservice-2.0.1-SNAPSHOT.jar	-> apollo-configservice-2.0.1.jar
+	apollo2.0.1-built-in-eureka/apollo-portal/target/apollo-portal-2.0.1-SNAPSHOT.jar -> apollo-portal-2.0.1.jar
 ##### 2.2.2.1.5.创建启动文件夹	
 	a.创建名称为Apollo2.0.1_built_in_eureka_dev的文件夹(版本号以实际为准)
 	b.把三个jar包放入文件夹中

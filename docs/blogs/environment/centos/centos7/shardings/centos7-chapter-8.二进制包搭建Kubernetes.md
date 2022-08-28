@@ -32,7 +32,7 @@ head:
 	参考网站
 	https://blog.csdn.net/qq_44078641/article/details/120049473
 -->
-## 8.3.环境配置清单 {#8_3_}
+## 8.3.环境配置清单 {#_8_3_}
 	操作系统									centos7
 	内核版本									3.10.0-1160.71.1.el7.x86_64
 	docker版本
@@ -46,7 +46,7 @@ head:
 	coredns版本
 	说明
 	Kubernetes解压后
-## 8.4.服务器规划和IP地址规划 {#8_4_}
+## 8.4.服务器规划和IP地址规划 {#_8_4_}
 
 ### 8.4.1服务器规划
 :::tip 注意事项
@@ -71,7 +71,7 @@ binary-k8s-worker1 | 192.168.0.10 | etcd <br> docker <br> kubelet kube-proxy
 binary-k8s-worker2 | 192.168.0.11 | etcd <br> docker <br> kubelet kube-proxy
 负载均衡器(虚拟IP)  | 192.168.0.88 |
 
-### 8.4.2.IP地址规划 {#8_4_2_}
+### 8.4.2.IP地址规划 {#_8_4_2_}
 	IP地址规划
 	kubernetes自身使用的ClusterIP：10.0.0.1
 	本地回环地址：127.0.0.1
@@ -102,7 +102,7 @@ binary-k8s-worker2 | 192.168.0.11 | etcd <br> docker <br> kubelet kube-proxy
 	keepalive   : 192.168.3.xx
 	2.一定要多预留一些IP地址，全部安装好之后，再给kube-apiserver添加IP地址很麻烦
 
-## 8.5.安装前准备工作 {#8_5_}
+## 8.5.安装前准备工作 {#_8_5_}
 :::tip 注意事项
 8.3章节涉及到的操作所有的Master节点和Worker Node都要执行，下载所有用到的软件包包只需要在Mater Node1进行就可以了
 :::
@@ -191,7 +191,7 @@ mv kubernetes package
 ```
 
 
-## 8.6.安装cfssl证书生成工具 {#8_6_}
+## 8.6.安装cfssl证书生成工具 {#_8_6_}
 :::tip 注意事项
 8.4章节涉及到的操作只在Master Node1节点上进行操作
 :::
@@ -207,7 +207,7 @@ cp cfssljson_linux-amd64 /usr/local/bin/cfssljson &&
 cp cfssl-certinfo_linux-amd64 /usr/bin/cfssl-certinfo
 ```
 
-## 8.7.搭建etcd集群 {#8_7_}
+## 8.7.搭建etcd集群 {#_8_7_}
 :::tip 注意事项
 8.5章节涉及到的操作不要一次性在所有节点上操作，在Master1操作后复制到其他节点，这样比直接在所有节点上操作要快
 :::
@@ -291,7 +291,7 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
 	-config=ca-config.json -profile=www server-csr.json | cfssljson -bare server
 ```
 
-### 8.7.2.部署etcd集群 {#8_7_2_}
+### 8.7.2.部署etcd集群 {#_8_7_2_}
 
 	etcd简介
 	Etcd 是一个分布式键值存储系统，Kubernetes使用Etcd进行数据存储，所以先准备一个Etcd数据库，为解决Etcd单点
@@ -343,12 +343,12 @@ EOF
 	ETCD_INITIALCLUSTER_TOKEN：集群Token
 	ETCD_INITIALCLUSTER_STATE：加入集群的状态：new是新集群,existing表示加入已有集群
 
-### 8.7.4.拷贝etcd所需证书 {#8_7_4_}
+### 8.7.4.拷贝etcd所需证书 {#_8_7_4_}
 ```
 cp ~/TLS/etcd/{server.pem,server-key.pem,ca.pem} /opt/etcd/ssl/
 ```
 
-### 8.7.5.让systemd管理etcd {#8_7_5_}
+### 8.7.5.让systemd管理etcd {#_8_7_5_}
 ```
 cat > /usr/lib/systemd/system/etcd.service << EOF
 [Unit]
@@ -376,7 +376,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### 8.7.6.拷贝etcd安装文件到Worker Node {#8_7_6_}
+### 8.7.6.拷贝etcd安装文件到Worker Node {#_8_7_6_}
 :::tip 注意事项
 在Master1 Node上执行下面操作，只需要拷贝到Worker Node1和Worker Node2即可，不需要拷贝到Master Node2
 :::
@@ -458,7 +458,7 @@ EOF
 	ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster"
 	ETCD_INITIAL_CLUSTER_STATE="new"
 
-### 8.7.7.启动三个etcd并设置开机自启 {#8_7_7_}
+### 8.7.7.启动三个etcd并设置开机自启 {#_8_7_7_}
 	启动多个节点的etcd
 ```
 systemctl daemon-reload &&
@@ -493,7 +493,7 @@ endpoint health --write-out=table
 journalctl -u etcd
 ```
 
-## 8.8.安装配置Docker {#8_8_}
+## 8.8.安装配置Docker {#_8_8_}
 :::tip 注意事项
 所有节点都需要安装docker，可以先在Master Node1上安装，拷贝一部分安装内容到Worker Node1和Worker Node2，再在Worker Node1和Worker Node2完成剩余的安装操作，这样比直接在三台机器上完成全部操作要快很多
 :::
@@ -587,12 +587,12 @@ systemctl status docker
 systemctl status docker
 ```
 
-## 8.9.搭建kube-apiserver {#8_9_}
+## 8.9.搭建kube-apiserver {#_8_9_}
 :::tip 注意事项
 8.7章节所有操作只在Master Node1节点操作，不需要在其他节点操作，因为kube-apiserver是Master节点的专用组件，Worker Node不需要使用这个组件
 :::
 
-### 8.9.1.生成CA证书和Https证书 {#8_9_1_}
+### 8.9.1.生成CA证书和Https证书 {#_8_9_1_}
 	切换目录
 ```
 cd ~/TLS/k8s
@@ -732,7 +732,7 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json \
 -profile=kubernetes server-csr.json | cfssljson -bare server
 ```
 
-### 8.9.2.在Master Node1上部署kube-apiserver {#8_9_2_}
+### 8.9.2.在Master Node1上部署kube-apiserver {#_8_9_2_}
 	创建kube-apiserver工作目录
 ```
 mkdir -p /opt/kubernetes/{bin,cfg,ssl,logs}
@@ -823,11 +823,11 @@ EOF
 	--requestheader-username-headers
 	--enable-aggregator-routing
 
-### 8.9.3.拷贝所需证书 {#8_9_3_}
+### 8.9.3.拷贝所需证书 {#_8_9_3_}
 ```
 cp ~/TLS/k8s/ca*pem ~/TLS/k8s/server*pem /opt/kubernetes/ssl/
 ```
-### 8.9.4.启用TLS bootstrapping {#8_9_4_}
+### 8.9.4.启用TLS bootstrapping {#_8_9_4_}
 	TLS Bootstraping介绍
 	Master apiserver启用TLS认证后，Node节点kubelet和kube-proxy要与kube-apiserver进
 	行通信，必须使用CA签发的有效证书才可以，当Node节点很多时，这种客户端证书颁发需要大量工作，同样也会增加集群
@@ -844,7 +844,7 @@ EOF
 	注意事项：token也可自行生成替换
 	head -c 16 /dev/urandom | od -An -t x | tr -d ' '
 
-### 8.9.5.让systemd管理apiserver {#8_9_5_}
+### 8.9.5.让systemd管理apiserver {#_8_9_5_}
 ```
 cat > /usr/lib/systemd/system/kube-apiserver.service << EOF
 [Unit]
@@ -860,7 +860,7 @@ Restart=on-failure
 WantedBy=multi-user.target
 EOF
 ```
-### 8.9.6.启动kube-apiserver {#8_9_6_}
+### 8.9.6.启动kube-apiserver {#_8_9_6_}
 	刷新配置文件后启动kube-apiserver并设置为开机启动状态
 ```
 systemctl daemon-reload &&
@@ -876,17 +876,17 @@ systemctl status kube-apiserver
 cat /var/log/messages|grep kube-apiserver|grep -i error
 ```
 
-## 8.10.在Master Node1上部署kube-controller-manager {#8_10_}
+## 8.10.在Master Node1上部署kube-controller-manager {#_8_10_}
 :::tip 注意事项
 8.8章节所有操作只在Master Node1节点操作，不需要在其他节点操作，因为kube-controller-manager是Master节点的专用组件，Worker Node不需要使用这个组件
 :::
 
-### 8.10.1.切换目录并拷贝kube-controller-manager相关文件到/opt/kubernetes/bin {#8_10_1_}
+### 8.10.1.切换目录并拷贝kube-controller-manager相关文件到/opt/kubernetes/bin {#_8_10_1_}
 ```
 cp /opt/k8s/package/kubernetes/server/bin/kube-controller-manager /opt/kubernetes/bin
 ```
 
-### 8.10.2.生成证书 {#8_10_2_}
+### 8.10.2.生成证书 {#_8_10_2_}
 	切换工作目录
 ```
 cd ~/TLS/k8s
@@ -921,7 +921,7 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
 kube-controller-manager-csr.json | cfssljson -bare kube-controller-manager
 ```
 
-### 8.10.2.创建kube-controller-manager配置文件 {#8_10_2_}
+### 8.10.2.创建kube-controller-manager配置文件 {#_8_10_2_}
 ```
 cat > /opt/kubernetes/cfg/kube-controller-manager.conf << EOF
 KUBE_CONTROLLER_MANAGER_OPTS="--logtostderr=false \\
@@ -946,7 +946,7 @@ EOF
 	--cluster-signing-cert-file ：自动为kubelet颁发证书的CA,apiserver保持一致
 	--cluster-signing-key-file ：自动为kubelet颁发证书的CA,apiserver保持一致
 
-### 8.10.3.生成配置文件 {#8_10_3_}
+### 8.10.3.生成配置文件 {#_8_10_3_}
 :::tip 注意事项
 以下是shell命令,直接在shell终端执行
 :::
@@ -973,7 +973,7 @@ kubectl config set-context default \
 
 kubectl config use-context default --kubeconfig=${KUBE_CONFIG}
 ```
-### 8.10.4.让systemd管理controller-manager {#8_10_4_}
+### 8.10.4.让systemd管理controller-manager {#_8_10_4_}
 ```
 cat > /usr/lib/systemd/system/kube-controller-manager.service << EOF
 [Unit]
@@ -990,7 +990,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### 8.10.5.启动kube-controller-manager {#8_10_5_}
+### 8.10.5.启动kube-controller-manager {#_8_10_5_}
 	刷新配置文件后启动kube-controller-manager并设置为开机启动
 ```
 systemctl daemon-reload &&
@@ -1006,7 +1006,7 @@ systemctl status kube-controller-manager
 cat /var/log/messages|grep kube-controller-manager|grep -i error
 ```
 
-## 8.11.部署kube-scheduler {#8_11_}
+## 8.11.部署kube-scheduler {#_8_11_}
 :::tip 注意事项
 8.9章节所有操作只在Master Node1节点操作，不需要在其他节点操作，因为kube-scheduler是Master节点的专用组件，Worker Node不需要使用这个组件
 :::
@@ -1015,7 +1015,7 @@ cat /var/log/messages|grep kube-controller-manager|grep -i error
 cp /opt/k8s/package/kubernetes/server/bin/kube-scheduler /opt/kubernetes/bin
 ```
 
-### 8.11.2.生成证书 {#8_11_2_}
+### 8.11.2.生成证书 {#_8_11_2_}
 	切换工作目录
 ```
 cd ~/TLS/k8s
@@ -1049,7 +1049,7 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
 kube-scheduler-csr.json | cfssljson -bare kube-scheduler
 ```
 
-### 8.11.3.创建kube-scheduler.conf配置文件 {#8_11_3_}
+### 8.11.3.创建kube-scheduler.conf配置文件 {#_8_11_3_}
 ```
 cat > /opt/kubernetes/cfg/kube-scheduler.conf << EOF
 KUBE_SCHEDULER_OPTS="--logtostderr=false \\
@@ -1064,7 +1064,7 @@ EOF
 	--kubeconfig ：连接apiserver配置文件
 	--leader-elect ：当该组件启动多个时,自动选举(HA)。
 
-### 8.11.4.生成kube-scheduler.kubeconfig文件 {#8_11_4_}
+### 8.11.4.生成kube-scheduler.kubeconfig文件 {#_8_11_4_}
 :::tip 注意事项
 在shell中执行直接执行下面命令
 :::
@@ -1095,7 +1095,7 @@ kubectl config set-context default \
 
 kubectl config use-context default --kubeconfig=${KUBE_CONFIG}
 ```
-### 8.11.5.让systemd管理kube-scheduler {#8_11_5_}
+### 8.11.5.让systemd管理kube-scheduler {#_8_11_5_}
 ```
 cat > /usr/lib/systemd/system/kube-scheduler.service << EOF
 [Unit]
@@ -1112,7 +1112,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### 8.11.6.启动并设置开机启动 {#8_11_6_}
+### 8.11.6.启动并设置开机启动 {#_8_11_6_}
 	刷新配置文件后启动kube-scheduler并设置为开机启动
 ```
 systemctl daemon-reload &&
@@ -1128,12 +1128,12 @@ systemctl status kube-scheduler
 cat /var/log/messages|grep kube-scheduler|grep -i error
 ```
 
-## 8.12.使用kubectl查看集群状态 {#8_12_}
+## 8.12.使用kubectl查看集群状态 {#_8_12_}
 :::tip 注意事项
 8.10章节所有操作只在Master1节点操作，不需要在其他节点操作，因为kubectl是Master节点的专用组件，Worker Node不需要使用这个组件
 :::
 
-### 8.12.1.生成所需证书 {#8_12_1_}
+### 8.12.1.生成所需证书 {#_8_12_1_}
 	切换工作目录
 ```
 cd ~/TLS/k8s
@@ -1165,7 +1165,7 @@ EOF
 cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
 -config=ca-config.json -profile=kubernetes admin-csr.json | cfssljson -bare admin
 ```
-### 8.12.2.在.kube文件夹中生成config文件 {#8_12_2_}
+### 8.12.2.在.kube文件夹中生成config文件 {#_8_12_2_}
 ```
 mkdir /root/.kube
 
@@ -1191,7 +1191,7 @@ kubectl config set-context default \
 
 kubectl config use-context default --kubeconfig=${KUBE_CONFIG}
 ```
-### 8.12.3.通过kubectl工具查看集群组件 {#8_12_3_}
+### 8.12.3.通过kubectl工具查看集群组件 {#_8_12_3_}
 	命令
 ```
 kubectl get cs
@@ -1204,7 +1204,7 @@ kubectl get cs
 	etcd-2               Healthy   {"health":"true"}
 	etcd-1               Healthy   {"health":"true"}
 
-### 8.12.4.授权kubelet-bootstrap用户允许请求证书 {#8_12_4_}
+### 8.12.4.授权kubelet-bootstrap用户允许请求证书 {#_8_12_4_}
 	创建授权用户kubelet-bootstrap
 ```
 kubectl create clusterrolebinding kubelet-bootstrap \
@@ -1224,7 +1224,7 @@ kubectl create clusterrolebinding kubelet-bootstrap \
 	删除授权kubelet-bootstrap用户：第三步
 	systemctl restart kubelet
 
-## 8.13.在Master Node1上部署第一个Worker Node {#8_13_}
+## 8.13.在Master Node1上部署第一个Worker Node {#_8_13_}
 :::tip 注意事项
 8.11.章节所有操作只在Master Node1节点操作，即当Master Node1既充当Master Node,也当Worker Node
 :::
@@ -1237,8 +1237,8 @@ scp kubelet  kube-proxy root@192.168.0.10:/opt/kubernetes/bin/ &&
 scp kubelet  kube-proxy root@192.168.0.11:/opt/kubernetes/bin/
 ```
 
-### 8.13.2.在Master Node1部署kubelet {#8_13_2_}
-#### 8.13.2.1.创建kubelet配置文件 {#8_13_2_1_}
+### 8.13.2.在Master Node1部署kubelet {#_8_13_2_}
+#### 8.13.2.1.创建kubelet配置文件 {#_8_13_2_1_}
 ```
 cat > /opt/kubernetes/cfg/kubelet.conf << EOF
 KUBELET_OPTS="--logtostderr=false \\
@@ -1262,7 +1262,7 @@ EOF
 	--cert-dir ：kubelet证书目录。
 	--pod-infra-container-image ：管理Pod网络容器的镜像 init container
 
-#### 8.13.2.2.创建kubelet编排文件 {#8_13_2_2_}
+#### 8.13.2.2.创建kubelet编排文件 {#_8_13_2_2_}
 ```
 cat > /opt/kubernetes/cfg/kubelet-config.yml << EOF
 kind: KubeletConfiguration
@@ -1298,7 +1298,7 @@ maxPods: 110
 EOF
 ```
 
-#### 8.13.2.3.生成kubelet初次加入集群引导kubeconfig文件 {#8_13_2_3_}
+#### 8.13.2.3.生成kubelet初次加入集群引导kubeconfig文件 {#_8_13_2_3_}
 
 ```
 KUBE_CONFIG="/opt/kubernetes/cfg/bootstrap.kubeconfig"
@@ -1323,7 +1323,7 @@ kubectl config set-context default \
 kubectl config use-context default --kubeconfig=${KUBE_CONFIG}
 ```
 
-#### 8.13.2.4.systemd管理kubelet {#8_13_2_4_}
+#### 8.13.2.4.systemd管理kubelet {#_8_13_2_4_}
 
 ```
 cat > /usr/lib/systemd/system/kubelet.service << EOF
@@ -1341,7 +1341,7 @@ LimitNOFILE=65536
 WantedBy=multi-user.target
 EOF
 ```
-#### 8.13.3.5.启动kubelet并设置开机启动 {#8_13_3_5_}
+#### 8.13.3.5.启动kubelet并设置开机启动 {#_8_13_3_5_}
 	刷新配置文件后启动kubelet并设置开机启动
 ```
 systemctl daemon-reload &&
@@ -1357,7 +1357,7 @@ systemctl status kubelet
 cat /var/log/messages|grep kubelet
 ```
 
-#### 8.13.2.6.允许kubelet证书申请并加入集群 {#8_13_2_6_}
+#### 8.13.2.6.允许kubelet证书申请并加入集群 {#_8_13_2_6_}
 	查看kubelet证书签名请求
 ```
 kubectl get csr
@@ -1395,8 +1395,8 @@ kubectl get nodes
 	注意事项
 	由于网络插件还没有部署,节点会没有准备就绪NotReady
 
-### 8.13.3.部署kube-proxy {#8_13_3_}
-#### 8.13.3.1.创建kube-proxy配置文件 {#8_13_3_1_}
+### 8.13.3.部署kube-proxy {#_8_13_3_}
+#### 8.13.3.1.创建kube-proxy配置文件 {#_8_13_3_1_}
 ```
 cat > /opt/kubernetes/cfg/kube-proxy.conf << EOF
 KUBE_PROXY_OPTS="--logtostderr=false \\
@@ -1405,7 +1405,7 @@ KUBE_PROXY_OPTS="--logtostderr=false \\
 --config=/opt/kubernetes/cfg/kube-proxy-config.yml"
 EOF
 ```
-#### 8.13.3.2.配置参数文件 {#8_13_3_2_}
+#### 8.13.3.2.配置参数文件 {#_8_13_3_2_}
 ```
 cat > /opt/kubernetes/cfg/kube-proxy-config.yml << EOF
 kind: KubeProxyConfiguration
@@ -1419,7 +1419,7 @@ clusterCIDR: 10.244.0.0/16
 EOF
 ```
 
-#### 8.13.3.3.生成kube-proxy证书文件 {#8_13_3_3_}
+#### 8.13.3.3.生成kube-proxy证书文件 {#_8_13_3_3_}
 	切换工作目录
 ```
 cd ~/TLS/k8s
@@ -1453,7 +1453,7 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem \
 -config=ca-config.json -profile=kubernetes kube-proxy-csr.json | cfssljson -bare kube-proxy
 ```
 
-#### 8.13.3.4.生成kube-proxy.kubeconfig文件 {#8_13_3_4_}
+#### 8.13.3.4.生成kube-proxy.kubeconfig文件 {#_8_13_3_4_}
 ```
 KUBE_CONFIG="/opt/kubernetes/cfg/kube-proxy.kubeconfig"
 KUBE_APISERVER="https://192.168.0.9:6443"
@@ -1478,7 +1478,7 @@ kubectl config set-context default \
 kubectl config use-context default --kubeconfig=${KUBE_CONFIG}
 ```
 
-#### 8.13.3.5.systemd管理kube-proxy {#8_13_3_5_}
+#### 8.13.3.5.systemd管理kube-proxy {#_8_13_3_5_}
 ```
 cat > /usr/lib/systemd/system/kube-proxy.service << EOF
 [Unit]
@@ -1496,7 +1496,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-#### 8.12.3.6.启动kube-proxy并设置开机自启 {#8_12_3_6_}
+#### 8.12.3.6.启动kube-proxy并设置开机自启 {#_8_12_3_6_}
 	刷新配置文件后启动kube-proxy并设置开机启动
 ```
 systemctl daemon-reload &&
@@ -1508,7 +1508,7 @@ systemctl enable kube-proxy
 ```
 	systemctl status kube-proxy
 ```
-### 8.13.4.部署网络组件(Calico) {#8_13_4_}
+### 8.13.4.部署网络组件(Calico) {#_8_13_4_}
 	Calico简介
 	Calico是一个纯三层的数据中心网络方案，是目前Kubernetes主流的网络方案。
 
@@ -1560,7 +1560,7 @@ kubectl get nodes
 	NAME          		  STATUS   ROLES    AGE   VERSION
 	binary-k8s-master1    Ready    <none>   34m   v1.20.0
 
-### 8.13.5.授权apiserver访问kubelet {#8_13_5_}
+### 8.13.5.授权apiserver访问kubelet {#_8_13_5_}
 	应用场景：如kubectl logs
 
 	创建配置文件
@@ -1607,9 +1607,9 @@ EOF
 kubectl apply -f apiserver-to-kubelet-rbac.yaml
 ```
 
-## 8.14.增加Worker Node {#8_14_}
+## 8.14.增加Worker Node {#_8_14_}
 
-### 8.14.1.在所有Worker Node创建工作目录并拷贝二进制文件 {#8_14_1_}
+### 8.14.1.在所有Worker Node创建工作目录并拷贝二进制文件 {#_8_14_1_}
 	在所有Worker Node1和Worker Node2中创建工作目录
 ```
 mkdir -p /opt/kubernetes/bin &&
@@ -1635,7 +1635,7 @@ root@192.168.0.11:/usr/lib/systemd/system &&
 scp -r /opt/kubernetes/ssl/ca.pem root@192.168.0.11:/opt/kubernetes/ssl/
 ```
 
-### 8.14.3.删除所有Worker Node中kubelet证书和kubeconfig文件 {#8_14_3_}
+### 8.14.3.删除所有Worker Node中kubelet证书和kubeconfig文件 {#_8_14_3_}
 	Worker Node1节点（192.168.0.10）
 ```
 rm -f /opt/kubernetes/cfg/kubelet.kubeconfig &&
@@ -1649,7 +1649,7 @@ rm -f /opt/kubernetes/ssl/kubelet*
 	说明:
 	这几个文件是证书申请审批后自动生成的,每个Node不同,必须删除
 
-### 8.14.4. 修改Worker Node1和Worker Node2主机名 {#8_14_4_}
+### 8.14.4. 修改Worker Node1和Worker Node2主机名 {#_8_14_4_}
 	Worker Node1（192.168.0.10）
 ```
 sed -i 's/--hostname-override=binary-k8s-master1/--hostname-override=binary-k8s-worker1/g' \
@@ -1666,7 +1666,7 @@ sed -i 's/hostnameOverride: binary-k8s-master1/hostnameOverride: binary-k8s-work
 /opt/kubernetes/cfg/kube-proxy-config.yml #修改hostnameOverride的值binary-k8s-worker2
 ```
 
-### 8.14.5.启动Worker Node1和Worker Node2中kubelet并设置开机自启 {#8_14_5_}
+### 8.14.5.启动Worker Node1和Worker Node2中kubelet并设置开机自启 {#_8_14_5_}
 ```
 systemctl daemon-reload &&
 systemctl start kubelet kube-proxy &&
@@ -1685,7 +1685,7 @@ systemctl status kube-proxy
 cat /var/log/messages|grep kube-proxy
 ```
 
-### 8.14.6.在Master1上同意新的Node kubelet证书申请 {#8_14_6_}
+### 8.14.6.在Master1上同意新的Node kubelet证书申请 {#_8_14_6_}
 	查看证书请求
 ```
 kubectl get csr
@@ -1722,7 +1722,7 @@ kubectl get nodes
 	删除多余的csr
 	kubectl delete csr node-csr-Rd_0WEaOFSkRT7geRKfz__I1v6E-CQfJpYwMTDEK-mw
 
-### 8.14.7.在Master1上部署kubernetes-dashboard {#8_14_7_}
+### 8.14.7.在Master1上部署kubernetes-dashboard {#_8_14_7_}
 	切换目录并在该目录中下载kubernetes-dashboard安装所需要的yaml文件
 ```
 cd /opt/k8s/package &&
@@ -1775,7 +1775,7 @@ $(kubectl -n kube-system get secret | awk '/dashboard-admin/{print $1}')
 	https://192.168.0.10:30441/
 	https://192.168.0.11:30441/
 
-### 8.14.8.在Master1上部署CoreDNS {#8_14_8_}
+### 8.14.8.在Master1上部署CoreDNS {#_8_14_8_}
 <!--
 	参考网站
 	https://blog.csdn.net/weixin_47402482/article/details/115057159
@@ -1898,12 +1898,12 @@ kubectl get deployments -n kube-system
 	calico-kube-controllers   1/1     1            1           168m
 	coredns                   2/2     2            2           147m
 
-## 8.15.增加Master2节点 {#8_15_}
+## 8.15.增加Master2节点 {#_8_15_}
 :::danger 特别特别注意
 一定要先执行最开始的8.1章节公共步骤，如关闭防火墙等操作，否则是成功添加Master2节点的
 :::
 
-### 8.15.1.Kubernetes集群架构简介 {#8_15_1_}
+### 8.15.1.Kubernetes集群架构简介 {#_8_15_1_}
 	Kubernetes作为容器集群系统，通过健康检查+重启策略实现了Pod故障自我修复能力，通过调度算法
 	实现将Pod分布式部署，并保持预期副本数，根据Node失效状态自动在其他Node拉起Pod，实现了应用
 	层的高可用性。针对Kubernetes集群，高可用性还应包含以下两个层面的考虑：Etcd数据库的高可用
@@ -1931,7 +1931,7 @@ Master Node1所有操作一致。所以我们只需将Master1所有K8s文件拷�
 启动即可。
 :::
 
-### 8.15.2.给Master Node2安装Docker {#8_15_2_}
+### 8.15.2.给Master Node2安装Docker {#_8_15_2_}
 
 	进入Master Node1，将docker安装文件拷贝到Master Node2
 ```
@@ -1951,7 +1951,7 @@ systemctl daemon-reload && systemctl start docker && systemctl enable docker
 	systemctl status docker
 ```
 
-### 8.15.5.给Master Node2节点拷贝所有需要的证书 {#8_15_5_}
+### 8.15.5.给Master Node2节点拷贝所有需要的证书 {#_8_15_5_}
 	在Master Node2上创建etcd证书目录
 ```
 mkdir -p /opt/etcd/ssl
@@ -2011,7 +2011,7 @@ vi ~/.kube/config
 	...
 	server: https://192.168.0.12:6443
 
-### 8.15.6.启动Master所有服务并设置开机自启 {#8_15_6_}
+### 8.15.6.启动Master所有服务并设置开机自启 {#_8_15_6_}
 ```
 systemctl daemon-reload &&
 systemctl start kube-apiserver &&
@@ -2025,7 +2025,7 @@ systemctl enable kubelet &&
 systemctl enable kube-proxy
 ```
 
-### 8.15.7.在Master查看集群组件状态 {#8_15_7_}
+### 8.15.7.在Master查看集群组件状态 {#_8_15_7_}
 	注意：如果上面操作无误则这一步就可以查看到集群中组件的运行状态了
 
 	查看组件状态
@@ -2041,7 +2041,7 @@ kubectl get cs
 	etcd-1               Healthy   {"health":"true"}
 	etcd-0               Healthy   {"health":"true"}
 
-### 8.15.8.审批所有Worker  Node上的kubelet证书申请 {#8_15_8_}
+### 8.15.8.审批所有Worker  Node上的kubelet证书申请 {#_8_15_8_}
 	查看证书申请
 ```
 kubectl get csr
@@ -2087,16 +2087,16 @@ kubectl get nodes
 
 	至此一个双Master节点k8s集群已经部署完毕，再添加新的Master节点步骤和上面的是相同的
 
-## 8.16.部署Nginx+Keepalived高可用负载均衡器 {#8_16_}
+## 8.16.部署Nginx+Keepalived高可用负载均衡器 {#_8_16_}
 
-### 8.16.1.Nginx和Keepalived简介 {#8_16_1_}
+### 8.16.1.Nginx和Keepalived简介 {#_8_16_1_}
 	Nginx是一个主流Web服务和反向代理服务器，这里用四层实现对apiserver实现负载均衡。Keepalived是一个主流高可
 	用软件，基于VIP绑定实现服务器双机热备，在上述拓扑中，Keepalived主要根据Nginx运行状态判断是否需要故障转移
 	（漂移VIP），例如当Nginx主节点挂掉，VIP会自动绑定在Nginx备节点，从而保证VIP一直可用，实现Nginx高可用。
 	如果你是在公有云上，一般都不支持keepalived，那么你可以直接用它们的负载均衡器产品，直接负载均衡多台Master 
 	kube-apiserver，架构与上面一样。
 
-### 8.16.2.在两台Master Node上安装软件 {#8_16_2_}
+### 8.16.2.在两台Master Node上安装软件 {#_8_16_2_}
 	下载nginx和keepalived
 ```
 yum install epel-release -y &&
@@ -2261,11 +2261,11 @@ chmod +x /etc/keepalived/check_nginx.sh
 ​	配置说明
 ​	keepalived根据脚本返回状态码（0为工作正常，非0不正常）判断是否故障转移。
 
-### 8.16.3.Nginx增加Steam模块 {#8_16_3_}
-#### 8.16.3.1.查看Nginx版本模块 {#8_16_3_1_}
+### 8.16.3.Nginx增加Steam模块 {#_8_16_3_}
+#### 8.16.3.1.查看Nginx版本模块 {#_8_16_3_1_}
 	nginx -V
 	注意：如果已经安装 --with-stream模块,后面的步骤可以跳过
-#### 8.16.3.2.Master1和Master2安装Stream模块 {#8_16_3_2_}
+#### 8.16.3.2.Master1和Master2安装Stream模块 {#_8_16_3_2_}
 	备份Master Node1和Master Node2上原来的Nginx文件
 ```
 mv /usr/sbin/nginx /usr/sbin/nginx.bak &&
@@ -2336,13 +2336,13 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### 8.16.4.启动nginx、keepalived并设置开机自启(master1/master2) {#8_16_4_}
+### 8.16.4.启动nginx、keepalived并设置开机自启(master1/master2) {#_8_16_4_}
 ```
 systemctl daemon-reload &&
 systemctl start nginx keepalived &&
 systemctl enable nginx keepalived
 ```
-### 8.16.5.查看keepalived工作状态 {#8_16_5_}
+### 8.16.5.查看keepalived工作状态 {#_8_16_5_}
 	查看Master1网卡详细信息
 ```
 ip addr
@@ -2386,7 +2386,7 @@ ip addr
 	可以看到，在Master1上的ens33网卡绑定了192.168.242.55 虚拟IP，说明工作正常。
 	inet 192.168.242.55/24 scope global ens33，而Master2上的ens33网卡没有绑定虚拟IP
 
-### 8.16.6.Nginx+keepalived高可用测试 {#8_16_6_}
+### 8.16.6.Nginx+keepalived高可用测试 {#_8_16_6_}
 
 	在主节点Master Node1节点执行关闭nginx
 ```
@@ -2419,7 +2419,7 @@ ip addr
 	测试完成后重新启动Master Node1上的nginx
 	systemctl start nginx
 
-### 8.16.7.测试负载均衡器 {#8_16_7_}
+### 8.16.7.测试负载均衡器 {#_8_16_7_}
 	找K8s集群中任意一个节点，使用curl查看K8s版本测试，使用VIP访问
 ```
 curl -k https://192.168.0.88:16443/version
@@ -2496,7 +2496,7 @@ tailf /var/log/nginx/k8s-access.log
 	192.168.242.55 192.168.0.9:6443 - [26/Jul/2022:01:30:36 -0400] 200 428
 	192.168.242.55 192.168.0.12:6443 - [26/Jul/2022:01:30:42 -0400] 200 428
 
-### 8.16.8.修改所有的Worker Node连接LB VIP {#8_16_8_}
+### 8.16.8.修改所有的Worker Node连接LB VIP {#_8_16_8_}
 	为什么要改为连接LB VIP
 	试想下，虽然我们增加了Master2 Node和负载均衡器，但是我们是从单Master架构扩容的，也就是
 	说目前所有的Worker Node组件连接都还是Master1 Node，如果不改为连接VIP走负载均衡器，那么
@@ -2533,7 +2533,7 @@ kubectl get nodes
 	至此,一套高可用的k8s二进制可用集群就部署完成了~
 	^_^
 
-## 8.17.部署常见问题 {#8_17_}
+## 8.17.部署常见问题 {#_8_17_}
 ### 8.17.1系统断电后,某个etcd节点无法启动
 	报错信息
 	publish error: etcdserver: request timed out
@@ -2560,7 +2560,7 @@ systemctl restart etcd
 	8.10.使用kubectl查看集群状态章节没有正确执行会报这个错
 
 
-## 8.18.部署测试程序 {#8_18_}
+## 8.18.部署测试程序 {#_8_18_}
 	创建guestbook
 ```
 kubectl create deployment guestbook --image=ibmcom/guestbook:v1

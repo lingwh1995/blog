@@ -13,7 +13,7 @@
 </code></pre>
 <h2 id="_2-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_2-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter2.html" target="_blank">2.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter2.html" height="500rem"/>
-<h2 id="_2-3-配置静态ip地址" tabindex="-1"><a class="header-anchor" href="#_2-3-配置静态ip地址" aria-hidden="true">#</a> 2.3.配置静态IP地址</h2>
+<h2 id="_2-3-配置静态ip地址-2-3" tabindex="-1"><a class="header-anchor" href="#_2-3-配置静态ip地址-2-3" aria-hidden="true">#</a> 2.3.配置静态IP地址 {#<em>2_3</em>}</h2>
 <pre><code>修改网络配置
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>vi /etc/sysconfig/network-scripts/ifcfg-ens32(最后一个为网卡名称)
@@ -31,7 +31,7 @@ DNS2=8.8.4.4
 重启网络
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl restart network
-</code></pre></div><h2 id="_2-4-解决远程连接无法连接的问题" tabindex="-1"><a class="header-anchor" href="#_2-4-解决远程连接无法连接的问题" aria-hidden="true">#</a> 2.4.解决远程连接无法连接的问题</h2>
+</code></pre></div><h2 id="_2-4-解决远程连接无法连接的问题-2-4" tabindex="-1"><a class="header-anchor" href="#_2-4-解决远程连接无法连接的问题-2-4" aria-hidden="true">#</a> 2.4.解决远程连接无法连接的问题 {#<em>2_4</em>}</h2>
 <pre><code>修改sshd配置文件
 说明：sshd_config里面的UseDNS=no【原本为yes】
 </code></pre>
@@ -39,14 +39,14 @@ DNS2=8.8.4.4
 </code></pre></div><pre><code>重启ssh服务
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl restart sshd.service
-</code></pre></div><h2 id="_2-5-设置系统环境变量" tabindex="-1"><a class="header-anchor" href="#_2-5-设置系统环境变量" aria-hidden="true">#</a> 2.5.设置系统环境变量</h2>
+</code></pre></div><h2 id="_2-5-设置系统环境变量-2-5" tabindex="-1"><a class="header-anchor" href="#_2-5-设置系统环境变量-2-5" aria-hidden="true">#</a> 2.5.设置系统环境变量 {#<em>2_5</em>}</h2>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>echo "export LC_ALL=en_US.UTF-8"  >>  /etc/profile &amp;&amp;
 source /etc/profile
-</code></pre></div><h2 id="_2-6-安装curl" tabindex="-1"><a class="header-anchor" href="#_2-6-安装curl" aria-hidden="true">#</a> 2.6.安装curl</h2>
+</code></pre></div><h2 id="_2-6-安装curl-2-6" tabindex="-1"><a class="header-anchor" href="#_2-6-安装curl-2-6" aria-hidden="true">#</a> 2.6.安装curl {#<em>2_6</em>}</h2>
 <pre><code>后面的操作需要curl，所以首先安装curl
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>yum -y install curl
-</code></pre></div><h2 id="_2-7-配置yml源" tabindex="-1"><a class="header-anchor" href="#_2-7-配置yml源" aria-hidden="true">#</a> 2.7.配置yml源</h2>
+</code></pre></div><h2 id="_2-7-配置yml源-2-7" tabindex="-1"><a class="header-anchor" href="#_2-7-配置yml源-2-7" aria-hidden="true">#</a> 2.7.配置yml源 {#<em>2_7</em>}</h2>
 <pre><code>下载阿里源，并上传到/opt/software/package
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>curl http://mirrors.aliyun.com/repo/Centos-7.repo -o Centos-7.repo
@@ -59,8 +59,8 @@ source /etc/profile
 </code></pre></div><pre><code>生成yum源缓存并更新yum源
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>yum makecache &amp;&amp; yum update
-</code></pre></div><h2 id="_2-8-安装常用基础系统软件" tabindex="-1"><a class="header-anchor" href="#_2-8-安装常用基础系统软件" aria-hidden="true">#</a> 2.8.安装常用基础系统软件</h2>
-<h3 id="_2-8-1-手动安装常用基础软件" tabindex="-1"><a class="header-anchor" href="#_2-8-1-手动安装常用基础软件" aria-hidden="true">#</a> 2.8.1.手动安装常用基础软件</h3>
+</code></pre></div><h2 id="_2-8-安装常用基础系统软件-2-8" tabindex="-1"><a class="header-anchor" href="#_2-8-安装常用基础系统软件-2-8" aria-hidden="true">#</a> 2.8.安装常用基础系统软件 {#<em>2_8</em>}</h2>
+<h3 id="_2-8-1-手动安装常用基础软件-2-8-1" tabindex="-1"><a class="header-anchor" href="#_2-8-1-手动安装常用基础软件-2-8-1" aria-hidden="true">#</a> 2.8.1.手动安装常用基础软件 {#<em>2_8_1</em>}</h3>
 <pre><code>安装vim
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>yum -y install vim*
@@ -78,7 +78,7 @@ wget
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>yum -y install telnet
 yum -y install telnet-server
-</code></pre></div><h3 id="_2-8-2-使用脚本安装常用软件" tabindex="-1"><a class="header-anchor" href="#_2-8-2-使用脚本安装常用软件" aria-hidden="true">#</a> 2.8.2.使用脚本安装常用软件</h3>
+</code></pre></div><h3 id="_2-8-2-使用脚本安装常用软件-2-8-2" tabindex="-1"><a class="header-anchor" href="#_2-8-2-使用脚本安装常用软件-2-8-2" aria-hidden="true">#</a> 2.8.2.使用脚本安装常用软件 {#<em>2_8_2</em>}</h3>
 <pre><code>脚本介绍
 这个脚本中包含了centos设置yum源并且安装了一些的常用软件，如vim、git、wget、curl、等，会定时更新
 
@@ -92,4 +92,5 @@ yum -y install telnet-server
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>chmod +x centos7-init.sh &amp;&amp;
 ./centos7-init.sh
-</code></pre></div></div></template>
+</code></pre></div><ScrollIntoPageView/>
+</div></template>

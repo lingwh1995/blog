@@ -17,7 +17,7 @@ head:
 # 5.使用Ribbon实现客户端负载均衡
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter5.md)
 
-## 5.3.Ribbon简介 {#5_3_}
+## 5.3.Ribbon简介 {#_5_3_}
     Ribbon是Netflix发布的开源项目，主要功能是提供客户端的软件负载均衡算法，将Netflix的中间层服务连接在一起。Ribbon客户端组件提供一系列完善的配置项如连接超时，重试等。简单的说，就是在配置文件中列出Load Balancer（简称LB）后面所有的机器，Ribbon会自动的帮助你基于某种规则（如简单轮询，随即连接等）去连接这些机器,也可以使用Ribbon实现自定义的负载均衡算法。
 
 <a href="https://github.com/Netflix/ribbon">官方网址</a>
@@ -25,32 +25,32 @@ head:
 https://github.com/Netflix/ribbon
 ```
 
-## 5.4.硬编码配置方式使用Ribbon实现负载均衡(使用Ribbon自带的负载均衡策略) {#5_4_}
-### 5.4.1.模块简介 {#5_4_1_}
+## 5.4.硬编码配置方式使用Ribbon实现负载均衡(使用Ribbon自带的负载均衡策略) {#_5_4_}
+### 5.4.1.模块简介 {#_5_4_1_}
     基于Ribbon以硬编码配置方式实现的服务消费者,使用Ribbon自带的负载均衡策略,启动端口: 80
-### 5.4.2.模块目录结构 {#5_4_2_}
+### 5.4.2.模块目录结构 {#_5_4_2_}
 ```md
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/tree.md)
 ```
-### 5.4.3.创建模块 {#5_4_3_}
+### 5.4.3.创建模块 {#_5_4_3_}
 	在父工程(springcloud-eureka)中创建一个名为springcloud-consumer-loadbalance-ribbon-hardcode-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
-### 5.4.4.编写模块pom.xml {#5_4_4_}
+### 5.4.4.编写模块pom.xml {#_5_4_4_}
 ```xml
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/pom.xml)
 ```
-### 5.4.5.编写模块application.yml {#5_4_5_}
+### 5.4.5.编写模块application.yml {#_5_4_5_}
 ```yml
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/src/main/resources/application.yml)
 ```
-### 5.4.6.编写模块config {#5_4_6_}
+### 5.4.6.编写模块config {#_5_4_6_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/src/main/java/org/openatom/springcloud/config/ApplicationContextConfig.java)
 ```
-### 5.4.7.编写模块controller {#5_4_7_}
+### 5.4.7.编写模块controller {#_5_4_7_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java)
 ```
-### 5.4.8.编写负载均衡规则配置类 {#5_4_8_}
+### 5.4.8.编写负载均衡规则配置类 {#_5_4_8_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/src/main/java/org/openatom/myrule/MySelfRule.java)
 ```
@@ -78,11 +78,11 @@ https://github.com/Netflix/ribbon
     ZoneAvoidanceRule(区域内可用性能最优策略)
     基于AvailabilityFilteringRule基础上做的,首先判断一个zone的运行性能是否可用.剔除不可用的区域zone的所有server,然后再利用AvailabilityPredicate过滤并发连接过多的server。
 
-### 5.4.9.编写模块主启动类 {#5_4_9_}
+### 5.4.9.编写模块主启动类 {#_5_4_9_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceRibbonHardcode80.java)
 ```
-### 5.4.10.测试模块 {#5_4_10_}
+### 5.4.10.测试模块 {#_5_4_10_}
     启动相关服务
 ```mermaid
 flowchart LR
@@ -114,20 +114,20 @@ http://localhost/consumer/payment/get/1
 ```
     可以看到四次访问返回的结果中,四次返回结果是没有规律的,因为采用的RandomRule(随机策略),实际返回结果可能不是上面的情况,但是一定是随机进行服务调用的
 
-## 5.5.声明式配置方式使用Ribbon实现负载均衡(使用Ribbon自带的负载均衡策略) {#5_5_}
-### 5.5.1.模块简介 {#5_5_1_}
+## 5.5.声明式配置方式使用Ribbon实现负载均衡(使用Ribbon自带的负载均衡策略) {#_5_5_}
+### 5.5.1.模块简介 {#_5_5_1_}
     基于Ribbon以声明式配置方式实现的服务消费者,使用Ribbon自带的负载均衡策略,启动端口: 80
-### 5.5.2.模块目录结构 {#5_5_2_}
+### 5.5.2.模块目录结构 {#_5_5_2_}
 ```md
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/tree.md)
 ```
-### 5.5.3.创建模块 {#5_5_3_}
+### 5.5.3.创建模块 {#_5_5_3_}
 	在父工程(springcloud-eureka)中创建一个名为springcloud-consumer-loadbalance-ribbon-configuration-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
-### 5.5.4.编写模块pom.xml {#5_5_4_}
+### 5.5.4.编写模块pom.xml {#_5_5_4_}
 ```xml
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/pom.xml)
 ```
-### 5.5.5.编写模块application.yml {#5_5_5_}
+### 5.5.5.编写模块application.yml {#_5_5_5_}
 ```yml
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/src/main/resources/application.yml)
 ```
@@ -160,19 +160,19 @@ http://localhost/consumer/payment/get/1
     ZoneAvoidanceRule(区域内可用性能最优策略)
     基于AvailabilityFilteringRule基础上做的,首先判断一个zone的运行性能是否可用.剔除不可用的区域zone的所有server,然后再利用AvailabilityPredicate过滤并发连接过多的server。
 
-### 5.5.6.编写模块config {#5_5_6_}
+### 5.5.6.编写模块config {#_5_5_6_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/src/main/java/org/openatom/springcloud/config/ApplicationContextConfig.java)
 ```
-### 5.5.7.编写模块controller {#5_5_7_}
+### 5.5.7.编写模块controller {#_5_5_7_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java)
 ```
-### 5.5.8.编写模块主启动类 {#5_5_8_}
+### 5.5.8.编写模块主启动类 {#_5_5_8_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceRibbonConfiguration80.java)
 ```
-### 5.5.9.测试模块 {#5_5_9_}
+### 5.5.9.测试模块 {#_5_5_9_}
     启动相关服务
 ```mermaid
 flowchart LR
@@ -204,40 +204,40 @@ http://localhost/consumer/payment/get/1
 ```
     可以看到四次访问返回的结果中,四次返回结果是没有规律的,因为采用的RandomRule(随机策略),实际返回结果可能不是上面的情况,但是一定是随机进行服务调用的
 
-## 5.6.硬编码配置方式使用Ribbon实现负载均衡(使用自定义的Ribbon负载均衡策略) {#5_6_}
-### 5.6.1.模块简介 {#5_6_1_}
+## 5.6.硬编码配置方式使用Ribbon实现负载均衡(使用自定义的Ribbon负载均衡策略) {#_5_6_}
+### 5.6.1.模块简介 {#_5_6_1_}
     基于Ribbon以硬编码式配置方式实现的服务消费者,使用自定义的Ribbon负载均衡策略,启动端口: 80
-### 5.6.2.模块目录结构 {#5_6_2_}
+### 5.6.2.模块目录结构 {#_5_6_2_}
 ```md
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80/tree.md)
 ```
-### 5.6.3.创建模块 {#5_6_3_}
+### 5.6.3.创建模块 {#_5_6_3_}
 	在父工程(springcloud-eureka)中创建一个名为springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
-### 5.6.4.编写模块pom.xml {#5_6_4_}
+### 5.6.4.编写模块pom.xml {#_5_6_4_}
 ```xml
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80/pom.xml)
 ```
-### 5.6.5.编写模块application.yml {#5_6_5_}
+### 5.6.5.编写模块application.yml {#_5_6_5_}
 ```yml
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80/src/main/resources/application.yml)
 ```
-### 5.6.6.编写模块config {#5_6_6_}
+### 5.6.6.编写模块config {#_5_6_6_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80/src/main/java/org/openatom/springcloud/config/ApplicationContextConfig.java)
 ```
-### 5.6.7.编写模块controller {#5_6_7_}
+### 5.6.7.编写模块controller {#_5_6_7_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java)
 ```
-### 5.6.8.编写自定义的负载均衡算法策略 {#5_6_8_}
+### 5.6.8.编写自定义的负载均衡算法策略 {#_5_6_8_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80/src/main/java/org/openatom/springcloud/loadbalance/MyRoundRobinRule.java)
 ```
-### 5.6.9.编写模块主启动类 {#5_6_9_}
+### 5.6.9.编写模块主启动类 {#_5_6_9_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceRibbonCustomerStrategyHardcode80.java)
 ```
-### 5.6.10.测试模块 {#5_6_10_}
+### 5.6.10.测试模块 {#_5_6_10_}
     启动相关服务
 ```mermaid
 flowchart LR
@@ -269,40 +269,40 @@ http://localhost/consumer/payment/get/1
 ```
     可以看到四次访问返回的结果中,四次返回结果是没有规律的,因为采用的MyRoundRobinRule(自定义策略,这个策略的效果也是随机调用),实际返回结果可能不是上面的情况,但是一定是随机进行服务调用的
 
-## 5.7.声明式配置方式使用Ribbon实现负载均衡(使用自定义的Ribbon负载均衡策略) {#5_7_}
-### 5.7.1.模块简介 {#5_7_1_}
+## 5.7.声明式配置方式使用Ribbon实现负载均衡(使用自定义的Ribbon负载均衡策略) {#_5_7_}
+### 5.7.1.模块简介 {#_5_7_1_}
     基于Ribbon以声明式配置方式实现的服务消费者,使用自定义的Ribbon负载均衡策略,启动端口: 80
-### 5.7.2.模块目录结构 {#5_7_2_}
+### 5.7.2.模块目录结构 {#_5_7_2_}
 ```md
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80/tree.md)
 ```
-### 5.7.3.创建模块 {#5_7_3_}
+### 5.7.3.创建模块 {#_5_7_3_}
 	在父工程(springcloud-eureka)中创建一个名为springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
-### 5.7.4.编写模块pom.xml {#5_7_4_}
+### 5.7.4.编写模块pom.xml {#_5_7_4_}
 ```xml
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80/pom.xml)
 ```
-### 5.7.5.编写模块application.yml {#5_7_5_}
+### 5.7.5.编写模块application.yml {#_5_7_5_}
 ```yml
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80/src/main/resources/application.yml)
 ```
-### 5.7.6.编写模块config {#5_7_6_}
+### 5.7.6.编写模块config {#_5_7_6_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80/src/main/java/org/openatom/springcloud/config/ApplicationContextConfig.java)
 ```
-### 5.7.7.编写模块controller {#5_7_7_}
+### 5.7.7.编写模块controller {#_5_7_7_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java)
 ```
-### 5.7.8.编写自定义的负载均衡算法策略 {#5_7_8_}
+### 5.7.8.编写自定义的负载均衡算法策略 {#_5_7_8_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80/src/main/java/org/openatom/springcloud/loadbalance/MyRoundRobinRule.java)
 ```
-### 5.7.9.编写模块主启动类 {#5_7_9_}
+### 5.7.9.编写模块主启动类 {#_5_7_9_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceRibbonCustomerStrategyConfiguration80.java)
 ```
-### 5.7.10.测试模块 {#5_7_10_}
+### 5.7.10.测试模块 {#_5_7_10_}
     启动相关服务
 ```mermaid
 flowchart LR

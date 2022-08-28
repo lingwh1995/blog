@@ -16,7 +16,7 @@ head:
 
 # 7.使用Hystrix实现服务降级和熔断
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter7.md)
-## 7.3.Hystrix简介 {#7_3_}
+## 7.3.Hystrix简介 {#_7_3_}
     Hystrix是由Netflix开源的一个服务隔离组件,通过服务隔离来避免由于依赖延迟、异常,引起资源耗尽导致系统不可用的解决方案。这说的有点儿太官方了,它的功能主要有以下三个:
     服务降级
     当服务调用发生异常时，快速返回一个事先设置好的值,针对系统全局稳定性考虑,消费端和服务端都可以做
@@ -32,44 +32,44 @@ head:
 https://github.com/Netflix/Hystrix
 ```
 
-## 7.4.搭建服务提供者第一个节点(Hystrix) {#7_4_}
-### 7.4.1.模块简介 {#7_4_1_}
+## 7.4.搭建服务提供者第一个节点(Hystrix) {#_7_4_}
+### 7.4.1.模块简介 {#_7_4_1_}
     具有服务熔断和服务降级功能的服务提供者的第一个节点,启动端口: 8003
-### 7.4.2.模块目录结构 {#7_4_2_}
+### 7.4.2.模块目录结构 {#_7_4_2_}
 ```md
 @include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8003/tree.md)
 ```
-### 7.4.3.创建模块 {#7_4_3_}
+### 7.4.3.创建模块 {#_7_4_3_}
 	在父工程(springcloud-eureka)中创建一个名为springcloud-provider-hystrix-cluster-node-payment8003的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
-### 7.4.4.编写模块pom.xml {#7_4_4_}
+### 7.4.4.编写模块pom.xml {#_7_4_4_}
 ```xml
 @include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8003/pom.xml)
 ```
-### 7.4.5.编写模块application.yml {#7_4_5_}
+### 7.4.5.编写模块application.yml {#_7_4_5_}
 ```yml
 @include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8003/src/main/resources/application.yml)
 ```
-### 7.4.6.编写模块Mybatis配置文件 {#7_4_6_}
+### 7.4.6.编写模块Mybatis配置文件 {#_7_4_6_}
 ```xml
 @include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8003/src/main/resources/mapper/PaymentMapper.xml)
 ```
-### 7.4.7.编写模块dao {#7_4_7_}
+### 7.4.7.编写模块dao {#_7_4_7_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8003/src/main/java/org/openatom/springcloud/dao/PaymentHystrixDao.java)
 ```
-### 7.4.8.编写模块service {#7_4_8_}
+### 7.4.8.编写模块service {#_7_4_8_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8003/src/main/java/org/openatom/springcloud/service/PaymentHystrixService.java)
 ```
-### 7.4.9.编写模块service实现类 {#7_4_9_}
+### 7.4.9.编写模块service实现类 {#_7_4_9_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8003/src/main/java/org/openatom/springcloud/service/impl/PaymentHystrixServiceImpl.java)
 ```
-### 7.4.10.编写模块controller {#7_4_10_}
+### 7.4.10.编写模块controller {#_7_4_10_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8003/src/main/java/org/openatom/springcloud/controller/PaymentHystrixController.java)
 ```
-### 7.4.11.编写模块主启动类 {#7_4_11_}
+### 7.4.11.编写模块主启动类 {#_7_4_11_}
 ```java
 package org.openatom.springcloud;
 
@@ -94,44 +94,44 @@ public class PaymentServiceProviderHystrixClusterNode8003 {
 }
 ```
 
-## 7.5.搭建服务提供者第二个节点(Hystrix) {#7_5_}
-### 7.5.1.模块简介 {#7_5_1_}
+## 7.5.搭建服务提供者第二个节点(Hystrix) {#_7_5_}
+### 7.5.1.模块简介 {#_7_5_1_}
     具有服务熔断和服务降级功能的服务提供者的第二个节点,启动端口: 8004
-### 7.5.2.模块目录结构 {#7_5_2_}
+### 7.5.2.模块目录结构 {#_7_5_2_}
 ```md
 @include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/tree.md)
 ```
-### 7.5.3.创建模块 {#7_5_3_}
+### 7.5.3.创建模块 {#_7_5_3_}
 	在父工程(springcloud-eureka)中创建一个名为springcloud-provider-hystrix-cluster-node-payment8004的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
-### 7.5.4.编写模块pom.xml {#7_5_4_}
+### 7.5.4.编写模块pom.xml {#_7_5_4_}
 ```xml
 @include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/pom.xml)
 ```
-### 7.5.5.编写模块application.yml {#7_5_5_}
+### 7.5.5.编写模块application.yml {#_7_5_5_}
 ```yml
 @include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/src/main/resources/application.yml)
 ```
-### 7.5.6.编写模块Mybatis配置文件 {#7_5_6_}
+### 7.5.6.编写模块Mybatis配置文件 {#_7_5_6_}
 ```xml
 @include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/src/main/resources/mapper/PaymentMapper.xml)
 ```
-### 7.5.7.编写模块dao {#7_5_7_}
+### 7.5.7.编写模块dao {#_7_5_7_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/src/main/java/org/openatom/springcloud/dao/PaymentHystrixDao.java)
 ```
-### 7.5.8.编写模块service {#7_5_8_}
+### 7.5.8.编写模块service {#_7_5_8_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/src/main/java/org/openatom/springcloud/service/PaymentHystrixService.java)
 ```
-### 7.5.9.编写模块service实现类 {#7_5_9_}
+### 7.5.9.编写模块service实现类 {#_7_5_9_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/src/main/java/org/openatom/springcloud/service/impl/PaymentHystrixServiceImpl.java)
 ```
-### 7.5.10.编写模块controller {#7_5_10_}
+### 7.5.10.编写模块controller {#_7_5_10_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/src/main/java/org/openatom/springcloud/controller/PaymentHystrixController.java)
 ```
-### 7.5.11.编写模块主启动类 {#7_5_11_}
+### 7.5.11.编写模块主启动类 {#_7_5_11_}
 ```java
 package org.openatom.springcloud;
 
@@ -156,40 +156,40 @@ public class PaymentServiceProviderHystrixClusterNode8004 {
 }
 ```
 
-## 7.6.搭建服务消费者(Hystrix) {#7_6_}
-### 7.6.1.模块简介 {#7_6_1_}
+## 7.6.搭建服务消费者(Hystrix) {#_7_6_}
+### 7.6.1.模块简介 {#_7_6_1_}
     具有服务熔断和服务降级功能的服务消费者,启动端口: 80
-### 7.6.2.模块目录结构 {#7_6_2_}
+### 7.6.2.模块目录结构 {#_7_6_2_}
 ```md
 @include(../projects/springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/tree.md)
 ```
-### 7.6.3.创建模块 {#7_6_3_}
+### 7.6.3.创建模块 {#_7_6_3_}
 	在父工程(springcloud-eureka)中创建一个名为springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
-### 7.6.4.编写模块pom.xml {#7_6_4_}
+### 7.6.4.编写模块pom.xml {#_7_6_4_}
 ```xml
 @include(../projects/springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/pom.xml)
 ```
-### 7.6.5.编写模块application.yml {#7_6_5_}
+### 7.6.5.编写模块application.yml {#_7_6_5_}
 ```yml
 @include(../projects/springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/resources/application.yml)
 ```
-### 7.6.6.编写模块config {#7_6_6_}
+### 7.6.6.编写模块config {#_7_6_6_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/config/FeignConfig.java)
 ```
-### 7.6.7.编写模块service {#7_6_7_}
+### 7.6.7.编写模块service {#_7_6_7_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/service/PaymentServiceHystrixOpenFeign.java)
 ```
-### 7.6.8.编写模块service实现类 {#7_6_8_}
+### 7.6.8.编写模块service实现类 {#_7_6_8_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/service/impl/PaymentServiceHystrixOpenFeignImpl.java)
 ```
-### 7.6.9.编写模块controller {#7_6_9_}
+### 7.6.9.编写模块controller {#_7_6_9_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerHystrixController.java)
 ```
-### 7.6.10.编写模块主启动类 {#7_6_10_}
+### 7.6.10.编写模块主启动类 {#_7_6_10_}
 ```java
 package org.openatom.springcloud;
 
@@ -211,7 +211,7 @@ public class OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80 {
     
 }
 ```
-## 7.7.测试服务降级和服务熔断(Hystrix) {#7_7_}
+## 7.7.测试服务降级和服务熔断(Hystrix) {#_7_7_}
     启动相关服务
 ```mermaid
 flowchart LR

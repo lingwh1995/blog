@@ -17,7 +17,7 @@ head:
 
 # 2.搭建SpringCloud技术栈所需组件
 @include(@src/public/enhance/guidance/environment/windows/windows-server2016/chapter/windows-server2016-guidance-chapter2.md)
-## 2.3.搭建Zipkin {#2_3_}
+## 2.3.搭建Zipkin {#_2_3_}
 	安装jdk
 	详细参考->1.搭建基础开发环境->1.1.安装jdk
 
@@ -38,8 +38,8 @@ chmod +x zipkin.jar
 java -jar zipkin.jar
 ```
 
-## 2.4.搭建Apollo配置中心 {#2_4_}
-### 2.4.1.Apollo配置中心简介 {#2_4_1_}
+## 2.4.搭建Apollo配置中心 {#_2_4_}
+### 2.4.1.Apollo配置中心简介 {#_2_4_1_}
 	Apollo(阿波罗)是一款可靠的分布式配置管理中心，诞生于携程框架研发部，能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性，适用于微服务配置管理场景。
 
 <a href="https://www.apolloconfig.com">官方网址</a>
@@ -51,16 +51,16 @@ https://www.apolloconfig.com
 https://github.com/apolloconfig
 ```
 
-### 2.4.2.基于Apollo内置的Eureka搭建Apollo配置中心 {#2_4_2_}
-#### 2.4.2.1.单环境版 {#2_4_2_1_}
+### 2.4.2.基于Apollo内置的Eureka搭建Apollo配置中心 {#_2_4_2_}
+#### 2.4.2.1.单环境版 {#_2_4_2_1_}
 ##### 2.2.2.1.1.下载工程,并在本地安装所有用到的依赖
 ```
 https://gitee.com/lingwh1995/apollo2.0.1-built-in-eureka.git
 ```	
 ##### 2.2.2.1.2.修改数据库连接信息
-	修改apollo/scripts/flyway/flyway-configdb.properties和apollo/scripts/flyway/flyway-portaldb.properties中的数据库连接信息
+	修改apollo2.0.1-built-in-eureka/scripts/flyway/flyway-configdb.properties和apollo/scripts/flyway/flyway-portaldb.properties中的数据库连接信息
 ##### 2.2.2.1.3.使用flyway脚本自动创建好数据库环境
-	在apollo文件夹下执行如下两个命令；目的是使用flyway脚本自动创建好数据库环境
+	在apollo2.0.1-built-in-eureka文件夹下执行如下两个命令；目的是使用flyway脚本自动创建好数据库环境
 ```	
 mvn -N -Pconfigdb flyway:migrate
 ```
@@ -68,10 +68,10 @@ mvn -N -Pconfigdb flyway:migrate
 mvn -N -Pportaldb flyway:migrate
 ```
 ##### 2.2.2.1.4.获得jar包
-	执行apollo/scripts/build.bat,执行完成后可以得到下面三个jar包(最好是重命名一下)
-	apollo/apollo-adminservice/target/apollo-adminservice-2.0.1-SNAPSHOT.jar -> apollo-adminservice-2.0.1.jar
-	apollo/apollo-configservice/target/apollo-configservice-2.0.1-SNAPSHOT.jar	-> apollo-configservice-2.0.1.jar
-	apollo/apollo-portal/target/apollo-portal-2.0.1-SNAPSHOT.jar -> apollo-portal-2.0.1.jar
+	执行apollo2.0.1-built-in-eureka/scripts/build.bat,执行完成后可以得到下面三个jar包(最好是重命名一下)
+	apollo2.0.1-built-in-eureka/apollo-adminservice/target/apollo-adminservice-2.0.1-SNAPSHOT.jar -> apollo-adminservice-2.0.1.jar
+	apollo2.0.1-built-in-eureka/apollo-configservice/target/apollo-configservice-2.0.1-SNAPSHOT.jar	-> apollo-configservice-2.0.1.jar
+	apollo2.0.1-built-in-eureka/apollo-portal/target/apollo-portal-2.0.1-SNAPSHOT.jar -> apollo-portal-2.0.1.jar
 ##### 2.2.2.1.5.创建启动文件夹	
 	a.创建名称为Apollo2.0.1_built_in_eureka_dev的文件夹(版本号以实际为准)
 	b.把三个jar包放入文件夹中
@@ -104,7 +104,7 @@ http://localhost:8070/
 ```
 	登录用户名/密码: apollo/admin
 
-#### 2.4.2.2.多环境版 {#2_4_2_2_}
+#### 2.4.2.2.多环境版 {#_2_4_2_2_}
 ##### 2.2.2.2.1.下载工程,并在本地安装所有用到的依赖
 ```
 https://gitee.com/lingwh1995/apollo2.0.1-built-in-eureka.git
@@ -232,8 +232,8 @@ UPDATE apolloconfigdb.ServerConfig SET `Value` = "http://localhost:8081/eureka/"
 
 	d.如果启动后多环境现实不正常,直接重启下Portal,再刷新页面即可
 
-### 2.4.3.基于独立部署的Eureka搭建Apollo配置中心 {#2_4_3_}
-#### 2.4.3.1.单环境版 {#2_4_3_1_}
+### 2.4.3.基于独立部署的Eureka搭建Apollo配置中心 {#_2_4_3_}
+#### 2.4.3.1.单环境版 {#_2_4_3_1_}
 ##### 2.2.3.1.1.下载工程,并在本地安装所有用到的依赖
 ```
 https://gitee.com/lingwh1995/apollo2.0.1-eureka.git
@@ -371,7 +371,7 @@ http://localhost:8070/
 ```	
 	登录用户名/密码: apollo/admin
 
-#### 2.4.3.2.多环境版 {#2_4_3_2_}
+#### 2.4.3.2.多环境版 {#_2_4_3_2_}
 ##### 2.2.3.2.1.下载工程,并在本地安装所有用到的依赖
 ```
 https://gitee.com/lingwh1995/apollo2.0.1-eureka.git
@@ -583,8 +583,8 @@ UPDATE apolloconfigdb.ServerConfig SET `Value` = "http://localhost:7002/eureka/"
 	当数据库中没有这个参数时,使用启动时参数修改才有效
 	c.如果启动后多环境现实不正常,直接重启下Portal,再刷新页面即可
 
-### 2.4.4.基于Zookeeper搭建Apollo配置中心 {#2_4_4_}
-#### 2.4.4.1.单环境版 {#2_4_4_1_}
+### 2.4.4.基于Zookeeper搭建Apollo配置中心 {#_2_4_4_}
+#### 2.4.4.1.单环境版 {#_2_4_4_1_}
 ##### 2.2.4.1.1.下载工程,并在本地安装所有用到的依赖
 ```
 https://gitee.com/lingwh1995/apollo2.0.1-zookeeper.git
@@ -644,7 +644,7 @@ http://localhost:8070/
 ```	
 	登录用户名/密码: apollo/admin
 
-#### 2.4.4.2.多环境版 {#2_4_4_2_}
+#### 2.4.4.2.多环境版 {#_2_4_4_2_}
 ##### 2.2.4.2.1.下载工程,并在本地安装所有用到的依赖
 ```
 https://gitee.com/lingwh1995/apollo2.0.1-zookeeper.git
@@ -767,8 +767,8 @@ http://localhost:8070/
 	b.dev环境和pro环境需要不同的Zookeeper地址,即需要两套Zookeeper环境
 	c.如果启动后多环境现实不正常,直接重启下Portal,再刷新页面即可
 
-### 2.4.5.基于Consul搭建Apollo配置中心 {#2_4_5_}
-#### 2.4.5.1.单环境版 {#2_4_5_1_}
+### 2.4.5.基于Consul搭建Apollo配置中心 {#_2_4_5_}
+#### 2.4.5.1.单环境版 {#_2_4_5_1_}
 ##### 2.2.5.1.1.下载工程,并在本地安装所有用到的依赖
 ```
 https://gitee.com/lingwh1995/apollo2.0.1-consul.git
@@ -831,7 +831,7 @@ http://localhost:8070/
 ```	
 	登录用户名/密码: apollo/admin
 
-#### 2.4.5.2.多环境版 {#2_4_5_2_}
+#### 2.4.5.2.多环境版 {#_2_4_5_2_}
 ##### 2.2.5.2.1.下载工程,并在本地安装所有用到的依赖
 ```
 https://gitee.com/lingwh1995/apollo2.0.1-consul.git
