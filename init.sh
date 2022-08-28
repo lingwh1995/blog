@@ -464,8 +464,8 @@ function title2IncrementByForOriginal() {
         for ((j=$TOTAL_TITLE2_COUNTS; j>=1; j--))
         do
             echo '二级标题由'$i.$j'提升为->'$i.$[$j+1]
-            #替换二级标题，在原来的基础上+1
-            sed -i 's/\(^\#\{2,4\} \)'"$i"'\.'"$j"'\./\1'"$i"'\.'"$[$j+$3]"'\./g' $2/$1.md
+            #替换h1到h5中二级标题部分，在原来的基础上+1
+            sed -i 's/\(^\#\{2,5\} \)'"$i"'\.'"$j"'\./\1'"$i"'\.'"$[$j+$3]"'\./g' $2/$1.md
         done
     done
 
