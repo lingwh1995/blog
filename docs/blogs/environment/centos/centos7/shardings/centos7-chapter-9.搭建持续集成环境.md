@@ -17,12 +17,12 @@ head:
 
 # 9.搭建持续集成环境
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter9.md)
-## 9.3.使用本地内网穿透搭建持续集成环境 {#_9-3-anchor}
+## 9.3.使用本地内网穿透搭建持续集成环境
 
-### 9.3.1.持续集成环境组件列表 {#_9-3-1-anchor}
+### 9.3.1.持续集成环境组件列表
 	Jenkins、git、maven、docker
 
-### 9.3.2.安装jekins {#_9-3-2-anchor}
+### 9.3.2.安装jekins
 	下载tomcat
 	https://downloads.apache.org/tomcat/
 
@@ -49,10 +49,10 @@ head:
 	值: -Duser.timezone=Asia/Shanghai -Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8
 	如项目已经启动修改完字符配置后要重启tomcat
 
-### 9.3.3.安装jdk {#_9-3-3-anchor}
+### 9.3.3.安装jdk
 	详细参考 3.搭建基础开发环境->3.1.安装jdk
 
-### 9.3.4.安装maven {#_9-3-4-anchor}
+### 9.3.4.安装maven
 	详细参考 3.搭建基础开发环境->3.2.安装maven
 
 	注意事项
@@ -67,10 +67,10 @@ head:
 	-am, --also-make
 		自动构建该模块所依赖的其他模块
 
-### 9.3.5.安装git {#_9-3-5-anchor}
+### 9.3.5.安装git
 	详细参考 3.搭建基础开发环境->3.6.安装git->3.6.1.安装默认版本git
 
-### 9.3.6.启动Jenkins {#_9-3-6-anchor}
+### 9.3.6.启动Jenkins
 	启动部署了Jenkins的tomcat
 	访问:http://192.168.0.5:8080/jenkins
 
@@ -83,7 +83,7 @@ head:
 	设置Jenkins用户密码
 	登录界面设置 admin/123456
 
-### 9.3.7.安装配置Jenkins用到的插件 {#_9-3-7-anchor}
+### 9.3.7.安装配置Jenkins用到的插件
 	Publish Over SSH
 
 	安装Publish Over SSH
@@ -95,7 +95,7 @@ head:
 	配置Jenkins所在服务器到docker所在服务器的免密登录
 	需要百度查询确定
 
-### 9.3.8.搭建内网穿透 {#_9-3-8-anchor}
+### 9.3.8.搭建内网穿透
 	下载natapp
 	登录 https://natapp.cn/ 后下载Linux64位版
 
@@ -118,15 +118,15 @@ head:
 	启动本地Jenkins，访问地址为: http://192.168.0.5/jenkins，
 	内网穿透后公网访问Jenkins，访问地址为: http://2edv7s.natappfree.cc/jenkins
 
-## 9.4.使用Coding内网穿透搭建持续集成环境 {#_9-4-anchor}
+## 9.4.使用Coding内网穿透搭建持续集成环境
 
-### 9.4.1.持续集成环境组件列表 {#_9-4-1-anchor}
+### 9.4.1.持续集成环境组件列表
 	git、maven、Coding.net
 
-### 9.4.2.安装jdk {#_9-4-2-anchor}
+### 9.4.2.安装jdk
 	详细参考 3.搭建基础开发环境->3.1.安装jdk
 
-### 9.4.3.安装maven {#_9-4-3-anchor}
+### 9.4.3.安装maven
 	详细参考 3.搭建基础开发环境->3.2.安装maven
 
 	注意事项
@@ -141,10 +141,10 @@ head:
 	-am, --also-make
 		自动构建该模块所依赖的其他模块
 
-### 9.4.4.安装git {#_9-4-4-anchor}
+### 9.4.4.安装git
 	详细参考 3.搭建基础开发环境->3.6.安装git->3.6.2.安装指定版本git(Coding需要高版本的git)
 
-### 9.4.5.使用Coding提供的接入命令搭建持续集成环境 {#_9-4-5-anchor}
+### 9.4.5.使用Coding提供的接入命令搭建持续集成环境
 
 	登录Coding(这里换成自己的Coding.net用户名)
 ```
@@ -161,7 +161,7 @@ curl -fL 'https://coding.net/public-files/coding-ci/install/linux/install.sh?ver
 https://lingwh.coding.net/p/java/ci/agent/136295/list
 ```
 
-### 9.4.6.安装配置Jenkins用到的插件 {#_9-4-6-anchor}
+### 9.4.6.安装配置Jenkins用到的插件
 	Publish Over SSH
 
 	安装Publish Over SSH

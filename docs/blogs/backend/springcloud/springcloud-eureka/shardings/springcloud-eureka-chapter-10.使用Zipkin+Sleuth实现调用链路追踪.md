@@ -16,7 +16,7 @@ head:
 
 # 10.使用Zipkin+Sleuth实现调用链路追踪
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter10.md)
-## 10.3.Zipkin、Sleuth简介 {#_10-3-anchor}
+## 10.3.Zipkin、Sleuth简介
     Sleuth简介
     Sleuth可以解决分布式系统的追踪问题。
 <a href="https://github.com/spring-cloud/spring-cloud-sleuth" target="_blank">官方网址(GITHUB)</a>
@@ -38,125 +38,125 @@ https://zipkin.io/
 https://github.com/openzipkin/zipkin
 ```
     
-## 10.4.搭建服务提供者第一个节点(Sleuth) {#_10-4-anchor}
-### 10.4.1.模块简介 {#_10-4-1-anchor}
+## 10.4.搭建服务提供者第一个节点(Sleuth)
+### 10.4.1.模块简介
     具有调用链路追踪功能的服务提供者的第一个节点,启动端口: 8005
-### 10.4.2.模块目录结构 {#_10-4-2-anchor}
+### 10.4.2.模块目录结构
 ```md
 @include(../projects/springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/tree.md)
 ```
-### 10.4.3.创建模块 {#_10-4-3-anchor}
+### 10.4.3.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-provider-sleuth_zipkin-cluster-node-payment8005的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
-### 10.4.4.编写模块pom.xml {#_10-4-4-anchor}
+### 10.4.4.编写模块pom.xml
 ```xml
 @include(../projects/springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/pom.xml)
 ```
-### 10.4.5.编写模块application.yml {#_10-4-5-anchor}
+### 10.4.5.编写模块application.yml
 ```yml
 @include(../projects/springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/src/main/resources/application.yml)
 ```
-### 10.4.6.编写模块Mybatis配置文件 {#_10-4-6-anchor}
+### 10.4.6.编写模块Mybatis配置文件
 ```xml
 @include(../projects/springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/src/main/resources/mapper/PaymentMapper.xml)
 ```
-### 10.4.7.编写模块dao {#_10-4-7-anchor}
+### 10.4.7.编写模块dao
 ```java
 @include(../projects/springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/src/main/java/org/openatom/springcloud/dao/PaymentDao.java)
 ```
-### 10.4.8.编写模块service {#_10-4-8-anchor}
+### 10.4.8.编写模块service
 ```java
 @include(../projects/springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/src/main/java/org/openatom/springcloud/service/PaymentService.java)
 ```
-### 10.4.9.编写模块service实现类 {#_10-4-9-anchor}
+### 10.4.9.编写模块service实现类
 ```java
 @include(../projects/springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/src/main/java/org/openatom/springcloud/service/impl/PaymentServiceImpl.java)
 ```
-### 10.4.10.编写模块controller {#_10-4-10-anchor}
+### 10.4.10.编写模块controller
 ```java
 @include(../projects/springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/src/main/java/org/openatom/springcloud/controller/PaymentController.java)
 ```
-### 10.4.11.编写模块主启动类 {#_10-4-11-anchor}
+### 10.4.11.编写模块主启动类
 ```java
 @include(../projects/springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8005/src/main/java/org/openatom/springcloud/PaymentServiceProviderSleuthAndZipkinClusterNode8005.java)
 ```
 
-## 10.5.搭建服务提供者第二个节点(Sleuth) {#_10-5-anchor}
-### 10.5.1.模块简介 {#_10-5-1-anchor}
+## 10.5.搭建服务提供者第二个节点(Sleuth)
+### 10.5.1.模块简介
     具有调用链路追踪功能的服务提供者的第二个节点,启动端口: 8006
-### 10.5.2.模块目录结构 {#_10-5-2-anchor}
+### 10.5.2.模块目录结构
 ```md
 @include(../projects/springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/tree.md)
 ```
-### 10.5.3.创建模块 {#_10-5-3-anchor}
+### 10.5.3.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-provider-sleuth_zipkin-cluster-node-payment8006的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
-### 10.5.4.编写模块pom.xml {#_10-5-4-anchor}
+### 10.5.4.编写模块pom.xml
 ```xml
 @include(../projects/springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/pom.xml)
 ```
-### 10.5.5.编写模块application.yml {#_10-5-5-anchor}
+### 10.5.5.编写模块application.yml
 ```yml
 @include(../projects/springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/src/main/resources/application.yml)
 ```
-### 10.5.6.编写模块Mybatis配置文件 {#_10-5-6-anchor}
+### 10.5.6.编写模块Mybatis配置文件
 ```xml
 @include(../projects/springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/src/main/resources/mapper/PaymentMapper.xml)
 ```
-### 10.5.7.编写模块dao {#_10-5-7-anchor}
+### 10.5.7.编写模块dao
 ```java
 @include(../projects/springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/src/main/java/org/openatom/springcloud/dao/PaymentDao.java)
 ```
-### 10.5.8.编写模块service {#_10-5-8-anchor}
+### 10.5.8.编写模块service
 ```java
 @include(../projects/springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/src/main/java/org/openatom/springcloud/service/PaymentService.java)
 ```
-### 10.5.9.编写模块service实现类 {#_10-5-9-anchor}
+### 10.5.9.编写模块service实现类
 ```java
 @include(../projects/springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/src/main/java/org/openatom/springcloud/service/impl/PaymentServiceImpl.java)
 ```
-### 10.5.10.编写模块controller {#_10-5-10-anchor}
+### 10.5.10.编写模块controller
 ```java
 @include(../projects/springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/src/main/java/org/openatom/springcloud/controller/PaymentController.java)
 ```
-### 10.5.11.编写模块主启动类 {#_10-5-11-anchor}
+### 10.5.11.编写模块主启动类
 ```java
 @include(../projects/springcloud-eureka/springcloud-provider-sleuth_zipkin-cluster-node-payment8006/src/main/java/org/openatom/springcloud/PaymentServiceProviderSleuthAndZipkinClusterNode8006.java)
 ```
 
-## 10.6.搭建服务消费者 {#_10-6-anchor}
-### 10.6.1.模块简介 {#_10-6-1-anchor}
+## 10.6.搭建服务消费者
+### 10.6.1.模块简介
     具有调用链路追踪功能的服务消费者,启动端口: 80
-### 10.6.2.模块目录结构 {#_10-6-2-anchor}
+### 10.6.2.模块目录结构
 ```md
 @include(../projects/springcloud-eureka/springcloud-consumer-sleuth_zipkin-loadbalance-default-order80/tree.md)
 ```
-### 10.6.3.创建模块 {#_10-6-3-anchor}
+### 10.6.3.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-consumer-sleuth_zipkin-loadbalance-default-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
-### 10.6.4.编写模块pom.xml {#_10-6-4-anchor}
+### 10.6.4.编写模块pom.xml
 ```xml
 @include(../projects/springcloud-eureka/springcloud-consumer-sleuth_zipkin-loadbalance-default-order80/pom.xml)
 ```
-### 10.6.5.编写模块application.yml {#_10-6-5-anchor}
+### 10.6.5.编写模块application.yml
 ```yml
 @include(../projects/springcloud-eureka/springcloud-consumer-sleuth_zipkin-loadbalance-default-order80/src/main/resources/application.yml)
 ```
-### 10.6.6.编写模块config {#_10-6-6-anchor}
+### 10.6.6.编写模块config
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-sleuth_zipkin-loadbalance-default-order80/src/main/java/org/openatom/springcloud/config/ApplicationContextConfig.java)
 ```
-### 10.6.7.编写模块controller {#_10-6-7-anchor}
+### 10.6.7.编写模块controller
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-sleuth_zipkin-loadbalance-default-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java)
 ```
-### 10.6.8.编写模块主启动类 {#_10-6-8-anchor}
+### 10.6.8.编写模块主启动类
 ```java
 @include(../projects/springcloud-eureka/springcloud-consumer-sleuth_zipkin-loadbalance-default-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerSleuthAndZipkinLoadBalanceDefault80.java)
 ```
 
-## 10.7.搭建Zipkin {#_10-7-anchor}
+## 10.7.搭建Zipkin
     详细参考
 <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-12.搭建SpringCloud技术栈所需组件.html#_12-3-搭建zipkin" target="_blank">搭建Zipkin</a>
 
-## 10.8.测试Zipkin+Sleuth实现调用链路追踪 {#_10-8-anchor}
+## 10.8.测试Zipkin+Sleuth实现调用链路追踪
     启动相关服务    
 ```mermaid
 flowchart LR

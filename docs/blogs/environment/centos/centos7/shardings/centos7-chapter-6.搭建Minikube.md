@@ -20,13 +20,13 @@ head:
 
 # 6.搭建Minikube
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter6.md)
-## 6.3.minikube介绍 {#_6-3-anchor}
+## 6.3.minikube介绍
 	Minikube这个工具支持在虚拟机上运行一套单节点的k8s集群
 
-## 6.4.版本说明 {#_6-4-anchor}
+## 6.4.版本说明
 	minikube:1.2.6 kubectl:1.18.0
 
-## 6.5.开启Vmware虚拟化 {#_6-5-anchor}
+## 6.5.开启Vmware虚拟化
 	查看是否支持虚拟化，开始安装前，先查看本地机器是否支持虚拟化，有输出就支持
 ```
 grep -E --color 'vmx|svm' /proc/cpuinfo
@@ -37,7 +37,7 @@ grep -E --color 'vmx|svm' /proc/cpuinfo
 	设置处理器和内存
 	设置处理器数量设置为大于等于2,内存大于等于2G
 
-## 6.6.安装kubectl {#_6-6-anchor}
+## 6.6.安装kubectl
 	简介
 	kubectl 是一个用来跟 K8S 集群进行交互的命令行工具
 
@@ -61,7 +61,7 @@ chmod +x ./kubectl && cp ./kubectl /usr/local/bin/kubectl
 kubectl version --client
 ```
 
-## 6.7.安装minikube {#_6-7-anchor}
+## 6.7.安装minikube
 <a href="https://github.com/kubernetes/minikube/releases" target="_blank">官方网址</a>
 ```
 https://github.com/kubernetes/minikube/releases
@@ -81,7 +81,7 @@ chmod +x ./minikube-linux-amd64 && cp ./minikube-linux-amd64 /usr/local/bin/mini
 minikube version
 ```
 
-## 6.8.使用阿里云加速docker hub {#_6-8-anchor}
+## 6.8.使用阿里云加速docker hub
 	登录阿里云docker相关页面
 ```
 https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors
@@ -89,9 +89,9 @@ https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors
 	登陆->左侧菜单选中镜像加速器->查看加速镜像地址
 	我的加速地址是：https://ngviu28h.mirror.aliyuncs.com
 
-## 6.9.启动minikube(下面两种启动方式任选一种) {#_6-9-anchor}
+## 6.9.启动minikube(下面两种启动方式任选一种)
 
-### 6.9.1.使用docker作为虚拟化引擎(需要先安装Docker) {#_6-9-1-anchor}
+### 6.9.1.使用docker作为虚拟化引擎(需要先安装Docker)
 	注意事项
 	启动minikube之前需要先启动docker，如无法启动加上--kubernetes-version=v具体版本号
 
@@ -104,7 +104,7 @@ minikube start --driver=docker --force \
 	--kubernetes-version=v1.23.8
 ```
 
-### 6.9.2.使用virtualbox作为虚拟化引擎(需要先安装Virtualbox) {#_6-9-2-anchor}
+### 6.9.2.使用virtualbox作为虚拟化引擎(需要先安装Virtualbox)
 
 <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank">官方网站</a>
 ```
@@ -145,7 +145,7 @@ minikube start --driver=virtualbox --force \
 	--kubernetes-version=v1.23.8
 ```
 
-## 6.10.安装dashboard {#_6-10-anchor}
+## 6.10.安装dashboard
 	安装dashboard
 ```
 minikube dashboard
@@ -164,7 +164,7 @@ firewall-cmd --reload
 http://192.168.0.4:8001/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/
 ```
 
-## 6.12.部署测试程序 {#_6-12-anchor}
+## 6.12.部署测试程序
 	开始运行 guestbook
 ```
 kubectl create deployment guestbook --image=ibmcom/guestbook:v1
@@ -186,7 +186,7 @@ firewall-cmd --reload
 	http://192.168.0.4:7080
 
 
-## 6.12.minikube常用命令 {#_6-12-anchor}
+## 6.12.minikube常用命令
 	查看minikube日志
 ```
 minikube logs

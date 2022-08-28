@@ -17,7 +17,7 @@ head:
 
 # 2.搭建SpringCloud技术栈所需组件
 @include(@src/public/enhance/guidance/environment/windows/windows-server2016/chapter/windows-server2016-guidance-chapter2.md)
-## 2.3.搭建Zipkin {#_2-3-anchor}
+## 2.3.搭建Zipkin
 	安装jdk
 	详细参考->1.搭建基础开发环境->1.1.安装jdk
 
@@ -38,8 +38,8 @@ chmod +x zipkin.jar
 java -jar zipkin.jar
 ```
 
-## 2.4.搭建Apollo配置中心 {#_2-4-anchor}
-### 2.4.1.Apollo配置中心简介 {#_2-4-1-anchor}
+## 2.4.搭建Apollo配置中心
+### 2.4.1.Apollo配置中心简介
 	Apollo(阿波罗)是一款可靠的分布式配置管理中心，诞生于携程框架研发部，能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性，适用于微服务配置管理场景。
 
 <a href="https://www.apolloconfig.com">官方网址</a>
@@ -51,8 +51,8 @@ https://www.apolloconfig.com
 https://github.com/apolloconfig
 ```
 
-### 2.4.2.基于Apollo内置的Eureka搭建Apollo配置中心 {#_2-4-2-anchor}
-#### 2.4.2.1.单环境版 {#_2-4-2-1-anchor}
+### 2.4.2.基于Apollo内置的Eureka搭建Apollo配置中心
+#### 2.4.2.1.单环境版
 ##### 2.2.2.1.1.下载工程,并在本地安装所有用到的依赖
 ```
 https://gitee.com/lingwh1995/apollo2.0.1-built-in-eureka.git
@@ -104,7 +104,7 @@ http://localhost:8070/
 ```
 	登录用户名/密码: apollo/admin
 
-#### 2.4.2.2.多环境版 {#_2-4-2-2-anchor}
+#### 2.4.2.2.多环境版
 ##### 2.2.2.2.1.下载工程,并在本地安装所有用到的依赖
 ```
 https://gitee.com/lingwh1995/apollo2.0.1-built-in-eureka.git
@@ -232,8 +232,8 @@ UPDATE apolloconfigdb.ServerConfig SET `Value` = "http://localhost:8081/eureka/"
 
 	d.如果启动后多环境现实不正常,直接重启下Portal,再刷新页面即可
 
-### 2.4.3.基于独立部署的Eureka搭建Apollo配置中心 {#_2-4-3-anchor}
-#### 2.4.3.1.单环境版 {#_2-4-3-1-anchor}
+### 2.4.3.基于独立部署的Eureka搭建Apollo配置中心
+#### 2.4.3.1.单环境版
 ##### 2.2.3.1.1.下载工程,并在本地安装所有用到的依赖
 ```
 https://gitee.com/lingwh1995/apollo2.0.1-eureka.git
@@ -371,7 +371,7 @@ http://localhost:8070/
 ```	
 	登录用户名/密码: apollo/admin
 
-#### 2.4.3.2.多环境版 {#_2-4-3-2-anchor}
+#### 2.4.3.2.多环境版
 ##### 2.2.3.2.1.下载工程,并在本地安装所有用到的依赖
 ```
 https://gitee.com/lingwh1995/apollo2.0.1-eureka.git
@@ -583,8 +583,8 @@ UPDATE apolloconfigdb.ServerConfig SET `Value` = "http://localhost:7002/eureka/"
 	当数据库中没有这个参数时,使用启动时参数修改才有效
 	c.如果启动后多环境现实不正常,直接重启下Portal,再刷新页面即可
 
-### 2.4.4.基于Zookeeper搭建Apollo配置中心 {#_2-4-4-anchor}
-#### 2.4.4.1.单环境版 {#_2-4-4-1-anchor}
+### 2.4.4.基于Zookeeper搭建Apollo配置中心
+#### 2.4.4.1.单环境版
 ##### 2.2.4.1.1.下载工程,并在本地安装所有用到的依赖
 ```
 https://gitee.com/lingwh1995/apollo2.0.1-zookeeper.git
@@ -644,7 +644,7 @@ http://localhost:8070/
 ```	
 	登录用户名/密码: apollo/admin
 
-#### 2.4.4.2.多环境版 {#_2-4-4-2-anchor}
+#### 2.4.4.2.多环境版
 ##### 2.2.4.2.1.下载工程,并在本地安装所有用到的依赖
 ```
 https://gitee.com/lingwh1995/apollo2.0.1-zookeeper.git
@@ -767,8 +767,8 @@ http://localhost:8070/
 	b.dev环境和pro环境需要不同的Zookeeper地址,即需要两套Zookeeper环境
 	c.如果启动后多环境现实不正常,直接重启下Portal,再刷新页面即可
 
-### 2.4.5.基于Consul搭建Apollo配置中心 {#_2-4-5-anchor}
-#### 2.4.5.1.单环境版 {#_2-4-5-1-anchor}
+### 2.4.5.基于Consul搭建Apollo配置中心
+#### 2.4.5.1.单环境版
 ##### 2.2.5.1.1.下载工程,并在本地安装所有用到的依赖
 ```
 https://gitee.com/lingwh1995/apollo2.0.1-consul.git
@@ -831,7 +831,7 @@ http://localhost:8070/
 ```	
 	登录用户名/密码: apollo/admin
 
-#### 2.4.5.2.多环境版 {#_2-4-5-2-anchor}
+#### 2.4.5.2.多环境版
 ##### 2.2.5.2.1.下载工程,并在本地安装所有用到的依赖
 ```
 https://gitee.com/lingwh1995/apollo2.0.1-consul.git

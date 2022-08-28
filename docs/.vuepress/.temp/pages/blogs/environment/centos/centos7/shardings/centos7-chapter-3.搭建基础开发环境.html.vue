@@ -13,7 +13,7 @@
 </code></pre>
 <h2 id="_3-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_3-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter3.html" target="_blank">3.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter3.html" height="500rem"/>
-<h2 id="_3-3-安装jdk-3-3" tabindex="-1"><a class="header-anchor" href="#_3-3-安装jdk-3-3" aria-hidden="true">#</a> 3.3.安装jdk {#<em>3_3</em>}</h2>
+<h2 id="_3-3-安装jdk" tabindex="-1"><a class="header-anchor" href="#_3-3-安装jdk" aria-hidden="true">#</a> 3.3.安装jdk</h2>
 <pre><code>查看当前安装的java版本
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>yum list installed | grep java
@@ -48,7 +48,7 @@ export PATH=${JAVA_HOME}/bin:$PATH
 </code></pre></div><pre><code>查看java版本
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>java -version
-</code></pre></div><h2 id="_3-4-安装maven-3-4" tabindex="-1"><a class="header-anchor" href="#_3-4-安装maven-3-4" aria-hidden="true">#</a> 3.4.安装maven {#<em>3_4</em>}</h2>
+</code></pre></div><h2 id="_3-4-安装maven" tabindex="-1"><a class="header-anchor" href="#_3-4-安装maven" aria-hidden="true">#</a> 3.4.安装maven</h2>
 <pre><code>注意
 maven linux版和windows版并不通用
 
@@ -92,7 +92,7 @@ export PATH=$PATH:$M2_HOME/bin
 	&lt;url>http://repo2.maven.org/maven2/&lt;/url>
 	&lt;mirrorOf>central&lt;/mirrorOf>
 &lt;/mirror>
-</code></pre></div><h2 id="_3-5-安装mysql-3-5" tabindex="-1"><a class="header-anchor" href="#_3-5-安装mysql-3-5" aria-hidden="true">#</a> 3.5.安装mysql {#<em>3_5</em>}</h2>
+</code></pre></div><h2 id="_3-5-安装mysql" tabindex="-1"><a class="header-anchor" href="#_3-5-安装mysql" aria-hidden="true">#</a> 3.5.安装mysql</h2>
 <!--
 	参考网站
 	安装mysql
@@ -165,7 +165,7 @@ FLUSH PRIVILEGES;
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>use mysql;
 update user set host='%' where user='root';
 flush privileges;
-</code></pre></div><h2 id="_3-6-安装nodejs-3-6" tabindex="-1"><a class="header-anchor" href="#_3-6-安装nodejs-3-6" aria-hidden="true">#</a> 3.6.安装nodejs {#<em>3_6</em>}</h2>
+</code></pre></div><h2 id="_3-6-安装nodejs" tabindex="-1"><a class="header-anchor" href="#_3-6-安装nodejs" aria-hidden="true">#</a> 3.6.安装nodejs</h2>
 <pre><code>安装wget
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>yum -y install wget
@@ -192,7 +192,7 @@ export PATH=$PATH:$NODE_HOME/bin
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>node -v
 </code></pre></div><div class="language-text ext-text"><pre v-pre class="language-text"><code>npm -v
-</code></pre></div><h2 id="_3-7-安装fastgithub-3-7" tabindex="-1"><a class="header-anchor" href="#_3-7-安装fastgithub-3-7" aria-hidden="true">#</a> 3.7.安装fastgithub {#<em>3_7</em>}</h2>
+</code></pre></div><h2 id="_3-7-安装fastgithub" tabindex="-1"><a class="header-anchor" href="#_3-7-安装fastgithub" aria-hidden="true">#</a> 3.7.安装fastgithub</h2>
 <pre><code>下载依赖包
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>yum -y install libicu
@@ -222,8 +222,8 @@ systemctl enable fastgithub
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>git config --global http.proxy http://127.0.0.1:38457
 git config --global https.proxy http://127.0.0.1:38457
-</code></pre></div><h2 id="_3-8-安装git-3-8" tabindex="-1"><a class="header-anchor" href="#_3-8-安装git-3-8" aria-hidden="true">#</a> 3.8.安装git {#<em>3_8</em>}</h2>
-<h3 id="_3-8-1-安装默认版本git-3-8-1" tabindex="-1"><a class="header-anchor" href="#_3-8-1-安装默认版本git-3-8-1" aria-hidden="true">#</a> 3.8.1.安装默认版本git {#<em>3_8_1</em>}</h3>
+</code></pre></div><h2 id="_3-8-安装git" tabindex="-1"><a class="header-anchor" href="#_3-8-安装git" aria-hidden="true">#</a> 3.8.安装git</h2>
+<h3 id="_3-8-1-安装默认版本git" tabindex="-1"><a class="header-anchor" href="#_3-8-1-安装默认版本git" aria-hidden="true">#</a> 3.8.1.安装默认版本git</h3>
 <pre><code>卸载旧版本
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>yum -y remove git
@@ -233,7 +233,7 @@ git config --global https.proxy http://127.0.0.1:38457
 </code></pre></div><pre><code>查看版本
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>git version
-</code></pre></div><h3 id="_3-8-2-安装指定版本git-3-8-2" tabindex="-1"><a class="header-anchor" href="#_3-8-2-安装指定版本git-3-8-2" aria-hidden="true">#</a> 3.8.2.安装指定版本git {#<em>3_8_2</em>}</h3>
+</code></pre></div><h3 id="_3-8-2-安装指定版本git" tabindex="-1"><a class="header-anchor" href="#_3-8-2-安装指定版本git" aria-hidden="true">#</a> 3.8.2.安装指定版本git</h3>
 <pre><code>下载需要安装的版本号
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.29.0.tar.gz

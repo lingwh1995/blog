@@ -24,6 +24,7 @@ head:
 # 1.搭建基础开发环境 {#1.}
 @include(@src/public/enhance/guidance/environment/windows/windows-server2016/chapter/windows-server2016-guidance-chapter1.md)
 ## 1.3.安装jdk
+<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk">安装jdk</a>
 ### 1.3.1.安装jdk1.5
 	下载jdk1.5(64位)
 ```
