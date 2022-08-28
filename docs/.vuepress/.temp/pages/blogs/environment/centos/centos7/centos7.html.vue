@@ -3945,9 +3945,8 @@ source /etc/profile
 如项目已经启动修改完字符配置后要重启tomcat
 </code></pre>
 <h3 id="_9-3-3-安装jdk" tabindex="-1"><a class="header-anchor" href="#_9-3-3-安装jdk" aria-hidden="true">#</a> 9.3.3.安装jdk</h3>
-<pre><code>详细参考
+<pre><code>详细参考 3.搭建基础开发环境-&gt;3.1.安装jdk
 </code></pre>
-<p><a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#3-3" target="_blank">安装jdk</a></p>
 <h3 id="_9-3-4-安装maven" tabindex="-1"><a class="header-anchor" href="#_9-3-4-安装maven" aria-hidden="true">#</a> 9.3.4.安装maven</h3>
 <pre><code>详细参考 3.搭建基础开发环境-&gt;3.2.安装maven
 
@@ -4240,9 +4239,10 @@ notepad++安装nppftp这个插件，连接到远程服务器之后自动可以�
 <h2 id="_11-3-搭建yum私服" tabindex="-1"><a class="header-anchor" href="#_11-3-搭建yum私服" aria-hidden="true">#</a> 11.3.搭建yum私服</h2>
 <h2 id="_11-3-1-安装httpd" tabindex="-1"><a class="header-anchor" href="#_11-3-1-安装httpd" aria-hidden="true">#</a> 11.3.1.安装httpd</h2>
 <pre><code>配置阿里云源
+详细参考 2.Linux操作系统初始设置-&gt;2.5.配置yml源
+
+安装nginx或apache，此处以apache为例
 </code></pre>
-<p><a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-2.Linux操作系统初始设置.html#2-7" target="_blank">配置yml源</a>
-安装nginx或apache，此处以apache为例</p>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>yum install httpd
 </code></pre></div><pre><code>检测是否安装成功
 </code></pre>
@@ -4351,8 +4351,8 @@ yum makecache
 <h2 id="_12-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_12-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter12.html" target="_blank">12.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter12.html" height="500rem"/>
 <h2 id="_12-3-搭建zipkin" tabindex="-1"><a class="header-anchor" href="#_12-3-搭建zipkin" aria-hidden="true">#</a> 12.3.搭建Zipkin</h2>
-<pre><code>安装jdk
-详细参考&lt;a href=&quot;/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#3-3&quot; target=&quot;_blank&quot;&gt;安装jdk&lt;/a&gt;
+<pre><code>安装jdk	
+详细参考 3.搭建基础开发环境-&gt;3.1.安装jdk
 
 创建存放安装包的目录-&gt;进入该目录-&gt;下载zipkin-&gt;重命名-&gt;赋予运行权限
 </code></pre>

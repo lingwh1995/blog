@@ -4411,8 +4411,8 @@ kubectl get service guestbook
 	如项目已经启动修改完字符配置后要重启tomcat
 
 ### 9.3.3.安装jdk
-	详细参考
-<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#3-3" target="_blank">安装jdk</a>
+	详细参考 3.搭建基础开发环境->3.1.安装jdk
+
 ### 9.3.4.安装maven
 	详细参考 3.搭建基础开发环境->3.2.安装maven
 
@@ -4746,7 +4746,8 @@ bin/mycat console #前台启动
 ## 11.3.搭建yum私服
 ## 11.3.1.安装httpd
 	配置阿里云源
-<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-2.Linux操作系统初始设置.html#2-7" target="_blank">配置yml源</a>
+	详细参考 2.Linux操作系统初始设置->2.5.配置yml源
+	
 	安装nginx或apache，此处以apache为例
 ```	
 yum install httpd
@@ -4881,8 +4882,8 @@ yum makecache
 # 12.搭建SpringCloud技术栈所需组件 {#12.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter12.md)
 ## 12.3.搭建Zipkin
-	安装jdk
-	详细参考<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#3-3" target="_blank">安装jdk</a>
+	安装jdk	
+	详细参考 3.搭建基础开发环境->3.1.安装jdk
 
 	创建存放安装包的目录->进入该目录->下载zipkin->重命名->赋予运行权限
 ```

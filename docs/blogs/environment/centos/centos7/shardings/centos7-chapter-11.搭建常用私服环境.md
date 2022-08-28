@@ -17,10 +17,11 @@ head:
 
 # 11.搭建常用私服环境
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter11.md)
-## 11.3.搭建yum私服 {#_11_3_}
-## 11.3.1.安装httpd {#_11_3_}
+## 11.3.搭建yum私服 {#_11-3-anchor}
+## 11.3.1.安装httpd {#_11-3-anchor}
 	配置阿里云源
-<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-2.Linux操作系统初始设置.html#2-7" target="_blank">配置yml源</a>
+	详细参考 2.Linux操作系统初始设置->2.5.配置yml源
+	
 	安装nginx或apache，此处以apache为例
 ```	
 yum install httpd
@@ -60,7 +61,7 @@ find / -name httpd.conf
 yum -y remove httpd
 ```
 
-## 11.3.2.安装yum相关工具 {#_11_3_}
+## 11.3.2.安装yum相关工具 {#_11-3-anchor}
 	安装createrepo 和 reposync
 ```		
 yum -y install createrepo reposync
@@ -95,7 +96,7 @@ createrepo --update /var/www/html/extras/ &&
 createrepo --update /var/www/html/epel/
 ```
 
-## 11.3.3.配置切换使用的源为私服的源 {#_11_3_}
+## 11.3.3.配置切换使用的源为私服的源 {#_11-3-anchor}
 
 ```
 cd /etc/yum.repos.d/ &&
@@ -141,7 +142,7 @@ vi CentOS-Base.repo
 	gpgcheck=1
 	gpgkey=http://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-6
 
-## 11.3.4.重新生成测试机yum缓存配置 {#_11_3_}
+## 11.3.4.重新生成测试机yum缓存配置 {#_11-3-anchor}
 
 	在测试机器上，先清理已有缓存，再重新生成 yum 源缓存配置，将软件包信息缓存本机，提高搜索安装效率。
 ```
@@ -149,7 +150,7 @@ yum clean all &&
 yum makecache
 ```
 
-## 11.3.5.使用yum私服来下载软件 {#_11_3_}
+## 11.3.5.使用yum私服来下载软件 {#_11-3-anchor}
 	在测试机上使用yum install xxx来安装包
 
 

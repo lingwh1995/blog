@@ -17,8 +17,8 @@ head:
 
 # 1.搭建基础开发环境
 @include(@src/public/enhance/guidance/environment/windows/windows-server2016/chapter/windows-server2016-guidance-chapter1.md)
-## 1.3.安装jdk {#_1_3_}
-### 1.3.1.安装jdk1.5 {#_1_3_1_}
+## 1.3.安装jdk {#_1-3-anchor}
+### 1.3.1.安装jdk1.5 {#_1-3-1-anchor}
 	下载jdk1.5(64位)
 ```
 curl -fL -u software-1661635201061:b951fa2710ed220c45fe8104a47c32968160d016 \
@@ -32,7 +32,7 @@ curl -fL -u software-1661635201061:b951fa2710ed220c45fe8104a47c32968160d016 \
 	%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin
 	CLASSPATH
 	.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar
-### 1.3.2.安装jdk1.6 {#_1_3_2_}
+### 1.3.2.安装jdk1.6 {#_1-3-2-anchor}
 	下载jdk1.6(64位)
 ```
 curl -fL -u software-1661635269701:dc992411c4328c8b858f80dd75e26084c1430ce3 \
@@ -46,7 +46,7 @@ curl -fL -u software-1661635269701:dc992411c4328c8b858f80dd75e26084c1430ce3 \
 	%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin
 	CLASSPATH
 	.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar
-### 1.3.3.安装jdk1.7 {#_1_3_3_}
+### 1.3.3.安装jdk1.7 {#_1-3-3-anchor}
 	下载jdk1.7(64位)
 ```
 curl -fL -u software-1661635322447:bc66d997b7cf000b3932888504d1ac735fc4b530 \
@@ -60,7 +60,7 @@ curl -fL -u software-1661635322447:bc66d997b7cf000b3932888504d1ac735fc4b530 \
 	%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin
 	CLASSPATH
 	.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar
-### 1.3.4.安装jdk1.8 {#_1_3_4_}
+### 1.3.4.安装jdk1.8 {#_1-3-4-anchor}
 	下载jdk1.8(64位)
 ```
 curl -fL -u software-1661635322447:bc66d997b7cf000b3932888504d1ac735fc4b530 \

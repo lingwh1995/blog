@@ -20,8 +20,8 @@ head:
 
 # 4.搭建docker技术栈
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter4.md)
-## 4.3.安装docker {#_4_3_}
-### 4.3.1.在线安装docker {#_4_3_1_}
+## 4.3.安装docker {#_4-3-anchor}
+### 4.3.1.在线安装docker {#_4-3-1-anchor}
 
 	以root身份更新yum，将yum包更新到最新
 ```
@@ -129,7 +129,7 @@ docker run hello-world
 	For more examples and ideas, visit:
 	https://docs.docker.com/get-started/
 
-### 4.3.2.二进制包安装docker {#_4_3_2_}
+### 4.3.2.二进制包安装docker {#_4-3-2-anchor}
 	创建存放docker安装包的目录->切换目录->在该目录中下载docker二进制安装包->解压到/usr/bin/
 ```
 mkdir -p  /opt/software/package/ &&
@@ -228,7 +228,7 @@ docker run hello-world
 	https://docs.docker.com/get-started/
 
 
-## 4.4.docker启动故障解决 {#_4_4_}
+## 4.4.docker启动故障解决 {#_4-4-anchor}
 	错误信息
 	Job for docker.service failed because the control process exited with error code. 
 	See "systemctl status docker.service" and "journalctl -xe" for details.
@@ -260,7 +260,7 @@ cat /etc/docker/daemon.json
 ```
 	看配置的registry-mirrors是否正确，如私服前是否忘记了加http://
 
-## 4.5.docker容器可视化 {#_4_5_}
+## 4.5.docker容器可视化 {#_4-5-anchor}
 	查询当前有哪些portainer镜像
 ```
 docker search portainer
@@ -283,8 +283,8 @@ docker run -d --name portainer \
 	用户名/密码：admin/portainer
 	单机版选择local即可
 
-## 4.6.搭建docke私服 {#_4_6_}
-### 4.6.1.搭建docke官方私服（不带有用户名和密码校验） {#_4_6_1_}
+## 4.6.搭建docke私服 {#_4-6-anchor}
+### 4.6.1.搭建docke官方私服（不带有用户名和密码校验） {#_4-6-1-anchor}
 
 	拉取仓库镜像
 ```
@@ -363,7 +363,7 @@ systemctl restart docker
 rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka/
 ```
 
-### 4.6.2.搭建docke官方私服(带有用户名和密码校验) {#_4_6_2_}
+### 4.6.2.搭建docke官方私服(带有用户名和密码校验) {#_4-6-2-anchor}
 	拉取仓库镜像
 ```
 docker pull registry
@@ -435,13 +435,13 @@ systemctl restart docker
 rm -rf /registry/public/repos/docker/registry/v2/repositories/springcloud-eureka/
 ```
 
-### 4.6.3.搭建harbor私服 {#_4_6_3_}
-#### 4.6.3.1.harbor简介 {#_4_6_3_1_}
+### 4.6.3.搭建harbor私服 {#_4-6-3-anchor}
+#### 4.6.3.1.harbor简介 {#_4-6-3-1-anchor}
 	Harbor是一个用于存储和分发Docker镜像的企业级Registry服务器，虽然Docker官方也提供了公共的镜像仓库，但是
 	从安全和效率等方面考虑，部署企业内部的私有环境Registry是非常必要的，harbor和docker中央仓库的关系就类似于
 	nexus和Maven中央仓库的关系，harbor除了存储和分发镜像外还具有用户管理，项目管理，配置管理和日志查询，高可
 	用部署等主要功能。
-#### 4.6.3.2.搭建docker-compose {#_4_6_3_2_}
+#### 4.6.3.2.搭建docker-compose {#_4-6-3-2-anchor}
 	版本说明
 	本次使用的docker-compose版本为2.6.1
 
@@ -466,7 +466,7 @@ cp docker-compose-2.6-linux-x86_64 /usr/local/bin/docker-compose
 docker-compose --version
 ```
 
-#### 4.6.3.3.安装harbor {#_4_6_3_3_}
+#### 4.6.3.3.安装harbor {#_4-6-3-3-anchor}
 	版本说明
 	本次使用的harbor版本为2.5.2
 
@@ -549,8 +549,8 @@ systemctl restart docker
 	在Harbor中创建项目,推送的时候可以用
 	如:springcloud-eureka
 
-## 4.7.docker官方私服可视化 {#_4_7_}
-### 4.7.1.docker-registry-web方案 {#_4_7_1_}
+## 4.7.docker官方私服可视化 {#_4-7-anchor}
+### 4.7.1.docker-registry-web方案 {#_4-7-1-anchor}
 	下载docker pull hyper/docker-registry-web镜像
 ```
 docker pull hyper/docker-registry-web
@@ -566,9 +566,9 @@ docker run -d --restart=always \
 	hyper/docker-registry-web:latest
 ```
 
-## 4.8.制作docker镜像并上传到私服 {#_4_8_}
+## 4.8.制作docker镜像并上传到私服 {#_4-8-anchor}
 
-### 4.8.1.制作Dokcer镜像 {#_4_8_1_}
+### 4.8.1.制作Dokcer镜像 {#_4-8-1-anchor}
 	下载地址
 ```
 https://repo.huaweicloud.com/java/jdk/
@@ -612,7 +612,7 @@ docker images
 docker run -it --name=myjdk8 镜像id /bin/bash
 ```
 
-### 4.8.2.上传本地jdk镜像到私服 {#_4_8_2_}
+### 4.8.2.上传本地jdk镜像到私服 {#_4-8-2-anchor}
 	给镜像打标签
 ```
 docker tag jdk/jdk1.8.0_181 192.168.0.4:5000/jdk/jdk1.8.0_181:latest
@@ -624,8 +624,8 @@ docker push 192.168.0.4:5000/jdk/jdk1.8.0_181:latest
 	查看推送到私服中的镜像
 	访问:http://192.168.0.4:5000/v2/_catalog,看到:{"repositories":["jdk/jdk1.8.0_181"]}
 
-## 4.9.Docker中安装常用软件 {#_4_9_}
-### 4.9.1.Docker安装mysql {#_4_9_1_}
+## 4.9.Docker中安装常用软件 {#_4-9-anchor}
+### 4.9.1.Docker安装mysql {#_4-9-1-anchor}
 	下载mysql镜像
 ```
 docker pull mysql
@@ -638,7 +638,7 @@ docker run -di --name mysql -p 3306:3306 --restart=always -e MYSQL_ROOT_PASSWORD
 ```
 myqldocker exec -it mysql bash
 ```
-### 4.9.2.Docker中安装consul {#_4_9_2_}
+### 4.9.2.Docker中安装consul {#_4-9-2-anchor}
 	下载consul镜像
 ```
 docker pull consul
@@ -652,7 +652,7 @@ docker run -d --name=consul \
 	consul:latest
 ```
 
-### 4.9.3.Docker容器中安装vim {#_4_9_3_}
+### 4.9.3.Docker容器中安装vim {#_4-9-3-anchor}
 	进入容器内部
 ```
 docker exec -it 容器id /bin/bash
@@ -682,7 +682,7 @@ apt update
 apt-get install vim
 ```
 
-### 4.9.3.docker安装elk {#_4_9_3_}
+### 4.9.3.docker安装elk {#_4-9-3-anchor}
 	下载elk镜像
 ```
 docker pull sebp/elk:6.8.22
