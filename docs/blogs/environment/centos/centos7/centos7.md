@@ -4856,7 +4856,7 @@ vi CentOS-Base.repo
 	#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=updates
 	gpgcheck=1
 	gpgkey=http://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-6
-	
+
 	#additional packages that may be useful
 	[extras]
 	name=CentOS-$releasever - Extras - mirrors.aliyun.com

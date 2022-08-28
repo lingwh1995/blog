@@ -10,10 +10,6 @@ icon: navigate
 
 - windows-server2016
 
-    - <a class="breadcrumb-link" href="windows-server2016-outline5-chapter1.html">windows-server2016-outline5-chapter1</a>
-
-    - <a class="breadcrumb-link" href="windows-server2016-outline5-chapter2.html">windows-server2016-outline5-chapter2</a>
-
     - <a class="breadcrumb-link" href="shardings">按照章节阅读</a>
 
 

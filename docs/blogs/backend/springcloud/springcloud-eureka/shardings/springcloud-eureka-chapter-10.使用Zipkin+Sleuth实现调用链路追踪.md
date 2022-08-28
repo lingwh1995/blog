@@ -174,7 +174,7 @@ http://localhost/consumer/payment/get/1
 ```
 http://localhost/consumer/payment/timeout/get/1
 ```
-    查看调用链路       
+    查看调用链路
 ```
 http://192.168.0.5:9411/zipkin/
 ```

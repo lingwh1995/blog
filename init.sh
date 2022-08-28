@@ -220,6 +220,7 @@ EOF
     $2:$MD_FILE_SOURCE_PATH
     $3:$MD_FILE_MARKMAP_TARGET_PATH
     $4:$MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH
+    $5:$TITLE2_INCREMENT_STEP
 EOF
 function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     echo '为文档原件和文档原件的的所有章节分片生成二级和三级目录大纲,并将这个目录大纲转换为markmap文件..........'
@@ -247,6 +248,9 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     #从原件恢复一份新的md文件
     cat $2/$1.md.original >> $2/$1.md
     echo '根据文档原件生成创建一份新的'$1'.md文件'
+
+    #开始让xxx.md文件中的二级标题增加1
+    title2IncrementByForOriginal $1 $2 $5
 
     #获取引用的代码的项目名称
     INCLUDE_CODE_PROJECT_NAME_STR=`ls $2/projects/ | tr '\r\n' ' '`
@@ -316,7 +320,9 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     do
         echo '开始为'$1'.md第'$i'章生成目录大纲md文件，章节目录大纲标题深度：'$4'......'
         #为具体章节章节生成目录大纲md文件，标题深度由$4这个参数决定
-        grep '^#\{1,'"$4"'\} '"$i"'' $2/$1.md > $2/$1-outline$4-chapter$i.md
+        echo $i'.1.章节内容概述' > $2/$1-outline$4-chapter$i.md
+        echo $i'.2.章节内容大纲' >> $2/$1-outline$4-chapter$i.md
+        grep '^#\{1,'"$4"'\} '"$i"'\.' $2/$1.md >> $2/$1-outline$4-chapter$i.md
         echo '完成为'$1'.md第'$i'章生成目录大纲md文件，章节目录大纲标题深度：'$4'............'
 
         echo '开始为'$1'.md第'$i'章节生成目录大纲markmap文件，markmap文件标题深度：'$4'......'
@@ -1140,16 +1146,10 @@ function enhance() {
     MD_FILE_MARKMAP_TARGET_PATH=$PUBLIC_FOLDER_PATH/$MD_FILE_MARKMAP_TARGET_PATH_PREFIX/$MD_FILE_RELATIVE_PATH
     # 为所有章节生成的markmap文件展示的标题层级深度
     MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH=5
-    #根据xxx.md文件标题生成博客大纲->将博客大纲转换为markmap文件
-    generateOutLineAndTransformOutLineToMarkmapForOriginal $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_MARKMAP_TARGET_PATH $MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH
-    #--------------------------------------------------------------------------------------------------------------
-
-
-    #开始让xxx.md文件中的二级标题增加1......'
-    #--------------------------------------------------------------------------------------------------------------
     #二级标题序列增加步长
     TITLE2_INCREMENT_STEP=2
-    title2IncrementByForOriginal $MD_FILE_NAME $MD_FILE_SOURCE_PATH $TITLE2_INCREMENT_STEP
+    #根据xxx.md文件标题生成博客大纲->将博客大纲转换为markmap文件
+    generateOutLineAndTransformOutLineToMarkmapForOriginal $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_MARKMAP_TARGET_PATH $MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH $TITLE2_INCREMENT_STEP
     #--------------------------------------------------------------------------------------------------------------
 
 

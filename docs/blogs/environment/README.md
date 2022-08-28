@@ -14,30 +14,6 @@ icon: navigate
 
         - <a class="breadcrumb-link" href="centos/centos7">centos7</a>
 
-            - <a class="breadcrumb-link" href="centos/centos7/centos7-outline5-chapter1.html">centos7-outline5-chapter1</a>
-
-            - <a class="breadcrumb-link" href="centos/centos7/centos7-outline5-chapter2.html">centos7-outline5-chapter2</a>
-
-            - <a class="breadcrumb-link" href="centos/centos7/centos7-outline5-chapter3.html">centos7-outline5-chapter3</a>
-
-            - <a class="breadcrumb-link" href="centos/centos7/centos7-outline5-chapter4.html">centos7-outline5-chapter4</a>
-
-            - <a class="breadcrumb-link" href="centos/centos7/centos7-outline5-chapter5.html">centos7-outline5-chapter5</a>
-
-            - <a class="breadcrumb-link" href="centos/centos7/centos7-outline5-chapter6.html">centos7-outline5-chapter6</a>
-
-            - <a class="breadcrumb-link" href="centos/centos7/centos7-outline5-chapter7.html">centos7-outline5-chapter7</a>
-
-            - <a class="breadcrumb-link" href="centos/centos7/centos7-outline5-chapter8.html">centos7-outline5-chapter8</a>
-
-            - <a class="breadcrumb-link" href="centos/centos7/centos7-outline5-chapter9.html">centos7-outline5-chapter9</a>
-
-            - <a class="breadcrumb-link" href="centos/centos7/centos7-outline5-chapter10.html">centos7-outline5-chapter10</a>
-
-            - <a class="breadcrumb-link" href="centos/centos7/centos7-outline5-chapter11.html">centos7-outline5-chapter11</a>
-
-            - <a class="breadcrumb-link" href="centos/centos7/centos7-outline5-chapter12.html">centos7-outline5-chapter12</a>
-
             - <a class="breadcrumb-link" href="centos/centos7/shardings">按照章节阅读</a>
 
 
@@ -73,10 +49,6 @@ icon: navigate
     - <a class="breadcrumb-link" href="windows">windows</a>
 
         - <a class="breadcrumb-link" href="windows/windows-server2016">windows-server2016</a>
-
-            - <a class="breadcrumb-link" href="windows/windows-server2016/windows-server2016-outline5-chapter1.html">windows-server2016-outline5-chapter1</a>
-
-            - <a class="breadcrumb-link" href="windows/windows-server2016/windows-server2016-outline5-chapter2.html">windows-server2016-outline5-chapter2</a>
 
             - <a class="breadcrumb-link" href="windows/windows-server2016/shardings">按照章节阅读</a>
 

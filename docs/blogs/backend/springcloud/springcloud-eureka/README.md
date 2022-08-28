@@ -10,28 +10,6 @@ icon: navigate
 
 - springcloud-eureka
 
-    - <a class="breadcrumb-link" href="springcloud-eureka-outline5-chapter1.html">springcloud-eureka-outline5-chapter1</a>
-
-    - <a class="breadcrumb-link" href="springcloud-eureka-outline5-chapter2.html">springcloud-eureka-outline5-chapter2</a>
-
-    - <a class="breadcrumb-link" href="springcloud-eureka-outline5-chapter3.html">springcloud-eureka-outline5-chapter3</a>
-
-    - <a class="breadcrumb-link" href="springcloud-eureka-outline5-chapter4.html">springcloud-eureka-outline5-chapter4</a>
-
-    - <a class="breadcrumb-link" href="springcloud-eureka-outline5-chapter5.html">springcloud-eureka-outline5-chapter5</a>
-
-    - <a class="breadcrumb-link" href="springcloud-eureka-outline5-chapter6.html">springcloud-eureka-outline5-chapter6</a>
-
-    - <a class="breadcrumb-link" href="springcloud-eureka-outline5-chapter7.html">springcloud-eureka-outline5-chapter7</a>
-
-    - <a class="breadcrumb-link" href="springcloud-eureka-outline5-chapter8.html">springcloud-eureka-outline5-chapter8</a>
-
-    - <a class="breadcrumb-link" href="springcloud-eureka-outline5-chapter9.html">springcloud-eureka-outline5-chapter9</a>
-
-    - <a class="breadcrumb-link" href="springcloud-eureka-outline5-chapter10.html">springcloud-eureka-outline5-chapter10</a>
-
-    - <a class="breadcrumb-link" href="springcloud-eureka-outline5-chapter11.html">springcloud-eureka-outline5-chapter11</a>
-
     - <a class="breadcrumb-link" href="shardings">按照章节阅读</a>
 
 
