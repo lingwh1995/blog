@@ -304,7 +304,7 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     echo '开始为'$1'.md的所有章节生成markmap文件........................'
 
     #获取一级标题总数
-    TOTAL_TITLE1_COUNTS=`grep '^#\{1\} [1-9]\+' $2/$1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
+    TOTAL_TITLE1_COUNTS=`grep '^# [1-9][0-9]\?' $2/$1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
 
     #创建存放为xxx.md的所有章节生成的markmap文件的文件夹
     mkdir -p $3/chapter
