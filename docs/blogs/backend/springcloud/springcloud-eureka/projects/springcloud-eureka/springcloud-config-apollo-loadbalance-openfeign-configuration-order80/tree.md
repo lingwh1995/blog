@@ -14,7 +14,7 @@ springcloud-config-apollo-loadbalance-openfeign-configuration-order80
 |       |               |-- listener
 |       |               |   |-- ApolloPropertiesChangedListener.java
 |       |               |   •-- AutomaticApolloWatcher.java
-|       |               |-- services
+|       |               |-- service
 |       |               |   •-- PaymentServiceOpenFeign.java
 |       |               •-- OrderServiceConsumerApolloLoadBalanceOpenFeignConfiguration80.java
 |       •-- resources

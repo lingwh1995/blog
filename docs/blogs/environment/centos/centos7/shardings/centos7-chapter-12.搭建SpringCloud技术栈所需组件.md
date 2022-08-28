@@ -18,7 +18,7 @@ head:
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter12.md)
 ## 12.3.搭建Zipkin
 	安装jdk	
-	详细参考 3.搭建基础开发环境->3.1.安装jdk
+<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk</a>
 
 	创建存放安装包的目录->进入该目录->下载zipkin->重命名->赋予运行权限
 ```
@@ -43,11 +43,11 @@ java -jar zipkin.jar
 ### 12.4.1.Apollo配置中心简介
 	Apollo(阿波罗)是一款可靠的分布式配置管理中心，诞生于携程框架研发部，能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性，适用于微服务配置管理场景。
 
-<a href="https://www.apolloconfig.com">官方网址</a>
+<a href="https://www.apolloconfig.com" target="_blank">官方网址</a>
 ```
 https://www.apolloconfig.com
 ```
-<a href="https://github.com/apolloconfig">官网网址(GITHUB)</a>
+<a href="https://github.com/apolloconfig" target="_blank">官网网址(GITHUB)</a>
 ```
 https://github.com/apolloconfig
 ```

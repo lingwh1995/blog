@@ -17,7 +17,7 @@ icon: linux
 head:
   - - meta
     - name: keywords
-      content: 微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,使用Ribbon实现客户端负载均衡,使用OpenFeign实现客户端负载均衡,使用Hystrix实现服务降级和熔断,使用DashBoard和Turbine对服务进行监控,使用GateWay实现网关功能,使用Zipkin+Sleuth实现调用链路追踪,使用Apollo配置中心统一存放配置,
+      content: 微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,使用Ribbon实现客户端负载均衡,使用OpenFeign实现客户端负载均衡,使用Hystrix实现服务降级和熔断,使用DashBoard和Turbine对服务进行监控,使用GateWay实现网关功能,使用Zipkin+Sleuth实现调用链路追踪,使用Apollo配置中心管理配置,
 ---
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/springcloud-eureka-guidance.md)
 
@@ -30,7 +30,7 @@ https://martinfowler.com/articles/microservices.html
 ## <a href="https://martinfowler.com/articles/microservices.html" target="_blank">1.2.Martin Fowler微服务论文国内译版</a>
 	如需国内译版,请使用谷歌翻译插件翻译自行翻译
 
-## 1.3.微服务架构图
+## 1.5.微服务架构图
 ::: center
 <div class="imgbg-customer">
 <img src="./images/microservice_architecture.png"  width="100%"/>
@@ -327,8 +327,7 @@ https://gitee.com/lingwh1995/springcloud-eureka.git
 
 ## 2.5.准备项目需要的数据库
 ### 2.5.1.安装mysql数据库
-    详细参考
-<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql</a>
+<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8</a>
 
 ### 2.5.2.创建项目需要的数据库
     导入数据库脚本(application.yml中数据库配置和mysql部署机器信息保持一致)
@@ -734,7 +733,7 @@ http://localhost/consumer/payment/get/1
 ## 5.3.Ribbon简介
     Ribbon是Netflix发布的开源项目，主要功能是提供客户端的软件负载均衡算法，将Netflix的中间层服务连接在一起。Ribbon客户端组件提供一系列完善的配置项如连接超时，重试等。简单的说，就是在配置文件中列出Load Balancer（简称LB）后面所有的机器，Ribbon会自动的帮助你基于某种规则（如简单轮询，随即连接等）去连接这些机器,也可以使用Ribbon实现自定义的负载均衡算法。
 
-<a href="https://github.com/Netflix/ribbon">官方网址</a>
+<a href="https://github.com/Netflix/ribbon" target="_blank">官方网址</a>
 ```
 https://github.com/Netflix/ribbon
 ```
@@ -2313,20 +2312,79 @@ flowchart LR
 
     通过上图的链路追踪可以清晰的查看到两个服务调用花费的时间情况
 
-# 11.使用Apollo配置中心统一存放配置 {#11.}
+# 11.使用Apollo配置中心管理配置 {#11.}
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter11.md)
 ## 12.1.Apollo配置中心简介
 	Apollo(阿波罗)是一款可靠的分布式配置管理中心，诞生于携程框架研发部，能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性，适用于微服务配置管理场景。
 
-<a href="https://www.apolloconfig.com">官方网址</a>
+<a href="https://www.apolloconfig.com" target="_blank">官方网址</a>
 ```
 https://www.apolloconfig.com
 ```
-<a href="https://github.com/apolloconfig">官网网址(GITHUB)</a>
+<a href="https://github.com/apolloconfig" target="_blank">官网网址(GITHUB)</a>
 ```
 https://github.com/apolloconfig
 ```
 
 ## 12.2.搭建Apollo配置中心
-详细参考<a href="https://lingwh1995.github.io/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-2.%E6%90%AD%E5%BB%BASpringCloud%E6%8A%80%E6%9C%AF%E6%A0%88%E6%89%80%E9%9C%80%E7%BB%84%E4%BB%B6.html#_2-4-2-1-%E5%8D%95%E7%8E%AF%E5%A2%83%E7%89%88">搭建Apollo配置中心</a>
-## 12.2.搭建Apollo配置中心
+<a href="/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-2.搭建SpringCloud技术栈所需组件.html#_2-4-3-1-单环境版" target="_blank">搭建Apollo配置中心(Windows版)</a>
+
+## 12.3.搭建服务消费者(Apollo)
+### 12.3.1.章节内容简介
+    本章节会展示如何使用Apollo配置中心来管理配置
+### 12.3.2.模块简介
+    使用了Apollo配置中心的服务消费者,启动端口: 80
+### 12.3.3.模块目录结构
+```md
+@include(./projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/tree.md)
+```
+### 12.3.4.创建模块
+	在父工程(springcloud-eureka)中创建一个名为springcloud-config-apollo-loadbalance-openfeign-configuration-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
+### 12.3.5.编写模块pom.xml
+```xml
+@include(./projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/pom.xml)
+```
+### 12.3.6.编写模块application.yml
+```yml
+@include(./projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/resources/application.yml)
+```
+### 12.3.7.编写模块Apollo配置文件
+```sql
+@include(./projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/resources/apollo-env.properties)
+```
+### 12.3.8.编写模块config
+```java
+@include(./projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/config/OpenFeignConfig.java)
+```
+### 12.3.9.编写模块service
+```java
+@include(./projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/service/PaymentServiceOpenFeign.java)
+```
+### 12.3.10.编写模块listener
+```java
+@include(./projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/listener/ApolloPropertiesChangedListener.java)
+```
+### 12.3.11.编写模块controller
+    ApolloConfigController.java
+```java
+@include(./projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/controller/ApolloConfigController.java)
+```
+    OrderConsumerController.java
+```java
+@include(./projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java)
+```
+### 12.3.12.编写模块主启动类
+```java
+@include(./projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerApolloLoadBalanceOpenFeignConfiguration80.java)
+```
+### 12.3.13.测试模块
+    启动Apollo,在浏览器中访问
+```
+http://localhost:7001/
+```
+    看到如下界面代表搭建成功
+::: center
+<div class="imgbg-customer">
+<img src="./images/eureka7001.png"  width="100%"/>
+</div>
+:::

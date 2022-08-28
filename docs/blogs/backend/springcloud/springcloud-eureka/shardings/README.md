@@ -32,5 +32,5 @@ icon: navigate
 
     - <a class="breadcrumb-link" href="springcloud-eureka-chapter-10.使用Zipkin+Sleuth实现调用链路追踪.html">10.使用Zipkin+Sleuth实现调用链路追踪</a>
 
-    - <a class="breadcrumb-link" href="springcloud-eureka-chapter-11.使用Apollo配置中心统一存放配置.html">11.使用Apollo配置中心统一存放配置</a>
+    - <a class="breadcrumb-link" href="springcloud-eureka-chapter-11.使用Apollo配置中心管理配置.html">11.使用Apollo配置中心管理配置</a>
 

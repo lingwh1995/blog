@@ -12,6 +12,28 @@ icon: navigate
 
     - <a class="breadcrumb-link" href="springcloud-eureka">springcloud-eureka</a>
 
+        - <a class="breadcrumb-link" href="springcloud-eureka/springcloud-eureka-outline5-chapter1.html">springcloud-eureka-outline5-chapter1</a>
+
+        - <a class="breadcrumb-link" href="springcloud-eureka/springcloud-eureka-outline5-chapter2.html">springcloud-eureka-outline5-chapter2</a>
+
+        - <a class="breadcrumb-link" href="springcloud-eureka/springcloud-eureka-outline5-chapter3.html">springcloud-eureka-outline5-chapter3</a>
+
+        - <a class="breadcrumb-link" href="springcloud-eureka/springcloud-eureka-outline5-chapter4.html">springcloud-eureka-outline5-chapter4</a>
+
+        - <a class="breadcrumb-link" href="springcloud-eureka/springcloud-eureka-outline5-chapter5.html">springcloud-eureka-outline5-chapter5</a>
+
+        - <a class="breadcrumb-link" href="springcloud-eureka/springcloud-eureka-outline5-chapter6.html">springcloud-eureka-outline5-chapter6</a>
+
+        - <a class="breadcrumb-link" href="springcloud-eureka/springcloud-eureka-outline5-chapter7.html">springcloud-eureka-outline5-chapter7</a>
+
+        - <a class="breadcrumb-link" href="springcloud-eureka/springcloud-eureka-outline5-chapter8.html">springcloud-eureka-outline5-chapter8</a>
+
+        - <a class="breadcrumb-link" href="springcloud-eureka/springcloud-eureka-outline5-chapter9.html">springcloud-eureka-outline5-chapter9</a>
+
+        - <a class="breadcrumb-link" href="springcloud-eureka/springcloud-eureka-outline5-chapter10.html">springcloud-eureka-outline5-chapter10</a>
+
+        - <a class="breadcrumb-link" href="springcloud-eureka/springcloud-eureka-outline5-chapter11.html">springcloud-eureka-outline5-chapter11</a>
+
         - <a class="breadcrumb-link" href="springcloud-eureka/shardings">按照章节阅读</a>
 
 
@@ -37,6 +59,6 @@ icon: navigate
 
             - <a class="breadcrumb-link" href="springcloud-eureka/shardings/springcloud-eureka-chapter-10.使用Zipkin+Sleuth实现调用链路追踪.html">10.使用Zipkin+Sleuth实现调用链路追踪</a>
 
-            - <a class="breadcrumb-link" href="springcloud-eureka/shardings/springcloud-eureka-chapter-11.使用Apollo配置中心统一存放配置.html">11.使用Apollo配置中心统一存放配置</a>
+            - <a class="breadcrumb-link" href="springcloud-eureka/shardings/springcloud-eureka-chapter-11.使用Apollo配置中心管理配置.html">11.使用Apollo配置中心管理配置</a>
 
         - <a class="breadcrumb-link" href="springcloud-eureka/springcloud-eureka.html#intro">章节内容合集</a>

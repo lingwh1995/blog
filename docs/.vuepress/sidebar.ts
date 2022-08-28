@@ -281,9 +281,9 @@ export default sidebar([
                       link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-10.使用Zipkin+Sleuth实现调用链路追踪.md",
                   },
                   {
-                      text: "11.使用Apollo配置中心统一存放配置",
+                      text: "11.使用Apollo配置中心管理配置",
                       icon: "article",
-                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-11.使用Apollo配置中心统一存放配置.md",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-11.使用Apollo配置中心管理配置.md",
                   },
               ]
           },
@@ -348,7 +348,7 @@ export default sidebar([
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#10.",
                   },
                   {
-                      text: "11.使用Apollo配置中心统一存放配置",
+                      text: "11.使用Apollo配置中心管理配置",
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#11.",
                   },
