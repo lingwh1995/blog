@@ -20,7 +20,7 @@ head:
 # 3.搭建基础开发环境
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter3.md)
 
-## 3.3.安装jdk
+## 3.3.安装jdk {#3_3_}
 	查看当前安装的java版本
 
 ```
@@ -65,7 +65,7 @@ source /etc/profile
 java -version
 ```
 
-## 3.4.安装maven
+## 3.4.安装maven {#3_4_}
 	注意
 	maven linux版和windows版并不通用
 
@@ -119,7 +119,7 @@ vim /usr/local/bin/apache-maven-3.8.6/conf/settings.xml
 </mirror>
 ```
 
-## 3.5.安装mysql
+## 3.5.安装mysql {#3_5_}
 <!--
 	参考网站
 	安装mysql
@@ -212,7 +212,7 @@ update user set host='%' where user='root';
 flush privileges;
 ```
 
-## 3.6.安装nodejs
+## 3.6.安装nodejs {#3_6_}
 	安装wget
 ```
 yum -y install wget
@@ -254,7 +254,7 @@ node -v
 npm -v
 ```
 
-## 3.7.安装fastgithub
+## 3.7.安装fastgithub {#3_7_}
 	下载依赖包
 ```
 yum -y install libicu
@@ -300,9 +300,9 @@ git config --global http.proxy http://127.0.0.1:38457
 git config --global https.proxy http://127.0.0.1:38457
 ```
 
-## 3.8.安装git
+## 3.8.安装git {#3_8_}
 
-### 3.8.1.安装默认版本git
+### 3.8.1.安装默认版本git {#3_8_1_}
 	卸载旧版本
 ```
 yum -y remove git
@@ -316,7 +316,7 @@ yum install -y git
 git version
 ```
 
-### 3.8.2.安装指定版本git
+### 3.8.2.安装指定版本git {#3_8_2_}
 	下载需要安装的版本号
 ```
 wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.29.0.tar.gz
@@ -354,3 +354,5 @@ source /etc/profile
 git version
 ```
 
+
+<ScrollIntoPageView/>

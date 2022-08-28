@@ -17,7 +17,7 @@ head:
 
 # 3.使用Eureka作为注册中心
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter3.md)
-## 3.3.Eureka注册中心简介
+## 3.3.Eureka注册中心简介 {#3_3_}
 	Eureka是Netflix公司开发的服务发现框架,Spring Cloud对它提供了支持,将它集成在了自己spring-cloud-netflix子项目中,用来实现Spring Cloud的服务发现功能,核心功能是为实现服务发现提供了基础支持。本次将搭建一个单节点版的Eureka注册中心和一个集群(高可用)版的Eureka注册中心,用来实现服务发现功能。
 
 <a href="https://github.com/Netflix/eureka" target="_blank">官方网站(GITHUB)</a>
@@ -54,30 +54,30 @@ https://spring.io/projects/spring-cloud-netflix
 	服务剔除(Service Eviction)
 	在默认的情况下,当Eureka客户端连续90秒(3个续约周期)没有向Eureka服务器发送服务续约,即心跳,Eureka 服务器会将该服务实例从服务注册列表删除,即服务剔除。
 
-## 3.4.单节点版EUREKA注册中心搭建
-### 3.4.1.章节内容简介
+## 3.4.单节点版EUREKA注册中心搭建 {#3_4_}
+### 3.4.1.章节内容简介 {#3_4_1_}
     本章节会展示如何搭建一个单节点版的Eureka注册中心
-### 3.4.2.模块简介
+### 3.4.2.模块简介 {#3_4_2_}
     单节点版Eureka注册中心,启动端口: 7001
-### 3.4.3.模块目录结构
+### 3.4.3.模块目录结构 {#3_4_3_}
 ```md
 @include(../projects/springcloud-eureka/springcloud-register-center-single-node7001/tree.md)
 ```
-### 3.4.4.创建模块
+### 3.4.4.创建模块 {#3_4_4_}
 	在父工程(springcloud-eureka)中创建一个名为springcloud-register-center-single-node7001的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
-### 3.4.5.编写模块pom.xml
+### 3.4.5.编写模块pom.xml {#3_4_5_}
 ```xml
 @include(../projects/springcloud-eureka/springcloud-register-center-single-node7001/pom.xml)
 ```
-### 3.4.6.编写模块application.yml
+### 3.4.6.编写模块application.yml {#3_4_6_}
 ```yml
 @include(../projects/springcloud-eureka/springcloud-register-center-single-node7001/src/main/resources/application.yml)
 ```
-### 3.4.7.编写模块主启动类
+### 3.4.7.编写模块主启动类 {#3_4_7_}
 ```java
 @include(../projects/springcloud-eureka/springcloud-register-center-single-node7001/src/main/java/org/openatom/springcloud/RegisterCcenterSingleNode7001.java)
 ```
-### 3.4.8.测试模块
+### 3.4.8.测试模块 {#3_4_8_}
     在浏览器中访问
 ```
 http://localhost:7001/
@@ -89,10 +89,10 @@ http://localhost:7001/
 </div>
 :::
 
-## 3.5.集群(高可用)版EUREKA注册中心搭建
-### 3.5.1.章节内容简介
+## 3.5.集群(高可用)版EUREKA注册中心搭建 {#3_5_}
+### 3.5.1.章节内容简介 {#3_5_1_}
     本章节会展示如何搭建一个集群(高可用)版的Eureka注册中心,共有三个节点,Eureka注册中心集群的原理是多个Eureka Server之间相互注册,从而组成一个集群。
-### 3.5.2.搭建Eureka集群中第一个节点
+### 3.5.2.搭建Eureka集群中第一个节点 {#3_5_2_}
     模块简介
     集群(高可用)版Eureka注册中心中第一个节点,启动端口: 7002
     
@@ -119,7 +119,7 @@ http://localhost:7001/
 @include(../projects/springcloud-eureka/springcloud-register-center-cluster-node7002/src/main/java/org/openatom/springcloud/RegisterCcenterClusterNode7002.java)
 ```
 
-### 3.5.3.搭建Eureka集群中第二个节点
+### 3.5.3.搭建Eureka集群中第二个节点 {#3_5_3_}
     模块简介
     集群(高可用)版Eureka注册中心中第二个节点,启动端口: 7003
 
@@ -146,7 +146,7 @@ http://localhost:7001/
 @include(../projects/springcloud-eureka/springcloud-register-center-cluster-node7003/src/main/java/org/openatom/springcloud/RegisterCcenterClusterNode7003.java)
 ```
 
-### 3.5.4.搭建Eureka集群中第三个节点
+### 3.5.4.搭建Eureka集群中第三个节点 {#3_5_4_}
     模块简介
     集群(高可用)版Eureka注册中心中第三个节点,启动端口: 7004
 
@@ -173,14 +173,14 @@ http://localhost:7001/
 @include(../projects/springcloud-eureka/springcloud-register-center-cluster-node7004/src/main/java/org/openatom/springcloud/RegisterCcenterClusterNode7004.java)
 ```
 
-### 3.5.5.配置host
+### 3.5.5.配置host {#3_5_5_}
     修改host文件,C:\Windows\System32\drivers\etc\host
     添加如下内容:
     127.0.0.1		eureka7002
     127.0.0.1		eureka7003
     127.0.0.1		eureka7004
     
-### 3.5.6.测试集群模块
+### 3.5.6.测试集群模块 {#3_5_6_}
     测试集群中的第一个节点(7002),浏览器访问
 ```
 http://eureka7002:7002/
@@ -214,3 +214,5 @@ http://eureka7004:7004/
 
     可以看到,在每个节点和都和其他两个节点相互注册,这代表集群搭建成功
 
+
+<ScrollIntoPageView/>

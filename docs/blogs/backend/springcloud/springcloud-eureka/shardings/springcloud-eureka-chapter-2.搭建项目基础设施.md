@@ -17,10 +17,10 @@ head:
 
 # 2.搭建项目基础设施
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter2.md)
-## 2.3.创建项目父工程
-### 2.3.1.创建父工程
+## 2.3.创建项目父工程 {#2_3_}
+### 2.3.1.创建父工程 {#2_3_1_}
 	在idea中创建一个名为springcloud-eureka的maven工程,创建完成后打开该工程,删除src文件夹
-### 2.3.2.编写父工程pom.xml
+### 2.3.2.编写父工程pom.xml {#2_3_2_}
     pom.xml中配置主要包括两部分内容,第一是对子模块依赖的jar包和使用到的插件的版本的统一规定,第二是规定了四种不同的环境,分别是: 1.开发环境(dev) 2.测试环境(test) 3.生产环境(prod) 4.rancher测试专用环境(rancher),关于这四种环境的详细内容会在本博客的最后一部分进行详细解析说明
     
     pom.xml
@@ -270,35 +270,35 @@ head:
 </project>
 ```
 
-## 2.4.创建项目依赖的公共模块
-### 2.4.1.模块目录结构
+## 2.4.创建项目依赖的公共模块 {#2_4_}
+### 2.4.1.模块目录结构 {#2_4_1_}
 ```md
 @include(../projects/springcloud-eureka/springcloud-api-commons/tree.md)
 ```
-### 2.4.2.创建模块
+### 2.4.2.创建模块 {#2_4_2_}
 	在父工程(springcloud-eureka)中创建一个名为springcloud-api-commons的maven模块,这个模块中包含了一些公共的Java实体和一些公共的插件,后面的每个模块都要引入这个公共模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
-### 2.4.3.编写模块pom.xml
+### 2.4.3.编写模块pom.xml {#2_4_3_}
 ```xml
 @include(../projects/springcloud-eureka/springcloud-api-commons/pom.xml)
 ```
-### 2.4.4.编写模块中实体类
+### 2.4.4.编写模块中实体类 {#2_4_4_}
     Payment.java
 ```java
 @include(../projects/springcloud-eureka/springcloud-api-commons//src/main/java/org/openatom/springcloud/entities/Payment.java)
 ```
 
-## 2.5.准备项目需要的数据库
-### 2.5.1.安装mysql数据库
+## 2.5.准备项目需要的数据库 {#2_5_}
+### 2.5.1.安装mysql数据库 {#2_5_1_}
     详细参考
 <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql</a>
 
-### 2.5.2.创建项目需要的数据库
+### 2.5.2.创建项目需要的数据库 {#2_5_2_}
     导入数据库脚本(application.yml中数据库配置和mysql部署机器信息保持一致)
 ```sql
 @include(../projects/springcloud-eureka/script/payment.sql)
 ```
 
-## 2.6.配置使用热部署
+## 2.6.配置使用热部署 {#2_6_}
     在公共模块的pom.xml中添加热部署依赖和相关配置(上一步已经添加进去了,这里只是展示热部署部分的代码),将热部署相关插件和配置放在公共模块的好处是,其他的模块引用公共模块的时候就已经引入了热部署相关插件和配置,无需额外引入
 ```xml
     <dependencies>
@@ -343,3 +343,5 @@ head:
     开启热部署功能:spring.devtools.restart.enabled: true
     关闭热部署功能:spring.devtools.restart.enabled: false
 
+
+<ScrollIntoPageView/>

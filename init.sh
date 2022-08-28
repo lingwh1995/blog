@@ -705,6 +705,16 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
         sed -n ''"$CHAPTER_START_LINE_NUMBER"','"$CHAPTER_END_LINE_NUMBER"'p' $2/$1.md >> $2/$3/$1-chapter-$CHAPTER_NAME.md
         echo '完成为'$1'.md生成分片文件写入正文内容................................................'
 
+        echo '开始为'$1'.md生成的分片文件二级标题、三级标题和四级标题添加锚点使用的id................................................'
+        #给所有二级标题后面添加锚点使用的id
+        sed -i 's/\(^## '"$i"'\.\([1-9][0-9]\?\).*\)/\1 \{#'"$i"'_\2_\}/g' $2/$3/$1-chapter-$CHAPTER_NAME.md
+        sed -i 's/\(^### '"$i"'\.\([1-9][0-9]\?\)\.\([1-9][0-9]\?\)\..*\)/\1 \{#'"$i"'_\2_\3_\}/g' $2/$3/$1-chapter-$CHAPTER_NAME.md
+        sed -i 's/\(^#### '"$i"'\.\([1-9][0-9]\?\)\.\([1-9][0-9]\?\)\.\([1-9][0-9]\?\)\..*\)/\1 \{#'"$i"'_\2_\3_\4_\}/g' $2/$3/$1-chapter-$CHAPTER_NAME.md
+        #写入锚点跳跃组件
+        echo '' >> $2/$3/$1-chapter-$CHAPTER_NAME.md
+        echo '<ScrollIntoPageView/>' >> $2/$3/$1-chapter-$CHAPTER_NAME.md
+        echo '完成为'$1'.md生成的分片文件二级标题、三级标题和四级标题添加锚点使用的id................................................'
+
         #替换图片路径
         sed -i 's#<img\(.*\)src=\"\./images/\(.*\)\"#<img\1src=\"\.\./images/\2\"#g' $2/$3/$1-chapter-$CHAPTER_NAME.md
         #替换引入的项目的路径
@@ -819,7 +829,7 @@ function generateSidebarConfigForAllAndSetAnchorForOriginal() {
     echo "      ]" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
     echo "  }," >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
 
-    #给所有一级标题后面添加锚点使用的属性
+    #给所有一级标题后面添加锚点使用的id
     for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
     do
     sed -i 's/\(^# '"$i"'\..*\)/& \{#'"$i"'\.\}/g' $2/$1.md
@@ -1103,25 +1113,6 @@ function syntaxCheck() {
 
 
 :<< EOF
-    替换文本中引用的文字
-    $1: $MD_FILE_NAME
-    $2: $MD_FILE_RELATIVE_PATH
-EOF
-function replaceReferenceText() {
-    echo '开始执行替换'$1.md'中引用的文本............................................................'
-    #从bootstrap.ini中获取xxx.md的enhance状态
-    REFERENCE_TEXT_STR=( $( parseBootstrapIni markdown-$a referenceText) )
-    REFERENCE_TEXT_ARR=(`echo $REFERENCE_TEXT_STR | tr ',' ' '`)
-    for((i=1;i<${#REFERENCE_TEXT_ARR[@]};i++)); do
-        REFERENCE_TEXT_BEFORE=`echo ${REFERENCE_TEXT_ARR[i]} | cut -d'|' -f1`
-        REFERENCE_TEXT_AFTER=`echo ${REFERENCE_TEXT_ARR[i]} | cut -d'|' -f2`
-        sed -i 's/'"$REFERENCE_TEXT_BEFORE"'/'"$REFERENCE_TEXT_AFTER"'/g' $DOCS_PATH/$2/$1.md
-    done
-    echo '完成执行替换'$1.md'中引用的文本............................................................'
-}
-
-
-:<< EOF
     执行增强xxx.md的操作
     门面模式，统一封装上面的方法，对外提供一个调用接口即可
     $1: $MD_FILE_NAME
@@ -1208,11 +1199,6 @@ function enhance() {
     #--------------------------------------------------------------------------------------------------------------
     #shardings文件所在的相对路径
     generateBreadcrumbREADME $MD_FILE_NAME $MD_FILE_RELATIVE_PATH $MD_FILE_CHAPTER_SHARDINGS_FOLDER_NAME
-    #--------------------------------------------------------------------------------------------------------------
-
-    #替换文本用引用的文本
-    #--------------------------------------------------------------------------------------------------------------
-    replaceReferenceText $MD_FILE_NAME $MD_FILE_RELATIVE_PATH
     #--------------------------------------------------------------------------------------------------------------
 
     echo '完成增强'$2'目录下'$1'.md文件.............................................................................................................................'

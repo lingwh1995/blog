@@ -16,7 +16,7 @@ head:
 
 # 12.搭建SpringCloud技术栈所需组件
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter12.md)
-## 12.3.搭建Zipkin
+## 12.3.搭建Zipkin {#12_3_}
 	安装jdk	
 	详细参考 3.搭建基础开发环境->3.1.安装jdk
 
@@ -39,8 +39,8 @@ firewall-cmd --reload
 ```
 java -jar zipkin.jar
 ```
-## 12.4.搭建Apollo配置中心
-### 12.4.1.Apollo配置中心简介
+## 12.4.搭建Apollo配置中心 {#12_4_}
+### 12.4.1.Apollo配置中心简介 {#12_4_1_}
 	Apollo(阿波罗)是一款可靠的分布式配置管理中心，诞生于携程框架研发部，能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性，适用于微服务配置管理场景。
 
 <a href="https://www.apolloconfig.com">官方网址</a>
@@ -52,6 +52,8 @@ https://www.apolloconfig.com
 https://github.com/apolloconfig
 ```
 
-### 12.4.2.基于Apollo内置的Eureka搭建Apollo配置中心
-### 12.4.3.基于独立部署的Eureka搭建Apollo配置中心
-### 12.4.4.基于Zookeeper搭建Apollo配置中心
+### 12.4.2.基于Apollo内置的Eureka搭建Apollo配置中心 {#12_4_2_}
+### 12.4.3.基于独立部署的Eureka搭建Apollo配置中心 {#12_4_3_}
+### 12.4.4.基于Zookeeper搭建Apollo配置中心 {#12_4_4_}
+
+<ScrollIntoPageView/>

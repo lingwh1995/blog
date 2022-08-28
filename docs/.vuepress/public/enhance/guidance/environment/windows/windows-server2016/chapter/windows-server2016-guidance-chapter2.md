@@ -3,12 +3,8 @@
     本章节涉及主要内容有：
      2.1.章节内容概述
      2.2.章节内容大纲
-     2.3.配置静态IP地址
-     2.4.解决远程连接无法连接的问题
-     2.5.设置系统环境变量
-     2.6.安装curl
-     2.7.配置yml源
-     2.8.安装常用基础系统软件
+     2.3.搭建Zipkin
+     2.4.搭建Apollo配置中心
 	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 
 ## <a href="/enhance/markmap/environment/windows/windows-server2016/chapter/windows-server2016-outline5-chapter2.html" target="_blank">2.2.章节内容大纲</a>

@@ -19,7 +19,7 @@ head:
 # 1.安装Linux操作系统
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter1.md)
 
-## 1.3.Linux重要目录介绍
+## 1.3.Linux重要目录介绍 {#1_3_}
 	/usr → C:/Windows/ /*系统级的目录
 	/usr/lib → C:/Windows/System32
 	/usr/local → C:/Progrem Files/ /*用户级的程序目录，用户自己编译的软件默认会安装到这个目录下
@@ -32,7 +32,7 @@ head:
 	/tmp 用于存放各种临时文件，是公用的临时文件存储点。
 	/var 存放临时文件，如各种服务的日志文件。
 
-## 1.4.Centos镜像下载
+## 1.4.Centos镜像下载 {#1_4_}
 	如果是学习环境，建议安装centos mini版镜像，生产环境可以安装完整版本
 
     下载地址
@@ -40,7 +40,7 @@ head:
 http://ftp.sjtu.edu.cn/centos/
 ```
 
-## 1.3.安装前Vmaware相关设置
+## 1.3.安装前Vmaware相关设置 {#1_3_}
 	虚拟机联网设置
 	导航栏->编辑->虚拟网络编辑器->VMnet8NAT模式->更改设置->VMnet8NAT模式
 		->更改底部子网:192.168.0.0，子网掩码:255.255.255.0->NAT设置->网关IP:192.168.0.2
@@ -52,8 +52,10 @@ http://ftp.sjtu.edu.cn/centos/
 	VMware NetworkAdepter VMnet1：Host用于与Host-Only虚拟网络进行通信的虚拟网卡
 	VMware NetworkAdepter VMnet8：Host用于与NAT虚拟网络进行通信的虚拟网卡
 
-## 1.4.安装时分区大小设置
+## 1.4.安装时分区大小设置 {#1_4_}
 	/boot	/*存放系统启动引导文件，建议大小：512mb
 	/swap 	/*交换区，建议大小：2g
 	/*主分区，剩下的空间全部分给这个分区
 
+
+<ScrollIntoPageView/>

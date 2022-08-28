@@ -92,7 +92,7 @@ export PATH=$PATH:$M2_HOME/bin
 	&lt;url>http://repo2.maven.org/maven2/&lt;/url>
 	&lt;mirrorOf>central&lt;/mirrorOf>
 &lt;/mirror>
-</code></pre></div><h2 id="_3-5-安装mysql" tabindex="-1"><a class="header-anchor" href="#_3-5-安装mysql" aria-hidden="true">#</a> 3.5.安装mysql</h2>
+</code></pre></div><h2 id="3_5_" tabindex="-1"><a class="header-anchor" href="#3_5_" aria-hidden="true">#</a> 3.5.安装mysql</h2>
 <!--
 	参考网站
 	安装mysql
@@ -258,4 +258,4 @@ make prefix=/usr/local/git install
 </code></pre></div><pre><code>查看版本
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>git version
-</code></pre></div></div></template>
+</code></pre></div><ScrollIntoPageView/></div></template>

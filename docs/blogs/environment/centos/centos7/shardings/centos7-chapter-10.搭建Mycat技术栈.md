@@ -18,16 +18,16 @@ head:
 # 10.搭建Mycat技术栈
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter10.md)
 
-## 10.3.安装myact1.6
-### 10.3.1.服务器环境说明
+## 10.3.安装myact1.6 {#10_3_}
+### 10.3.1.服务器环境说明 {#10_3_1_}
 	192.168.0.6 mycat1.6
 	192.168.0.7 mysql
 	192.168.0.8 mysql
 
-### 10.3.2.搭建JDK
+### 10.3.2.搭建JDK {#10_3_2_}
 	详细参考 3.搭建基础开发环境->3.1.安装jdk
 
-### 10.3.3.搭建myact1.6
+### 10.3.3.搭建myact1.6 {#10_3_3_}
 <a href="http://www.mycat.org.cn/" target="_blank">官方网址</a>
 ```
 http://www.mycat.org.cn/
@@ -56,18 +56,18 @@ chomd 777 mysql-connector-java-8.0.29.jar &&
 cp mysql-connector-java-8.0.29.jar /usr/local/bin/mycat/lib/	
 ```
 		
-### 10.3.4.在各个节点上安装mysql
+### 10.3.4.在各个节点上安装mysql {#10_3_4_}
 	在节点1安装mysql8.0.29(192.168.0.7)
 	详细参考 3.搭建基础开发环境->3.3.安装mysql
 
 	在节点2安装mysql8.0.29(192.168.0.8)	
 	详细参考 3.搭建基础开发环境->3.3.安装mysql
 
-### 10.3.5.配置mycat
+### 10.3.5.配置mycat {#10_3_5_}
 	notepad++安装插件
 	notepad++安装nppftp这个插件，连接到远程服务器之后自动可以编辑远程服务器的文本文件
 	
-### 10.3.6.启动和关闭mycat，默认端口8066
+### 10.3.6.启动和关闭mycat，默认端口8066 {#10_3_6_}
 	进入mycat安装目录
 ```	
 cd /usr/local/bin/mycat
@@ -98,8 +98,8 @@ bin/mycat status
 bin/mycat console #前台启动
 ```
 
-## 10.4.搭建mycat2
-### 10.4.1.服务器环境说明
+## 10.4.搭建mycat2 {#10_4_}
+### 10.4.1.服务器环境说明 {#10_4_1_}
 	注意事项
 	mycat2需要一个数据库来存放默认mycat2自身运行所需的数据
 
@@ -107,10 +107,10 @@ bin/mycat console #前台启动
 	192.168.0.7 mysql
 	192.168.0.8 mysql
 
-### 10.4.2.搭建JDK
+### 10.4.2.搭建JDK {#10_4_2_}
 	详细参考 3.搭建基础开发环境->3.1.安装jdk
 
-### 10.4.3.安装mycat2自身运行需要的mysql8(192.168.0.6)
+### 10.4.3.安装mycat2自身运行需要的mysql8(192.168.0.6) {#10_4_3_}
 	创建用户mycat（注意：不能使用root用户，必须创建mycat这个用户）
 ```
 CREATE USER 'mycat'@'%' IDENTIFIED BY 'Mysql123456_';
@@ -131,7 +131,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'mycat'@'%' ;
 flush privileges;
 ```
 
-### 10.4.3.组装mycat2完整程序包
+### 10.4.3.组装mycat2完整程序包 {#10_4_3_}
 	
 	下载mycat2外壳
 ```
@@ -179,18 +179,18 @@ vim prototypeDs.datasource.json
 	"url":"jdbc:mysql://192.168.0.6:3306/mycat_prototy?useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=UTF-8",
 	"user":"root"
 
-### 10.4.4.在各个节点上安装mysql
+### 10.4.4.在各个节点上安装mysql {#10_4_4_}
 	在节点1安装mysql8.0.29(192.168.0.7)
 	详细参考 3.搭建基础开发环境->3.3.安装mysql
 
 	在节点2安装mysql8.0.29(192.168.0.8)	
 	详细参考 3.搭建基础开发环境->3.3.安装mysql
 
-### 10.4.5.配置mycat
+### 10.4.5.配置mycat {#10_4_5_}
 	notepad++安装插件
 	notepad++安装nppftp这个插件，连接到远程服务器之后自动可以编辑远程服务器的文本文件
 	
-### 10.4.6.启动和关闭mycat，默认端口8066
+### 10.4.6.启动和关闭mycat，默认端口8066 {#10_4_6_}
 	进入mycat安装目录
 ```	
 cd /usr/local/bin/mycat
@@ -221,3 +221,5 @@ bin/mycat status
 bin/mycat console #前台启动
 ```
 
+
+<ScrollIntoPageView/>

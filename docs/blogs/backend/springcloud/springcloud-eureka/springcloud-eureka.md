@@ -2315,3 +2315,5 @@ flowchart LR
 
 # 11.使用Apollo配置中心统一存放配置 {#11.}
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter11.md)
+    搭建Apollo配置中心
+详细参考<a href="https://lingwh1995.github.io/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-2.%E6%90%AD%E5%BB%BASpringCloud%E6%8A%80%E6%9C%AF%E6%A0%88%E6%89%80%E9%9C%80%E7%BB%84%E4%BB%B6.html#_2-4-2-1-%E5%8D%95%E7%8E%AF%E5%A2%83%E7%89%88">搭建Apollo配置中心</a>

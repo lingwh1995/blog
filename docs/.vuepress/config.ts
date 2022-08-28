@@ -36,7 +36,7 @@ export default defineUserConfig({
   //自定义的vue组件的别名
   alias: {
     "@Markmap": path.resolve(__dirname, "components/Markmap.vue"),
-    "@ScrollIntoView": path.resolve(__dirname, "components/ScrollIntoView.vue"),
+    "@ScrollIntoPageView": path.resolve(__dirname, "components/ScrollIntoPageView.vue"),
     "@Popup": path.resolve(__dirname, "components/Popup.vue"),
     "@Banner": path.resolve(__dirname, "components/Banner.vue"),
     "@JumpToChapter": path.resolve(__dirname, "components/JumpToChapter.vue"),

@@ -16,3 +16,6 @@ head:
 
 # 11.使用Apollo配置中心统一存放配置
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter11.md)
+    搭建Apollo配置中心
+
+<ScrollIntoPageView/>
