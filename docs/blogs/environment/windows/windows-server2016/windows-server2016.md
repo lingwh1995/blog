@@ -85,7 +85,7 @@ curl -fL -u software-1661635322447:bc66d997b7cf000b3932888504d1ac735fc4b530 \
 @include(@src/public/enhance/guidance/environment/windows/windows-server2016/chapter/windows-server2016-guidance-chapter2.md)
 ## 2.3.搭建Zipkin
 	安装jdk
-<span><a href="/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-1.搭建基础开发环境.html#_1-3-安装jdk" target="href">安装jdk</a></span>
+<a href="/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-1.搭建基础开发环境.html#_1-3-安装jdk" target="href">安装jdk</a>
 
 	创建存放安装包的目录->进入该目录->下载zipkin->重命名->赋予运行权限
 ```
@@ -127,10 +127,10 @@ https://gitee.com/lingwh1995/apollo2.0.1.git
 	修改apollo2.0.1/scripts/flyway/flyway-configdb.properties和apollo2.0.1/scripts/flyway/flyway-portaldb.properties中的数据库连接信息(注意apollo2.0.1版本要求mysql版本大于等于8.0)
 ##### 2.4.2.1.3.使用flyway脚本自动创建好数据库环境
 	在apollo2.0.1-built-in-eureka文件夹下执行如下两个命令；目的是使用flyway脚本自动创建好数据库环境
-```	
+```
 mvn -N -Pconfigdb flyway:migrate
 ```
-```	
+```
 mvn -N -Pportaldb flyway:migrate
 ```
 ##### 2.4.2.1.4.获取jar包
@@ -138,13 +138,13 @@ mvn -N -Pportaldb flyway:migrate
 	apollo2.0.1-built-in-eureka/apollo-adminservice/target/apollo-adminservice-2.0.1-SNAPSHOT.jar -> apollo-adminservice-2.0.1.jar
 	apollo2.0.1/apollo-configservice/target/apollo-configservice-2.0.1-SNAPSHOT.jar	-> apollo-configservice-2.0.1.jar
 	apollo2.0.1/apollo-portal/target/apollo-portal-2.0.1-SNAPSHOT.jar -> apollo-portal-2.0.1.jar
-##### 2.4.2.1.5.创建启动文件夹	
+##### 2.4.2.1.5.创建启动文件夹
 	a.创建名称为Apollo2.0.1_built_in_eureka_dev的文件夹(版本号以实际为准)
 	b.把三个jar包放入文件夹中
 	c.创建一个logs文件夹,里面存放日志文件,日志文件名称分别是apollo-configservice.log、apollo-adminservice.log、apollo-portal.log(注意:不用创建这三个文件,程序运行会自动创建这三个文件)
-	  
+
 ##### 2.4.2.1.6.编写一次启动三个jar的bat脚本
-```	
+```
 set url="192.168.0.2:3306"
 set username="root"
 set password="123456"
@@ -161,7 +161,7 @@ start "portal" java -Dapollo_profile=github,auth -Ddev_meta=%dev_meta% -Dserver.
 
 ##### 2.4.2.1.7.测试Apollo
 	Eureka注册中心
-```	
+```
 http://localhost:8080/
 ```
 	Apollo配置中心
@@ -194,18 +194,18 @@ mvn -N -Pportaldb flyway:migrate
 	在192.168.0.3上搭建Mysql数据库相关操作(或者直接克隆虚拟机后修改mac地址后删除多余的数据库也可以快速建立数据库环境)
 	a.修改apollo2.0.1-built-in-eureka/scripts/flyway/flyway-configdb.properties中数据库连接信息修改为192.168.0.3相关配置
 	b.在apollo2.0.1-built-in-eureka文件夹下执行如下命令
-```	
+```
 mvn -N -Pconfigdb flyway:migrate
 ```
 	c.更新数据库数据
 	192.168.0.2(使用Apollo内置的Eureka一般不用执行这个操作,默认就是8080Eureka服务器)
 ```
 UPDATE ApolloConfigDB.ServerConfig SET `Value` = "http://localhost:8080/eureka/" WHERE `key` = "eureka.service.url";
-```	
+```
 	192.168.0.3
-```	
+```
 UPDATE ApolloConfigDB.ServerConfig SET `Value` = "http://localhost:8081/eureka/" WHERE `key` = "eureka.service.url";
-```	
+```
 ##### 2.4.2.2.3.获取jar包
 	执行apollo2.0.1-built-in-eureka/scripts/build.bat,执行完成后可以得到下面三个jar包(最好是重命名以下)
 	apollo2.0.1/apollo-adminservice/target/apollo-adminservice-2.0.1-SNAPSHOT.jar->复制一份分别命名为
@@ -270,17 +270,17 @@ start "ApolloPortal" java -Dapollo_profile=github,auth -Ddev_meta=%meta_dev% -Dp
 	value:  dev,pro
 ##### 2.4.2.2.7.访问地址
 	Eureka注册中心1
-```	
+```
 http://localhost:8080/
 ```
 	Eureka注册中心2
 ```
 http://localhost:8081/
-```	
+```
 	Apollo配置中心
 ```
 http://localhost:8070/
-```		
+```
 	登录用户名/密码: apollo/admin
 ##### 2.4.2.2.8.特別注意事项
 	a.dev环境和pro环境需要不同的数据库地址,
@@ -289,11 +289,11 @@ http://localhost:8070/
 	192.168.0.2(使用Apollo内置的Eureka一般不用执行这个操作,默认就是8080Eureka服务器)
 ```
 UPDATE ApolloConfigDB.ServerConfig SET `Value` = "http://localhost:8080/eureka/" WHERE `key` = "eureka.service.url";
-```	
+```
 	192.168.0.3
-```	
+```
 UPDATE ApolloConfigDB.ServerConfig SET `Value` = "http://localhost:8081/eureka/" WHERE `key` = "eureka.service.url";
-```	
+```
 	当数据库中没有这个参数时,使用启动时参数修改才有效
 
 	d.如果启动后多环境现实不正常,直接重启下Portal,再刷新页面即可
@@ -320,10 +320,10 @@ https://gitee.com/lingwh1995/apollo2.0.1.git
 ```
 ##### 2.4.3.1.2.修改数据库连接信息
 	修改apollo2.0.1/scripts/flyway/flyway-configdb.properties和apollo2.0.1/scripts/flyway/flyway-portaldb.properties中的数据库连接信息(注意apollo2.0.1版本要求mysql版本大于等于8.0)
-##### 2.4.3.1.2.创建数据库环境	
+##### 2.4.3.1.2.创建数据库环境
 	a.在apollo2.0.1-eureka文件夹下执行如下两个命令,目的是使用flyway脚本自动创建好数据库环境
 	特别注意:如果已经创建好了数据库环境这一步骤可以省略
-```	
+```
 mvn -N -Pconfigdb flyway:migrate
 ```
 ```
@@ -331,7 +331,7 @@ mvn -N -Pportaldb flyway:migrate
 ```
 
 	b.数据库创建好之后在ApolloConfigDB库中执行:将Apollo自带的Eureka的地址换成外部Eureka的地址
-```	
+```
 UPDATE ApolloConfigDB.ServerConfig SET `Value` = "http://localhost:7001/eureka/" WHERE `key` = "eureka.service.url";
 ```
 ##### 2.4.3.1.3.改造apollo-configservice
@@ -343,9 +343,9 @@ UPDATE ApolloConfigDB.ServerConfig SET `Value` = "http://localhost:7001/eureka/"
 	  enabled: false
 	  client:
 	  enable: true
-	b.创建启动EurekaClient的配置类: 
+	b.创建启动EurekaClient的配置类
 	路径
-	apollo2.0.1-eureka/apollo-configservice/src/main/java/com/ctrip/framework/apollo/configservice/ConfigServerEurekaClientConfigure.java	  
+	apollo2.0.1-eureka/apollo-configservice/src/main/java/com/ctrip/framework/apollo/configservice/ConfigServerEurekaClientConfigure.java
 	代码
 ```
 @Configuration
@@ -353,7 +353,7 @@ UPDATE ApolloConfigDB.ServerConfig SET `Value` = "http://localhost:7001/eureka/"
 @ConditionalOnProperty(name = "apollo.eureka.client.enabled", havingValue = "true", matchIfMissing = true)
 public class ConfigServerEurekaClientConfigure {
 }
-```		
+```
 	c.给pom中添加eureka-client相关依赖,注意版本设置为和外部使用的Eureka一致的版本
 ```
 <dependency>
@@ -375,7 +375,7 @@ public class ConfigServerEurekaClientConfigure {
 		</exclusion>
 	</exclusions>
 </dependency>
-```		
+```
 ##### 2.4.3.1.4.改造apollo-adminservice
 	a.修改apollo2.0.1-eureka/apollo-configservice/src/main/resources/application.yml
 	添加下面配置,控制程序 关闭使用@EnableEurekaServer注解,开启使用@EnableEurekaClient注解
@@ -385,17 +385,17 @@ public class ConfigServerEurekaClientConfigure {
 	  enabled: false
 	  client:
 	  enable: true
-	b.创建启动EurekaClient的配置类: 
+	b.创建启动EurekaClient的配置类
 	路径
-	apollo2.0.1-eureka/apollo-adminservice/src/main/java/com/ctrip/framework/apollo/adminservice/ConfigServerEurekaClientConfigure.java	  
+	apollo2.0.1-eureka/apollo-adminservice/src/main/java/com/ctrip/framework/apollo/adminservice/ConfigServerEurekaClientConfigure.java
 	代码
-```	
+```
 @Configuration
 @EnableEurekaClient
 @ConditionalOnProperty(name = "apollo.eureka.client.enabled", havingValue = "true", matchIfMissing = true)
 public class ConfigServerEurekaClientConfigure {
 }
-```	
+```
 	c.给pom中添加eureka-client相关依赖,注意版本设置为和外部使用的Eureka一致的版本
 ```
 <dependency>
@@ -437,27 +437,27 @@ set defaultZone="http://localhost:7001/eureka/"
 start "configService" java -Dapollo_profile=github -Deureka.client.serviceUrl.defaultZone=%defaultZone%  -Dspring.datasource.url=jdbc:mysql://%url%/ApolloConfigDB?characterEncoding=utf8 -Dspring.datasource.username=%username% -Dspring.datasource.password=%password% -Dlogging.file.name=.\logs\apollo-configservice.log -jar .\apollo-configservice-2.0.1.jar
 start "adminService" java -Dapollo_profile=github -Deureka.client.serviceUrl.defaultZone=%defaultZone%   -Dspring.datasource.url=jdbc:mysql://%url%/ApolloConfigDB?characterEncoding=utf8 -Dspring.datasource.username=%username% -Dspring.datasource.password=%password% -Dlogging.file.name=.\logs\apollo-adminservice.log -jar .\apollo-adminservice-2.0.1.jar
 start "ApolloPortal" java -Dapollo_profile=github,auth -Ddev_meta=http://localhost:8080/ -Dserver.port=8070 -Dspring.datasource.url=jdbc:mysql://%url%/ApolloPortalDB?characterEncoding=utf8 -Dspring.datasource.username=%username% -Dspring.datasource.password=%password% -Dlogging.file.name=.\logs\apollo-portal.log -jar .\apollo-portal-2.0.1.jar
-```		
+```
 ##### 2.4.3.1.8.测试Apollo
 	访问地址
 	Eureka注册中心
 ```
 http://localhost:8080/
-```	
+```
 	Apollo配置中心
-```	
+```
 http://localhost:8070/
-```	
+```
 	登录用户名/密码: apollo/admin
 
 #### 2.4.3.2.多环境版(包含完整编译过程)
 ##### 2.4.3.2.1.下载工程,并在本地安装所有用到的依赖
 ```
 https://gitee.com/lingwh1995/apollo2.0.1.git
-```	
+```
 ##### 2.4.3.2.2.准备数据库环境
 	说明:dev和pro环境的configService、adminService用到的数据库需要分别部署,dev和pro环境的protal可以连接到同一套数据库
-	
+
 	在192.168.0.2上搭建Mysql数据库相关操作:
 	a.下载工程,并在本地安装所有用到的依赖
 	b.修改apollo2.0.1-eureka/scripts/flyway/flyway-configdb.properties和apollo2.0.1-eureka/scripts/flyway/flyway-portaldb.properties中数据库连接信息修改为192.168.0.2相关配置
@@ -472,18 +472,18 @@ mvn -N -Pportaldb flyway:migrate
 	在192.168.0.3上搭建Mysql数据库相关操作(或者直接克隆虚拟机后修改mac地址后删除多余的数据库也可以快速建立数据库环境)
 	a.修改apollo2.0.1-eureka/scripts/flyway/flyway-configdb.properties中数据库连接信息修改为192.168.0.3相关配置
 	b.在apollo2.0.1-eureka文件夹下执行如下命令
-```	
+```
 mvn -N -Pconfigdb flyway:migrate
-```	
+```
 	c.更新数据库数据
 	192.168.0.2
-```	
+```
 UPDATE ApolloConfigDB.ServerConfig SET `Value` = "http://localhost:7001/eureka/" WHERE `key` = "eureka.service.url";
-```	
+```
 	192.168.0.3
-```	
+```
 UPDATE ApolloConfigDB.ServerConfig SET `Value` = "http://localhost:7002/eureka/" WHERE `key` = "eureka.service.url";
-```	
+```
 ##### 2.4.3.2.3.改造apollo-configservice
 	a.修改apollo2.0.1-eureka/apollo-configservice/src/main/resources/application.yml
 	添加下面配置,控制程序 关闭使用@EnableEurekaServer注解,开启使用@EnableEurekaClient注解
@@ -497,15 +497,15 @@ UPDATE ApolloConfigDB.ServerConfig SET `Value` = "http://localhost:7002/eureka/"
 	路径
 	apollo2.0.1-eureka/apollo-configservice/src/main/java/com/ctrip/framework/apollo/configservice/ConfigServerEurekaClientConfigure.java
 	代码
-```	
+```
 @Configuration
 @EnableEurekaClient
 @ConditionalOnProperty(name = "apollo.eureka.client.enabled", havingValue = "true", matchIfMissing = true)
 public class ConfigServerEurekaClientConfigure {
 }
-```		
+```
 	c.给pom中添加eureka-client相关依赖,注意版本设置为和外部使用的Eureka一致的版本
-```	
+```
 <dependency>
 	<groupId>org.springframework.cloud</groupId>
 	<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
@@ -525,7 +525,7 @@ public class ConfigServerEurekaClientConfigure {
 		</exclusion>
 	</exclusions>
 </dependency>
-```		
+```
 ##### 2.4.3.2.4.改造apollo-adminservice
 	a.修改apollo2.0.1-eureka/apollo-configservice/src/main/resources/application.yml
 	添加下面配置,控制程序 关闭使用@EnableEurekaServer注解,开启使用@EnableEurekaClient注解
@@ -539,15 +539,15 @@ public class ConfigServerEurekaClientConfigure {
 	路径
 	apollo2.0.1-eureka/apollo-adminservice/src/main/java/com/ctrip/framework/apollo/adminservice/ConfigServerEurekaClientConfigure.java
 	代码
-```	
+```
 @Configuration
 @EnableEurekaClient
 @ConditionalOnProperty(name = "apollo.eureka.client.enabled", havingValue = "true", matchIfMissing = true)
 public class ConfigServerEurekaClientConfigure {
 }
-```		
+```
 	c.给pom中添加eureka-client相关依赖,注意版本设置为和外部使用的Eureka一致的版本
-```	
+```
 <dependency>
 	<groupId>org.springframework.cloud</groupId>
 	<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
@@ -624,39 +624,39 @@ start "ApolloPortal" java -Dapollo_profile=github,auth -Ddev_meta=%meta_dev% -Dp
 	访问http://localhost:8070/,进入Apollo配置界面
 	a.登录用户名/密码:	apollo/admin
 	b.管理员工具->系统参数->输入key值/Value值
-```	
+```
 添加新部门:	[{"orgId":"TEST1","orgName":"样例部门1"},{"orgId":"TEST2","orgName":"样例部门2"},{"orgId":"micro_service","orgName":"微服务部门"}]
-```	
+```
 	创建多环境
 	key:    apollo.portal.envs
 	value:  dev,pro
 ##### 2.4.3.2.9.访问地址
 	Eureka注册中心1
-```	
+```
 http://localhost:7001/
 ```
 	Eureka注册中心2
-```	
+```
 http://localhost:7002/
 ```
 	Apollo配置中心
-```	
+```
 http://localhost:8070/
-```		
+```
 	登录用户名/密码: apollo/admin
-	
+
 ##### 2.4.3.2.10.特別注意事项
 	a.dev环境和pro环境需要不同的数据库地址,
 	即需要两套Mysql环境,第一套中有apolloconfigdb、apolloportaldb两个库,第二套 环境中只有apolloconfigdb这个库
 	b.启动dev环境和pro环境时,不要再运行参数中覆盖eureka的service-url,要修改数据库中的数据,因为这个配置是从数据库中获取的
 	192.168.0.2
-```	
+```
 UPDATE ApolloConfigDB.ServerConfig SET `Value` = "http://localhost:7001/eureka/" WHERE `key` = "eureka.service.url";
-```	
+```
 	192.168.0.3
-```	
+```
 UPDATE ApolloConfigDB.ServerConfig SET `Value` = "http://localhost:7002/eureka/" WHERE `key` = "eureka.service.url";
-```	
+```
 	当数据库中没有这个参数时,使用启动时参数修改才有效
 	c.如果启动后多环境现实不正常,直接重启下Portal,再刷新页面即可
 
@@ -695,13 +695,13 @@ mvn -N -Pportaldb flyway:migrate
 	修改apollo2.0.1-zookeeper/scripts/build.sh/build.bat，将config-service和admin-service的maven编译命令更改为
 ```
 mvn clean package -Pgithub -DskipTests -pl apollo-configservice,apollo-adminservice -am -Dapollo_profile=github,zookeeper-discovery -Dspring_datasource_url=$apollo_config_db_url -Dspring_datasource_username=$apollo_config_db_username -Dspring_datasource_password=$apollo_config_db_password
-```		
+```
 ##### 2.4.4.1.4.准备Zookeeper环境
 	在192.168.0.2上搭建Zookeeper环境
 ##### 2.4.4.1.5.修改配置文件
 	分别修改apollo2.0.1-zookeeper/apollo-configservice/src/main/config和apollo2.0.1-zookeeper/apollo-adminservice/src/main/config安装包中config目录下的application-github.properties，配置zookeeper连接信息
 	  #注意,核心是将spring.cloud.zookeeper.connect-string这个配置进来,后面的连接信息可以在外面直接覆盖
-```	  
+```
 spring.cloud.zookeeper.connect-string=127.0.0.1:2181
 ```
 ##### 2.4.4.1.6.获取jar包
@@ -728,20 +728,20 @@ start "portal" java -Dapollo_profile=github,auth -Ddev_meta=%dev_meta% -Dserver.
 ```
 ##### 2.4.4.1.7.测试Apollo
 	Eureka注册中心
-```	
+```
 http://localhost:8080/
-```	
+```
 	Apollo配置中心
 ```
 http://localhost:8070/
-```	
+```
 	登录用户名/密码: apollo/admin
 
 #### 2.4.4.2.多环境版(包含完整编译过程)
 ##### 2.4.4.2.1.下载工程,并在本地安装所有用到的依赖
 ```
 https://gitee.com/lingwh1995/apollo2.0.1.git
-```	
+```
 ##### 2.4.4.2.2.准备数据库环境
 	说明:dev和pro环境的configService、adminService用到的数据库需要分别部署,dev和pro环境的protal可以连接到同一套数据库
 
@@ -750,23 +750,23 @@ https://gitee.com/lingwh1995/apollo2.0.1.git
 	b.修改apollo2.0.1-zookeeper/scripts/flyway/flyway-configdb.properties和apollo2.0.1-zookeeper/scripts/flyway/flyway-portaldb.properties中数据库连接信息修改为192.168.0.2相关配置
 	c.修改apollo/scripts/build.bat中的数据库联连接信息
 	d.在apollo文件夹下执行如下两个命令；目的是使用flyway脚本自动创建好数据库环境
-```	
+```
 mvn -N -Pconfigdb flyway:migrate
 ```
-```	
+```
 mvn -N -Pportaldb flyway:migrate
-```	
+```
 	在192.168.0.3上搭建Mysql数据库相关操作(或者直接克隆虚拟机后修改mac地址后删除多余的数据库也可以快速建立数据库环境):
 	a.修改apollo2.0.1-zookeeper/scripts/flyway/flyway-configdb.properties中数据库连接信息修改为192.168.0.3相关配置
 	b.在apollo2.0.1-zookeeper文件夹下执行如下命令
-```	
+```
 mvn -N -Pconfigdb flyway:migrate
 ```
 ##### 2.4.4.2.3.准备Zookeeper环境
 	在192.168.0.2、192.168.0.3两台机器上分别搭建好Zookeeper环境
-##### 2.4.4.2.4.更改编译命令	
+##### 2.4.4.2.4.更改编译命令
 	修改apollo2.0.1-zookeeper/scripts/build.sh/build.bat，将config-service和admin-service的maven编译命令更改为
-```	
+```
 mvn clean package -Pgithub -DskipTests -pl apollo-configservice,apollo-adminservice -am -Dapollo_profile=github,zookeeper-discovery -Dspring_datasource_url=$apollo_config_db_url -Dspring_datasource_username=$apollo_config_db_username -Dspring_datasource_password=$apollo_config_db_password
 ```
 ##### 2.4.4.2.5.修改配置文件
@@ -834,7 +834,7 @@ start "ApolloPortal" java -Dapollo_profile=github,auth -Ddev_meta=%meta_dev% -Dp
 	访问http://localhost:8070/,进入Apollo配置界面
 	a.登录用户名/密码:	apollo/admin
 	b.管理员工具->系统参数->输入key值/Value值
-```	
+```
 添加新部门:	[{"orgId":"TEST1","orgName":"样例部门1"},{"orgId":"TEST2","orgName":"样例部门2"},{"orgId":"micro_service","orgName":"微服务部门"}]
 ```
 	c.创建多环境
@@ -844,15 +844,15 @@ start "ApolloPortal" java -Dapollo_profile=github,auth -Ddev_meta=%meta_dev% -Dp
 	Eureka注册中心1
 ```
 http://localhost:8080/
-```	
+```
 	Eureka注册中心2
 ```
 http://localhost:8081/
-```	
+```
 	Apollo配置中心
 ```
 http://localhost:8070/
-```			
+```
 	登录用户名/密码: apollo/admin
 ##### 2.4.4.2.11.特別注意事项
 	a.dev环境和pro环境需要不同的数据库地址,
@@ -882,9 +882,9 @@ https://gitee.com/lingwh1995/apollo2.0.1.git
 ```
 ##### 2.4.5.1.2.修改数据库连接信息
 	修改apollo2.0.1/scripts/flyway/flyway-configdb.properties和apollo2.0.1/scripts/flyway/flyway-portaldb.properties中的数据库连接信息(注意apollo2.0.1版本要求mysql版本大于等于8.0)
-##### 2.4.5.1.3.创建数据库环境	
+##### 2.4.5.1.3.创建数据库环境
 	在apollo2.0.1-consul文件夹下执行如下两个命令；目的是使用flyway脚本自动创建好数据库环境
-```		
+```
 mvn -N -Pconfigdb flyway:migrate
 ```
 ```
@@ -892,15 +892,15 @@ mvn -N -Pportaldb flyway:migrate
 ```
 ##### 2.4.5.1.4.修改编译命令
 	修改apollo2.0.1-consul/scripts/build.sh/build.bat,将config-service和admin-service的maven编译命令更改为
-```	
+```
 mvn clean package -Pgithub -DskipTests -pl apollo-configservice,apollo-adminservice -am -Dapollo_profile=github,consul-discovery -Dspring_datasource_url=$apollo_config_db_url -Dspring_datasource_username=$apollo_config_db_username -Dspring_datasource_password=$apollo_config_db_password
-```	
+```
 ##### 2.4.5.1.5.准备Consul环境
 	在192.168.0.2上搭建Consul环境
 ##### 2.4.5.1.6.修改配置文件
 	分别修改apollo2.0.1-consul/apollo-configservice/src/main/config和apollo2.0.1-consul/apollo-adminservice/src/main/config安装包中config目录下的application-github.properties，配置consul连接信息
 	#这个配置的key很重要,值可以在运行时使用添加JVM参数的方式进行修改
-```	
+```
 spring.cloud.consul.host=127.0.0.1
 spring.cloud.consul.port=8500
 ```
@@ -925,54 +925,54 @@ set consul_host="192.168.0.2"
 start "configService" java -Dapollo_profile=github   -Dspring.cloud.consul.host=%consul_host% -Dspring.datasource.url=jdbc:mysql://%url%/ApolloConfigDB?characterEncoding=utf8 -Dspring.datasource.username=%username% -Dspring.datasource.password=%password% -Dlogging.file.name=.\logs\apollo-configservice.log -jar .\apollo-configservice-2.0.1.jar
 start "adminService" java -Dapollo_profile=github    -Dspring.cloud.consul.host=%consul_host% -Dspring.datasource.url=jdbc:mysql://%url%/ApolloConfigDB?characterEncoding=utf8 -Dspring.datasource.username=%username% -Dspring.datasource.password=%password% -Dlogging.file.name=.\logs\apollo-adminservice.log -jar .\apollo-adminservice-2.0.1.jar
 start "portal" java -Dapollo_profile=github,auth -Ddev_meta=%dev_meta% -Dserver.port=%portal_port% -Dspring.datasource.url=jdbc:mysql://%url%/ApolloPortalDB?characterEncoding=utf8 -Dspring.datasource.username=%username% -Dspring.datasource.password=%password% -Dlogging.file.name=.\logs\apollo-portal.log -jar .\apollo-portal-2.0.1.jar
-```			
+```
 ##### 2.4.5.1.10.访问地址
 	Eureka注册中心
 ```
 http://localhost:8080/
-```	
+```
 	Apollo配置中心
 ```
 http://localhost:8070/
-```	
+```
 	登录用户名/密码: apollo/admin
 
 #### 2.4.5.2.多环境版(包含完整编译过程)
 ##### 2.4.5.2.1.下载工程,并在本地安装所有用到的依赖
 ```
 https://gitee.com/lingwh1995/apollo2.0.1.git
-```	
+```
 ##### 2.4.5.2.2.准备数据库环境
 	说明:dev和pro环境的configService、adminService用到的数据库需要分别部署,dev和pro环境的protal可以连接到同一套数据库
-	
+
 	在192.168.0.2上搭建Mysql数据库相关操作:
 	a.下载工程,并在本地安装所有用到的依赖
 	b.修改apollo2.0.1-consul/scripts/flyway/flyway-configdb.properties和apollo2.0.1-consul/scripts/flyway/flyway-portaldb.properties中数据库连接信息修改为192.168.0.2相关配置
 	c.修改apollo2.0.1-consul/scripts/build.bat中的数据库联连接信息
 	d.在apollo2.0.1-consul文件夹下执行如下两个命令；目的是使用flyway脚本自动创建好数据库环境
-```	
+```
 mvn -N -Pconfigdb flyway:migrate
 ```
 ```
 mvn -N -Pportaldb flyway:migrate
-```	
+```
 	在192.168.0.3上搭建Mysql数据库相关操作(或者直接克隆虚拟机后修改mac地址后删除多余的数据库也可以快速建立数据库环境):
 	a.修改apollo/scripts/flyway/flyway-configdb.properties中数据库连接信息修改为192.168.0.3相关配置
 	b.在apollo文件夹下执行如下命令
 ```
 mvn -N -Pconfigdb flyway:migrate
-```	
+```
 ##### 2.4.5.2.3.准备Consul环境
 	在192.168.0.2、192.168.0.3两台机器上分别搭建好Consul环境
-##### 2.4.5.2.4.修改编译命令	
+##### 2.4.5.2.4.修改编译命令
 	修改apollo2.0.1-consul/scripts/build.sh/build.bat，将config-service和admin-service的maven编译命令更改为
-```	
+```
 mvn clean package -Pgithub -DskipTests -pl apollo-configservice,apollo-adminservice -am -Dapollo_profile=github,consul-discovery -Dspring_datasource_url=$apollo_config_db_url -Dspring_datasource_username=$apollo_config_db_username -Dspring_datasource_password=$apollo_config_db_password
-```		
+```
 ##### 2.4.5.2.5.修改配置信息
 	分别修改apollo2.0.1-consul/apollo-configservice/src/main/config和apollo2.0.1-consul/apollo-adminservice/src/main/config安装包中config目录下的application-github.properties，配置链接信息
 	#这个配置的key很重要,值可以在运行时使用添加JVM参数的方式进行修改
-```	
+```
 spring.cloud.consul.host=127.0.0.1
 ```
 ```
@@ -1032,14 +1032,14 @@ start "configService-pro" java -Dapollo_profile=github -Dspring.cloud.consul.hos
 start "adminService-pro" java -Dapollo_profile=github  -Dspring.cloud.consul.host=%consul_host_pro% -DServer.port=%adminService_port_pro%  -Dspring.datasource.url=jdbc:mysql://%url_pro%/ApolloConfigDB?characterEncoding=utf8 -Dspring.datasource.username=%username_pro% -Dspring.datasource.password=%password_pro% -Dlogging.file.name=.\logs\apollo-adminservice-pro.log -jar .\apollo-adminservice-2.0.1-pro.jar
 #启动portal
 start "ApolloPortal" java -Dapollo_profile=github,auth -Ddev_meta=%meta_dev% -Dpro_meta=%meta_pro% -Dserver.port=%portal_port% -Dspring.datasource.url=jdbc:mysql://%url_dev%/ApolloPortalDB?characterEncoding=utf8 -Dspring.datasource.username=%username_dev% -Dspring.datasource.password=%password_dev% -Dlogging.file.name=.\logs\apollo-portal.log -jar .\apollo-portal-2.0.1.jar
-```	
+```
 ##### 2.4.5.2.9.添加系统参数
 	访问http://localhost:8070/,进入Apollo配置界面
 	a.登录用户名/密码:	apollo/admin
 	b.管理员工具->系统参数->输入key值/Value值
-```	
+```
 添加新部门:	[{"orgId":"TEST1","orgName":"样例部门1"},{"orgId":"TEST2","orgName":"样例部门2"},{"orgId":"micro_service","orgName":"微服务部门"}]
-```	
+```
 ##### 2.4.5.2.10.创建多环境
 	key:    apollo.portal.envs
 	value:  dev,pro
@@ -1047,15 +1047,15 @@ start "ApolloPortal" java -Dapollo_profile=github,auth -Ddev_meta=%meta_dev% -Dp
 	Eureka注册中心1
 ```
 http://localhost:8080/
-```	
+```
 	Eureka注册中心2
 ```
 http://localhost:8081/
-```	
+```
 	Apollo配置中心
 ```
 http://localhost:8070/
-```	
+```
 	登录用户名/密码: apollo/admin
 ##### 2.4.5.2.11.特別注意事项
 	a.dev环境和pro环境需要不同的数据库地址,即需要两套Mysql环境,第一套中有apolloconfigdb、apolloportaldb两个库,第二套 环境中只有apolloconfigdb这个库
@@ -1074,4 +1074,5 @@ https://gitee.com/lingwh1995/apollo2.0.1-consul.git
 	apollo2.0.1-consul/apollo-configservice/target
 	apollo2.0.1-consul/apollo-portal/target
 ##### 2.4.5.3.3.如何修改使用到的参数
-	在启动脚本中对使用到的参数进行设置,如-Dserver.port=8888
+	在启动脚本中对使用到的参数进行设置,如-Dserver.port=8888 
+<HideSideBar/>

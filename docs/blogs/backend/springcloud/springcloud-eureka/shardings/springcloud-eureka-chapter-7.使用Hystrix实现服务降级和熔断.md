@@ -23,10 +23,10 @@ head:
 
     服务熔断
     当调用服务发生多次异常时服务会会熔断,如数据库连接故障,当故障修复时服务又会恢复到正常状态,针对服务提供端稳定性考虑
-    
+
     服务限流
     对访问的流量进行限制
-    
+
 <a href="https://github.com/Netflix/Hystrix"  target="_blank">官方网站</a>
 ```
 https://github.com/Netflix/Hystrix
@@ -208,7 +208,7 @@ public class OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80 {
     public static void main(String[] args) {
         SpringApplication.run(OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.class, args);
     }
-    
+
 }
 ```
 ## 7.7.测试服务降级和服务熔断(Hystrix)
@@ -275,7 +275,7 @@ http://localhost:/consumer/payment/degradation_in_consumer_default/get/1
 {"code":10000,"message":"我是服务消费端 ","data":{"id":null,"serial":"服务消费端:全局范围内默认的降级回调方法...."}}
 ```
     具体降级过程,请根据访问地址追踪代码,查看具体降级是如何处理的,代码中有详细的注释
-    
+
     测试在服务提供端Service层实现服务降级
     本次测试较为特殊,首先关闭服务提供者8003和服务提供者8004,模拟服务提供者8003和服务提供者8004发生了宕机
     在浏览器中访问
@@ -303,3 +303,4 @@ http://localhost/consumer/payment/circuitbreaker/get/1
 
 
 <ScrollIntoPageView/>
+<HideSideBar/>

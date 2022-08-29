@@ -77,3 +77,4 @@ curl -fL -u software-1661635322447:bc66d997b7cf000b3932888504d1ac735fc4b530 \
 
 
 <ScrollIntoPageView/>
+<HideSideBar/>

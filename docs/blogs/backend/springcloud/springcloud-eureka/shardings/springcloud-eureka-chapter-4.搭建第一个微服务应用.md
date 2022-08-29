@@ -164,3 +164,4 @@ http://localhost/consumer/payment/get/1
 
 
 <ScrollIntoPageView/>
+<HideSideBar/>

@@ -351,7 +351,7 @@ flowchart LR
     注意事项
     Hystrix DashBoard只能监控设置了服务降级或服务熔断的方法,未设置降级或者熔断的方法是无法监控到的,也是说未设置降级和熔断的方法调用后是不会和Hystrix DashBoard产生任何关系的,因为Tunbine是汇聚来自Hystrix DashBoard的数据,所以Tunbine也只能汇聚Hystrix DashBoard可以监控到的数据
     集成了Turbine的项目修改后需要手动重启,目前发现热加载会报错
-    
+
     测试使用Turbine汇聚服务提供端多个节点访问统计数据
     访问Turbine(Turbine主页面和Hystrix DashBoard主界面是相同的,只是填写的参数不同)
 ```
@@ -393,3 +393,4 @@ http://localhost/consumer/payment/circuitbreaker/get/1
 
 
 <ScrollIntoPageView/>
+<HideSideBar/>

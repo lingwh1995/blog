@@ -155,3 +155,4 @@ yum makecache
 
 
 <ScrollIntoPageView/>
+<HideSideBar/>

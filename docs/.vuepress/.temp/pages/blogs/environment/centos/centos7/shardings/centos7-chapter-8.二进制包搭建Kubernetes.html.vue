@@ -2348,4 +2348,5 @@ http://192.168.0.7:31208
 http://192.168.0.8:31208
 </code></pre>
 <ScrollIntoPageView/>
+<HideSideBar/>
 </div></template>

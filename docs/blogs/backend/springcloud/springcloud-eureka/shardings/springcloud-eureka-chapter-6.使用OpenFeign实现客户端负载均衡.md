@@ -177,3 +177,4 @@ logging: #OpenFeign增强日志配置
 
 
 <ScrollIntoPageView/>
+<HideSideBar/>

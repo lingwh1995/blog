@@ -37,6 +37,7 @@ export default defineUserConfig({
   alias: {
     "@Markmap": path.resolve(__dirname, "components/Markmap.vue"),
     "@ScrollIntoPageView": path.resolve(__dirname, "components/ScrollIntoPageView.vue"),
+    "@HideSideBar": path.resolve(__dirname, "components/HideSideBar.vue"),
     "@Popup": path.resolve(__dirname, "components/Popup.vue"),
     "@Banner": path.resolve(__dirname, "components/Banner.vue"),
     "@JumpToChapter": path.resolve(__dirname, "components/JumpToChapter.vue"),

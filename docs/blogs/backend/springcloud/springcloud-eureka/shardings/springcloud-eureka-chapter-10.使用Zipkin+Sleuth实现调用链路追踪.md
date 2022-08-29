@@ -37,7 +37,7 @@ https://zipkin.io/
 ```
 https://github.com/openzipkin/zipkin
 ```
-    
+
 ## 10.4.搭建服务提供者第一个节点(Sleuth)
 ### 10.4.1.模块简介
     具有调用链路追踪功能的服务提供者的第一个节点,启动端口: 8005
@@ -157,7 +157,7 @@ https://github.com/openzipkin/zipkin
 <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-12.搭建SpringCloud技术栈所需组件.html#_12-3-搭建zipkin" target="_blank">搭建Zipkin</a>
 
 ## 10.8.测试Zipkin+Sleuth实现调用链路追踪
-    启动相关服务    
+    启动相关服务
 ```mermaid
 flowchart LR
     准备好数据库环境-->启动Eureka注册中心
@@ -194,3 +194,4 @@ flowchart LR
 
 
 <ScrollIntoPageView/>
+<HideSideBar/>

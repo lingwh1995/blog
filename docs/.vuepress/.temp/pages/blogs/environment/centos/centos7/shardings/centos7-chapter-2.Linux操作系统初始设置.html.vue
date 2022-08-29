@@ -93,4 +93,5 @@ yum -y install telnet-server
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>chmod +x centos7-init.sh &amp;&amp;
 ./centos7-init.sh
 </code></pre></div><ScrollIntoPageView/>
+<HideSideBar/>
 </div></template>

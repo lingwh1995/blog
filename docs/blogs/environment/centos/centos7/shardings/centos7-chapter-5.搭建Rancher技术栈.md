@@ -1,6 +1,6 @@
 ---
 title: 在Centos7上搭建开发环境-5.搭建Rancher技术栈
-description: 本章节涉及主要内容有：具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：搭建Rancher,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -13,11 +13,12 @@ date: 2020-01-24
 head:
   - - meta
     - name: keywords
-      content: 本章节涉及主要内容有：具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+      content: 本章节涉及主要内容有：搭建Rancher,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 5.搭建Rancher技术栈
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter5.md)
+## 5.3.搭建Rancher
 	下载rancher
 ```
 docker pull rancher/server
@@ -37,3 +38,4 @@ docker run -di --name=rancher -p9003:8080 rancher/server:latest
 
 
 <ScrollIntoPageView/>
+<HideSideBar/>

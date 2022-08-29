@@ -12,8 +12,9 @@ export default {
   mounted: function(){
     this.$nextTick(()=>{
       const hash = window.location.hash
-      console.log('hash: ' + hash)
-      this.goAnchor(decodeURI(hash))
+      if(hash.trim() != '') {
+        this.goAnchor(decodeURI(hash))
+      }
     })
 
   },

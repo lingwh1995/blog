@@ -87,8 +87,10 @@ http://localhost:7001/
     看到如下界面代表搭建成功
 ::: center
 <div class="imgbg-customer">
-<img src="../images/eureka7001.png"  width="100%"/>
+<img src="../images/eureka7001.png"  width="100%"/> 
 </div>
 :::
+<HideSideBar/>
 
 <ScrollIntoPageView/>
+<HideSideBar/>

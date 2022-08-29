@@ -322,3 +322,4 @@ rm -rf /usr/share/kuboard
 
 
 <ScrollIntoPageView/>
+<HideSideBar/>

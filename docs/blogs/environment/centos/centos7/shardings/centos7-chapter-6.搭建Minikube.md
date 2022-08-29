@@ -231,3 +231,4 @@ rm -rf ~/.minikube
 
 
 <ScrollIntoPageView/>
+<HideSideBar/>

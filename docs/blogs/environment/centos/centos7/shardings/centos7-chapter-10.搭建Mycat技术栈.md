@@ -223,3 +223,4 @@ bin/mycat console #前台启动
 
 
 <ScrollIntoPageView/>
+<HideSideBar/>

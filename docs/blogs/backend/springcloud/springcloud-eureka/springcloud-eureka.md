@@ -47,7 +47,7 @@ https://martinfowler.com/articles/microservices.html
 
 ## 1.5.微服务架构落地实现方案
 	微服务架构落地实现有很多种方案,本次介绍的方案技术栈如下:
-	注册中心: EUREKA 
+	注册中心: EUREKA
 ## <a href="https://gitee.com/lingwh1995/springcloud-eureka.git"  target="_blank">1.6.项目源代码</a>
 ```
 https://gitee.com/lingwh1995/springcloud-eureka.git
@@ -60,7 +60,7 @@ https://gitee.com/lingwh1995/springcloud-eureka.git
 	在idea中创建一个名为springcloud-eureka的maven工程,创建完成后打开该工程,删除src文件夹
 ### 2.3.2.编写父工程pom.xml
     pom.xml中配置主要包括两部分内容,第一是对子模块依赖的jar包和使用到的插件的版本的统一规定,第二是规定了四种不同的环境,分别是: 1.开发环境(dev) 2.测试环境(test) 3.生产环境(prod) 4.rancher测试专用环境(rancher),关于这四种环境的详细内容会在本博客的最后一部分进行详细解析说明
-    
+
     pom.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -460,12 +460,12 @@ http://localhost:7001/
 ### 3.5.2.搭建Eureka集群中第一个节点
     模块简介
     集群(高可用)版Eureka注册中心中第一个节点,启动端口: 7002
-    
+
     模块目录结构
 ```md
 @include(./projects/springcloud-eureka/springcloud-register-center-cluster-node7002/tree.md)
 ```
-    
+
     创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-register-center-cluster-node7002的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 
@@ -500,7 +500,7 @@ http://localhost:7001/
 ```xml
 @include(./projects/springcloud-eureka/springcloud-register-center-cluster-node7003/pom.xml)
 ```
-    
+
     编写模块application.yml
 ```yml
 @include(./projects/springcloud-eureka/springcloud-register-center-cluster-node7003/src/main/resources/application.yml)
@@ -544,7 +544,7 @@ http://localhost:7001/
     127.0.0.1		eureka7002
     127.0.0.1		eureka7003
     127.0.0.1		eureka7004
-    
+
 ### 3.5.6.测试集群模块
     测试集群中的第一个节点(7002),浏览器访问
 ```
@@ -869,7 +869,7 @@ http://localhost/consumer/payment/get/1
 
     AvailabilityFilteringRule(可用性敏感策略)
     先过滤掉非健康的服务实例，然后再选择连接数较小的服务实例。
-    
+
     ZoneAvoidanceRule(区域内可用性能最优策略)
     基于AvailabilityFilteringRule基础上做的,首先判断一个zone的运行性能是否可用.剔除不可用的区域zone的所有server,然后再利用AvailabilityPredicate过滤并发连接过多的server。
 
@@ -1217,10 +1217,10 @@ logging: #OpenFeign增强日志配置
 
     服务熔断
     当调用服务发生多次异常时服务会会熔断,如数据库连接故障,当故障修复时服务又会恢复到正常状态,针对服务提供端稳定性考虑
-    
+
     服务限流
     对访问的流量进行限制
-    
+
 <a href="https://github.com/Netflix/Hystrix"  target="_blank">官方网站</a>
 ```
 https://github.com/Netflix/Hystrix
@@ -1402,7 +1402,7 @@ public class OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80 {
     public static void main(String[] args) {
         SpringApplication.run(OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.class, args);
     }
-    
+
 }
 ```
 ## 7.7.测试服务降级和服务熔断(Hystrix)
@@ -1469,7 +1469,7 @@ http://localhost:/consumer/payment/degradation_in_consumer_default/get/1
 {"code":10000,"message":"我是服务消费端 ","data":{"id":null,"serial":"服务消费端:全局范围内默认的降级回调方法...."}}
 ```
     具体降级过程,请根据访问地址追踪代码,查看具体降级是如何处理的,代码中有详细的注释
-    
+
     测试在服务提供端Service层实现服务降级
     本次测试较为特殊,首先关闭服务提供者8003和服务提供者8004,模拟服务提供者8003和服务提供者8004发生了宕机
     在浏览器中访问
@@ -1832,7 +1832,7 @@ flowchart LR
     注意事项
     Hystrix DashBoard只能监控设置了服务降级或服务熔断的方法,未设置降级或者熔断的方法是无法监控到的,也是说未设置降级和熔断的方法调用后是不会和Hystrix DashBoard产生任何关系的,因为Tunbine是汇聚来自Hystrix DashBoard的数据,所以Tunbine也只能汇聚Hystrix DashBoard可以监控到的数据
     集成了Turbine的项目修改后需要手动重启,目前发现热加载会报错
-    
+
     测试使用Turbine汇聚服务提供端多个节点访问统计数据
     访问Turbine(Turbine主页面和Hystrix DashBoard主界面是相同的,只是填写的参数不同)
 ```
@@ -2009,7 +2009,7 @@ http://localhost:9527/consumer/payment/ok/get/1?uname=zhangsan
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```
     可以看到四次访问返回的结果中,第一次和第三次是相同的,第二次和第四次是相同的,之所以会出现这样的结果,是因为上面编写RestTemplate时使用了默认的配置,默认的配置使用负载均衡策略是轮询策略,所以接连访问该服务四次会出现上面的情况。但是要注意,这里并没有直接访问服务消费者,而是访问了网关,这些返回的数据是服务消费端返回给网关网关返回给浏览器的。
-    
+
 ## 9.6.硬编码配置方式使用GateWay(负载均衡模式)
 ### 9.6.1.模块简介
     使用SpringCloud Gateway实现网关功能,配置方式为硬编码配置,实现了简单的请求转发功能,即请求经过网关之后会转发到单个服务消费者的单个节点,实现了在请求转发的同时做负载均衡处理,启动端口: 9527
@@ -2157,7 +2157,7 @@ https://zipkin.io/
 ```
 https://github.com/openzipkin/zipkin
 ```
-    
+
 ## 10.4.搭建服务提供者第一个节点(Sleuth)
 ### 10.4.1.模块简介
     具有调用链路追踪功能的服务提供者的第一个节点,启动端口: 8005
@@ -2277,7 +2277,7 @@ https://github.com/openzipkin/zipkin
 <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-12.搭建SpringCloud技术栈所需组件.html#_12-3-搭建zipkin" target="_blank">搭建Zipkin</a>
 
 ## 10.8.测试Zipkin+Sleuth实现调用链路追踪
-    启动相关服务    
+    启动相关服务
 ```mermaid
 flowchart LR
     准备好数据库环境-->启动Eureka注册中心
@@ -2385,6 +2385,7 @@ http://localhost:7001/
     看到如下界面代表搭建成功
 ::: center
 <div class="imgbg-customer">
-<img src="./images/eureka7001.png"  width="100%"/>
+<img src="./images/eureka7001.png"  width="100%"/> 
 </div>
 :::
+<HideSideBar/>

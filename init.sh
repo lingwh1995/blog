@@ -249,6 +249,9 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     cat $2/$1.md.original >> $2/$1.md
     echo '根据文档原件生成创建一份新的'$1'.md文件'
 
+    #写入隐藏侧边栏的组件
+    echo ' ' >> $2/$1.md
+    echo '<HideSideBar/>' >> $2/$1.md
     #开始让xxx.md文件中的二级标题增加1
     title2IncrementByForOriginal $1 $2 $5
 
@@ -320,9 +323,10 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     do
         echo '开始为'$1'.md第'$i'章生成目录大纲md文件，章节目录大纲标题深度：'$4'......'
         #为具体章节章节生成目录大纲md文件，标题深度由$4这个参数决定
-        echo '## '$i'.1.章节内容概述' > $2/$1-outline$4-chapter$i.md
+        grep '^# '"$i"'\.' $2/$1.md > $2/$1-outline$4-chapter$i.md
+        echo '## '$i'.1.章节内容概述' >> $2/$1-outline$4-chapter$i.md
         echo '## '$i'.2.章节内容大纲' >> $2/$1-outline$4-chapter$i.md
-        grep '^#\{1,'"$4"'\} '"$i"'\.' $2/$1.md >> $2/$1-outline$4-chapter$i.md
+        grep '^#\{2,'"$4"'\} '"$i"'\.' $2/$1.md >> $2/$1-outline$4-chapter$i.md
         echo '完成为'$1'.md第'$i'章生成目录大纲md文件，章节目录大纲标题深度：'$4'............'
 
         echo '开始为'$1'.md第'$i'章节生成目录大纲markmap文件，markmap文件标题深度：'$4'......'
@@ -716,6 +720,8 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
         #写入锚点跳跃组件
         echo '' >> $2/$3/$1-chapter-$CHAPTER_NAME.md
         echo '<ScrollIntoPageView/>' >> $2/$3/$1-chapter-$CHAPTER_NAME.md
+        #写入隐藏侧边栏的组件
+        echo '<HideSideBar/>' >> $2/$3/$1-chapter-$CHAPTER_NAME.md
         echo '完成为'$1'.md生成的分片文件二级标题、三级标题和四级标题添加锚点使用的id................................................'
 
         #替换图片路径

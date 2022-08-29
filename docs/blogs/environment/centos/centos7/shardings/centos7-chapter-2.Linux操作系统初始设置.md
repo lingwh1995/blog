@@ -126,3 +126,4 @@ chmod +x centos7-init.sh &&
 ```
 
 <ScrollIntoPageView/>
+<HideSideBar/>

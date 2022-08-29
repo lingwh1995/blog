@@ -156,7 +156,7 @@ http://localhost/consumer/payment/get/1
 
     AvailabilityFilteringRule(可用性敏感策略)
     先过滤掉非健康的服务实例，然后再选择连接数较小的服务实例。
-    
+
     ZoneAvoidanceRule(区域内可用性能最优策略)
     基于AvailabilityFilteringRule基础上做的,首先判断一个zone的运行性能是否可用.剔除不可用的区域zone的所有server,然后再利用AvailabilityPredicate过滤并发连接过多的server。
 
@@ -336,3 +336,4 @@ http://localhost/consumer/payment/get/1
 
 
 <ScrollIntoPageView/>
+<HideSideBar/>

@@ -270,4 +270,5 @@ http://192.168.0.8:31208
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>rm -rf /usr/share/kuboard
 </code></pre></div><ScrollIntoPageView/>
+<HideSideBar/>
 </div></template>

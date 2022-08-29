@@ -176,3 +176,4 @@ https://lingwh.coding.net/p/java/ci/agent/136295/list
 
 
 <ScrollIntoPageView/>
+<HideSideBar/>

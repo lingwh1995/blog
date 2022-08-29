@@ -356,3 +356,4 @@ git version
 
 
 <ScrollIntoPageView/>
+<HideSideBar/>

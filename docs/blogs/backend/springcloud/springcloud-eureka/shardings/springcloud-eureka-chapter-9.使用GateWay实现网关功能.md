@@ -151,7 +151,7 @@ http://localhost:9527/consumer/payment/ok/get/1?uname=zhangsan
 {"code":200,"message":"查询成功,serverPort:  8002","data":{"id":1,"serial":"15646546546"}}
 ```
     可以看到四次访问返回的结果中,第一次和第三次是相同的,第二次和第四次是相同的,之所以会出现这样的结果,是因为上面编写RestTemplate时使用了默认的配置,默认的配置使用负载均衡策略是轮询策略,所以接连访问该服务四次会出现上面的情况。但是要注意,这里并没有直接访问服务消费者,而是访问了网关,这些返回的数据是服务消费端返回给网关网关返回给浏览器的。
-    
+
 ## 9.6.硬编码配置方式使用GateWay(负载均衡模式)
 ### 9.6.1.模块简介
     使用SpringCloud Gateway实现网关功能,配置方式为硬编码配置,实现了简单的请求转发功能,即请求经过网关之后会转发到单个服务消费者的单个节点,实现了在请求转发的同时做负载均衡处理,启动端口: 9527
@@ -278,3 +278,4 @@ http://localhost:9527/consumer/payment/ok/get/1?uname=zhangsan
 
 
 <ScrollIntoPageView/>
+<HideSideBar/>

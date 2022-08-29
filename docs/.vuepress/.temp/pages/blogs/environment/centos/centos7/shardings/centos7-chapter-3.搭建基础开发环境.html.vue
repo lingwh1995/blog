@@ -259,4 +259,5 @@ make prefix=/usr/local/git install
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>git version
 </code></pre></div><ScrollIntoPageView/>
+<HideSideBar/>
 </div></template>

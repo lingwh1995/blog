@@ -2588,3 +2588,4 @@ kubectl get service guestbook
 
 
 <ScrollIntoPageView/>
+<HideSideBar/>

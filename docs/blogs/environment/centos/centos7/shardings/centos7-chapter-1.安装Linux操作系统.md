@@ -59,3 +59,4 @@ http://ftp.sjtu.edu.cn/centos/
 
 
 <ScrollIntoPageView/>
+<HideSideBar/>

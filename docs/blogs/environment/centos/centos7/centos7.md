@@ -1294,6 +1294,7 @@ sudo sysctl -w vm.max_map_count=262144
 
 # 5.搭建Rancher技术栈 {#5.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter5.md)
+## 5.3.搭建Rancher
 	下载rancher
 ```
 docker pull rancher/server
@@ -4882,7 +4883,7 @@ yum makecache
 # 12.搭建SpringCloud技术栈所需组件 {#12.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter12.md)
 ## 12.3.搭建Zipkin
-	安装jdk	
+	安装jdk
 <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk</a>
 
 	创建存放安装包的目录->进入该目录->下载zipkin->重命名->赋予运行权限
@@ -4920,4 +4921,5 @@ https://github.com/apolloconfig
 ### 12.4.2.基于Apollo内置的Eureka搭建Apollo配置中心
 ### 12.4.3.基于独立部署的Eureka搭建Apollo配置中心
 ### 12.4.4.基于Zookeeper搭建Apollo配置中心
-### 12.4.5.基于Consul搭建Apollo配置中心
+### 12.4.5.基于Consul搭建Apollo配置中心 
+<HideSideBar/>

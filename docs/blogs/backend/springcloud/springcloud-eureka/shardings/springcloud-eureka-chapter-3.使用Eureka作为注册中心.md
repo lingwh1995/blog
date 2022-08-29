@@ -95,12 +95,12 @@ http://localhost:7001/
 ### 3.5.2.搭建Eureka集群中第一个节点
     模块简介
     集群(高可用)版Eureka注册中心中第一个节点,启动端口: 7002
-    
+
     模块目录结构
 ```md
 @include(../projects/springcloud-eureka/springcloud-register-center-cluster-node7002/tree.md)
 ```
-    
+
     创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-register-center-cluster-node7002的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 
@@ -135,7 +135,7 @@ http://localhost:7001/
 ```xml
 @include(../projects/springcloud-eureka/springcloud-register-center-cluster-node7003/pom.xml)
 ```
-    
+
     编写模块application.yml
 ```yml
 @include(../projects/springcloud-eureka/springcloud-register-center-cluster-node7003/src/main/resources/application.yml)
@@ -179,7 +179,7 @@ http://localhost:7001/
     127.0.0.1		eureka7002
     127.0.0.1		eureka7003
     127.0.0.1		eureka7004
-    
+
 ### 3.5.6.测试集群模块
     测试集群中的第一个节点(7002),浏览器访问
 ```
@@ -216,3 +216,4 @@ http://eureka7004:7004/
 
 
 <ScrollIntoPageView/>
+<HideSideBar/>

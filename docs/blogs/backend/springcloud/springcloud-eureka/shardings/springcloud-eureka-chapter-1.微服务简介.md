@@ -24,7 +24,7 @@ https://martinfowler.com/articles/microservices.html
 ## <a href="https://martinfowler.com/articles/microservices.html" target="_blank">1.2.Martin Fowler微服务论文国内译版</a>
 	如需国内译版,请使用谷歌翻译插件翻译自行翻译
 
-## 1.5.微服务架构图
+## 1.3.微服务架构图
 ::: center
 <div class="imgbg-customer">
 <img src="../images/microservice_architecture.png"  width="100%"/>
@@ -41,7 +41,7 @@ https://martinfowler.com/articles/microservices.html
 
 ## 1.5.微服务架构落地实现方案
 	微服务架构落地实现有很多种方案,本次介绍的方案技术栈如下:
-	注册中心: EUREKA 
+	注册中心: EUREKA
 ## <a href="https://gitee.com/lingwh1995/springcloud-eureka.git"  target="_blank">1.6.项目源代码</a>
 ```
 https://gitee.com/lingwh1995/springcloud-eureka.git
@@ -49,3 +49,4 @@ https://gitee.com/lingwh1995/springcloud-eureka.git
 
 
 <ScrollIntoPageView/>
+<HideSideBar/>
