@@ -320,8 +320,8 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     do
         echo '开始为'$1'.md第'$i'章生成目录大纲md文件，章节目录大纲标题深度：'$4'......'
         #为具体章节章节生成目录大纲md文件，标题深度由$4这个参数决定
-        echo $i'.1.章节内容概述' > $2/$1-outline$4-chapter$i.md
-        echo $i'.2.章节内容大纲' >> $2/$1-outline$4-chapter$i.md
+        echo '# '$i'.1.章节内容概述' > $2/$1-outline$4-chapter$i.md
+        echo '# '$i'.2.章节内容大纲' >> $2/$1-outline$4-chapter$i.md
         grep '^#\{1,'"$4"'\} '"$i"'\.' $2/$1.md >> $2/$1-outline$4-chapter$i.md
         echo '完成为'$1'.md第'$i'章生成目录大纲md文件，章节目录大纲标题深度：'$4'............'
 
