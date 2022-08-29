@@ -3,20 +3,20 @@
   <div class="nav-item">
     <a class="pure-button"
       href="javascript:void(0)"
-      target="_self" 
-      rel="noopener noreferrer" 
+      target="_self"
+      rel="noopener noreferrer"
       aria-label="Github">
-        <svg t="1660309811545" 
-          class="icon" 
-          viewBox="0 0 1024 1024" 
-          version="1.1" 
-          xmlns="http://www.w3.org/2000/svg" 
+        <svg t="1660309811545"
+          class="icon"
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
           p-id="1872"
           v-bind:width="pureButtonBackgroundWidth"
           v-bind:height="pureButtonBackgroundHeight"
           style="vertical-align:middle;border-radius:0.2rem">
             <path d="M892.708571 0H131.291429A131.267048 131.267048 0 0 0 0 131.267048v761.417142A131.31581 131.31581 0 0 0 131.291429 1024h761.417142A131.31581 131.31581 0 0 0 1024 892.68419V131.267048A131.267048 131.267048 0 0 0 892.708571 0z" 
-              v-bind:fill="pureButtonBackground" 
+              v-bind:fill="pureButtonBackground"
               p-id="1873">
             </path>
         </svg>
@@ -32,7 +32,7 @@
       </div>
       <div class="item" @click="goPureMode">
         <div class="title">纯净模式➡️</div>
-        <div class="content">🍀页面色彩简单</div>  
+        <div class="content">🍀页面色彩简单</div>
       </div>
     </div>
   </div>
@@ -70,7 +70,7 @@ export default {
     goPureMode() {
       const origin = window.location.origin
       window.location.href= origin + '/pure/'
-    }  
+    }
   }
 };
 </script>

@@ -162,11 +162,6 @@ export default navbar([
     ],
   },
   {
-    text: "所有文章",
-    icon: "github",
-    link: "/blogs/articles.md",
-  },
-  {
     text: "GITHUB",
     icon: "github",
     link: "https://github.com/lingwh1995",

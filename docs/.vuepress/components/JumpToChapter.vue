@@ -2,7 +2,7 @@
     <div>
       <div class="transform-read-mode-btn" @click="jumpToChapter" aria-label="章节阅读" data-balloon-pos="left">
         <FontIcon icon="list"/>
-      </div>  
+      </div>
     </div>
 
 </template>
