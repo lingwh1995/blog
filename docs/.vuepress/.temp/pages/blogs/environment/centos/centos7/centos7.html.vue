@@ -145,7 +145,7 @@ set nu         # 设置显示行号
 set showmode   #设置在命令行界面最下面显示当前模式等
 set ruler      #在右下角显示光标所在的行数等信息
 set autoindent #设置每次单击Enter键后，光标移动到下一行时与上一行的起始字符对齐
-syntax on      #即设置语法检测，当编辑C或者Shell脚本时，关键字会用特殊颜色显示
+syntax on      #即设置语法检测，当编辑C或者Shell脚本时，关键字会用特殊颜色显示		
 
 wget
 </code></pre>
@@ -4085,7 +4085,7 @@ DASHBOARD-&gt;系统管理-&gt;系统配置-&gt;Publish over SSH
 
 解压到/user/local/bin
 </code></pre>
-<div class="language-text ext-text"><pre v-pre class="language-text"><code>tar -zxvf Mycat-server-1.6.7.3-release-20190828135747-linux.tar.gz -C /usr/local/bin	
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>tar -zxvf Mycat-server-1.6.7.3-release-20190828135747-linux.tar.gz -C /usr/local/bin
 </code></pre></div><pre><code>删除mycat中低版本的mysql连接包（如使用低版本数据可以不删除）
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>rm -rf /usr/local/bin/mycat/lib/mysql-connector-java-5.1.35.jar
@@ -4151,14 +4151,14 @@ mycat2需要一个数据库来存放默认mycat2自身运行所需的数据
 </code></pre></div><h3 id="_10-4-3-组装mycat2完整程序包" tabindex="-1"><a class="header-anchor" href="#_10-4-3-组装mycat2完整程序包" aria-hidden="true">#</a> 10.4.3.组装mycat2完整程序包</h3>
 <pre><code>下载mycat2外壳
 </code></pre>
-<div class="language-text ext-text"><pre v-pre class="language-text"><code>wget http://dl.mycat.org.cn/2.0/install-template/mycat2-install-template-1.20.zip		 
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>wget http://dl.mycat.org.cn/2.0/install-template/mycat2-install-template-1.20.zip
 </code></pre></div><pre><code>下载mycat2核心jar
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>wget http://dl.mycat.org.cn/2.0/1.22-release/mycat2-1.20-jar-with-dependencies.jar
-</code></pre></div><pre><code>组装mycat2并上传一份到/opt/software/package中	
+</code></pre></div><pre><code>组装mycat2并上传一份到/opt/software/package中
 解压zip包，把jar包放入mycat2-install-template-1.20.zip/mycat/lib中
 
-修改/opt/software/package/mycat2-install-template-1.20/mycat/lib中下面文件的权限	
+修改/opt/software/package/mycat2-install-template-1.20/mycat/lib中下面文件的权限
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>cd /opt/software/install/mycat/lib &amp;&amp;
 chmod 777 libwrapper-linux-ppc-64.so &amp;&amp;
@@ -4173,7 +4173,7 @@ chmod +x wrapper-linux-x86-32 &amp;&amp;
 chmod +x wrapper &amp;&amp;
 chmod +x mycat
 </code></pre></div><pre><code>替换低版本的mysql连接包为高版本的mysql连接包
-上传适用于mysql8.0.29的连接包到/opt/software/package，修改权限并复制一份到mycat的指定文件夹中	
+上传适用于mysql8.0.29的连接包到/opt/software/package，修改权限并复制一份到mycat的指定文件夹中
 
 修改默认原型库的数据库连接信息
 </code></pre>
@@ -4302,7 +4302,7 @@ baseurl=http://192.168.220.100/base/
 gpgcheck=1
 gpgkey=http://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-6
 
-#released updates
+#released updates 
 [updates]
 name=CentOS-$releasever - Updates - mirrors.aliyun.com
 failovermethod=priority

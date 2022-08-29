@@ -63,7 +63,7 @@ systemctl disable firewalld
 ```
 ## 7.8.所有节点安装docker
 	安装docker
-<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-3-安装docker">安装docker</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-3-安装docker">安装docker</a>
 
 	修改docker配置
 	vim /etc/docker/daemon.json，并添加如下内容：

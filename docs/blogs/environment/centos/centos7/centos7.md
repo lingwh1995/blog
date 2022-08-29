@@ -167,7 +167,7 @@ yum -y install vim*
 	set showmode   #设置在命令行界面最下面显示当前模式等
 	set ruler      #在右下角显示光标所在的行数等信息
 	set autoindent #设置每次单击Enter键后，光标移动到下一行时与上一行的起始字符对齐
-	syntax on      #即设置语法检测，当编辑C或者Shell脚本时，关键字会用特殊颜色显示
+	syntax on      #即设置语法检测，当编辑C或者Shell脚本时，关键字会用特殊颜色显示		
 
 	wget
 ```
@@ -4562,7 +4562,7 @@ wget http://dl.mycat.org.cn/1.6.7.3/20190828135747/Mycat-server-1.6.7.3-release-
 
 	解压到/user/local/bin
 ```
-tar -zxvf Mycat-server-1.6.7.3-release-20190828135747-linux.tar.gz -C /usr/local/bin	
+tar -zxvf Mycat-server-1.6.7.3-release-20190828135747-linux.tar.gz -C /usr/local/bin
 ```
 
 	删除mycat中低版本的mysql连接包（如使用低版本数据可以不删除）
@@ -4653,22 +4653,22 @@ flush privileges;
 ```
 
 ### 10.4.3.组装mycat2完整程序包
-	
+
 	下载mycat2外壳
 ```
-wget http://dl.mycat.org.cn/2.0/install-template/mycat2-install-template-1.20.zip		 
+wget http://dl.mycat.org.cn/2.0/install-template/mycat2-install-template-1.20.zip
 ```
-	
+
 	下载mycat2核心jar
 ```
 wget http://dl.mycat.org.cn/2.0/1.22-release/mycat2-1.20-jar-with-dependencies.jar
-```	
-	
-	组装mycat2并上传一份到/opt/software/package中	
+```
+
+	组装mycat2并上传一份到/opt/software/package中
 	解压zip包，把jar包放入mycat2-install-template-1.20.zip/mycat/lib中
-	
-	修改/opt/software/package/mycat2-install-template-1.20/mycat/lib中下面文件的权限	
-```	
+
+	修改/opt/software/package/mycat2-install-template-1.20/mycat/lib中下面文件的权限
+```
 cd /opt/software/install/mycat/lib &&
 chmod 777 libwrapper-linux-ppc-64.so &&
 chmod 777 libwrapper-linux-x86-32.so &&
@@ -4677,7 +4677,7 @@ chmod 777 wrapper.jar
 ```
 
 	修改/opt/software/package/mycat2-install-template-1.20/mycat/bin中下面文件的权限
-```	
+```
 cd /opt/software/install/mycat/bin &&
 chmod +x wrapper-linux-x86-64 &&
 chmod +x wrapper-linux-x86-32 &&
@@ -4686,8 +4686,8 @@ chmod +x mycat
 ```
 
 	替换低版本的mysql连接包为高版本的mysql连接包
-	上传适用于mysql8.0.29的连接包到/opt/software/package，修改权限并复制一份到mycat的指定文件夹中	
-	
+	上传适用于mysql8.0.29的连接包到/opt/software/package，修改权限并复制一份到mycat的指定文件夹中
+
 	修改默认原型库的数据库连接信息
 ```
 cd /opt/software/package/mycat2-install-template-1.20/mycat/conf/datasource
@@ -4846,8 +4846,8 @@ vi CentOS-Base.repo
 	#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=os
 	gpgcheck=1
 	gpgkey=http://mirrors.aliyun.com/centos/RPM-GPG-KEY-CentOS-6
-
-	#released updates
+	
+	#released updates 
 	[updates]
 	name=CentOS-$releasever - Updates - mirrors.aliyun.com
 	failovermethod=priority

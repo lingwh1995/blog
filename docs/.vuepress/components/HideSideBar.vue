@@ -13,7 +13,6 @@ export default {
     this.$nextTick(()=>{
       const currentSidebarTextTemp = document.querySelector('.page-title h1').innerText
       const currentSidebarText = currentSidebarTextTemp.substr(currentSidebarTextTemp.indexOf('>')+1,currentSidebarTextTemp.lastIndexOf('-'))
-      //console.log(currentSidebarText)
       var currentSidebarTextIndex ;
       const sidebarLinks = document.querySelector('.sidebar-links').children
       for(var i=0; i<sidebarLinks.length; i++) {
@@ -23,11 +22,8 @@ export default {
           break;
         }
       }
-      //console.log(currentSidebarTextIndex)
       for(var i=0; i<sidebarLinks.length; i++) {
-        //console.log(sidebarLinks[i])
         if(i != currentSidebarTextIndex) {
-          console.log(i)
           sidebarLinks[i].style.display="none"
         }else{
           sidebarLinks[i].style.display="block"

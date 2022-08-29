@@ -20,42 +20,42 @@ head:
 ## 11.3.搭建yum私服
 ## 11.3.1.安装httpd
 	配置阿里云源
-<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-2.Linux操作系统初始设置.html#_2-7-配置yml源" target="_blank">配置yml源</a>
-	
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-2.Linux操作系统初始设置.html#_2-7-配置yml源" target="_blank">配置yml源</a>
+
 	安装nginx或apache，此处以apache为例
-```	
+```
 yum install httpd
 ```
 
 	检测是否安装成功
-```	
+```
 rpm -ql httpd
 ```
 	或
 ```
-curl http://127.0.0.1	
-```	
-	
+curl http://127.0.0.1
+```
+
 	启动apache
 ```
 /bin/systemctl start httpd.service
-```	
-	配置服务自启动 
-```	
+```
+	配置服务自启动
+```
 chkconfig httpd on
-```	
+```
 	访问apache
-```	
+```
 http://192.168.0.9
-```	
-	
-	访问失败解决	
+```
+
+	访问失败解决
 	如无法访问成功，可开放端口或关闭防火墙
 	查询服务器的配置文件
 ```
 find / -name httpd.conf
-```		
-	
+```
+
 	卸载httpd
 ```
 yum -y remove httpd
@@ -63,7 +63,7 @@ yum -y remove httpd
 
 ## 11.3.2.安装yum相关工具
 	安装createrepo 和 reposync
-```		
+```
 yum -y install createrepo reposync
 ```
 
@@ -71,7 +71,7 @@ yum -y install createrepo reposync
 ```
 yum install yum-utils
 ```
-	
+
 	下载rpm包
 ```
 reposync --repoid=base &&

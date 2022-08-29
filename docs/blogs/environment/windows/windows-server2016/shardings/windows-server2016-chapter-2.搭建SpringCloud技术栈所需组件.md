@@ -19,7 +19,7 @@ head:
 @include(@src/public/enhance/guidance/environment/windows/windows-server2016/chapter/windows-server2016-guidance-chapter2.md)
 ## 2.3.搭建Zipkin
 	安装jdk
-<a href="/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-1.搭建基础开发环境.html#_1-3-安装jdk" target="href">安装jdk</a>
+详细参考-> <a href="/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-1.搭建基础开发环境.html#_1-3-安装jdk" target="href">安装jdk</a>
 
 	创建存放安装包的目录->进入该目录->下载zipkin->重命名->赋予运行权限
 ```

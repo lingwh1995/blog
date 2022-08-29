@@ -1,5 +1,5 @@
 import { sidebar } from "vuepress-theme-hope";
- 
+
 export default sidebar([
   {
       // 必要的，分组的标题文字
