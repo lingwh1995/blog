@@ -27,5 +27,5 @@
 ###	<a href="/enhance/markmap/environment/centos/centos7/centos7-outline3.html" target="_blank">详细版博客内容大纲</a>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/centos7-outline3.html" height="600rem"/>
 
->
+<HideSideBar/>
 

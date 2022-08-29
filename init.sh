@@ -389,7 +389,7 @@ $BLOG_CONTENT_INTRO
 ###	<a href="/$5/$4/$1-outline3.html" target="_blank">详细版博客内容大纲</a>
 <Markmap localtion="/$5/$4/$1-outline3.html" height="600rem"/>
 
->
+<HideSideBar/>
 
 EOF
     #为xxx-guidance.md的Frontmatter配置中写入category配置信息
@@ -1107,7 +1107,7 @@ function syntaxCheck() {
             echo '可能发生语法错误的文件和行号：'${LINE_NUMBER_ARR3[k]}'行'
         done
         echo '语法错误3结束：**************************************************************************************************'
-        
+
         LINE_NUMBER_STR4=`cat $DOCS_PATH/$2/$1.md.original | grep -n '<a/>' | cut -d':' -f1 | tr '\r\n' ' '`
         LINE_NUMBER_STR4=( $LINE_NUMBER_STR4 )
         echo '语法错误4开始：**************************************************************************************************'

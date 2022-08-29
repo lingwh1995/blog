@@ -123,7 +123,7 @@ function deployNormalLocalhost() {
 
     #替换所有的超链接
     generateHrefValueForNormal
-    
+
     #执行构建操作
     echo '开始执行构建操作...........................'
     build

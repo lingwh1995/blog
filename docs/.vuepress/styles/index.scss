@@ -340,6 +340,21 @@ p, ul, ol {
 .theme-hope-content pre, .theme-hope-content pre[class*=language-] {
     margin: 0;
 }
+.theme-hope-content p {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background: #F5F5FA;
+    overflow: auto;
+    margin: 0 0;
+    border-radius: 6px;
+    padding: 1rem;
+    color: #59595B;
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+}
+.theme-hope-content p a {
+    font-size: 1.2rem;
+}
 /*
 .theme-hope-content pre[class*=language-] {
     padding-bottom: 0;

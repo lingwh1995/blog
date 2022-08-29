@@ -17,5 +17,5 @@
 ###	<a href="/enhance/markmap/environment/windows/windows-server2016/windows-server2016-outline3.html" target="_blank">详细版博客内容大纲</a>
 <Markmap localtion="/enhance/markmap/environment/windows/windows-server2016/windows-server2016-outline3.html" height="600rem"/>
 
->
+<HideSideBar/>
 

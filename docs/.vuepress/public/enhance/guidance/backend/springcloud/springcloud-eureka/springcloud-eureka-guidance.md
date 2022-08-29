@@ -26,5 +26,5 @@
 ###	<a href="/enhance/markmap/backend/springcloud/springcloud-eureka/springcloud-eureka-outline3.html" target="_blank">详细版博客内容大纲</a>
 <Markmap localtion="/enhance/markmap/backend/springcloud/springcloud-eureka/springcloud-eureka-outline3.html" height="600rem"/>
 
->
+<HideSideBar/>
 
