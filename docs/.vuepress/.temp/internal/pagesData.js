@@ -7,12 +7,12 @@ export const pagesData = {
   "v-8daa1a0e": () => import(/* webpackChunkName: "v-8daa1a0e" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/index.html.js").then(({ data }) => data),
   // path: /blogs/articles.html
   "v-ca6496b6": () => import(/* webpackChunkName: "v-ca6496b6" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/articles.html.js").then(({ data }) => data),
-  // path: /blogs/backend/
-  "v-00bf5692": () => import(/* webpackChunkName: "v-00bf5692" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/index.html.js").then(({ data }) => data),
   // path: /blogs/basicsupprot/knowledge.html
   "v-2331478c": () => import(/* webpackChunkName: "v-2331478c" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/basicsupprot/knowledge.html.js").then(({ data }) => data),
   // path: /blogs/basicsupprot/tools.html
   "v-45f718cf": () => import(/* webpackChunkName: "v-45f718cf" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/basicsupprot/tools.html.js").then(({ data }) => data),
+  // path: /blogs/backend/
+  "v-00bf5692": () => import(/* webpackChunkName: "v-00bf5692" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/index.html.js").then(({ data }) => data),
   // path: /blogs/environment/
   "v-7cc98773": () => import(/* webpackChunkName: "v-7cc98773" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/index.html.js").then(({ data }) => data),
   // path: /blogs/backend/springcloud/

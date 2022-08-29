@@ -12,7 +12,6 @@ export default {
   data() {
     return {
       ariaLabelText: '显示所有博客侧边栏',
-      currentSidebarTextIndex: 0,
       showAllSidebars: true
     };
   },
@@ -20,38 +19,40 @@ export default {
     this.$nextTick(()=>{
       const currentSidebarTextTemp = document.querySelector('.page-title h1').innerText
       const currentSidebarText = currentSidebarTextTemp.substr(currentSidebarTextTemp.indexOf('>')+1,currentSidebarTextTemp.lastIndexOf('-'))
-      const sidebarLinks = document.querySelector('.sidebar-links').children
-      for(var i=0; i<sidebarLinks.length; i++) {
-        const sidebarText = sidebarLinks[i].querySelector('.title').innerText
+      const sidebarLinks = document.querySelector('.sidebar-links')
+      const sidebarLinkItems = sidebarLinks.children
+      for(var i=0; i<sidebarLinkItems.length; i++) {
+        const sidebarText = sidebarLinkItems[i].querySelector('.title').innerText
         if(currentSidebarText == sidebarText) {
-          this.$data.currentSidebarTextIndex = i;
+          const currentSidebar = sidebarLinks.removeChild(sidebarLinks.children[i])
+          sidebarLinks.insertBefore(currentSidebar,sidebarLinks.children[0])
           break;
         }
       }
-      for(var j=0; j<sidebarLinks.length; j++) {
-        if(j != this.$data.currentSidebarTextIndex) {
-          sidebarLinks[j].style.display="none"
+      for(var j=0; j<sidebarLinkItems.length; j++) {
+        if(j == 0) {
+          sidebarLinkItems[j].style.display="block"
         }else{
-          sidebarLinks[j].style.display="block"
+          sidebarLinkItems[j].style.display="none"
         }
       }
     })
   },
   methods: {
     toggleShowAllSidebars() {
-      const sidebarLinks = document.querySelector('.sidebar-links').children
-      console.log(this.$data.showAllSidebars)
+      const sidebarLinks = document.querySelector('.sidebar-links')
+      const sidebarLinkItems = sidebarLinks.children
       if(this.$data.showAllSidebars) {
-        for(var i=0; i<sidebarLinks.length; i++) {
-          sidebarLinks[i].style.display="block"
+        for(var i=0; i<sidebarLinkItems.length; i++) {
+          sidebarLinkItems[i].style.display="block"
         }
         this.$data.ariaLabelText = "只显示当前博客侧边栏"
       }else{
-        for(var j=0; j<sidebarLinks.length; j++) {
-          if(j != this.$data.currentSidebarTextIndex) {
-            sidebarLinks[j].style.display="none"
+        for(var j=0; j<sidebarLinkItems.length; j++) {
+          if(j == 0) {
+            sidebarLinkItems[j].style.display="block"
           }else{
-            sidebarLinks[j].style.display="block"
+            sidebarLinkItems[j].style.display="none"
           }
         }
         this.$data.ariaLabelText = "显示所有博客侧边栏"

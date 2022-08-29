@@ -9,12 +9,12 @@ export const pagesComponents = {
   "v-8daa1a0e": defineAsyncComponent(() => import(/* webpackChunkName: "v-8daa1a0e" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/index.html.vue")),
   // path: /blogs/articles.html
   "v-ca6496b6": defineAsyncComponent(() => import(/* webpackChunkName: "v-ca6496b6" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/articles.html.vue")),
-  // path: /blogs/backend/
-  "v-00bf5692": defineAsyncComponent(() => import(/* webpackChunkName: "v-00bf5692" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/index.html.vue")),
   // path: /blogs/basicsupprot/knowledge.html
   "v-2331478c": defineAsyncComponent(() => import(/* webpackChunkName: "v-2331478c" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/basicsupprot/knowledge.html.vue")),
   // path: /blogs/basicsupprot/tools.html
   "v-45f718cf": defineAsyncComponent(() => import(/* webpackChunkName: "v-45f718cf" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/basicsupprot/tools.html.vue")),
+  // path: /blogs/backend/
+  "v-00bf5692": defineAsyncComponent(() => import(/* webpackChunkName: "v-00bf5692" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/index.html.vue")),
   // path: /blogs/environment/
   "v-7cc98773": defineAsyncComponent(() => import(/* webpackChunkName: "v-7cc98773" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/index.html.vue")),
   // path: /blogs/backend/springcloud/

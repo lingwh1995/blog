@@ -398,8 +398,8 @@ $BLOG_CONTENT_INTRO
 
 >
 <!--最深展示五级标题内容,当前展示到4级-->
-###	<a href="/$5/$4/$1-outline$MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH.html" target="_blank">详细版博客内容大纲</a>
-<Markmap localtion="/$5/$4/$1-outline$MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH.html" height="600rem"/>
+###	<a href="/$5/$4/$1-outline$7.html" target="_blank">详细版博客内容大纲</a>
+<Markmap localtion="/$5/$4/$1-outline$7.html" height="600rem"/>
 
 <HideSideBar/>
 
