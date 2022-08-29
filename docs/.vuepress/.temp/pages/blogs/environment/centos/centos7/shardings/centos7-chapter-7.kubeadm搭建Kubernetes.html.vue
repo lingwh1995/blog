@@ -56,7 +56,7 @@ systemctl disable firewalld
 </code></pre></div><h2 id="_7-8-所有节点安装docker" tabindex="-1"><a class="header-anchor" href="#_7-8-所有节点安装docker" aria-hidden="true">#</a> 7.8.所有节点安装docker</h2>
 <pre><code>安装docker
 </code></pre>
-<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-3-安装docker">安装docker</a></p>
+<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-3-安装docker" target="_blank">安装docker</a></p>
 <pre><code>修改docker配置
 vim /etc/docker/daemon.json，并添加如下内容：
 #kubernetes官方推荐 docker等使用systemd作为cgroupdriver，否则 kubelet 启动不了

@@ -50,10 +50,10 @@ head:
 	如项目已经启动修改完字符配置后要重启tomcat
 
 ### 9.3.3.安装jdk
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk(Centos7)</a>
 
 ### 9.3.4.安装maven
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-4-安装maven" target="_blank">安装maven</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-4-安装maven" target="_blank">安装maven(Centos7)</a>
 
 	注意事项
 	如果在jekins启动的情况下在settings.xml中新增了源的配置，想要jenkins构建的时候使用新配置的阿里云的源，必须重启tomcat，使用 http://192.168.0.4/jenkins/reload 热重启是无法识别阿里云源的
@@ -68,7 +68,7 @@ head:
 		自动构建该模块所依赖的其他模块
 
 ### 9.3.5.安装git
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-8-1-安装默认版本git" target="_blank">安装默认版本git</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-8-1-安装默认版本git" target="_blank">安装默认版本git(Centos7)</a>
 
 ### 9.3.6.启动Jenkins
 	启动部署了Jenkins的tomcat
@@ -124,10 +124,10 @@ head:
 	git、maven、Coding.net
 
 ### 9.4.2.安装jdk
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk(Centos7)</a>
 
 ### 9.4.3.安装maven
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-4-安装maven" target="_blank">安装maven</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-4-安装maven" target="_blank">安装maven(Centos7)</a>
 
 	注意事项
 	如果在jekins启动的情况下在settings.xml中新增了源的配置，想要jenkins构建的时候使用新配置的阿里云的源，必须重启tomcat，使用 http://192.168.0.4/jenkins/reload 热重启是无法识别阿里云源的
@@ -142,7 +142,7 @@ head:
 		自动构建该模块所依赖的其他模块
 
 ### 9.4.4.安装git
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-8-2-安装指定版本git" target="_blank">安装默认版本git</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-8-2-安装指定版本git" target="_blank">安装默认版本git(Centos7)</a>
 
 ### 9.4.5.使用Coding提供的接入命令搭建持续集成环境
 
@@ -172,7 +172,6 @@ https://lingwh.coding.net/p/java/ci/agent/136295/list
 	DASHBOARD->系统管理->系统配置->Publish over SSH
 	配置Jenkins所在服务器到docker所在服务器的免密登录
 	需要百度查询确定
-
 
 
 <ScrollIntoPageView/>

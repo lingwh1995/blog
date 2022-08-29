@@ -277,12 +277,26 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
         sed -i '/<img.*src=".*".*\/>/a\</div>' $2/$1.md
     done
 
+    #获取一级标题总数
+    TOTAL_TITLE1_COUNTS=`grep '^# [1-9][0-9]\?' $2/$1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
+
     echo '开始为'$1'.md生成二级和三级目录大纲md文件......'
     #生成二级目录大纲md文件
     grep '^#\{1,2\} [1-9][0-9]\?' $2/$1.md > $2/$1-outline2.md
-    #生成三级目录大纲md文件
-    grep '^#\{1,3\} [1-9][0-9]\?' $2/$1.md > $2/$1-outline3.md
+    #生成$4级目录大纲md文件
+    grep '^#\{1,'"$4"'\} [1-9][0-9]\?' $2/$1.md > $2/$1-outline$4.md
     echo '完成为'$1'.md生成二级和三级目录大纲md文件............'
+
+    #为'$1'.md生成二级和三级目录大纲md文件的插入二级标题的第一个章节和第二个章节
+    echo '开始为'$1'.md生成二级和三级目录大纲md文件的插入二级标题的第一个章节和第二个章节......'
+    for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
+    do
+        sed -i '/^# '"$i"'\./a## '"$i"'.2.章节内容大纲' $2/$1-outline2.md
+        sed -i '/^# '"$i"'\./a## '"$i"'.1.章节内容概述' $2/$1-outline2.md
+        sed -i '/^# '"$i"'\./a## '"$i"'.2.章节内容大纲' $2/$1-outline$4.md
+        sed -i '/^# '"$i"'\./a## '"$i"'.1.章节内容概述' $2/$1-outline$4.md
+    done
+    echo '完成为'$1'.md生成二级和三级目录大纲md文件的插入二级标题的第一个章节和第二个章节......'
 
     echo '开始为'$1'.md生成二级和三级目录大纲markmap文件，并输出到指定文件夹中......'
 
@@ -296,9 +310,9 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     markmap --no-open $2/$1-outline2.md -o $3/$1-outline2.html
     #给$3/$1-outline2.html增加样式
     sed -i '/height: 100vh;/a\  font-weight: 400 16px/20px sans-serif;' $3/$1-outline2.html
-    markmap --no-open $2/$1-outline3.md -o $3/$1-outline3.html
-    #给$3/$1-outline3.html增加样式
-    sed -i '/height: 100vh;/a\  font-weight:400 16px/20px sans-serif;' $3/$1-outline3.html
+    markmap --no-open $2/$1-outline$4.md -o $3/$1-outline$4.html
+    #给$3/$1-outline$4.html增加样式
+    sed -i '/height: 100vh;/a\  font-weight:400 16px/20px sans-serif;' $3/$1-outline$4.html
     echo '完成为'$1'.md生成二级和三级目录大纲markmap文件，并输出到指定文件夹中............'
 
     echo '开始删除'$1'.md生成的二级和三级目录大纲md文件......'
@@ -306,12 +320,9 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     rm -rf $2/$1-outline*.md
     echo '完成删除'$1'.md生成的二级和三级目录大纲md文件............'
 
-    echo '完成为'$1'.md生成二级和三级目录大纲md文件................................................' 
+    echo '完成为'$1'.md生成二级和三级目录大纲md文件................................................'
 
     echo '开始为'$1'.md的所有章节生成markmap文件........................'
-
-    #获取一级标题总数
-    TOTAL_TITLE1_COUNTS=`grep '^# [1-9][0-9]\?' $2/$1.md | tail -1 | cut -c 3-4 | sed 's/\.//g'`
 
     #创建存放为xxx.md的所有章节生成的markmap文件的文件夹
     mkdir -p $3/chapter
@@ -358,6 +369,7 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     $4:$MD_FILE_RELATIVE_PATH
     $5:$MD_FILE_MARKMAP_TARGET_PATH_PREFIX
     $6:$ENSEMBLE_GUIDANCE_TITLE1_TEXT
+    $7:$MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH
 EOF
 function generateGuidanceByMarkmapForOriginal() {
     echo '开始为'$1'md生和'$1'.md的所有章节成guidance文件........................................................................'
@@ -385,9 +397,9 @@ $BLOG_CONTENT_INTRO
 <Markmap localtion="/$5/$4/$1-outline2.html" height="500rem"/>
 
 >
-<!--最深展示五级标题内容-->
-###	<a href="/$5/$4/$1-outline3.html" target="_blank">详细版博客内容大纲</a>
-<Markmap localtion="/$5/$4/$1-outline3.html" height="600rem"/>
+<!--最深展示五级标题内容,当前展示到4级-->
+###	<a href="/$5/$4/$1-outline$MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH.html" target="_blank">详细版博客内容大纲</a>
+<Markmap localtion="/$5/$4/$1-outline$MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH.html" height="600rem"/>
 
 <HideSideBar/>
 
@@ -469,7 +481,7 @@ function title2IncrementByForOriginal() {
             echo 章节$i'中不包含二级标题......'
             continue
         else
-            echo $1'.md初始文件中章节'$i'中二级标题总数:'$TOTAL_TITLE2_COUNTS 
+            echo $1'.md初始文件中章节'$i'中二级标题总数:'$TOTAL_TITLE2_COUNTS
         fi
         for ((j=$TOTAL_TITLE2_COUNTS; j>=1; j--))
         do
@@ -1168,7 +1180,7 @@ function enhance() {
     #整个博客的内容guidance（概览）的一级标题
     ENSEMBLE_GUIDANCE_TITLE1_TEXT="博客内容介绍"
     #将上一步生成的markmap转换为guidance（概览）文件
-    generateGuidanceByMarkmapForOriginal $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_GUIDANCE_TARGET_PATH $MD_FILE_RELATIVE_PATH $MD_FILE_MARKMAP_TARGET_PATH_PREFIX $ENSEMBLE_GUIDANCE_TITLE1_TEXT
+    generateGuidanceByMarkmapForOriginal $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_GUIDANCE_TARGET_PATH $MD_FILE_RELATIVE_PATH $MD_FILE_MARKMAP_TARGET_PATH_PREFIX $ENSEMBLE_GUIDANCE_TITLE1_TEXT $MD_FILE_CHAPTER_OUTLINE_MARKMAP_HTML_TITLE_DEPTH
     #--------------------------------------------------------------------------------------------------------------
 
 

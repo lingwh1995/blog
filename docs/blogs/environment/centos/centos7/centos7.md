@@ -1560,7 +1560,7 @@ systemctl disable firewalld
 ```
 ## 7.8.所有节点安装docker
 	安装docker
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-3-安装docker">安装docker</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-3-安装docker" target="_blank">安装docker</a>
 
 	修改docker配置
 	vim /etc/docker/daemon.json，并添加如下内容：
@@ -4412,10 +4412,10 @@ kubectl get service guestbook
 	如项目已经启动修改完字符配置后要重启tomcat
 
 ### 9.3.3.安装jdk
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk(Centos7)</a>
 
 ### 9.3.4.安装maven
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-4-安装maven" target="_blank">安装maven</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-4-安装maven" target="_blank">安装maven(Centos7)</a>
 
 	注意事项
 	如果在jekins启动的情况下在settings.xml中新增了源的配置，想要jenkins构建的时候使用新配置的阿里云的源，必须重启tomcat，使用 http://192.168.0.4/jenkins/reload 热重启是无法识别阿里云源的
@@ -4430,7 +4430,7 @@ kubectl get service guestbook
 		自动构建该模块所依赖的其他模块
 
 ### 9.3.5.安装git
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-8-1-安装默认版本git" target="_blank">安装默认版本git</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-8-1-安装默认版本git" target="_blank">安装默认版本git(Centos7)</a>
 
 ### 9.3.6.启动Jenkins
 	启动部署了Jenkins的tomcat
@@ -4486,10 +4486,10 @@ kubectl get service guestbook
 	git、maven、Coding.net
 
 ### 9.4.2.安装jdk
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk(Centos7)</a>
 
 ### 9.4.3.安装maven
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-4-安装maven" target="_blank">安装maven</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-4-安装maven" target="_blank">安装maven(Centos7)</a>
 
 	注意事项
 	如果在jekins启动的情况下在settings.xml中新增了源的配置，想要jenkins构建的时候使用新配置的阿里云的源，必须重启tomcat，使用 http://192.168.0.4/jenkins/reload 热重启是无法识别阿里云源的
@@ -4504,7 +4504,7 @@ kubectl get service guestbook
 		自动构建该模块所依赖的其他模块
 
 ### 9.4.4.安装git
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-8-2-安装指定版本git" target="_blank">安装默认版本git</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-8-2-安装指定版本git" target="_blank">安装默认版本git(Centos7)</a>
 
 ### 9.4.5.使用Coding提供的接入命令搭建持续集成环境
 
@@ -4535,7 +4535,6 @@ https://lingwh.coding.net/p/java/ci/agent/136295/list
 	配置Jenkins所在服务器到docker所在服务器的免密登录
 	需要百度查询确定
 
-
 # 10.搭建Mycat技术栈 {#10.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter10.md)
 
@@ -4546,7 +4545,7 @@ https://lingwh.coding.net/p/java/ci/agent/136295/list
 	192.168.0.8 mysql
 
 ### 10.3.2.搭建JDK
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk(Centos7)</a>
 
 ### 10.3.3.搭建myact1.6
 <a href="http://www.mycat.org.cn/" target="_blank">官方网址</a>
@@ -4579,10 +4578,10 @@ cp mysql-connector-java-8.0.29.jar /usr/local/bin/mycat/lib/
 
 ### 10.3.4.在各个节点上安装mysql
 	在节点1安装mysql8.0.29(192.168.0.7)
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8(Centos7)</a>
 
 	在节点2安装mysql8.0.29(192.168.0.8)
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8(Centos7)</a>
 
 ### 10.3.5.配置mycat
 	notepad++安装插件
@@ -4629,7 +4628,7 @@ bin/mycat console #前台启动
 	192.168.0.8 mysql
 
 ### 10.4.2.搭建JDK
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk(Centos7)</a>
 
 ### 10.4.3.安装mycat2自身运行需要的mysql8(192.168.0.6)
 	创建用户mycat（注意：不能使用root用户，必须创建mycat这个用户）
@@ -4702,10 +4701,10 @@ vim prototypeDs.datasource.json
 
 ### 10.4.4.在各个节点上安装mysql
 	在节点1安装mysql8.0.29(192.168.0.7)
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8(Centos7)</a>
 
 	在节点2安装mysql8.0.29(192.168.0.8)
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8(Centos7)</a>
 
 ### 10.4.5.配置mycat
 	notepad++安装插件
@@ -4884,7 +4883,7 @@ yum makecache
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter12.md)
 ## 12.3.搭建Zipkin
 	安装jdk
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk(Centos7)</a>
 
 	创建存放安装包的目录->进入该目录->下载zipkin->重命名->赋予运行权限
 ```

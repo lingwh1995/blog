@@ -21,9 +21,9 @@
 <!--最深展示二级标题内容-->
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/centos7-outline2.html" height="500rem"/>
 <blockquote></blockquote>
-<!--最深展示五级标题内容-->
-<h3 id="详细版博客内容大纲" tabindex="-1"><a class="header-anchor" href="#详细版博客内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/centos7-outline3.html" target="_blank">详细版博客内容大纲</a></h3>
-<Markmap localtion="/enhance/markmap/environment/centos/centos7/centos7-outline3.html" height="600rem"/>
+<!--最深展示五级标题内容,当前展示到4级-->
+<h3 id="详细版博客内容大纲" tabindex="-1"><a class="header-anchor" href="#详细版博客内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/centos7-outline5.html" target="_blank">详细版博客内容大纲</a></h3>
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/centos7-outline5.html" height="600rem"/>
 <HideSideBar/>
 <h1 id="1." tabindex="-1"><a class="header-anchor" href="#1." aria-hidden="true">#</a> 1.安装Linux操作系统</h1>
 <h2 id="_1-1-章节内容概述" tabindex="-1"><a class="header-anchor" href="#_1-1-章节内容概述" aria-hidden="true">#</a> 1.1.章节内容概述</h2>
@@ -1341,7 +1341,7 @@ systemctl disable firewalld
 </code></pre></div><h2 id="_7-8-所有节点安装docker" tabindex="-1"><a class="header-anchor" href="#_7-8-所有节点安装docker" aria-hidden="true">#</a> 7.8.所有节点安装docker</h2>
 <pre><code>安装docker
 </code></pre>
-<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-3-安装docker">安装docker</a></p>
+<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-3-安装docker" target="_blank">安装docker</a></p>
 <pre><code>修改docker配置
 vim /etc/docker/daemon.json，并添加如下内容：
 #kubernetes官方推荐 docker等使用systemd作为cgroupdriver，否则 kubelet 启动不了
@@ -3946,9 +3946,9 @@ source /etc/profile
 如项目已经启动修改完字符配置后要重启tomcat
 </code></pre>
 <h3 id="_9-3-3-安装jdk" tabindex="-1"><a class="header-anchor" href="#_9-3-3-安装jdk" aria-hidden="true">#</a> 9.3.3.安装jdk</h3>
-<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk</a></p>
+<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk(Centos7)</a></p>
 <h3 id="_9-3-4-安装maven" tabindex="-1"><a class="header-anchor" href="#_9-3-4-安装maven" aria-hidden="true">#</a> 9.3.4.安装maven</h3>
-<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-4-安装maven" target="_blank">安装maven</a></p>
+<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-4-安装maven" target="_blank">安装maven(Centos7)</a></p>
 <pre><code>注意事项
 如果在jekins启动的情况下在settings.xml中新增了源的配置，想要jenkins构建的时候使用新配置的阿里云的源，必须重启tomcat，使用 http://192.168.0.4/jenkins/reload 热重启是无法识别阿里云源的
 
@@ -3962,7 +3962,7 @@ maven命令扩展:实现多模块情况下只针对某一个模块打包
 	自动构建该模块所依赖的其他模块
 </code></pre>
 <h3 id="_9-3-5-安装git" tabindex="-1"><a class="header-anchor" href="#_9-3-5-安装git" aria-hidden="true">#</a> 9.3.5.安装git</h3>
-<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-8-1-安装默认版本git" target="_blank">安装默认版本git</a></p>
+<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-8-1-安装默认版本git" target="_blank">安装默认版本git(Centos7)</a></p>
 <h3 id="_9-3-6-启动jenkins" tabindex="-1"><a class="header-anchor" href="#_9-3-6-启动jenkins" aria-hidden="true">#</a> 9.3.6.启动Jenkins</h3>
 <pre><code>启动部署了Jenkins的tomcat
 访问:http://192.168.0.5:8080/jenkins
@@ -4016,9 +4016,9 @@ Forwarding              http://2edv7s.natappfree.cc -&gt; 127.0.0.1:8080
 <pre><code>git、maven、Coding.net
 </code></pre>
 <h3 id="_9-4-2-安装jdk" tabindex="-1"><a class="header-anchor" href="#_9-4-2-安装jdk" aria-hidden="true">#</a> 9.4.2.安装jdk</h3>
-<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk</a></p>
+<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk(Centos7)</a></p>
 <h3 id="_9-4-3-安装maven" tabindex="-1"><a class="header-anchor" href="#_9-4-3-安装maven" aria-hidden="true">#</a> 9.4.3.安装maven</h3>
-<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-4-安装maven" target="_blank">安装maven</a></p>
+<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-4-安装maven" target="_blank">安装maven(Centos7)</a></p>
 <pre><code>注意事项
 如果在jekins启动的情况下在settings.xml中新增了源的配置，想要jenkins构建的时候使用新配置的阿里云的源，必须重启tomcat，使用 http://192.168.0.4/jenkins/reload 热重启是无法识别阿里云源的
 
@@ -4032,7 +4032,7 @@ maven命令扩展:实现多模块情况下只针对某一个模块打包
 	自动构建该模块所依赖的其他模块
 </code></pre>
 <h3 id="_9-4-4-安装git" tabindex="-1"><a class="header-anchor" href="#_9-4-4-安装git" aria-hidden="true">#</a> 9.4.4.安装git</h3>
-<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-8-2-安装指定版本git" target="_blank">安装默认版本git</a></p>
+<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-8-2-安装指定版本git" target="_blank">安装默认版本git(Centos7)</a></p>
 <h3 id="_9-4-5-使用coding提供的接入命令搭建持续集成环境" tabindex="-1"><a class="header-anchor" href="#_9-4-5-使用coding提供的接入命令搭建持续集成环境" aria-hidden="true">#</a> 9.4.5.使用Coding提供的接入命令搭建持续集成环境</h3>
 <pre><code>登录Coding(这里换成自己的Coding.net用户名)
 </code></pre>
@@ -4074,7 +4074,7 @@ DASHBOARD-&gt;系统管理-&gt;系统配置-&gt;Publish over SSH
 192.168.0.8 mysql
 </code></pre>
 <h3 id="_10-3-2-搭建jdk" tabindex="-1"><a class="header-anchor" href="#_10-3-2-搭建jdk" aria-hidden="true">#</a> 10.3.2.搭建JDK</h3>
-<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk</a></p>
+<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk(Centos7)</a></p>
 <h3 id="_10-3-3-搭建myact1-6" tabindex="-1"><a class="header-anchor" href="#_10-3-3-搭建myact1-6" aria-hidden="true">#</a> 10.3.3.搭建myact1.6</h3>
 <p><a href="http://www.mycat.org.cn/" target="_blank">官方网址</a></p>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>http://www.mycat.org.cn/
@@ -4097,10 +4097,10 @@ cp mysql-connector-java-8.0.29.jar /usr/local/bin/mycat/lib/
 </code></pre></div><h3 id="_10-3-4-在各个节点上安装mysql" tabindex="-1"><a class="header-anchor" href="#_10-3-4-在各个节点上安装mysql" aria-hidden="true">#</a> 10.3.4.在各个节点上安装mysql</h3>
 <pre><code>在节点1安装mysql8.0.29(192.168.0.7)
 </code></pre>
-<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8</a></p>
+<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8(Centos7)</a></p>
 <pre><code>在节点2安装mysql8.0.29(192.168.0.8)
 </code></pre>
-<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8</a></p>
+<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8(Centos7)</a></p>
 <h3 id="_10-3-5-配置mycat" tabindex="-1"><a class="header-anchor" href="#_10-3-5-配置mycat" aria-hidden="true">#</a> 10.3.5.配置mycat</h3>
 <pre><code>notepad++安装插件
 notepad++安装nppftp这个插件，连接到远程服务器之后自动可以编辑远程服务器的文本文件
@@ -4134,7 +4134,7 @@ mycat2需要一个数据库来存放默认mycat2自身运行所需的数据
 192.168.0.8 mysql
 </code></pre>
 <h3 id="_10-4-2-搭建jdk" tabindex="-1"><a class="header-anchor" href="#_10-4-2-搭建jdk" aria-hidden="true">#</a> 10.4.2.搭建JDK</h3>
-<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk</a></p>
+<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk(Centos7)</a></p>
 <h3 id="_10-4-3-安装mycat2自身运行需要的mysql8-192-168-0-6" tabindex="-1"><a class="header-anchor" href="#_10-4-3-安装mycat2自身运行需要的mysql8-192-168-0-6" aria-hidden="true">#</a> 10.4.3.安装mycat2自身运行需要的mysql8(192.168.0.6)</h3>
 <pre><code>创建用户mycat（注意：不能使用root用户，必须创建mycat这个用户）
 </code></pre>
@@ -4187,10 +4187,10 @@ chmod +x mycat
 <h3 id="_10-4-4-在各个节点上安装mysql" tabindex="-1"><a class="header-anchor" href="#_10-4-4-在各个节点上安装mysql" aria-hidden="true">#</a> 10.4.4.在各个节点上安装mysql</h3>
 <pre><code>在节点1安装mysql8.0.29(192.168.0.7)
 </code></pre>
-<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8</a></p>
+<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8(Centos7)</a></p>
 <pre><code>在节点2安装mysql8.0.29(192.168.0.8)
 </code></pre>
-<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8</a></p>
+<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8(Centos7)</a></p>
 <h3 id="_10-4-5-配置mycat" tabindex="-1"><a class="header-anchor" href="#_10-4-5-配置mycat" aria-hidden="true">#</a> 10.4.5.配置mycat</h3>
 <pre><code>notepad++安装插件
 notepad++安装nppftp这个插件，连接到远程服务器之后自动可以编辑远程服务器的文本文件
@@ -4346,7 +4346,7 @@ yum makecache
 <h2 id="_12-3-搭建zipkin" tabindex="-1"><a class="header-anchor" href="#_12-3-搭建zipkin" aria-hidden="true">#</a> 12.3.搭建Zipkin</h2>
 <pre><code>安装jdk
 </code></pre>
-<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk</a></p>
+<p>详细参考-&gt; <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk(Centos7)</a></p>
 <pre><code>创建存放安装包的目录-&gt;进入该目录-&gt;下载zipkin-&gt;重命名-&gt;赋予运行权限
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>mkdir -p /opt/software/springcloud/zipkin &amp;&amp;

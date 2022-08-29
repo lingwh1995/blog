@@ -327,7 +327,7 @@ https://gitee.com/lingwh1995/springcloud-eureka.git
 
 ## 2.5.准备项目需要的数据库
 ### 2.5.1.安装mysql数据库
-<a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8</a>
 
 ### 2.5.2.创建项目需要的数据库
     导入数据库脚本(application.yml中数据库配置和mysql部署机器信息保持一致)
