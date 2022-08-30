@@ -41,4 +41,6 @@ icon: navigate
 
                 - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-11.使用Apollo配置中心管理配置.html">11.使用Apollo配置中心管理配置</a>
 
+                - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-12.使用Seata进行分布式事务控制.html">12.使用Seata进行分布式事务控制</a>
+
             - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/springcloud-eureka.html#intro">章节内容合集</a>

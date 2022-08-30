@@ -40,9 +40,9 @@ import java.util.Properties;
 @EnableFeignClients
 public class OrderServiceConsumerApolloLoadBalanceOpenFeignConfiguration80 {
     public static void main(String[] args) {
-        System.setProperty("env","dev");
-        System.setProperty("apollo.cacheDir","D:\\repository\\cache\\apollo");
-        System.setProperty("apollo.cluster","dafult");
+//        System.setProperty("env","dev");
+//        System.setProperty("apollo.cacheDir","D:\\repository\\cache\\apollo");
+//        System.setProperty("apollo.cluster","dafult");
         SpringApplication.run(OrderServiceConsumerApolloLoadBalanceOpenFeignConfiguration80.class, args);
     }
 }

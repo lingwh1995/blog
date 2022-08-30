@@ -1,6 +1,6 @@
 ---
 title: 基于Eureka搭建Springcloud微服务-1.微服务简介
-description: 本章节涉及主要内容有：微服务架构图,CAP中占据情况,微服务架构落地实现方案,Zipkin、Sleuth简介,搭建服务提供者第一个节点(Sleuth),搭建服务提供者第二个节点(Sleuth),搭建服务消费者,搭建Zipkin,测试Zipkin+Sleuth实现调用链路追踪,Apollo配置中心简介,搭建Apollo配置中心,搭建服务消费者(Apollo),具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：微服务架构图,CAP中占据情况,微服务架构落地实现方案,Zipkin、Sleuth简介,搭建服务提供者第一个节点(Sleuth),搭建服务提供者第二个节点(Sleuth),搭建服务消费者,搭建Zipkin,测试Zipkin+Sleuth实现调用链路追踪,Apollo配置中心简介,搭建Apollo配置中心,搭建服务消费者(Apollo),Seata简介,搭建Seata Server,搭建服务提供者第一个节点(Seata),搭建服务提供者第二个节点(Seata),搭建服务消费者,测试使用Seata进行分布式事务控制 ,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -12,7 +12,7 @@ date: 2020-03-21
 head:
   - - meta
     - name: keywords
-      content: 本章节涉及主要内容有：微服务架构图,CAP中占据情况,微服务架构落地实现方案,Zipkin、Sleuth简介,搭建服务提供者第一个节点(Sleuth),搭建服务提供者第二个节点(Sleuth),搭建服务消费者,搭建Zipkin,测试Zipkin+Sleuth实现调用链路追踪,Apollo配置中心简介,搭建Apollo配置中心,搭建服务消费者(Apollo),具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+      content: 本章节涉及主要内容有：微服务架构图,CAP中占据情况,微服务架构落地实现方案,Zipkin、Sleuth简介,搭建服务提供者第一个节点(Sleuth),搭建服务提供者第二个节点(Sleuth),搭建服务消费者,搭建Zipkin,测试Zipkin+Sleuth实现调用链路追踪,Apollo配置中心简介,搭建Apollo配置中心,搭建服务消费者(Apollo),Seata简介,搭建Seata Server,搭建服务提供者第一个节点(Seata),搭建服务提供者第二个节点(Seata),搭建服务消费者,测试使用Seata进行分布式事务控制 ,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 1.微服务简介

@@ -285,6 +285,11 @@ export default sidebar([
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-11.使用Apollo配置中心管理配置.md",
                   },
+                  {
+                      text: "12.使用Seata进行分布式事务控制",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-12.使用Seata进行分布式事务控制.md",
+                  },
               ]
           },
           {
@@ -351,6 +356,11 @@ export default sidebar([
                       text: "11.使用Apollo配置中心管理配置",
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#11.",
+                  },
+                  {
+                      text: "12.使用Seata进行分布式事务控制",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#12.",
                   },
               ]
           },

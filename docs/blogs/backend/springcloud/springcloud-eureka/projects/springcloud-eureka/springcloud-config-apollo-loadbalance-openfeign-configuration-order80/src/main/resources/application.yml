@@ -5,7 +5,16 @@ apollo:
   bootstrap:
     enabled: true
     namespaces: application #多个namespaces之间使用,隔开
-
+spring:
+  cloud:
+    inetutils:
+      timeout-seconds: 5 # 设置网络超时
+      ignored-interfaces: ## 忽略网卡
+        - VMware Virtual Ethernet Adapter for VMnet1
+        - VMware Virtual Ethernet Adapter for VMnet8
+  devtools:
+    restart:
+      enabled: false
 server:
   tomcat:
     mbeanregistry:
