@@ -1267,5 +1267,206 @@ https://gitee.com/lingwh1995/apollo2.0.1-consul.git
 	apollo2.0.1-consul/apollo-configservice/target
 	apollo2.0.1-consul/apollo-portal/target
 ##### 2.4.5.3.3.如何修改使用到的参数
-	在启动脚本中对使用到的参数进行设置,如-Dserver.port=8888 
+	在启动脚本中对使用到的参数进行设置,如-Dserver.port=8888
+
+## 2.5.搭建Seata-Server
+### 2.5.1.Seata简介
+    Seata是一款开源的分布式事务解决方案,致力于提供高性能和简单易用的分布式事务服务。Seata将为用户提供了 AT、TCC、SAGA 和 XA 事务模式,为用户打造一站式的分布式解决方案。本地事务和seata事务的区别:本地事务只可以在同一台机器的同一个mysql中进行操作,seata事务可以跨机器进行事务控制
+<a href="https://seata.io/zh-cn/" target="_blank">官方网址</a>
+```
+https://seata.io/zh-cn/
+```
+<a href="https://github.com/seata/seata" target="_blank">官方网址(GITHUB)</a>
+```
+https://github.com/seata/seata
+```
+
+### 2.5.2.基于Eureka+Apollo搭建Seata-Server
+#### 2.5.2.1.单节点版
+##### 2.5.2.1.1.单节点版说明
+	使用eureka作为注册中心+使用apollo作为配置中心,seata-server版本为1.4.2
+##### 2.5.2.1.2.下载Seata Server1.4.2
+	下载Seata-Server1.4.2
+```
+curl -fL -u springcloud-1661828979817:5cc2489844765586c2032bafa6645a14921e4490 "https://lingwh-generic.pkg.coding.net/coding-drive/springcloud/seata-server-1.4.2.zip?version=latest" -o seata-server-1.4.2.zip
+```
+	下载Seata Server1.4.2源码
+```
+curl -fL -u springcloud-1661829596333:f1e93d0e10c21c3e5cfd51b22a35fa8ee3fc79b9 "https://lingwh-generic.pkg.coding.net/coding-drive/springcloud/seata-source_1.4.2.zip?version=latest" -o seata-source_1.4.2.zip
+```
+##### 2.5.2.1.3.修改配置
+	修改seata-server-1.4.2\conf\registry.conf
+```
+registry {
+	# 使用什么作为注册中心：file 、nacos 、eureka、redis、zk、consul、etcd3、sofa
+	type = "eureka"
+
+	eureka {
+	serviceUrl = "http://localhost:7001/eureka"
+	application = "seata-server"
+	weight = "1"
+	}
+}
+config {
+	# 使用什么作为配置中心：file、nacos 、apollo、zk、consul、etcd3
+	type = "apollo"
+
+	apollo {
+	seata = "default"  # 注意：1.4.2 这里要新增一个 seata 与 cluster 一样，否则会出现启动空指针
+	cluster = "default"
+	appId = "springcloud-eureka-seata"
+	## apolloConfigService will cover apolloMeta
+	apolloMeta = "http://localhost:8080/"
+	apolloConfigService = "http://localhost:8080/"
+	namespace = "seata-server"
+	apolloAccesskeySecret = ""
+	}
+}
+```
+	修改seata-server-1.4.2\conf\file.conf
+	a.修改mode为db
+```
+store {
+  mode = "db"
+}
+```
+	b.修改数据库连接信息
+```
+## database store property
+db {
+## the implement of javax.sql.DataSource, such as DruidDataSource(druid)/BasicDataSource(dbcp)/HikariDataSource(hikari) etc.
+datasource = "druid"
+## mysql/oracle/postgresql/h2/oceanbase etc.
+dbType = "mysql"
+driverClassName = "com.mysql.cj.jdbc.Driver"
+## if using mysql to store the data, recommend add rewriteBatchedStatements=true in jdbc connection param
+url = "jdbc:mysql://192.168.0.5:3306/seata?rewriteBatchedStatements=true&serverTimezone=Asia/Shanghai"
+user = "root"
+password = "Mysql123456_"
+minConn = 5
+maxConn = 100
+globalTable = "global_table"
+branchTable = "branch_table"
+lockTable = "lock_table"
+queryLimit = 100
+maxWait = 5000
+}
+```
+##### 2.5.2.1.4.搭建Apollo配置中心
+<a href="/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-2.搭建SpringCloud技术栈所需组件.html#_2-4-3-1-单环境版" target="_blank">基于独立部署的Eureka搭建Apollo配置中心-单环境版(Windows版)</a>
+
+##### 2.5.2.1.5.在Apollo中创建相关内容
+    根据registry.conf中config{apollo}的配置,在Apollo控制台中创建如下内容
+	创建项目:springcloud-eureka-seata
+	创建集群:default(其实不用创建,默认的集群就是default)
+	创建Namespace:seata-server
+##### 2.5.2.1.6.上传配置到Apollo
+	在源码中找到config.txt,修改后将配置放入刚才的命名空间seata-server中,然后发布配置config.txt修改后内容如下(双横线中间的内容都是需要修改的)
+```
+transport.type=TCP
+transport.server=NIO
+transport.heartbeat=true
+transport.enableClientBatchSendRequest=false
+transport.threadFactory.bossThreadPrefix=NettyBoss
+transport.threadFactory.workerThreadPrefix=NettyServerNIOWorker
+transport.threadFactory.serverExecutorThreadPrefix=NettyServerBizHandler
+transport.threadFactory.shareBossWorker=false
+transport.threadFactory.clientSelectorThreadPrefix=NettyClientSelector
+transport.threadFactory.clientSelectorThreadSize=1
+transport.threadFactory.clientWorkerThreadPrefix=NettyClientWorkerThread
+transport.threadFactory.bossThreadSize=1
+transport.threadFactory.workerThreadSize=default
+#---------------------------
+transport.shutdown.wait=3
+service.vgroupMapping.my_test_tx_group=seata-server
+#----service.后面的值和上面的default保持一致
+service.seata-server.grouplist=localhost:8091
+service.enableDegrade=false
+service.disableGlobalTransaction=false
+#---------------------------
+client.rm.asyncCommitBufferLimit=10000
+client.rm.lock.retryInterval=10
+client.rm.lock.retryTimes=30
+client.rm.lock.retryPolicyBranchRollbackOnConflict=true
+client.rm.reportRetryCount=5
+client.rm.tableMetaCheckEnable=false
+client.rm.tableMetaCheckerInterval=60000
+client.rm.sqlParserType=druid
+client.rm.reportSuccessEnable=false
+client.rm.sagaBranchRegisterEnable=false
+client.tm.commitRetryCount=5
+client.tm.rollbackRetryCount=5
+client.tm.defaultGlobalTransactionTimeout=60000
+client.tm.degradeCheck=false
+client.tm.degradeCheckAllowTimes=10
+client.tm.degradeCheckPeriod=2000
+#---------------------------
+store.mode=db
+#---------------------------
+store.publicKey=
+store.file.dir=file_store/data
+store.file.maxBranchSessionSize=16384
+store.file.maxGlobalSessionSize=512
+store.file.fileWriteBufferCacheSize=16384
+store.file.flushDiskMode=async
+store.file.sessionReloadReadSize=100
+store.db.datasource=druid
+store.db.dbType=mysql
+#---------------------------
+store.db.driverClassName=com.mysql.cj.jdbc.Driver
+store.db.url=jdbc:mysql://192.168.0.5:3306/seata?useUnicode=true&rewriteBatchedStatements=true&serverTimezone=Asia/Shanghai
+store.db.user=root
+store.db.password=123456
+#---------------------------
+store.db.minConn=5
+store.db.maxConn=30
+store.db.globalTable=global_table
+store.db.branchTable=branch_table
+store.db.queryLimit=100
+store.db.lockTable=lock_table
+store.db.maxWait=5000
+store.redis.mode=single
+store.redis.single.host=127.0.0.1
+store.redis.single.port=6379
+store.redis.sentinel.masterName=
+store.redis.sentinel.sentinelHosts=
+store.redis.maxConn=10
+store.redis.minConn=1
+store.redis.maxTotal=100
+store.redis.database=0
+store.redis.password=
+store.redis.queryLimit=100
+server.recovery.committingRetryPeriod=1000
+server.recovery.asynCommittingRetryPeriod=1000
+server.recovery.rollbackingRetryPeriod=1000
+server.recovery.timeoutRetryPeriod=1000
+server.maxCommitRetryTimeout=-1
+server.maxRollbackRetryTimeout=-1
+server.rollbackRetryTimeoutUnlockEnable=false
+client.undo.dataValidation=true
+client.undo.logSerialization=jackson
+client.undo.onlyCareUpdateColumns=true
+server.undo.logSaveDays=7
+server.undo.logDeletePeriod=86400000
+client.undo.logTable=undo_log
+client.undo.compress.enable=true
+client.undo.compress.type=zip
+client.undo.compress.threshold=64k
+log.exceptionRate=100
+transport.serialization=seata
+transport.compressor=none
+metrics.enabled=false
+metrics.registryType=compact
+metrics.exporterList=prometheus
+metrics.exporterPrometheusPort=9898
+```
+	上传完成后发布配置
+
+##### 2.5.2.1.7.启动Seata-Server
+	进入bin目录,双击seata-server.bat启动seate
+```mermaid
+flowchart LR
+    启动Eureka注册中心-->启动Apollo
+	启动Apollo-->启动Seata-Server
+``` 
 <HideSideBar/>

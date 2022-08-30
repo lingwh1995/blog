@@ -5,10 +5,12 @@
      12.2.章节内容大纲
      12.3.Seata简介
      12.4.搭建Seata Server
-     12.5.搭建服务提供者第一个节点(Seata)
-     12.6.搭建服务提供者第二个节点(Seata)
-     12.7.搭建服务消费者
-     12.8.测试使用Seata进行分布式事务控制 
+     12.5.准备数据库环境
+     12.6.搭建服务提供者Account服务(Seata)
+     12.6.搭建服务提供者Storage服务(Seata)
+     12.8.搭建服务消费者
+     12.8.测试使用Seata进行分布式事务控制
+     12.9.注意事项
 	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 
 ## <a href="/enhance/markmap/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-outline5-chapter12.html" target="_blank">12.2.章节内容大纲</a>

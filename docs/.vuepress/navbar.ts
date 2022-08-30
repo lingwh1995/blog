@@ -110,6 +110,32 @@ export default navbar([
     ],
   },
   {
+    text: "通用技能",
+    icon: "stack",
+    children: [
+      {
+        text: "设计模式",
+        children: [
+          {
+            text: "Java语言构造",
+            icon: "java",
+            link: "/blogs/environment/centos/centos7/shardings/centos7-chapter-0.博客内容介绍.md",
+          },
+        ],
+      },
+      {
+        text: "数据结构",
+        children: [
+          {
+            text: "Java语言构造",
+            icon: "java",
+            link: "/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-0.博客内容介绍.md",
+          },
+        ],
+      }
+    ],
+  },
+  {
     text: "环境搭建",
     icon: "shell",
     children: [

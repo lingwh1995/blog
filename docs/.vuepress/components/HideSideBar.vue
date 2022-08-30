@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="toggle-show-all-sidebars-btn" @click="toggleShowAllSidebars" v-bind:aria-label="ariaLabelText" data-balloon-pos="left">
+    <div class="toggle-show-all-sidebars-btn hide-in-mobile" @click="toggleShowAllSidebars" v-bind:aria-label="ariaLabelText" data-balloon-pos="left">
       <FontIcon icon="a-archivecatalogue-fill"/>
     </div>
   </div>
