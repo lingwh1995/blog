@@ -14,9 +14,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
     driver-class-name: com.mysql.cj.jdbc.Driver             # mysql驱动包
-    url: jdbc:mysql://192.168.0.2:3306/seata_account
+    url: jdbc:mysql://192.168.0.5:3306/seata_account
     username: root
-    password: 123456
+    password: Mysql123456_
 
 eureka:
   client:
@@ -52,7 +52,7 @@ mybatis:
   type-aliases-package: org.openatom.springcloud.entities    # 所有Entity别名类所在包
 
 app:
-  id: springcloud-seata
+  id: springcloud-eureka-seata
 apollo:
   bootstrap:
     enabled: true

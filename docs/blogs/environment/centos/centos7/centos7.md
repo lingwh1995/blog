@@ -73,7 +73,7 @@ head:
 http://ftp.sjtu.edu.cn/centos/
 ```
 
-## 1.3.安装前Vmaware相关设置
+## 1.5.安装前Vmaware相关设置
 	虚拟机联网设置
 	导航栏->编辑->虚拟网络编辑器->VMnet8NAT模式->更改设置->VMnet8NAT模式
 		->更改底部子网:192.168.0.0，子网掩码:255.255.255.0->NAT设置->网关IP:192.168.0.2
@@ -85,7 +85,7 @@ http://ftp.sjtu.edu.cn/centos/
 	VMware NetworkAdepter VMnet1：Host用于与Host-Only虚拟网络进行通信的虚拟网卡
 	VMware NetworkAdepter VMnet8：Host用于与NAT虚拟网络进行通信的虚拟网卡
 
-## 1.4.安装时分区大小设置
+## 1.6.安装时分区大小设置
 	/boot	/*存放系统启动引导文件，建议大小：512mb
 	/swap 	/*交换区，建议大小：2g
 	/*主分区，剩下的空间全部分给这个分区
@@ -155,6 +155,19 @@ cp /opt/software/package/Centos-7.repo /CentOS-Base.repo
 ```
 yum makecache && yum update
 ```
+执行下面的命令设置时区
+
+## 2.7.同步时间
+	设置硬件时钟调整为与本地时钟一致并设置时区为上海
+```
+timedatectl set-local-rtc 1 &&
+timedatectl set-timezone Asia/Shanghai
+```
+	使用ntpdate同步时间
+```
+yum -y install ntpdate &&
+ntpdate -u  pool.ntp.org
+```
 
 ## 2.8.安装常用基础系统软件
 ### 2.8.1.手动安装常用基础软件
@@ -167,7 +180,7 @@ yum -y install vim*
 	set showmode   #设置在命令行界面最下面显示当前模式等
 	set ruler      #在右下角显示光标所在的行数等信息
 	set autoindent #设置每次单击Enter键后，光标移动到下一行时与上一行的起始字符对齐
-	syntax on      #即设置语法检测，当编辑C或者Shell脚本时，关键字会用特殊颜色显示		
+	syntax on      #即设置语法检测，当编辑C或者Shell脚本时，关键字会用特殊颜色显示
 
 	wget
 ```
@@ -1142,7 +1155,7 @@ docker push 192.168.0.4:5000/jdk/jdk1.8.0_181:latest
 	访问:http://192.168.0.4:5000/v2/_catalog,看到:{"repositories":["jdk/jdk1.8.0_181"]}
 
 ## 4.9.Docker中安装常用软件
-### 4.9.1.Docker安装mysql
+### 4.9.1.安装mysql
 	下载mysql镜像
 ```
 docker pull mysql
@@ -1155,7 +1168,7 @@ docker run -di --name mysql -p 3306:3306 --restart=always -e MYSQL_ROOT_PASSWORD
 ```
 myqldocker exec -it mysql bash
 ```
-### 4.9.2.Docker中安装consul
+### 4.9.2.安装consul
 	下载consul镜像
 ```
 docker pull consul
@@ -1169,7 +1182,7 @@ docker run -d --name=consul \
 	consul:latest
 ```
 
-### 4.9.3.Docker容器中安装vim
+### 4.9.3.安装vim
 	进入容器内部
 ```
 docker exec -it 容器id /bin/bash
@@ -1199,7 +1212,7 @@ apt update
 apt-get install vim
 ```
 
-### 4.9.3.docker安装elk
+### 4.9.3.安装elk
 	下载elk镜像
 ```
 docker pull sebp/elk:6.8.22
@@ -1224,32 +1237,36 @@ firewall-cmd --reload &&
 firewall-cmd --add-port=5044/tcp --permanent &&
 firewall-cmd --reload
 ```
-	访问Kibana
-	192.168.0.4:5601
-
+	查看启动日志
+```
+docker logs `docker ps | grep elk | cut -d' ' -f1`
+```
+	访问Kibana(注意修改ip为实际部署ip)
+```
+192.168.0.4:5601
+```
 	进入ELK中进行配置
 ```
 docker exec -it elk /bin/bash
 ```
-	修改logstash配置,把下面内容粘贴进去
+	修改logstash配置,把下面内容粘贴进去(注意修改ip为实际部署ip)
 ```
-vim /etc/logstash/conf.d/02-beats-input.conf
-```
-```
+cat > /etc/logstash/conf.d/02-beats-input.conf << EOF
 input{
-	tcp{
-		host => "0.0.0.0"
-		port => 5044
-		codec=> json_lines
-	}
+    tcp{
+        host => "0.0.0.0"
+        port => 5044
+        codec=> json_lines
+    }
 }
 output{
-	elasticsearch{
-		hosts => ["192.168.0.4:9200"]
-		action => "index"
-		index => "%{[appName]}-%{+YYYY.MM.dd}"
-	}
+    elasticsearch{
+        hosts => ["192.168.0.4:9200"]
+        action => "index"
+        index => "%{[appName]}-%{+YYYY.MM.dd}"
+    }
 }
+EOF
 ```
 	配置说明:
 	input代表数据输入配置 ， logstatsh的开放端口是 5044
@@ -1274,14 +1291,8 @@ docker inspect 容器id
 
 	执行放行操作
 ```
-firewall-cmd --zone=trusted --add-source=172.17.0.2/16 --permanent
-```
-	重新载入防火墙配置
-```
-firewall-cmd --reload
-```
-	重启防火墙
-```
+firewall-cmd --zone=trusted --add-source=172.17.0.2/16 --permanent &&
+firewall-cmd --reload &&
 systemctl restart firewalld
 ```
 	docker启动elk报错/或一直重启故障解决
@@ -4898,7 +4909,7 @@ chmod +x zipkin.jar
 	开放端口
 ```
 firewall-cmd --zone=public --add-port=9411/tcp --permanent &&
-firewall-cmd --reload 
+firewall-cmd --reload
 ```
 	启动zipkin
 ```
@@ -4920,5 +4931,10 @@ https://github.com/apolloconfig
 ### 12.4.2.基于Apollo内置的Eureka搭建Apollo配置中心
 ### 12.4.3.基于独立部署的Eureka搭建Apollo配置中心
 ### 12.4.4.基于Zookeeper搭建Apollo配置中心
-### 12.4.5.基于Consul搭建Apollo配置中心 
+### 12.4.5.基于Consul搭建Apollo配置中心
+
+## 12.5.Seata-Server
+## 12.6.搭建ELK
+### 12.6.1.在操作系统中搭建ELK
+### 12.6.2.在Docker中搭建ELK 
 <HideSideBar/>

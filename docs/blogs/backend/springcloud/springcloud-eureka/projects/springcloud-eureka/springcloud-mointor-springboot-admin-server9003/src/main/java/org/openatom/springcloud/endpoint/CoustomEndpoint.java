@@ -1,4 +1,4 @@
-package org.openatom.endpoint;
+package org.openatom.springcloud.endpoint;
 
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
 import org.springframework.boot.actuate.endpoint.annotation.ReadOperation;

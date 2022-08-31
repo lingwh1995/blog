@@ -8,6 +8,7 @@
  2.5.设置系统环境变量
  2.6.安装curl
  2.7.配置yml源
+ 2.7.同步时间
  2.8.安装常用基础系统软件
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
@@ -59,6 +60,16 @@ source /etc/profile
 </code></pre></div><pre><code>生成yum源缓存并更新yum源
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>yum makecache &amp;&amp; yum update
+</code></pre></div><p>执行下面的命令设置时区</p>
+<h2 id="_2-7-同步时间" tabindex="-1"><a class="header-anchor" href="#_2-7-同步时间" aria-hidden="true">#</a> 2.7.同步时间</h2>
+<pre><code>设置硬件时钟调整为与本地时钟一致并设置时区为上海
+</code></pre>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>timedatectl set-local-rtc 1 &amp;&amp;
+timedatectl set-timezone Asia/Shanghai
+</code></pre></div><pre><code>使用ntpdate同步时间
+</code></pre>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>yum -y install ntpdate &amp;&amp;
+ntpdate -u  pool.ntp.org
 </code></pre></div><h2 id="_2-8-安装常用基础系统软件" tabindex="-1"><a class="header-anchor" href="#_2-8-安装常用基础系统软件" aria-hidden="true">#</a> 2.8.安装常用基础系统软件</h2>
 <h3 id="_2-8-1-手动安装常用基础软件" tabindex="-1"><a class="header-anchor" href="#_2-8-1-手动安装常用基础软件" aria-hidden="true">#</a> 2.8.1.手动安装常用基础软件</h3>
 <pre><code>安装vim
@@ -69,7 +80,7 @@ set nu         # 设置显示行号
 set showmode   #设置在命令行界面最下面显示当前模式等
 set ruler      #在右下角显示光标所在的行数等信息
 set autoindent #设置每次单击Enter键后，光标移动到下一行时与上一行的起始字符对齐
-syntax on      #即设置语法检测，当编辑C或者Shell脚本时，关键字会用特殊颜色显示		
+syntax on      #即设置语法检测，当编辑C或者Shell脚本时，关键字会用特殊颜色显示
 
 wget
 </code></pre>

@@ -625,7 +625,7 @@ docker push 192.168.0.4:5000/jdk/jdk1.8.0_181:latest
 	访问:http://192.168.0.4:5000/v2/_catalog,看到:{"repositories":["jdk/jdk1.8.0_181"]}
 
 ## 4.9.Docker中安装常用软件
-### 4.9.1.Docker安装mysql
+### 4.9.1.安装mysql
 	下载mysql镜像
 ```
 docker pull mysql
@@ -638,7 +638,7 @@ docker run -di --name mysql -p 3306:3306 --restart=always -e MYSQL_ROOT_PASSWORD
 ```
 myqldocker exec -it mysql bash
 ```
-### 4.9.2.Docker中安装consul
+### 4.9.2.安装consul
 	下载consul镜像
 ```
 docker pull consul
@@ -652,7 +652,7 @@ docker run -d --name=consul \
 	consul:latest
 ```
 
-### 4.9.3.Docker容器中安装vim
+### 4.9.3.安装vim
 	进入容器内部
 ```
 docker exec -it 容器id /bin/bash
@@ -682,7 +682,7 @@ apt update
 apt-get install vim
 ```
 
-### 4.9.3.docker安装elk
+### 4.9.3.安装elk
 	下载elk镜像
 ```
 docker pull sebp/elk:6.8.22
@@ -707,32 +707,36 @@ firewall-cmd --reload &&
 firewall-cmd --add-port=5044/tcp --permanent &&
 firewall-cmd --reload
 ```
-	访问Kibana
-	192.168.0.4:5601
-
+	查看启动日志
+```
+docker logs `docker ps | grep elk | cut -d' ' -f1`
+```
+	访问Kibana(注意修改ip为实际部署ip)
+```
+192.168.0.4:5601
+```
 	进入ELK中进行配置
 ```
 docker exec -it elk /bin/bash
 ```
-	修改logstash配置,把下面内容粘贴进去
+	修改logstash配置,把下面内容粘贴进去(注意修改ip为实际部署ip)
 ```
-vim /etc/logstash/conf.d/02-beats-input.conf
-```
-```
+cat > /etc/logstash/conf.d/02-beats-input.conf << EOF
 input{
-	tcp{
-		host => "0.0.0.0"
-		port => 5044
-		codec=> json_lines
-	}
+    tcp{
+        host => "0.0.0.0"
+        port => 5044
+        codec=> json_lines
+    }
 }
 output{
-	elasticsearch{
-		hosts => ["192.168.0.4:9200"]
-		action => "index"
-		index => "%{[appName]}-%{+YYYY.MM.dd}"
-	}
+    elasticsearch{
+        hosts => ["192.168.0.4:9200"]
+        action => "index"
+        index => "%{[appName]}-%{+YYYY.MM.dd}"
+    }
 }
+EOF
 ```
 	配置说明:
 	input代表数据输入配置 ， logstatsh的开放端口是 5044
@@ -757,14 +761,8 @@ docker inspect 容器id
 
 	执行放行操作
 ```
-firewall-cmd --zone=trusted --add-source=172.17.0.2/16 --permanent
-```
-	重新载入防火墙配置
-```
-firewall-cmd --reload
-```
-	重启防火墙
-```
+firewall-cmd --zone=trusted --add-source=172.17.0.2/16 --permanent &&
+firewall-cmd --reload &&
 systemctl restart firewalld
 ```
 	docker启动elk报错/或一直重启故障解决

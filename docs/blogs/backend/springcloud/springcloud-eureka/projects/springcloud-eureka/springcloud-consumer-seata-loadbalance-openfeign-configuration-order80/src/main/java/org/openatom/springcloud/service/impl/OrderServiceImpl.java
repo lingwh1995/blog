@@ -30,7 +30,7 @@ public class OrderServiceImpl implements OrderService {
     @GlobalTransactional
     public void create(Order order) {
 
-        log.info("----->开始新建订单");
+        log.info("----->开始下订单");
         //1 新建订单
         orderDao.create(order);
 
@@ -49,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
         orderDao.update(order.getUserId(),0);
         log.info("----->修改订单状态结束");
 
-        log.info("----->下订单结束了，O(∩_∩)O哈哈~");
+        log.info("----->完成下订单");
 
     }
 }

@@ -7,22 +7,22 @@ export const pagesData = {
   "v-8daa1a0e": () => import(/* webpackChunkName: "v-8daa1a0e" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/index.html.js").then(({ data }) => data),
   // path: /blogs/articles.html
   "v-ca6496b6": () => import(/* webpackChunkName: "v-ca6496b6" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/articles.html.js").then(({ data }) => data),
+  // path: /blogs/backend/
+  "v-00bf5692": () => import(/* webpackChunkName: "v-00bf5692" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/index.html.js").then(({ data }) => data),
   // path: /blogs/basicsupprot/knowledge.html
   "v-2331478c": () => import(/* webpackChunkName: "v-2331478c" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/basicsupprot/knowledge.html.js").then(({ data }) => data),
   // path: /blogs/basicsupprot/tools.html
   "v-45f718cf": () => import(/* webpackChunkName: "v-45f718cf" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/basicsupprot/tools.html.js").then(({ data }) => data),
-  // path: /blogs/backend/
-  "v-00bf5692": () => import(/* webpackChunkName: "v-00bf5692" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/index.html.js").then(({ data }) => data),
-  // path: /blogs/environment/README-centos7.html
-  "v-43e8b20c": () => import(/* webpackChunkName: "v-43e8b20c" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/README-centos7.html.js").then(({ data }) => data),
-  // path: /blogs/environment/README-windows-server2016.html
-  "v-7ce23086": () => import(/* webpackChunkName: "v-7ce23086" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/README-windows-server2016.html.js").then(({ data }) => data),
+  // path: /blogs/environment/
+  "v-7cc98773": () => import(/* webpackChunkName: "v-7cc98773" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/index.html.js").then(({ data }) => data),
   // path: /blogs/backend/springcloud/
   "v-9d7b0f0e": () => import(/* webpackChunkName: "v-9d7b0f0e" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/index.html.js").then(({ data }) => data),
-  // path: /blogs/environment/centos/README-centos7.html
-  "v-e1b50c06": () => import(/* webpackChunkName: "v-e1b50c06" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/README-centos7.html.js").then(({ data }) => data),
-  // path: /blogs/environment/windows/README-windows-server2016.html
-  "v-7c82d46e": () => import(/* webpackChunkName: "v-7c82d46e" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/README-windows-server2016.html.js").then(({ data }) => data),
+  // path: /blogs/environment/centos/
+  "v-60e2b560": () => import(/* webpackChunkName: "v-60e2b560" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/index.html.js").then(({ data }) => data),
+  // path: /blogs/environment/windows/
+  "v-1295127f": () => import(/* webpackChunkName: "v-1295127f" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/index.html.js").then(({ data }) => data),
+  // path: /blogs/backend/springcloud/springcloud-eureka/
+  "v-266c7238": () => import(/* webpackChunkName: "v-266c7238" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/index.html.js").then(({ data }) => data),
   // path: /blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.html
   "v-a019f47a": () => import(/* webpackChunkName: "v-a019f47a" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.html.js").then(({ data }) => data),
   // path: /blogs/environment/centos/centos7/centos7.html
@@ -33,6 +33,42 @@ export const pagesData = {
   "v-01291920": () => import(/* webpackChunkName: "v-01291920" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/windows-server2016/index.html.js").then(({ data }) => data),
   // path: /blogs/environment/windows/windows-server2016/windows-server2016.html
   "v-181a8d89": () => import(/* webpackChunkName: "v-181a8d89" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/windows/windows-server2016/windows-server2016.html.js").then(({ data }) => data),
+  // path: /blogs/backend/springcloud/springcloud-eureka/shardings/
+  "v-0d502c98": () => import(/* webpackChunkName: "v-0d502c98" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/index.html.js").then(({ data }) => data),
+  // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-0.%E5%8D%9A%E5%AE%A2%E5%86%85%E5%AE%B9%E4%BB%8B%E7%BB%8D.html
+  "v-55680cba": () => import(/* webpackChunkName: "v-55680cba" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-0.博客内容介绍.html.js").then(({ data }) => data),
+  // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-1.%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%AE%80%E4%BB%8B.html
+  "v-c0f26340": () => import(/* webpackChunkName: "v-c0f26340" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-1.微服务简介.html.js").then(({ data }) => data),
+  // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-10.%E4%BD%BF%E7%94%A8Zipkin+Sleuth%E5%AE%9E%E7%8E%B0%E8%B0%83%E7%94%A8%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AA.html
+  "v-447700ba": () => import(/* webpackChunkName: "v-447700ba" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-10.使用Zipkin+Sleuth实现调用链路追踪.html.js").then(({ data }) => data),
+  // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-11.%E4%BD%BF%E7%94%A8Apollo%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%E7%AE%A1%E7%90%86%E9%85%8D%E7%BD%AE.html
+  "v-7f89e8ee": () => import(/* webpackChunkName: "v-7f89e8ee" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-11.使用Apollo配置中心管理配置.html.js").then(({ data }) => data),
+  // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-12.%E4%BD%BF%E7%94%A8Seata%E8%BF%9B%E8%A1%8C%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%8E%A7%E5%88%B6.html
+  "v-c1a1c454": () => import(/* webpackChunkName: "v-c1a1c454" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-12.使用Seata进行分布式事务控制.html.js").then(({ data }) => data),
+  // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-13.%E4%BD%BF%E7%94%A8SpringBootAdmin%E7%9B%91%E6%8E%A7%E6%9C%8D%E5%8A%A1.html
+  "v-0a96c71e": () => import(/* webpackChunkName: "v-0a96c71e" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-13.使用SpringBootAdmin监控服务.html.js").then(({ data }) => data),
+  // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-14.%E8%AE%BE%E8%AE%A1%E9%80%82%E7%94%A8%E4%BA%8E%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E7%9A%84%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F.html
+  "v-3cd3ed48": () => import(/* webpackChunkName: "v-3cd3ed48" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-14.设计适用于生产环境的日志系统.html.js").then(({ data }) => data),
+  // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-15.%E5%A4%9A%E7%8E%AF%E5%A2%83%E7%9B%B8%E5%85%B3.html
+  "v-1730a766": () => import(/* webpackChunkName: "v-1730a766" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-15.多环境相关.html.js").then(({ data }) => data),
+  // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-16.%E7%BB%BC%E5%90%88%E6%A1%88%E4%BE%8B.html
+  "v-66ee9ba8": () => import(/* webpackChunkName: "v-66ee9ba8" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-16.综合案例.html.js").then(({ data }) => data),
+  // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-2.%E6%90%AD%E5%BB%BA%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD.html
+  "v-ad6e6d34": () => import(/* webpackChunkName: "v-ad6e6d34" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-2.搭建项目基础设施.html.js").then(({ data }) => data),
+  // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-3.%E4%BD%BF%E7%94%A8Eureka%E4%BD%9C%E4%B8%BA%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83.html
+  "v-c1040082": () => import(/* webpackChunkName: "v-c1040082" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-3.使用Eureka作为注册中心.html.js").then(({ data }) => data),
+  // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-4.%E6%90%AD%E5%BB%BA%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%BA%94%E7%94%A8.html
+  "v-23ec7519": () => import(/* webpackChunkName: "v-23ec7519" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-4.搭建第一个微服务应用.html.js").then(({ data }) => data),
+  // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-5.%E4%BD%BF%E7%94%A8Ribbon%E5%AE%9E%E7%8E%B0%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1.html
+  "v-2716419e": () => import(/* webpackChunkName: "v-2716419e" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-5.使用Ribbon实现客户端负载均衡.html.js").then(({ data }) => data),
+  // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-6.%E4%BD%BF%E7%94%A8OpenFeign%E5%AE%9E%E7%8E%B0%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1.html
+  "v-1ea626e9": () => import(/* webpackChunkName: "v-1ea626e9" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-6.使用OpenFeign实现客户端负载均衡.html.js").then(({ data }) => data),
+  // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-7.%E4%BD%BF%E7%94%A8Hystrix%E5%AE%9E%E7%8E%B0%E6%9C%8D%E5%8A%A1%E9%99%8D%E7%BA%A7%E5%92%8C%E7%86%94%E6%96%AD.html
+  "v-7e83af16": () => import(/* webpackChunkName: "v-7e83af16" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-7.使用Hystrix实现服务降级和熔断.html.js").then(({ data }) => data),
+  // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-8.%E4%BD%BF%E7%94%A8DashBoard%E5%92%8CTurbine%E5%AF%B9%E6%9C%8D%E5%8A%A1%E8%AE%BF%E9%97%AE%E6%B5%81%E9%87%8F%E8%BF%9B%E8%A1%8C%E7%BB%9F%E8%AE%A1.html
+  "v-e09c4652": () => import(/* webpackChunkName: "v-e09c4652" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-8.使用DashBoard和Turbine对服务访问流量进行统计.html.js").then(({ data }) => data),
+  // path: /blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-9.%E4%BD%BF%E7%94%A8GateWay%E5%AE%9E%E7%8E%B0%E7%BD%91%E5%85%B3%E5%8A%9F%E8%83%BD.html
+  "v-1224a1be": () => import(/* webpackChunkName: "v-1224a1be" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-9.使用GateWay实现网关功能.html.js").then(({ data }) => data),
   // path: /blogs/environment/centos/centos7/shardings/centos7-chapter-0.%E5%8D%9A%E5%AE%A2%E5%86%85%E5%AE%B9%E4%BB%8B%E7%BB%8D.html
   "v-0d8f245b": () => import(/* webpackChunkName: "v-0d8f245b" */"D:/repository/workspace/VSCode/PERSONAL/blog/docs/.vuepress/.temp/pages/blogs/environment/centos/centos7/shardings/centos7-chapter-0.博客内容介绍.html.js").then(({ data }) => data),
   // path: /blogs/environment/centos/centos7/shardings/centos7-chapter-1.%E5%AE%89%E8%A3%85Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.html

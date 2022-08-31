@@ -1,6 +1,6 @@
 ---
 title: 在Centos7上搭建开发环境-2.Linux操作系统初始设置
-description: 本章节涉及主要内容有：配置静态IP地址,解决远程连接无法连接的问题,设置系统环境变量,安装curl,配置yml源,安装常用基础系统软件,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：配置静态IP地址,解决远程连接无法连接的问题,设置系统环境变量,安装curl,配置yml源,同步时间,安装常用基础系统软件,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -13,7 +13,7 @@ date: 2020-01-08
 head:
   - - meta
     - name: keywords
-      content: 本章节涉及主要内容有：配置静态IP地址,解决远程连接无法连接的问题,设置系统环境变量,安装curl,配置yml源,安装常用基础系统软件,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+      content: 本章节涉及主要内容有：配置静态IP地址,解决远程连接无法连接的问题,设置系统环境变量,安装curl,配置yml源,同步时间,安装常用基础系统软件,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 2.Linux操作系统初始设置
@@ -81,6 +81,19 @@ cp /opt/software/package/Centos-7.repo /CentOS-Base.repo
 ```
 yum makecache && yum update
 ```
+执行下面的命令设置时区
+
+## 2.7.同步时间
+	设置硬件时钟调整为与本地时钟一致并设置时区为上海
+```
+timedatectl set-local-rtc 1 &&
+timedatectl set-timezone Asia/Shanghai
+```
+	使用ntpdate同步时间
+```
+yum -y install ntpdate &&
+ntpdate -u  pool.ntp.org
+```
 
 ## 2.8.安装常用基础系统软件
 ### 2.8.1.手动安装常用基础软件
@@ -93,7 +106,7 @@ yum -y install vim*
 	set showmode   #设置在命令行界面最下面显示当前模式等
 	set ruler      #在右下角显示光标所在的行数等信息
 	set autoindent #设置每次单击Enter键后，光标移动到下一行时与上一行的起始字符对齐
-	syntax on      #即设置语法检测，当编辑C或者Shell脚本时，关键字会用特殊颜色显示		
+	syntax on      #即设置语法检测，当编辑C或者Shell脚本时，关键字会用特殊颜色显示
 
 	wget
 ```

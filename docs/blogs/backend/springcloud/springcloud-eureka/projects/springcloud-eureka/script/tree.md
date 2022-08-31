@@ -1,3 +1,4 @@
 script
 |-- Jenkinsfile
-•-- payment.sql
+|-- payment.sql
+•-- seata.sql

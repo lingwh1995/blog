@@ -1402,7 +1402,8 @@ metrics.exporterPrometheusPort=9898
 flowchart LR
     启动Eureka注册中心-->启动Apollo
 	启动Apollo-->启动Seata-Server
-``` 
+```
+ 
 <HideSideBar/>
 
 <ScrollIntoPageView/>

@@ -31,7 +31,7 @@ icon: navigate
 
             - <a class="breadcrumb-link" href="springcloud-eureka/shardings/springcloud-eureka-chapter-7.使用Hystrix实现服务降级和熔断.html">7.使用Hystrix实现服务降级和熔断</a>
 
-            - <a class="breadcrumb-link" href="springcloud-eureka/shardings/springcloud-eureka-chapter-8.使用DashBoard和Turbine对服务进行监控.html">8.使用DashBoard和Turbine对服务进行监控</a>
+            - <a class="breadcrumb-link" href="springcloud-eureka/shardings/springcloud-eureka-chapter-8.使用DashBoard和Turbine对服务访问流量进行统计.html">8.使用DashBoard和Turbine对服务访问流量进行统计</a>
 
             - <a class="breadcrumb-link" href="springcloud-eureka/shardings/springcloud-eureka-chapter-9.使用GateWay实现网关功能.html">9.使用GateWay实现网关功能</a>
 
@@ -40,5 +40,13 @@ icon: navigate
             - <a class="breadcrumb-link" href="springcloud-eureka/shardings/springcloud-eureka-chapter-11.使用Apollo配置中心管理配置.html">11.使用Apollo配置中心管理配置</a>
 
             - <a class="breadcrumb-link" href="springcloud-eureka/shardings/springcloud-eureka-chapter-12.使用Seata进行分布式事务控制.html">12.使用Seata进行分布式事务控制</a>
+
+            - <a class="breadcrumb-link" href="springcloud-eureka/shardings/springcloud-eureka-chapter-13.使用SpringBootAdmin监控服务.html">13.使用SpringBootAdmin监控服务</a>
+
+            - <a class="breadcrumb-link" href="springcloud-eureka/shardings/springcloud-eureka-chapter-14.设计适用于生产环境的日志系统.html">14.设计适用于生产环境的日志系统</a>
+
+            - <a class="breadcrumb-link" href="springcloud-eureka/shardings/springcloud-eureka-chapter-15.多环境相关.html">15.多环境相关</a>
+
+            - <a class="breadcrumb-link" href="springcloud-eureka/shardings/springcloud-eureka-chapter-16.综合案例.html">16.综合案例</a>
 
         - <a class="breadcrumb-link" href="springcloud-eureka/springcloud-eureka.html#intro">章节内容合集</a>

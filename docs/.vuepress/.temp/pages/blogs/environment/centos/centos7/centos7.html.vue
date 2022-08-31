@@ -32,8 +32,8 @@
  1.2.章节内容大纲
  1.3.Linux重要目录介绍
  1.4.Centos镜像下载
- 1.3.安装前Vmaware相关设置
- 1.4.安装时分区大小设置
+ 1.5.安装前Vmaware相关设置
+ 1.6.安装时分区大小设置
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_1-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_1-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter1.html" target="_blank">1.2.章节内容大纲</a></h2>
@@ -57,7 +57,7 @@
 下载地址
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>http://ftp.sjtu.edu.cn/centos/
-</code></pre></div><h2 id="_1-3-安装前vmaware相关设置" tabindex="-1"><a class="header-anchor" href="#_1-3-安装前vmaware相关设置" aria-hidden="true">#</a> 1.3.安装前Vmaware相关设置</h2>
+</code></pre></div><h2 id="_1-5-安装前vmaware相关设置" tabindex="-1"><a class="header-anchor" href="#_1-5-安装前vmaware相关设置" aria-hidden="true">#</a> 1.5.安装前Vmaware相关设置</h2>
 <pre><code>虚拟机联网设置
 导航栏-&gt;编辑-&gt;虚拟网络编辑器-&gt;VMnet8NAT模式-&gt;更改设置-&gt;VMnet8NAT模式
 	-&gt;更改底部子网:192.168.0.0，子网掩码:255.255.255.0-&gt;NAT设置-&gt;网关IP:192.168.0.2
@@ -69,7 +69,7 @@ VMnet8：用于虚拟NAT网络下的虚拟交换机
 VMware NetworkAdepter VMnet1：Host用于与Host-Only虚拟网络进行通信的虚拟网卡
 VMware NetworkAdepter VMnet8：Host用于与NAT虚拟网络进行通信的虚拟网卡
 </code></pre>
-<h2 id="_1-4-安装时分区大小设置" tabindex="-1"><a class="header-anchor" href="#_1-4-安装时分区大小设置" aria-hidden="true">#</a> 1.4.安装时分区大小设置</h2>
+<h2 id="_1-6-安装时分区大小设置" tabindex="-1"><a class="header-anchor" href="#_1-6-安装时分区大小设置" aria-hidden="true">#</a> 1.6.安装时分区大小设置</h2>
 <pre><code>/boot	/*存放系统启动引导文件，建议大小：512mb
 /swap 	/*交换区，建议大小：2g
 /*主分区，剩下的空间全部分给这个分区
@@ -84,6 +84,7 @@ VMware NetworkAdepter VMnet8：Host用于与NAT虚拟网络进行通信的虚拟
  2.5.设置系统环境变量
  2.6.安装curl
  2.7.配置yml源
+ 2.7.同步时间
  2.8.安装常用基础系统软件
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
@@ -135,6 +136,16 @@ source /etc/profile
 </code></pre></div><pre><code>生成yum源缓存并更新yum源
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>yum makecache &amp;&amp; yum update
+</code></pre></div><p>执行下面的命令设置时区</p>
+<h2 id="_2-7-同步时间" tabindex="-1"><a class="header-anchor" href="#_2-7-同步时间" aria-hidden="true">#</a> 2.7.同步时间</h2>
+<pre><code>设置硬件时钟调整为与本地时钟一致并设置时区为上海
+</code></pre>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>timedatectl set-local-rtc 1 &amp;&amp;
+timedatectl set-timezone Asia/Shanghai
+</code></pre></div><pre><code>使用ntpdate同步时间
+</code></pre>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>yum -y install ntpdate &amp;&amp;
+ntpdate -u  pool.ntp.org
 </code></pre></div><h2 id="_2-8-安装常用基础系统软件" tabindex="-1"><a class="header-anchor" href="#_2-8-安装常用基础系统软件" aria-hidden="true">#</a> 2.8.安装常用基础系统软件</h2>
 <h3 id="_2-8-1-手动安装常用基础软件" tabindex="-1"><a class="header-anchor" href="#_2-8-1-手动安装常用基础软件" aria-hidden="true">#</a> 2.8.1.手动安装常用基础软件</h3>
 <pre><code>安装vim
@@ -145,7 +156,7 @@ set nu         # 设置显示行号
 set showmode   #设置在命令行界面最下面显示当前模式等
 set ruler      #在右下角显示光标所在的行数等信息
 set autoindent #设置每次单击Enter键后，光标移动到下一行时与上一行的起始字符对齐
-syntax on      #即设置语法检测，当编辑C或者Shell脚本时，关键字会用特殊颜色显示		
+syntax on      #即设置语法检测，当编辑C或者Shell脚本时，关键字会用特殊颜色显示
 
 wget
 </code></pre>
@@ -958,7 +969,7 @@ EOF
 访问:http://192.168.0.4:5000/v2/_catalog,看到:{&quot;repositories&quot;:[&quot;jdk/jdk1.8.0_181&quot;]}
 </code></pre>
 <h2 id="_4-9-docker中安装常用软件" tabindex="-1"><a class="header-anchor" href="#_4-9-docker中安装常用软件" aria-hidden="true">#</a> 4.9.Docker中安装常用软件</h2>
-<h3 id="_4-9-1-docker安装mysql" tabindex="-1"><a class="header-anchor" href="#_4-9-1-docker安装mysql" aria-hidden="true">#</a> 4.9.1.Docker安装mysql</h3>
+<h3 id="_4-9-1-安装mysql" tabindex="-1"><a class="header-anchor" href="#_4-9-1-安装mysql" aria-hidden="true">#</a> 4.9.1.安装mysql</h3>
 <pre><code>下载mysql镜像
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>docker pull mysql
@@ -968,7 +979,7 @@ EOF
 </code></pre></div><pre><code>关闭docker中的mysql容器
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>myqldocker exec -it mysql bash
-</code></pre></div><h3 id="_4-9-2-docker中安装consul" tabindex="-1"><a class="header-anchor" href="#_4-9-2-docker中安装consul" aria-hidden="true">#</a> 4.9.2.Docker中安装consul</h3>
+</code></pre></div><h3 id="_4-9-2-安装consul" tabindex="-1"><a class="header-anchor" href="#_4-9-2-安装consul" aria-hidden="true">#</a> 4.9.2.安装consul</h3>
 <pre><code>下载consul镜像
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>docker pull consul
@@ -979,7 +990,7 @@ EOF
 	--restart=always \
 	agent -server -bootstrap -ui -node=1 -client='0.0.0.0' \
 	consul:latest
-</code></pre></div><h3 id="_4-9-3-docker容器中安装vim" tabindex="-1"><a class="header-anchor" href="#_4-9-3-docker容器中安装vim" aria-hidden="true">#</a> 4.9.3.Docker容器中安装vim</h3>
+</code></pre></div><h3 id="_4-9-3-安装vim" tabindex="-1"><a class="header-anchor" href="#_4-9-3-安装vim" aria-hidden="true">#</a> 4.9.3.安装vim</h3>
 <pre><code>进入容器内部
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>docker exec -it 容器id /bin/bash
@@ -1002,7 +1013,7 @@ echo "deb-src http://mirrors.163.com/debian/ jessie-proposed-updates main non-fr
 </code></pre></div><pre><code>安装vim
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>apt-get install vim
-</code></pre></div><h3 id="_4-9-3-docker安装elk" tabindex="-1"><a class="header-anchor" href="#_4-9-3-docker安装elk" aria-hidden="true">#</a> 4.9.3.docker安装elk</h3>
+</code></pre></div><h3 id="_4-9-3-安装elk" tabindex="-1"><a class="header-anchor" href="#_4-9-3-安装elk" aria-hidden="true">#</a> 4.9.3.安装elk</h3>
 <pre><code>下载elk镜像
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>docker pull sebp/elk:6.8.22
@@ -1024,29 +1035,33 @@ firewall-cmd --add-port=9200/tcp --permanent &amp;&amp;
 firewall-cmd --reload &amp;&amp;
 firewall-cmd --add-port=5044/tcp --permanent &amp;&amp;
 firewall-cmd --reload
-</code></pre></div><pre><code>访问Kibana
-192.168.0.4:5601
-
-进入ELK中进行配置
+</code></pre></div><pre><code>查看启动日志
+</code></pre>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>docker logs `docker ps | grep elk | cut -d' ' -f1`
+</code></pre></div><pre><code>访问Kibana(注意修改ip为实际部署ip)
+</code></pre>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>192.168.0.4:5601
+</code></pre></div><pre><code>进入ELK中进行配置
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>docker exec -it elk /bin/bash
-</code></pre></div><pre><code>修改logstash配置,把下面内容粘贴进去
+</code></pre></div><pre><code>修改logstash配置,把下面内容粘贴进去(注意修改ip为实际部署ip)
 </code></pre>
-<div class="language-text ext-text"><pre v-pre class="language-text"><code>vim /etc/logstash/conf.d/02-beats-input.conf
-</code></pre></div><div class="language-text ext-text"><pre v-pre class="language-text"><code>input{
-	tcp{
-		host => "0.0.0.0"
-		port => 5044
-		codec=> json_lines
-	}
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>cat > /etc/logstash/conf.d/02-beats-input.conf &lt;&lt; EOF
+input{
+    tcp{
+        host => "0.0.0.0"
+        port => 5044
+        codec=> json_lines
+    }
 }
 output{
-	elasticsearch{
-		hosts => ["192.168.0.4:9200"]
-		action => "index"
-		index => "%{[appName]}-%{+YYYY.MM.dd}"
-	}
+    elasticsearch{
+        hosts => ["192.168.0.4:9200"]
+        action => "index"
+        index => "%{[appName]}-%{+YYYY.MM.dd}"
+    }
 }
+EOF
 </code></pre></div><pre><code>配置说明:
 input代表数据输入配置 ， logstatsh的开放端口是 5044
 output代表数据输出配置，输出到elasticsearch, hosts是es的地址192.168.0.4:9200
@@ -1067,13 +1082,9 @@ output代表数据输出配置，输出到elasticsearch, hosts是es的地址192.
 
 执行放行操作
 </code></pre>
-<div class="language-text ext-text"><pre v-pre class="language-text"><code>firewall-cmd --zone=trusted --add-source=172.17.0.2/16 --permanent
-</code></pre></div><pre><code>重新载入防火墙配置
-</code></pre>
-<div class="language-text ext-text"><pre v-pre class="language-text"><code>firewall-cmd --reload
-</code></pre></div><pre><code>重启防火墙
-</code></pre>
-<div class="language-text ext-text"><pre v-pre class="language-text"><code>systemctl restart firewalld
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>firewall-cmd --zone=trusted --add-source=172.17.0.2/16 --permanent &amp;&amp;
+firewall-cmd --reload &amp;&amp;
+systemctl restart firewalld
 </code></pre></div><pre><code>docker启动elk报错/或一直重启故障解决
 错误日志：
 max virtual memory areas vm.max_map_count [65530] is too low, increase to at least
@@ -4339,6 +4350,8 @@ yum makecache
  12.2.章节内容大纲
  12.3.搭建Zipkin
  12.4.搭建Apollo配置中心
+ 12.5.Seata-Server
+ 12.6.搭建ELK
 具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 </code></pre>
 <h2 id="_12-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_12-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter12.html" target="_blank">12.2.章节内容大纲</a></h2>
@@ -4359,7 +4372,7 @@ chmod +x zipkin.jar
 </code></pre></div><pre><code>开放端口
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>firewall-cmd --zone=public --add-port=9411/tcp --permanent &amp;&amp;
-firewall-cmd --reload 
+firewall-cmd --reload
 </code></pre></div><pre><code>启动zipkin
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>java -jar zipkin.jar
@@ -4375,5 +4388,9 @@ firewall-cmd --reload
 <h3 id="_12-4-3-基于独立部署的eureka搭建apollo配置中心" tabindex="-1"><a class="header-anchor" href="#_12-4-3-基于独立部署的eureka搭建apollo配置中心" aria-hidden="true">#</a> 12.4.3.基于独立部署的Eureka搭建Apollo配置中心</h3>
 <h3 id="_12-4-4-基于zookeeper搭建apollo配置中心" tabindex="-1"><a class="header-anchor" href="#_12-4-4-基于zookeeper搭建apollo配置中心" aria-hidden="true">#</a> 12.4.4.基于Zookeeper搭建Apollo配置中心</h3>
 <h3 id="_12-4-5-基于consul搭建apollo配置中心" tabindex="-1"><a class="header-anchor" href="#_12-4-5-基于consul搭建apollo配置中心" aria-hidden="true">#</a> 12.4.5.基于Consul搭建Apollo配置中心</h3>
+<h2 id="_12-5-seata-server" tabindex="-1"><a class="header-anchor" href="#_12-5-seata-server" aria-hidden="true">#</a> 12.5.Seata-Server</h2>
+<h2 id="_12-6-搭建elk" tabindex="-1"><a class="header-anchor" href="#_12-6-搭建elk" aria-hidden="true">#</a> 12.6.搭建ELK</h2>
+<h3 id="_12-6-1-在操作系统中搭建elk" tabindex="-1"><a class="header-anchor" href="#_12-6-1-在操作系统中搭建elk" aria-hidden="true">#</a> 12.6.1.在操作系统中搭建ELK</h3>
+<h3 id="_12-6-2-在docker中搭建elk" tabindex="-1"><a class="header-anchor" href="#_12-6-2-在docker中搭建elk" aria-hidden="true">#</a> 12.6.2.在Docker中搭建ELK</h3>
 <HideSideBar/>
 </div></template>

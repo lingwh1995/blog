@@ -114,12 +114,12 @@
                 service.vgroupMapping.my_test_tx_group = seata-server
                 service.seata-server.grouplist = localhost:8091
             修改为:
-                service.vgroupMapping.my_test_tx_group1 = seata-server
-                service.seata-server.grouplist1 = localhost:8091
+                service.vgroupMapping.my_test_tx_group = seata-server
+                service.seata-server.grouplist = localhost:8091
         2>>.修改项目相关配置,以为springcloud-provider-seata-storage8008项目为准(其他两个项目也是这样修改)
             在apollo中springcloud-seata项目中建立命名空间为seata-storage的配置文件,写入如下内容:
-                seata.tx-service-group = my_test_tx_group1
-                seata.service.vgroup-mapping. my_test_tx_group1 = seata-sever
+                seata.tx-service-group = my_test_tx_group
+                seata.service.vgroup-mapping.my_test_tx_group = seata-sever
         3>>.重启seata和三个项目看
             1>>>.seata中是否成功注册了RM
             2>>>.seata控制的分布式事务是否回滚成功

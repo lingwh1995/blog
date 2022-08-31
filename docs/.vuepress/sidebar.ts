@@ -266,9 +266,9 @@ export default sidebar([
                       link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-7.使用Hystrix实现服务降级和熔断.md",
                   },
                   {
-                      text: "8.使用DashBoard和Turbine对服务进行监控",
+                      text: "8.使用DashBoard和Turbine对服务访问流量进行统计",
                       icon: "article",
-                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-8.使用DashBoard和Turbine对服务进行监控.md",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-8.使用DashBoard和Turbine对服务访问流量进行统计.md",
                   },
                   {
                       text: "9.使用GateWay实现网关功能",
@@ -289,6 +289,26 @@ export default sidebar([
                       text: "12.使用Seata进行分布式事务控制",
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-12.使用Seata进行分布式事务控制.md",
+                  },
+                  {
+                      text: "13.使用SpringBootAdmin监控服务",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-13.使用SpringBootAdmin监控服务.md",
+                  },
+                  {
+                      text: "14.设计适用于生产环境的日志系统",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-14.设计适用于生产环境的日志系统.md",
+                  },
+                  {
+                      text: "15.多环境相关",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-15.多环境相关.md",
+                  },
+                  {
+                      text: "16.综合案例",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-16.综合案例.md",
                   },
               ]
           },
@@ -338,7 +358,7 @@ export default sidebar([
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#7.",
                   },
                   {
-                      text: "8.使用DashBoard和Turbine对服务进行监控",
+                      text: "8.使用DashBoard和Turbine对服务访问流量进行统计",
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#8.",
                   },
@@ -361,6 +381,26 @@ export default sidebar([
                       text: "12.使用Seata进行分布式事务控制",
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#12.",
+                  },
+                  {
+                      text: "13.使用SpringBootAdmin监控服务",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#13.",
+                  },
+                  {
+                      text: "14.设计适用于生产环境的日志系统",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#14.",
+                  },
+                  {
+                      text: "15.多环境相关",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#15.",
+                  },
+                  {
+                      text: "16.综合案例",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#16.",
                   },
               ]
           },

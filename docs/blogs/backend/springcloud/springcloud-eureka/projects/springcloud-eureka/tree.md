@@ -1,6 +1,7 @@
 springcloud-eureka
 |   |-- Jenkinsfile
-|   •-- payment.sql
+|   |-- payment.sql
+|   •-- seata.sql
 |-- springcloud-api-commons
 |   |-- src
 |   |   •-- main
@@ -421,9 +422,10 @@ springcloud-eureka
 |   |       |-- java
 |   |       |   •-- org
 |   |       |       •-- openatom
-|   |       |           |-- endpoint
-|   |       |           |   •-- CoustomEndpoint.java
-|   |       |           •-- MointorSpringBootAdmin9003.java
+|   |       |           •-- springcloud
+|   |       |               |-- endpoint
+|   |       |               |   •-- CoustomEndpoint.java
+|   |       |               •-- MointorSpringBootAdmin9003.java
 |   |       •-- resources
 |   |           •-- application.yml
 |   •-- pom.xml

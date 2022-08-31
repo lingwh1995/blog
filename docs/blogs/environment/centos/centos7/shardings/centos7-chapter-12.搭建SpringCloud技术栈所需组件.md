@@ -1,6 +1,6 @@
 ---
 title: 在Centos7上搭建开发环境-12.搭建SpringCloud技术栈所需组件
-description: 本章节涉及主要内容有：搭建Zipkin,搭建Apollo配置中心,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：搭建Zipkin,搭建Apollo配置中心,Seata-Server,搭建ELK,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -11,7 +11,7 @@ date:
 head:
   - - meta
     - name: keywords
-      content: 本章节涉及主要内容有：搭建Zipkin,搭建Apollo配置中心,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+      content: 本章节涉及主要内容有：搭建Zipkin,搭建Apollo配置中心,Seata-Server,搭建ELK,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 12.搭建SpringCloud技术栈所需组件
@@ -33,7 +33,7 @@ chmod +x zipkin.jar
 	开放端口
 ```
 firewall-cmd --zone=public --add-port=9411/tcp --permanent &&
-firewall-cmd --reload 
+firewall-cmd --reload
 ```
 	启动zipkin
 ```
@@ -55,7 +55,12 @@ https://github.com/apolloconfig
 ### 12.4.2.基于Apollo内置的Eureka搭建Apollo配置中心
 ### 12.4.3.基于独立部署的Eureka搭建Apollo配置中心
 ### 12.4.4.基于Zookeeper搭建Apollo配置中心
-### 12.4.5.基于Consul搭建Apollo配置中心 
+### 12.4.5.基于Consul搭建Apollo配置中心
+
+## 12.5.Seata-Server
+## 12.6.搭建ELK
+### 12.6.1.在操作系统中搭建ELK
+### 12.6.2.在Docker中搭建ELK 
 <HideSideBar/>
 
 <ScrollIntoPageView/>
