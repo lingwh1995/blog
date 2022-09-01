@@ -25,19 +25,11 @@ https://martinfowler.com/articles/microservices.html
 	如需国内译版,请使用谷歌翻译插件翻译自行翻译
 
 ## 1.3.微服务架构图
-::: center
-<div class="imgbg-customer">
 <img src="../images/microservice_architecture.png"  width="100%"/>
-</div>
-:::
 
 ## 1.4.CAP中占据情况
 	Eureka在CAP中占据AP
-::: center
-<div class="imgbg-customer">
 <img src="../images/cap.png"  width="100%"/>
-</div>
-:::
 
 ## 1.5.微服务架构落地实现方案
 	微服务架构落地实现有很多种方案,本次介绍的方案技术栈如下

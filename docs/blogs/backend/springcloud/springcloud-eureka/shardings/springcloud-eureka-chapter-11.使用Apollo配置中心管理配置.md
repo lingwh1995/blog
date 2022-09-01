@@ -37,48 +37,28 @@ https://github.com/apolloconfig
 ### 11.5.2.模块简介
     使用了Apollo配置中心的服务消费者,启动端口: 80
 ### 11.5.3.模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/tree.md"
 ### 11.5.4.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-config-apollo-loadbalance-openfeign-configuration-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 11.5.5.编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/pom.xml"
 ### 11.5.6.编写模块application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/resources/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/resources/application.yml"
 ### 11.5.7.编写模块Apollo配置文件
-```sql
-@include(../projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/resources/apollo-env.properties)
-```
+@import "./projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/resources/apollo-env.properties"
 ### 11.5.8.编写模块config
-```java
-@include(../projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/config/OpenFeignConfig.java)
-```
+@import "./projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/config/OpenFeignConfig.java"
 ### 11.5.9.编写模块service
-```java
-@include(../projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/service/PaymentServiceOpenFeign.java)
-```
+@import "./projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/service/PaymentServiceOpenFeign.java"
 ### 11.5.10.编写模块listener
-```java
-@include(../projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/listener/ApolloPropertiesChangedListener.java)
-```
+@import "./projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/listener/ApolloPropertiesChangedListener.java"
 ### 11.5.11.编写模块controller
     ApolloConfigController.java
-```java
-@include(../projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/controller/ApolloConfigController.java)
-```
+@import "./projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/controller/ApolloConfigController.java"
     OrderConsumerController.java
-```java
-@include(../projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java)
-```
+@import "./projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java"
 ### 11.5.12.编写模块主启动类
-```java
-@include(../projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerApolloLoadBalanceOpenFeignConfiguration80.java)
-```
+@import "./projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerApolloLoadBalanceOpenFeignConfiguration80.java"
 ### 11.5.13.测试模块
 #### 11.5.13.1.访问Apollo主界面
     启动相关服务
@@ -92,21 +72,13 @@ flowchart LR
 http://localhost:7001/
 ```
     看到如下界面代表apollo的adminservice服务和configservice服务启动成功
-::: center
-<div class="imgbg-customer">
 <img src="../images/apollo-eureka7001.png"  width="100%"/>
-</div>
-:::
 
     Apollo配置中心
 ```
 http://localhost:8070/
 ```
-::: center
-<div class="imgbg-customer">
 <img src="../images/apollo8070.png"  width="100%"/>
-</div>
-:::
     登录用户名/密码: apollo/admin
 
 #### 11.5.13.2.配置Apollo系统参数
@@ -174,11 +146,7 @@ SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER.ribbon.NFLoadBalancerRuleClassName 
 eureka.client.register-with-eureka = true
 ```
     此时界面上显示出了刚才添加的配置
-::: center
-<div class="imgbg-customer">
 <img src="../images/apollo-config-springcloud-eureka.png"  width="100%"/>
-</div>
-:::
 
 #### 11.5.13.4.启动当前模块
     在idea中给当前模块配置jvm启动参数
@@ -240,9 +208,7 @@ management:
     }
 ```
     这个方法可以直接调用触发(如当前模块中由在监听器中调用触发重启的方法),可以通过REST API触发,如
-```java
-@include(../projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/controller/RestartApplicationController.java)
-```
+@import "./projects/springcloud-eureka/springcloud-config-apollo-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/controller/RestartApplicationController.java"
 
 
 <ScrollIntoPageView/>

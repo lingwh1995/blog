@@ -178,6 +178,11 @@ export default navbar([
             icon: "study",
             link: "/blogs/basicsupprot/knowledge.md",
           },
+          {
+            text: "开发资源",
+            icon: "de",
+            link: "/blogs/basicsupprot/devresource.md",
+          },
         ],
       },
       {

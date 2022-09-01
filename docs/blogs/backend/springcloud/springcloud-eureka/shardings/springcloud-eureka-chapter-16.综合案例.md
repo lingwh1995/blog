@@ -112,419 +112,235 @@ head:
 ### 16.5.2.模块简介
     适用于生产环境的单节点版Eureka注册中心,启动端口: 7005
 ### 16.5.3.模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/tree.md"
 ### 16.5.4.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-basic-sample-register-center-single-node7005的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 16.5.5.编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/pom.xml"
 ### 16.5.6.编写模块配置文件
     dev环境配置文件
     application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/dev/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/dev/application.yml"
     application-dev.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/dev/application-dev.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/dev/application-dev.yml"
     logback-custom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/dev/logback-custom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/dev/logback-custom.xml"
     prod环境配置文件
     application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/prod/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/prod/application.yml"
     application-prod.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/prod/application-prod.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/prod/application-prod.yml"
     logback-custom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/prod/logback-custom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/prod/logback-custom.xml"
     rancher环境配置文件
     application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/rancher/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/rancher/application.yml"
     application-rancher.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/rancher/application-rancher.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/rancher/application-rancher.yml"
     logback-custom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/rancher/logback-custom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/rancher/logback-custom.xml"
     test环境配置文件
     application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/test/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/test/application.yml"
     application-test.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/test/application-test.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/test/application-test.yml"
     logback-custom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/test/logback-custom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/resources/test/logback-custom.xml"
 ### 16.5.7.编写模块config
-```java
-@include(../projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/java/org/openatom/springcloud/config/VirtualIpConfig.java)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/java/org/openatom/springcloud/config/VirtualIpConfig.java"
 ### 16.5.8.编写模块主启动类
-```java
-@include(../projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/java/org/openatom/springcloud/RegisterCcenterSingleNode7005.java)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-register-center-single-node7005/src/main/java/org/openatom/springcloud/RegisterCcenterSingleNode7005.java"
 ### 16.5.9.测试模块
     在浏览器中访问
 ```
 http://localhost:7005/
 ```
     看到如下界面代表搭建成功
-::: center
-<div class="imgbg-customer">
 <img src="../images/eureka7001.png"  width="100%"/>
-</div>
-:::
 
 ## 16.6.搭建服务提供者第一个节点
 ### 16.6.1.模块简介
     适用于生产环境的服务提供者的第一个节点,启动端口: 8009
 ### 16.6.2.模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/tree.md"
 ### 13.6.3.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-basic-sample-provider-cluster-node-payment8009的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 16.6.4.编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/pom.xml"
 /pom.xml"
 ### 16.6.5.编写模块配置文件
     dev环境配置文件
     application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/dev/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/dev/application.yml"
     application-dev.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/dev/application-dev.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/dev/application-dev.yml"
     logback-custom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/dev/logback-custom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/dev/logback-custom.xml"
     PaymentMapper.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/dev/mapper/PaymentMapper.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/dev/mapper/PaymentMapper.xml"
     prod环境配置文件
     application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/prod/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/prod/application.yml"
     application-prod.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/prod/application-prod.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/prod/application-prod.yml"
     logback-custom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/prod/logback-custom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/prod/logback-custom.xml"
     PaymentMapper.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/prod/mapper/PaymentMapper.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/prod/mapper/PaymentMapper.xml"
     rancher环境配置文件
     application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/rancher/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/rancher/application.yml"
     application-rancher.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/rancher/application-rancher.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/rancher/application-rancher.yml"
     logback-custom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/rancher/logback-custom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/rancher/logback-custom.xml"
     PaymentMapper.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/rancher/mapper/PaymentMapper.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/rancher/mapper/PaymentMapper.xml"
     test环境配置文件
     application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/test/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/test/application.yml"
     application-test.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/test/application-test.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/test/application-test.yml"
     logback-custom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/test/logback-custom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/test/logback-custom.xml"
     PaymentMapper.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/dev/test/PaymentMapper.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/resources/dev/mapper/PaymentMapper.xml"
 ### 16.6.6.编写模块dao
-```java
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/java/org/openatom/springcloud/dao/PaymentDao.java)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/java/org/openatom/springcloud/dao/PaymentDao.java"
 ### 16.6.7.编写模块service
-```java
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/java/org/openatom/springcloud/service/PaymentService.java)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/java/org/openatom/springcloud/service/PaymentService.java"
 ### 16.6.8.编写模块service实现类
-```java
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/java/org/openatom/springcloud/service/impl/PaymentServiceImpl.java)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/java/org/openatom/springcloud/service/impl/PaymentServiceImpl.java"
 ### 16.6.9.编写模块config
-```java
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/java/org/openatom/springcloud/config/VirtualIpConfig.java)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/java/org/openatom/springcloud/config/VirtualIpConfig.java"
 ### 16.6.10.编写模块controller
-```java
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/java/org/openatom/springcloud/controller/PaymentController.java)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/java/org/openatom/springcloud/controller/PaymentController.java"
 ### 16.6.11.编写模块主启动类
-```java
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/java/org/openatom/springcloud/PaymentServiceProviderClusterNode8009.java)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8009/src/main/java/org/openatom/springcloud/PaymentServiceProviderClusterNode8009.java"
 ## 16.7.搭建服务提供者第二个节点
 ### 16.7.1.模块简介
     适用于生产环境的服务提供者的第二个节点,启动端口: 8010
 ### 16.7.2.模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/tree.md"
 ### 16.7.3.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-basic-sample-provider-cluster-node-payment8010的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 16.7.4.编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/pom.xml"
 ### 16.7.5.编写模块配置文件
     dev环境配置文件
     application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/dev/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/dev/application.yml"
     application-dev.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/dev/application-dev.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/dev/application-dev.yml"
     logback-custom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/dev/logback-custom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/dev/logback-custom.xml"
     PaymentMapper.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/dev/mapper/PaymentMapper.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/dev/mapper/PaymentMapper.xml"
     prod环境配置文件
     application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/prod/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/prod/application.yml"
     application-prod.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/prod/application-prod.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/prod/application-prod.yml"
     logback-custom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/prod/logback-custom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/prod/logback-custom.xml"
     PaymentMapper.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/prod/mapper/PaymentMapper.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/prod/mapper/PaymentMapper.xml"
     rancher环境配置文件
     application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/rancher/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/rancher/application.yml"
     application-rancher.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/rancher/application-rancher.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/rancher/application-rancher.yml"
     logback-custom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/rancher/logback-custom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/rancher/logback-custom.xml"
     PaymentMapper.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/rancher/mapper/PaymentMapper.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/rancher/mapper/PaymentMapper.xml"
     test环境配置文件
     application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/test/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/test/application.yml"
     application-test.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/test/application-test.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/test/application-test.yml"
     logback-custom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/test/logback-custom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/test/logback-custom.xml"
     PaymentMapper.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/dev/test/PaymentMapper.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/resources/dev/mapper/PaymentMapper.xml"
 ### 16.7.6.编写模块dao
-```java
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/java/org/openatom/springcloud/dao/PaymentDao.java)
-```
-### 16.8.7.编写模块service
-```java
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/java/org/openatom/springcloud/service/PaymentService.java)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/java/org/openatom/springcloud/dao/PaymentDao.java"
+### 16.7.7.编写模块service
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/java/org/openatom/springcloud/service/PaymentService.java"
 ### 16.7.8.编写模块service实现类
-```java
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/java/org/openatom/springcloud/service/impl/PaymentServiceImpl.java)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/java/org/openatom/springcloud/service/impl/PaymentServiceImpl.java"
 ### 16.7.9.编写模块config
-```java
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/java/org/openatom/springcloud/config/VirtualIpConfig.java)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/java/org/openatom/springcloud/config/VirtualIpConfig.java"
 ### 16.7.10.编写模块controller
-```java
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/java/org/openatom/springcloud/controller/PaymentController.java)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/java/org/openatom/springcloud/controller/PaymentController.java"
 ### 16.7.11.编写模块主启动类
-```java
-@include(../projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/java/org/openatom/springcloud/PaymentServiceProviderClusterNode8010.java)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-provider-cluster-node-payment8010/src/main/java/org/openatom/springcloud/PaymentServiceProviderClusterNode8010.java"
 ## 16.9.搭建服务消费者
 ### 16.9.1.模块简介
     适用于生产环境的服务提供者的服务消费者,启动端口: 80
 ### 16.9.2.模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/tree.md"
 ### 16.9.3.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 16.9.4.编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/pom.xml"
 ### 16.9.5.编写模块配置文件
     dev环境配置文件
     application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/dev/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/dev/application.yml"
     application-dev.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/dev/application-dev.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/dev/application-dev.yml"
     logback-custom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/dev/logback-custom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/dev/logback-custom.xml"
     prod环境配置文件
     application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/prod/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/prod/application.yml"
     application-prod.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/prod/application-prod.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/prod/application-prod.yml"
     logback-custom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/prod/logback-custom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/prod/logback-custom.xml"
     rancher环境配置文件
     application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/rancher/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/rancher/application.yml"
     application-rancher.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/rancher/application-rancher.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/rancher/application-rancher.yml"
     logback-custom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/rancher/logback-custom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/rancher/logback-custom.xml"
     test环境配置文件
     application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/test/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/test/application.yml"
     application-test.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/test/application-test.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/test/application-test.yml"
     logback-custom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/test/logback-custom.xml)
-```
-### 16.9.6.编写模块service
-```java
-@include(../projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/java/org/openatom/springcloud/service/PaymentService.java)
-```
-### 16.9.7.编写模块service实现类
+@import "./projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/resources/test/logback-custom.xml"
+### 16.9.6.编写模块service实现类
     PaymentServiceOpenFeign.java
-```java
-@include(../projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/java/org/openatom/springcloud/service/PaymentServiceOpenFeign.java)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/java/org/openatom/springcloud/service/PaymentServiceOpenFeign.java"
     PaymentServiceOpenFeignDynamicFeignClientFactory.java
-```java
-@include(../projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/java/org/openatom/springcloud/service/PaymentServiceOpenFeignDynamicFeignClientFactory.java)
-```
-### 16.9.8.编写模块config
-```java
-@include(../projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/java/org/openatom/springcloud/config/VirtualIpConfig.java)
-```
-### 16.9.9.编写模块controller
+@import "./projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/java/org/openatom/springcloud/service/PaymentServiceOpenFeignDynamicFeignClientFactory.java"
+### 16.9.7.编写模块config
+@import "./projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/java/org/openatom/springcloud/config/VirtualIpConfig.java"
+### 16.9.8.编写模块controller
     OrderConsumerController.java
-```java
-@include(../projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java"
     OrderConsumerControllerDynamicFeignClientFactory.java
-```java
-@include(../projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerControllerDynamicFeignClientFactory.java)
-```
-### 16.9.10.编写模块主启动类
-```java
-@include(../projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceOpenFeignDynamicServiceName80.java)
-```
+@import "./projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerControllerDynamicFeignClientFactory.java"
+### 16.9.9.编写模块主启动类
+@import "./projects/springcloud-eureka/springcloud-basic-sample-consumer-loadbalance-openfeign-dynamic-servicename-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceOpenFeignDynamicServiceName80.java"
 
 ## 16.10.搭建SpringBootAdminServer
 ### 13.8.1.模块简介
     SpringBootAdmin的Server端,启动端口: 9003
 ### 16.10.2.模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-mointor-springboot-admin-server9003/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-mointor-springboot-admin-server9003/tree.md"
 ### 16.10.3.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-mointor-springboot-admin-server9003的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 16.10.4.编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-mointor-springboot-admin-server9003/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-mointor-springboot-admin-server9003/pom.xml"
 ### 16.10.5.编写模块application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-mointor-springboot-admin-server9003/src/main/resources/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-mointor-springboot-admin-server9003/src/main/resources/application.yml"
 ### 16.10.6.编写模块主启动类
-```java
-@include(../projects/springcloud-eureka/springcloud-eureka/springcloud-mointor-springboot-admin-server9003/src/main/java/org/openatom/springcloud/MointorSpringBootAdmin9003.java)
-```
+@import "./projects/springcloud-eureka/springcloud-mointor-springboot-admin-server9003/src/main/java/org/openatom/springcloud/MointorSpringBootAdmin9003.java"
 
 ## 16.11.测试适用于生产环境的微服务
 ### 16.11.1.测试多环境相关配置
@@ -539,11 +355,7 @@ flowchart LR
 ```
 http://localhost:7005/
 ```
-::: center
-<div class="imgbg-customer">
 <img src="../images/eureka7005-dev.png"  width="100%"/>
-</div>
-:::
     可以看到服务名为SPRINGCLOUD-BASIC-SAMPLE-REGISTER-CENTER-SINGLE-NODE7005-DEV
 
     test环境
@@ -556,11 +368,7 @@ flowchart LR
 ```
 http://localhost:7005/
 ```
-::: center
-<div class="imgbg-customer">
 <img src="../images/eureka7005-test.png"  width="100%"/>
-</div>
-:::
 
 #### 16.11.1.2.测试多环境打包
     dev环境
@@ -615,11 +423,7 @@ flowchart LR
 ```
 http://localhost:7005/
 ```
-::: center
-<div class="imgbg-customer">
 <img src="../images/springbootadmin-server.png"  width="100%"/>
-</div>
-:::
     可以看到SpringbootAdminServer中已经监控到了相关的服务,可以点击具体服务查看详细信息,这里不在继续做展示
 
 ### 16.11.3.测试更完善的日志系统

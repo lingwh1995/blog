@@ -60,35 +60,21 @@ https://github.com/elastic/kibana
 ### 14.5.1.模块简介
     适用于生产环境的日志系统的服务消费端,启动端口: 80
 ### 14.5.2.模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/tree.md"
 ### 14.5.3.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 14.5.4.编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/pom.xml"
 ### 14.5.5.编写模块application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/src/main/resources/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/src/main/resources/application.yml"
 ### 14.5.6.编写模块logback-custom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/src/main/resources/logback-custom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/src/main/resources/logback-custom.xml"
 ### 14.5.7.编写模块config
-```java
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/src/main/java/org/openatom/springcloud/config/OpenFeignConfig.java)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/src/main/java/org/openatom/springcloud/config/OpenFeignConfig.java"
 ### 14.5.8.编写模块service
-```java
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/src/main/java/org/openatom/springcloud/service/PaymentServiceOpenFeign.java)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/src/main/java/org/openatom/springcloud/service/PaymentServiceOpenFeign.java"
 ### 14.5.9.编写模块主启动类
-```java
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceOpenFeignPerfectLogSystem80.java)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceOpenFeignPerfectLogSystem80.java"
 ## 14.6.搭建ELK
     在192.168.0.5上搭建ELK
 详细参考-> <a href="/blogs/environment/centos/centos7/centos7.html#_4-9-3-安装elk" target="_blank" target="_blank">Docker中安装ELK</a>
@@ -130,11 +116,7 @@ ls -R log
 ```
 http://192.168.0.5:5601/
 ```
-::: center
-<div class="imgbg-customer">
 <img src="../images/kibana.png"  width="100%"/>
-</div>
-:::
 
     为推送到ELK中的日志文件创建索引
 ```mermaid

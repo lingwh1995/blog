@@ -31,11 +31,7 @@ https://spring.io/projects/spring-cloud-netflix
 ```
 
 	EUREKA架构图
-::: center
-<div class="imgbg-customer">
 <img src="../images/eureka_architecture.png"  width="80%"/>
-</div>
-:::
 
 	Eureka的基础组件
 	服务提供者(Service Provide): 服务提供端将自身服务注册到Eureka,从而使服务消费端能够找到
@@ -60,34 +56,22 @@ https://spring.io/projects/spring-cloud-netflix
 ### 3.4.2.模块简介
     单节点版Eureka注册中心,启动端口: 7001
 ### 3.4.3.模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-register-center-single-node7001/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-register-center-single-node7001/tree.md"
 ### 3.4.4.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-register-center-single-node7001的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 3.4.5.编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-register-center-single-node7001/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-register-center-single-node7001/pom.xml"
 ### 3.4.6.编写模块application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-register-center-single-node7001/src/main/resources/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-register-center-single-node7001/src/main/resources/application.yml"
 ### 3.4.7.编写模块主启动类
-```java
-@include(../projects/springcloud-eureka/springcloud-register-center-single-node7001/src/main/java/org/openatom/springcloud/RegisterCcenterSingleNode7001.java)
-```
+@import "./projects/springcloud-eureka/springcloud-register-center-single-node7001/src/main/java/org/openatom/springcloud/RegisterCcenterSingleNode7001.java"
 ### 3.4.8.测试模块
     在浏览器中访问
 ```
 http://localhost:7001/
 ```
     看到如下界面代表搭建成功
-::: center
-<div class="imgbg-customer">
 <img src="../images/eureka7001.png"  width="100%"/>
-</div>
-:::
 
 ## 3.5.搭建集群(高可用)版EUREKA注册中心
 ### 3.5.1.章节内容简介
@@ -97,81 +81,57 @@ http://localhost:7001/
     集群(高可用)版Eureka注册中心中第一个节点,启动端口: 7002
 
     模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-register-center-cluster-node7002/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-register-center-cluster-node7002/tree.md"
 
     创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-register-center-cluster-node7002的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 
     编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-register-center-cluster-node7002/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-register-center-cluster-node7002/pom.xml"
 
     编写模块application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-register-center-cluster-node7002/src/main/resources/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-register-center-cluster-node7002/src/main/resources/application.yml"
 
     编写模块主启动类
-```java
-@include(../projects/springcloud-eureka/springcloud-register-center-cluster-node7002/src/main/java/org/openatom/springcloud/RegisterCcenterClusterNode7002.java)
-```
+@import "./projects/springcloud-eureka/springcloud-register-center-cluster-node7002/src/main/java/org/openatom/springcloud/RegisterCcenterClusterNode7002.java"
 
 ### 3.5.3.搭建Eureka集群中第二个节点
     模块简介
     集群(高可用)版Eureka注册中心中第二个节点,启动端口: 7003
 
     模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-register-center-cluster-node7003/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-register-center-cluster-node7003/tree.md"
 
     创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-register-center-cluster-node7003的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 
     编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-register-center-cluster-node7003/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-register-center-cluster-node7003/pom.xml"
 
     编写模块application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-register-center-cluster-node7003/src/main/resources/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-register-center-cluster-node7003/src/main/resources/application.yml"
 
     编写模块主启动类
-```java
-@include(../projects/springcloud-eureka/springcloud-register-center-cluster-node7003/src/main/java/org/openatom/springcloud/RegisterCcenterClusterNode7003.java)
-```
+@import "./projects/springcloud-eureka/springcloud-register-center-cluster-node7003/src/main/java/org/openatom/springcloud/RegisterCcenterClusterNode7003.java"
 
 ### 3.5.4.搭建Eureka集群中第三个节点
     模块简介
     集群(高可用)版Eureka注册中心中第三个节点,启动端口: 7004
 
     模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-register-center-cluster-node7004/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-register-center-cluster-node7004/tree.md"
 
     创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-register-center-cluster-node7004的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 
     编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-register-center-cluster-node7004/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-register-center-cluster-node7004/pom.xml"
 
     编写模块application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-register-center-cluster-node7004/src/main/resources/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-register-center-cluster-node7004/src/main/resources/application.yml"
 
     编写模块主启动类
-```java
-@include(../projects/springcloud-eureka/springcloud-register-center-cluster-node7004/src/main/java/org/openatom/springcloud/RegisterCcenterClusterNode7004.java)
-```
+@import "./projects/springcloud-eureka/springcloud-register-center-cluster-node7004/src/main/java/org/openatom/springcloud/RegisterCcenterClusterNode7004.java"
 
 ### 3.5.5.配置host
     修改host文件,C:\Windows\System32\drivers\etc\host
@@ -186,31 +146,19 @@ http://localhost:7001/
 http://eureka7002:7002/
 ```
 
-::: center
-<div class="imgbg-customer">
 <img src="../images/eureka7002.png"  width="100%"/>
-</div>
-:::
 
     测试集群中的第二个节点(7003),浏览器访问
 ```
 http://eureka7003:7003/
 ```
-::: center
-<div class="imgbg-customer">
 <img src="../images/eureka7003.png"  width="100%"/>
-</div>
-:::
 
     测试集群中的第三个节点(7004),浏览器访问
 ```
 http://eureka7004:7004/
 ```
-::: center
-<div class="imgbg-customer">
 <img src="../images/eureka7004.png"  width="100%"/>
-</div>
-:::
 
     可以看到,在每个节点和都和其他两个节点相互注册,这代表集群搭建成功
 

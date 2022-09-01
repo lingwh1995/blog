@@ -35,31 +35,19 @@ https://spring.io/projects/spring-cloud-gateway/
 ### 9.4.1.模块简介
     使用SpringCloud Gateway实现网关功能,配置方式为硬编码配置,实现了简单的请求转发功能,即请求经过网关之后会转发到单个服务消费者的单个节点,没有实现在请求转发的同时做负载均衡处理,启动端口: 9527
 ### 9.4.2.模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/tree.md"
 ### 9.4.3.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-router-connect-direct-hardcode-gateway9527的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 9.4.4.编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/pom.xml"
 ### 9.4.5.编写模块application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/resources/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/resources/application.yml"
 ### 9.4.6.编写模块config
-```java
-@include(../projects/springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/java/org/openatom/springcloud/config/GateWayConfig.java)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/java/org/openatom/springcloud/config/GateWayConfig.java"
 ### 9.4.7.编写鉴权LoginFilter
-```java
-@include(../projects/springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/java/org/openatom/springcloud/filter/LoginFilter.java)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/java/org/openatom/springcloud/filter/LoginFilter.java"
 ### 9.4.8.编写模块主启动类
-```java
-@include(../projects/springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/java/org/openatom/springcloud/RouterConnectDirectHardcodeGateWay9527.java)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-direct-hardcode-gateway9527/src/main/java/org/openatom/springcloud/RouterConnectDirectHardcodeGateWay9527.java"
 
 ### 9.4.7.测试模块
     启动相关服务
@@ -98,27 +86,17 @@ http://localhost:9527/consumer/payment/ok/get/1?uname=zhangsan
 ### 9.5.1.模块简介
     使用SpringCloud Gateway实现网关功能,配置方式为声明式配置,实现了简单的请求转发功能,即请求经过网关之后会转发到单个服务消费者的单个节点,没有实现在请求转发的同时做负载均衡处理,启动端口: 9527
 ### 9.5.2.模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-router-connect-direct-configuration-gateway9527/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-direct-configuration-gateway9527/tree.md"
 ### 9.5.3.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-router-connect-direct-configuration-gateway9527的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 9.5.4.编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-router-connect-direct-configuration-gateway9527/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-direct-configuration-gateway9527/pom.xml"
 ### 9.5.5.编写模块application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-router-connect-direct-configuration-gateway9527/src/main/resources/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-direct-configuration-gateway9527/src/main/resources/application.yml"
 ### 9.5.6.编写鉴权LoginFilter
-```java
-@include(../projects/springcloud-eureka/springcloud-router-connect-direct-configuration-gateway9527/src/main/java/org/openatom/springcloud/filter/LoginFilter.java)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-direct-configuration-gateway9527/src/main/java/org/openatom/springcloud/filter/LoginFilter.java"
 ### 9.5.7.编写模块主启动类
-```java
-@include(../projects/springcloud-eureka/springcloud-router-connect-direct-configuration-gateway9527/src/main/java/org/openatom/springcloud/RouterConnectDirectConfigurationGateWay9527.java)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-direct-configuration-gateway9527/src/main/java/org/openatom/springcloud/RouterConnectDirectConfigurationGateWay9527.java"
 ### 9.5.8.测试模块
     启动相关服务
 ```mermaid
@@ -156,31 +134,19 @@ http://localhost:9527/consumer/payment/ok/get/1?uname=zhangsan
 ### 9.6.1.模块简介
     使用SpringCloud Gateway实现网关功能,配置方式为硬编码配置,实现了简单的请求转发功能,即请求经过网关之后会转发到单个服务消费者的单个节点,实现了在请求转发的同时做负载均衡处理,启动端口: 9527
 ### 9.6.2.模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/tree.md"
 ### 9.6.3.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-router-connect-loadbalance-hardcode-gateway9527的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 9.6.4.编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/pom.xml"
 ### 9.6.5.编写模块application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/src/main/resources/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/src/main/resources/application.yml"
 ### 9.6.6.编写config
-```java
-@include(../projects/springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/src/main/java/org/openatom/springcloud/config/GateWayConfig.java)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/src/main/java/org/openatom/springcloud/config/GateWayConfig.java"
 ### 9.6.7.编写鉴权LoginFilter
-```java
-@include(../projects/springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/src/main/java/org/openatom/springcloud/filter/LoginFilter.java)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/src/main/java/org/openatom/springcloud/filter/LoginFilter.java"
 ### 9.6.8.编写模块主启动类
-```java
-@include(../projects/springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/src/main/java/org/openatom/springcloud/RouterConnectLoadbalanceHardcodeGateWay9527.java)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-loadbalance-hardcode-gateway9527/src/main/java/org/openatom/springcloud/RouterConnectLoadbalanceHardcodeGateWay9527.java"
 ### 9.6.9.测试模块
     启动相关服务
 ```mermaid
@@ -218,31 +184,19 @@ http://localhost:9527/consumer/payment/ok/get/1?uname=zhangsan
 ### 9.7.1.模块简介
     使用SpringCloud Gateway实现网关功能,配置方式为声明式配置,实现了简单的请求转发功能,即请求经过网关之后会转发到单个服务消费者的单个节点,实现了在请求转发的同时做负载均衡处理,启动端口: 9527
 ### 9.7.2.模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/tree.md"
 ### 9.7.3.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-router-connect-loadbalance-configuration-gateway9527的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 9.7.4.编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/pom.xml"
 ### 9.7.5.编写模块application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/src/main/resources/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/src/main/resources/application.yml"
 ### 9.7.6.编写config
-```java
-@include(../projects/springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/src/main/java/org/openatom/springcloud/config/GateWayConfig.java)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/src/main/java/org/openatom/springcloud/config/GateWayConfig.java"
 ### 9.7.7.编写鉴权LoginFilter
-```java
-@include(../projects/springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/src/main/java/org/openatom/springcloud/filter/LoginFilter.java)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/src/main/java/org/openatom/springcloud/filter/LoginFilter.java"
 ### 9.7.8.编写模块主启动类
-```java
-@include(../projects/springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/src/main/java/org/openatom/springcloud/RouterConnectLoadbalanceConfigurationGateWay9527.java)
-```
+@import "./projects/springcloud-eureka/springcloud-router-connect-loadbalance-configuration-gateway9527/src/main/java/org/openatom/springcloud/RouterConnectLoadbalanceConfigurationGateWay9527.java"
 ### 9.7.9.测试模块
     启动相关服务
 ```mermaid

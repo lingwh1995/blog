@@ -1,2 +1,0 @@
-去数据库中,修改apolloconfigdb.serverconfig中eureka.service.url
-的地址为正确的地址

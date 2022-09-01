@@ -29,31 +29,19 @@ https://github.com/Netflix/ribbon
 ### 5.4.1.模块简介
     基于Ribbon以硬编码配置方式实现的服务消费者,使用Ribbon自带的负载均衡策略,启动端口: 80
 ### 5.4.2.模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/tree.md"
 ### 5.4.3.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-consumer-loadbalance-ribbon-hardcode-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 5.4.4.编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/pom.xml"
 ### 5.4.5.编写模块application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/src/main/resources/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/src/main/resources/application.yml"
 ### 5.4.6.编写模块config
-```java
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/src/main/java/org/openatom/springcloud/config/ApplicationContextConfig.java)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/src/main/java/org/openatom/springcloud/config/ApplicationContextConfig.java"
 ### 5.4.7.编写模块controller
-```java
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java"
 ### 5.4.8.编写负载均衡规则配置类
-```java
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/src/main/java/org/openatom/myrule/MySelfRule.java)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/src/main/java/org/openatom/myrule/MySelfRule.java"
     这里使用return new RandomRule();,这代表使用的负载均衡算法是RandomRule,Ribbon默认提供了七种负载均衡的算法策略,具体使用哪一种,请根据实际需求灵活选择,这里提供关于七种负载均衡算法的介绍
 
     RoundRobinRule(轮询策略,轮询是Ribbon默认使用的负载均衡算法)
@@ -79,9 +67,7 @@ https://github.com/Netflix/ribbon
     基于AvailabilityFilteringRule基础上做的,首先判断一个zone的运行性能是否可用.剔除不可用的区域zone的所有server,然后再利用AvailabilityPredicate过滤并发连接过多的server。
 
 ### 5.4.9.编写模块主启动类
-```java
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceRibbonHardcode80.java)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-hardcode-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceRibbonHardcode80.java"
 ### 5.4.10.测试模块
     启动相关服务
 ```mermaid
@@ -118,19 +104,13 @@ http://localhost/consumer/payment/get/1
 ### 5.5.1.模块简介
     基于Ribbon以声明式配置方式实现的服务消费者,使用Ribbon自带的负载均衡策略,启动端口: 80
 ### 5.5.2.模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/tree.md"
 ### 5.5.3.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-consumer-loadbalance-ribbon-configuration-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 5.5.4.编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/pom.xml"
 ### 5.5.5.编写模块application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/src/main/resources/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/src/main/resources/application.yml"
 
     yml中关于Ribbon负载均衡策略的配置
     SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER:
@@ -161,17 +141,11 @@ http://localhost/consumer/payment/get/1
     基于AvailabilityFilteringRule基础上做的,首先判断一个zone的运行性能是否可用.剔除不可用的区域zone的所有server,然后再利用AvailabilityPredicate过滤并发连接过多的server。
 
 ### 5.5.6.编写模块config
-```java
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/src/main/java/org/openatom/springcloud/config/ApplicationContextConfig.java)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/src/main/java/org/openatom/springcloud/config/ApplicationContextConfig.java"
 ### 5.5.7.编写模块controller
-```java
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java"
 ### 5.5.8.编写模块主启动类
-```java
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceRibbonConfiguration80.java)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceRibbonConfiguration80.java"
 ### 5.5.9.测试模块
     启动相关服务
 ```mermaid
@@ -208,35 +182,21 @@ http://localhost/consumer/payment/get/1
 ### 5.6.1.模块简介
     基于Ribbon以硬编码式配置方式实现的服务消费者,使用自定义的Ribbon负载均衡策略,启动端口: 80
 ### 5.6.2.模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80/tree.md"
 ### 5.6.3.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 5.6.4.编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80/pom.xml"
 ### 5.6.5.编写模块application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80/src/main/resources/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80/src/main/resources/application.yml"
 ### 5.6.6.编写模块config
-```java
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80/src/main/java/org/openatom/springcloud/config/ApplicationContextConfig.java)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80/src/main/java/org/openatom/springcloud/config/ApplicationContextConfig.java"
 ### 5.6.7.编写模块controller
-```java
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java"
 ### 5.6.8.编写自定义的负载均衡算法策略
-```java
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80/src/main/java/org/openatom/springcloud/loadbalance/MyRoundRobinRule.java)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80/src/main/java/org/openatom/springcloud/loadbalance/MyRoundRobinRule.java"
 ### 5.6.9.编写模块主启动类
-```java
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceRibbonCustomerStrategyHardcode80.java)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-hardcode-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceRibbonCustomerStrategyHardcode80.java"
 ### 5.6.10.测试模块
     启动相关服务
 ```mermaid
@@ -273,35 +233,21 @@ http://localhost/consumer/payment/get/1
 ### 5.7.1.模块简介
     基于Ribbon以声明式配置方式实现的服务消费者,使用自定义的Ribbon负载均衡策略,启动端口: 80
 ### 5.7.2.模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80/tree.md"
 ### 5.7.3.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 5.7.4.编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80/pom.xml"
 ### 5.7.5.编写模块application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80/src/main/resources/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80/src/main/resources/application.yml"
 ### 5.7.6.编写模块config
-```java
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80/src/main/java/org/openatom/springcloud/config/ApplicationContextConfig.java)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80/src/main/java/org/openatom/springcloud/config/ApplicationContextConfig.java"
 ### 5.7.7.编写模块controller
-```java
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80/src/main/java/org/openatom/springcloud/controller/OrderConsumerController.java"
 ### 5.7.8.编写自定义的负载均衡算法策略
-```java
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80/src/main/java/org/openatom/springcloud/loadbalance/MyRoundRobinRule.java)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80/src/main/java/org/openatom/springcloud/loadbalance/MyRoundRobinRule.java"
 ### 5.7.9.编写模块主启动类
-```java
-@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceRibbonCustomerStrategyConfiguration80.java)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-ribbon-custom-strategy-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceRibbonCustomerStrategyConfiguration80.java"
 ### 5.7.10.测试模块
     启动相关服务
 ```mermaid

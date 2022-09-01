@@ -202,20 +202,14 @@ head:
 
 ## 2.4.创建项目依赖的公共模块
 ### 2.4.1.模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-api-commons/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-api-commons/tree.md"
 ### 2.4.2.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-api-commons的maven模块,这个模块中包含了一些公共的Java实体和一些公共的插件,后面的每个模块都要引入这个公共模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 2.4.3.编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-api-commons/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-api-commons/pom.xml"
 ### 2.4.4.编写模块中实体类
     Payment.java
-```java
-@include(../projects/springcloud-eureka/springcloud-api-commons//src/main/java/org/openatom/springcloud/entities/Payment.java)
-```
+@import "./projects/springcloud-eureka/springcloud-api-commons//src/main/java/org/openatom/springcloud/entities/Payment.java"
 
 ## 2.5.准备项目需要的数据库
 ### 2.5.1.安装mysql数据库
@@ -224,9 +218,7 @@ head:
 
 ### 2.5.2.创建项目需要的数据库
     导入数据库脚本(application.yml中数据库配置和mysql部署机器信息保持一致)
-```sql
-@include(../projects/springcloud-eureka/script/payment.sql)
-```
+@import "./projects/springcloud-eureka/script/payment.sql"
 
 ## 2.6.配置使用热部署
     在公共模块的pom.xml中添加热部署依赖和相关配置(上一步已经添加进去了,这里只是展示热部署部分的代码),将热部署相关插件和配置放在公共模块的好处是,其他的模块引用公共模块的时候就已经引入了热部署相关插件和配置,无需额外引入
@@ -257,16 +249,8 @@ head:
     </build>
 ```
     更改idea设置
-::: center
-<div class="imgbg-customer">
 <img src="../images/idea设置热部署-1.png"  width="100%"/>
-</div>
-:::
-::: center
-<div class="imgbg-customer">
 <img src="../images/idea设置热部署-2.png"  width="100%"/>
-</div>
-:::
 
     热部署注意事项
     开发阶段开启热部署,发布阶段一定要关闭热部署

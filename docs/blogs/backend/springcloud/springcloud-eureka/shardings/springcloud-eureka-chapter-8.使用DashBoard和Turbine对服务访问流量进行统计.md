@@ -22,23 +22,15 @@ head:
 ### 8.3.2.模块简介
     Hystrix DashBoard,启动端口: 9001
 ### 8.3.3.模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard9001/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard9001/tree.md"
 ### 8.3.4.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-mointor-hystrix-dashboard9001的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 8.3.5.编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard9001/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard9001/pom.xml"
 ### 8.3.6.编写模块application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard9001/src/main/resources/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard9001/src/main/resources/application.yml"
 ### 8.3.7.编写模块主启动类
-```java
-@include(../projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard9001/src/main/java/org/openatom/springcloud/MointorHystrixDashboard9001.java)
-```
+@import "./projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard9001/src/main/java/org/openatom/springcloud/MointorHystrixDashboard9001.java"
 ### 8.3.8.修改服务提供者8003主启动类
     使用Hystrix Dashboard监控服务,被监控的服务提供者和服务消费者必须满足以下条件
     pom.xml中引入如下依赖
@@ -66,9 +58,7 @@ public ServletRegistrationBean getServlet() {
 ```
 
     修改后的主启动类如下
-```java
-@include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8003/src/main/java/org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8003.java)
-```
+@import "./projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8003/src/main/java/org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8003.java"
 
 ### 8.3.9.修改服务提供者8004主启动类
     使用Hystrix Dashboard监控服务,被监控的服务提供者和服务消费者必须满足以下条件
@@ -97,9 +87,7 @@ public ServletRegistrationBean getServlet() {
 ```
 
     修改后的主启动类如下
-```java
-@include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/src/main/java/org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8004.java)
-```
+@import "./projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/src/main/java/org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8004.java"
 
 ### 8.3.10.修改服务消费者80主启动类
     使用Hystrix Dashboard监控服务,被监控的服务提供者和服务消费者必须满足以下条件
@@ -128,9 +116,7 @@ public ServletRegistrationBean getServlet() {
 ```
 
     修改后的主启动类如下
-```java
-@include(../projects/springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.java)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.java"
 
 ### 8.3.11.测试模块
     启动相关服务
@@ -150,11 +136,7 @@ flowchart LR
 ```
 http://localhost:9001/hystrix
 ```
-::: center
-<div class="imgbg-customer">
 <img src="../images/hystrix_dashboard.png"  width="100%"/>
-</div>
-:::
 
     监控服务消费端
 ```mermaid
@@ -172,11 +154,7 @@ http://localhost/hystrix.stream
 http://localhost/consumer/payment/circuitbreaker/get/1
 ```
     可以看到界面自动统计出了消费端某个服务的访问情况
-::: center
-<div class="imgbg-customer">
 <img src="../images/hystrix_dashboard_mointor_consumer.png"  width="100%"/>
-</div>
-:::
 
     监控服务提供端8003
 ```mermaid
@@ -194,11 +172,7 @@ http://localhost:8003/hystrix.stream
 http://localhost/consumer/payment/circuitbreaker/get/1
 ```
     可以看到界面自动统计出了提供端8003某个服务的访问情况
-::: center
-<div class="imgbg-customer">
 <img src="../images/hystrix_dashboard_mointor_provider8003.png"  width="100%"/>
-</div>
-:::
 
     监控服务提供端8004
 ```mermaid
@@ -216,11 +190,7 @@ http://localhost:8004/hystrix.stream
 http://localhost/consumer/payment/circuitbreaker/get/1
 ```
     可以看到界面自动统计出了提供端8004某个服务的访问情况
-::: center
-<div class="imgbg-customer">
 <img src="../images/hystrix_dashboard_mointor_provider8004.png"  width="100%"/>
-</div>
-:::
 
 ## 8.4.使用Turbine对服务多个节点访数据况进行统计分析
 ### 8.4.1.Turbine简介
@@ -228,23 +198,15 @@ http://localhost/consumer/payment/circuitbreaker/get/1
 ### 8.4.2.模块简介
     使用Turbine汇聚Hystrix DashBoard监控到的所有节点访问统计数据,启动端口: 9002
 ### 8.4.3.模块目录结构
-```md
-@include(../projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard-turbine9002/tree.md)
-```
+@import "./projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard-turbine9002/tree.md"
 ### 8.4.4.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-mointor-hystrix-dashboard-turbine9002的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 8.4.5.编写模块pom.xml
-```xml
-@include(../projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard-turbine9002/pom.xml)
-```
+@import "./projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard-turbine9002/pom.xml"
 ### 8.4.6.编写模块application.yml
-```yml
-@include(../projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard-turbine9002/src/main/resources/application.yml)
-```
+@import "./projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard-turbine9002/src/main/resources/application.yml"
 ### 8.4.7.编写模块主启动类
-```java
-@include(../projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard-turbine9002/src/main/java/org/openatom/springcloud/MointorHystrixDashboardTurbine9002.java)
-```
+@import "./projects/springcloud-eureka/springcloud-mointor-hystrix-dashboard-turbine9002/src/main/java/org/openatom/springcloud/MointorHystrixDashboardTurbine9002.java"
 ### 8.4.8.修改服务提供者8003主启动类
     使用Turbine聚合Hystrix Dashboard监控数据,被监控的服务提供者和服务消费者必须满足以下条件
     pom.xml中引入如下依赖
@@ -272,9 +234,7 @@ public ServletRegistrationBean getServlet() {
 ```
 
     修改后的主启动类如下
-```java
-@include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8003/src/main/java/org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8003.java)
-```
+@import "./projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8003/src/main/java/org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8003.java"
 
 ### 8.4.9.修改服务提供者8004主启动类
     使用Turbine聚合Hystrix Dashboard监控数据,被监控的服务提供者和服务消费者必须满足以下条件
@@ -303,9 +263,7 @@ public ServletRegistrationBean getServlet() {
 ```
 
     修改后的主启动类如下
-```java
-@include(../projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/src/main/java/org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8004.java)
-```
+@import "./projects/springcloud-eureka/springcloud-provider-hystrix-cluster-node-payment8004/src/main/java/org/openatom/springcloud/PaymentServiceProviderHystrixClusterNode8004.java"
 
 ### 8.4.10.修改服务消费端80主启动类
     使用Turbine聚合Hystrix Dashboard监控数据,被监控的服务提供者和服务消费者必须满足以下条件
@@ -334,9 +292,7 @@ public ServletRegistrationBean getServlet() {
 ```
 
     修改后的主启动类如下
-```java
-@include(../projects/springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.java)
-```
+@import "./projects/springcloud-eureka/springcloud-consumer-hystrix-loadbalance-openfeign-configuration-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerHystrixLoadBalanceOpenFeignConfiguration80.java"
 
 ### 8.4.11.测试模块
     启动相关服务
@@ -357,11 +313,7 @@ flowchart LR
 ```
 http://localhost:9002/hystrix
 ```
-::: center
-<div class="imgbg-customer">
 <img src="../images/turbine.png"  width="100%"/>
-</div>
-:::
 
     使用Turbine汇聚服务提供端多个节点访问统计数据(汇聚Hystrix DashBoard监控到的服务提供端8003节点的数据和服务提供端8004节点的数据)
 ```mermaid
@@ -379,11 +331,7 @@ http://localhost:9002/turbine.stream
 http://localhost/consumer/payment/circuitbreaker/get/1
 ```
     可以看到界面一次性自动统计出了服务提供端8003节点和服务提供端8004节点访问统计数据
-::: center
-<div class="imgbg-customer">
 <img src="../images/turbine_mointor_provider_allnode.png"  width="100%"/>
-</div>
-:::
 
     使用Turbine前
     连续访问http://localhost/consumer/payment/circuitbreaker/get/1这个测试URL 10次,监控服务提供端8003节点的Hystrix DashBoard中可以统计到的访问次数为3,监控服务提供端8004节点的Hystrix DashBoard中统计到的访问次数值为7,因为服务消费端会随机选择一个节点进行调用,把服务提供端8003节点和服务提供端8004节点中统计到的访问次数的值加起来一定是10
