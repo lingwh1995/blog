@@ -180,7 +180,7 @@ export default navbar([
           },
           {
             text: "开发资源",
-            icon: "de",
+            icon: "dev",
             link: "/blogs/basicsupprot/devresource.md",
           },
         ],
