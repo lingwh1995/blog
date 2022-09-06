@@ -1,5 +1,5 @@
 import { sidebar } from "vuepress-theme-hope";
-
+ 
 export default sidebar([
   {
       // 必要的，分组的标题文字
@@ -266,9 +266,9 @@ export default sidebar([
                       link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-7.使用Hystrix实现服务降级和熔断.md",
                   },
                   {
-                      text: "8.使用DashBoard和Turbine对服务访问流量进行统计",
+                      text: "8.使用DashBoard和Turbine监控服务访问情况",
                       icon: "article",
-                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-8.使用DashBoard和Turbine对服务访问流量进行统计.md",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-8.使用DashBoard和Turbine监控服务访问情况.md",
                   },
                   {
                       text: "9.使用GateWay实现网关功能",
@@ -301,14 +301,34 @@ export default sidebar([
                       link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-14.设计适用于生产环境的日志系统.md",
                   },
                   {
-                      text: "15.多环境相关",
+                      text: "15.OpenFeign高级用法",
                       icon: "article",
-                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-15.多环境相关.md",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-15.OpenFeign高级用法.md",
                   },
                   {
-                      text: "16.综合案例",
+                      text: "16.使用持续集成快捷部署服务",
                       icon: "article",
-                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-16.综合案例.md",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-16.使用持续集成快捷部署服务.md",
+                  },
+                  {
+                      text: "17.让微服务区分多种不同环境",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-17.让微服务区分多种不同环境.md",
+                  },
+                  {
+                      text: "18.使用mycat提升数据库吞吐能力",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-18.使用mycat提升数据库吞吐能力.md",
+                  },
+                  {
+                      text: "19.使用rancher管理docker和Kubernetes",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-19.使用rancher管理docker和Kubernetes.md",
+                  },
+                  {
+                      text: "20.综合案例",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-20.综合案例.md",
                   },
               ]
           },
@@ -358,7 +378,7 @@ export default sidebar([
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#7.",
                   },
                   {
-                      text: "8.使用DashBoard和Turbine对服务访问流量进行统计",
+                      text: "8.使用DashBoard和Turbine监控服务访问情况",
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#8.",
                   },
@@ -393,14 +413,124 @@ export default sidebar([
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#14.",
                   },
                   {
-                      text: "15.多环境相关",
+                      text: "15.OpenFeign高级用法",
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#15.",
                   },
                   {
-                      text: "16.综合案例",
+                      text: "16.使用持续集成快捷部署服务",
                       icon: "article",
                       link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#16.",
+                  },
+                  {
+                      text: "17.让微服务区分多种不同环境",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#17.",
+                  },
+                  {
+                      text: "18.使用mycat提升数据库吞吐能力",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#18.",
+                  },
+                  {
+                      text: "19.使用rancher管理docker和Kubernetes",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#19.",
+                  },
+                  {
+                      text: "20.综合案例",
+                      icon: "article",
+                      link: "/blogs/backend/springcloud/springcloud-eureka/springcloud-eureka.md#20.",
+                  },
+              ]
+          },
+      ]
+  },
+  {
+      // 必要的，分组的标题文字
+      text: "使用Java语言编写设计模式",
+      // 可选的, 分组标题对应的图标
+      icon: "a-archivecatalogue-fill",
+      // 可选的, 设置分组是否可以折叠，默认值是 false
+      collapsable: true,
+      // 必要的，分组的子项目
+      children: [
+          {
+              text: "按照章节阅读",
+              icon: "list",
+              collapsable: true,
+              children:[
+                  {
+                      text: "博客内容介绍",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-0.博客内容介绍.md",
+                   },
+                  {
+                      text: "1.数据结构java语言构造",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-1.数据结构java语言构造.md",
+                  },
+              ]
+          },
+          {
+              text: "章节内容合集",
+              icon: "repo",
+              collapsable: true,
+              children:[
+                  {
+                      text: "博客内容介绍",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#intro",
+                  },
+                  {
+                      text: "1.数据结构java语言构造",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#1.",
+                  },
+              ]
+          },
+      ]
+  },
+  {
+      // 必要的，分组的标题文字
+      text: "使用Java语言构造数据结构",
+      // 可选的, 分组标题对应的图标
+      icon: "a-archivecatalogue-fill",
+      // 可选的, 设置分组是否可以折叠，默认值是 false
+      collapsable: true,
+      // 必要的，分组的子项目
+      children: [
+          {
+              text: "按照章节阅读",
+              icon: "list",
+              collapsable: true,
+              children:[
+                  {
+                      text: "博客内容介绍",
+                      icon: "article",
+                      link: "/blogs/general/datastructure/datastructure-java/shardings/datastructure-java-chapter-0.博客内容介绍.md",
+                   },
+                  {
+                      text: "1.设计模式java语言构造",
+                      icon: "article",
+                      link: "/blogs/general/datastructure/datastructure-java/shardings/datastructure-java-chapter-1.设计模式java语言构造.md",
+                  },
+              ]
+          },
+          {
+              text: "章节内容合集",
+              icon: "repo",
+              collapsable: true,
+              children:[
+                  {
+                      text: "博客内容介绍",
+                      icon: "article",
+                      link: "/blogs/general/datastructure/datastructure-java/datastructure-java.md#intro",
+                  },
+                  {
+                      text: "1.设计模式java语言构造",
+                      icon: "article",
+                      link: "/blogs/general/datastructure/datastructure-java/datastructure-java.md#1.",
                   },
               ]
           },

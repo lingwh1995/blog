@@ -7,7 +7,10 @@ category:
   - 环境搭建
 star: false
 tag:
-  - 微服务入门
+  - springcloud组件
+  - zipkin
+  - apollo
+  - seata
 date: 2020-03-25
 head:
   - - meta
@@ -1402,8 +1405,7 @@ metrics.exporterPrometheusPort=9898
 flowchart LR
     启动Eureka注册中心-->启动Apollo
 	启动Apollo-->启动Seata-Server
-```
- 
+``` 
 <HideSideBar/>
 
 <ScrollIntoPageView/>

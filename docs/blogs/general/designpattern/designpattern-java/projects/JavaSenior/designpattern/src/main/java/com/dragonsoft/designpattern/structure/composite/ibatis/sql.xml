@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dragonsoft.dynamicsql.dao.IEmpDao">
+	<!--
+		<if test=""></if>
+		冒号要用转义字符&quot;&quot;
+		where部分的处理:
+			a.WHERE 1=1,并且第一个条件后面拼AND
+			b.使用<where></where>:封装查询条件
+	-->
+	<!--a方式处理-->
+	<select id="getEmpsConditionsByIfTag" resultType="com.dragonsoft.dynamicsql.domain.Emp" databaseId="oracle">
+		SELECT * FROM TBL_EMPLOYEE
+		WHERE 1=1
+		<if test="id!=null">
+			AND ID = #{id}
+		</if>
+		<if test="lastName!=null and lastName!=&quot;&quot;">
+			AND LAST_NAME = #{lastName}
+		</if>
+		<if test="email!=null and email.trim()!=&quot;&quot;">
+			AND EMAIL = #{email}
+		</if>
+		<if test="gender==0 or gender ==1">
+			AND GENDER = #{gender}
+		</if>
+	</select>
+</mapper>

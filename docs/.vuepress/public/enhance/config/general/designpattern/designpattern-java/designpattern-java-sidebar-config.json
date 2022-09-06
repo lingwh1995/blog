@@ -1,0 +1,45 @@
+  {
+      // 必要的，分组的标题文字
+      text: "使用Java语言编写设计模式",
+      // 可选的, 分组标题对应的图标
+      icon: "a-archivecatalogue-fill",
+      // 可选的, 设置分组是否可以折叠，默认值是 false
+      collapsable: true,
+      // 必要的，分组的子项目
+      children: [
+          {
+              text: "按照章节阅读",
+              icon: "list",
+              collapsable: true,
+              children:[
+                  {
+                      text: "博客内容介绍",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-0.博客内容介绍.md",
+                   },
+                  {
+                      text: "1.数据结构java语言构造",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-1.数据结构java语言构造.md",
+                  },
+              ]
+          },
+          {
+              text: "章节内容合集",
+              icon: "repo",
+              collapsable: true,
+              children:[
+                  {
+                      text: "博客内容介绍",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#intro",
+                  },
+                  {
+                      text: "1.数据结构java语言构造",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#1.",
+                  },
+              ]
+          },
+      ]
+  },

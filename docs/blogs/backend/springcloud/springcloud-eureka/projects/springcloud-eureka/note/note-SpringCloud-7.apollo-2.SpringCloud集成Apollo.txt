@@ -1,0 +1,95 @@
+1.引入依赖
+	<dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!--引入公共的工程-->
+        <dependency>
+            <groupId>org.openatom</groupId>
+            <artifactId>springcloud-api-commons</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+		<!--Apollo客户端-->
+        <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-client</artifactId>
+            <!--是否依赖传递:true,依赖不传递,false:依赖传递,这是maven的特性,如果在common包中则设置为false,如果直接在项目中引用设置为true-->
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+2.编写配置文件
+	1>.application.yml(只需要写下面这么多就行,其他的去Apollo中获取)
+		#Apollo配置中心相关,其他所有配置都去Apollo配置中心中去获取
+		app:
+		  id: springcloud-eureka
+		apollo:
+		  bootstrap:
+			enabled: true
+			namespaces: application #多个namespaces之间使用,隔开
+	2>.编写apollo-env.properties/apollo-env.yml
+		dev.meta=http://localhost:8080
+		pro.meta=http://localhost:8081
+	3>.在apollo中配置项目配置
+	4>.新增配置
+		配置内容:
+			server.port = 80
+			eureka.client.service-url.defaultZone = http://localhost:8080/eureka
+			eureka.client.fetchRegistry = true
+			eureka.instance.instance-id = ${spring.application.name}
+			eureka.instance.prefer-ip-address = false
+			feign.client.config.SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER.connectTimeout = 5000
+			feign.client.config.SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER.readTimeout = 5000
+			logging.level.org.openatom.springcloud.services.PaymentServiceOpenFeign = debug
+			spring.application.name = SPRINGCLOUD-APOLLO-LOADBALANCE-OPENFEIGN-CONFIGURATION-ORDER80
+			spring.devtools.restart.enabled = true
+			spring.logging.level = info
+			SPRINGCLOUD-PROVIDER-PAYMENT-SERVICE-CLUSTER.ribbon.NFLoadBalancerRuleClassName = com.netflix.loadbalancer.RandomRule
+			eureka.client.register-with-eureka = true	
+3.编写测试Controller
+	@RestController
+	public class ApolloConfigController {
+		
+		/**
+		 * 从Apollo中获取应应用名称
+		 * @param applicationName
+		 * @return
+		 */
+		@GetMapping("/consumer/apollo/test")
+		public String apolloTest(@Value("${spring.application.name}") String applicationName) {
+			return applicationName;
+		}
+	}	
+4.编写主启动类并添加注解
+	@EnableApolloConfig
+	@EnableEurekaClient  //添加@EnableEurekaClient好像没什么用,但是还是加上
+	@SpringBootApplication
+	@EnableFeignClients
+	public class OrderServiceConsumerApolloLoadBalanceOpenFeignConfiguration80 {
+		public static void main(String[] args) {
+			SpringApplication.run(OrderServiceConsumerApolloLoadBalanceOpenFeignConfiguration80.class, args);
+		}
+	}
+5.配置VM Options并启动测试程序
+	测试从Apollo中获取DEV环境相关配置:	-Denv=DEV -Dapollo.cacheDir=D:\repository\cache\apollo -Dapollo.cluster=DEFAULT
+	测试从Apollo中获取PRO环境相关配置：	-Denv=PRO -Dapollo.cacheDir=D:\repository\cache\apollo -Dapollo.cluster=DEFAULT
+    -DEV可以获取到DEV环境的参数,-PRO可以获取到PRO环境的参数
+6.测试Apollo配置中心
+	方式一:查看程序是否可以正常启动,可以正常启动则说明Apolo运行成功
+	方式二:访问	http://localhost/consumer/apollo/test 看是否能显示出应用名称,可以显示的话在Apollo中修改并发布后再次访问查看是否发生变化
+    方式三：访问  http://localhost:8070   查看Apollo主页,点击项目查看是否出现了DEV和PRO两个环境
+7.注意事项:
+    1.启动好Apollo后再启动项目,因为项目的配置都是从Apollo中获取的
+    2.启动后访问   http://localhost:8070
+        如果只有DEV或只有PRO,就关闭PORTAL,把PROTAL单独重启一次

@@ -7,7 +7,9 @@ category:
   - springcloud
 star: false
 tag:
-date: 
+  - springbootadmin
+  - 微服务监控
+date: 2020-06-20
 head:
   - - meta
     - name: keywords
@@ -28,45 +30,69 @@ https://github.com/codecentric/spring-boot-admin
 ### 13.4.1.模块简介
     SpringBootAdmin的Server端,启动端口: 9003
 ### 13.4.2.模块目录结构
-@import "./projects/springcloud-eureka/springcloud-mointor-springboot-admin-server9003/tree.md"
+```md
+@include(../projects/springcloud-eureka/springcloud-mointor-springboot-admin-server9003/tree.md)
+```
 ### 13.4.3.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-mointor-springboot-admin-server9003的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 13.4.4.编写模块pom.xml
-@import "./projects/springcloud-eureka/springcloud-mointor-springboot-admin-server9003/pom.xml"
+```xml
+@include(../projects/springcloud-eureka/springcloud-mointor-springboot-admin-server9003/pom.xml)
+```
 ### 13.4.5.编写模块application.yml
-@import "./projects/springcloud-eureka/springcloud-mointor-springboot-admin-server9003/src/main/resources/application.yml"
+```yml
+@include(../projects/springcloud-eureka/springcloud-mointor-springboot-admin-server9003/src/main/resources/application.yml)
+```
 ### 13.4.6.编写模块主启动类
-@import "./projects/springcloud-eureka/springcloud-mointor-springboot-admin-server9003/src/main/java/org/openatom/springcloud/MointorSpringBootAdmin9003.java"
+```java
+@include(../projects/springcloud-eureka/springcloud-mointor-springboot-admin-server9003/src/main/java/org/openatom/springcloud/MointorSpringBootAdmin9003.java)
+```
 ## 13.5.搭建SpringBootAdmin的Client端
 ### 13.5.1.模块简介
     集成了SpringBootAdmin的Client端的服务消费端,启动端口: 80
 ### 13.5.2.模块目录结构
-@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-springbootadmin-client-order80/tree.md"
+```md
+@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-springbootadmin-client-order80/tree.md)
+```
 ### 13.5.3.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-consumer-loadbalance-openfeign-springbootadmin-client-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 13.5.4.编写模块pom.xml
-@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-springbootadmin-client-order80/pom.xml"
+```xml
+@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-springbootadmin-client-order80/pom.xml)
+```
 ### 13.5.5.编写模块application.yml
-@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-springbootadmin-client-order80/src/main/resources/application.yml"
+```yml
+@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-springbootadmin-client-order80/src/main/resources/application.yml)
+```
 ### 13.5.6.编写模块config
-@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-springbootadmin-client-order80/src/main/java/org/openatom/springcloud/config/OpenFeignConfig.java"
+```java
+@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-springbootadmin-client-order80/src/main/java/org/openatom/springcloud/config/OpenFeignConfig.java)
+```
 ### 13.5.7.编写模块service
-@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-springbootadmin-client-order80/src/main/java/org/openatom/springcloud/service/PaymentServiceOpenFeign.java"
+```java
+@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-springbootadmin-client-order80/src/main/java/org/openatom/springcloud/service/PaymentServiceOpenFeign.java)
+```
 ### 13.5.8.编写模块主启动类
-@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-springbootadmin-client-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceOpenFeignSpringBootAdminClient80.java"
+```java
+@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-springbootadmin-client-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceOpenFeignSpringBootAdminClient80.java)
+```
 
 ## 13.6.测试使用SpringBootAdmin监控服务
     启动相关服务
 ```mermaid
 flowchart LR
-    启动Eureka注册中心-->启动SpringBootAdminServer
+    启动Eureka注册中心7001节点-->启动SpringBootAdminServer
 	启动SpringBootAdminServer-->启动启动SpringBootAdminClient
 ```
     在浏览器访问
 ```
 http://localhost:9003/
 ```
+::: center
+<div class="imgbg-customer">
 <img src="../images/springbootadmin-server9003.png"  width="100%"/>
+</div>
+:::
     可以看到SpringbootAdminServer中已经监控到了相关的服务,可以点击具体服务查看详细信息,这里不在继续做展示
 
 

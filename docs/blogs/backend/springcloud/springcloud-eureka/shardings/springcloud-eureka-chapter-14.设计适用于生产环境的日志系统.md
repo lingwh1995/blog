@@ -7,7 +7,9 @@ category:
   - springcloud
 star: false
 tag:
-date: 
+  - 日志系统设计
+  - elk
+date: 2020-06-25
 head:
   - - meta
     - name: keywords
@@ -60,31 +62,45 @@ https://github.com/elastic/kibana
 ### 14.5.1.模块简介
     适用于生产环境的日志系统的服务消费端,启动端口: 80
 ### 14.5.2.模块目录结构
-@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/tree.md"
+```md
+@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/tree.md)
+```
 ### 14.5.3.创建模块
 	在父工程(springcloud-eureka)中创建一个名为springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80的maven模块,注意:当前模块创建成功后,在父工程pom.xml中<modules></modules>中会自动生成有关当前模块的信息
 ### 14.5.4.编写模块pom.xml
-@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/pom.xml"
+```xml
+@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/pom.xml)
+```
 ### 14.5.5.编写模块application.yml
-@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/src/main/resources/application.yml"
+```yml
+@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/src/main/resources/application.yml)
+```
 ### 14.5.6.编写模块logback-custom.xml
-@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/src/main/resources/logback-custom.xml"
+```xml
+@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/src/main/resources/logback-custom.xml)
+```
 ### 14.5.7.编写模块config
-@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/src/main/java/org/openatom/springcloud/config/OpenFeignConfig.java"
+```java
+@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/src/main/java/org/openatom/springcloud/config/OpenFeignConfig.java)
+```
 ### 14.5.8.编写模块service
-@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/src/main/java/org/openatom/springcloud/service/PaymentServiceOpenFeign.java"
+```java
+@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/src/main/java/org/openatom/springcloud/service/PaymentServiceOpenFeign.java)
+```
 ### 14.5.9.编写模块主启动类
-@import "./projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceOpenFeignPerfectLogSystem80.java"
+```java
+@include(../projects/springcloud-eureka/springcloud-consumer-loadbalance-openfeign-perfect-log-system-order80/src/main/java/org/openatom/springcloud/OrderServiceConsumerLoadBalanceOpenFeignPerfectLogSystem80.java)
+```
 ## 14.6.搭建ELK
     在192.168.0.5上搭建ELK
-详细参考-> <a href="/blogs/environment/centos/centos7/centos7.html#_4-9-3-安装elk" target="_blank" target="_blank">Docker中安装ELK</a>
+详细参考-> <a href="/blogs/environment/centos/centos7/centos7.html#_4-9-3-安装elk" target="_blank">Docker中安装ELK</a>
 ## 14.7.测试适用于生产环境的日志系统简介
 ### 14.7.1.启动相关服务
 ```mermaid
 flowchart LR
     启动Zipkin-->启动ELK
-    启动ELK-->启动Eureka注册中心
-    启动Eureka注册中心-->启动服务消费者
+    启动ELK-->启动Eureka注册中心7001节点
+    启动Eureka注册中心7001节点-->启动服务消费者
 ```
 ### 14.7.2.测试日志输出到控制台时自定义日志格式
     在idea控制台中查看输入的日志格式,这个格式使用的是自定义的日志格式,不是默认的日志格式,请自行在idea控制台查看日志格式,这里不再赘述
@@ -101,7 +117,7 @@ ls -R log
 
     log/localhost/192.168.1.4:
     HISTORY                                                                          SPRINGCLOUD-CONSUMER-LOADBALANCE-OPENFEIGN-PERFECT-LOG-SYSTEM-ORDER80-error.log
-    SPRINGCLOUD-CONSUMER-LOADBALANCE-OPENFEIGN-PERFECT-LOG-SYSTEM-ORDER80-debug.log  SPRINGCLOUD-CONSUMER-LOADBALANCE-OPENFEIGN-PERFECT-LOG-SYSTEM-ORDER80-info.log 
+    SPRINGCLOUD-CONSUMER-LOADBALANCE-OPENFEIGN-PERFECT-LOG-SYSTEM-ORDER80-debug.log  SPRINGCLOUD-CONSUMER-LOADBALANCE-OPENFEIGN-PERFECT-LOG-SYSTEM-ORDER80-info.log
 
     log/localhost/192.168.1.4/HISTORY:
     SPRINGCLOUD-CONSUMER-LOADBALANCE-OPENFEIGN-PERFECT-LOG-SYSTEM-ORDER80-debug-2022-08-31-index0.log
@@ -116,19 +132,29 @@ ls -R log
 ```
 http://192.168.0.5:5601/
 ```
+::: center
+<div class="imgbg-customer">
 <img src="../images/kibana.png"  width="100%"/>
+</div>
+:::
 
     为推送到ELK中的日志文件创建索引
 ```mermaid
 flowchart LR
     访问kibana-->点击左侧Discover
-    点击左侧Discover-->在Create_Index_pattern输入springcloud-eureka-*
-    在Create_Index_pattern输入springcloud-eureka-*-->点击Next_Step
-    点击Next_Step-->下拉框选择@timestap
-    下拉框选择@timestap-->点击Create_Index_Pattern
-    点击Create_Index_Pattern-->再次点击Discover
+    点击左侧Discover-->A("在Create Index pattern输入springcloud-eureka-*")
+    A("在Create Index pattern输入springcloud-eureka-*")-->B("点击Next Step")
+    B("点击Next Step")-->C("下拉框选择@timestap")
+    C("下拉框选择@timestap")-->D("点击Create Index Pattern")
+    D("点击Create Index Pattern")-->再次点击Discover
 ```
-    注意:如果点击Discover没有显示日志,请确定ELK部署机器中的时区和时间是否正确,如果不正确,将时区和时间修改正确后再次启动项目,重新执行创建索引的操作
+    注意:如果点击Discover没有显示日志,请确定ELK部署机器中的时区和时间是否正确,如果不正确,将时区和时间修改正确后再次启动项目,重新执行创建索引的操作,可以看到kibana中展示出来了推送到elk中日志
+::: center
+<div class="imgbg-customer">
+<img src="../images/kibana-springcloud-eureka.png"  width="100%"/>
+</div>
+:::
+
 
 <ScrollIntoPageView/>
 <HideSideBar/>

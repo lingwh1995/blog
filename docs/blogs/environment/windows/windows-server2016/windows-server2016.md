@@ -7,11 +7,14 @@ category:
   - 环境搭建
 star: 2
 tag:
-  - springcloud
-  - springcloud-eureka
-  - 微服务
-  - 微服务入门
-date: 2021-03-20
+  - windows
+  - 环境搭建
+  - jdk
+  - springcloud组件
+  - zipkin
+  - apollo
+  - seata
+date: 2021-03-15
 sticky: 2
 icon: windows
 head:
@@ -1468,6 +1471,5 @@ metrics.exporterPrometheusPort=9898
 flowchart LR
     启动Eureka注册中心-->启动Apollo
 	启动Apollo-->启动Seata-Server
-```
- 
+``` 
 <HideSideBar/>

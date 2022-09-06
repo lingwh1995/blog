@@ -39,7 +39,7 @@ wget http://dl.mycat.org.cn/1.6.7.3/20190828135747/Mycat-server-1.6.7.3-release-
 ```
 	上传到 /opt/software/package
 
-	解压到/user/local/bin
+	解压到/usr/local/bin
 ```
 tar -zxvf Mycat-server-1.6.7.3-release-20190828135747-linux.tar.gz -C /usr/local/bin
 ```
@@ -193,7 +193,7 @@ vim prototypeDs.datasource.json
 ### 10.4.6.启动和关闭mycat，默认端口8066
 	进入mycat安装目录
 ```
-cd /usr/local/bin/mycat
+cd /opt/software/install/mycat/bin
 ```
 
 	启动mycat

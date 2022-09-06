@@ -1,6 +1,6 @@
 ---
 title: 基于Eureka搭建Springcloud微服务-博客内容介绍
-description: 本篇博客涉及主要内容有：微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,使用Ribbon实现客户端负载均衡,使用OpenFeign实现客户端负载均衡,使用Hystrix实现服务降级和熔断,使用DashBoard和Turbine对服务访问流量进行统计,使用GateWay实现网关功能,使用Zipkin+Sleuth实现调用链路追踪,使用Apollo配置中心管理配置,使用Seata进行分布式事务控制,使用SpringBootAdmin监控服务,设计适用于生产环境的日志系统,多环境相关,综合案例,具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+description: 本篇博客涉及主要内容有：微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,使用Ribbon实现客户端负载均衡,使用OpenFeign实现客户端负载均衡,使用Hystrix实现服务降级和熔断,使用DashBoard和Turbine监控服务访问情况,使用GateWay实现网关功能,使用Zipkin+Sleuth实现调用链路追踪,使用Apollo配置中心管理配置,使用Seata进行分布式事务控制,使用SpringBootAdmin监控服务,设计适用于生产环境的日志系统,OpenFeign高级用法,使用持续集成快捷部署服务,让微服务区分多种不同环境,使用mycat提升数据库吞吐能力,使用rancher管理docker和Kubernetes,综合案例,具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -8,11 +8,11 @@ category:
 star: false
 tag:
   - 博客内容介绍
-date: 2020-01-01
+date: 2020-04-21
 head:
   - - meta
     - name: keywords
-      content: 微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,使用Ribbon实现客户端负载均衡,使用OpenFeign实现客户端负载均衡,使用Hystrix实现服务降级和熔断,使用DashBoard和Turbine对服务访问流量进行统计,使用GateWay实现网关功能,使用Zipkin+Sleuth实现调用链路追踪,使用Apollo配置中心管理配置,使用Seata进行分布式事务控制,使用SpringBootAdmin监控服务,设计适用于生产环境的日志系统,多环境相关,综合案例,
+      content: 微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,使用Ribbon实现客户端负载均衡,使用OpenFeign实现客户端负载均衡,使用Hystrix实现服务降级和熔断,使用DashBoard和Turbine监控服务访问情况,使用GateWay实现网关功能,使用Zipkin+Sleuth实现调用链路追踪,使用Apollo配置中心管理配置,使用Seata进行分布式事务控制,使用SpringBootAdmin监控服务,设计适用于生产环境的日志系统,OpenFeign高级用法,使用持续集成快捷部署服务,让微服务区分多种不同环境,使用mycat提升数据库吞吐能力,使用rancher管理docker和Kubernetes,综合案例,
 ---
 <Banner localtion="/banner/particles/particles.html"/>
 
@@ -26,15 +26,19 @@ head:
      5.使用Ribbon实现客户端负载均衡
      6.使用OpenFeign实现客户端负载均衡
      7.使用Hystrix实现服务降级和熔断
-     8.使用DashBoard和Turbine对服务访问流量进行统计
+     8.使用DashBoard和Turbine监控服务访问情况
      9.使用GateWay实现网关功能
      10.使用Zipkin+Sleuth实现调用链路追踪
      11.使用Apollo配置中心管理配置
      12.使用Seata进行分布式事务控制
      13.使用SpringBootAdmin监控服务
      14.设计适用于生产环境的日志系统
-     15.多环境相关
-     16.综合案例
+     15.OpenFeign高级用法
+     16.使用持续集成快捷部署服务
+     17.让微服务区分多种不同环境
+     18.使用mycat提升数据库吞吐能力
+     19.使用rancher管理docker和Kubernetes
+     20.综合案例
 	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 ## 博客内容大纲
 

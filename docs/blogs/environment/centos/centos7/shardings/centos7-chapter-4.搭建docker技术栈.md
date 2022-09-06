@@ -279,7 +279,9 @@ docker run -d --name portainer \
 	portainer/portainer:1.24.2
 ```
 	登录portainer
-	登录地址：http://192.168.0.4:9000/
+```
+http://192.168.0.4:9000/
+```
 	用户名/密码：admin/portainer
 	单机版选择local即可
 
@@ -302,21 +304,20 @@ docker run -d --name registry_official \
 	配置私服地址和镜像源地址并且将私服地址加入到镜像源列表，这样就可以从私服中拉取镜像了
 
 	给docker配置私服
+	具体的私服访问地址根据实际情况部署,这里配置的是http://192.168.0.4:5000
 ```
 vim /etc/docker/daemon.json
 ```
 	添加如下内容
 ```
 {
-	"insecure-registries":["192.168.0.4:5000","192.168.0.4:5001"],
-	"registry-mirrors": [
-			"https://5pfmrxk8.mirror.aliyuncs.com",
-			"http://hub-mirror.c.163.com",
-			"https://docker.mirrors.ustc.edu.cn",
-			"https://registry.docker-cn.com",
-			"http://192.168.0.4:5000",
-			"http://192.168.0.4:5001"
-	]
+    "insecure-registries":["192.168.0.4:5000","192.168.0.4:5001"],
+    "registry-mirrors": [
+        "https://5pfmrxk8.mirror.aliyuncs.com",
+        "http://hub-mirror.c.163.com",
+        "https://docker.mirrors.ustc.edu.cn",
+        "https://registry.docker-cn.com"
+    ]
 }
 ```
 	或
@@ -324,15 +325,13 @@ vim /etc/docker/daemon.json
 sudo mkdir -p /etc/docker &&
 sudo tee /etc/docker/daemon.json <<-'EOF'
 {
-	"insecure-registries":["192.168.0.4:5000","192.168.0.4:5001"],
-	"registry-mirrors": [
-			"https://5pfmrxk8.mirror.aliyuncs.com",
-			"http://hub-mirror.c.163.com",
-			"https://docker.mirrors.ustc.edu.cn",
-			"https://registry.docker-cn.com",
-			"http://192.168.0.4:5000",
-			"http://192.168.0.4:5001"
-	]
+    "insecure-registries":["192.168.0.4:5000","192.168.0.4:5001"],
+    "registry-mirrors": [
+        "https://5pfmrxk8.mirror.aliyuncs.com",
+        "http://hub-mirror.c.163.com",
+        "https://docker.mirrors.ustc.edu.cn",
+        "https://registry.docker-cn.com"
+    ]
 }
 EOF
 ```
@@ -340,7 +339,7 @@ EOF
 	insecure-registries：docker信任的私服地址
 	registry-mirrors：docker国内镜像源地址
 
-	daemon.json配置注意事项：把私服配置到registry-mirrors时，一定要正确的加上 http://前缀：	
+	daemon.json配置注意事项：把私服配置到registry-mirrors时，一定要正确的加上 http://前缀：
 	正确格式: http://192.168.0.4:5000
 	错误格式: 192.168.0.4:5001
 
@@ -404,9 +403,7 @@ vim /etc/docker/daemon.json
         "https://5pfmrxk8.mirror.aliyuncs.com",
         "http://hub-mirror.c.163.com",
         "https://docker.mirrors.ustc.edu.cn",
-        "https://registry.docker-cn.com",
-        "http://192.168.0.4:5000",
-        "http://192.168.0.4:5001"
+        "https://registry.docker-cn.com"
     ]
 }
 ```
@@ -414,7 +411,7 @@ vim /etc/docker/daemon.json
 	insecure-registries：docker信任的私服地址
 	registry-mirrors：docker国内镜像源地址
 
-	daemon.json配置注意事项：把私服配置到registry-mirrors时，一定要正确的加上 http://前缀：	
+	daemon.json配置注意事项：把私服配置到registry-mirrors时，一定要正确的加上 http://前缀：
 	正确格式: http://192.168.0.4:5000
 	错误格式: 192.168.0.4:5001
 	放行5000端口并保证5000端口确实被放开
@@ -516,7 +513,11 @@ vim harbor.yml
 ```
 ./install.sh
 ```
-
+	放行端口
+```
+firewall-cmd --permanent --add-port=5000/tcp &&
+firewall-cmd --reload
+```
 	使用docker-compose启动harbor
 	一次性启动所有harbor相关的容器,一般执行完./install.sh就已经启动了相关的容器
 ```
@@ -528,13 +529,8 @@ docker-compose up -d
 vim /etc/docker/daemon.json
 ```
 	配置Docker(Register)注册仓库服务器信任192.168.0.4:5001
-	没有配置任何私服配置
 ```
 {"insecure-registries":["192.168.0.4:5001"]}
-```
-	已经配置任何私服配置
-```
-"insecure-registries":["192.168.0.4:5001"]
 ```
 	重新加载docker daemon配置文件并重启docker
 ```
@@ -683,6 +679,9 @@ apt-get install vim
 ```
 
 ### 4.9.3.安装elk
+	同步时间
+详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-2.Linux操作系统初始设置.html#_2-7-同步时间" target="_blank">同步时间</a>
+
 	下载elk镜像
 ```
 docker pull sebp/elk:6.8.22

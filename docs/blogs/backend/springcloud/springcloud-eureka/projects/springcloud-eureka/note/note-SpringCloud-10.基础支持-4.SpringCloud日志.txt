@@ -1,0 +1,409 @@
+1.创建bootstrap.yml
+    #配置文件修改说明-------------------------------------------------:开始
+    #注意:不同的部署环境需要修改的配置
+    #   1.${application.logging.log-home}  #修改日志存放位置
+    #       修改原因: Linux和Windows目录结构不同
+    #   2.${application.deploy-machine-ip} #修改服务部署机器ip地址
+    #       同一台机器上多个节点微服务日志推送到ES中使用的是相同索引名称,不同台机器上多个节点微服务日志推送到ES中使用的是不同的索引名称
+    #       修改原因: 微服务通常部署在不同的机器上，形成集群
+    #         针对伪分布式集群(一台机器上部署多份): 使用端口来区分不同的微服务
+    #         针对真分布式集群(多台机器上部署):  使用ip地址来区分不同的微服务
+    #配置文件修改说明-------------------------------------------------:结束
+
+    #设置spring项目运行的环境,这个值是从pom中读取的:开始
+    spring:
+      profiles:
+        active: @profile.active@
+    #设置spring项目运行的环境,这个值是从pom中读取的:结束
+
+    application:
+      name: SPRINGCLOUD-BASIC-SAMPLE-PROVIDER-PAYMENT-SERVICE-CLUSTER
+      port: @docker.container.port@ #配置端口号,通过端口号区分不同的节点,所有的环境公用一个端口号
+      deploy-machine-ip: 192.168.0.1 #部署机器所在ip
+      #logback相关配置:开始
+      logging:
+        log-home: D:\repository\workspace\IDEA\PERSONAL\springcloud-eureka\log\ #所有日志存放在位置,加上\方便Linux环境下配置
+        log-name: ${application.name}${application.port} #日志名称
+        level: info #dev/test/prod环境中默认的日志输出级别,一般设置为debug,这样会输出debug信息,只想看info日志,则修改${application.logging.mointor-show-level}的值
+        append: false #是否启用append(追加到已经存在日志文件尾部),true:重启项目会追加新日志到之前日志,false:重启项目会清空之前的日志
+        immediate-flush: true #是否启用immediateFlush(立即刷新),true:重启项目自动追加,false:重启项目会情况之前的日志
+        module-dir-name: ${application.name}\ #具体模块日志存放位置加上\方便Linux环境下配置
+        node-dir-name: ${application.port}\ #具体模块的具体节点,不同的几点通过端口区分
+        log-location-prefix: ${application.logging.log-home}${application.logging.module-dir-name}${application.logging.node-dir-name} #定义日志存放位置,Linux下只需修改${application.logging.log-home}值即可
+      #logback相关配置:结束
+
+      #springboot admin相关配置:开始
+      mointor:
+        logging:
+          show-level: info #SpringBootAdmin中展示的日志是什么级别的
+          log-location: '${application.logging.log-location-prefix}${application.logging.log-name}-${application.mointor.logging.show-level}.log' #项目生成的某一级别日志的具体位置
+      #springboot admin相关配置:结束
+
+      #logstash相关配置:开始
+      logstash:
+        addr: 192.168.0.4:5044
+      #logstash相关配置:结束
+
+      #elasticsearch相关配置:开始
+      elasticsearch:
+        #logstah将数据推送到elasticsearch中以什么索引作为名称
+        indice-name: '@project.parent.artifactId@-@project.artifactId@-${application.deploy-machine-ip}'
+      #elasticsearch相关配置:结束
+2.创建logback-spring.xml
+    <?xml version="1.0" encoding="UTF-8"?>
+
+    <!--
+        scan: 当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true。
+        scanPeriod: 设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。
+        debug: 当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。
+    -->
+    <!-- 输出logback内部日志信息，每隔30s判断一下配置文件有没有更新，若更新，则重新加载 -->
+    <configuration scan="true" scanPeriod="30 seconds" debug="false">
+
+        <!--从Spring容器中获取配置(Spring配置文件加载顺序:bootstrap.yml->logback.xml->application.yml)-->
+        <!--应用名称-->
+        <springProperty name="LOG_NAME" scope="context" source="application.logging.log-name"/>
+        <!--日志输出级别-->
+        <springProperty name="LOG_LEVEL" scope="context" source="application.logging.level"/>
+        <!--是否启用append-->
+        <springProperty name="IS_APPEND" scope="context" source="application.logging.append"/>
+        <!--是否启用立即刷新-->
+        <springProperty name="IS_IMMEDIATEFLUSH" scope="context" source="application.logging.immediate-flush"/>
+        <!-- 定义日志文件存储位置-->
+        <springProperty name="LOG_LOCATION_PREFIX" scope="context" source="application.logging.log-location-prefix"/>
+        <!--logstash地址-->
+        <springProperty name="LOGSTASH_ADDR" scope="context" source="application.logstash.addr"/>
+        <!--索引名称-->
+        <springProperty name="INDICE_NAME" scope="context" source="application.elasticsearch.indice-name"/>
+        <!--服务部署机器所在ip-->
+        <springProperty name="DEPLOY_MACHINE_IP" scope="context" source="application.deploy-machine-ip"/>
+
+        <!-- name：变量的名称，可以随意起名，但建议名字要简明直译；value:变量的值；在配置文件中，我们可以用 ${} 的方式来使用，将变量引入到其他节点中去。-->
+        <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度 %msg：日志消息，%n是换行符-->
+        <!--控制台日志输出预选样式-->
+        <property name="CONSOLE_LOG_PATTERN_1" value="%red(%d{yyyy-MM-dd HH:mm:ss.SSS}) %green([%thread]) %highlight(%-5level) %boldMagenta(%logger{10}): %cyan(%msg%n)"/>
+        <property name="CONSOLE_LOG_PATTERN_2" value="%yellow(%date{yyyy-MM-dd HH:mm:ss}) %highlight([%-5level]) %green(%logger) %msg%n"/>
+        <property name="CONSOLE_LOG_PATTERN_3" value="%date{yyyy-MM-dd HH:mm:ss}  %green(%-5level) %boldMagenta(${PID:-}) -- [%+20thread] %cyan(%logger{20}) %line       : %msg%n"/>
+        <!--文件中日志输出预选样式-->
+        <property name="FILE_LOG_PATTERN_1" value="%d{yyyyMMdd:HH:mm:ss.SSS} [%thread] %-5level  %msg%n"/>
+        <property name="FILE_LOG_PATTERN_2" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %t %file:%line %X{traceId} -| %m%n"/>
+
+        <!--控制台日志输出格式-->
+        <property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN_3}"/>
+        <!--文件中日志输出格式-->
+        <property name="FILE_LOG_PATTERN" value="${FILE_LOG_PATTERN_1}"/>
+        <!--日志名称-->
+        <!--定义默认日志输出级别-->
+        <property name="LOG_OUTPUT_LEVEL" value="${LOG_LEVEL}" />
+        <!--定义默认日志输出编码-->
+        <property name="ENCODING" value="UTF-8" />
+
+        <!-- 控制台输出:开始 -->
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <!-- 用来设置日志的输入格式，使用“%+转换符”的方式，如果要输出”%”则必须使用”\”进行转义。-->
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <!-- 格式化输出：https://logback.qos.ch/manual/layouts.html
+                     %d 表示日期，
+                     %thread 表示线程名，
+                     %level 日志级别从左显示5个字符宽度，
+                     %t 线程名
+                     %file:%line 文件名+行号，
+                     %m 日志消息，%n是换行符
+                     %X{traceId}:自定义设置的参数，后面会说。
+                -->
+                <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+                <charset>${ENCODING}</charset>
+            </encoder>
+        </appender>
+        <!-- 控制台输出:结束 -->
+
+        <!--输出到文件:开始-->
+        <!-- 将项目本次运行INFO日志同步输出到文件,会自动清空文件中上一次的日志 -->
+        <appender name="APPENDER-FILEAPPENDER-INFO" class="ch.qos.logback.core.FileAppender">
+            <!-- 过滤器，只记录 info 级别以上的日志 -->
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>INFO</level>
+            </filter>
+            <!-- 写入的日志文件名，可以使相对目录也可以是绝对目录，如果上级目录不存在则自动创建 -->
+            <file>${LOG_LOCATION_PREFIX}${LOG_NAME}-info.log</file>
+            <!-- 如果为true表示日志被追加到文件结尾，如果是false表示清空文件 -->
+            <append>${IS_APPEND}</append>
+            <!--立即刷新，设置成false可以提高日志吞吐量-->
+            <immediateFlush>${IS_IMMEDIATEFLUSH}</immediateFlush>
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+                <charset>${ENCODING}</charset>
+            </encoder>
+        </appender>
+
+        <!-- 将项目本次运行INFO日志异步输出到文件,会自动清空文件中上一次的日志 -->
+        <appender name="ASYNC-APPENDER-FILEAPPENDER-INFO" class="ch.qos.logback.classic.AsyncAppender">
+            <appender-ref ref="APPENDER-FILEAPPENDER-INFO" />
+            <!-- 设置异步阻塞队列的大小，为了不丢失日志建议设置的大一些，单机压测时100000是没问题的，应该不用担心OOM -->
+            <queueSize>10000</queueSize>
+            <!-- 设置丢弃DEBUG、TRACE、INFO日志的阀值，不丢失 -->
+            <discardingThreshold>0</discardingThreshold>
+            <!-- 设置队列入队时非阻塞，当队列满时会直接丢弃日志，但是对性能提升极大 -->
+            <neverBlock>${IS_IMMEDIATEFLUSH}</neverBlock>
+        </appender>
+
+        <!-- 将项目本次运行DEBUG日志同步输出到文件,会自动清空文件中上一次的日志 -->
+        <appender name="APPENDER-FILEAPPENDER-DEBUG" class="ch.qos.logback.core.FileAppender">
+            <!-- 过滤器，只记录 info 级别以上的日志 -->
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>DEBUG</level>
+            </filter>
+            <!-- 写入的日志文件名，可以使相对目录也可以是绝对目录，如果上级目录不存在则自动创建 -->
+            <file>${LOG_LOCATION_PREFIX}/${LOG_NAME}-debug.log</file>
+            <!-- 如果为true表示日志被追加到文件结尾，如果是false表示清空文件 -->
+            <append>${IS_APPEND}</append>
+            <!--立即刷新，设置成false可以提高日志吞吐量-->
+            <immediateFlush>true</immediateFlush>
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+                <charset>${ENCODING}</charset>
+            </encoder>
+        </appender>
+
+        <!-- 将项目本次运行DEBUG日志异步输出到文件,会自动清空文件中上一次的日志 -->
+        <appender name="ASYNC-APPENDER-FILEAPPENDER-DEBUG" class="ch.qos.logback.classic.AsyncAppender">
+            <appender-ref ref="APPENDER-FILEAPPENDER-DEBUG" />
+            <!-- 设置异步阻塞队列的大小，为了不丢失日志建议设置的大一些，单机压测时100000是没问题的，应该不用担心OOM -->
+            <queueSize>10000</queueSize>
+            <!-- 设置丢弃DEBUG、TRACE、INFO日志的阀值，不丢失 -->
+            <discardingThreshold>0</discardingThreshold>
+            <!-- 设置队列入队时非阻塞，当队列满时会直接丢弃日志，但是对性能提升极大 -->
+            <neverBlock>true</neverBlock>
+        </appender>
+
+        <!-- 将项目本次运行ERROR日志同步输出到文件,会自动清空文件中上一次的日志 -->
+        <appender name="APPENDER-FILEAPPENDER-ERROR" class="ch.qos.logback.core.FileAppender">
+            <!-- 过滤器，只记录 info 级别以上的日志 -->
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>DEBUG</level>
+            </filter>
+            <!-- 写入的日志文件名，可以使相对目录也可以是绝对目录，如果上级目录不存在则自动创建 -->
+            <file>${LOG_LOCATION_PREFIX}/${LOG_NAME}-error.log</file>
+            <!-- 如果为true表示日志被追加到文件结尾，如果是false表示清空文件 -->
+            <append>${IS_APPEND}</append>
+            <!--立即刷新，设置成false可以提高日志吞吐量-->
+            <immediateFlush>${IS_IMMEDIATEFLUSH}</immediateFlush>
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+                <charset>${ENCODING}</charset>
+            </encoder>
+        </appender>
+
+        <!-- 将项目本次运行ERROR日志异步输出到文件,会自动清空文件中上一次的日志 -->
+        <appender name="ASYNC-APPENDER-FILEAPPENDER-ERROR" class="ch.qos.logback.classic.AsyncAppender">
+            <appender-ref ref="APPENDER-FILEAPPENDER-ERROR" />
+            <!-- 设置异步阻塞队列的大小，为了不丢失日志建议设置的大一些，单机压测时100000是没问题的，应该不用担心OOM -->
+            <queueSize>10000</queueSize>
+            <!-- 设置丢弃DEBUG、TRACE、INFO日志的阀值，不丢失 -->
+            <discardingThreshold>0</discardingThreshold>
+            <!-- 设置队列入队时非阻塞，当队列满时会直接丢弃日志，但是对性能提升极大 -->
+            <neverBlock>true</neverBlock>
+        </appender>
+        <!--输出到文件:结束-->
+
+
+        <!--滚动输出到文件(按照天保存):开始-->
+        <!-- 将项目本次运行INFO日志同步输出到文件,按照每天生成日志文件,会自动拼接上一次日志 -->
+        <appender name="APPENDER-ROLLINGFILEAPPENDER-INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <!-- 过滤器，只记录 info 级别以上的日志 -->
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>INFO</level>
+            </filter>
+            <!--立即刷新，设置成false可以提高日志吞吐量-->
+            <immediateFlush>false</immediateFlush>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <!-- 日志文件输出的文件名:
+                    %d:可以包含一个Java.text.SimpleDateFormat指定的时间格式
+                    %i:自增数字
+                -->
+                <fileNamePattern>${LOG_LOCATION_PREFIX}/HISTORY/${LOG_NAME}-info-%d{yyyy-MM-dd}-index%i.log</fileNamePattern>
+                <!-- 日志文件保存历史数量:控制保留的归档文件的最大数量，如果超出数量就删除旧文件 -->
+                <maxHistory>10</maxHistory>
+                <!-- 文件大小超过100MB归档 -->
+                <maxFileSize>20MB</maxFileSize>
+            </rollingPolicy>
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+                <charset>${ENCODING}</charset>
+            </encoder>
+        </appender>
+
+        <!-- 将项目本次运行INFO日志异步输出到文件,按照每天生成日志文件,会自动拼接上一次日志 -->
+        <appender name="ASYNC-APPENDER-ROLLINGFILEAPPENDER-INFO" class="ch.qos.logback.classic.AsyncAppender">
+            <appender-ref ref="APPENDER-ROLLINGFILEAPPENDER-INFO" />
+            <!-- 设置异步阻塞队列的大小，为了不丢失日志建议设置的大一些，单机压测时100000是没问题的，应该不用担心OOM -->
+            <queueSize>10000</queueSize>
+            <!-- 设置丢弃DEBUG、TRACE、INFO日志的阀值，不丢失 -->
+            <discardingThreshold>0</discardingThreshold>
+            <!-- 设置队列入队时非阻塞，当队列满时会直接丢弃日志，但是对性能提升极大 -->
+            <neverBlock>true</neverBlock>
+        </appender>
+
+        <!-- 将项目本次运行DEBUG日志同步输出到文件,按照每天生成日志文件,会自动拼接上一次日志 -->
+        <appender name="APPENDER-ROLLINGFILEAPPENDER-DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <!-- 过滤器，只记录 info 级别以上的日志 -->
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>DEBUG</level>
+            </filter>
+            <!--立即刷新，设置成false可以提高日志吞吐量-->
+            <immediateFlush>false</immediateFlush>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <!-- 日志文件输出的文件名:
+                    %d:可以包含一个Java.text.SimpleDateFormat指定的时间格式
+                    %i:自增数字
+                -->
+                <fileNamePattern>${LOG_LOCATION_PREFIX}/HISTORY/${LOG_NAME}-debug-%d{yyyy-MM-dd}-index%i.log</fileNamePattern>
+                <!-- 日志文件保存历史数量:控制保留的归档文件的最大数量，如果超出数量就删除旧文件 -->
+                <maxHistory>10</maxHistory>
+                <!-- 文件大小超过100MB归档 -->
+                <maxFileSize>20MB</maxFileSize>
+            </rollingPolicy>
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+                <charset>${ENCODING}</charset>
+            </encoder>
+        </appender>
+
+        <!-- 将项目本次运行DEBUG日志异步输出到文件,按照每天生成日志文件,会自动拼接上一次日志 -->
+        <appender name="ASYNC-APPENDER-ROLLINGFILEAPPENDER-DEBUG" class="ch.qos.logback.classic.AsyncAppender">
+            <appender-ref ref="APPENDER-ROLLINGFILEAPPENDER-DEBUG" />
+            <!-- 设置异步阻塞队列的大小，为了不丢失日志建议设置的大一些，单机压测时100000是没问题的，应该不用担心OOM -->
+            <queueSize>10000</queueSize>
+            <!-- 设置丢弃DEBUG、TRACE、INFO日志的阀值，不丢失 -->
+            <discardingThreshold>0</discardingThreshold>
+            <!-- 设置队列入队时非阻塞，当队列满时会直接丢弃日志，但是对性能提升极大 -->
+            <neverBlock>true</neverBlock>
+        </appender>
+
+        <!-- 将项目本次运行ERROR日志同步输出到文件,按照每天生成日志文件,会自动拼接上一次日志 -->
+        <appender name="APPENDER-ROLLINGFILEAPPENDER-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <!-- 过滤器，只记录error级别的日志 -->
+            <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                <level>ERROR</level>
+                <onMatch>ACCEPT</onMatch>
+                <onMismatch>DENY</onMismatch>
+            </filter>
+            <!--立即刷新，设置成false可以提高日志吞吐量-->
+            <immediateFlush>false</immediateFlush>
+            <!-- 每天生成一个日志文件，保存30天的日志文件 -->
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <!-- 日志文件输出的文件名:按天回滚 daily -->
+                <fileNamePattern>${LOG_LOCATION_PREFIX}/HISTORY/${LOG_NAME}-error-%d{yyyy-MM-dd}-index%i.log</fileNamePattern>
+                <!-- 日志文件保留天数 -->
+                <maxHistory>10</maxHistory>
+                <!-- 文件大小超过100MB归档 -->
+                <maxFileSize>20MB</maxFileSize>
+            </rollingPolicy>
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <pattern>${FILE_LOG_PATTERN}</pattern>
+                <charset>utf8</charset>
+            </encoder>
+        </appender>
+
+        <appender name="ASYNC-APPENDER-ROLLINGFILEAPPENDER-ERROR" class="ch.qos.logback.classic.AsyncAppender">
+            <appender-ref ref="APPENDER-ROLLINGFILEAPPENDER-ERROR" />
+            <!-- 设置异步阻塞队列的大小，为了不丢失日志建议设置的大一些，单机压测时100000是没问题的，应该不用担心OOM -->
+            <queueSize>10000</queueSize>
+            <!-- 设置丢弃DEBUG、TRACE、INFO日志的阀值，不丢失 -->
+            <discardingThreshold>0</discardingThreshold>
+            <!-- 设置队列入队时非阻塞，当队列满时会直接丢弃日志，但是对性能提升极大 -->
+            <neverBlock>true</neverBlock>
+        </appender>
+        <!--滚动输出到文件(按照天保存):结束-->
+
+        <!--输出到LOGSTASH:开始-->
+        <!-- 将项目本次运行ERROR日志同步输出到文件,按照每天生成日志文件,会自动拼接上一次日志 -->
+        <appender name="APPENDER-LOGSTASH-ERROR" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+            <!-- 过滤器，只记录 info 级别以上的日志 -->
+            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+                <level>DEBUG</level>
+            </filter>
+            <!--  logstash服务器地址-->
+            <destination>192.168.0.4:5044</destination>
+            <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+                <providers>
+                    <pattern>
+                        <pattern>
+                            {
+                            "appname":"${INDICE_NAME}",
+                            "deploy_machine_ip":"${DEPLOY_MACHINE_IP}",
+                            "module_name":"${LOG_NAME}",
+                            "timestamp": "%date{\"yyyy-MM-dd'T'HH:mm:ss,SSSZ\"}",
+                            "log_level":"%level",
+                            "message":"%msg%n"
+                            }
+                        </pattern>
+                    </pattern>
+                </providers>
+            </encoder>
+    <!--        <keepAliveDuration>5 minutes</keepAliveDuration>-->
+        </appender>
+        <appender name="ASYNC-APPENDER-LOGSTASH-ERROR" class="ch.qos.logback.classic.AsyncAppender">
+            <appender-ref ref="APPENDER-LOGSTASH-ERROR" />
+            <!-- 设置异步阻塞队列的大小，为了不丢失日志建议设置的大一些，单机压测时100000是没问题的，应该不用担心OOM -->
+            <queueSize>10000</queueSize>
+            <!-- 设置丢弃DEBUG、TRACE、INFO日志的阀值，不丢失 -->
+            <discardingThreshold>0</discardingThreshold>
+            <!-- 设置队列入队时非阻塞，当队列满时会直接丢弃日志，但是对性能提升极大 -->
+            <neverBlock>true</neverBlock>
+        </appender>
+        <!--输出到logstash:结束-->
+
+        <!--
+            开发环境日志级别为DEBUG
+            level：用来设置打印级别
+            五个常用打印级别从低至高依次为TRACE、DEBUG、INFO、WARN、ERROR
+        -->
+        <springProfile name="dev">
+            <root level="${LOG_OUTPUT_LEVEL}">
+                <!--输出到控制台-->
+                <appender-ref ref="STDOUT"/>
+                <!--异步非滚动输出到文件-->
+                <appender-ref ref="ASYNC-APPENDER-FILEAPPENDER-INFO"/>
+                <appender-ref ref="ASYNC-APPENDER-FILEAPPENDER-DEBUG"/>
+                <appender-ref ref="ASYNC-APPENDER-FILEAPPENDER-ERROR"/>
+                <!--异步滚动输出到文件:dev环境不开启-->
+    <!--            <appender-ref ref="ASYNC-APPENDER-ROLLINGFILEAPPENDER-INFO"/>-->
+    <!--            <appender-ref ref="ASYNC-APPENDER-ROLLINGFILEAPPENDER-DEBUG"/>-->
+    <!--            <appender-ref ref="ASYNC-APPENDER-ROLLINGFILEAPPENDER-ERROR"/>-->
+                <appender-ref ref="ASYNC-APPENDER-LOGSTASH-ERROR"/>
+            </root>
+        </springProfile>
+
+        <!-- 测试环境日志级别为INFO -->
+        <springProfile name="test">
+            <root level="${LOG_OUTPUT_LEVEL}">
+                <!--输出到控制台-->
+                <appender-ref ref="STDOUT"/>
+                <!--异步非滚动输出到文件-->
+                <appender-ref ref="ASYNC-APPENDER-FILEAPPENDER-INFO"/>
+                <appender-ref ref="ASYNC-APPENDER-FILEAPPENDER-DEBUG"/>
+                <appender-ref ref="ASYNC-APPENDER-FILEAPPENDER-ERROR"/>
+                <!--异步滚动输出到文件:test环境不开启-->
+    <!--            <appender-ref ref="ASYNC-APPENDER-ROLLINGFILEAPPENDER-INFO"/>-->
+    <!--            <appender-ref ref="ASYNC-APPENDER-ROLLINGFILEAPPENDER-DEBUG"/>-->
+    <!--            <appender-ref ref="ASYNC-APPENDER-ROLLINGFILEAPPENDER-ERROR"/>-->
+            </root>
+        </springProfile>
+
+        <!-- 生产环境日志级别为INFO -->
+        <springProfile name="prod">
+            <root level="${LOG_OUTPUT_LEVEL}">
+                <!--输出到控制台-->
+                <appender-ref ref="STDOUT"/>
+                <!--异步非滚动输出到文件-->
+                <appender-ref ref="ASYNC-APPENDER-FILEAPPENDER-INFO"/>
+                <appender-ref ref="ASYNC-APPENDER-FILEAPPENDER-DEBUG"/>
+                <appender-ref ref="ASYNC-APPENDER-FILEAPPENDER-ERROR"/>
+                <!--异步滚动输出到文件-->
+                <appender-ref ref="ASYNC-APPENDER-ROLLINGFILEAPPENDER-INFO"/>
+                <appender-ref ref="ASYNC-APPENDER-ROLLINGFILEAPPENDER-DEBUG"/>
+                <appender-ref ref="ASYNC-APPENDER-ROLLINGFILEAPPENDER-ERROR"/>
+            </root>
+        </springProfile>
+    </configuration>

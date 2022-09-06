@@ -7,7 +7,11 @@ category:
   - 环境搭建
 star: false
 tag:
-date: 
+  - springcloud组件
+  - zipkin
+  - apollo
+  - seata
+date: 2020-03-12
 head:
   - - meta
     - name: keywords

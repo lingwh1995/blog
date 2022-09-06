@@ -216,16 +216,10 @@ minikube stop
 minikube delete --all
 ```
 	卸载minikube
-	停止运行
+	停止运行->执行卸载命令->删除 ~/.minikube 目录缓存的文件
 ```
-minikube stop
-```
-	执行卸载命令
-```
-minikube delete
-```
-	删除 ~/.minikube 目录缓存的文件
-```
+minikube stop &&
+minikube delete &&
 rm -rf ~/.minikube
 ```
 

@@ -1,0 +1,78 @@
+//定义远程git仓库中项目的地址
+def project_url='https://gitee.com/lingwh1995/springcloud-eureka.git'
+
+def jenkins_ip='192.168.0.5'
+
+node {
+    echo '开始执行自动化...'
+    /*指定在那台Jenkins节点上运行*/
+    agent { label '${jenkins_ip}'}
+
+    /*从远程仓库检出代码*/
+    stage('从远程仓库检出代码') {
+        echo '开始 从远程仓库检出代码...'
+        checkout([
+            $class: 'GitSCM',
+            branches: [[name: '*/master']], extensions: [],
+            userRemoteConfigs: [[url: "${project_url}"]]
+        ])
+        echo '完成 从远程仓库检出代码...'
+    }
+
+    /**
+     * maven命令扩展:实现多模块情况下只针对某一个模块打包
+     * -pl, --projects
+     *      Build specified reactor projects instead of all projects
+     *      指定项目其中的一个模块及其依赖
+     *  -am, --also-make
+     *      If project list is specified, also build projects required by the list
+     *      自动构建该模块所依赖的其他模块
+     *
+     */
+    stage('打包->安装->构建镜像->推送到私服->删除docker中本地镜像') {
+        echo '开始 打包->安装->构建镜像->推送到私服->删除docker中本地镜像...'
+        //如果install的是一个模块或者是多个模块
+            //执行遍历依次次打包涉及的模块
+        //如果是install的是整个项目
+            //一次性打包整个项目
+        sh "mvn clean install -T 1C -Dmaven.test.skip=true -Dmaven.compile.fork=true -pl springcloud-ci-k8s80 -am"
+        echo '完成 打包->安装->构建镜像->推送到私服->删除docker中本地镜像...'
+    }
+
+    /**
+     *安装Publish Over SSH插件，使用插件的功能触发远程的shell脚本的执行
+     */
+    stage('自动部署上传到私服中的所有镜像到docker') {
+        echo '开始 自动部署上传到私服中的所有镜像到k8s...'
+        sshPublisher(
+            publishers:
+                [
+                    sshPublisherDesc(
+                        configName: 'cik8s',
+                        transfers: [
+                            sshTransfer(
+                                cleanRemote: false,
+                                excludes: '',
+                                execCommand: "cd / && ./springcloud-ci-k8s.sh",
+                                execTimeout: 600000,
+                                flatten: false,
+                                makeEmptyDirs: false,
+                                noDefaultExcludes: false,
+                                patternSeparator: '[, ]+',
+                                remoteDirectory: '',
+                                remoteDirectorySDF: false,
+                                removePrefix: '',
+                                sourceFiles: ''
+                            )
+                        ],
+                        usePromotionTimestamp: false,
+                        useWorkspaceInPromotion: false,
+                        verbose: false
+                    )
+                ]
+       )
+       echo '结束 自动部署上传到私服中的所有镜像到k8s...'
+    }
+
+    echo '完成执行自动化...'
+}

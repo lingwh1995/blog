@@ -7,7 +7,7 @@ category:
   - 环境搭建
 star: false
 tag:
-  - 私服搭建
+  - 私服
 date: 2020-03-08
 head:
   - - meta

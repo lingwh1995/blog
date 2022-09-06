@@ -119,7 +119,7 @@ export default navbar([
           {
             text: "Java语言构造",
             icon: "java",
-            link: "/blogs/datastructure/datastructure-java/shardings/datastructure-java-chapter-0.博客内容介绍.md",
+            link: "/blogs/general/datastructure/datastructure-java/shardings/datastructure-java-chapter-0.博客内容介绍.md",
           },
         ],
       },
@@ -129,7 +129,7 @@ export default navbar([
           {
             text: "Java语言构造",
             icon: "java",
-            link: "/blogs/designpattern/designpattern-java/shardings/designpattern-java-chapter-0.博客内容介绍.md",
+            link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-0.博客内容介绍.md",
           },
         ],
       }

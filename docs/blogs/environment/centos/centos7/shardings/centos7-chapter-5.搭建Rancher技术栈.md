@@ -36,6 +36,11 @@ docker run -di --name=rancher -p9003:8080 rancher/server:latest
 		#使用rancher扩容不能配置iip-address,否则会出问题
 		#ip-address: 192.168.0.4
 
+	开放端口
+```
+firewall-cmd --zone=public --add-port=9003/tcp --permanent &&
+firewall-cmd --reload
+```
 
 <ScrollIntoPageView/>
 <HideSideBar/>

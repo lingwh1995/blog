@@ -10,15 +10,19 @@
      5.使用Ribbon实现客户端负载均衡
      6.使用OpenFeign实现客户端负载均衡
      7.使用Hystrix实现服务降级和熔断
-     8.使用DashBoard和Turbine对服务访问流量进行统计
+     8.使用DashBoard和Turbine监控服务访问情况
      9.使用GateWay实现网关功能
      10.使用Zipkin+Sleuth实现调用链路追踪
      11.使用Apollo配置中心管理配置
      12.使用Seata进行分布式事务控制
      13.使用SpringBootAdmin监控服务
      14.设计适用于生产环境的日志系统
-     15.多环境相关
-     16.综合案例
+     15.OpenFeign高级用法
+     16.使用持续集成快捷部署服务
+     17.让微服务区分多种不同环境
+     18.使用mycat提升数据库吞吐能力
+     19.使用rancher管理docker和Kubernetes
+     20.综合案例
 	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
 ## 博客内容大纲
 

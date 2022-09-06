@@ -1,0 +1,146 @@
+1.Docker宿主机配置
+    1>.修改宿主机的docker配置，让其可以远程访问:
+        vim /lib/systemd/system/docker.service
+        其中ExecStart=后添加配置-H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock
+    2>.刷新配置,重启Docker服务
+        systemctl daemon-reload && systemctl restart docker
+    3>.启动私服刚才搭建好的私有仓库registry
+        docker start registry容器ID
+    4>.放行2375端口
+        #firewall防火墙
+            firewall-cmd --permanent --add-port=2375/tcp
+            #重启防火墙(修改配置后要重启防火墙)
+            firewall-cmd --reload
+        #iptable
+        iptables -I INPUT -p tcp --dport 2375 -j ACCEPT
+        service iptables save
+        service iptables restart
+2.SpringCloud项目配置
+    1>.在项目中pom.xml增加Docker Maven插件
+        <!--执行maven命令时执行删除jar包和复制jar包操作-->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+                <execution>
+                    <id>del-jar</id>
+                    <phase>clean</phase>
+                    <configuration>
+                        <tasks>
+                            <!-- 这是将当前模块下的target下的jar包删除-->
+                            <delete file="docker/${build.finalName}.jar"/>
+                        </tasks>
+                    </configuration>
+                    <goals>
+                        <goal>run</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>copy-jar</id>
+                    <phase>package</phase>
+                    <configuration>
+                        <tasks>
+                            <!-- 这是将当前模块下的target下的jar包copy到当前模块根目录下docker目录中-->
+                            <copy todir="docker" file="target/${build.finalName}.jar"></copy>
+                        </tasks>
+                    </configuration>
+                    <goals>
+                        <goal>run</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+        <plugin>
+            <groupId>io.fabric8</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <configuration>
+                <dockerHost>${docker.dockerHost}</dockerHost>
+                <!--harbor镜像仓库地址认证配置,用于私有registry认证-->
+                <authConfig>
+                    <username>${harbor.registry.username}</username>
+                    <password>${harbor.registry.password}</password>
+                </authConfig>
+                <images>
+                    <image>
+                        <!--显示日志的时候-->
+                        <!--<alias>spring-cloud-eureka</alias>-->
+                        <!--如果只给docker本地镜像库中推送,格式为 命名空间/项目名称:tags名称,示例:项目artifactId/模块artifactId:模块version-->
+                        <!--<name>${project.parent.artifactId}/${project.name}:${project.version}</name>-->
+                        <!--如果要同时给私服中推送,格式为 registry的ip:命名空间/项目名称:tags名称,示例:私服的ip:项目artifactId/模块artifactId:模块version-->
+                        <!--<name>${docker.registry}/${project.parent.artifactId}/${project.name}:${project.version}</name>-->
+                        <name>${docker.registry}/${project.parent.artifactId}/${project.name}:${project.version}</name>
+                        <!--定义镜像构建行为-->
+                        <build>
+                            <!-- 指定dockerfile文件的位置-->
+                            <dockerFile>${project.basedir}/docker/Dockerfile</dockerFile>
+                            <!--<dockerFile>${project.basedir}/Dockerfile</dockerFile>-->
+                        </build>
+
+                        <!-- 定义容器启动行为-->
+                        <run>
+                            <!--设置容器名，可采用通配符-->
+                            <containerNamePattern>${project.parent.artifactId}_${project.build.finalName}</containerNamePattern>
+                            <!--设置端口映射-->
+                            <ports>
+                                <port>${docker.port.mapping}</port>
+                            </ports>
+                        </run>
+                    </image>
+                </images>
+                <buildArgs>
+                    <!--Jar包在项目中的生成位置-->
+                    <LOCALHOST_JAR_FILE_DIR>${project.build.finalName}.jar</LOCALHOST_JAR_FILE_DIR>
+                    <!--把项目拷贝到Docker容器中的位置-->
+                    <REMOTE_JAR_FILE_DIR>/${project.parent.artifactId}/${project.build.finalName}.jar</REMOTE_JAR_FILE_DIR>
+                </buildArgs>
+            </configuration>
+            <executions>
+                <!--如果想在项目打包时构建镜像添加-->
+                <execution>
+                    <id>build-image</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>build</goal>
+                        <goal>push</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    2>.执行maven命令
+        #1.mvn clean package
+        #2.docker build
+        #3.docker push
+        #4.docker run/start
+        注意：如果docker命令和maven命令绑定了,只执行maven命令即可
+3.特别注意事项
+    docker的端口映射信息配置在pom.xml中,从pom.xml中读取端口信息
+    使用docker port 容器id 可以查看具体容器的端口映射
+4.异常解决
+    异常信息:
+        I/O exception (java.net.NoRouteToHostException) caught when processing request to {}->http://192.168.0.4:8010: No route to host (Host unreachable)
+    解决方法:
+        firewall-cmd --zone=trusted --add-source=172.19.0.1/16 --permanent
+        firewall-cmd --zone=trusted --add-source=172.17.0.3/16 --permanent
+        firewall-cmd --zone=trusted --add-source=127.0.0.1/8 --permanent
+        firewall-cmd --reload
+5.注意事项:
+    1.上传到Harbo私服时,不用在maven的settings.xml中任何配置
+    2.一定要先在harbor中创建项目，不然会报错
+        unauthorized: project springcloud-eureka not found: project springcloud-eureka not found
+5.故障排查
+    #1./etc/docker/daemon.json下是否添加了对某个私服地址的信任
+    #2.使用的端口服务器是否开放了
+    #3.docker中harbor相关的服务是否全部启动,用到的服务就是下面这些服务
+        [root@localhost harbor]# docker ps
+        CONTAINER ID   IMAGE                                COMMAND                  CREATED          STATUS                    PORTS                                       NAMES
+        1eeb84e63281   goharbor/harbor-jobservice:v2.5.2    "/harbor/entrypoint.…"   35 minutes ago   Up 27 minutes (healthy)                                               harbor-jobservice
+        a69ed733842a   goharbor/nginx-photon:v2.5.2         "nginx -g 'daemon of…"   35 minutes ago   Up 27 minutes (healthy)   0.0.0.0:5001->8080/tcp, :::5001->8080/tcp   nginx
+        bcc6caa82855   goharbor/harbor-core:v2.5.2          "/harbor/entrypoint.…"   35 minutes ago   Up 27 minutes (healthy)                                               harbor-core
+        c6f852f9978c   goharbor/harbor-db:v2.5.2            "/docker-entrypoint.…"   35 minutes ago   Up 27 minutes (healthy)                                               harbor-db
+        93c8691b42cf   goharbor/redis-photon:v2.5.2         "redis-server /etc/r…"   35 minutes ago   Up 27 minutes (healthy)                                               redis
+        8fae6512a156   goharbor/registry-photon:v2.5.2      "/home/harbor/entryp…"   35 minutes ago   Up 6 minutes (healthy)                                                registry
+        9ab503a19b40   goharbor/harbor-registryctl:v2.5.2   "/home/harbor/start.…"   35 minutes ago   Up 6 minutes (healthy)                                                registryctl
+        d98f36958949   goharbor/harbor-portal:v2.5.2        "nginx -g 'daemon of…"   35 minutes ago   Up 27 minutes (healthy)                                               harbor-portal
+        686467a6d389   goharbor/harbor-log:v2.5.2           "/bin/sh -c /usr/loc…"   35 minutes ago   Up 27 minutes (healthy)   127.0.0.1:1514->10514/tcp                   harbor-log
+    #4.harbor的用户名密码是否配置正确
+        harbor默认用户名密码: admin/Harbor12345

@@ -33,7 +33,7 @@ icon: navigate
 
                 - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-7.使用Hystrix实现服务降级和熔断.html">7.使用Hystrix实现服务降级和熔断</a>
 
-                - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-8.使用DashBoard和Turbine对服务访问流量进行统计.html">8.使用DashBoard和Turbine对服务访问流量进行统计</a>
+                - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-8.使用DashBoard和Turbine监控服务访问情况.html">8.使用DashBoard和Turbine监控服务访问情况</a>
 
                 - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-9.使用GateWay实现网关功能.html">9.使用GateWay实现网关功能</a>
 
@@ -47,8 +47,16 @@ icon: navigate
 
                 - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-14.设计适用于生产环境的日志系统.html">14.设计适用于生产环境的日志系统</a>
 
-                - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-15.多环境相关.html">15.多环境相关</a>
+                - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-15.OpenFeign高级用法.html">15.OpenFeign高级用法</a>
 
-                - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-16.综合案例.html">16.综合案例</a>
+                - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-16.使用持续集成快捷部署服务.html">16.使用持续集成快捷部署服务</a>
+
+                - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-17.让微服务区分多种不同环境.html">17.让微服务区分多种不同环境</a>
+
+                - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-18.使用mycat提升数据库吞吐能力.html">18.使用mycat提升数据库吞吐能力</a>
+
+                - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-19.使用rancher管理docker和Kubernetes.html">19.使用rancher管理docker和Kubernetes</a>
+
+                - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-20.综合案例.html">20.综合案例</a>
 
             - <a class="breadcrumb-link" href="springcloud/springcloud-eureka/springcloud-eureka.html#intro">章节内容合集</a>
