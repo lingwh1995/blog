@@ -119,7 +119,7 @@ export default navbar([
           {
             text: "Java语言构造",
             icon: "java",
-            link: "/blogs/environment/centos/centos7/shardings/centos7-chapter-0.博客内容介绍.md",
+            link: "/blogs/datastructure/datastructure-java/shardings/datastructure-java-chapter-0.博客内容介绍.md",
           },
         ],
       },
@@ -129,7 +129,7 @@ export default navbar([
           {
             text: "Java语言构造",
             icon: "java",
-            link: "/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-0.博客内容介绍.md",
+            link: "/blogs/designpattern/designpattern-java/shardings/designpattern-java-chapter-0.博客内容介绍.md",
           },
         ],
       }
