@@ -25,5 +25,5 @@ head:
 # 1.数据结构java语言构造 {#1.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter1.md)
 ## 1.3.数据结构java语言构造1.1.
-### 1.3.1.数据结构java语言构造1.1.1. 
+### 1.3.1.数据结构java语言构造1.1.1.
 <HideSideBar/>
