@@ -18,9 +18,9 @@
                       link: "/blogs/general/datastructure/datastructure-java/shardings/datastructure-java-chapter-0.博客内容介绍.md",
                    },
                   {
-                      text: "1.设计模式java语言构造",
+                      text: "1.数据结构java语言构造",
                       icon: "article",
-                      link: "/blogs/general/datastructure/datastructure-java/shardings/datastructure-java-chapter-1.设计模式java语言构造.md",
+                      link: "/blogs/general/datastructure/datastructure-java/shardings/datastructure-java-chapter-1.数据结构java语言构造.md",
                   },
               ]
           },
@@ -35,7 +35,7 @@
                       link: "/blogs/general/datastructure/datastructure-java/datastructure-java.md#intro",
                   },
                   {
-                      text: "1.设计模式java语言构造",
+                      text: "1.数据结构java语言构造",
                       icon: "article",
                       link: "/blogs/general/datastructure/datastructure-java/datastructure-java.md#1.",
                   },

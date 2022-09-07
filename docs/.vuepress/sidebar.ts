@@ -466,9 +466,19 @@ export default sidebar([
                       link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-0.博客内容介绍.md",
                    },
                   {
-                      text: "1.数据结构java语言构造",
+                      text: "1.设计模式引导",
                       icon: "article",
-                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-1.数据结构java语言构造.md",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-1.设计模式引导.md",
+                  },
+                  {
+                      text: "2.类与类之间的六种关系",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-2.类与类之间的六种关系.md",
+                  },
+                  {
+                      text: "3.设计模式七大原则",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-3.设计模式七大原则.md",
                   },
               ]
           },
@@ -483,9 +493,19 @@ export default sidebar([
                       link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#intro",
                   },
                   {
-                      text: "1.数据结构java语言构造",
+                      text: "1.设计模式引导",
                       icon: "article",
                       link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#1.",
+                  },
+                  {
+                      text: "2.类与类之间的六种关系",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#2.",
+                  },
+                  {
+                      text: "3.设计模式七大原则",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#3.",
                   },
               ]
           },
@@ -511,9 +531,9 @@ export default sidebar([
                       link: "/blogs/general/datastructure/datastructure-java/shardings/datastructure-java-chapter-0.博客内容介绍.md",
                    },
                   {
-                      text: "1.设计模式java语言构造",
+                      text: "1.数据结构java语言构造",
                       icon: "article",
-                      link: "/blogs/general/datastructure/datastructure-java/shardings/datastructure-java-chapter-1.设计模式java语言构造.md",
+                      link: "/blogs/general/datastructure/datastructure-java/shardings/datastructure-java-chapter-1.数据结构java语言构造.md",
                   },
               ]
           },
@@ -528,7 +548,7 @@ export default sidebar([
                       link: "/blogs/general/datastructure/datastructure-java/datastructure-java.md#intro",
                   },
                   {
-                      text: "1.设计模式java语言构造",
+                      text: "1.数据结构java语言构造",
                       icon: "article",
                       link: "/blogs/general/datastructure/datastructure-java/datastructure-java.md#1.",
                   },

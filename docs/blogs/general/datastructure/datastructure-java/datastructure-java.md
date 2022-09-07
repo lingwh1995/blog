@@ -18,12 +18,12 @@ icon: linux
 head:
   - - meta
     - name: keywords
-      content: 设计模式java语言构造,
+      content: 数据结构java语言构造,
 ---
 @include(@src/public/enhance/guidance/general/datastructure/datastructure-java/datastructure-java-guidance.md)
 
-# 1.设计模式java语言构造 {#1.}
+# 1.数据结构java语言构造 {#1.}
 @include(@src/public/enhance/guidance/general/datastructure/datastructure-java/chapter/datastructure-java-guidance-chapter1.md)
-## 1.3.设计模式java语言构造1.1
-### 1.3.1.设计模式java语言构造1.1.1. 
+## 1.3.数据结构java语言构造
+### 1.3.1.数据结构java语言构造 
 <HideSideBar/>
