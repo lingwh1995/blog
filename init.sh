@@ -389,7 +389,7 @@ cat > $3/$1-guidance.md  << EOF
 ## 博客内容概述
     本篇博客涉及主要内容有：
 $BLOG_CONTENT_INTRO
-	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看。
 ## 博客内容大纲
 
 ###	<a href="/$5/$4/$1-outline2.html" target="_blank">简单版博客内容大纲</a>
@@ -440,7 +440,7 @@ cat > $3/chapter/$1-guidance-chapter$i.md  << EOF
      $i.1.章节内容概述
      $i.2.章节内容大纲
 $CHAPTER_CONTENT_INTRO
-	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 
 ## <a href="/$5/$4/chapter/$1-outline5-chapter$i.html" target="_blank">$i.2.章节内容大纲</a>
 
@@ -572,8 +572,8 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
     #获取description
     #抽取所有一级标题，以此为根据创建博客FRONTMATTER配置中description的值
     BLOG_FRONTMATTER_DESCRIPTION=`grep '^# [1-9][0-9]\?\.'  $2/$1.md | cut -d '.' -f2 | tr '\r\n' ','`
-    MD_FILE_ENSEMBLE_FRONTMATTER_DESCRIPTION='本篇博客涉及主要内容有：'$BLOG_FRONTMATTER_DESCRIPTION'具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。'
-    LOG_CONTENT_INTRO='本篇博客涉及主要内容有：'$BLOG_CONTENT_INTRO'具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。'
+    MD_FILE_ENSEMBLE_FRONTMATTER_DESCRIPTION='本篇博客涉及主要内容有：'$BLOG_FRONTMATTER_DESCRIPTION'具体每个章节中包含的内容可使通过下面博客内容大纲进行查看。'
+    LOG_CONTENT_INTRO='本篇博客涉及主要内容有：'$BLOG_CONTENT_INTRO'具体每个章节中包含的内容可使通过下面博客内容大纲进行查看。'
     #写入description
     echo "description: $MD_FILE_ENSEMBLE_FRONTMATTER_DESCRIPTION" >> $CHAPTER_0_FULL_PATH_NAME
 
