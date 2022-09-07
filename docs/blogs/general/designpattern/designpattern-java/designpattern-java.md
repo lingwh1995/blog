@@ -107,46 +107,23 @@ classDiagram
 ### 2.3.4.依赖关系代码
     Department.java
 ```java
-package expand.uml.dependence;
-
-public class Department {
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/dependence/Department.java)
 ```
     IDCard.java
 ```java
-package expand.uml.dependence;
-
-public class IDCard {
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/dependence/IDCard.java)
 ```
     Person.java
 ```java
-package expand.uml.dependence;
-
-public class Person {
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/dependence/Person.java)
 ```
     PersonDao.java
 ```java
-package expand.uml.dependence;
-
-public class PersonDao {
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/dependence/PersonDao.java)
 ```
     PersonServiceBean.java
 ```java
-package expand.uml.dependence;
-
-public class PersonServiceBean {
-    private PersonDao personDao;
-    public void save(Person person){}
-    public IDCard getIDCard(Integer personId){
-        return null;
-    }
-    public void modify(){
-        Department department = new Department();
-    }
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/dependence/PersonServiceBean.java)
 ```
 ## 2.4.关联关系
 ### 2.4.1.关联关系概述
@@ -177,36 +154,20 @@ classDiagram
     单向关联关系
     Person.java
 ```java
-package expand.uml.association.singleone2one;
-//一个人只有一个身份证,一个身份证也只能对应一个人；所以身份证跟人是一对一关系
-public class Person {
-    private IDCard card;
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/association/singleone2one/Person.java)
 ```
     IDCard.java
 ```java
-package expand.uml.association.singleone2one;
-//若果代码是这样写的话，就是单向一对一的关系。因为Person中有IDCard成员变量，而中IDCard没有Person成员变量
-public class IDCard {
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/association/singleone2one/IDCard.java)
 ```
     双向关联关系
     Person.java
 ```java
-package expand.uml.association.doubleone2one;
-
-//因为PersonIDCard中有成员变量，而中IDCard也有Person成员变量，所以这是双向一对一关系
-public class Person {
-    private IDCard card;
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/association/doubleone2one/Person.java)
 ```
     IDCard.java
 ```java
-package expand.uml.association.doubleone2one;
-//因为Person中有IDCard成员变量，而中IDCard也有Person成员变量，所以这是双向一对一关系
-public class IDCard {
-    private Person person;
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/association/doubleone2one/IDCard.java)
 ```
 ## 2.5.聚合关系
 ### 2.5.1.聚合关系概述
@@ -232,44 +193,15 @@ classDiagram
 ### 2.5.4.聚合关系代码
     Moniter.java
 ```java
-package expand.uml.aggregation;
-
-public class Moniter {
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/aggregation/Moniter.java)
 ```
     Mouse.java
 ```java
-package expand.uml.aggregation;
-
-public class Mouse {
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/aggregation/Mouse.java)
 ```
     Computer.java
 ```java
-package expand.uml.aggregation;
-
-public class Computer {
-    //显示器可以和Computer分离
-    private Moniter moniter;
-    //鼠标可以和Computer分离
-    private Mouse mouse;
-
-    public Moniter getMoniter() {
-        return moniter;
-    }
-
-    public void setMoniter(Moniter moniter) {
-        this.moniter = moniter;
-    }
-
-    public Mouse getMouse() {
-        return mouse;
-    }
-
-    public void setMouse(Mouse mouse) {
-        this.mouse = mouse;
-    }
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/aggregation/Computer.java)
 ```
 ## 2.6.组合关系
 ### 2.6.1.组合关系概述
@@ -291,28 +223,15 @@ classDiagram
 ### 2.6.4.组合关系代码
     Head.java
 ```java
-package expand.uml.composition;
-
-public class Head {
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/composition/Head.java)
 ```
     Leg.java
 ```java
-package expand.uml.composition;
-
-public class Leg {
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/composition/Leg.java)
 ```
     Person.java
 ```java
-package expand.uml.composition;
-
-public class Person {
-    //组合关系，Person和Head是无法分开的
-    private Head head = new Head();
-    //组合关系，Person和Leg是无法分开的
-    private Leg leg = new Leg();
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/composition/Person.java)
 ```
 ## 2.7.泛化关系
 ### 2.7.1.泛化关系概述
@@ -331,19 +250,11 @@ classDiagram
 ### 2.7.4.泛化关系代码
     DaoSupport.java
 ```java
-package expand.uml.generalization;
-
-public abstract class DaoSupport {
-    public void save(Object object){}
-    public void delete(Object object){}
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/generalization/DaoSupport.java)
 ```
     PersonServiceBean.java
 ```java
-package expand.uml.generalization;
-
-public class PersonServiceBean extends DaoSupport{
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/generalization/PersonServiceBean.java)
 ```
 ## 2.8.实现关系
 ### 2.8.1.实现关系概述
@@ -361,22 +272,11 @@ classDiagram
 ### 2.8.4.实现关系代码
     PersonService.java
 ```java
-package expand.uml.realization;
-
-public interface PersonService {
-    public void delete(Integer id);
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/realization/PersonService.java)
 ```
     PersonServiceBean.java
 ```java
-package expand.uml.realization;
-
-public class PersonServiceBean implements PersonService{
-    @Override
-    public void delete(Integer id) {
-
-    }
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/realization/PersonServiceBean.java)
 ```
 ## 2.9.六种关系耦合度强弱
     泛化 = 实现 > 组合 > 聚合 > 关联 > 依赖
@@ -399,99 +299,15 @@ public class PersonServiceBean implements PersonService{
 ### 3.3.2.单一职责原则代码
 #### 3.3.2.1.不使用单一职责原则代码
 ```java
-package expand.principles.single_reponsibility;
-
-import org.junit.Test;
-
-/**
- * 不使用单一职能原则
- *      Vehicle1.run()方法违反了单一职能原则
- */
-public class SingleReponsibility1 {
-    @Test
-    public void test(){
-        Vehicle1 vehicle1 = new Vehicle1();
-        vehicle1.run("汽车");
-        vehicle1.run("火车");
-        vehicle1.run("飞机");
-    }
-}
-class Vehicle1 {
-    public void run(String vehicle) {
-        System.out.println(vehicle + "在公路上跑...");
-    }
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/single_reponsibility/SingleReponsibility1.java)
 ```
 #### 3.3.2.2.类级别单一职责原则代码
 ```java
-package expand.principles.single_reponsibility;
-
-import org.junit.Test;
-
-/**
- * 类级别的单一职能原则：严格遵守了单一职责原则
- * 遵守了单一职责原则:但是会导致类大爆炸
- */
-public class SingleResponsibility2 {
-    @Test
-    public void run(){
-        RoadVehicle roadVehicle = new RoadVehicle();
-        roadVehicle.run("汽车");
-        AirVehicle airVehicle = new AirVehicle();
-        airVehicle.run("飞机");
-        WaterVehicle waterVehicle = new WaterVehicle();
-        waterVehicle.run("轮船");
-    }
-}
-
-class RoadVehicle {
-    public void run(String vehicle){
-        System.out.println(vehicle+"在路上跑...");
-    }
-}
-
-class WaterVehicle {
-    public void run(String vehicle){
-        System.out.println(vehicle+"在水里跑...");
-    }
-}
-
-class AirVehicle {
-    public void run(String vehicle){
-        System.out.println(vehicle+"在天上飞...");
-    }
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/single_reponsibility/SingleResponsibility2.java)
 ```
 #### 3.3.2.3.方法别单一职责原则代码
 ```java
-package expand.principles.single_reponsibility;
-
-import org.junit.Test;
-
-/**
- * 方法级别的单一职能原则，会导致类中方法大爆炸
- */
-public class SingleResponsibility3 {
-    @Test
-    public void run(){
-        Veicle3 veicle3 = new Veicle3();
-        veicle3.runRoad("汽车");
-        veicle3.runAir("飞机");
-        veicle3.runWater("轮船");
-    }
-}
-
-class Veicle3 {
-    public void runRoad(String vehicle){
-        System.out.println(vehicle+"在路上跑...");
-    }
-    public void runAir(String vehicle){
-        System.out.println(vehicle+"在天上飞...");
-    }
-    public void runWater(String vehicle){
-        System.out.println(vehicle+"在水里跑...");
-    }
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/single_reponsibility/SingleResponsibility3.java)
 ```
 ## 3.4.接口隔离原则
 ### 3.4.1.接口隔离原则介绍
@@ -500,307 +316,22 @@ class Veicle3 {
 #### 3.4.2.1.不使用接口隔离原则代码
     Interface1.java
 ```java
-package expand.principles.interface_segregation;
-
-/**
- * 不遵守接口隔离原则
- */
-public interface Interface1 {
-    void operator1();
-    void operator2();
-    void operator3();
-    void operator4();
-    void operator5();
-}
-
-/**
- * A1通过Interface1依赖B类，但只会用到1、2、3方法
- */
-class A1 {
-    public void depend1(Interface1 interface1){
-        interface1.operator1();
-
-        //如果不进行接口隔离，interface1仍然可以调用接口中的operator2()、operator3()、operator4()和operator5()两个方法，实际根本不需要这四个方法
-        //interface1.operator2();
-        //interface1.operator3();
-        //interface1.operator4();
-        //interface1.operator5();
-    }
-    public void depend2(Interface1 interface1){
-        interface1.operator2();
-        //如果不进行接口隔离，interface1仍然可以调用接口中的operator1()、operator3()、operator4()和operator5()两个方法，实际根本不需要这两个方法
-        //interface1.operator1();
-        //interface1.operator3();
-        //interface1.operator4();
-        //interface1.operator5();
-    }
-    public void depend3(Interface1 interface1){
-        interface1.operator3();
-        //如果不进行接口隔离，interface1仍然可以调用接口中的operator1()、operator2()、operator4()和operator5()两个方法，实际根本不需要这两个方法
-        //interface1.operator1();
-        //interface1.operator2();
-        //interface1.operator4();
-        //interface1.operator5();
-    }
-}
-/**
- * C1通过Interface1依赖D类，但只会用到1、4、5方法
- */
-class C1 {
-    public void depend1(Interface1 interface1){
-        interface1.operator1();
-
-        //如果不进行接口隔离，interface1仍然可以调用接口中的operator2()、operator3()、operator4()和operator5()两个方法，实际根本不需要这四个方法
-        //interface1.operator2();
-        //interface1.operator3();
-        //interface1.operator4();
-        //interface1.operator5();
-    }
-    public void depend4(Interface1 interface1){
-        interface1.operator4();
-
-        //如果不进行接口隔离，interface1仍然可以调用接口中的operator1()、operator2()、operator3()和operator5()两个方法，实际根本不需要这四个方法
-        //interface1.operator1();
-        //interface1.operator2();
-        //interface1.operator3();
-        //interface1.operator5();
-    }
-    public void depend5(Interface1 interface1){
-        interface1.operator5();
-
-        //如果不进行接口隔离，interface1仍然可以调用接口中的operator1()、operator2()、operator3()和operator4()两个方法，实际根本不需要这四个方法
-        //interface1.operator1();
-        //interface1.operator2();
-        //interface1.operator3();
-        //interface1.operator4();
-    }
-}
-class B1 implements Interface1 {
-    @Override
-    public void operator1() {
-        System.out.println("B1实现了操作1...");
-    }
-
-    @Override
-    public void operator2() {
-        System.out.println("B1实现了操作2...");
-    }
-
-    @Override
-    public void operator3() {
-        System.out.println("B1实现了操作3...");
-    }
-
-    @Override
-    public void operator4() {
-        System.out.println("B1实现了操作4...");
-    }
-
-    @Override
-    public void operator5() {
-        System.out.println("B1实现了操作5...");
-    }
-}
-class D1 implements Interface1 {
-    @Override
-    public void operator1() {
-        System.out.println("D1实现了操作1...");
-    }
-
-    @Override
-    public void operator2() {
-        System.out.println("D1实现了操作2...");
-    }
-
-    @Override
-    public void operator3() {
-        System.out.println("D1实现了操作3...");
-    }
-
-    @Override
-    public void operator4() {
-        System.out.println("D1实现了操作4...");
-    }
-
-    @Override
-    public void operator5() {
-        System.out.println("D1实现了操作5...");
-    }
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/interface_segregation/Interface1.java)
 ```
 
     Interface1Client.java
 ```java
-package expand.principles.interface_segregation;
-
-import org.junit.Test;
-
-/**
- * 调用Interface1的客户端
- */
-public class Interface1Client {
-    /**
-     * 测试A1通过Interface1依赖B1，但是只调用1、2、3方法
-     */
-    @Test
-    public void testA1() {
-        A1 a1 = new A1();
-        //本来要传入接口Interface1的，现在根据面向接口编程原则，传入Interface1的实现B1
-        a1.depend1(new B1());
-        a1.depend2(new B1());
-        a1.depend3(new B1());
-    }
-
-    /**
-     * 测试C1通过Interface1依赖D1
-     */
-    @Test
-    public void testC1() {
-        C1 c1 = new C1();
-        //本来要传入接口Interface1的，现在根据面向接口编程原则，传入Interface1的实现D1
-        c1.depend1(new D1());
-        c1.depend4(new D1());
-        c1.depend5(new D1());
-    }
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/interface_segregation/Interface1Client.java)
 ```
 #### 3.4.2.2.使用接口隔离原则代码
     Interface2.java
 ```java
-package expand.principles.interface_segregation;
-
-public interface Interface2 {
-    void operator1();
-}
-/**
- * 遵循接口隔离原则
- *      把接口1差分为3个接口
- */
-//public interface Interface1 {
-//    void operator1();
-//    void operator2();
-//    void operator3();
-//    void operator4();
-//    void operator5();
-//}
-interface Interface2A {
-    void operator1();
-}
-
-interface Interface2B {
-    void operator2();
-    void operator3();
-}
-
-interface Interface2C {
-    void operator4();
-    void operator5();
-}
-
-/**
- * 客户端不应该依赖它不需要的接口，即一个类对另一个类的依赖应该建立在最小的接口上
- * A2就是客户端
- * A2通过Interface1A,InterfaceC依赖B2类
- * 接口隔离后，interface2A只能调用operator1()
- *           interface2B只能调用operator2()和operator3()
- *           interface2C只能调用operator4()和operator5()
- */
-class A2 {
-    public void depend1(Interface2A interface2A){
-        interface2A.operator1();
-    }
-    public void depend2(Interface2B interface2B){
-        interface2B.operator2();
-    }
-    public void depend3(Interface2B interface2B){
-        interface2B.operator3();
-    }
-}
-
-/**
- * 客户端不应该依赖它不需要的接口，即一个类对另一个类的依赖应该建立在最小的接口上
- * C2就是客户端
- * C2通过Interface2A,Interface2B依赖D2类
- * 接口隔离后，interface2A只能调用operator1()
- *            interface2B只能调用operator2()和operator3()
- *            interface2C只能调用operator4()和operator5()
- */
-class C2 {
-    public void depend1(Interface2A interface2A){
-        interface2A.operator1();
-    }
-    public void depend4(Interface2C interface2C){
-        interface2C.operator4();
-    }
-    public void depend5(Interface2C interface2C){
-        interface2C.operator5();
-    }
-}
-
-class B2 implements Interface2A,Interface2B {
-    @Override
-    public void operator1() {
-        System.out.println("B2实现了操作1...");
-    }
-
-    @Override
-    public void operator2() {
-        System.out.println("B2实现了操作2...");
-    }
-
-    @Override
-    public void operator3() {
-        System.out.println("B2实现了操作3...");
-    }
-}
-
-class D2 implements Interface2A,Interface2C {
-    @Override
-    public void operator1() {
-        System.out.println("D2实现了操作1...");
-    }
-
-    @Override
-    public void operator4() {
-        System.out.println("D2实现了操作4...");
-    }
-
-    @Override
-    public void operator5() {
-        System.out.println("D2实现了操作5...");
-    }
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/interface_segregation/Interface2.java)
 ```
 
     Interface2Client.java
 ```java
-package expand.principles.interface_segregation;
-
-import org.junit.Test;
-
-public class Interface2Client {
-    /**
-     * 测试A2通过接口Interface2A,Interface2B依赖B2
-     */
-    @Test
-    public void testA2() {
-        A2 a2 = new A2();
-        a2.depend1(new B2());
-        a2.depend2(new B2());
-        a2.depend3(new B2());
-    }
-
-    /**
-     * 测试C2通过接口Interface2B,Interface2C依赖D2
-     */
-    @Test
-    public void testC2() {
-        C2 c2 = new C2();
-        c2.depend1(new D2());
-        c2.depend4(new D2());
-        c2.depend5(new D2());
-    }
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/interface_segregation/Interface2Client.java)
 ```
 ## 3.5.依赖倒转原则
 ### 3.5.1.依赖倒转原则介绍
@@ -823,219 +354,23 @@ public class Interface2Client {
 ### 3.5.2.依赖倒转原则代码
 #### 3.5.2.1.不使用依赖倒转原则代码
 ```java
-package expand.principles.dependenceinversion;
-
-/**
- * 不使用依赖反转原则
- */
-public class NoUseDependenceDeliverTest {
-    public static void main(String[] args) {
-        Person1 person1 = new Person1();
-        person1.receviceEmail(new Email1());
-        person1.receviceQQ(new QQ1());
-        person1.receviceWeChat(new WeChat1());
-    }
-}
-
-/**
- * 通过Person1实现接口消息的功能
- *      缺点:接受QQ要写一个方法，接收邮件要写一个方法
- */
-class Person1{
-    public void receviceEmail(Email1 email1){
-        System.out.println(email1.getEmail());
-    }
-    public void receviceQQ(QQ1 qq1){
-        System.out.println(qq1.getQQ());
-    }
-    public void receviceWeChat(WeChat1 weChat){
-        System.out.println(weChat.getWeChat());
-    }
-}
-class Email1 {
-   public String getEmail(){
-        return "电子邮件信息:HelloWorld";
-   }
-}
-class QQ1 {
-   public String getQQ(){
-        return "QQ信息:收到了QQ消息";
-   }
-}
-class WeChat1 {
-    public String getWeChat(){
-        return "微信信息:收到了微信消息";
-    }
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/dependenceinversion/NoUseDependenceDeliverTest.java)
 ```
-#### 3.5.2.2.使用依赖倒转原则代码
 ##### 3.5.2.2.1.依赖倒转原则初体验
 ```java
-package expand.principles.dependenceinversion;
-
-/**
- * 遵循依赖反转原则
- * 面向接口编程
- *      基于接口传递实现依赖
- */
-public class UseDependenceDeliverTest {
-    public static void main(String[] args) {
-        //面向接口编程
-        Person2 person2 = new Person2();
-        person2.getMessage(new Email2());
-        person2.getMessage(new QQ2());
-        person2.getMessage(new WeChat2());
-    }
-
-}
-
-class Person2 {
-    public void getMessage(MessageInterface messageInterface) {
-        System.out.println(messageInterface.sendMessage());
-    }
-}
-
-interface MessageInterface {
-    String sendMessage();
-}
-
-class Email2 implements MessageInterface{
-    @Override
-    public String sendMessage() {
-        return  "电子邮件信息:HelloWorld";
-    }
-}
-
-class QQ2 implements MessageInterface{
-    @Override
-    public String sendMessage() {
-        return "QQ信息:收到了QQ消息";
-    }
-}
-class WeChat2 implements MessageInterface{
-    @Override
-    public String sendMessage(){
-        return "微信信息:收到了微信消息";
-    }
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/dependenceinversion/UseDependenceDeliverTest.java)
 ```
 ##### 3.5.2.2.2.通过接口传递依赖
 ```java
-package expand.principles.dependenceinversion;
-
-/**
- * 依赖关系传递的三种方式
- *  第一种方式：通过接口传递依赖
- */
-public class DependenceDeliver1 {
-    public static void main(String[] args) {
-        OpenAndClose1 openAndClose1 = new OpenAndClose1();
-        openAndClose1.open(new ITV1() {
-            @Override
-            public void play() {
-                System.out.println("ITV1播放......");
-            }
-        });
-    }
-}
-
-interface ITV1{
-    public void play();
-}
-interface IOpenAndClose1{
-    public void open(ITV1 iTv1);
-}
-class OpenAndClose1 implements IOpenAndClose1{
-
-    @Override
-    public void open(ITV1 iTv1) {
-        iTv1.play();
-    }
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/dependenceinversion/DependenceDeliver1.java)
 ```
 ##### 3.5.2.2.3.通过构造方法传递依赖
 ```java
-package expand.principles.dependenceinversion;
-
-/**
- * 依赖关系传递的三种方式
- *  第二种方式：通过构造方法传递依赖
- */
-public class DependenceDeliver2 {
-    public static void main(String[] args) {
-        OpenAndClose2 openAndClose2 = new OpenAndClose2(new ITV2() {
-            @Override
-            public void play() {
-                System.out.println("ITV2播放......");
-            }
-        });
-        openAndClose2.open();
-    }
-}
-
-interface ITV2{
-    public void play();
-}
-
-interface IOpenAndClose2{
-    public void open();
-}
-
-class OpenAndClose2 implements IOpenAndClose2{
-
-    public ITV2 iTv2;
-    public OpenAndClose2(ITV2 iTv2) {
-        this.iTv2 = iTv2;
-    }
-
-    @Override
-    public void open() {
-        this.iTv2.play();
-    }
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/dependenceinversion/DependenceDeliver2.java)
 ```
 ##### 3.5.2.2.4.通过setter()方法传递依赖
 ```java
-package expand.principles.dependenceinversion;
-
-/**
- * 依赖关系传递的三种方式
- *  第三种方式：通过setter()方法传递依赖
- */
-public class DependenceDeliver3 {
-    public static void main(String[] args) {
-        OpenAndClose3 openAndClose3 = new OpenAndClose3();
-        openAndClose3.setItv3(new ITV3() {
-            @Override
-            public void play() {
-                System.out.println("ITV3播放......");
-            }
-        });
-        openAndClose3.open();
-    }
-}
-
-interface ITV3{
-    public void play();
-}
-
-interface IOpenAndClose3 {
-    public void open();
-}
-
-class OpenAndClose3 implements IOpenAndClose3{
-
-    private ITV3 itv3;
-
-    public void setItv3(ITV3 itv3) {
-        this.itv3 = itv3;
-    }
-
-    @Override
-    public void open() {
-        this.itv3.play();
-    }
-}
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/dependenceinversion/DependenceDeliver3.java)
 ```
 ## 3.6.里氏替换原则
 ### 3.6.1.里氏替换原则介绍
@@ -1051,6 +386,14 @@ class OpenAndClose3 implements IOpenAndClose3{
     即继承时,子类尽量不要重写父类的方法,除非迫不得已,如果非要重写,就再写一个更基础的类,把这个要重写的方法提到基类里面去
     b.遵循里氏替换原则,把继承这种高耦合的关系转换为聚合、组合、依赖这几种低耦合的关系
 ### 3.6.2.里氏替换原则代码
+#### 3.6.2.1.不使用里氏替换原则代码
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/liskov_substitution/Liskov1.java)
+```
+#### 3.6.2.2.使用里氏替换原则代码
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/liskov_substitution/Liskov2.java)
+```
 ## 3.7.开闭原则
 ### 3.7.1.开闭原则介绍
     概述
@@ -1061,6 +404,15 @@ class OpenAndClose3 implements IOpenAndClose3{
     b.一个软件实体,函数模块应该对扩展开放(对提供功能的一方而言),对修改关闭(对调用方/使用功能的一方而言,注意:不是对于客户端开放,客户端调用方法的使用方)。换而言之,当当增加一个新的类或者方法后,原先正在使用的代码不会收到丝毫影响,概括的说:对扩展开放,对修改关闭,即用抽象构建框架,用实现扩展细节
     c.当软件需要变化时,尽量通过扩展软件的实体行为来实现变化,而不是通过修改已有的代码去实现,简单的说,就是通过扩展而不是通过修改已有代码
     d.使用设计模式就是为了使代码更遵守开闭原则,是最重要的原则,其他的设计模式都是为了达到开闭原则的效果
+### 3.7.2.开闭原则代码
+#### 3.7.2.1.不使用开闭原则代码
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/open_close/OCPTest1.java)
+```
+#### 3.7.2.2.使用开闭原则代码
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/open_close/OCPTest2.java)
+```
 ## 3.8.迪米特法则
 ### 3.8.1.迪米特法则介绍
     概述
@@ -1099,6 +451,15 @@ class OpenAndClose3 implements IOpenAndClose3{
             a.fun();
         }
     }
+### 3.8.2.迪米特法则代码
+#### 3.8.2.1.不使用迪米特法则代码
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/demeter/Demeter1.java)
+```
+#### 3.8.2.2.使用迪米特法则代码
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/demeter/Demeter2.java)
+```
 ## 3.9.合成复用原则
 ### 3.9.1.合成复用原则介绍
     概述
@@ -1108,5 +469,14 @@ class OpenAndClose3 implements IOpenAndClose3{
     当A继承B后,A拥有B所有的方法,使用合成复用改进后,A可以调用B中的方法,不用的方法就不出现在B中了
 
     合成复用原则与继承原则关系
-    在编程中,推荐尽量使用合成复用原则来代替继承,但是反过来,可以使用合成复用原则解决的问题也可以使用继承解决 
+    在编程中,推荐尽量使用合成复用原则来代替继承,但是反过来,可以使用合成复用原则解决的问题也可以使用继承解决
+### 3.9.2.合成复用原则代码
+#### 3.9.2.1.不使用合成复用原则代码
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/compositereuse/CompositeReuse1.java)
+```
+#### 3.9.2.2.使用合成复用原则代码
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/compositereuse/CompositeReuse2.java) 
+```
 <HideSideBar/>

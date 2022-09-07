@@ -226,6 +226,9 @@ function generateOutLineAndTransformOutLineToMarkmapForOriginal() {
     echo '为文档原件和文档原件的的所有章节分片生成二级和三级目录大纲,并将这个目录大纲转换为markmap文件..........'
 
     echo '开始安装markmap-cli........................................................................'
+    npm cache clean -f
+    npm install -g n
+    n stable
     #安装markmap-cli
     npm install -g markmap-cli
     echo '完成安装markmap-cli开始........................................................................'

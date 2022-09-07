@@ -53,46 +53,23 @@ classDiagram
 ### 2.3.4.依赖关系代码
     Department.java
 ```java
-package expand.uml.dependence;
-
-public class Department {
-}
+@include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/dependence/Department.java)
 ```
     IDCard.java
 ```java
-package expand.uml.dependence;
-
-public class IDCard {
-}
+@include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/dependence/IDCard.java)
 ```
     Person.java
 ```java
-package expand.uml.dependence;
-
-public class Person {
-}
+@include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/dependence/Person.java)
 ```
     PersonDao.java
 ```java
-package expand.uml.dependence;
-
-public class PersonDao {
-}
+@include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/dependence/PersonDao.java)
 ```
     PersonServiceBean.java
 ```java
-package expand.uml.dependence;
-
-public class PersonServiceBean {
-    private PersonDao personDao;
-    public void save(Person person){}
-    public IDCard getIDCard(Integer personId){
-        return null;
-    }
-    public void modify(){
-        Department department = new Department();
-    }
-}
+@include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/dependence/PersonServiceBean.java)
 ```
 ## 2.4.关联关系
 ### 2.4.1.关联关系概述
@@ -123,36 +100,20 @@ classDiagram
     单向关联关系
     Person.java
 ```java
-package expand.uml.association.singleone2one;
-//一个人只有一个身份证,一个身份证也只能对应一个人；所以身份证跟人是一对一关系
-public class Person {
-    private IDCard card;
-}
+@include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/association/singleone2one/Person.java)
 ```
     IDCard.java
 ```java
-package expand.uml.association.singleone2one;
-//若果代码是这样写的话，就是单向一对一的关系。因为Person中有IDCard成员变量，而中IDCard没有Person成员变量
-public class IDCard {
-}
+@include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/association/singleone2one/IDCard.java)
 ```
     双向关联关系
     Person.java
 ```java
-package expand.uml.association.doubleone2one;
-
-//因为PersonIDCard中有成员变量，而中IDCard也有Person成员变量，所以这是双向一对一关系
-public class Person {
-    private IDCard card;
-}
+@include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/association/doubleone2one/Person.java)
 ```
     IDCard.java
 ```java
-package expand.uml.association.doubleone2one;
-//因为Person中有IDCard成员变量，而中IDCard也有Person成员变量，所以这是双向一对一关系
-public class IDCard {
-    private Person person;
-}
+@include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/association/doubleone2one/IDCard.java)
 ```
 ## 2.5.聚合关系
 ### 2.5.1.聚合关系概述
@@ -178,44 +139,15 @@ classDiagram
 ### 2.5.4.聚合关系代码
     Moniter.java
 ```java
-package expand.uml.aggregation;
-
-public class Moniter {
-}
+@include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/aggregation/Moniter.java)
 ```
     Mouse.java
 ```java
-package expand.uml.aggregation;
-
-public class Mouse {
-}
+@include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/aggregation/Mouse.java)
 ```
     Computer.java
 ```java
-package expand.uml.aggregation;
-
-public class Computer {
-    //显示器可以和Computer分离
-    private Moniter moniter;
-    //鼠标可以和Computer分离
-    private Mouse mouse;
-
-    public Moniter getMoniter() {
-        return moniter;
-    }
-
-    public void setMoniter(Moniter moniter) {
-        this.moniter = moniter;
-    }
-
-    public Mouse getMouse() {
-        return mouse;
-    }
-
-    public void setMouse(Mouse mouse) {
-        this.mouse = mouse;
-    }
-}
+@include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/aggregation/Computer.java)
 ```
 ## 2.6.组合关系
 ### 2.6.1.组合关系概述
@@ -237,28 +169,15 @@ classDiagram
 ### 2.6.4.组合关系代码
     Head.java
 ```java
-package expand.uml.composition;
-
-public class Head {
-}
+@include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/composition/Head.java)
 ```
     Leg.java
 ```java
-package expand.uml.composition;
-
-public class Leg {
-}
+@include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/composition/Leg.java)
 ```
     Person.java
 ```java
-package expand.uml.composition;
-
-public class Person {
-    //组合关系，Person和Head是无法分开的
-    private Head head = new Head();
-    //组合关系，Person和Leg是无法分开的
-    private Leg leg = new Leg();
-}
+@include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/composition/Person.java)
 ```
 ## 2.7.泛化关系
 ### 2.7.1.泛化关系概述
@@ -277,19 +196,11 @@ classDiagram
 ### 2.7.4.泛化关系代码
     DaoSupport.java
 ```java
-package expand.uml.generalization;
-
-public abstract class DaoSupport {
-    public void save(Object object){}
-    public void delete(Object object){}
-}
+@include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/generalization/DaoSupport.java)
 ```
     PersonServiceBean.java
 ```java
-package expand.uml.generalization;
-
-public class PersonServiceBean extends DaoSupport{
-}
+@include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/generalization/PersonServiceBean.java)
 ```
 ## 2.8.实现关系
 ### 2.8.1.实现关系概述
@@ -307,22 +218,11 @@ classDiagram
 ### 2.8.4.实现关系代码
     PersonService.java
 ```java
-package expand.uml.realization;
-
-public interface PersonService {
-    public void delete(Integer id);
-}
+@include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/realization/PersonService.java)
 ```
     PersonServiceBean.java
 ```java
-package expand.uml.realization;
-
-public class PersonServiceBean implements PersonService{
-    @Override
-    public void delete(Integer id) {
-
-    }
-}
+@include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/realization/PersonServiceBean.java)
 ```
 ## 2.9.六种关系耦合度强弱
     泛化 = 实现 > 组合 > 聚合 > 关联 > 依赖

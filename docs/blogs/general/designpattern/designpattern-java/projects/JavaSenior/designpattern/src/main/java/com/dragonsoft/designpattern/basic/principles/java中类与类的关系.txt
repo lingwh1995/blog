@@ -1,0 +1,96 @@
+泛化(Generalization):
+    代表含义:表示一种继承关系，发生在类与类之间
+    代码体现:extends
+            public class Dog extends Animal{}
+    箭头指向:带三角箭头的实线，箭头指向父类
+    图示(+代表实线):
+            Dog ++++++▷  Animal
+
+实现(Realization):是一种类与接口的关系
+    代表含义:表示一种实现关系，发生在类与接口之间
+    代码体现:implements
+            public class Car implements Vehicle{}
+    箭头指向:带三角箭头的虚线，箭头指向接口
+    图示:
+            Car ------▷  Vehicle
+
+关联(Association):
+    代表含义:表示一种拥有关系，发生在类与类之间，它使一个类知道另一个类的属性和方法
+    代码体现:成员变量
+            老师与学生是双向关联，老师有多名学生，学生也可能有多名老师。
+            public class Teacher{
+                //一个老师对应多名学生
+                private Set<Student> students = new HashSet<Student>();
+            }
+            public class Student{
+                //一个学生对应多名老师
+                private Set<Teacher> teachers = new HashSet<Teacher>();
+            }
+    箭头指向:单向关联，普通的带箭头的实线，箭头指向被拥有者
+    图示(+代表实线):
+                    *      *
+           Student  ‹++++++›  Teacher
+
+聚合(Aggregation):
+    代表含义:表示整体与部分的关系，而且部分可以离开整体而单独存在，如车和轮胎
+    深入理解:
+            1.聚合属于关联关系的一种，是强关联关系
+            2.聚合关系中两个类的地位是不平等的
+            3.整体的生命周期不能决定组成部分的生命周期
+    代码体现:成员变量
+            public class Car{
+                //一个汽车有多个车轮
+                private Set<Wheel> wheels;
+            }
+            public class Wheel{}
+    箭头指向:带空心菱形的实线，菱形指向整体
+    图示(+代表实线):
+            Car ◇++++++  Wheeel
+
+组合(Composition):
+    代表含义:是整体与部分的关系，但部分不能离开整体单独存在，如人和人的眼睛/鼻子
+    深入理解:
+            1.组合属于关联关系的一种，是强关联关系
+            2.组合关系中两个类的地位是平等的
+            3.整体的声明周期决定组成部分的生命周期
+    代码体现:成员变量
+                public class Person{
+                    //鼻子
+                    private Nose nose;
+                    //耳朵
+                    private Ear ear;
+                    //眼睛
+                    private Eye eye;
+                }
+                public class Nose{}
+                public class Ear{}
+                public class Eye{}
+    箭头指向:带实心菱形的实线，菱形指向整体
+    图示(+代表实线):
+                Person ◆++++++  Nose
+                Person ◆++++++  Ear
+                Person ◆++++++  Eye
+
+依赖(Dependence):
+    代表含义:是一种使用的关系，即一个类的实现需要另一个类的协助，所以要尽量不使用双向的互相依赖.
+    代码体现:局部变量、方法的参数或者对静态方法的调用
+            private class A {}
+            private class B{
+                public void print(A a){
+                    System.out.println(a);
+                }
+            }
+    箭头指向:带箭头的虚线，指向被使用者
+    图示:
+            A ------﹥ B
+
+
+总结:各种关系的强弱
+    泛化 = 实现 > 组合 > 聚合 > 关联 > 依赖
+
+
+    ◁▶◀◇◆←→‹›﹤﹥♏♔♚❃※☀
+    ☴☲☷             ☴☲☷
+    ☳☯☱             ☳♏☱
+    ☶☵☰             ☶☵☰
+
