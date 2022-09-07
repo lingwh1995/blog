@@ -13,9 +13,12 @@ function updateNodeVersionWhenCI {
     then
         echo '开始更新node版本........'
         npm config set registry https://registry.npm.taobao.org
-        npm cache clean -f
-        npm install -g n
-        n stable
+        #步骤1:需要先安装node
+        #步骤2:更新node版本(方式一)
+        npm install -g npm
+        #步骤2:更新node版本(方式2)
+        #npm install -g n
+        #n stable
         echo '完成更新node版本........'
     fi
     #安装项目依赖
