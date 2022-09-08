@@ -136,6 +136,7 @@ function deployNormalLocalhost() {
     echo '开始执行构建操作...........................'
     #git fetch git@github.com:lingwh1995/lingwh1995.github.io.git
     git push -f git@github.com:lingwh1995/lingwh1995.github.io.git HEAD:master
+    git push -f git@gitee.com:lingwh1995/lingwh1995.gitee.io.git HEAD:master
     echo '完成执行构建操作...........................'
     #回到上一次操作的目录
     cd -
@@ -167,6 +168,7 @@ function deployNormalCI() {
     echo '开始执行构建操作...........................'
     #git fetch https://lingwh1995:$1@github.com/lingwh1995/lingwh1995.github.io.git
     git push -f https://lingwh1995:$1@github.com/lingwh1995/lingwh1995.github.io.git HEAD:master
+    git push -f https://lingwh1995:$2@gitee.com/lingwh1995/lingwh1995.gitee.io.git HEAD:master
     echo '完成执行构建操作...........................'
     #回到上一次操作的目录
     cd -
@@ -200,6 +202,7 @@ function deployPureLocalhost() {
         echo '开始执行构建操作...........................'
         #git fetch git@github.com:lingwh1995/pure.git
         git push -f git@github.com:lingwh1995/pure.git HEAD:master
+        git push -f git@gitee.com:lingwh1995/pure.git HEAD:master
         echo '完成执行构建操作...........................'
         #回到上一次操作的目录
         cd -
@@ -234,6 +237,7 @@ function deployPureCI() {
         echo '开始执行推送操作...........................'
         #git fetch https://lingwh1995:$1@github.com/lingwh1995/pure.git
         git push -f https://lingwh1995:$1@github.com/lingwh1995/pure.git HEAD:master
+        git push -f https://lingwh1995:$2@gitee.com/lingwh1995/pure.git HEAD:master
         echo '完成执行推送操作...........................'
         #回到上一次操作的目录
         cd -
@@ -262,8 +266,8 @@ function deployCI() {
     updateNodeVersionWhenCI
     executeInitScript
     beforeBuildAndDeploy
-    deployPureCI $1
-    deployNormalCI $1
+    deployPureCI $1 $2
+    deployNormalCI $1 $
     afterBuildAndDeploy
 }
 
@@ -279,7 +283,7 @@ then
     if [ $AUTODEPLOY_ENABLE_STATE == "true" ]
     then
         echo "当前是持续集成发布模式"
-        deployCI $1
+        deployCI $1 $2
     fi
 elif [ "$osName" == "MING" ] # MINGW, windows, git-bash
 then

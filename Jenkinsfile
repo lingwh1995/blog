@@ -28,7 +28,7 @@ pipeline {
       steps {
         echo '开始自动部署博客到GITHUB/GITEE...'
         sh 'chmod +x ./deploy.sh'
-        sh 'bash ./deploy.sh ${GITHUB_TOKEN}'
+        sh 'bash ./deploy.sh ${GITHUB_TOKEN} ${GITEE_TOKEN}'
         echo '完成自动部署博客到GITHUB/GITEE...'
       }
     }
