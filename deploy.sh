@@ -240,7 +240,7 @@ function deployPureCI() {
         git push -f https://lingwh1995:$1@github.com/lingwh1995/pure.git HEAD:master
         #git fetch https://lingwh1995:$2@gitee.com/lingwh1995/pure.git
         echo '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
-        ll -a
+        ls -a
         echo '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
         pwd
         echo '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
