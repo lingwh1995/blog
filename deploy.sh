@@ -283,7 +283,7 @@ then
     if [ $AUTODEPLOY_ENABLE_STATE == "true" ]
     then
         echo "当前是持续集成发布模式"
-        deployCI $1
+        deployCI $1 $2
     fi
 elif [ "$osName" == "MING" ] # MINGW, windows, git-bash
 then
