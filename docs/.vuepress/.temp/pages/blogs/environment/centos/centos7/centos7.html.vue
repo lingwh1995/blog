@@ -396,7 +396,8 @@ systemctl enable fastgithub
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>wget -c https://github.com/tanghaibao/goatools/blob/main/data/association.txt
 </code></pre></div><pre><code>配置git使用代理（不配置无法提交代码）
 </code></pre>
-<div class="language-text ext-text"><pre v-pre class="language-text"><code>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>git config --global http.proxy http://127.0.0.1:38457
+git config --global https.proxy http://127.0.0.1:38457
 </code></pre></div><pre><code>查看git config
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>git config --list

@@ -27,7 +27,7 @@ export default hopeTheme({
     red: "#EE0000"
   },
   //是否开启纯净模式，开启后切换主题色的功能将被禁用
-  pure: false,
+  pure: true,
 
   // 默认为 GitHub. 同时也可以是一个完整的 URL
   repo: "https://gitee.com/lingwh1995/blog",
@@ -218,8 +218,8 @@ export default hopeTheme({
       showInstall: true,
       //PWA应用程序图标
       manifest: {
-        name: "个人博客",
-        short_name: "此生挚爱万宝路的个人博客",
+        name: "个人博客(纯模式)",
+        short_name: "此生挚爱万宝路的个人博客(纯模式)",
         icons: [
           {
             src: "/images/pwa/128.png",

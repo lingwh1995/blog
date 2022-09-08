@@ -22,7 +22,7 @@ export default defineUserConfig({
   ],
   description: "此生挚爱万宝路的技术博客",
 
-  base:"/",
+  base:"/pure/",
   theme,
   markdown: {
     //vuepress解析md标题的深度
@@ -43,11 +43,14 @@ export default defineUserConfig({
     "@JumpToChapter": path.resolve(__dirname, "components/JumpToChapter.vue"),
     "@JumpToOriginal": path.resolve(__dirname, "components/JumpToOriginal.vue"),
     //特别注意：下面这一行代码一定不能分开写到多行，否则影响sed执行效果
-    /*"@theme-hope/module/navbar/components/RepoLink": path.resolve(__dirname,"components/Pure.vue"),*/
+    "@theme-hope/module/navbar/components/RepoLink": path.resolve(__dirname,"components/Pure.vue"),
   },
   //开启PWA时将这个值设置为false
   shouldPrefetch: false,
   //过滤哪些文件夹中的md文件不需要被识别为文章
-  pagePatterns: ['**/*.md', '!.vuepress', '!node_modules', '!**/tree.md', '!**/projects']
+  pagePatterns: ['**/*.md', '!.vuepress', '!node_modules', '!**/tree.md', '!**/projects'],
+  build: {
+    chunkSizeWarningLimit: 1500
+  }
 });
 

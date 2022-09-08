@@ -485,7 +485,8 @@ wget -c https://github.com/tanghaibao/goatools/blob/main/data/association.txt
 
 	配置git使用代理（不配置无法提交代码）
 ```
-
+git config --global http.proxy http://127.0.0.1:38457
+git config --global https.proxy http://127.0.0.1:38457
 ```
 	查看git config
 ```

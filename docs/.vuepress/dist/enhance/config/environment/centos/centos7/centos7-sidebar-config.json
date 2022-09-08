@@ -72,6 +72,11 @@
                       icon: "article",
                       link: "/blogs/environment/centos/centos7/shardings/centos7-chapter-11.搭建常用私服环境.md",
                   },
+                  {
+                      text: "12.搭建SpringCloud技术栈所需组件",
+                      icon: "article",
+                      link: "/blogs/environment/centos/centos7/shardings/centos7-chapter-12.搭建SpringCloud技术栈所需组件.md",
+                  },
               ]
           },
           {
@@ -138,6 +143,11 @@
                       text: "11.搭建常用私服环境",
                       icon: "article",
                       link: "/blogs/environment/centos/centos7/centos7.md#11.",
+                  },
+                  {
+                      text: "12.搭建SpringCloud技术栈所需组件",
+                      icon: "article",
+                      link: "/blogs/environment/centos/centos7/centos7.md#12.",
                   },
               ]
           },

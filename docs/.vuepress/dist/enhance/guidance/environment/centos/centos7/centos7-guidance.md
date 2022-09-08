@@ -14,7 +14,8 @@
      9.搭建持续集成环境
      10.搭建Mycat技术栈
      11.搭建常用私服环境
-	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+     12.搭建SpringCloud技术栈所需组件
+	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看。
 ## 博客内容大纲
 
 ###	<a href="/enhance/markmap/environment/centos/centos7/centos7-outline2.html" target="_blank">简单版博客内容大纲</a>
@@ -22,9 +23,9 @@
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/centos7-outline2.html" height="500rem"/>
 
 >
-<!--最深展示五级标题内容-->
-###	<a href="/enhance/markmap/environment/centos/centos7/centos7-outline3.html" target="_blank">详细版博客内容大纲</a>
-<Markmap localtion="/enhance/markmap/environment/centos/centos7/centos7-outline3.html" height="600rem"/>
+<!--最深展示五级标题内容,当前展示到4级-->
+###	<a href="/enhance/markmap/environment/centos/centos7/centos7-outline5.html" target="_blank">详细版博客内容大纲</a>
+<Markmap localtion="/enhance/markmap/environment/centos/centos7/centos7-outline5.html" height="600rem"/>
 
->
+<HideSideBar/>
 
