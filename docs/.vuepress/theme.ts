@@ -190,7 +190,7 @@ export default hopeTheme({
       //是否启用任务列表
       tasklist: true,
       //启用懒加载md中的图片
-      lazyLoad: false,
+      lazyLoad: true,
       //开启md支持mermaid画图功能
       mermaid: true,
     },

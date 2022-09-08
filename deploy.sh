@@ -238,6 +238,7 @@ function deployPureCI() {
         echo '开始执行推送操作...........................'
         git fetch https://lingwh1995:$1@github.com/lingwh1995/pure.git
         git push -f https://lingwh1995:$1@github.com/lingwh1995/pure.git HEAD:master
+        sed -i 's/base:.*,/base:\"\/\",/g' docs/.vuepress/config.ts
         git fetch https://lingwh1995:$2@gitee.com/lingwh1995/pure.git
         git push -f https://lingwh1995:$2@gitee.com/lingwh1995/pure.git HEAD:master
         echo '完成执行推送操作...........................'
