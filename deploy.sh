@@ -240,6 +240,11 @@ function deployPureCI() {
         git push -f https://lingwh1995:$1@github.com/lingwh1995/pure.git HEAD:master
         sed -i 's/base:.*,/base:\"\/\",/g' docs/.vuepress/config.ts
         #git fetch https://lingwh1995:$2@gitee.com/lingwh1995/pure.git
+        echo '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+        ll -a
+        echo '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+        pwd
+        echo '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
         git push -f https://lingwh1995:$2@gitee.com/lingwh1995/pure.git HEAD:master
         echo '完成执行推送操作...........................'
         #回到上一次操作的目录
