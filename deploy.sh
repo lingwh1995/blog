@@ -267,7 +267,7 @@ function deployCI() {
     executeInitScript
     beforeBuildAndDeploy
     deployPureCI $1 $2
-    deployNormalCI $1 $
+    deployNormalCI $1 $2
     afterBuildAndDeploy
 }
 
