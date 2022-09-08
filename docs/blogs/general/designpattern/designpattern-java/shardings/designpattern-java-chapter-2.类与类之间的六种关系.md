@@ -1,6 +1,6 @@
 ---
 title: 使用Java语言编写设计模式-2.类与类之间的六种关系
-description: 本章节涉及主要内容有：依赖关系,关联关系,聚合关系,组合关系,泛化关系,实现关系,六种关系耦合度强弱,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景 ,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：依赖关系,关联关系,聚合关系,组合关系,泛化关系,实现关系,六种关系耦合度强弱,简介,模型,示例,经典应用场景,在开源框架中的应用场景,简介,模型,示例,经典应用场景,在开源框架中的应用场景,简介,模型,示例,经典应用场景,在开源框架中的应用场景,简介,模型,示例,经典应用场景,在开源框架中的应用场景,简介,模型,示例,经典应用场景,在开源框架中的应用场景,简介,模型,示例,经典应用场景,在开源框架中的应用场景,简介,模型,示例,经典应用场景,在开源框架中的应用场景,简介,模型,示例,经典应用场景,在开源框架中的应用场景 ,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -11,7 +11,7 @@ date:
 head:
   - - meta
     - name: keywords
-      content: 本章节涉及主要内容有：依赖关系,关联关系,聚合关系,组合关系,泛化关系,实现关系,六种关系耦合度强弱,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景 ,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+      content: 本章节涉及主要内容有：依赖关系,关联关系,聚合关系,组合关系,泛化关系,实现关系,六种关系耦合度强弱,简介,模型,示例,经典应用场景,在开源框架中的应用场景,简介,模型,示例,经典应用场景,在开源框架中的应用场景,简介,模型,示例,经典应用场景,在开源框架中的应用场景,简介,模型,示例,经典应用场景,在开源框架中的应用场景,简介,模型,示例,经典应用场景,在开源框架中的应用场景,简介,模型,示例,经典应用场景,在开源框架中的应用场景,简介,模型,示例,经典应用场景,在开源框架中的应用场景,简介,模型,示例,经典应用场景,在开源框架中的应用场景 ,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 2.类与类之间的六种关系
@@ -35,10 +35,12 @@ classDiagram
     PersonServiceBean ..> IDCard
     PersonServiceBean ..> Person
     PersonServiceBean ..> PersonDao
-    PersonServiceBean : -PersonDao personDao
-    PersonServiceBean: +save(Person person) void
-    PersonServiceBean: +getIDCard(Integer personId) IDCard
-    PersonServiceBean: +modify() void
+    class PersonServiceBean {
+        -PersonDao personDao
+        +save(Person person) void
+        +getIDCard(Integer personId) IDCard
+        +modify() void
+    }
     class Department{
     }
     class IDCard{
@@ -46,8 +48,6 @@ classDiagram
     class Person{
     }
     class PersonDao{
-    }
-    class PersonServiceBean{
     }
 ```
 ### 2.3.4.依赖关系代码
@@ -81,7 +81,9 @@ classDiagram
 ```mermaid
 classDiagram
     Person --> IDCard
-    Person : -IDCard card
+    class Person {
+        -IDCard card
+    }
     class IDCard{
     }
 ```
@@ -89,11 +91,11 @@ classDiagram
 ```mermaid
 classDiagram
     Person <--> IDCard
-    Person : -IDCard card
-    IDCard : -Person person
-    class IDCard{
+    class Person {
+        -IDCard card
     }
-    class Person{
+    class IDCard {
+        -Person person
     }
 ```
 ### 2.4.4.关联关系代码
@@ -125,12 +127,14 @@ classDiagram
 classDiagram
     Computer o-- Moniter
     Computer o-- Mouse
-    Computer : -Moniter moniter
-    Computer : -Mouse mouse
-    Computer: +getMoniter() Moniter
-    Computer: +setMoniter(Moniter moniter) void
-    Computer: +getMouse() Mouse
-    Computer: +setMouse(Mouse mouse) void
+    class Computer {
+        -Moniter moniter
+        -Mouse mouse
+        +setMoniter(Moniter moniter) void
+        +getMoniter() Moniter
+        +setMouse(Mouse mouse) void
+        +getMouse() Mouse
+    }
     class Moniter{
     }
     class Mouse{
@@ -159,8 +163,10 @@ classDiagram
 classDiagram
     Person *-- Head
     Person *-- Leg
-    Person : -Head head
-    Person : -Leg leg
+    class Person {
+        -Head head
+        -Leg leg
+    }
     class Head{
     }
     class Leg{
@@ -188,8 +194,10 @@ classDiagram
 ```mermaid
 classDiagram
     DaoSupport <|-- PersonServiceBean
-    DaoSupport: +save(Object object) void
-    DaoSupport: +delete(Object object) void
+    class DaoSupport {
+        +save(Object object) void
+        +delete(Object object) void
+    }
     class PersonServiceBean{
     }
 ```
@@ -211,8 +219,11 @@ classDiagram
 ```mermaid
 classDiagram
     PersonService <|.. PersonServiceBean
-    PersonService: +delete(Integer id) void
+    class PersonService {
+        +delete(Integer id) void
+    }
     class PersonServiceBean{
+        +delete(Integer id) void
     }
 ```
 ### 2.6.4.实现关系代码

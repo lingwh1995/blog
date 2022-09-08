@@ -1,6 +1,6 @@
 ---
 title: 使用Java语言编写设计模式-3.设计模式七大原则
-description: 本章节涉及主要内容有：单一职责原则,接口隔离原则,依赖倒转原则,里氏替换原则,开闭原则,迪米特法则,合成复用原则,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：单一职责原则SRP,接口隔离原则ISP,依赖倒转原则DIP,里氏替换原则LSP,开闭原则OCP,迪米特原则LoD,合成复用原则CARP,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -11,12 +11,12 @@ date:
 head:
   - - meta
     - name: keywords
-      content: 本章节涉及主要内容有：单一职责原则,接口隔离原则,依赖倒转原则,里氏替换原则,开闭原则,迪米特法则,合成复用原则,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+      content: 本章节涉及主要内容有：单一职责原则SRP,接口隔离原则ISP,依赖倒转原则DIP,里氏替换原则LSP,开闭原则OCP,迪米特原则LoD,合成复用原则CARP,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 3.设计模式七大原则
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter3.md)
-## 3.3.单一职责原则
+## 3.3.单一职责原则SRP
 ### 3.3.1.单一职责原则介绍
     概述
     一个类应该只负责一项职责
@@ -43,7 +43,7 @@ head:
 ```java
 @include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/single_reponsibility/SingleResponsibility3.java)
 ```
-## 3.4.接口隔离原则
+## 3.4.接口隔离原则ISP
 ### 3.4.1.接口隔离原则介绍
     客户端不应该依赖它不需要的接口，即一个类对另一个类的依赖应该建立在最小的接口上
 ### 3.4.2.接口隔离原则代码
@@ -67,7 +67,7 @@ head:
 ```java
 @include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/interface_segregation/Interface2Client.java)
 ```
-## 3.5.依赖倒转原则
+## 3.5.依赖倒转原则DIP
 ### 3.5.1.依赖倒转原则介绍
     概述
     a.高层模块不应该依赖底层模块,二者都应该依赖其抽象
@@ -107,7 +107,7 @@ head:
 ```java
 @include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/dependenceinversion/DependenceDeliver3.java)
 ```
-## 3.6.里氏替换原则
+## 3.6.里氏替换原则LSP
 ### 3.6.1.里氏替换原则介绍
     概述
     里氏替换原则告诉我们,继承实际上让两个类耦合性增强了,在适当的情况下,可以通过聚合、组合、依赖来解决问题
@@ -129,7 +129,7 @@ head:
 ```java
 @include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/liskov_substitution/Liskov2.java)
 ```
-## 3.7.开闭原则
+## 3.7.开闭原则OCP
 ### 3.7.1.开闭原则介绍
     概述
     对修改关闭,对扩展开放
@@ -148,15 +148,15 @@ head:
 ```java
 @include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/open_close/OCPTest2.java)
 ```
-## 3.8.迪米特法则
-### 3.8.1.迪米特法则介绍
+## 3.8.迪米特原则LoD
+### 3.8.1.迪米特原则介绍
     概述
     只与直接的朋友通信，最少知道原则,避免与非直接朋友的耦合,对自己依赖的类知道的越少越好,对于被依赖的类不管多复杂,都尽量将逻辑封在内部。需要注意的是降低类之间的耦合,只是减少不必要的耦合,并不是要求完全解除耦合
 
-    迪米特法则详细说明
+    迪米特原则详细说明
     a.一个对象应该对其他对象保持最少的了解
     b.类与类关系越密切,耦合度越大
-    c.迪米特法则又称最少知道原则,即一个类对自己依赖的类知道的越少越好,也就是说,对于被依赖的类不管多么复杂,都应该尽量将逻辑封装在类的内部,除了对外提供public方法之外,不对外泄露任何信息
+    c.迪米特原则又称最少知道原则,即一个类对自己依赖的类知道的越少越好,也就是说,对于被依赖的类不管多么复杂,都应该尽量将逻辑封装在类的内部,除了对外提供public方法之外,不对外泄露任何信息
     e.迪米特方法还有个更简单的定义: 只与直接朋友通信
         直接朋友:每个对象都会与其他对象有耦合关系,只要两个对象之间有耦合关系,我们就直接说这两个对象之间是朋友关系。耦合的方式有很多依赖、关联、组合、聚合，其中我们将出现在成员变量,方法参数,方法返回值这几个位置中类称为直接朋友,而出现在局部变量中的类不是直接朋友,也就是说,陌生的类最好不要以局部变量的方式出现在类的内部
 
@@ -186,16 +186,16 @@ head:
             a.fun();
         }
     }
-### 3.8.2.迪米特法则代码
-#### 3.8.2.1.不使用迪米特法则代码
+### 3.8.2.迪米特原则代码
+#### 3.8.2.1.不使用迪米特原则代码
 ```java
 @include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/demeter/Demeter1.java)
 ```
-#### 3.8.2.2.使用迪米特法则代码
+#### 3.8.2.2.使用迪米特原则代码
 ```java
 @include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/principles/demeter/Demeter2.java)
 ```
-## 3.9.合成复用原则
+## 3.9.合成复用原则CARP
 ### 3.9.1.合成复用原则介绍
     概述
     尽量使用合成/聚合方法,避免使用继承
