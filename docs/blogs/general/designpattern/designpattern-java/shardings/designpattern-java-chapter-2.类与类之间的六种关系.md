@@ -1,6 +1,6 @@
 ---
 title: 使用Java语言编写设计模式-2.类与类之间的六种关系
-description: 本章节涉及主要内容有：依赖关系,关联关系,聚合关系,组合关系,泛化关系,实现关系,六种关系耦合度强弱,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+description: 本章节涉及主要内容有：依赖关系,关联关系,聚合关系,组合关系,泛化关系,实现关系,六种关系耦合度强弱,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景 ,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 headerDepth: 4
 isOriginal: true
 category:
@@ -11,7 +11,7 @@ date:
 head:
   - - meta
     - name: keywords
-      content: 本章节涉及主要内容有：依赖关系,关联关系,聚合关系,组合关系,泛化关系,实现关系,六种关系耦合度强弱,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
+      content: 本章节涉及主要内容有：依赖关系,关联关系,聚合关系,组合关系,泛化关系,实现关系,六种关系耦合度强弱,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景,简介,模型,示例代码,经典应用场景,在开源框架中的应用场景 ,具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试，可直接复制运行即可。
 ---
 
 # 2.类与类之间的六种关系
@@ -202,12 +202,12 @@ classDiagram
 ```java
 @include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/generalization/PersonServiceBean.java)
 ```
-## 2.8.实现关系
-### 2.8.1.实现关系概述
+## 2.6.实现关系
+### 2.6.1.实现关系概述
     实现关系(Realization),比如某个类实现了一个接口。它也是依赖关系的特例。
-### 2.8.2.UML箭头及指向
+### 2.6.2.UML箭头及指向
     带三角箭头的虚线,箭头指向接口
-### 2.8.3.实现关系类图
+### 2.6.3.实现关系类图
 ```mermaid
 classDiagram
     PersonService <|.. PersonServiceBean
@@ -215,7 +215,7 @@ classDiagram
     class PersonServiceBean{
     }
 ```
-### 2.8.4.实现关系代码
+### 2.6.4.实现关系代码
     PersonService.java
 ```java
 @include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/realization/PersonService.java)
@@ -224,7 +224,7 @@ classDiagram
 ```java
 @include(../projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/realization/PersonServiceBean.java)
 ```
-## 2.9.六种关系耦合度强弱
+## 2.7.六种关系耦合度强弱
     泛化 = 实现 > 组合 > 聚合 > 关联 > 依赖
 
 

@@ -7,7 +7,7 @@
      2.4.创建项目依赖的公共模块
      2.5.准备项目需要的数据库
      2.6.配置使用热部署
-	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 
 ## <a href="/enhance/markmap/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-outline5-chapter2.html" target="_blank">2.2.章节内容大纲</a>
 

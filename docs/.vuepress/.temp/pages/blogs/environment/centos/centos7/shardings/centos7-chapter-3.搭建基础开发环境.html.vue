@@ -9,7 +9,7 @@
  3.6.安装nodejs
  3.7.安装fastgithub
  3.8.安装git
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 </code></pre>
 <h2 id="_3-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_3-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter3.html" target="_blank">3.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter3.html" height="500rem"/>
@@ -166,10 +166,7 @@ FLUSH PRIVILEGES;
 update user set host='%' where user='root';
 flush privileges;
 </code></pre></div><h2 id="_3-6-安装nodejs" tabindex="-1"><a class="header-anchor" href="#_3-6-安装nodejs" aria-hidden="true">#</a> 3.6.安装nodejs</h2>
-<pre><code>安装wget
-</code></pre>
-<div class="language-text ext-text"><pre v-pre class="language-text"><code>yum -y install wget
-</code></pre></div><pre><code>安装gcc
+<pre><code>安装gcc
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>yum install gcc gcc-c++
 </code></pre></div><pre><code>下载node国内镜像
@@ -181,10 +178,8 @@ flush privileges;
 mv node-v14.0.0-linux-x64 node
 </code></pre></div><pre><code>配置环境变量
 </code></pre>
-<div class="language-text ext-text"><pre v-pre class="language-text"><code>vi /etc/profile
-</code></pre></div><p>在文件最后添加以下配置</p>
-<div class="language-text ext-text"><pre v-pre class="language-text"><code>export NODE_HOME=/root/node
-export PATH=$PATH:$NODE_HOME/bin
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>echo 'export NODE_HOME=/root/node' >> /etc/profile &amp;&amp;
+echo 'export PATH=$PATH:$NODE_HOME/bin'  >> /etc/profile
 </code></pre></div><pre><code>刷新环境变量配置
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>source /etc/profile
@@ -199,14 +194,14 @@ export PATH=$PATH:$NODE_HOME/bin
 </code></pre></div><pre><code>下载fastGithub
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>curl -fL -u fastgithub-1660864382041:5d8500249a7d3da57c34a3214397f54709cf55dc \
-"https://lingwh-generic.pkg.coding.net/coding-drive/fastgithub/v2.1.4/fastgithub_win-x64.zip?version=2.1.4" \
--o fastgithub_win-x64.zip
+"https://lingwh-generic.pkg.coding.net/coding-drive/fastgithub/v2.1.4/fastgithub_linux-x64.zip?version=2.1.4" \
+-o fastgithub_linux-x64.zip
 </code></pre></div><pre><code>解压
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>unzip fastgithub_linux-x64.zip
 </code></pre></div><pre><code>设置权限
 </code></pre>
-<div class="language-text ext-text"><pre v-pre class="language-text"><code>chmod -r 777 fastgithub_linux-x64/dnscrypt-proxy &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>chmod -R 777 fastgithub_linux-x64/dnscrypt-proxy &amp;&amp;
 chmod +x fastgithub_linux-x64/fastgithub
 </code></pre></div><pre><code>以服务形式运行fastGithub
 </code></pre>
@@ -220,8 +215,10 @@ systemctl enable fastgithub
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>wget -c https://github.com/tanghaibao/goatools/blob/main/data/association.txt
 </code></pre></div><pre><code>配置git使用代理（不配置无法提交代码）
 </code></pre>
-<div class="language-text ext-text"><pre v-pre class="language-text"><code>git config --global http.proxy http://127.0.0.1:38457
-git config --global https.proxy http://127.0.0.1:38457
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>
+</code></pre></div><pre><code>查看git config
+</code></pre>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>git config --list
 </code></pre></div><h2 id="_3-8-安装git" tabindex="-1"><a class="header-anchor" href="#_3-8-安装git" aria-hidden="true">#</a> 3.8.安装git</h2>
 <h3 id="_3-8-1-安装默认版本git" tabindex="-1"><a class="header-anchor" href="#_3-8-1-安装默认版本git" aria-hidden="true">#</a> 3.8.1.安装默认版本git</h3>
 <pre><code>卸载旧版本
@@ -236,7 +233,12 @@ git config --global https.proxy http://127.0.0.1:38457
 </code></pre></div><h3 id="_3-8-2-安装指定版本git" tabindex="-1"><a class="header-anchor" href="#_3-8-2-安装指定版本git" aria-hidden="true">#</a> 3.8.2.安装指定版本git</h3>
 <pre><code>下载需要安装的版本号
 </code></pre>
-<div class="language-text ext-text"><pre v-pre class="language-text"><code>wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.29.0.tar.gz
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>https://mirrors.edge.kernel.org/pub/software/scm/git/
+</code></pre></div><pre><code>或
+</code></pre>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>curl -fL -u software-1662543378297:709127e14ec237057db48199b841a245c3ec9762 \
+"https://lingwh-generic.pkg.coding.net/coding-drive/software/git-2.29.0.tar.gz?version=latest" \
+-o git-2.29.0.tar.gz
 </code></pre></div><pre><code>安装需要的组件
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>yum -y install curl-devel expat-devel gettext-devel openssl-devel zlib-devel
@@ -251,7 +253,7 @@ make prefix=/usr/local/git all &amp;&amp;
 make prefix=/usr/local/git install
 </code></pre></div><pre><code>添加环境变量
 </code></pre>
-<div class="language-text ext-text"><pre v-pre class="language-text"><code>echo export PATH=$PATH:/usr/local/git/bin >> /etc/profile
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>echo 'export PATH=$PATH:/usr/local/git/bin' >> /etc/profile
 </code></pre></div><pre><code>刷新环境变量
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>source /etc/profile

@@ -11,7 +11,7 @@
      12.8.搭建服务消费者
      12.8.测试使用Seata进行分布式事务控制
      12.9.注意事项
-	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 
 ## <a href="/enhance/markmap/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-outline5-chapter12.html" target="_blank">12.2.章节内容大纲</a>
 

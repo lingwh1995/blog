@@ -1,6 +1,6 @@
 ---
 title: 在WindowsServer2016上搭建开发环境-博客内容介绍
-description: 本篇博客涉及主要内容有：搭建基础开发环境,搭建SpringCloud技术栈所需组件,具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+description: 本篇博客涉及主要内容有：搭建基础开发环境,搭建SpringCloud技术栈所需组件,具体每个章节中包含的内容可使通过下面博客内容大纲进行查看。
 headerDepth: 4
 isOriginal: true
 category:
@@ -21,7 +21,7 @@ head:
     本篇博客涉及主要内容有：
      1.搭建基础开发环境
      2.搭建SpringCloud技术栈所需组件
-	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看。
 ## 博客内容大纲
 
 ###	<a href="/enhance/markmap/environment/windows/windows-server2016/windows-server2016-outline2.html" target="_blank">简单版博客内容大纲</a>

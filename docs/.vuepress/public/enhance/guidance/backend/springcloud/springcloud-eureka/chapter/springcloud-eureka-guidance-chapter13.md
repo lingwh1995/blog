@@ -7,7 +7,7 @@
      13.4.搭建SpringBootAdmin的Server端
      13.5.搭建SpringBootAdmin的Client端
      13.6.测试使用SpringBootAdmin监控服务
-	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 
 ## <a href="/enhance/markmap/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-outline5-chapter13.html" target="_blank">13.2.章节内容大纲</a>
 

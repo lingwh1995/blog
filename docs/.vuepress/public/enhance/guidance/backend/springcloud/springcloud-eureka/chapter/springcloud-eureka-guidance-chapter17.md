@@ -15,7 +15,7 @@
      17.12.编写模块主启动类
      17.13.搭建Zipkin和ELK
      17.14.测试让微服务区分多种不同环境
-	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 
 ## <a href="/enhance/markmap/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-outline5-chapter17.html" target="_blank">17.2.章节内容大纲</a>
 

@@ -987,7 +987,7 @@ function generateBreadcrumbREADME {
 
 
             #执行替换文件名的操作，为文件名添加超链接
-            sed -i 's#\('"$NBSP"'-\) \(.*\)#\1 <a class="breadcrumb-link" href="'"$HREF_STR"'\2">\2<\/a>#g' $CACHE_README_FILE_NAME_FULL_PATH_NAME
+            sed -i 's#\('"$NBSP"'-\) \(.*\)#\1 <a class="breadcrumb-link" target="_blank" href="'"$HREF_STR"'\2">\2<\/a>#g' $CACHE_README_FILE_NAME_FULL_PATH_NAME
 
             #删除所有包含total和docs的的行
             sed -i '/\(^total\|^docs\)/d' $CACHE_README_FILE_NAME_FULL_PATH_NAME
@@ -1210,12 +1210,6 @@ function enhance() {
     generateSidebarConfigForAllAndSetAnchorForOriginal $MD_FILE_NAME $MD_FILE_SOURCE_PATH $MD_FILE_SIDEBAR_CONFIG_TARGET_PATH $SIDEBAR_LINK_PREFIX $MD_FILE_CHAPTER_SHARDINGS_FOLDER_NAME $ENSEMBLE_GUIDANCE_TITLE1_TEXT
     #--------------------------------------------------------------------------------------------------------------
 
-    #生成breadcrumb使用的README.md
-    #--------------------------------------------------------------------------------------------------------------
-    #shardings文件所在的相对路径
-    generateBreadcrumbREADME $MD_FILE_NAME $MD_FILE_RELATIVE_PATH $MD_FILE_CHAPTER_SHARDINGS_FOLDER_NAME
-    #--------------------------------------------------------------------------------------------------------------
-
     echo '完成增强'$2'目录下'$1'.md文件.............................................................................................................................'
 }
 
@@ -1256,22 +1250,39 @@ function enhanceAll() {
     do
         #从bootstrap.ini中获取xxx.md的enhance状态
         ENHANCE_STATE=( $( parseBootstrapIni markdown-$a enhance) )
+        #获取xxx.md文件的名称
+        MD_FILE_NAME=( $( parseBootstrapIni markdown-$a fileName) )
+        #获取xx.md文件的相对路径
+        MD_FILE_RELATIVE_PATH=( $( parseBootstrapIni markdown-$a relativePath) )
         #如果xxx.md启用了enhance功能,则继续执行下一步
-        if [ $ENHANCE_STATE == "true" ]
+        if [ $ENHANCE_STATE == "true" ] || [ $ENHANCE_STATE == "stable" ]
         then
-            #获取xxx.md文件的名称
-            MD_FILE_NAME=( $( parseBootstrapIni markdown-$a fileName) )
-            #获取xx.md文件的相对路径
-            MD_FILE_RELATIVE_PATH=( $( parseBootstrapIni markdown-$a relativePath) )
+            if [ $ENHANCE_STATE == "true" ]
+            then
+                #增强之前的前置操作
+                beforeEnhance $MD_FILE_NAME $MD_FILE_RELATIVE_PATH
 
-            #增强之前的前置操作
-            beforeEnhance $MD_FILE_NAME $MD_FILE_RELATIVE_PATH
+                #进行增强处理
+                enhance $MD_FILE_NAME $MD_FILE_RELATIVE_PATH
+            fi
 
-            #进行增强处理
-            enhance $MD_FILE_NAME $MD_FILE_RELATIVE_PATH
+            if [ $ENHANCE_STATE == "true" ] || [ $ENHANCE_STATE == "stable" ]
+            then
+                echo $MD_FILE_NAME
+                echo $MD_FILE_RELATIVE_PATH
+                #生成breadcrumb使用的README.md
+                #--------------------------------------------------------------------------------------------------------------
+                MD_FILE_CHAPTER_SHARDINGS_FOLDER_NAME="shardings"
+                #shardings文件所在的相对路径
+                generateBreadcrumbREADME $MD_FILE_NAME $MD_FILE_RELATIVE_PATH $MD_FILE_CHAPTER_SHARDINGS_FOLDER_NAME
+                #--------------------------------------------------------------------------------------------------------------
+            fi
 
-            #增强之后的后置操作
-            afterEnhance $MD_FILE_NAME $MD_FILE_RELATIVE_PATH
+            if [ $ENHANCE_STATE == "true" ]
+            then
+                #增强之后的后置操作
+                afterEnhance $MD_FILE_NAME $MD_FILE_RELATIVE_PATH
+            fi
         fi
     done
 }
@@ -1320,14 +1331,14 @@ EOF
         echo '当前处理路径：'$COMPLETE_PATH
         START_LINE_NUMBER=`grep -n '^---$' $COMPLETE_PATH/README-$1.md | tail -1 | cut  -d ':' -f1`
 
-        #如果文件不存在，说明是第一次给README.md中写入内容，则写入头 
+        #如果文件不存在，说明是第一次给README.md中写入内容，则写入头
         if [ ! -f "$COMPLETE_PATH/README.md" ]
         then
             echo '第一次给文件中写入内容，将头信息也写入进去.....'
             head -$START_LINE_NUMBER $COMPLETE_PATH/README-$1.md >>  $COMPLETE_PATH/README.md
         fi
 
-        tail -n +$[$START_LINE_NUMBER+1] $COMPLETE_PATH/README-$1.md >>  $COMPLETE_PATH/README.md   
+        tail -n +$[$START_LINE_NUMBER+1] $COMPLETE_PATH/README-$1.md >>  $COMPLETE_PATH/README.md
 
         #操作完成后删除没用的READ-xxx.md
         echo '删除不再使用的'$COMPLETE_PATH/README-$1.md
@@ -1365,9 +1376,9 @@ function mergeAllBreadcrumbREADMEShardings() {
     echo '引导文件的总数目: '$BOOT_FILE_COUNTS
     for((b=1;b<=$BOOT_FILE_COUNTS;b++))
     do
-        IS_ENHANCE=( $( parseBootstrapIni markdown-$b enhance) )
+        ENHANCE_STATE=( $( parseBootstrapIni markdown-$b enhance) )
         #如果设置了增强该md，则继续执行下一步
-        if [ $IS_ENHANCE == "true" ]
+        if [ $ENHANCE_STATE == "true" ]  || [ $ENHANCE_STATE == "stable" ]
         then
             #获取文件名称
             MD_FILE_NAME=( $( parseBootstrapIni markdown-$b fileName) )
@@ -1397,9 +1408,9 @@ function mergeSidebarJson() {
     #合并生成的sidebar配置json和最外层的README.md
     for((b=1;b<=$BOOT_FILE_COUNTS;b++))
     do
-        IS_ENHANCE=( $( parseBootstrapIni markdown-$b enhance) )
+        ENHANCE_STATE=( $( parseBootstrapIni markdown-$b enhance) )
         #如果设置了增强该md，则继续执行下一步
-        if [ $IS_ENHANCE == "true" ]
+        if [ $ENHANCE_STATE == "true" ] || [ $ENHANCE_STATE == "stable" ]
         then
             #获取文件名称
             MD_FILE_NAME=( $( parseBootstrapIni markdown-$b fileName) )

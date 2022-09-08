@@ -14,7 +14,7 @@
  10.搭建Mycat技术栈
  11.搭建常用私服环境
  12.搭建SpringCloud技术栈所需组件
-具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+具体每个章节中包含的内容可使通过下面博客内容大纲进行查看。
 </code></pre>
 <h2 id="博客内容大纲" tabindex="-1"><a class="header-anchor" href="#博客内容大纲" aria-hidden="true">#</a> 博客内容大纲</h2>
 <h3 id="简单版博客内容大纲" tabindex="-1"><a class="header-anchor" href="#简单版博客内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/centos7-outline2.html" target="_blank">简单版博客内容大纲</a></h3>
@@ -34,7 +34,7 @@
  1.4.Centos镜像下载
  1.5.安装前Vmaware相关设置
  1.6.安装时分区大小设置
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 </code></pre>
 <h2 id="_1-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_1-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter1.html" target="_blank">1.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter1.html" height="500rem"/>
@@ -86,7 +86,7 @@ VMware NetworkAdepter VMnet8：Host用于与NAT虚拟网络进行通信的虚拟
  2.7.配置yml源
  2.7.同步时间
  2.8.安装常用基础系统软件
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 </code></pre>
 <h2 id="_2-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_2-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter2.html" target="_blank">2.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter2.html" height="500rem"/>
@@ -190,7 +190,7 @@ yum -y install telnet-server
  3.6.安装nodejs
  3.7.安装fastgithub
  3.8.安装git
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 </code></pre>
 <h2 id="_3-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_3-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter3.html" target="_blank">3.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter3.html" height="500rem"/>
@@ -347,10 +347,7 @@ FLUSH PRIVILEGES;
 update user set host='%' where user='root';
 flush privileges;
 </code></pre></div><h2 id="_3-6-安装nodejs" tabindex="-1"><a class="header-anchor" href="#_3-6-安装nodejs" aria-hidden="true">#</a> 3.6.安装nodejs</h2>
-<pre><code>安装wget
-</code></pre>
-<div class="language-text ext-text"><pre v-pre class="language-text"><code>yum -y install wget
-</code></pre></div><pre><code>安装gcc
+<pre><code>安装gcc
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>yum install gcc gcc-c++
 </code></pre></div><pre><code>下载node国内镜像
@@ -362,10 +359,8 @@ flush privileges;
 mv node-v14.0.0-linux-x64 node
 </code></pre></div><pre><code>配置环境变量
 </code></pre>
-<div class="language-text ext-text"><pre v-pre class="language-text"><code>vi /etc/profile
-</code></pre></div><p>在文件最后添加以下配置</p>
-<div class="language-text ext-text"><pre v-pre class="language-text"><code>export NODE_HOME=/root/node
-export PATH=$PATH:$NODE_HOME/bin
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>echo 'export NODE_HOME=/root/node' >> /etc/profile &amp;&amp;
+echo 'export PATH=$PATH:$NODE_HOME/bin'  >> /etc/profile
 </code></pre></div><pre><code>刷新环境变量配置
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>source /etc/profile
@@ -380,14 +375,14 @@ export PATH=$PATH:$NODE_HOME/bin
 </code></pre></div><pre><code>下载fastGithub
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>curl -fL -u fastgithub-1660864382041:5d8500249a7d3da57c34a3214397f54709cf55dc \
-"https://lingwh-generic.pkg.coding.net/coding-drive/fastgithub/v2.1.4/fastgithub_win-x64.zip?version=2.1.4" \
--o fastgithub_win-x64.zip
+"https://lingwh-generic.pkg.coding.net/coding-drive/fastgithub/v2.1.4/fastgithub_linux-x64.zip?version=2.1.4" \
+-o fastgithub_linux-x64.zip
 </code></pre></div><pre><code>解压
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>unzip fastgithub_linux-x64.zip
 </code></pre></div><pre><code>设置权限
 </code></pre>
-<div class="language-text ext-text"><pre v-pre class="language-text"><code>chmod -r 777 fastgithub_linux-x64/dnscrypt-proxy &amp;&amp;
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>chmod -R 777 fastgithub_linux-x64/dnscrypt-proxy &amp;&amp;
 chmod +x fastgithub_linux-x64/fastgithub
 </code></pre></div><pre><code>以服务形式运行fastGithub
 </code></pre>
@@ -401,8 +396,10 @@ systemctl enable fastgithub
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>wget -c https://github.com/tanghaibao/goatools/blob/main/data/association.txt
 </code></pre></div><pre><code>配置git使用代理（不配置无法提交代码）
 </code></pre>
-<div class="language-text ext-text"><pre v-pre class="language-text"><code>git config --global http.proxy http://127.0.0.1:38457
-git config --global https.proxy http://127.0.0.1:38457
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>
+</code></pre></div><pre><code>查看git config
+</code></pre>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>git config --list
 </code></pre></div><h2 id="_3-8-安装git" tabindex="-1"><a class="header-anchor" href="#_3-8-安装git" aria-hidden="true">#</a> 3.8.安装git</h2>
 <h3 id="_3-8-1-安装默认版本git" tabindex="-1"><a class="header-anchor" href="#_3-8-1-安装默认版本git" aria-hidden="true">#</a> 3.8.1.安装默认版本git</h3>
 <pre><code>卸载旧版本
@@ -417,7 +414,12 @@ git config --global https.proxy http://127.0.0.1:38457
 </code></pre></div><h3 id="_3-8-2-安装指定版本git" tabindex="-1"><a class="header-anchor" href="#_3-8-2-安装指定版本git" aria-hidden="true">#</a> 3.8.2.安装指定版本git</h3>
 <pre><code>下载需要安装的版本号
 </code></pre>
-<div class="language-text ext-text"><pre v-pre class="language-text"><code>wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.29.0.tar.gz
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>https://mirrors.edge.kernel.org/pub/software/scm/git/
+</code></pre></div><pre><code>或
+</code></pre>
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>curl -fL -u software-1662543378297:709127e14ec237057db48199b841a245c3ec9762 \
+"https://lingwh-generic.pkg.coding.net/coding-drive/software/git-2.29.0.tar.gz?version=latest" \
+-o git-2.29.0.tar.gz
 </code></pre></div><pre><code>安装需要的组件
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>yum -y install curl-devel expat-devel gettext-devel openssl-devel zlib-devel
@@ -432,7 +434,7 @@ make prefix=/usr/local/git all &amp;&amp;
 make prefix=/usr/local/git install
 </code></pre></div><pre><code>添加环境变量
 </code></pre>
-<div class="language-text ext-text"><pre v-pre class="language-text"><code>echo export PATH=$PATH:/usr/local/git/bin >> /etc/profile
+<div class="language-text ext-text"><pre v-pre class="language-text"><code>echo 'export PATH=$PATH:/usr/local/git/bin' >> /etc/profile
 </code></pre></div><pre><code>刷新环境变量
 </code></pre>
 <div class="language-text ext-text"><pre v-pre class="language-text"><code>source /etc/profile
@@ -451,7 +453,7 @@ make prefix=/usr/local/git install
  4.7.docker官方私服可视化
  4.8.制作docker镜像并上传到私服
  4.9.Docker中安装常用软件
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 </code></pre>
 <h2 id="_4-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_4-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter4.html" target="_blank">4.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter4.html" height="500rem"/>
@@ -1096,7 +1098,7 @@ max virtual memory areas vm.max_map_count [65530] is too low, increase to at lea
  5.1.章节内容概述
  5.2.章节内容大纲
  5.3.搭建Rancher
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 </code></pre>
 <h2 id="_5-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_5-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter5.html" target="_blank">5.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter5.html" height="500rem"/>
@@ -1135,7 +1137,7 @@ firewall-cmd --reload
  6.10.安装dashboard
  6.12.部署测试程序
  6.12.minikube常用命令
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 </code></pre>
 <h2 id="_6-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_6-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter6.html" target="_blank">6.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter6.html" height="500rem"/>
@@ -1316,7 +1318,7 @@ rm -rf ~/.minikube
  7.18.基础命令
  7.19.部署测试程序
  7.20.可视化面板kuboard
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 </code></pre>
 <h2 id="_7-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_7-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter7.html" target="_blank">7.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter7.html" height="500rem"/>
@@ -1585,7 +1587,7 @@ http://192.168.0.8:31208
  8.16.部署Nginx+Keepalived高可用负载均衡器
  8.17.部署常见问题
  8.18.部署测试程序
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 </code></pre>
 <h2 id="_8-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_8-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter8.html" target="_blank">8.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter8.html" height="500rem"/>
@@ -3920,7 +3922,7 @@ http://192.168.0.8:31208
  9.2.章节内容大纲
  9.3.使用本地内网穿透搭建持续集成环境
  9.4.使用Coding内网穿透搭建持续集成环境
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 </code></pre>
 <h2 id="_9-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_9-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter9.html" target="_blank">9.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter9.html" height="500rem"/>
@@ -4105,7 +4107,7 @@ DASHBOARD-&gt;系统管理-&gt;系统配置-&gt;Publish over SSH
  10.2.章节内容大纲
  10.3.安装myact1.6
  10.4.搭建mycat2
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 </code></pre>
 <h2 id="_10-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_10-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter10.html" target="_blank">10.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter10.html" height="500rem"/>
@@ -4267,7 +4269,7 @@ notepad++安装nppftp这个插件，连接到远程服务器之后自动可以�
  11.3.3.配置切换使用的源为私服的源
  11.3.4.重新生成测试机yum缓存配置
  11.3.5.使用yum私服来下载软件
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 </code></pre>
 <h2 id="_11-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_11-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter11.html" target="_blank">11.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter11.html" height="500rem"/>
@@ -4383,7 +4385,7 @@ yum makecache
  12.4.搭建Apollo配置中心
  12.5.Seata-Server
  12.6.搭建ELK
-具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 </code></pre>
 <h2 id="_12-2-章节内容大纲" tabindex="-1"><a class="header-anchor" href="#_12-2-章节内容大纲" aria-hidden="true">#</a> <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter12.html" target="_blank">12.2.章节内容大纲</a></h2>
 <Markmap localtion="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter12.html" height="500rem"/>

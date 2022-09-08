@@ -1,6 +1,6 @@
 ---
 title: 使用Java语言构造数据结构-博客内容介绍
-description: 本篇博客涉及主要内容有：数据结构java语言构造,具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+description: 本篇博客涉及主要内容有：数据结构java语言构造,具体每个章节中包含的内容可使通过下面博客内容大纲进行查看。
 headerDepth: 4
 isOriginal: true
 category:
@@ -20,7 +20,7 @@ head:
 ## 博客内容概述
     本篇博客涉及主要内容有：
      1.数据结构java语言构造
-	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看。
 ## 博客内容大纲
 
 ###	<a href="/enhance/markmap/general/datastructure/datastructure-java/datastructure-java-outline2.html" target="_blank">简单版博客内容大纲</a>

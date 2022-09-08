@@ -32,6 +32,121 @@
                       icon: "article",
                       link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-3.设计模式七大原则.md",
                   },
+                  {
+                      text: "4.创建型模式-单例模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-4.创建型模式-单例模式.md",
+                  },
+                  {
+                      text: "5.创建型模式-工厂模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-5.创建型模式-工厂模式.md",
+                  },
+                  {
+                      text: "6.创建型模式-抽象工厂模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-6.创建型模式-抽象工厂模式.md",
+                  },
+                  {
+                      text: "7.创建型模式-原型模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-7.创建型模式-原型模式.md",
+                  },
+                  {
+                      text: "8.创建型模式-建造者模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-8.创建型模式-建造者模式.md",
+                  },
+                  {
+                      text: "9.结构型模式-适配器模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-9.结构型模式-适配器模式.md",
+                  },
+                  {
+                      text: "10.结构型模式-桥接模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-10.结构型模式-桥接模式.md",
+                  },
+                  {
+                      text: "11.结构型模式-装饰者模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-11.结构型模式-装饰者模式.md",
+                  },
+                  {
+                      text: "12.结构型模式-组合模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-12.结构型模式-组合模式.md",
+                  },
+                  {
+                      text: "13.结构型模式-外观模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-13.结构型模式-外观模式.md",
+                  },
+                  {
+                      text: "14.结构型模式-享元模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-14.结构型模式-享元模式.md",
+                  },
+                  {
+                      text: "15.结构型模式-代理模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-15.结构型模式-代理模式.md",
+                  },
+                  {
+                      text: "16.行为型模式-模版方法模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-16.行为型模式-模版方法模式.md",
+                  },
+                  {
+                      text: "17.行为型模式-命令模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-17.行为型模式-命令模式.md",
+                  },
+                  {
+                      text: "18.行为型模式-迭代器模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-18.行为型模式-迭代器模式.md",
+                  },
+                  {
+                      text: "19.行为型模式-观察者模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-19.行为型模式-观察者模式.md",
+                  },
+                  {
+                      text: "20.行为型模式-中介者模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-20.行为型模式-中介者模式.md",
+                  },
+                  {
+                      text: "21.行为型模式-备忘录模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-21.行为型模式-备忘录模式.md",
+                  },
+                  {
+                      text: "22.行为型模式-解释器模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-22.行为型模式-解释器模式.md",
+                  },
+                  {
+                      text: "23.行为型模式-状态模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-23.行为型模式-状态模式.md",
+                  },
+                  {
+                      text: "24.行为型模式-策略模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-24.行为型模式-策略模式.md",
+                  },
+                  {
+                      text: "25.行为型模式-职责链模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-25.行为型模式-职责链模式.md",
+                  },
+                  {
+                      text: "26.行为型模式-访问者模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/shardings/designpattern-java-chapter-26.行为型模式-访问者模式.md",
+                  },
               ]
           },
           {
@@ -58,6 +173,121 @@
                       text: "3.设计模式七大原则",
                       icon: "article",
                       link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#3.",
+                  },
+                  {
+                      text: "4.创建型模式-单例模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#4.",
+                  },
+                  {
+                      text: "5.创建型模式-工厂模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#5.",
+                  },
+                  {
+                      text: "6.创建型模式-抽象工厂模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#6.",
+                  },
+                  {
+                      text: "7.创建型模式-原型模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#7.",
+                  },
+                  {
+                      text: "8.创建型模式-建造者模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#8.",
+                  },
+                  {
+                      text: "9.结构型模式-适配器模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#9.",
+                  },
+                  {
+                      text: "10.结构型模式-桥接模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#10.",
+                  },
+                  {
+                      text: "11.结构型模式-装饰者模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#11.",
+                  },
+                  {
+                      text: "12.结构型模式-组合模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#12.",
+                  },
+                  {
+                      text: "13.结构型模式-外观模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#13.",
+                  },
+                  {
+                      text: "14.结构型模式-享元模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#14.",
+                  },
+                  {
+                      text: "15.结构型模式-代理模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#15.",
+                  },
+                  {
+                      text: "16.行为型模式-模版方法模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#16.",
+                  },
+                  {
+                      text: "17.行为型模式-命令模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#17.",
+                  },
+                  {
+                      text: "18.行为型模式-迭代器模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#18.",
+                  },
+                  {
+                      text: "19.行为型模式-观察者模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#19.",
+                  },
+                  {
+                      text: "20.行为型模式-中介者模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#20.",
+                  },
+                  {
+                      text: "21.行为型模式-备忘录模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#21.",
+                  },
+                  {
+                      text: "22.行为型模式-解释器模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#22.",
+                  },
+                  {
+                      text: "23.行为型模式-状态模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#23.",
+                  },
+                  {
+                      text: "24.行为型模式-策略模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#24.",
+                  },
+                  {
+                      text: "25.行为型模式-职责链模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#25.",
+                  },
+                  {
+                      text: "26.行为型模式-访问者模式",
+                      icon: "article",
+                      link: "/blogs/general/designpattern/designpattern-java/designpattern-java.md#26.",
                   },
               ]
           },

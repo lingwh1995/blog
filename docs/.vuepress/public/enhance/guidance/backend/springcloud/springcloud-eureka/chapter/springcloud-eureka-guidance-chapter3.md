@@ -6,7 +6,7 @@
      3.3.Eureka注册中心简介
      3.4.搭建单节点版EUREKA注册中心
      3.5.搭建集群(高可用)版EUREKA注册中心
-	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 
 ## <a href="/enhance/markmap/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-outline5-chapter3.html" target="_blank">3.2.章节内容大纲</a>
 

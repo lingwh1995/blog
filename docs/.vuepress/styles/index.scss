@@ -338,8 +338,12 @@ p, ul, ol {
 .theme-hope-content pre {
     //padding-top: 2rem;
 }*/
+.theme-hope-content ul{
+    background: #F5F5FA;
+}
 .theme-hope-content pre, .theme-hope-content pre[class*=language-] {
     margin: 0;
+    max-height: 50rem;
 }
 .theme-hope-content p {
     white-space: pre-wrap;
@@ -387,6 +391,7 @@ html[data-theme=dark] .theme-hope-content pre {
 }
 html[data-theme=dark] .theme-hope-content pre[class*=language-] {
     background-color: #E3E8F0 !important;
+    max-height: 50rem;
 }
 html[data-theme=dark] .theme-hope-content pre[class*=language-] code{
     color: #000000 !important;

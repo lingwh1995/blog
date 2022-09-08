@@ -7,7 +7,7 @@
      12.4.搭建Apollo配置中心
      12.5.Seata-Server
      12.6.搭建ELK
-	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 
 ## <a href="/enhance/markmap/environment/centos/centos7/chapter/centos7-outline5-chapter12.html" target="_blank">12.2.章节内容大纲</a>
 

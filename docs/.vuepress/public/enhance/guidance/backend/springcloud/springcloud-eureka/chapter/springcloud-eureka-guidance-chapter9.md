@@ -8,7 +8,7 @@
      9.5.声明式配置方式使用GateWay(非负载均衡模式)
      9.6.硬编码配置方式使用GateWay(负载均衡模式)
      9.7.声明式配置方式使用GateWay(负载均衡模式)
-	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 
 ## <a href="/enhance/markmap/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-outline5-chapter9.html" target="_blank">9.2.章节内容大纲</a>
 

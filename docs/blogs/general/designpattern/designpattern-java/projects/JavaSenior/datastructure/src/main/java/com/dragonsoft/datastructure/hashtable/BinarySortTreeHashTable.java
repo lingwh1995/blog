@@ -23,20 +23,17 @@ public class BinarySortTreeHashTable {
 		}
 		binarySortTree.add(new Node(value));
 	}
-
-	/**
-	 * 删除节点
-	 * @param value
-	 */
-	public void remove(int value) {
-		int hashKey = hash(value);
-		BinarySortTree binarySortTree = hashTable[hashKey];
-		if(binarySortTree != null) {
-			binarySortTree.delNode(value);
-		}else {
-			System.out.println("您尚未添加该元素,无法删除...");
-		}
-	}
+//
+//	public void remove(SingleLinkedNode node) {
+//		int elementId = node.elementId;
+//		int hashKey = hash(elementId);
+////		SingleLinkedList singleLinkedList = hashTable[hashKey];
+//		if(singleLinkedList != null) {
+//			singleLinkedList.deleteByElementId(elementId);
+//		}else {
+//			System.out.println("您尚未添加该元素,无法删除...");
+//		}
+//	}
 	
 	/**
 	 * 打印哈希表
@@ -92,10 +89,7 @@ class BinarySortTree {
     }
 
     /**
-     * 删除节点:三种情况
-     * 	1.删除叶子节点
-     *  2.删除只有一颗子树的叶子节点
-     *  3.删除有两颗子树的节点
+     * 删除节点
      */
     public void delNode(int value){
         if(root == null){
@@ -107,7 +101,7 @@ class BinarySortTree {
             if(targetNode == null){
                 return;
             }
-            //如果我们发现当前这颗二叉排序树只有一个节点,这个节点就是root节点
+            //如果我们发现当前这颗二叉排序树只有一个节点
             if(root.left == null && root.right == null){
                 root = null;
                 return;
@@ -127,7 +121,9 @@ class BinarySortTree {
             }else if(targetNode.left != null && targetNode.right != null){//删除有两棵子树的节点
                 int minValue = delRightTreeMin(targetNode.right);
                 targetNode.value = minValue;
+
             }else{//删除只有一颗子树的节点
+
                 //如果要删除的节点有左子节点
                 if(targetNode.left !=null){
                     if(parent != null) {
@@ -166,8 +162,8 @@ class BinarySortTree {
     public int delRightTreeMin(Node node){
         Node target = node;
         //循环的查找左节点,就会找到最小值
-        while(target.right != null){
-            target = target.right;
+        while(target.left != null){
+            target = target.left;
         }
         //这时target就指向了最小的节点
         delNode(target.value);

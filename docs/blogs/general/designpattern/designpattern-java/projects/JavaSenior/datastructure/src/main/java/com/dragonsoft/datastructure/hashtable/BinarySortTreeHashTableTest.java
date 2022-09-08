@@ -21,8 +21,5 @@ public class BinarySortTreeHashTableTest {
 		
 		//打印哈希表
 		hashTable.show();
-		System.out.println("----------------------");
-		hashTable.remove(1);
-		hashTable.show();
 	}
 }

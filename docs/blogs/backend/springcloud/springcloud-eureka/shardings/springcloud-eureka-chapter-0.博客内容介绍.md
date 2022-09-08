@@ -1,6 +1,6 @@
 ---
 title: 基于Eureka搭建Springcloud微服务-博客内容介绍
-description: 本篇博客涉及主要内容有：微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,使用Ribbon实现客户端负载均衡,使用OpenFeign实现客户端负载均衡,使用Hystrix实现服务降级和熔断,使用DashBoard和Turbine监控服务访问情况,使用GateWay实现网关功能,使用Zipkin+Sleuth实现调用链路追踪,使用Apollo配置中心管理配置,使用Seata进行分布式事务控制,使用SpringBootAdmin监控服务,设计适用于生产环境的日志系统,OpenFeign高级用法,使用持续集成快捷部署服务,让微服务区分多种不同环境,使用mycat提升数据库吞吐能力,使用rancher管理docker和Kubernetes,综合案例,具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+description: 本篇博客涉及主要内容有：微服务简介,搭建项目基础设施,使用Eureka作为注册中心,搭建第一个微服务应用,使用Ribbon实现客户端负载均衡,使用OpenFeign实现客户端负载均衡,使用Hystrix实现服务降级和熔断,使用DashBoard和Turbine监控服务访问情况,使用GateWay实现网关功能,使用Zipkin+Sleuth实现调用链路追踪,使用Apollo配置中心管理配置,使用Seata进行分布式事务控制,使用SpringBootAdmin监控服务,设计适用于生产环境的日志系统,OpenFeign高级用法,使用持续集成快捷部署服务,让微服务区分多种不同环境,使用mycat提升数据库吞吐能力,使用rancher管理docker和Kubernetes,综合案例,具体每个章节中包含的内容可使通过下面博客内容大纲进行查看。
 headerDepth: 4
 isOriginal: true
 category:
@@ -39,7 +39,7 @@ head:
      18.使用mycat提升数据库吞吐能力
      19.使用rancher管理docker和Kubernetes
      20.综合案例
-	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+	具体每个章节中包含的内容可使通过下面博客内容大纲进行查看。
 ## 博客内容大纲
 
 ###	<a href="/enhance/markmap/backend/springcloud/springcloud-eureka/springcloud-eureka-outline2.html" target="_blank">简单版博客内容大纲</a>

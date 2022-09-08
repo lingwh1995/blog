@@ -28,5 +28,4 @@ hs_err_pid*
 /rebel.xml
 /target/
 .idea/
-.metadata/
-/.settings/
+**/target/

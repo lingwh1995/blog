@@ -10,7 +10,7 @@
      3.7.开闭原则
      3.8.迪米特法则
      3.9.合成复用原则
-	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看,所有代码均经过严格测试,可直接复制运行即可。
+	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 
 ## <a href="/enhance/markmap/general/designpattern/designpattern-java/chapter/designpattern-java-outline5-chapter3.html" target="_blank">3.2.章节内容大纲</a>
 
