@@ -112,7 +112,7 @@ function build() {
 }
 
 #在本地 以正常模式发布
-function deployNormalLocalhost() {
+function deployNormalLocalhostGithub() {
     echo '开始执行以正常模式推送到github........................................................'
     #修改配置文件，恢复纯模式相关设置到正常
     echo '开始执行修改配置文件操作....................'
@@ -136,6 +136,35 @@ function deployNormalLocalhost() {
     echo '开始执行推送操作...........................'
     #git fetch git@github.com:lingwh1995/lingwh1995.github.io.git
     git push -f git@github.com:lingwh1995/lingwh1995.github.io.git HEAD:master
+    echo '完成执行推送操作...........................'
+    #回到上一次操作的目录
+    cd -
+    echo '完成执行以正常模式推送到github........................................................'
+}
+
+#在本地 以正常模式发布
+function deployNormalLocalhostGitee() {
+    echo '开始执行以正常模式推送到github........................................................'
+    #修改配置文件，恢复纯模式相关设置到正常
+    echo '开始执行修改配置文件操作....................'
+    sed -i 's/pure:.*,/pure: false,/g' docs/.vuepress/theme.ts
+    sed -i 's/base:.*,/base:\"\/\",/g' docs/.vuepress/config.ts
+
+    #修改纯模式PWA相关配置
+    sed -i 's/name: "个人博客.*"/name: "个人博客"/' docs/.vuepress/theme.ts
+    sed -i 's/short_name: "此生挚爱万宝路的个人博客.*"/short_name: "此生挚爱万宝路的个人博客"/' docs/.vuepress/theme.ts
+    echo '完成执行修改配置文件操作....................'
+
+    #替换所有的超链接
+    generateHrefValueForNormal
+
+    #执行构建操作
+    echo '开始执行构建操作...........................'
+    build
+    echo '完成执行构建操作...........................'
+
+    #如果发布到 https://<USERNAME>.github.io  USERNAME=你的用户名
+    echo '开始执行推送操作...........................'
     #git fetch git@gitee.com:lingwh1995/normal.git
     git push -f git@gitee.com:lingwh1995/normal.git HEAD:master
     echo '完成执行推送操作...........................'
@@ -145,7 +174,7 @@ function deployNormalLocalhost() {
 }
 
 #使用持续集成 以正常模式发布
-function deployNormalCI() {
+function deployNormalCIGithub() {
     echo '开始执行以正常模式推送到github.................................................'
     #修改配置文件
     echo '开始执行修改配置文件操作....................'
@@ -169,6 +198,34 @@ function deployNormalCI() {
     echo '开始执行推送操作...........................'
     #git fetch https://lingwh1995:$1@github.com/lingwh1995/lingwh1995.github.io.git
     git push -f https://lingwh1995:$1@github.com/lingwh1995/lingwh1995.github.io.git HEAD:master
+    echo '完成执行推送操作...........................'
+    #回到上一次操作的目录
+    cd -
+    echo '完成执行以正常模式推送到github.................................................'
+}
+#使用持续集成 以正常模式发布
+function deployNormalCIGitee() {
+    echo '开始执行以正常模式推送到github.................................................'
+    #修改配置文件
+    echo '开始执行修改配置文件操作....................'
+    sed -i 's/pure:.*,/pure: false,/g' docs/.vuepress/theme.ts
+    sed -i 's/base:.*,/base:\"\/\",/g' docs/.vuepress/config.ts
+
+    #修改纯模式PWA相关配置
+    sed -i 's/name: "个人博客.*"/name: "个人博客"/' docs/.vuepress/theme.ts
+    sed -i 's/short_name: "此生挚爱万宝路的个人博客.*"/short_name: "此生挚爱万宝路的个人博客"/' docs/.vuepress/theme.ts
+    echo '完成执行修改配置文件操作....................'
+
+    #替换所有的超链接
+    generateHrefValueForNormal
+
+    #执行构建操作
+    echo '开始执行构建操作...........................'
+    build
+    echo '完成执行构建操作...........................'
+
+    # 如果发布到 https://<USERNAME>.github.io  USERNAME=你的用户名
+    echo '开始执行推送操作...........................'
     #git fetch https://lingwh1995:$2@gitee.com/lingwh1995/normal.git
     git push -f https://lingwh1995:$2@gitee.com/lingwh1995/normal.git HEAD:master
     echo '完成执行推送操作...........................'
@@ -178,7 +235,7 @@ function deployNormalCI() {
 }
 
 #在本地以 纯净模式发布
-function deployPureLocalhost() {
+function deployPureLocalhostGithub() {
     if [ $PURE_MODE_PLUGIN_ENABLE_STATE == "true" ]
     then
         echo '开始执行以pure模式推送到github.................................................'
@@ -204,6 +261,37 @@ function deployPureLocalhost() {
         echo '开始执行构建操作...........................'
         #git fetch git@github.com:lingwh1995/pure.git
         git push -f git@github.com:lingwh1995/pure.git HEAD:master
+        echo '完成执行构建操作...........................'
+        #回到上一次操作的目录
+        cd -
+        echo '完成执行以pure模式推送到github.................................................'
+    fi
+}
+#在本地以 纯净模式发布
+function deployPureLocalhostGitee() {
+    if [ $PURE_MODE_PLUGIN_ENABLE_STATE == "true" ]
+    then
+        echo '开始执行以pure模式推送到github.................................................'
+        #修改配置文件
+        echo '开始执行修改配置文件操作....................'
+        sed -i 's/pure:.*,/pure: true,/g' docs/.vuepress/theme.ts
+        sed -i 's/base:.*,/base:\"\/pure\/\",/g' docs/.vuepress/config.ts
+
+        #修改纯模式PWA相关配置
+        sed -i 's/name: "个人博客.*"/name: "个人博客(纯模式)"/' docs/.vuepress/theme.ts
+        sed -i 's/short_name: "此生挚爱万宝路的个人博客.*"/short_name: "此生挚爱万宝路的个人博客(纯模式)"/' docs/.vuepress/theme.ts
+        echo '完成执行修改配置文件操作....................'
+
+        #替换所有的超链接
+        generateHrefValueForPure
+
+        #执行构建操作
+        echo '开始执行构建操作...........................'
+        build
+        echo '完成执行构建操作...........................'
+
+        # 如果发布到 https://<USERNAME>.github.io/<REPO>  REPO=github上的项目,需要开启gitpages服务
+        echo '开始执行构建操作...........................'
         #git fetch git@gitee.com:lingwh1995/pure.git
         git push -f git@gitee.com:lingwh1995/pure.git HEAD:master
         echo '完成执行构建操作...........................'
@@ -214,7 +302,7 @@ function deployPureLocalhost() {
 }
 
 #持续集成以 纯净模式发布
-function deployPureCI() {
+function deployPureCIGithub() {
     if [ $PURE_MODE_PLUGIN_ENABLE_STATE == "true" ]
     then
         echo '开始执行以pure模式推送到github.................................................'
@@ -240,6 +328,37 @@ function deployPureCI() {
         echo '开始执行推送操作...........................'
         #git fetch https://lingwh1995:$1@github.com/lingwh1995/pure.git
         git push -f https://lingwh1995:$1@github.com/lingwh1995/pure.git HEAD:master
+        echo '完成执行推送操作...........................'
+        #回到上一次操作的目录
+        cd -
+        echo '完成执行以pure模式推送到github.................................................'
+    fi
+}
+#持续集成以 纯净模式发布
+function deployPureCIGitee() {
+    if [ $PURE_MODE_PLUGIN_ENABLE_STATE == "true" ]
+    then
+        echo '开始执行以pure模式推送到github.................................................'
+        #修改配置文件
+        echo '开始执行修改配置文件操作....................'
+        sed -i 's/pure:.*,/pure: true,/g' docs/.vuepress/theme.ts
+        sed -i 's/base:.*,/base:\"\/pure\/\",/g' docs/.vuepress/config.ts
+
+        #修改纯模式PWA相关配置
+        sed -i 's/name: "个人博客.*"/name: "个人博客(纯模式)"/' docs/.vuepress/theme.ts
+        sed -i 's/short_name: "此生挚爱万宝路的个人博客.*"/short_name: "此生挚爱万宝路的个人博客(纯模式)"/' docs/.vuepress/theme.ts
+        echo '完成执行修改配置文件操作....................'
+
+        #替换所有的超链接
+        generateHrefValueForPure
+
+        #执行构建操作
+        echo '开始执行构建操作...........................'
+        build
+        echo '完成执行构建操作...........................'
+
+        # 如果发布到 https://<USERNAME>.github.io/<REPO>  REPO=github上的项目,需要开启gitpages服务
+        echo '开始执行推送操作...........................'
         #git fetch https://lingwh1995:$1@gitee.com/lingwh1995/pure.git
         git push -f https://lingwh1995:$2@gitee.com/lingwh1995/pure.git HEAD:master
         echo '完成执行推送操作...........................'
@@ -258,20 +377,32 @@ function afterBuildAndDeploy() {
 }
 
 #本地发布模式
-function deployLocalhost() {
+function deployLocalhostGithub() {
     beforeBuildAndDeploy
-    deployPureLocalhost
-    deployNormalLocalhost
+    deployPureLocalhostGithub
+    deployNormalLocalhostGithub
+    afterBuildAndDeploy
+}
+function deployLocalhostGitee() {
+    beforeBuildAndDeploy
+    deployPureLocalhostGitee
+    deployNormalLocalhostGitee
     afterBuildAndDeploy
 }
 
 #持续集成发布模式
-function deployCI() {
+function deployCIGithub() {
     updateNodeVersionWhenCI
     executeInitScript
     beforeBuildAndDeploy
-    deployPureCI $1 $2
-    deployNormalCI $1 $2
+    deployPureCIGithub $1
+    deployNormalCIGithub $1
+    afterBuildAndDeploy
+}
+function deployCIGitee() {
+    beforeBuildAndDeploy
+    deployPureCIGitee $2
+    deployNormalCIGithub $2
     afterBuildAndDeploy
 }
 
@@ -287,14 +418,16 @@ then
     if [ $AUTODEPLOY_ENABLE_STATE == "true" ]
     then
         echo "当前是持续集成发布模式"
-        deployCI $1 $2
+        deployCIGithub $1
+        deployCIGitee $2
     fi
 elif [ "$osName" == "MING" ] # MINGW, windows, git-bash
 then
     #代表本地环境
 	echo "Windows, git-bash"
 	echo "当前是本地发布模式"
-    deployLocalhost
+    deployLocalhostGithub
+    deployLocalhostGitee
 else
 	echo "unknown os"
 fi
