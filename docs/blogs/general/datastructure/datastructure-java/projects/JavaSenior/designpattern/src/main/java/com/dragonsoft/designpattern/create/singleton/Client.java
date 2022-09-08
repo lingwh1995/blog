@@ -140,7 +140,7 @@ public class Client {
 	}
 	
 	/**
-	 * 测试枚举实现单例1
+	 * 测试枚举实现单例
 	 */
 	@Test
 	public void fun7() {
