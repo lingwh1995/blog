@@ -42,7 +42,7 @@ function generateHrefValueForPure() {
         #从bootstrap.ini中获取xxx.md的enhance状态
         ENHANCE_STATE=( $( parseBootstrapIni markdown-$a enhance) )
         #如果xxx.md启用了enhance功能,则继续执行下一步
-        if [ $ENHANCE_STATE == "true" ]
+        if [ $ENHANCE_STATE == "true" ]  || [ $ENHANCE_STATE == "stable" ]
         then
             #获取xxx.md文件的名称
             MD_FILE_NAME=( $( parseBootstrapIni markdown-$a fileName) )
@@ -69,7 +69,7 @@ function generateHrefValueForNormal() {
         #从bootstrap.ini中获取xxx.md的enhance状态
         ENHANCE_STATE=( $( parseBootstrapIni markdown-$a enhance) )
         #如果xxx.md启用了enhance功能,则继续执行下一步
-        if [ $ENHANCE_STATE == "true" ]
+        if [ $ENHANCE_STATE == "true" ] || [ $ENHANCE_STATE == "stable" ]
         then
             #获取xxx.md文件的名称
             MD_FILE_NAME=( $( parseBootstrapIni markdown-$a fileName) )
