@@ -136,8 +136,8 @@ function deployNormalLocalhost() {
     echo '开始执行推送操作...........................'
     #git fetch git@github.com:lingwh1995/lingwh1995.github.io.git
     git push -f git@github.com:lingwh1995/lingwh1995.github.io.git HEAD:master
-    #git fetch git@gitee.com:lingwh1995/blog_normal.git
-    git push -f git@gitee.com:lingwh1995/blog_normal.git HEAD:master
+    #git fetch git@gitee.com:lingwh1995/normal.git
+    git push -f git@gitee.com:lingwh1995/normal.git HEAD:master
     echo '完成执行推送操作...........................'
     #回到上一次操作的目录
     cd -
@@ -169,8 +169,8 @@ function deployNormalCI() {
     echo '开始执行推送操作...........................'
     #git fetch https://lingwh1995:$1@github.com/lingwh1995/lingwh1995.github.io.git
     git push -f https://lingwh1995:$1@github.com/lingwh1995/lingwh1995.github.io.git HEAD:master
-    #git fetch https://lingwh1995:$2@gitee.com/lingwh1995/blog_normal.git
-    git push -f https://lingwh1995:$2@gitee.com/lingwh1995/blog_normal.git HEAD:master
+    #git fetch https://lingwh1995:$2@gitee.com/lingwh1995/normal.git
+    git push -f https://lingwh1995:$2@gitee.com/lingwh1995/normal.git HEAD:master
     echo '完成执行推送操作...........................'
     #回到上一次操作的目录
     cd -
@@ -204,8 +204,8 @@ function deployPureLocalhost() {
         echo '开始执行构建操作...........................'
         #git fetch git@github.com:lingwh1995/pure.git
         git push -f git@github.com:lingwh1995/pure.git HEAD:master
-        #git fetch git@gitee.com:lingwh1995/blog_pure.git
-        git push -f git@gitee.com:lingwh1995/blog_pure.git HEAD:master
+        #git fetch git@gitee.com:lingwh1995/pure.git
+        git push -f git@gitee.com:lingwh1995/pure.git HEAD:master
         echo '完成执行构建操作...........................'
         #回到上一次操作的目录
         cd -
@@ -240,8 +240,8 @@ function deployPureCI() {
         echo '开始执行推送操作...........................'
         #git fetch https://lingwh1995:$1@github.com/lingwh1995/pure.git
         git push -f https://lingwh1995:$1@github.com/lingwh1995/pure.git HEAD:master
-        #git fetch https://lingwh1995:$1@gitee.com/lingwh1995/blog_pure.git
-        git push -f https://lingwh1995:$2@gitee.com/lingwh1995/blog_pure.git HEAD:master
+        #git fetch https://lingwh1995:$1@gitee.com/lingwh1995/pure.git
+        git push -f https://lingwh1995:$2@gitee.com/lingwh1995/pure.git HEAD:master
         echo '完成执行推送操作...........................'
         #回到上一次操作的目录
         cd -
