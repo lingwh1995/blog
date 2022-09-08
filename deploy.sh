@@ -244,7 +244,9 @@ function deployPureCI() {
         echo '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
         pwd
         echo '+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++'
+        cd -
         sed -i 's/base:.*,/base:\"\/\",/g' docs/.vuepress/config.ts
+        cd docs/.vuepress/dist
         git push -f https://lingwh1995:$2@gitee.com/lingwh1995/pure.git HEAD:master
         echo '完成执行推送操作...........................'
         #回到上一次操作的目录
