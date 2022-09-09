@@ -169,7 +169,7 @@ function deployNormalCI() {
     #git fetch https://lingwh1995:$1@github.com/lingwh1995/lingwh1995.github.io.git
     git push -f https://lingwh1995:$1@github.com/lingwh1995/lingwh1995.github.io.git HEAD:master
     #git fetch https://lingwh1995:$2@gitee.com/lingwh1995/lingwh1995.git
-    git push -f https://lingwh1995:$2@gitee.com/lingwh1995/lingwh1995.git HEAD:master
+    #git push -f https://lingwh1995:$2@gitee.com/lingwh1995/lingwh1995.git HEAD:master
     echo '完成执行推送操作...........................'
     #回到上一次操作的目录
     cd -
@@ -242,7 +242,7 @@ function deployPureCI() {
         #sed -i 's/base:.*,/base:\"\/\",/g' docs/.vuepress/config.ts
         #cd docs/.vuepress/dist
         #git fetch https://lingwh1995:$2@gitee.com/lingwh1995/pure.git
-        git push -f https://lingwh1995:$2@gitee.com/lingwh1995/pure.git HEAD:master
+        #git push -f https://lingwh1995:$2@gitee.com/lingwh1995/pure.git HEAD:master
         echo '完成执行推送操作...........................'
         #回到上一次操作的目录
         cd -
