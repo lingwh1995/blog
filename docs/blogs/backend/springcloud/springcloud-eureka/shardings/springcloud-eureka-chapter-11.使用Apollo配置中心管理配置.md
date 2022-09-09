@@ -31,7 +31,7 @@ https://github.com/apolloconfig
 ```
 
 ## 11.4.搭建Apollo配置中心
-<a href="/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-2.搭建SpringCloud技术栈所需组件.html#_2-4-3-1-单环境版" target="_blank">基于独立部署的Eureka搭建Apollo配置中心-单环境版(Windows版)</a>
+<a href="/pure/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-2.搭建SpringCloud技术栈所需组件.html#_2-4-3-1-单环境版" target="_blank">基于独立部署的Eureka搭建Apollo配置中心-单环境版(Windows版)</a>
 
 ## 11.5.搭建服务消费者(Apollo)
 ### 11.5.1.章节内容简介

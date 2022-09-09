@@ -20,7 +20,7 @@ head:
 ## 19.3.使用rancher管理docker
 ### 19.3.1.搭建rancher
     在192.168.0.4上搭建rancher
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-5.搭建Rancher技术栈.html#_5-3-搭建rancher" target="_blank">搭建rancher</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-5.搭建Rancher技术栈.html#_5-3-搭建rancher" target="_blank">搭建rancher</a>
 ### 19.3.2.搭建用于测试使用rancher管理docker的微服务
 #### 19.3.2.1.模块简介
     测试持续集成微服务到docker中使用到的微服务

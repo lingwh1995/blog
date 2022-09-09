@@ -88,7 +88,7 @@ curl -fL -u software-1661635322447:bc66d997b7cf000b3932888504d1ac735fc4b530 \
 @include(@src/public/enhance/guidance/environment/windows/windows-server2016/chapter/windows-server2016-guidance-chapter2.md)
 ## 2.3.搭建Zipkin
 	安装jdk
-详细参考-> <a href="/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-1.搭建基础开发环境.html#_1-3-安装jdk" target="href">安装jdk</a>
+详细参考-> <a href="/pure/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-1.搭建基础开发环境.html#_1-3-安装jdk" target="href">安装jdk</a>
 
 	创建存放安装包的目录->进入该目录->下载zipkin->重命名->赋予运行权限
 ```
@@ -128,7 +128,7 @@ https://gitee.com/lingwh1995/apollo2.0.1.git
 ```
 ##### 2.4.2.1.2.准备数据库环境
 	在192.168.0.2上搭建Mysql数据库
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
 
 ##### 2.4.2.1.3.使用flyway脚本自动创建数据库环境
 	a.修改apollo2.0.1/scripts/flyway/flyway-configdb.properties和apollo2.0.1/scripts/flyway/flyway-portaldb.properties中数据库连接信息为192.168.0.2相关配置
@@ -210,10 +210,10 @@ https://gitee.com/lingwh1995/apollo2.0.1.git
 	注意:dev和pro环境的configService、adminService用到的数据库需要分别部署,dev和pro环境的protal可以连接到同一套数据库
 
 	在192.168.0.2上搭建Mysql数据库
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
 
 	在192.168.0.3上搭建Mysql数据库
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
 ##### 2.4.2.2.3.使用flyway脚本自动创建数据库环境
 	192.168.0.2
 	a.修改apollo2.0.1/scripts/flyway/flyway-configdb.properties和apollo2.0.1/scripts/flyway/flyway-portaldb.properties中数据库连接信息为192.168.0.2相关配置
@@ -373,7 +373,7 @@ https://gitee.com/lingwh1995/apollo2.0.1.git
 ```
 ##### 2.4.3.1.2.准备数据库环境
 	在192.168.0.2上搭建Mysql数据库
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
 ##### 2.4.3.1.3.使用flyway脚本自动创建数据库环境
 	a.修改apollo2.0.1/scripts/flyway/flyway-configdb.properties和apollo2.0.1/scripts/flyway/flyway-portaldb.properties中数据库连接信息为192.168.0.2相关配置
 	b.修改apollo2.0.1/scripts/build.bat中的数据库连接信息为192.168.0.2相关配置
@@ -536,10 +536,10 @@ https://gitee.com/lingwh1995/apollo2.0.1.git
 	注意:dev和pro环境的configService、adminService用到的数据库需要分别部署,dev和pro环境的protal可以连接到同一套数据库
 
 	在192.168.0.2上搭建Mysql数据库
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
 
 	在192.168.0.3上搭建Mysql数据库
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
 ##### 2.4.3.2.3.使用flyway脚本自动创建数据库环境
 	192.168.0.2
 	a.修改apollo2.0.1/scripts/flyway/flyway-configdb.properties和apollo2.0.1-eureka/scripts/flyway/flyway-portaldb.properties中数据库连接信息为192.168.0.2相关配置
@@ -783,7 +783,7 @@ https://gitee.com/lingwh1995/apollo2.0.1.git
 ```
 ##### 2.4.4.1.2.准备数据库环境
 	在192.168.0.2上搭建Mysql数据库
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
 ##### 2.4.4.1.3.使用flyway脚本自动创建数据库环境
 	a.修改apollo2.0.1/scripts/flyway/flyway-configdb.properties和apollo2.0.1/scripts/flyway/flyway-portaldb.properties中的数据库连接信息为192.168.0.2相关配置
 	b.在apollo2.0.1文件夹下执行如下两个命令,目的是使用flyway脚本自动创建数据库环境
@@ -870,10 +870,10 @@ https://gitee.com/lingwh1995/apollo2.0.1.git
 	注意:dev和pro环境的configService、adminService用到的数据库需要分别部署,dev和pro环境的protal可以连接到同一套数据库
 
 	在192.168.0.2上搭建Mysql数据库
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
 
 	在192.168.0.3上搭建Mysql数据库
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
 ##### 2.4.4.2.3.使用flyway脚本自动创建数据库环境
 	192.168.0.2
 	a.修改apollo2.0.1/scripts/flyway/flyway-configdb.properties和apollo2.0.1-zookeeper/scripts/flyway/flyway-portaldb.properties中数据库连接信息修改为192.168.0.2相关配置
@@ -1030,7 +1030,7 @@ https://gitee.com/lingwh1995/apollo2.0.1.git
 ```
 ##### 2.4.5.1.2.准备数据库环境
 	在192.168.0.2上搭建Mysql数据库
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
 ##### 2.4.5.1.3.使用flyway脚本自动创建数据库环境
 	a.修改apollo2.0.1/scripts/flyway/flyway-configdb.properties和apollo2.0.1/scripts/flyway/flyway-portaldb.properties中的数据库连接信息为192.168.0.2相关配置
 	b.在apollo2.0.1文件夹下执行如下两个命令,目的是使用flyway脚本自动创建数据库环境
@@ -1117,10 +1117,10 @@ https://gitee.com/lingwh1995/apollo2.0.1.git
 	注意:dev和pro环境的configService、adminService用到的数据库需要分别部署,dev和pro环境的protal可以连接到同一套数据库
 
 	在192.168.0.2上搭建Mysql数据库
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
 
 	在192.168.0.3上搭建Mysql数据库
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
 ##### 2.4.5.2.3.使用flyway脚本自动创建数据库环境
 	192.168.0.2
 	a.修改apollo2.0.1/scripts/flyway/flyway-configdb.properties和apollo2.0.1-zookeeper/scripts/flyway/flyway-portaldb.properties中数据库连接信息修改为192.168.0.2相关配置
@@ -1356,7 +1356,7 @@ maxWait = 5000
 }
 ```
 ##### 2.5.2.1.4.搭建Apollo配置中心
-<a href="/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-2.搭建SpringCloud技术栈所需组件.html#_2-4-3-1-单环境版" target="_blank">基于独立部署的Eureka搭建Apollo配置中心-单环境版(Windows版)</a>
+<a href="/pure/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-2.搭建SpringCloud技术栈所需组件.html#_2-4-3-1-单环境版" target="_blank">基于独立部署的Eureka搭建Apollo配置中心-单环境版(Windows版)</a>
 
 ##### 2.5.2.1.5.在Apollo中创建相关内容
     根据registry.conf中config{apollo}的配置,在Apollo控制台中创建如下内容

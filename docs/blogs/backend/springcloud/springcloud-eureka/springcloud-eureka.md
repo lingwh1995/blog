@@ -304,7 +304,7 @@ https://gitee.com/lingwh1995/springcloud-eureka.git
 ## 2.5.准备项目需要的数据库
 ### 2.5.1.安装mysql数据库
     在192.168.0.5上安装mysql数据库
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql(8.x版本)</a>
 
 ### 2.5.2.创建项目需要的数据库
     导入数据库脚本(application.yml中数据库配置和mysql部署机器信息保持一致)
@@ -2251,7 +2251,7 @@ https://github.com/openzipkin/zipkin
 
 ## 10.7.搭建Zipkin
     在192.168.0.5上搭建Zipkin
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-12.搭建SpringCloud技术栈所需组件.html#_12-3-搭建zipkin" target="_blank">搭建Zipkin</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-12.搭建SpringCloud技术栈所需组件.html#_12-3-搭建zipkin" target="_blank">搭建Zipkin</a>
 
 ## 10.8.测试Zipkin+Sleuth实现调用链路追踪
     启动相关服务
@@ -2304,7 +2304,7 @@ https://github.com/apolloconfig
 ```
 
 ## 11.4.搭建Apollo配置中心
-<a href="/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-2.搭建SpringCloud技术栈所需组件.html#_2-4-3-1-单环境版" target="_blank">基于独立部署的Eureka搭建Apollo配置中心-单环境版(Windows版)</a>
+<a href="/pure/blogs/environment/windows/windows-server2016/shardings/windows-server2016-chapter-2.搭建SpringCloud技术栈所需组件.html#_2-4-3-1-单环境版" target="_blank">基于独立部署的Eureka搭建Apollo配置中心-单环境版(Windows版)</a>
 
 ## 11.5.搭建服务消费者(Apollo)
 ### 11.5.1.章节内容简介
@@ -2530,7 +2530,7 @@ https://seata.io/zh-cn/
 
 ## 12.4.搭建Seata Server
     在localhost上搭建Seata Server
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-12.搭建SpringCloud技术栈所需组件.html#_12-3-搭建zipkin" target="_blank">搭建Seate-Server(Windows版)</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-12.搭建SpringCloud技术栈所需组件.html#_12-3-搭建zipkin" target="_blank">搭建Seate-Server(Windows版)</a>
 ## 12.5.准备数据库环境
     导入数据库脚本(application.yml中数据库配置和mysql部署机器信息保持一致)
 ```sql
@@ -2935,7 +2935,7 @@ https://github.com/elastic/kibana
 ```
 ## 14.6.搭建ELK
     在192.168.0.5上搭建ELK
-详细参考-> <a href="/blogs/environment/centos/centos7/centos7.html#_4-9-3-安装elk" target="_blank">Docker中安装ELK</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/centos7.html#_4-9-3-安装elk" target="_blank">Docker中安装ELK</a>
 ## 14.7.测试适用于生产环境的日志系统简介
 ### 14.7.1.启动相关服务
 ```mermaid
@@ -3161,7 +3161,7 @@ flowchart LR
 ```
 ### 16.3.2.搭建Docker
     在192.168.0.4上搭建docker
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-3-1-在线安装docker" target="_blank">搭建docker</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-3-1-在线安装docker" target="_blank">搭建docker</a>
     开启192.168.0.4上的docker的2375端口(为使用docker的maven插件做准备)
 ```
 vim /lib/systemd/system/docker.service
@@ -3179,7 +3179,7 @@ systemctl restart docker
 ```
 ### 16.3.3.搭建Harbor
     在192.168.0.5上搭建harbor
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-6-3-搭建harbor私服" target="_blank">搭建Harbor</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-6-3-搭建harbor私服" target="_blank">搭建Harbor</a>
     配置192.168.0.4上的Docker信任192.168.0.5上的harbor私服
 ```
 vim /etc/docker/daemon.json
@@ -3197,7 +3197,7 @@ systemctl restart docker
 ```
 ### 16.3.4.搭建Jenkins
     在192.168.0.5上搭建Jenkins
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-使用本地内网穿透搭建持续集成环境" target="_blank">搭建Jenkins</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-使用本地内网穿透搭建持续集成环境" target="_blank">搭建Jenkins</a>
 
     在Jenkins中安装配置Publish Over SSH插件(需要先安装该插件)
 	配置Jenkins所在服务器到docker所在服务器的免密登录
@@ -3476,10 +3476,10 @@ http://192.168.0.4/ci/docker
     在前面的环节中,访问项目主页,点击构建按钮后才能触发持续集成,使用webhook可以更方便的触发持续集成,配置好webhook时,当提交代码时就会触发持续集成
 #### 16.3.9.2.使用webhook前准备工作
     jenkins安装Gitee插件
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-7-安装配置jenkins用到的插件" target="_blank">jenkins安装Gitee插件</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-7-安装配置jenkins用到的插件" target="_blank">jenkins安装Gitee插件</a>
 
     搭建内网穿透
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-8-搭建内网穿透" target="_blank">搭建内网穿透</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-8-搭建内网穿透" target="_blank">搭建内网穿透</a>
     搭建好了内网穿透后,可以使用新的地址来访问jenkins
     不使用内网穿透访问jenkins的地址是
 ```
@@ -3563,7 +3563,7 @@ flowchart LR
 ```
 ### 16.4.2.搭建Docker
         在192.168.0.4上搭建docker
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-3-1-在线安装docker" target="_blank">搭建docker</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-3-1-在线安装docker" target="_blank">搭建docker</a>
 
     开启minikube部署机器(192.168.0.4)上的docker2375端口(为使用docker的maven插件做准备)
 ```
@@ -3582,7 +3582,7 @@ systemctl restart docker
 ```
 ### 16.4.3.搭建Harbor
     在192.168.0.5上搭建Harbor
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-6-3-搭建harbor私服" target="_blank">搭建harbor</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-6-3-搭建harbor私服" target="_blank">搭建harbor</a>
     配置192.168.0.4上的docker信任192.168.0.5上的harbor私服
 ```
 vim /etc/docker/daemon.json
@@ -3600,7 +3600,7 @@ systemctl restart docker
 ```
 ### 16.4.4.搭建Jenkins
     在192.168.0.5上搭建Jenkins
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-使用本地内网穿透搭建持续集成环境" target="_blank">搭建Jenkins</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-使用本地内网穿透搭建持续集成环境" target="_blank">搭建Jenkins</a>
 
     在Jenkins中安装配置Publish Over SSH插件(需要先安装该插件)
 	配置Jenkins所在服务器到docker所在服务器的免密登录
@@ -3635,13 +3635,13 @@ systemctl restart docker
 
 ### 16.4.5.搭建Minikube或K8s
     在192.168.0.4上搭建minikube
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-6.搭建Minikube.html#_6-搭建minikube" target="_blank">搭建minikube</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-6.搭建Minikube.html#_6-搭建minikube" target="_blank">搭建minikube</a>
 
     这里使用minikube作为k8s的演示环境,如要搭建适用于生产环境的k8s环境,请参考
     kubeadm搭建kubernetes
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-7.kubeadm搭建Kubernetes.html" target="_blank">minikube</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-7.kubeadm搭建Kubernetes.html" target="_blank">minikube</a>
     二进制包搭建kubernetes
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-8.二进制包搭建Kubernetes.html" target="_blank">minikube</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-8.二进制包搭建Kubernetes.html" target="_blank">minikube</a>
 
 ### 16.4.6.配置Minikube或Kubernetes
 #### 16.4.6.1.配置minikube
@@ -4084,10 +4084,10 @@ http://192.168.0.4:9080/ci/k8s
     在前面的环节中,访问项目主页,点击构建按钮后才能触发持续集成,使用webhook可以更方便的触发持续集成,配置好webhook时,当提交代码时就会触发持续集成
 #### 16.4.10.2.使用webhook前准备工作
     jenkins安装Gitee插件
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-7-安装配置jenkins用到的插件" target="_blank">jenkins安装Gitee插件</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-7-安装配置jenkins用到的插件" target="_blank">jenkins安装Gitee插件</a>
 
     搭建内网穿透
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-8-搭建内网穿透" target="_blank">搭建内网穿透</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-8-搭建内网穿透" target="_blank">搭建内网穿透</a>
     搭建好了内网穿透后,可以使用新的地址来访问jenkins
     不使用内网穿透访问jenkins的地址是
 ```
@@ -4255,9 +4255,9 @@ http://192.168.0.4:9080/ci/k8s
 ## 17.13.搭建Zipkin和ELK
     为了更完善的展示添加多环境后支持后,日志系统会针对不同的环境生成对应的日志,完整的日志系统需要Zipkin和ELK的支持,所以先搭建好Zipkin和ELK
     在192.168.0.5上搭建Zipkin
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-12.搭建SpringCloud技术栈所需组件.html#_12-3-搭建zipkin" target="_blank">搭建Zipkin</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-12.搭建SpringCloud技术栈所需组件.html#_12-3-搭建zipkin" target="_blank">搭建Zipkin</a>
     在192.168.0.5上搭建ELK
-详细参考-> <a href="/blogs/environment/centos/centos7/centos7.html#_4-9-3-安装elk" target="_blank">Docker中安装ELK</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/centos7.html#_4-9-3-安装elk" target="_blank">Docker中安装ELK</a>
 ## 17.14.测试让微服务区分多种不同环境
 ### 17.14.1.测试多环境运行
     dev环境
@@ -4405,7 +4405,7 @@ ls -R log
 # 18.使用mycat提升数据库吞吐能力 {#18.}
 @include(@src/public/enhance/guidance/backend/springcloud/springcloud-eureka/chapter/springcloud-eureka-guidance-chapter18.md)
 ## 18.3.搭建mycat+mysql
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-10.搭建Mycat技术栈.html#_10-3-安装myact1-6" target="_blank">搭建mycat+mysql</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-10.搭建Mycat技术栈.html#_10-3-安装myact1-6" target="_blank">搭建mycat+mysql</a>
 ## 18.4.配置mycat
     autopartition-long.txt
 ```
@@ -4712,7 +4712,7 @@ ls -R log
 ## 19.3.使用rancher管理docker
 ### 19.3.1.搭建rancher
     在192.168.0.4上搭建rancher
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-5.搭建Rancher技术栈.html#_5-3-搭建rancher" target="_blank">搭建rancher</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-5.搭建Rancher技术栈.html#_5-3-搭建rancher" target="_blank">搭建rancher</a>
 ### 19.3.2.搭建用于测试使用rancher管理docker的微服务
 #### 19.3.2.1.模块简介
     测试持续集成微服务到docker中使用到的微服务
@@ -5766,5 +5766,5 @@ ls -R log
     查询出来的都是输出的文件的日志,输出日志到文件时和输出日志到控制台是一样的,不同的环境输出的日志格式不一定相同,具体要看logback-custom.xml中针对具体的环境设置的格式
 #### 20.10.3.2.测试推送日志到ELK中
     在192.168.0.5上搭建ELK
-详细参考-> <a href="/blogs/environment/centos/centos7/centos7.html#_4-9-3-安装elk" target="_blank">docker中安装ELK</a> 
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/centos7.html#_4-9-3-安装elk" target="_blank">docker中安装ELK</a> 
 <HideSideBar/>

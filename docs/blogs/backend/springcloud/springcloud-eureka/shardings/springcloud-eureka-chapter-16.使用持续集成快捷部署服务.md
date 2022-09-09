@@ -32,7 +32,7 @@ flowchart LR
 ```
 ### 16.3.2.搭建Docker
     在192.168.0.4上搭建docker
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-3-1-在线安装docker" target="_blank">搭建docker</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-3-1-在线安装docker" target="_blank">搭建docker</a>
     开启192.168.0.4上的docker的2375端口(为使用docker的maven插件做准备)
 ```
 vim /lib/systemd/system/docker.service
@@ -50,7 +50,7 @@ systemctl restart docker
 ```
 ### 16.3.3.搭建Harbor
     在192.168.0.5上搭建harbor
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-6-3-搭建harbor私服" target="_blank">搭建Harbor</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-6-3-搭建harbor私服" target="_blank">搭建Harbor</a>
     配置192.168.0.4上的Docker信任192.168.0.5上的harbor私服
 ```
 vim /etc/docker/daemon.json
@@ -68,7 +68,7 @@ systemctl restart docker
 ```
 ### 16.3.4.搭建Jenkins
     在192.168.0.5上搭建Jenkins
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-使用本地内网穿透搭建持续集成环境" target="_blank">搭建Jenkins</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-使用本地内网穿透搭建持续集成环境" target="_blank">搭建Jenkins</a>
 
     在Jenkins中安装配置Publish Over SSH插件(需要先安装该插件)
 	配置Jenkins所在服务器到docker所在服务器的免密登录
@@ -347,10 +347,10 @@ http://192.168.0.4/ci/docker
     在前面的环节中,访问项目主页,点击构建按钮后才能触发持续集成,使用webhook可以更方便的触发持续集成,配置好webhook时,当提交代码时就会触发持续集成
 #### 16.3.9.2.使用webhook前准备工作
     jenkins安装Gitee插件
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-7-安装配置jenkins用到的插件" target="_blank">jenkins安装Gitee插件</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-7-安装配置jenkins用到的插件" target="_blank">jenkins安装Gitee插件</a>
 
     搭建内网穿透
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-8-搭建内网穿透" target="_blank">搭建内网穿透</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-8-搭建内网穿透" target="_blank">搭建内网穿透</a>
     搭建好了内网穿透后,可以使用新的地址来访问jenkins
     不使用内网穿透访问jenkins的地址是
 ```
@@ -434,7 +434,7 @@ flowchart LR
 ```
 ### 16.4.2.搭建Docker
         在192.168.0.4上搭建docker
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-3-1-在线安装docker" target="_blank">搭建docker</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-3-1-在线安装docker" target="_blank">搭建docker</a>
 
     开启minikube部署机器(192.168.0.4)上的docker2375端口(为使用docker的maven插件做准备)
 ```
@@ -453,7 +453,7 @@ systemctl restart docker
 ```
 ### 16.4.3.搭建Harbor
     在192.168.0.5上搭建Harbor
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-6-3-搭建harbor私服" target="_blank">搭建harbor</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-4.搭建docker技术栈.html#_4-6-3-搭建harbor私服" target="_blank">搭建harbor</a>
     配置192.168.0.4上的docker信任192.168.0.5上的harbor私服
 ```
 vim /etc/docker/daemon.json
@@ -471,7 +471,7 @@ systemctl restart docker
 ```
 ### 16.4.4.搭建Jenkins
     在192.168.0.5上搭建Jenkins
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-使用本地内网穿透搭建持续集成环境" target="_blank">搭建Jenkins</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-使用本地内网穿透搭建持续集成环境" target="_blank">搭建Jenkins</a>
 
     在Jenkins中安装配置Publish Over SSH插件(需要先安装该插件)
 	配置Jenkins所在服务器到docker所在服务器的免密登录
@@ -506,13 +506,13 @@ systemctl restart docker
 
 ### 16.4.5.搭建Minikube或K8s
     在192.168.0.4上搭建minikube
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-6.搭建Minikube.html#_6-搭建minikube" target="_blank">搭建minikube</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-6.搭建Minikube.html#_6-搭建minikube" target="_blank">搭建minikube</a>
 
     这里使用minikube作为k8s的演示环境,如要搭建适用于生产环境的k8s环境,请参考
     kubeadm搭建kubernetes
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-7.kubeadm搭建Kubernetes.html" target="_blank">minikube</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-7.kubeadm搭建Kubernetes.html" target="_blank">minikube</a>
     二进制包搭建kubernetes
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-8.二进制包搭建Kubernetes.html" target="_blank">minikube</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-8.二进制包搭建Kubernetes.html" target="_blank">minikube</a>
 
 ### 16.4.6.配置Minikube或Kubernetes
 #### 16.4.6.1.配置minikube
@@ -955,10 +955,10 @@ http://192.168.0.4:9080/ci/k8s
     在前面的环节中,访问项目主页,点击构建按钮后才能触发持续集成,使用webhook可以更方便的触发持续集成,配置好webhook时,当提交代码时就会触发持续集成
 #### 16.4.10.2.使用webhook前准备工作
     jenkins安装Gitee插件
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-7-安装配置jenkins用到的插件" target="_blank">jenkins安装Gitee插件</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-7-安装配置jenkins用到的插件" target="_blank">jenkins安装Gitee插件</a>
 
     搭建内网穿透
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-8-搭建内网穿透" target="_blank">搭建内网穿透</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-9.搭建持续集成环境.html#_9-3-8-搭建内网穿透" target="_blank">搭建内网穿透</a>
     搭建好了内网穿透后,可以使用新的地址来访问jenkins
     不使用内网穿透访问jenkins的地址是
 ```

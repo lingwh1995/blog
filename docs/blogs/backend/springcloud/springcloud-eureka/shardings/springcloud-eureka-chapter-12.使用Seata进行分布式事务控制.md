@@ -27,7 +27,7 @@ https://seata.io/zh-cn/
 
 ## 12.4.搭建Seata Server
     在localhost上搭建Seata Server
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-12.搭建SpringCloud技术栈所需组件.html#_12-3-搭建zipkin" target="_blank">搭建Seate-Server(Windows版)</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-12.搭建SpringCloud技术栈所需组件.html#_12-3-搭建zipkin" target="_blank">搭建Seate-Server(Windows版)</a>
 ## 12.5.准备数据库环境
     导入数据库脚本(application.yml中数据库配置和mysql部署机器信息保持一致)
 ```sql

@@ -680,7 +680,7 @@ apt-get install vim
 
 ### 4.9.3.安装elk
 	同步时间
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-2.Linux操作系统初始设置.html#_2-7-同步时间" target="_blank">同步时间</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-2.Linux操作系统初始设置.html#_2-7-同步时间" target="_blank">同步时间</a>
 
 	下载elk镜像
 ```

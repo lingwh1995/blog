@@ -743,7 +743,7 @@ ls -R log
     查询出来的都是输出的文件的日志,输出日志到文件时和输出日志到控制台是一样的,不同的环境输出的日志格式不一定相同,具体要看logback-custom.xml中针对具体的环境设置的格式
 #### 20.10.3.2.测试推送日志到ELK中
     在192.168.0.5上搭建ELK
-详细参考-> <a href="/blogs/environment/centos/centos7/centos7.html#_4-9-3-安装elk" target="_blank">docker中安装ELK</a> 
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/centos7.html#_4-9-3-安装elk" target="_blank">docker中安装ELK</a> 
 <HideSideBar/>
 
 <ScrollIntoPageView/>

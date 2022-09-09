@@ -93,7 +93,7 @@ https://github.com/elastic/kibana
 ```
 ## 14.6.搭建ELK
     在192.168.0.5上搭建ELK
-详细参考-> <a href="/blogs/environment/centos/centos7/centos7.html#_4-9-3-安装elk" target="_blank">Docker中安装ELK</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/centos7.html#_4-9-3-安装elk" target="_blank">Docker中安装ELK</a>
 ## 14.7.测试适用于生产环境的日志系统简介
 ### 14.7.1.启动相关服务
 ```mermaid

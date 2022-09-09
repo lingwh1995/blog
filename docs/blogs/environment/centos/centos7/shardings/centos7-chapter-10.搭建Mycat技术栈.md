@@ -25,7 +25,7 @@ head:
 	192.168.0.8 mysql
 
 ### 10.3.2.搭建JDK
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk(Centos7)</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk(Centos7)</a>
 
 ### 10.3.3.搭建myact1.6
 <a href="http://www.mycat.org.cn/" target="_blank">官方网址</a>
@@ -58,10 +58,10 @@ cp mysql-connector-java-8.0.29.jar /usr/local/bin/mycat/lib/
 
 ### 10.3.4.在各个节点上安装mysql
 	在节点1安装mysql8.0.29(192.168.0.7)
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8(Centos7)</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8(Centos7)</a>
 
 	在节点2安装mysql8.0.29(192.168.0.8)
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8(Centos7)</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8(Centos7)</a>
 
 ### 10.3.5.配置mycat
 	notepad++安装插件
@@ -108,7 +108,7 @@ bin/mycat console #前台启动
 	192.168.0.8 mysql
 
 ### 10.4.2.搭建JDK
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk(Centos7)</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-3-安装jdk" target="_blank">安装jdk(Centos7)</a>
 
 ### 10.4.3.安装mycat2自身运行需要的mysql8(192.168.0.6)
 	创建用户mycat（注意：不能使用root用户，必须创建mycat这个用户）
@@ -181,10 +181,10 @@ vim prototypeDs.datasource.json
 
 ### 10.4.4.在各个节点上安装mysql
 	在节点1安装mysql8.0.29(192.168.0.7)
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8(Centos7)</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8(Centos7)</a>
 
 	在节点2安装mysql8.0.29(192.168.0.8)
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8(Centos7)</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-3.搭建基础开发环境.html#_3-5-安装mysql" target="_blank">安装mysql8(Centos7)</a>
 
 ### 10.4.5.配置mycat
 	notepad++安装插件

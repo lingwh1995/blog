@@ -157,7 +157,7 @@ https://github.com/openzipkin/zipkin
 
 ## 10.7.搭建Zipkin
     在192.168.0.5上搭建Zipkin
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-12.搭建SpringCloud技术栈所需组件.html#_12-3-搭建zipkin" target="_blank">搭建Zipkin</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-12.搭建SpringCloud技术栈所需组件.html#_12-3-搭建zipkin" target="_blank">搭建Zipkin</a>
 
 ## 10.8.测试Zipkin+Sleuth实现调用链路追踪
     启动相关服务

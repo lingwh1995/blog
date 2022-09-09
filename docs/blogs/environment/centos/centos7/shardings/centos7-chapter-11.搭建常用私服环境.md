@@ -20,7 +20,7 @@ head:
 ## 11.3.搭建yum私服
 ## 11.3.1.安装httpd
 	配置阿里云源
-详细参考-> <a href="/blogs/environment/centos/centos7/shardings/centos7-chapter-2.Linux操作系统初始设置.html#_2-7-配置yml源" target="_blank">配置yml源</a>
+详细参考-> <a href="/pure/blogs/environment/centos/centos7/shardings/centos7-chapter-2.Linux操作系统初始设置.html#_2-7-配置yml源" target="_blank">配置yml源</a>
 
 	安装nginx或apache，此处以apache为例
 ```
