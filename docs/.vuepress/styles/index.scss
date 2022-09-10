@@ -137,6 +137,21 @@ p, ul, ol {
     h5 {
         font-size: 1.0rem;
     }
+    .theme-hope-content p {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        background: #F5F5FA;
+        overflow: auto;
+        margin: 0 0;
+        border-radius: 6px;
+        padding: 1rem;
+        color: #59595B;
+        font-size: 0.85rem;
+        line-height: 1.4rem;
+    }
+    .theme-hope-content p a {
+        font-size: 0.85rem;
+    }
 }
 
 /*平板*/
@@ -202,6 +217,21 @@ p, ul, ol {
     /**设置移动端隐藏按照章节查看中二级包括二级以上的侧边栏*/
     .theme-container .sidebar-links .sidebar-sub-headers {
         display: none;
+    }
+    .theme-hope-content p {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        background: #F5F5FA;
+        overflow: auto;
+        margin: 0 0;
+        border-radius: 6px;
+        padding: 1rem;
+        color: #59595B;
+        font-size: 1.2rem;
+        line-height: 1.4rem;
+    }
+    .theme-hope-content p a {
+        font-size: 1.2rem;
     }
 }
 
@@ -269,6 +299,21 @@ p, ul, ol {
     .sidebar .sidebar-links .sidebar-sub-headers {
         display: none;
     }
+    .theme-hope-content p {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        background: #F5F5FA;
+        overflow: auto;
+        margin: 0 0;
+        border-radius: 6px;
+        padding: 1rem;
+        color: #59595B;
+        font-size: 1.2rem;
+        line-height: 1.4rem;
+    }
+    .theme-hope-content p a {
+        font-size: 1.2rem;
+    }
 }
 
 /*PC分辨率 1440+ */
@@ -332,6 +377,21 @@ p, ul, ol {
         font-size: 1.4rem;
         font-weight: 500;
     }
+    .theme-hope-content p {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        background: #F5F5FA;
+        overflow: auto;
+        margin: 0 0;
+        border-radius: 6px;
+        padding: 1rem;
+        color: #59595B;
+        font-size: 1.2rem;
+        line-height: 1.4rem;
+    }
+    .theme-hope-content p a {
+        font-size: 1.2rem;
+    }
 }
 
 /*按钮背景色*/
@@ -359,24 +419,9 @@ p, ul, ol {
 .theme-hope-content ul{
     background: #F5F5FA;
 }
-.theme-hope-content pre, .theme-hope-content pre[class*=language-] {
+.theme-hope-content pre, .theme-hope-content pre[class*=language-]{
     margin: 0;
     max-height: 50rem;
-}
-.theme-hope-content p {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    background: #F5F5FA;
-    overflow: auto;
-    margin: 0 0;
-    border-radius: 6px;
-    padding: 1rem;
-    color: #59595B;
-    font-size: 1.2rem;
-    line-height: 1.4rem;
-}
-.theme-hope-content p a {
-    font-size: 1.2rem;
 }
 /*
 .theme-hope-content pre[class*=language-] {
@@ -391,6 +436,14 @@ p, ul, ol {
     margin: 0 0;
     border-radius: 6px;
 }
+.theme-hope-content div[class*=language-] {
+    position: relative;
+    border-radius: 6px;
+    background: var(--code-bg-color);
+    transition: background-color var(--color-transition);
+    margin: 1rem 0;
+}
+
 .imgbg-customer {
     background-color: #E3EAF2;
     line-height: 100%;
