@@ -1395,6 +1395,8 @@ classDiagram
 ```
 ### 6.8.2.使用工厂模式
 #### 6.8.2.1.类图
+111
+<img src="
 ```mermaid
 classDiagram
     Client ..> Pizza
@@ -1485,6 +1487,7 @@ classDiagram
     <<abstract>> Pizza
     <<abstract>> PizzaStoreFactory
 ```
+"/>
 #### 6.8.2.2.代码
     Pizza.java
 ```java
