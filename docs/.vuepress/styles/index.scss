@@ -370,7 +370,8 @@ p, ul, ol {
     }
     /**主要内容*/
     .theme-container .page {
-        padding-left: $sidebar-width-min1440;
+        // padding-left: $sidebar-width-min1440;
+        padding-left: 18%;
     }
     /*博客正文字体*/
     .theme-hope-content {
@@ -455,7 +456,7 @@ p, ul, ol {
     border-radius: 6px;
 }
 .md-enhance-mermaid .content svg {
-    max-width: 100% !important;
+    // max-width: 150% !important;
     height: 100% !important;
     padding: 2rem 0;
     border-radius: 6px;
