@@ -16,7 +16,6 @@ export default {
     };
   },
   mounted: function(){
-    console.log('XX')
     this.$nextTick(()=>{
       const currentSidebarText = document.querySelector('.page-title h1').innerText
       const sidebarLinks = document.querySelector('.sidebar-links')
