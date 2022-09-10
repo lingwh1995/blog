@@ -4,10 +4,12 @@
      18.1.章节内容概述
      18.2.章节内容大纲
      18.3.简介
-     18.4.模型
-     18.5.示例
-     18.6.经典应用场景
-     18.7.在开源框架中的应用场景
+     18.4.应用场景
+     18.5.优缺点
+     18.6.角色及其职责
+     18.7.模型
+     18.8.示例
+     18.9.在开源框架中的应用
 	具体每个小节中包含的内容可使通过下面的章节内容大纲进行查看。
 
 ## <a href="/enhance/markmap/general/designpattern/designpattern-java/chapter/designpattern-java-outline5-chapter18.html" target="_blank">18.2.章节内容大纲</a>

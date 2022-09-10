@@ -2,16 +2,19 @@ package com.dragonsoft.designpattern.create.factory.simplefactory.model;
 
 import org.junit.Test;
 
+/**
+ * Client(客户端)
+ */
 public class Client {
 
     @Test
-    public void simpleFactoryTest() {
-        SimpleFactory simpleFactory = new SimpleFactory();
-        Product productA = simpleFactory.factoryMethod("productA");
+    public void fun() {
+        Factory factory = new Factory();
+        Product productA = factory.factoryMethod("productA");
         System.out.println(productA);
-        Product productB = simpleFactory.factoryMethod("productB");
+        Product productB = factory.factoryMethod("productB");
         System.out.println(productB);
-        Product productC = simpleFactory.factoryMethod("productC");
+        Product productC = factory.factoryMethod("productC");
         System.out.println(productC);
     }
 }

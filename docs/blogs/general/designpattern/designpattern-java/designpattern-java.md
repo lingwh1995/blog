@@ -267,12 +267,12 @@ classDiagram
 ```java
 @include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/generalization/PersonServiceBean.java)
 ```
-## 2.6.实现关系
-### 2.6.1.实现关系概述
+## 2.8.实现关系
+### 2.8.1.实现关系概述
     实现关系(Realization),比如某个类实现了一个接口。它也是依赖关系的特例。
-### 2.6.2.UML箭头及指向
+### 2.8.2.UML箭头及指向
     带三角箭头的虚线,箭头指向接口
-### 2.6.3.实现关系类图
+### 2.8.3.实现关系类图
 ```mermaid
 classDiagram
     PersonService <|.. PersonServiceBean
@@ -283,7 +283,7 @@ classDiagram
         +delete(Integer id) void
     }
 ```
-### 2.6.4.实现关系代码
+### 2.8.4.实现关系代码
     PersonService.java
 ```java
 @include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/realization/PersonService.java)
@@ -292,7 +292,7 @@ classDiagram
 ```java
 @include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/basic/classrelation/realization/PersonServiceBean.java)
 ```
-## 2.7.六种关系耦合度强弱
+## 2.9.六种关系耦合度强弱
     泛化 = 实现 > 组合 > 聚合 > 关联 > 依赖
 
 # 3.设计模式七大原则 {#3.}
@@ -420,6 +420,7 @@ classDiagram
     b.一个软件实体,函数模块应该对扩展开放(对提供功能的一方而言),对修改关闭(对调用方/使用功能的一方而言,注意:不是对于客户端开放,客户端调用方法的使用方)。换而言之,当当增加一个新的类或者方法后,原先正在使用的代码不会收到丝毫影响,概括的说:对扩展开放,对修改关闭,即用抽象构建框架,用实现扩展细节
     c.当软件需要变化时,尽量通过扩展软件的实体行为来实现变化,而不是通过修改已有的代码去实现,简单的说,就是通过扩展而不是通过修改已有代码
     d.使用设计模式就是为了使代码更遵守开闭原则,是最重要的原则,其他的设计模式都是为了达到开闭原则的效果
+    e.遵循OPC原则设计出来的系统意味着具有相当的稳定性,至少在增加新功能的时候不会影响旧的功能,因为新的功能是通过扩展原来功能,而不是修改原来的功能,在代码层面的体现是新增一个功能不会动原来的代码,而是把新的功能写在新的类中
 ### 3.7.2.开闭原则代码
 #### 3.7.2.1.不使用开闭原则代码
 ```java
@@ -500,8 +501,32 @@ classDiagram
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter4.md)
 ## 4.3.简介
     单例模式(Singleton Pattern)是一种创建型设计模式,又名单件模式或单态模式,目的是为了保证一个类只有一个实例对象,并提供一个获取该实例对象的全局方法,通过这个全局方法创建的所有实例对象都是同一个实例对象,这个类称为单例类。单例模式的要点有三个:一是某个类只能有一个实例对象;二是这个类必须自行创建这个实例对象;三是这个类必须自行向整个系统提供这个实例。
-## 4.4.模型
-### 4.4.1.模型类图
+## 4.4.应用场景
+    单例模式应用的场景一般发现在以下条件下
+    资源共享的情况下: 避免由于资源操作时导致的性能或损耗等
+    控制资源的情况下: 方便资源之间的互相通信
+
+    具体应用场景
+    a.Windows的Task Manager(任务管理器),在一个Windows系统中只有一个Task Manager实例
+    b.Windows的Recycle Bin(回收站),在一个Windows系统中只有一个Recycle Bin实例
+    c.网站的计数器,一般也是采用单例模式实现,否则难以同步
+    d.应用程序的日志应用,一般都何用单例模式实现,这一般是由于共享的日志文件一直处于打开状态,因为只能有一个实例去操作,否则无法实现内容追加
+    e.数据库连接池的设计一般也是采用单例模式,因为数据库连接是一种数据库资源。数据库软件系统中使用数据库连接池,主要是节省打开或者关闭数据库连接所引起的效率损耗,这种效率上的损耗还是非常昂贵的,因为何用单例模式来维护,就可以大大降低这种损耗
+    f.多线程的线程池的设计一般也是采用单例模式,这是由于线程池要方便对池中的线程进行控制
+    g.操作系统的文件系统,也是大的单例模式实现的具体例子,一个操作系统只能有一个文件系统
+## 4.5.优缺点
+### 4.5.1.优点
+    a.由于单例模式在内存中只有一个实例,减少内存开支,特别是一个对象需要频繁地创建销毁时,而且创建或销毁时性能又无法优化,单例模式就非常明显了
+    b.由于单例模式只生成一个实例,所以,减少系统的性能开销,当一个对象产生需要比较多的资源时,如读取配置,产生其他依赖对象时,则可以通过在应用启动时直接产生一个单例对象,然后永久驻留内存的方式来解决
+    c.单例模式可以避免对资源的多重占用,例如一个写文件操作,由于只有一个实例存在内存中,避免对同一个资源文件的同时写操作
+    d.单例模式可以在系统设置全局的访问点,优化和共享资源访问,例如，可以设计一个单例类,负责所有数据表的映射处理
+### 4.5.2.缺点
+    a.单例模式没有抽象层,扩展很困难,若要扩展,除了修改代码基本上没有第二种途径可以实现,违反了OCP原则
+    b.单例类的职责过重,在一定程度上违背了"单一职责原则"
+    c.滥用单例将带来一些负面问题,如:为了节省资源将数据库连接池对象设计为的单例类,可能会导致共享连接池对象的程序过多而出现连接池溢出
+## 4.6.角色及其职责
+## 4.7.模型
+### 4.7.1.模型类图
 ```mermaid
 classDiagram
     Client ..> SingletonObject
@@ -512,26 +537,26 @@ classDiagram
         +operate() void
     }
 ```
-### 4.4.2.模型代码
+### 4.7.2.模型代码
 ```java
 @include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/singleton/model/SingletonObject.java)
 ```
-## 4.5.示例
-### 4.5.1.饿汉式单例
-### 4.5.1.1.饿汉式单例类图
+## 4.8.示例
+### 4.8.1.饿汉式单例
+### 4.8.1.1.饿汉式单例类图
 ```mermaid
 classDiagram
     Client ..> SingletonA
     class SingletonA {
-        -SingletonA SINGLETONA
+        -SingletonA SINGLETONA$
         -SingletonA()
-        +getInstance() SingletonA
+        +getInstance()$ SingletonA
     }
     class Client {
         +fun() void
     }
 ```
-### 4.5.1.2.饿汉式单例代码
+### 4.8.1.2.饿汉式单例代码
     SingletonA.java
 ```java
 @include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/singleton/SingletonA.java)
@@ -556,22 +581,22 @@ public class Client {
 	}
 }
 ```
-### 4.5.2.懒汉式单例
-### 4.5.2.1.饿汉式单例类图
+### 4.8.2.懒汉式单例
+### 4.8.2.1.饿汉式单例类图
 ```mermaid
 classDiagram
     Client ..> SingletonB
     class SingletonB {
-        -SingletonB SINGLETONA
+        -SingletonB SINGLETONA$
         -SingletonB()
-        +getInstance() SingletonB
+        +getInstance()$ SingletonB
     }
     class Client {
         +fun1() void
         +fun2() void
     }
 ```
-### 4.5.2.2.饿汉式单例代码
+### 4.8.2.2.饿汉式单例代码
     SingletonB.java
 ```java
 @include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/singleton/SingletonB.java)
@@ -622,21 +647,21 @@ public class Client {
 	}
 }
 ```
-### 4.5.3.线程安全的懒汉式单例
-### 4.5.3.1.线程安全的懒汉式类图
+### 4.8.3.线程安全的懒汉式单例
+### 4.8.3.1.线程安全的懒汉式类图
 ```mermaid
 classDiagram
     Client ..> SingletonC
     class SingletonC {
-        -SingletonC SINGLETONA
+        -SingletonC SINGLETONA$
         -SingletonC()
-        +getInstance() SingletonC
+        +getInstance()$ SingletonC
     }
     class Client {
         +fun() void
     }
 ```
-### 4.5.3.2.线程安全的懒汉式代码
+### 4.8.3.2.线程安全的懒汉式代码
     SingletonC.java
 ```java
 @include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/singleton/SingletonC.java)
@@ -676,21 +701,21 @@ public class Client {
 	}
 }
 ```
-### 4.5.4.双重检索懒汉式懒汉式单例
-### 4.5.4.1.双重检索懒汉式单例类图
+### 4.8.4.双重检索懒汉式懒汉式单例
+### 4.8.4.1.双重检索懒汉式单例类图
 ```mermaid
 classDiagram
     Client ..> SingletonD
     class SingletonD {
-        -SingletonD SINGLETONA
+        -SingletonD SINGLETONA$
         -SingletonD()
-        +getInstance() SingletonD
+        +getInstance()$ SingletonD
     }
     class Client {
         +fun() void
     }
 ```
-### 4.5.4.2.双重检索懒汉式单例代码
+### 4.8.4.2.双重检索懒汉式单例代码
     SingletonD.java
 ```java
 @include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/singleton/SingletonD.java)
@@ -730,15 +755,15 @@ public class Client {
 	}
 }
 ```
-### 4.5.5.静态内部类懒汉式单例
-### 4.5.5.1.静态内部类懒汉式单例类图
+### 4.8.5.静态内部类懒汉式单例
+### 4.8.5.1.静态内部类懒汉式单例类图
 ```mermaid
 classDiagram
     Client ..> SingletonE
     SingletonE *-- SingletonInstacne :内部类
     class SingletonE {
         -SingletonE SINGLETONA
-        +getInstance() SingletonE
+        +getInstance()$ SingletonE
     }
     class SingletonInstacne {
         -SingletonE INSTANCE
@@ -747,7 +772,7 @@ classDiagram
         +fun() void
     }
 ```
-### 4.5.5.2.静态内部类懒汉式单例代码
+### 4.8.5.2.静态内部类懒汉式单例代码
     SingletonE.java
 ```java
 @include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/singleton/SingletonE.java)
@@ -787,8 +812,8 @@ public class Client {
 	}
 }
 ```
-### 4.5.6.枚举单例
-### 4.5.6.1.枚举单例类图
+### 4.8.6.枚举单例
+### 4.8.6.1.枚举单例类图
 ```mermaid
 classDiagram
     Client ..> SingletonF
@@ -801,7 +826,7 @@ classDiagram
     }
     <<enumeration>> SingletonF
 ```
-### 4.5.6.2.枚举单例代码
+### 4.8.6.2.枚举单例代码
     SingletonF.java
 ```java
 @include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/singleton/SingletonF.java)
@@ -829,20 +854,7 @@ public class Client {
 	}
 }
 ```
-## 4.6.经典应用场景
-    单例模式应用的场景一般发现在以下条件下
-    资源共享的情况下: 避免由于资源操作时导致的性能或损耗等
-    控制资源的情况下: 方便资源之间的互相通信
-
-    具体应用场景
-    a.Windows的Task Manager(任务管理器),在一个Windows系统中只有一个Task Manager实例
-    b.Windows的Recycle Bin(回收站),在一个Windows系统中只有一个Recycle Bin实例
-    c.网站的计数器,一般也是采用单例模式实现,否则难以同步
-    d.应用程序的日志应用,一般都何用单例模式实现,这一般是由于共享的日志文件一直处于打开状态,因为只能有一个实例去操作,否则无法实现内容追加
-    e.数据库连接池的设计一般也是采用单例模式,因为数据库连接是一种数据库资源。数据库软件系统中使用数据库连接池,主要是节省打开或者关闭数据库连接所引起的效率损耗,这种效率上的损耗还是非常昂贵的,因为何用单例模式来维护,就可以大大降低这种损耗
-    f.多线程的线程池的设计一般也是采用单例模式,这是由于线程池要方便对池中的线程进行控制
-    g.操作系统的文件系统,也是大的单例模式实现的具体例子,一个操作系统只能有一个文件系统
-## 4.7.在开源框架中的应用场景
+## 4.9.在开源框架中的应用
     JDK8#java.lang.Runtime(饿汉式)
 ```java
 public class Runtime {
@@ -868,33 +880,52 @@ public class Runtime {
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter5.md)
 ## 5.3.简介
     简单工厂模式(SimpleFactory Pattern)是一种创建型设计模式,是设计模式中最为常见的模式之一,但是不是Gof提出的23中设计模式中的一种,更像是一种编程习惯。简单工厂模式是隐藏对象的实例化过程,对外部提供一个获取对象的方法,可以根据参数获取不同类型的对象,是工厂模式家族中最简单实用的模式,可以理解为是不同工厂模式的一个特殊实现。
-## 5.4.模型
-### 5.4.1.模型类图
+## 5.4.应用场景
+    a.客户端如果只知道传入工厂类得参数,对于如何创建对象得逻辑不关心时
+    b.客户端既不需要关心创建细节,甚至连类名都不需要记住,只需要知道类型所对应得参数
+    c.工厂负责创建的类少,同时系统中需要的new对象较多而且复杂时可以使用,这样一方面不会造成工厂方法中得业务逻辑太过复杂,另一方面在使用时不用一直new,直接从工厂中获取即可
+## 5.5.优缺点
+### 5.5.1.优点
+    a.屏蔽了具体的创建逻辑,客户端只需要要传入一个参数即可获取相应的结果,在一定程度上简化了对象的创建过程
+    b.将实例创建过程和使用过程分离开来,实现了解耦
+### 5.5.2.缺点
+    a.工厂类集中了所有实例(产品)的创建逻辑,一旦这个工厂不能正常工作,整个系统都会受到影响
+    b.违背OCP原则,一旦添加新产品就不得不修改工厂类得逻辑,这样就会造成工厂逻辑过于复杂
+    c.简单工厂模式由于使用了静态工厂方法,静态方法不能被继承和重写,会造成工厂角色无法形成基于继承的等级结构
+## 5.6.角色及其职责
+    Factory(工厂)
+    核心部分,负责实现创建所有产品的内部逻辑,工厂类可以被外界直接调用,创建所需对象
+    Product(抽象类产品)
+    工厂类所创建的所有对象的父类,封装了产品对象的公共方法,所有的具体产品为其子类对象
+    ConcreteProduct(具体产品)
+    简单工厂模式的创建目标,所有被创建的对象都是某个具体类的实例,它要实现抽象产品中声明的抽象方法(有关抽象类)
+## 5.7.模型
+### 5.7.1.模型类图
 ```mermaid
 classDiagram
-    Client ..> SimpleFactory
+    Client ..> Factory
     Product <|-- ConcreteProductA
     Product <|-- ConcreteProductB
     Product <|-- ConcreteProductC
-    SimpleFactory ..> Product
-    SimpleFactory ..> ConcreteProductA
-    SimpleFactory ..> ConcreteProductB
-    SimpleFactory ..> ConcreteProductC
+    Factory ..> Product
+    Factory ..> ConcreteProductA
+    Factory ..> ConcreteProductB
+    Factory ..> ConcreteProductC
     class ConcreteProductA{
     }
     class ConcreteProductB{
     }
     class ConcreteProductC{
     }
-    class SimpleFactory {
+    class Factory {
         +factoryMethod(String productType) Product
     }
     class Client {
-        +simpleFactoryTest() void
+        +fun() void
     }
     <<abstract>> Product
 ```
-### 5.4.2.模型代码
+### 5.7.2.模型代码
     Product.java
 ```java
 @include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/model/Product.java)
@@ -911,21 +942,20 @@ classDiagram
 ```java
 @include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/model/ConcreteProductC.java)
 ```
-    SimpleFactory.java
+    Factory.java
 ```java
-@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/model/SimpleFactory.java)
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/model/Factory.java)
 ```
     Client.java
 ```java
 @include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/model/Client.java)
 ```
-## 5.5.示例
-### 5.5.1.PizzaStore
-### 5.5.1.1.PizzaStore类图
+## 5.8.示例
+### 5.8.1.不使用简单工厂模式
+#### 5.8.1.1.类图
 ```mermaid
 classDiagram
-    Client ..> SimplePizzaStore
-    Client ..> SimplePizzaFactory
+    Client ..> PizzaStore
     Client ..> Pizza
     Client ..> CheesePizza
     Client ..> ClamPizza
@@ -933,12 +963,21 @@ classDiagram
     Pizza <|-- CheesePizza
     Pizza <|-- ClamPizza
     Pizza <|-- PepperoniPizza
-    SimplePizzaFactory ..> Pizza
-    SimplePizzaFactory ..> CheesePizza
-    SimplePizzaFactory ..> ClamPizza
-    SimplePizzaFactory ..> PepperoniPizza
-    SimplePizzaStore ..> Pizza
-    SimplePizzaStore ..> SimplePizzaFactory
+    PizzaStore ..> Pizza
+    PizzaStore ..> CheesePizza
+    PizzaStore ..> ClamPizza
+    PizzaStore ..> PepperoniPizza
+    class Pizza {
+        #String name
+	    #String dough
+	    #String sauce
+	    #ArrayList<String> toppings
+	    +prepare() void
+	    +bake() void
+	    +cut() void
+	    +box() void
+	    +toString() String
+    }
     class CheesePizza{
         +CheesePizza()
     }
@@ -948,250 +987,829 @@ classDiagram
     class PepperoniPizza {
         +PepperoniPizza()
     }
-    class SimplePizzaFactory {
-        +createPizza(String pizzaType) Pizza
-    }
-    class SimplePizzaStore {
-        -SimplePizzaFactory simplePizzaFactory
-        +setSimplePizzaFactory(SimplePizzaFactory simplePizzaFactory) void
+    class PizzaStore {
         +orderPizza(String pizzaType) Pizza
     }
     class Client {
-        +simplePizzaFactoryTest() void
+        +fun() void
     }
     <<abstract>> Pizza
 ```
-### 5.5.1.2.PizzaStore代码
+#### 5.8.1.2.代码
     Pizza.java
 ```java
-@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/Pizza.java)
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/nouse/Pizza.java)
 ```
     CheesePizza.java
 ```java
-@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/CheesePizza.java)
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/nouse/CheesePizza.java)
 ```
     ClamPizza.java
 ```java
-@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/ClamPizza.java)
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/nouse/ClamPizza.java)
 ```
     PepperoniPizza.java
 ```java
-@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/PepperoniPizza.java)
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/nouse/PepperoniPizza.java)
 ```
-    SimplePizzaFactory.java
+    PizzaStore.java
 ```java
-@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/SimplePizzaFactory.java)
-```
-    SimplePizzaStore.java
-```java
-@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/SimplePizzaStore.java)
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/nouse/PizzaStore.java)
 ```
     Client.java
 ```java
-@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/Client.java)
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/nouse/Client.java)
 ```
-## 5.6.经典应用场景
-## 5.7.在开源框架中的应用场景
+### 5.8.2.使用简单工厂模式
+#### 5.8.2.1.类图
+```mermaid
+classDiagram
+    Client ..> PizzaSotreFactory
+    Client ..> Pizza
+    Client ..> CheesePizza
+    Client ..> ClamPizza
+    Client ..> PepperoniPizza
+    Pizza <|-- CheesePizza
+    Pizza <|-- ClamPizza
+    Pizza <|-- PepperoniPizza
+    PizzaSotreFactory ..> Pizza
+    PizzaSotreFactory ..> CheesePizza
+    PizzaSotreFactory ..> ClamPizza
+    PizzaSotreFactory ..> PepperoniPizza
+    class Pizza {
+        #String name
+	    #String dough
+	    #String sauce
+	    #ArrayList<String> toppings
+	    +prepare() void
+	    +bake() void
+	    +cut() void
+	    +box() void
+	    +toString() String
+    }
+    class CheesePizza{
+        +CheesePizza()
+    }
+    class ClamPizza{
+        +ClamPizza()
+    }
+    class PepperoniPizza {
+        +PepperoniPizza()
+    }
+    class PizzaSotreFactory {
+        +createPizza(String pizzaType) Pizza
+        +orderPizza(String pizzaType) Pizza
+    }
+    class Client {
+        +fun() void
+    }
+    <<abstract>> Pizza
+```
+#### 5.8.2.2.代码
+    Pizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/use/Pizza.java)
+```
+    CheesePizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/use/CheesePizza.java)
+```
+    ClamPizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/use/ClamPizza.java)
+```
+    PepperoniPizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/use/PepperoniPizza.java)
+```
+    PizzaStoreFactory.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/use/PizzaStoreFactory.java)
+```
+    Client.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/simplefactory/use/Client.java)
+```
+
+## 5.9.在开源框架中的应用
+    简单工厂模式
+    JDK8#java.util.Calendar#createCalendar()
+```java
+private static Calendar createCalendar(TimeZone zone,
+                                        Locale aLocale)
+{
+    CalendarProvider provider =
+        LocaleProviderAdapter.getAdapter(CalendarProvider.class, aLocale)
+                                .getCalendarProvider();
+    if (provider != null) {
+        try {
+            return provider.getInstance(zone, aLocale);
+        } catch (IllegalArgumentException iae) {
+            // fall back to the default instantiation
+        }
+    }
+
+    Calendar cal = null;
+
+    if (aLocale.hasExtensions()) {
+        String caltype = aLocale.getUnicodeLocaleType("ca");
+        if (caltype != null) {
+            switch (caltype) {
+            case "buddhist":
+            cal = new BuddhistCalendar(zone, aLocale);
+                break;
+            case "japanese":
+                cal = new JapaneseImperialCalendar(zone, aLocale);
+                break;
+            case "gregory":
+                cal = new GregorianCalendar(zone, aLocale);
+                break;
+            }
+        }
+    }
+    if (cal == null) {
+        // If no known calendar type is explicitly specified,
+        // perform the traditional way to create a Calendar:
+        // create a BuddhistCalendar for th_TH locale,
+        // a JapaneseImperialCalendar for ja_JP_JP locale, or
+        // a GregorianCalendar for any other locales.
+        // NOTE: The language, country and variant strings are interned.
+        if (aLocale.getLanguage() == "th" && aLocale.getCountry() == "TH") {
+            cal = new BuddhistCalendar(zone, aLocale);
+        } else if (aLocale.getVariant() == "JP" && aLocale.getLanguage() == "ja"
+                    && aLocale.getCountry() == "JP") {
+            cal = new JapaneseImperialCalendar(zone, aLocale);
+        } else {
+            cal = new GregorianCalendar(zone, aLocale);
+        }
+    }
+    return cal;
+}
+```
+    使用简单工厂模式
+    JDK8#java.util.Calendar#getInstance()
+```java
+public static Calendar getInstance(TimeZone zone,
+                                    Locale aLocale)
+{
+    return createCalendar();
+}
+```
+    可以看出,在getInstance()方法中调用了createCalendar()方法,只需要传入zone, aLocale,就可以获得一个Calendar对象
 # 6.创建型模式-工厂模式 {#6.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter6.md)
 ## 6.3.简介
-    工厂模式(FactoryMethod Pattern)又称工厂方法模式(FactoryMethod Pattern)是一种创建型设计模式,
-简单工厂模式
-简单工厂模式，是设计模式中最为常见的模式之一。属于创建型模式，提供创建对象的最佳方式。工厂模式，顾名思义，一个模型，用来大规模的生产同类产品。该模式将对象的具体实例过程抽象化，并不关心具体的创建过程。通常，工厂模式被用来定义一个对象模型，之后，便可快速规模化实例化对象。
-## 6.4.模型
-### 6.4.1.模型类图
-### 6.4.2.模型代码
-## 6.5.示例
-## 6.6.经典应用场景
-## 6.7.在开源框架中的应用场景
+    工厂模式(FactoryMethod Pattern)又称工厂方法模式(FactoryMethod Pattern)是一种创建型设计模式,工厂方法模式是简单工厂模式的进一步抽象和推广,是GoF设计模式的一种。由于使用了面向对象的多态性,工厂方法模式保持了简单工厂模式的优点,而且克服了它的缺点,同时遵循OCP原则。在工厂方法模式中,提供一个用于创建对象的接口(工厂接口),让其实现类(工厂实现类)决定实例化哪一个类(产品类),并且由该实现类创建对应类的实例。这使得工厂方法模式可以允许系统在不修改工厂角色的情况下引进新产品。
+## 6.4.应用场景
+    a.客户端不关心它所要创建对象的类(产品类)的时候
+    b.客户端知道它所要创建对象的类(产品类),但不关心如何创建的时候
+## 6.5.优缺点
+### 6.5.1.优点
+    a.使用工厂方法用来创建客户所需要的产品,隐藏了具体产品类的实例化过程,用户只需要关心所需产品对应的工厂,无须关心创建细节,甚至无须知道具体产品类的类名
+    b.加入新产品时,无须修改抽象工厂和抽象产品提供的接口,无须修改客户端,也无须修改其他的具体工厂和具体产品,而只要添加一个具体工厂和具体产品就可以了。增加了系统的可扩展性,符合OCP开闭原则
+    c.每个产品都对应一个工厂,所以可以在这个产品对应的工厂中更为细致的控制产品的创建过程,而不会影响到其他的产品
+### 6.5.2.缺点
+    a.每增加一个新产品,都需要编写新的具体产品类,而且还要提供与之对应的具体工厂类,这样系统中类的个数将成对增加,在一定程度上增加了系统的复杂度,有更多的类需要编译和运行,会给系统带来一些额外的开销。
+    b.由于考虑到系统的可扩展性,需要引入抽象层,在客户端代码中均使用抽象层进行定义,增加了系统的抽象性和理解难度,进而增加了系统的实现难度。
+## 6.6.角色及其职责
+    Product(抽象产品)
+    工厂类所创建的所有对象的父类,封装了产品对象的公共方法,所有的具体产品为其子类对象
+    ConcreteProduct(具体产品)
+    工厂类所创建的实际对象
+    Factory(抽象工厂)
+    提供一个用于创建对象的接口(工厂接口),让其实现类(工厂实现类)决定实例化哪一个类(产品类)
+    ConcreteFactory(具体工厂)
+    提供实际创建对象的方法
+## 6.7.模型
+### 6.7.1.模型类图
+```mermaid
+classDiagram
+    Client ..> Product
+    Client ..> Factory
+    Client ..> ConcreteProductA
+    Client ..> ConcreteProductB
+    Client ..> ConcreteProductC
+    Client ..> ConcreteFactoryA
+    Client ..> ConcreteFactoryB
+    Client ..> ConcreteFactoryC
+    ConcreteFactoryA ..> Product
+    ConcreteFactoryA ..> ConcreteProductA
+    ConcreteFactoryB ..> Product
+    ConcreteFactoryB ..> ConcreteProductB
+    ConcreteFactoryC ..> Product
+    ConcreteFactoryC ..> ConcreteProductC
+    Product <|-- ConcreteProductA
+    Product <|-- ConcreteProductB
+    Product <|-- ConcreteProductC
+    Factory <|-- ConcreteFactoryA
+    Factory <|-- ConcreteFactoryB
+    Factory <|-- ConcreteFactoryC
+    Factory ..> Product
+    class Product {
+    }
+    class ConcreteProductA {
+    }
+    class ConcreteProductB {
+    }
+    class ConcreteProductC {
+    }
+    class Factory {
+        +factoryMethod()* Product
+    }
+    class ConcreteFactoryA {
+        +factoryMethod() Product
+    }
+    class ConcreteFactoryB {
+        +factoryMethod() Product
+    }
+    class ConcreteFactoryC {
+        +factoryMethod() Product
+    }
+    class Client {
+        +fun() void
+    }
+    <<abstract>> Product
+    <<abstract>> Factory
+```
+### 6.7.2.模型代码
+    Product.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/model/Product.java)
+```
+    ConcreteProductA.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/model/ConcreteProductA.java)
+```
+    ConcreteProductB.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/model/ConcreteProductB.java)
+```
+    ConcreteProductC.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/model/ConcreteProductC.java)
+```
+    Factory.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/model/Factory.java)
+```
+    ConcreteFactoryA.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/model/ConcreteFactoryA.java)
+```
+    ConcreteFactoryB.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/model/ConcreteFactoryB.java)
+```
+    ConcreteFactoryC.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/model/ConcreteFactoryC.java)
+```
+    Client.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/model/Client.java)
+```
+## 6.8.示例
+### 6.8.1.不使用工厂模式(实际上使用了简单工厂模式)
+#### 6.8.1.1.类图
+```mermaid
+classDiagram
+    Client ..> Pizza
+    Client ..> ChicagoStyleCheesePizza
+    Client ..> ChicagoStyleClamPizza
+    Client ..> ChicagoStylePepperoniPizza
+    Client ..> ChicagoStyleVeggiePizza
+    Client ..> NYStyleCheesePizza
+    Client ..> NYStyleClamPizza
+    Client ..> NYStylePepperoniPizza
+    Client ..> NYStyleVeggiePizza
+    Client ..> PizzaStore
+    Pizza <|-- ChicagoStyleCheesePizza
+    Pizza <|-- ChicagoStyleClamPizza
+    Pizza <|-- ChicagoStylePepperoniPizza
+    Pizza <|-- ChicagoStyleVeggiePizza
+    Pizza <|-- NYStyleCheesePizza
+    Pizza <|-- NYStyleClamPizza
+    Pizza <|-- NYStylePepperoniPizza
+    Pizza <|-- NYStyleVeggiePizza
+    PizzaStore ..> Pizza
+    PizzaStore ..> ChicagoStyleCheesePizza
+    PizzaStore ..> ChicagoStyleClamPizza
+    PizzaStore ..> ChicagoStylePepperoniPizza
+    PizzaStore ..> ChicagoStyleVeggiePizza
+    PizzaStore ..> NYStyleCheesePizza
+    PizzaStore ..> NYStyleClamPizza
+    PizzaStore ..> NYStylePepperoniPizza
+    PizzaStore ..> NYStyleVeggiePizza
+    class Pizza {
+        #String name
+	    #String dough
+	    #String sauce
+	    #ArrayList<String> toppings
+	    +prepare() void
+	    +bake() void
+	    +cut() void
+	    +box() void
+	    +toString() String
+    }
+    class ChicagoStyleCheesePizza{
+        +CheesePizza()
+        +cut() void
+    }
+    class ChicagoStyleClamPizza{
+        +ChicagoStyleClamPizza()
+        +cut() void
+    }
+    class ChicagoStylePepperoniPizza {
+        +ChicagoStylePepperoniPizza()
+        +cut() void
+    }
+    class ChicagoStyleVeggiePizza {
+        +ChicagoStyleVeggiePizza()
+        +cut() void
+    }
+    class NYStyleCheesePizza {
+        +NYStyleCheesePizza()
+    }
+    class NYStyleClamPizza {
+        +NYStyleClamPizza()
+    }
+    class NYStylePepperoniPizza {
+        +NYStylePepperoniPizza()
+    }
+    class NYStyleVeggiePizza {
+        +NYStyleVeggiePizza()
+    }
+    class PizzaStore {
+        +orderPizza(String pizzaStyle, String pizzaType) Pizza
+        +orderPizza(String pizzaStyle, String pizzaType) Pizza
+    }
+    class Client {
+        +fun() void
+    }
+    <<abstract>> Pizza
+```
+#### 6.8.1.1.代码
+    Pizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/nouse/Pizza.java)
+```
+    ChicagoStyleCheesePizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/nouse/ChicagoStyleCheesePizza.java)
+```
+    ChicagoStyleClamPizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/nouse/ChicagoStyleClamPizza.java)
+```
+    ChicagoStylePepperoniPizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/nouse/ChicagoStylePepperoniPizza.java)
+```
+    ChicagoStyleVeggiePizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/nouse/ChicagoStyleVeggiePizza.java)
+```
+    NYStyleCheesePizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/nouse/NYStyleCheesePizza.java)
+```
+    NYStyleClamPizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/nouse/NYStyleClamPizza.java)
+```
+    NYStylePepperoniPizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/nouse/NYStylePepperoniPizza.java)
+```
+    NYStyleVeggiePizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/nouse/NYStyleVeggiePizza.java)
+```
+    PizzaStore.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/nouse/PizzaStore.java)
+```
+    Client.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/nouse/Client.java)
+```
+### 6.8.2.使用工厂模式
+#### 6.8.2.1.类图
+```mermaid
+classDiagram
+    Client ..> Pizza
+    Client ..> ChicagoStyleCheesePizza
+    Client ..> ChicagoStyleClamPizza
+    Client ..> ChicagoStylePepperoniPizza
+    Client ..> ChicagoStyleVeggiePizza
+    Client ..> NYStyleCheesePizza
+    Client ..> NYStyleClamPizza
+    Client ..> NYStylePepperoniPizza
+    Client ..> NYStyleVeggiePizza
+    Client ..> PizzaStoreFactory
+    Client ..> NYPizzaStoreFactory
+    Client ..> ChicagoPizzaStoreFactory
+    Pizza <|-- ChicagoStyleCheesePizza
+    Pizza <|-- ChicagoStyleClamPizza
+    Pizza <|-- ChicagoStylePepperoniPizza
+    Pizza <|-- ChicagoStyleVeggiePizza
+    Pizza <|-- NYStyleCheesePizza
+    Pizza <|-- NYStyleClamPizza
+    Pizza <|-- NYStylePepperoniPizza
+    Pizza <|-- NYStyleVeggiePizza
+    PizzaStoreFactory <|-- ChicagoPizzaStoreFactory
+    PizzaStoreFactory <|-- NYPizzaStoreFactory
+    PizzaStoreFactory ..> Pizza
+    ChicagoPizzaStoreFactory ..> Pizza
+    ChicagoPizzaStoreFactory ..> ChicagoStyleCheesePizza
+    ChicagoPizzaStoreFactory ..> ChicagoStyleClamPizza
+    ChicagoPizzaStoreFactory ..> ChicagoStylePepperoniPizza
+    ChicagoPizzaStoreFactory ..> ChicagoStyleVeggiePizza
+    NYPizzaStoreFactory ..> Pizza
+    NYPizzaStoreFactory ..> NYStyleCheesePizza
+    NYPizzaStoreFactory ..> NYStyleClamPizza
+    NYPizzaStoreFactory ..> NYStylePepperoniPizza
+    NYPizzaStoreFactory ..> NYStyleVeggiePizza
+    class Pizza {
+        #String name
+	    #String dough
+	    #String sauce
+	    #ArrayList<String> toppings
+	    +prepare() void
+	    +bake() void
+	    +cut() void
+	    +box() void
+	    +toString() String
+    }
+    class ChicagoStyleCheesePizza{
+        +CheesePizza()
+        +cut() void
+    }
+    class ChicagoStyleClamPizza{
+        +ChicagoStyleClamPizza()
+        +cut() void
+    }
+    class ChicagoStylePepperoniPizza {
+        +ChicagoStylePepperoniPizza()
+        +cut() void
+    }
+    class ChicagoStyleVeggiePizza {
+        +ChicagoStyleVeggiePizza()
+        +cut() void
+    }
+    class NYStyleCheesePizza {
+        +NYStyleCheesePizza()
+    }
+    class NYStyleClamPizza {
+        +NYStyleClamPizza()
+    }
+    class NYStylePepperoniPizza {
+        +NYStylePepperoniPizza()
+    }
+    class NYStyleVeggiePizza {
+        +NYStyleVeggiePizza()
+    }
+    class PizzaStoreFactory {
+        +createPizza(String pizzaType)* Pizza
+        +orderPizza(String pizzaType) Pizza
+    }
+    class ChicagoPizzaStoreFactory {
+        +createPizza(String pizzaType) Pizza
+    }
+    class NYPizzaStoreFactory {
+        +createPizza(String pizzaType) Pizza
+    }
+    class Client {
+        +fun() void
+    }
+    <<abstract>> Pizza
+    <<abstract>> PizzaStoreFactory
+```
+#### 6.8.2.2.代码
+    Pizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/use/Pizza.java)
+```
+    ChicagoStyleCheesePizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/use/ChicagoStyleCheesePizza.java)
+```
+    ChicagoStyleClamPizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/use/ChicagoStyleClamPizza.java)
+```
+    ChicagoStylePepperoniPizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/use/ChicagoStylePepperoniPizza.java)
+```
+    ChicagoStyleVeggiePizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/use/ChicagoStyleVeggiePizza.java)
+```
+    NYStyleCheesePizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/use/NYStyleCheesePizza.java)
+```
+    NYStyleClamPizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/use/NYStyleClamPizza.java)
+```
+    NYStylePepperoniPizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/use/NYStylePepperoniPizza.java)
+```
+    NYStyleVeggiePizza.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/use/NYStyleVeggiePizza.java)
+```
+    PizzaFactory.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/use/PizzaStoreFactory.java)
+```
+    NYPizzaFactory.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/use/NYPizzaStoreFactory.java)
+```
+    ChicagoPizzaFactory.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/use/ChicagoStorePizzaFactory.java)
+```
+    Client.java
+```java
+@include(./projects/JavaSenior/designpattern/src/main/java/com/dragonsoft/designpattern/create/factory/factorymethod/use/Client.java)
+```
+## 6.9.在开源框架中的应用
 # 7.创建型模式-抽象工厂模式 {#7.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter7.md)
 ## 7.3.简介
-## 7.4.模型
-### 7.4.1.模型类图
-### 7.4.2.模型代码
-## 7.5.示例
-## 7.6.经典应用场景
-## 7.7.在开源框架中的应用场景
+## 7.4.应用场景
+## 7.5.优缺点
+### 7.5.1.优点
+### 7.5.2.缺点
+## 7.6.角色及其职责
+## 7.7.模型
+### 7.7.1.模型类图
+### 7.7.2.模型代码
+## 7.8.示例
+## 7.9.在开源框架中的应用
 # 8.创建型模式-原型模式 {#8.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter8.md)
 ## 8.3.简介
-## 8.4.模型
-### 8.4.1.模型类图
-### 8.4.2.模型代码
-## 8.5.示例
-## 8.6.经典应用场景
-## 8.7.在开源框架中的应用场景
+## 8.4.应用场景
+## 8.5.优缺点
+### 8.5.1.优点
+### 8.5.2.缺点
+## 8.6.角色及其职责
+## 8.7.模型
+### 8.7.1.模型类图
+### 8.7.2.模型代码
+## 8.8.示例
+## 8.9.在开源框架中的应用
 # 9.创建型模式-建造者模式 {#9.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter9.md)
 ## 9.3.简介
-## 9.4.模型
-### 9.4.1.模型类图
-### 9.4.2.模型代码
-## 9.5.示例
-## 9.6.经典应用场景
-## 9.7.在开源框架中的应用场景
+## 9.4.应用场景
+## 9.5.优缺点
+### 9.5.1.优点
+### 9.5.2.缺点
+## 9.6.角色及其职责
+## 9.7.模型
+### 9.7.1.模型类图
+### 9.7.2.模型代码
+## 9.8.示例
+## 9.9.在开源框架中的应用
 # 10.结构型模式-适配器模式 {#10.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter10.md)
 ## 10.3.简介
-## 10.4.模型
-### 10.4.1.模型类图
-### 10.4.2.模型代码
-## 10.5.示例
-## 10.6.经典应用场景
-## 10.7.在开源框架中的应用场景
+## 10.4.应用场景
+## 10.5.优缺点
+### 10.5.1.优点
+### 10.5.2.缺点
+## 10.6.角色及其职责
+## 10.7.模型
+### 10.7.1.模型类图
+### 10.7.2.模型代码
+## 10.8.示例
+## 10.9.在开源框架中的应用
 # 11.结构型模式-桥接模式 {#11.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter11.md)
 ## 11.3.简介
-## 11.4.模型
-### 11.4.1.模型类图
-### 11.4.2.模型代码
-## 11.5.示例
-## 11.6.经典应用场景
-## 11.7.在开源框架中的应用场景
+## 11.4.应用场景
+## 11.5.优缺点
+### 11.5.1.优点
+### 11.5.2.缺点
+## 11.6.角色及其职责
+## 11.7.模型
+### 11.7.1.模型类图
+### 11.7.2.模型代码
+## 11.8.示例
+## 11.9.在开源框架中的应用
 # 12.结构型模式-装饰者模式 {#12.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter12.md)
 ## 12.3.简介
-## 12.4.模型
-### 12.4.1.模型类图
-### 12.4.2.模型代码
-## 12.5.示例
-## 12.6.经典应用场景
-## 12.7.在开源框架中的应用场景
+## 12.4.应用场景
+## 12.5.优缺点
+### 12.5.1.优点
+### 12.5.2.缺点
+## 12.6.角色及其职责
+## 12.7.模型
+### 12.7.1.模型类图
+### 12.7.2.模型代码
+## 12.8.示例
+## 12.9.在开源框架中的应用
 # 13.结构型模式-组合模式 {#13.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter13.md)
 ## 13.3.简介
-## 13.4.模型
-### 13.4.1.模型类图
-### 13.4.2.模型代码
-## 13.5.示例
-## 13.6.经典应用场景
-## 13.7.在开源框架中的应用场景
+## 13.4.应用场景
+## 13.5.优缺点
+### 13.5.1.优点
+### 13.5.2.缺点
+## 13.6.角色及其职责
+## 13.7.模型
+### 13.7.1.模型类图
+### 13.7.2.模型代码
+## 13.8.示例
+## 13.9.在开源框架中的应用
 # 14.结构型模式-外观模式 {#14.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter14.md)
 ## 14.3.简介
-## 14.4.模型
-### 14.4.1.模型类图
-### 14.4.2.模型代码
-## 14.5.示例
-## 14.6.经典应用场景
-## 14.7.在开源框架中的应用场景
+## 14.4.应用场景
+## 14.5.优缺点
+### 14.5.1.优点
+### 14.5.2.缺点
+## 14.6.角色及其职责
+## 14.7.模型
+### 14.7.1.模型类图
+### 14.7.2.模型代码
+## 14.8.示例
+## 14.9.在开源框架中的应用
 # 15.结构型模式-享元模式 {#15.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter15.md)
 ## 15.3.简介
-## 15.4.模型
-### 15.4.1.模型类图
-### 15.4.2.模型代码
-## 15.5.示例
-## 15.6.经典应用场景
-## 15.7.在开源框架中的应用场景
+## 15.4.应用场景
+## 15.5.优缺点
+### 15.5.1.优点
+### 15.5.2.缺点
+## 15.6.角色及其职责
+## 15.7.模型
+### 15.7.1.模型类图
+### 15.7.2.模型代码
+## 15.8.示例
+## 15.9.在开源框架中的应用
 # 16.结构型模式-代理模式 {#16.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter16.md)
 ## 16.3.简介
-## 16.4.模型
-### 16.4.1.模型类图
-### 16.4.2.模型代码
-## 16.5.示例
-## 16.6.经典应用场景
-## 16.7.在开源框架中的应用场景
+## 16.4.应用场景
+## 16.5.优缺点
+### 16.5.1.优点
+### 16.5.2.缺点
+## 16.6.角色及其职责
+## 16.7.模型
+### 16.7.1.模型类图
+### 16.7.2.模型代码
+## 16.8.示例
+## 16.9.在开源框架中的应用
 # 17.行为型模式-模版方法模式 {#17.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter17.md)
 ## 17.3.简介
-## 17.4.模型
-### 17.4.1.模型类图
-### 17.4.2.模型代码
-## 17.5.示例
-## 17.6.经典应用场景
-## 17.7.在开源框架中的应用场景
+## 17.4.应用场景
+## 17.5.优缺点
+### 17.5.1.优点
+### 17.5.2.缺点
+## 17.6.角色及其职责
+## 17.7.模型
+### 17.7.1.模型类图
+### 17.7.2.模型代码
+## 17.8.示例
+## 17.9.在开源框架中的应用
 # 18.行为型模式-命令模式 {#18.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter18.md)
 ## 18.3.简介
-## 18.4.模型
-### 18.4.1.模型类图
-### 18.4.2.模型代码
-## 18.5.示例
-## 18.6.经典应用场景
-## 18.7.在开源框架中的应用场景
+## 18.4.应用场景
+## 18.5.优缺点
+### 18.5.1.优点
+### 18.5.2.缺点
+## 18.6.角色及其职责
+## 18.7.模型
+### 18.7.1.模型类图
+### 18.7.2.模型代码
+## 18.8.示例
+## 18.9.在开源框架中的应用
 # 19.行为型模式-迭代器模式 {#19.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter19.md)
 ## 19.3.简介
-## 19.4.模型
-### 19.4.1.模型类图
-### 19.4.2.模型代码
-## 19.5.示例
-## 19.6.经典应用场景
-## 19.7.在开源框架中的应用场景
+## 19.4.应用场景
+## 19.5.优缺点
+### 19.5.1.优点
+### 19.5.2.缺点
+## 19.6.角色及其职责
+## 19.7.模型
+### 19.7.1.模型类图
+### 19.7.2.模型代码
+## 19.8.示例
+## 19.9.在开源框架中的应用
 # 20.行为型模式-观察者模式 {#20.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter20.md)
 ## 20.3.简介
-## 20.4.模型
-### 20.4.1.模型类图
-### 20.4.2.模型代码
-## 20.5.示例
-## 20.6.经典应用场景
-## 20.7.在开源框架中的应用场景
+## 20.4.应用场景
+## 20.5.优缺点
+### 20.5.1.优点
+### 20.5.2.缺点
+## 20.6.角色及其职责
+## 20.7.模型
+### 20.7.1.模型类图
+### 20.7.2.模型代码
+## 20.8.示例
+## 20.9.在开源框架中的应用
 # 21.行为型模式-中介者模式 {#21.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter21.md)
 ## 21.3.简介
-## 21.4.模型
-### 21.4.1.模型类图
-### 21.4.2.模型代码
-## 21.5.示例
-## 21.6.经典应用场景
-## 21.7.在开源框架中的应用场景
+## 21.4.应用场景
+## 21.5.优缺点
+### 21.5.1.优点
+### 21.5.2.缺点
+## 21.6.角色及其职责
+## 21.7.模型
+### 21.7.1.模型类图
+### 21.7.2.模型代码
+## 21.8.示例
+## 21.9.在开源框架中的应用
 # 22.行为型模式-备忘录模式 {#22.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter22.md)
 ## 22.3.简介
-## 22.4.模型
-### 22.4.1.模型类图
-### 22.4.2.模型代码
-## 22.5.示例
-## 22.6.经典应用场景
-## 22.7.在开源框架中的应用场景
+## 22.4.应用场景
+## 22.5.优缺点
+### 22.5.1.优点
+### 22.5.2.缺点
+## 22.6.角色及其职责
+## 22.7.模型
+### 22.7.1.模型类图
+### 22.7.2.模型代码
+## 22.8.示例
+## 22.9.在开源框架中的应用
 # 23.行为型模式-解释器模式 {#23.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter23.md)
 ## 23.3.简介
-## 23.4.模型
-### 23.4.1.模型类图
-### 23.4.2.模型代码
-## 23.5.示例
-## 23.6.经典应用场景
-## 23.7.在开源框架中的应用场景
+## 23.4.应用场景
+## 23.5.优缺点
+### 23.5.1.优点
+### 23.5.2.缺点
+## 23.6.角色及其职责
+## 23.7.模型
+### 23.7.1.模型类图
+### 23.7.2.模型代码
+## 23.8.示例
+## 23.9.在开源框架中的应用
 # 24.行为型模式-状态模式 {#24.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter24.md)
 ## 24.3.简介
-## 24.4.模型
-### 24.4.1.模型类图
-### 24.4.2.模型代码
-## 24.5.示例
-## 24.6.经典应用场景
-## 24.7.在开源框架中的应用场景
+## 24.4.应用场景
+## 24.5.优缺点
+### 24.5.1.优点
+### 24.5.2.缺点
+## 24.6.角色及其职责
+## 24.7.模型
+### 24.7.1.模型类图
+### 24.7.2.模型代码
+## 24.8.示例
+## 24.9.在开源框架中的应用
 # 25.行为型模式-策略模式 {#25.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter25.md)
 ## 25.3.简介
-## 25.4.模型
-### 25.4.1.模型类图
-### 25.4.2.模型代码
-## 25.5.示例
-## 25.6.经典应用场景
-## 25.7.在开源框架中的应用场景
+## 25.4.应用场景
+## 25.5.优缺点
+### 25.5.1.优点
+### 25.5.2.缺点
+## 25.6.角色及其职责
+## 25.7.模型
+### 25.7.1.模型类图
+### 25.7.2.模型代码
+## 25.8.示例
+## 25.9.在开源框架中的应用
 # 26.行为型模式-职责链模式 {#26.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter26.md)
 ## 26.3.简介
-## 26.4.模型
-### 26.4.1.模型类图
-### 26.4.2.模型代码
-## 26.5.示例
-## 26.6.经典应用场景
-## 26.7.在开源框架中的应用场景
+## 26.4.应用场景
+## 26.5.优缺点
+### 26.5.1.优点
+### 26.5.2.缺点
+## 26.6.角色及其职责
+## 26.7.模型
+### 26.7.1.模型类图
+### 26.7.2.模型代码
+## 26.8.示例
+## 26.9.在开源框架中的应用
 # 27.行为型模式-访问者模式 {#27.}
 @include(@src/public/enhance/guidance/general/designpattern/designpattern-java/chapter/designpattern-java-guidance-chapter27.md)
 ## 27.3.简介
-## 27.4.模型
-### 27.4.1.模型类图
-### 27.4.2.模型代码
-## 27.5.示例
-## 27.6.经典应用场景
-## 27.7.在开源框架中的应用场景
-
+## 27.4.应用场景
+## 27.5.优缺点
+### 27.5.1.优点
+### 27.5.2.缺点
+## 27.6.角色及其职责
+## 27.7.模型
+### 27.7.1.模型类图
+### 27.7.2.模型代码
+## 27.8.示例
+## 27.9.在开源框架中的应用 
 <HideSideBar/>

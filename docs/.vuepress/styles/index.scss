@@ -119,6 +119,24 @@ p, ul, ol {
     .theme-container .sidebar-links .sidebar-sub-headers {
         display: none;
     }
+    .page-title h1 {
+        font-size: 1.5rem;
+    }
+    h1 {
+        font-size: 1.4rem;
+    }
+    h2 {
+        font-size: 1.3rem;
+    }
+    h3 {
+        font-size: 1.2rem;
+    }
+    h4 {
+        font-size: 1.1rem;
+    }
+    h5 {
+        font-size: 1.0rem;
+    }
 }
 
 /*平板*/
@@ -383,6 +401,29 @@ p, ul, ol {
 .imgbg-customer img {
     border-radius: 6px;
 }
+.md-enhance-mermaid .content svg {
+    max-width: 100% !important;
+    height: 100% !important;
+    padding: 2rem 0;
+    border-radius: 6px;
+}
+/**
+.page-title h1 {
+    font-size: 2rem;
+}
+h1 {
+    font-size: 1.9rem;
+}
+h2 {
+    font-size: 1.65rem;
+}
+h3 {
+    font-size: 1.4rem;
+}
+h4 {
+    font-size: 1.15rem;
+}
+*/
 /*黑暗模式开始----------------------------------------------------------------------*/
 html[data-theme=dark] .theme-hope-content pre {
     background-color: #F5F5FA !important;
@@ -395,5 +436,11 @@ html[data-theme=dark] .theme-hope-content pre[class*=language-] {
 html[data-theme=dark] .theme-hope-content pre[class*=language-] code{
     color: #000000 !important;
     text-shadow: 0 0px rgb(0 0 0 / 0%);
+}
+html[data-theme=dark] .md-enhance-mermaid .content svg {
+    max-width: 100% !important;
+    height: 100% !important;
+    padding: 2rem 0;
+    border-radius: 6px;
 }
 /*黑暗模式结束----------------------------------------------------------------------*/
