@@ -16,14 +16,14 @@ export default {
     };
   },
   mounted: function(){
+    console.log('XX')
     this.$nextTick(()=>{
-      const currentSidebarTextTemp = document.querySelector('.page-title h1').innerText
-      const currentSidebarText = currentSidebarTextTemp.substr(currentSidebarTextTemp.indexOf('>')+1,currentSidebarTextTemp.lastIndexOf('-'))
+      const currentSidebarText = document.querySelector('.page-title h1').innerText
       const sidebarLinks = document.querySelector('.sidebar-links')
       const sidebarLinkItems = sidebarLinks.children
       for(var i=0; i<sidebarLinkItems.length; i++) {
         const sidebarText = sidebarLinkItems[i].querySelector('.title').innerText
-        if(currentSidebarText == sidebarText) {
+        if(currentSidebarText.indexOf(sidebarText+'-') != -1) {
           const currentSidebar = sidebarLinks.removeChild(sidebarLinks.children[i])
           sidebarLinks.insertBefore(currentSidebar,sidebarLinks.children[0])
           break;
