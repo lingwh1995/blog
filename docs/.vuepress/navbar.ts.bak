@@ -21,6 +21,16 @@ export default navbar([
     icon: "java",
     children: [
       {
+        text: "springboot",
+        children: [
+          {
+            icon: "leaf",
+            text: "springboot",
+            link: "/xxx",
+          },
+        ],
+      },
+      {
         text: "springcloud",
         children: [
           {
@@ -42,6 +52,58 @@ export default navbar([
             text: "springcloud-alibaba",
             icon: "cloud",
             link: "/blogs/backend/springcloud/springcloud-eureka/shardings/springcloud-eureka-chapter-0.博客内容介绍.md",
+          }
+        ],
+      }
+    ],
+  },
+  {
+    text: "前端",
+    icon: "html",
+    children: [
+      {
+        text: "ECMAScript 5",
+        link: "/xxx"
+      },
+      {
+        text: "ECMAScript 6",
+        link: "/xxx"
+      },
+      {
+        text: "Framework",
+        link: "/xxx"
+      }
+    ],
+  },
+  {
+    text: "数据库",
+    icon: "database",
+    children: [
+      {
+        text: "关系型数据库",
+        children: [
+          {
+            text: "mysql",
+            icon: "mysql",
+            link: "/database/relational/article1"
+          },
+          {
+            text: "oracle",
+            link: "/database/relational/article2"
+          },
+        ],
+      },
+      {
+        text: "nosql",
+        children: [
+          { text: "monogodb",
+            link: "/database/nosql/article/article5"
+          },
+          { text: "redis",
+            link: "/database/nosql/article/article6"
+          },
+          { text: "etcd",
+            link: "/database/nosql/article/article6"
           }
         ],
       }

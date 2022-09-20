@@ -60,20 +60,21 @@ features:
     icon: ubuntu
     details: Ubuntu是一个以桌面应用为主的Linux操作系统，用于个人电脑、平板及手机的操作系统。
     link: https://www.ubuntu.org.cn/global
----   
+---
 ---
 <!-- 横版唐诗 -->
+<!--
 <div style='color:var(--theme-color);'>
-  <br/>                    
+  <br/>
   <h1 style="text-align:center;">唐多令·芦叶满汀洲</h1>
   <h3 style="text-align:center;">南宋  刘过</h3>
   <h3 style="text-align:center;">芦叶满汀洲，寒沙带浅流。二十年重过南楼。柳下系船犹未稳，能几日，又中秋。</h3>
   <h3 style="text-align:center;">黄鹤断矶头，故人今在否？旧江山浑是新愁。欲买桂花同载酒，终不似，少年游。</h3>
   <br/>
 </div>
-
+-->
 <!-- 竖版唐诗 -->
-<!-- 
+<!--
 <div id="tangshi">
     <div>唐多令·芦叶满汀洲</div>
     <h2>南宋    刘过</h2>
