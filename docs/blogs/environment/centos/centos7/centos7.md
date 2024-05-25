@@ -53,7 +53,7 @@ head:
 ---
 @include(@src/public/enhance/guidance/environment/centos/centos7/centos7-guidance.md)
 
-# 1.安装Linux操作系统 {#1.}
+# 1.安装Linux操作系统1 {#1.}
 @include(@src/public/enhance/guidance/environment/centos/centos7/chapter/centos7-guidance-chapter1.md)
 
 ## 1.3.Linux重要目录介绍
