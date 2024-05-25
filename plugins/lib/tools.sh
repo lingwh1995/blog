@@ -60,7 +60,7 @@ function log() {
         if [ "$1" = "b" ]
         then
             echo $CURRENT_TIME':'     >> $ENHANCE_LOG_FULL_PATH_NAME
-        #输出banner    
+        #输出banner
         elif [ "$1" = "banner" ]
         then
             echo $CURRENT_TIME':            ...................                  ' >> $ENHANCE_LOG_FULL_PATH_NAME
@@ -98,7 +98,7 @@ function parseIni() {
     log 'ini配置文件全路径名: '$1
     log 'ini配置文件中具体的['$2']部分的配置信息的标识id: '$2
     log 'ini配置文件中具体的['$2']部分的配置信息中的配置项的key: '$3
-   
+
     #要解析的ini配置文件全路径名
     CONFIG_FILE_FULL_PATH_NAME=$1
     #要解析的ini配置文件中具体的某一块配置信息的标识ID

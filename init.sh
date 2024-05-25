@@ -4,7 +4,7 @@
 set -e
 
 #引入公共的工具包
-source ./enhance/lib/tools.sh
+source ./plugins/lib/tools.sh
 
 
 :<< EOF
