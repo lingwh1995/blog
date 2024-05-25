@@ -8,7 +8,7 @@ source ./plugins/lib/tools.sh
 
 #持续集成的时候首先更新node版本
 function updateNodeVersionWhenCI {
-    NATIVE_JENKINS_SUPPORT_ENABLE_STATE=( $( parsePluginIni plugin-005 enable) )
+    NATIVE_JENKINS_SUPPORT_ENABLE_STATE=( $( parsePluginCfg plugin-005 enable) )
     if [ $NATIVE_JENKINS_SUPPORT_ENABLE_STATE == "false" ]
     then
         echo '开始更新node版本........'
@@ -33,23 +33,23 @@ function executeInitScript() {
 
 #替换md文件中引用的超连接的值为纯模式中正确的href值
 function generateHrefValueForPure() {
-    #获取$PLUGINS_BOOT_PATH/中以boot-xxx.ini格式命名的文件总共有多少个,每个配置文件对应一个xxx.md文件
-    BOOT_FILE_COUNTS=`ls $PLUGINS_BOOT_PATH/ | grep '^boot-.*\.ini$' | wc -w`
+    #获取$PLUGINS_BOOT_PATH/中以boot-xxx.cfg格式命名的文件总共有多少个,每个配置文件对应一个xxx.md文件
+    BOOT_FILE_COUNTS=`ls $PLUGINS_BOOT_PATH/ | grep '^boot-.*\.cfg$' | wc -w`
     echo '引导文件的总数目: '$BOOT_FILE_COUNTS
 
     for((a=1;a<=$BOOT_FILE_COUNTS;a++))
     do
-        #从bootstrap.ini中获取xxx.md的enhance状态
-        ENHANCE_STATE=( $( parseBootstrapIni markdown-$a enhance) )
+        #从bootstrap.cfg中获取xxx.md的enhance状态
+        ENHANCE_STATE=( $( parseBootstrapCfg markdown-$a enhance) )
         #如果xxx.md启用了enhance功能,则继续执行下一步
         if [ $ENHANCE_STATE == "true" ]  || [ $ENHANCE_STATE == "stable" ]
         then
             #获取xxx.md文件的名称
-            MD_FILE_NAME=( $( parseBootstrapIni markdown-$a fileName) )
+            MD_FILE_NAME=( $( parseBootstrapCfg markdown-$a fileName) )
             #获取xx.md文件的相对路径
-            MD_FILE_RELATIVE_PATH=( $( parseBootstrapIni markdown-$a relativePath) )
+            MD_FILE_RELATIVE_PATH=( $( parseBootstrapCfg markdown-$a relativePath) )
             #获取xxx.md文件引用的代码的项目名称
-            INCLUDE_CODE_PROJECT_NAME=( $( parseBootstrapIni markdown-$a includeCodeProjectName) )
+            INCLUDE_CODE_PROJECT_NAME=( $( parseBootstrapCfg markdown-$a includeCodeProjectName) )
             #修改xxx.md中的href的值
             sed -i 's#\(.*<a.*href="\).*/blogs#\1/pure/blogs#g' docs/blogs/$MD_FILE_RELATIVE_PATH/$MD_FILE_NAME.md
             #修改所有章节分片中href的值
@@ -60,23 +60,23 @@ function generateHrefValueForPure() {
 
 #替换md文件中引用的超连接的值为正确的值
 function generateHrefValueForNormal() {
-    #获取$PLUGINS_BOOT_PATH/中以boot-xxx.ini格式命名的文件总共有多少个,每个配置文件对应一个xxx.md文件
-    BOOT_FILE_COUNTS=`ls $PLUGINS_BOOT_PATH/ | grep '^boot-.*\.ini$' | wc -w`
+    #获取$PLUGINS_BOOT_PATH/中以boot-xxx.cfg格式命名的文件总共有多少个,每个配置文件对应一个xxx.md文件
+    BOOT_FILE_COUNTS=`ls $PLUGINS_BOOT_PATH/ | grep '^boot-.*\.cfg$' | wc -w`
     echo '引导文件的总数目: '$BOOT_FILE_COUNTS
 
     for((a=1;a<=$BOOT_FILE_COUNTS;a++))
     do
-        #从bootstrap.ini中获取xxx.md的enhance状态
-        ENHANCE_STATE=( $( parseBootstrapIni markdown-$a enhance) )
+        #从bootstrap.cfg中获取xxx.md的enhance状态
+        ENHANCE_STATE=( $( parseBootstrapCfg markdown-$a enhance) )
         #如果xxx.md启用了enhance功能,则继续执行下一步
         if [ $ENHANCE_STATE == "true" ] || [ $ENHANCE_STATE == "stable" ]
         then
             #获取xxx.md文件的名称
-            MD_FILE_NAME=( $( parseBootstrapIni markdown-$a fileName) )
+            MD_FILE_NAME=( $( parseBootstrapCfg markdown-$a fileName) )
             #获取xx.md文件的相对路径
-            MD_FILE_RELATIVE_PATH=( $( parseBootstrapIni markdown-$a relativePath) )
+            MD_FILE_RELATIVE_PATH=( $( parseBootstrapCfg markdown-$a relativePath) )
             #获取xxx.md文件引用的代码的项目名称
-            INCLUDE_CODE_PROJECT_NAME=( $( parseBootstrapIni markdown-$a includeCodeProjectName) )
+            INCLUDE_CODE_PROJECT_NAME=( $( parseBootstrapCfg markdown-$a includeCodeProjectName) )
             #修改xxx.md中的href的值
             sed -i 's#\(.*<a.*href="\).*/blogs#\1/blogs#g' docs/blogs/$MD_FILE_RELATIVE_PATH/$MD_FILE_NAME.md
             #修改所有章节分片中href的值
@@ -86,7 +86,7 @@ function generateHrefValueForNormal() {
 }
 
 #获取纯模式启动状态
-PURE_MODE_PLUGIN_ENABLE_STATE=( $( parsePluginIni plugin-003 enable) )
+PURE_MODE_PLUGIN_ENABLE_STATE=( $( parsePluginCfg plugin-003 enable) )
 
 #开启替换RepoLink组件为Pure组件
 function beforeBuildAndDeploy() {
@@ -287,7 +287,7 @@ then
     #代表持续集成环境
     echo "GNU/Linux"
     #获取纯模式启动状态
-    AUTODEPLOY_ENABLE_STATE=( $( parsePluginIni plugin-004 enable) )
+    AUTODEPLOY_ENABLE_STATE=( $( parsePluginCfg plugin-004 enable) )
     if [ $AUTODEPLOY_ENABLE_STATE == "true" ]
     then
         echo "当前是持续集成发布模式"

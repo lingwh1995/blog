@@ -112,43 +112,43 @@ function parseIni() {
 }
 
 :<< EOF
-    解析plugin.ini的专用方法
-    $1:plugin.ini中具体的某一个插件的id
-    $2:plugin.ini中具体的某一个插件的id的配置项的key
+    解析plugin.cfg的专用方法
+    $1:plugin.cfg中具体的某一个插件的id
+    $2:plugin.cfg中具体的某一个插件的id的配置项的key
 EOF
-function parsePluginIni() {
-    log '开始解析plugins.ini..................................' u
-    #plugin.ini的全路径名
-    PLUGIN_INI_FULL_PATH_NAME=$PLUGINS_CONFIG_PATH/plugins.ini
+function parsePluginCfg() {
+    log '开始解析plugins.cfg..................................' u
+    #plugin.cfg的全路径名
+    PLUGIN_INI_FULL_PATH_NAME=$PLUGINS_CONFIG_PATH/plugins.cfg
     RESULT_PARSE_PLUGIN_INI=`parseIni $PLUGIN_INI_FULL_PATH_NAME $1 $2`
     echo ${RESULT_PARSE_PLUGIN_INI}
-    log '完成解析plugins.ini..................................' d
+    log '完成解析plugins.cfg..................................' d
 }
 
 :<< EOF
-    解析bootstrap.ini的专用方法
-    $1:bootstrap.ini中具体的某一个插件的id
-    $2:bootstrap.ini中具体的某一个插件的id的配置项的key
+    解析bootstrap.cfg的专用方法
+    $1:bootstrap.cfg中具体的某一个插件的id
+    $2:bootstrap.cfg中具体的某一个插件的id的配置项的key
 EOF
-function parseBootstrapIni() {
-    log '开始解析bootstrap.ini................................' u
-    #bootstrap.ini的全路径名
-    BOOTSTRAP_INI_FULL_PATH_NAME=$PLUGINS_HOME/bootstrap.ini
+function parseBootstrapCfg() {
+    log '开始解析bootstrap.cfg................................' u
+    #bootstrap.cfg的全路径名
+    BOOTSTRAP_INI_FULL_PATH_NAME=$PLUGINS_HOME/bootstrap.cfg
     RESULT_PARSE_BOOTSTRAP_INI=`parseIni $BOOTSTRAP_INI_FULL_PATH_NAME $1 $2`
     echo ${RESULT_PARSE_BOOTSTRAP_INI}
-    log '完成解析bootstrap.ini................................' d
+    log '完成解析bootstrap.cfg................................' d
 }
 
 :<< EOF
-    解析i18n.ini的专用方法
-    $1:i18n.ini中具体的某一个插件的id
-    $2:i18n.ini中具体的某一个插件的id的配置项的key
+    解析i18n.cfg的专用方法
+    $1:i18n.cfg中具体的某一个插件的id
+    $2:i18n.cfg中具体的某一个插件的id的配置项的key
 EOF
-function parseI18nIni() {
-    log '开始解析I18n.ini................................' u
-    #i18n.ini的全路径名
-    I18N_INI_FULL_PATH_NAME=$PLUGINS_CONFIG_PATH/i18n.ini
+function parseI18nCfg() {
+    log '开始解析I18n.cfg................................' u
+    #i18n.cfg的全路径名
+    I18N_INI_FULL_PATH_NAME=$PLUGINS_CONFIG_PATH/i18n.cfg
     RESULT_PARSE_I18N_INI=`parseIni $I18N_INI_FULL_PATH_NAME $1 $2`
     echo ${RESULT_PARSE_I18N_INI}
-    log '完成解析I18n.ini................................' d
+    log '完成解析I18n.cfg................................' d
 }
