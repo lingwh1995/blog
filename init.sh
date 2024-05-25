@@ -101,7 +101,7 @@ function writeFrontmatterForOriginal() {
     #写入 博客列表展示的标题，这是地址栏上面的标题，同时也是博客列表中显示的标题
     #获取完整的的md文件中的Frontmatter选项配置信息中的title属性的值
 
-    MD_FILE_ENSEMBLE_FRONTMATTER_TITLE=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble title) )
+    MD_FILE_ENSEMBLE_FRONTMATTER_TITLE=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini ensemble title) )
     echo "title: $MD_FILE_ENSEMBLE_FRONTMATTER_TITLE-章节内容合集" >> $2/$1.md
 
     #抽取所有一级标题，以此为根据创建博客FRONTMATTER配置中description的值
@@ -112,18 +112,18 @@ function writeFrontmatterForOriginal() {
 
     #写入 右侧toc面板展示的标题深度
     #获取具体章节的的md文件中的Frontmatter选项配置信息中headerDepth的属性的值
-    MD_FILE_ENSEMBLE_FRONTMATTER_HEADERDEPTH=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble headerDepth) )
+    MD_FILE_ENSEMBLE_FRONTMATTER_HEADERDEPTH=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini ensemble headerDepth) )
     echo "headerDepth: $MD_FILE_ENSEMBLE_FRONTMATTER_HEADERDEPTH" >> $2/$1.md
 
     #写入是否原创
     #获取具体章节的的md文件中的Frontmatter选项配置信息中isOriginal的属性的值
-    MD_FILE_ENSEMBLE_FRONTMATTER_ISORIGINAL=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble isOriginal) )
+    MD_FILE_ENSEMBLE_FRONTMATTER_ISORIGINAL=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini ensemble isOriginal) )
     echo "isOriginal: $MD_FILE_ENSEMBLE_FRONTMATTER_ISORIGINAL" >> $2/$1.md
 
     #写入分类信息
     #获取完整的章节的的md文件中的Frontmatter选项配置信息中category的属性的值
 
-    MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORY=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble category) )
+    MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORY=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini ensemble category) )
     echo "category:" >> $2/$1.md
     ENSEMBLE_CATEGORY=(`echo $MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORY | tr ',' ' '` )
     for CATEGORY in ${ENSEMBLE_CATEGORY[@]}
@@ -133,12 +133,12 @@ function writeFrontmatterForOriginal() {
 
     #写入 是否被博客列表收藏，xxx.md切割出来的章节不用加入收藏列表，只把xxx.md加入收藏列表
     #获取具体章节的的md文件中的Frontmatter选项配置信息中star的属性的值
-    MD_FILE_ENSEMBLE_FRONTMATTER_STAR=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble star) )
+    MD_FILE_ENSEMBLE_FRONTMATTER_STAR=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini ensemble star) )
     echo "star: $MD_FILE_ENSEMBLE_FRONTMATTER_STAR" >> $2/$1.md
 
     #写入文章标签：文章合集的标签+每个章节的标签
     #获取具体章节的的md文件中的Frontmatter选项配置信息中的tag属性的值
-    MD_FILE_ENSEMBLE_FRONTMATTER_TAGS_STR=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble tag) )
+    MD_FILE_ENSEMBLE_FRONTMATTER_TAGS_STR=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini ensemble tag) )
     echo "tag:" >> $2/$1.md
     echo chapter-$i'的标签内容'$MD_FILE_ENSEMBLE_FRONTMATTER_TAGS_STR
     MD_FILE_ENSEMBLE_FRONTMATTER_TAGS_ARR=(`echo $MD_FILE_ENSEMBLE_FRONTMATTER_TAGS_STR | tr ',' ' '` )
@@ -157,7 +157,7 @@ function writeFrontmatterForOriginal() {
     for ((i=1; i<=$TOTAL_TITLE1_COUNTS; i++))
     do
         #获取具体章节的的md文件中的Frontmatter选项配置信息中的tag属性的值
-        MD_FILE_CHAPTER_FRONTMATTER_TAGS_STR=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini chapter-$i tag) )
+        MD_FILE_CHAPTER_FRONTMATTER_TAGS_STR=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini chapter-$i tag) )
         echo $2/$1'.md中'chapter-$i'的标签内容：'$MD_FILE_CHAPTER_FRONTMATTER_TAGS_STR
         if [ $MD_FILE_CHAPTER_FRONTMATTER_TAGS_STR != "" ]
         then
@@ -186,17 +186,17 @@ EOF
 
     #写入 写作日期
     #获取具体章节的的md文件中的Frontmatter选项配置信息中date属性的值
-    MD_FILE_ENSEMBLE_FRONTMATTER_DATE=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble date) )
+    MD_FILE_ENSEMBLE_FRONTMATTER_DATE=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini ensemble date) )
     echo "date: $MD_FILE_ENSEMBLE_FRONTMATTER_DATE" >>  $2/$1.md
 
     #写入 是否置顶
     #获取具体章节的的md文件中的Frontmatter选项配置信息中date属性的值
-    MD_FILE_ENSEMBLE_FRONTMATTER_STICKY=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble sticky) )
+    MD_FILE_ENSEMBLE_FRONTMATTER_STICKY=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini ensemble sticky) )
     echo "sticky: $MD_FILE_ENSEMBLE_FRONTMATTER_STICKY" >>  $2/$1.md
 
     #写入 icon
     #获取具体章节的的md文件中的Frontmatter选项配置信息中date属性的值
-    MD_FILE_ENSEMBLE_FRONTMATTER_ICON=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble icon) )
+    MD_FILE_ENSEMBLE_FRONTMATTER_ICON=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini ensemble icon) )
     echo "icon: $MD_FILE_ENSEMBLE_FRONTMATTER_ICON" >>  $2/$1.md
 
     #写入SEO信息
@@ -406,7 +406,7 @@ $BLOG_CONTENT_INTRO
 EOF
     #为xxx-guidance.md的Frontmatter配置中写入category配置信息
     #获取完整的章节的的md文件中的Frontmatter选项配置信息中category的属性的值
-    MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORY=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble category) )
+    MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORY=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini ensemble category) )
     ENSEMBLE_CATEGORY=(`echo $MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORY | tr ',' ' '` )
     #获取category:所在的行号
     TARGET_LINE_NUMBER=`grep -n 'category:' $2/$1.md | cut -d ':' -f 1`
@@ -564,7 +564,7 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
     echo '---' >> $CHAPTER_0_FULL_PATH_NAME
 
     #获取完整的的md文件中的Frontmatter选项配置信息中的title属性的值
-    MD_FILE_ENSEMBLE_FRONTMATTER_TITLE=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble title) )
+    MD_FILE_ENSEMBLE_FRONTMATTER_TITLE=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini ensemble title) )
 
     #写入title
     echo "title: $MD_FILE_ENSEMBLE_FRONTMATTER_TITLE-$6" >> $CHAPTER_0_FULL_PATH_NAME
@@ -578,18 +578,18 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
     echo "description: $MD_FILE_ENSEMBLE_FRONTMATTER_DESCRIPTION" >> $CHAPTER_0_FULL_PATH_NAME
 
     #获取完整的的md文件中的headerDepth
-    MD_FILE_ENSEMBLE_FRONTMATTER_HEADERDEPTH=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble headerDepth) )
+    MD_FILE_ENSEMBLE_FRONTMATTER_HEADERDEPTH=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini ensemble headerDepth) )
     #写入headerDepth
     echo "headerDepth: $MD_FILE_ENSEMBLE_FRONTMATTER_HEADERDEPTH" >> $CHAPTER_0_FULL_PATH_NAME
 
     #获取完整的的md文件中的isOriginal
-    MD_FILE_ENSEMBLE_FRONTMATTER_ISORIGINAL=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble isOriginal) )
+    MD_FILE_ENSEMBLE_FRONTMATTER_ISORIGINAL=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini ensemble isOriginal) )
     #写入isOriginal
     echo "isOriginal: $MD_FILE_ENSEMBLE_FRONTMATTER_ISORIGINAL" >> $CHAPTER_0_FULL_PATH_NAME
 
     #写入分类信息
     #获取完整的章节的的md文件中的Frontmatter选项配置信息中category的属性的值
-    MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORYS_STR=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble category) )
+    MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORYS_STR=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini ensemble category) )
     echo "category:" >> $CHAPTER_0_FULL_PATH_NAME
     MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORYS_ARR=(`echo $MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORYS_STR | tr ',' ' '` )
     for CATEGORY in ${MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORYS_ARR[@]}
@@ -598,17 +598,17 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
     done
 
     #获取chapter-basic的md文件中的star
-    MD_FILE_CHAPTER_BASIC_FRONTMATTER_START=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini chapter-basic star) )
+    MD_FILE_CHAPTER_BASIC_FRONTMATTER_START=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini chapter-basic star) )
     echo "star: $MD_FILE_CHAPTER_BASIC_FRONTMATTER_START" >> $CHAPTER_0_FULL_PATH_NAME
 
     #写入 文章标签
     #获取具体章节的的md文件中的Frontmatter选项配置信息中的tag属性的值
-    MD_FILE_ENSEMBLE_FRONTMATTER_TAGS_STR=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble tag) )
+    MD_FILE_ENSEMBLE_FRONTMATTER_TAGS_STR=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini ensemble tag) )
     echo "tag:" >> $CHAPTER_0_FULL_PATH_NAME
     echo "  - $5" >> $CHAPTER_0_FULL_PATH_NAME
 
     #获chapter-0md文件中的date
-    MD_FILE_CHAPTER0_FRONTMATTER_DATE=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini chapter-0 date) )
+    MD_FILE_CHAPTER0_FRONTMATTER_DATE=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini chapter-0 date) )
     echo "date: $MD_FILE_CHAPTER0_FRONTMATTER_DATE" >> $CHAPTER_0_FULL_PATH_NAME
 
     #抽取所有一级标题，以此为根据创建博客正文内容中博客内容概述的文字，作为SEO的关键词
@@ -658,7 +658,7 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
         echo "---" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
         #写入 博客列表展示的标题，这是地址栏上面的标题，同时也是博客列表中显示的标题
         #获取完整的的md文件中的Frontmatter选项配置信息中的title属性的值
-        MD_FILE_ENSEMBLE_FRONTMATTER_TITLE=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble title) )
+        MD_FILE_ENSEMBLE_FRONTMATTER_TITLE=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini ensemble title) )
         echo "title: $MD_FILE_ENSEMBLE_FRONTMATTER_TITLE-$CHAPTER_NAME" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
 
         #抽取当前一级标题下所有二级标题，合并起来作为章节内容概述的一部分
@@ -671,17 +671,17 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
 
         #写入 右侧toc面板展示的标题深度
         #获取具体章节的的md文件中的Frontmatter选项配置信息中headerDepth的属性的值
-        MD_FILE_CHAPTER_FRONTMATTER_HEADERDEPTH=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini chapter-basic headerDepth) )
+        MD_FILE_CHAPTER_FRONTMATTER_HEADERDEPTH=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini chapter-basic headerDepth) )
         echo "headerDepth: $MD_FILE_CHAPTER_FRONTMATTER_HEADERDEPTH" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
 
         #写入是否原创
         #获取具体章节的的md文件中的Frontmatter选项配置信息中isOriginal的属性的值
-        MD_FILE_CHAPTER_FRONTMATTER_ISORIGINAL=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini chapter-basic isOriginal) )
+        MD_FILE_CHAPTER_FRONTMATTER_ISORIGINAL=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini chapter-basic isOriginal) )
         echo "isOriginal: $MD_FILE_CHAPTER_FRONTMATTER_ISORIGINAL" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
 
         #写入分类信息
         #获取完整的章节的的md文件中的Frontmatter选项配置信息中category的属性的值
-        MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORYS_STR=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble category) )
+        MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORYS_STR=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini ensemble category) )
         echo "category:" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
         MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORYS_ARR=(`echo $MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORYS_STR | tr ',' ' '` )
         for CATEGORY in ${MD_FILE_ENSEMBLE_FRONTMATTER_CATEGORYS_ARR[@]}
@@ -691,12 +691,12 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
 
         #写入 是否被博客列表收藏，xxx.md切割出来的章节不用加入收藏列表，只把xxx.md加入收藏列表
         #获取具体章节的的md文件中的Frontmatter选项配置信息中的star属性的值
-        MD_FILE_CHAPTER_FRONTMATTER_STAR=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini chapter-basic star) )
+        MD_FILE_CHAPTER_FRONTMATTER_STAR=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini chapter-basic star) )
         echo "star: $MD_FILE_CHAPTER_FRONTMATTER_STAR" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
 
         #写入 文章标签
         #获取具体章节的的md文件中的Frontmatter选项配置信息中的tag属性的值
-        MD_FILE_CHAPTER_FRONTMATTER_TAGS_STR=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini chapter-$i tag) )
+        MD_FILE_CHAPTER_FRONTMATTER_TAGS_STR=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini chapter-$i tag) )
         echo "tag:" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
         echo chapter-$i'的标签内容'$MD_FILE_CHAPTER_FRONTMATTER_TAGS_STR
         MD_FILE_CHAPTER_FRONTMATTER_TAGS_ARR=(`echo $MD_FILE_CHAPTER_FRONTMATTER_TAGS_STR | tr ',' ' '` )
@@ -707,7 +707,7 @@ function generateChapterShardingsAndWriteFrontmatterForShardings() {
 
         #写入 写作日期
         #获取具体章节的的md文件中的Frontmatter选项配置信息中date属性的值
-        MD_FILE_CHAPTER_FRONTMATTER_DATE=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini chapter-$i date) )
+        MD_FILE_CHAPTER_FRONTMATTER_DATE=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini chapter-$i date) )
         echo "date: $MD_FILE_CHAPTER_FRONTMATTER_DATE" >>  $2/$3/$1-chapter-$CHAPTER_NAME.md
 
         MD_FILE_CHAPTER_FRONTMATTER_SEO_KEYWORDS=$CHAPTER_CONTENT_INTRO
@@ -776,7 +776,7 @@ function generateSidebarConfigForAllAndSetAnchorForOriginal() {
     rm -rf $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
 
     #根据文件名称查找完整版文档（完整版博客的）的标题，并用作侧边栏显示的文字使用
-    SIDEBAR_TEXT=( $( parseIni $ENHANCE_BOOT_INI_NAME_PREFIX-$1.ini ensemble title) )
+    SIDEBAR_TEXT=( $( parseIni $PLUGINS_BOOT_CFG_NAME_PREFIX-$1.ini ensemble title) )
 
 
     echo "  {" >> $SIDEBAR_CONFIGFILE_FULL_PATH_NAME
@@ -1242,8 +1242,8 @@ function afterEnhance() {
     4.在每个博客正文页面添加banner
 EOF
 function enhanceAll() {
-    #获取$ENHANCE_BOOT_PATH/中以boot-xxx.ini格式命名的文件总共有多少个,每个配置文件对应一个xxx.md文件
-    BOOT_FILE_COUNTS=`ls $ENHANCE_BOOT_PATH/ | grep '^boot-.*\.ini$' | wc -w`
+    #获取$PLUGINS_BOOT_PATH/中以boot-xxx.ini格式命名的文件总共有多少个,每个配置文件对应一个xxx.md文件
+    BOOT_FILE_COUNTS=`ls $PLUGINS_BOOT_PATH/ | grep '^boot-.*\.ini$' | wc -w`
     echo '引导文件的总数目: '$BOOT_FILE_COUNTS
 
     for((a=1;a<=$BOOT_FILE_COUNTS;a++))
@@ -1371,8 +1371,8 @@ EOF
     针对所有的md文件执行合并BreadcrumbREADME碎片
 EOF
 function mergeAllBreadcrumbREADMEShardings() {
-    #获取$ENHANCE_BOOT_PATH/中以boot-xxx.ini格式命名的文件总共有多少个,每个配置文件对应一个xxx.md文件
-    BOOT_FILE_COUNTS=`ls $ENHANCE_BOOT_PATH/ | grep '^boot-.*\.ini$' | wc -w`
+    #获取$PLUGINS_BOOT_PATH/中以boot-xxx.ini格式命名的文件总共有多少个,每个配置文件对应一个xxx.md文件
+    BOOT_FILE_COUNTS=`ls $PLUGINS_BOOT_PATH/ | grep '^boot-.*\.ini$' | wc -w`
     echo '引导文件的总数目: '$BOOT_FILE_COUNTS
     for((b=1;b<=$BOOT_FILE_COUNTS;b++))
     do
@@ -1395,8 +1395,8 @@ function mergeAllBreadcrumbREADMEShardings() {
     合并侧边栏配置json
 EOF
 function mergeSidebarJson() {
- #获取$ENHANCE_BOOT_PATH/中以boot-xxx.ini格式命名的文件总共有多少个,每个配置文件对应一个xxx.md文件
-    BOOT_FILE_COUNTS=`ls $ENHANCE_BOOT_PATH/ | grep '^boot-.*\.ini$' | wc -w`
+ #获取$PLUGINS_BOOT_PATH/中以boot-xxx.ini格式命名的文件总共有多少个,每个配置文件对应一个xxx.md文件
+    BOOT_FILE_COUNTS=`ls $PLUGINS_BOOT_PATH/ | grep '^boot-.*\.ini$' | wc -w`
     echo '引导文件的总数目: '$BOOT_FILE_COUNTS
     #删除旧的sidebar.js并拼接sidebar.js的头
     SIDEBAR_JS_FULL_NAME_PATH=docs/.vuepress/sidebar.ts

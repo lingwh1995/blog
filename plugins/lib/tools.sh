@@ -4,22 +4,22 @@ EOF
 
 #---------------------------------------------------------------------------------
 #enhance文件夹的相对与init.sh的位置
-ENHANCE_HOME=./enhance
+PLUGINS_HOME=./enhance
 #enhance文件夹中conf文件夹的位置
-ENHANCE_CONFIG_PATH=$ENHANCE_HOME/config
+PLUGINS_CONFIG_PATH=$PLUGINS_HOME/config
 
 #enhance文件夹中存放引导文件的文件夹的位置
-ENHANCE_BOOT_PATH=$ENHANCE_HOME/boot
+PLUGINS_BOOT_PATH=$PLUGINS_HOME/boot
 #enhance文件夹中存放引导配置文件中配置文件的前缀
-ENHANCE_BOOT_INI_NAME_PREFIX=$ENHANCE_BOOT_PATH/boot
+PLUGINS_BOOT_CFG_NAME_PREFIX=$PLUGINS_BOOT_PATH/boot
 
 
 #存放日志文件的文件夹
-ENHANCE_LOG_HOME=$ENHANCE_HOME/log
+PLUGINS_LOG_HOME=$PLUGINS_HOME/log
 #日志文件的名称
-ENHANCE_LOG_NAME=enhance-`date +"%Y-%m-%d"`.log
+PLUGINS_LOG_NAME=enhance-`date +"%Y-%m-%d"`.log
 #日志文件的全路径名
-ENHANCE_LOG_FULL_PATH_NAME=$ENHANCE_LOG_HOME/$ENHANCE_LOG_NAME
+PLUGINS_LOG_FULL_PATH_NAME=$PLUGINS_LOG_HOME/$PLUGINS_LOG_NAME
 
 #docs文件夹的目录
 DOCS_PATH=docs/blogs
@@ -59,18 +59,18 @@ function log() {
             #输出空白行
         if [ "$1" = "b" ]
         then
-            echo $CURRENT_TIME':'     >> $ENHANCE_LOG_FULL_PATH_NAME
+            echo $CURRENT_TIME':'     >> $PLUGINS_LOG_FULL_PATH_NAME
         #输出banner
         elif [ "$1" = "banner" ]
         then
-            echo $CURRENT_TIME':            ...................                  ' >> $ENHANCE_LOG_FULL_PATH_NAME
-            echo $CURRENT_TIME':            ...................                  ' >> $ENHANCE_LOG_FULL_PATH_NAME
-            echo $CURRENT_TIME':            .....正在执行中.....                  ' >> $ENHANCE_LOG_FULL_PATH_NAME
-            echo $CURRENT_TIME':            ...................                  ' >> $ENHANCE_LOG_FULL_PATH_NAME
-            echo $CURRENT_TIME':            ...................                  ' >> $ENHANCE_LOG_FULL_PATH_NAME
+            echo $CURRENT_TIME':            ...................                  ' >> $PLUGINS_LOG_FULL_PATH_NAME
+            echo $CURRENT_TIME':            ...................                  ' >> $PLUGINS_LOG_FULL_PATH_NAME
+            echo $CURRENT_TIME':            .....正在执行中.....                  ' >> $PLUGINS_LOG_FULL_PATH_NAME
+            echo $CURRENT_TIME':            ...................                  ' >> $PLUGINS_LOG_FULL_PATH_NAME
+            echo $CURRENT_TIME':            ...................                  ' >> $PLUGINS_LOG_FULL_PATH_NAME
         else
             #单纯输出日志
-            echo $CURRENT_TIME':' $1  >> $ENHANCE_LOG_FULL_PATH_NAME   
+            echo $CURRENT_TIME':' $1  >> $PLUGINS_LOG_FULL_PATH_NAME
         fi
     fi
     #如果传入了两个参数
@@ -79,15 +79,15 @@ function log() {
         #输出空白行->输出日志
         if [ "$2" = "u" ]
         then
-            echo $CURRENT_TIME':'     >> $ENHANCE_LOG_FULL_PATH_NAME
-            echo $CURRENT_TIME':' $1  >> $ENHANCE_LOG_FULL_PATH_NAME
+            echo $CURRENT_TIME':'     >> $PLUGINS_LOG_FULL_PATH_NAME
+            echo $CURRENT_TIME':' $1  >> $PLUGINS_LOG_FULL_PATH_NAME
         fi
 
         #输出日志->输出空白行
         if [ "$2" = "d" ]
         then
-            echo $CURRENT_TIME':' $1  >> $ENHANCE_LOG_FULL_PATH_NAME
-            echo $CURRENT_TIME':'     >> $ENHANCE_LOG_FULL_PATH_NAME
+            echo $CURRENT_TIME':' $1  >> $PLUGINS_LOG_FULL_PATH_NAME
+            echo $CURRENT_TIME':'     >> $PLUGINS_LOG_FULL_PATH_NAME
         fi
     fi
 
@@ -119,7 +119,7 @@ EOF
 function parsePluginIni() {
     log '开始解析plugins.ini..................................' u
     #plugin.ini的全路径名
-    PLUGIN_INI_FULL_PATH_NAME=$ENHANCE_CONFIG_PATH/plugins.ini
+    PLUGIN_INI_FULL_PATH_NAME=$PLUGINS_CONFIG_PATH/plugins.ini
     RESULT_PARSE_PLUGIN_INI=`parseIni $PLUGIN_INI_FULL_PATH_NAME $1 $2`
     echo ${RESULT_PARSE_PLUGIN_INI}
     log '完成解析plugins.ini..................................' d
@@ -133,7 +133,7 @@ EOF
 function parseBootstrapIni() {
     log '开始解析bootstrap.ini................................' u
     #bootstrap.ini的全路径名
-    BOOTSTRAP_INI_FULL_PATH_NAME=$ENHANCE_HOME/bootstrap.ini
+    BOOTSTRAP_INI_FULL_PATH_NAME=$PLUGINS_HOME/bootstrap.ini
     RESULT_PARSE_BOOTSTRAP_INI=`parseIni $BOOTSTRAP_INI_FULL_PATH_NAME $1 $2`
     echo ${RESULT_PARSE_BOOTSTRAP_INI}
     log '完成解析bootstrap.ini................................' d
@@ -147,7 +147,7 @@ EOF
 function parseI18nIni() {
     log '开始解析I18n.ini................................' u
     #i18n.ini的全路径名
-    I18N_INI_FULL_PATH_NAME=$ENHANCE_CONFIG_PATH/i18n.ini
+    I18N_INI_FULL_PATH_NAME=$PLUGINS_CONFIG_PATH/i18n.ini
     RESULT_PARSE_I18N_INI=`parseIni $I18N_INI_FULL_PATH_NAME $1 $2`
     echo ${RESULT_PARSE_I18N_INI}
     log '完成解析I18n.ini................................' d
